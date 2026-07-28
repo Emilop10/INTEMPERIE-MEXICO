@@ -6,6 +6,12 @@ datos tuyos; el resto de la auditoría ya quedó implementado en el tema de trab
 **Tema de trabajo (preview):** `https://wfuxvx-yn.myshopify.com/?preview_theme_id=147593723981`
 **Última actualización:** 28 de julio de 2026
 
+**Correo profesional:** Google Workspace reactivado con `admin@intemperiemexico.com`
+como cuenta principal. DNS (MX, SPF, DKIM) verificado y propagado. 6 alias activos
+para recibir y para "enviar como": `ventas@`, `contacto@`, `info@`, `soporte@`,
+`pedidos@`, `facturacion@`. El footer del sitio ya muestra `ventas@` como contacto
+y `facturacion@` para solicitudes de factura.
+
 ---
 
 ## ~~1. Dos productos sin subcategoría~~ ✅ Resuelto (28 jul)
