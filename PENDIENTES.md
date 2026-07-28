@@ -74,4 +74,7 @@ Por si se necesitan para otros usos:
 
 - **WhatsApp:** +52 777 327 7340
 - **Correo:** ventas@intemperiemexico.com
-- **Origen de envíos:** Cuernavaca, Morelos
+
+Nota: por decisión explícita, el footer **no menciona la ciudad de origen de los
+envíos** (Cuernavaca, Morelos) — solo dice "Envíos a todo México", para no exponer
+la ubicación del negocio.
