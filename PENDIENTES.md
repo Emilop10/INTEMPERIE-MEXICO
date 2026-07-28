@@ -8,24 +8,15 @@ datos tuyos; el resto de la auditoría ya quedó implementado en el tema de trab
 
 ---
 
-## 1. Dos productos sin subcategoría
+## ~~1. Dos productos sin subcategoría~~ ✅ Resuelto (28 jul)
 
-Son los únicos de todo el catálogo que no aparecen en ninguna subcategoría — solo
-se encuentran entrando a "Diábolos y Municiones" completo:
+Se crearon dos colecciones nuevas, con portada y descripción, conectadas en la
+homepage y en el mega-menú (este último ya es visible en el sitio en vivo):
 
-| Producto | Por qué no encaja |
-|---|---|
-| Cartucho de Gas CO2 12 Gramos | No es munición, es gas propelente |
-| Diábolo Gamo Hunter Metal Impact 6.35mm | Calibre único, no entra en 4.5mm ni 5.5mm |
+- **Calibre 6.35mm** — Diábolo Gamo Hunter Metal Impact
+- **CO2 y Cartuchos** — Cartucho de Gas CO2 12 Gramos
 
-**Estado del resto del catálogo:** Pesca (302), Miras (29) y Rifles (20) están al
-100% cubiertos por sus subcategorías.
-
-**Opciones:**
-- Crear una subcategoría "CO2 y Accesorios" — hoy quedaría con 1 producto, se ve pobre
-- Dejarlos como están hasta traer más producto de ese tipo
-
-**Recomendación:** dejarlos. Con 2-3 productos más de CO2 ya justifica su propia ficha.
+"Diábolos y Municiones" queda al 100% de cobertura, igual que los otros 3 departamentos.
 
 ---
 
