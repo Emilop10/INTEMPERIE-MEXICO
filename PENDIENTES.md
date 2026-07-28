@@ -12,6 +12,14 @@ para recibir y para "enviar como": `ventas@`, `contacto@`, `info@`, `soporte@`,
 `pedidos@`, `facturacion@`. El footer del sitio ya muestra `ventas@` como contacto
 y `facturacion@` para solicitudes de factura.
 
+**Políticas legales:** las 5 páginas (Términos, Privacidad, Envíos, Devoluciones,
+Contacto) se reescribieron por completo y ya están **en vivo** (a diferencia del
+resto del rediseño, las políticas legales no viven en el tema de copia — son
+configuración a nivel tienda). Sin RFC ni ciudad expuestos, sin requisito de
+mayoría de edad (por decisión explícita), con cláusulas de uso responsable para
+productos de aire comprimido. Ver `INSTRUCTIVO-APP-SHOPIFY.md` si se necesita
+volver a tocar permisos de la app para editarlas de nuevo.
+
 ---
 
 ## ~~1. Dos productos sin subcategoría~~ ✅ Resuelto (28 jul)
@@ -26,16 +34,14 @@ homepage y en el mega-menú (este último ya es visible en el sitio en vivo):
 
 ---
 
-## 2. Redes sociales activadas pero vacías
+## 2. Redes sociales — parcialmente resuelto (28 jul)
 
-El footer tiene la opción de redes sociales encendida (`show_social: true`) pero
-**no hay ninguna cuenta configurada**, así que no muestra nada.
+✅ **Facebook conectado**: `https://www.facebook.com/people/Intemperie-México/61588253103964/`
+ya aparece como ícono en el footer del tema de trabajo.
 
-No se ve roto, pero es una señal de confianza que se está perdiendo: una tienda de
-nicho sin presencia social visible genera dudas en compras de ticket alto.
-
-**Qué se necesita:** los links de Instagram / Facebook / TikTok (los que existan).
-Se conectan en un minuto en la configuración del tema.
+⏳ **Pendiente**: Instagram y TikTok — de momento solo existe la página de
+Facebook. Cuando se abran esas cuentas, mandar el link y se conecta igual de
+rápido.
 
 ---
 
