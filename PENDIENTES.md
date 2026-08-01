@@ -74,6 +74,21 @@ departamento.
 
 ---
 
+## 4. Chatbot de IA (Zipchat) — en configuración (31 jul)
+
+Se instaló la app **Zipchat AI** como widget de chat del sitio (no WhatsApp,
+ver `CHATBOT-IA-SITIO.md` para el porqué). Se decidió activar el App Embed
+**solo en el tema de trabajo "Intemperie Mexico - Rediseño 2026"**
+(id `147593723981`), no en "Dawn" (el tema en vivo) — como ahora mismo casi
+no hay visitas reales, no vale la pena repetir el paso dos veces.
+
+**Importante:** cuando se publique el rediseño, verificar que el App Embed
+de Zipchat siga activo (se configura por tema, no se hereda). Falta
+completar: pegar la base de conocimiento en "AI training" y personalizar
+el estilo del widget en "Customise chat".
+
+---
+
 ## Datos de contacto ya integrados
 
 Por si se necesitan para otros usos:
