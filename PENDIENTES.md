@@ -91,7 +91,7 @@ trabajo" y "tema en vivo".
 Se instaló y configuró por completo la app **Zipchat AI** como widget de
 chat del sitio (no WhatsApp, ver `CHATBOT-IA-SITIO.md` para el porqué):
 Bubble chat visible en todo el sitio (móvil y escritorio), asistente
-renombrado a **"Centinela"** con mensaje de bienvenida en la voz de
+renombrado a **"Cartucho"** con mensaje de bienvenida en la voz de
 marca, y base de conocimiento (envíos, devoluciones, catálogo, pago,
 contacto) cargada en "AI training". Probado con preguntas reales
 ("¿cuánto cuesta el envío?", "¿aceptan devoluciones de municiones?") y
