@@ -86,16 +86,21 @@ respaldo. A partir de este momento **todo lo que se edite en el tema de
 trabajo se ve en vivo de inmediato** — ya no hay distinción entre "tema de
 trabajo" y "tema en vivo".
 
-## 4b. Chatbot de IA (Zipchat) — en configuración (31 jul)
+## ~~4b. Chatbot de IA (Zipchat)~~ ✅ Resuelto (31 jul)
 
-Se instaló la app **Zipchat AI** como widget de chat del sitio (no
-WhatsApp, ver `CHATBOT-IA-SITIO.md` para el porqué). Con el rediseño ya
-publicado, el App Embed solo necesita activarse una vez, en el tema que
-ahora es el único/en vivo.
+Se instaló y configuró por completo la app **Zipchat AI** como widget de
+chat del sitio (no WhatsApp, ver `CHATBOT-IA-SITIO.md` para el porqué):
+Bubble chat visible en todo el sitio (móvil y escritorio), asistente
+renombrado a **"Centinela"** con mensaje de bienvenida en la voz de
+marca, y base de conocimiento (envíos, devoluciones, catálogo, pago,
+contacto) cargada en "AI training". Probado con preguntas reales
+("¿cuánto cuesta el envío?", "¿aceptan devoluciones de municiones?") y
+responde correctamente.
 
-**Falta completar:** activar el App Embed del Zipchat Bubble en "App
-Embeds" del editor de temas, pegar la base de conocimiento en
-"AI training", y personalizar el estilo del widget en "Customise chat".
+⚠️ **Plan gratuito casi al límite**: 100/100 páginas de entrenamiento
+usadas (más las 120 respuestas de IA/mes incluidas). Si en el futuro se
+necesita indexar más contenido, hay que subir al plan Starter ($49
+USD/mes).
 
 ---
 
