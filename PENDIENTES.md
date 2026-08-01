@@ -3,8 +3,10 @@
 Temas abiertos de la auditoría de la tienda. Los tres requieren una decisión o
 datos tuyos; el resto de la auditoría ya quedó implementado en el tema de trabajo.
 
-**Tema de trabajo (preview):** `https://wfuxvx-yn.myshopify.com/?preview_theme_id=147593723981`
-**Última actualización:** 28 de julio de 2026
+**Tema en vivo:** "Intemperie Mexico - Rediseño 2026" — publicado el 31 de
+julio de 2026. Ya no hay tema de trabajo separado; todo cambio se ve en
+vivo de inmediato en `https://wfuxvx-yn.myshopify.com/`.
+**Última actualización:** 31 de julio de 2026
 
 **Correo profesional:** Google Workspace reactivado con `admin@intemperiemexico.com`
 como cuenta principal. DNS (MX, SPF, DKIM) verificado y propagado. 6 alias activos
@@ -74,18 +76,26 @@ departamento.
 
 ---
 
-## 4. Chatbot de IA (Zipchat) — en configuración (31 jul)
+## ~~4a. Publicar el rediseño~~ ✅ Resuelto (31 jul)
 
-Se instaló la app **Zipchat AI** como widget de chat del sitio (no WhatsApp,
-ver `CHATBOT-IA-SITIO.md` para el porqué). Se decidió activar el App Embed
-**solo en el tema de trabajo "Intemperie Mexico - Rediseño 2026"**
-(id `147593723981`), no en "Dawn" (el tema en vivo) — como ahora mismo casi
-no hay visitas reales, no vale la pena repetir el paso dos veces.
+**El tema "Intemperie Mexico - Rediseño 2026" ya es el tema en vivo** (rol
+`main`), publicado directamente por API tras verificar que homepage,
+colecciones y las 5 páginas de políticas cargan sin errores Liquid.
+"Dawn" (el diseño anterior) quedó como tema sin publicar, disponible como
+respaldo. A partir de este momento **todo lo que se edite en el tema de
+trabajo se ve en vivo de inmediato** — ya no hay distinción entre "tema de
+trabajo" y "tema en vivo".
 
-**Importante:** cuando se publique el rediseño, verificar que el App Embed
-de Zipchat siga activo (se configura por tema, no se hereda). Falta
-completar: pegar la base de conocimiento en "AI training" y personalizar
-el estilo del widget en "Customise chat".
+## 4b. Chatbot de IA (Zipchat) — en configuración (31 jul)
+
+Se instaló la app **Zipchat AI** como widget de chat del sitio (no
+WhatsApp, ver `CHATBOT-IA-SITIO.md` para el porqué). Con el rediseño ya
+publicado, el App Embed solo necesita activarse una vez, en el tema que
+ahora es el único/en vivo.
+
+**Falta completar:** activar el App Embed del Zipchat Bubble en "App
+Embeds" del editor de temas, pegar la base de conocimiento en
+"AI training", y personalizar el estilo del widget en "Customise chat".
 
 ---
 
