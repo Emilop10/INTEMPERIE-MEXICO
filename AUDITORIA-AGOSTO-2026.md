@@ -154,7 +154,19 @@ Cartucho como primera opción de respuesta inmediata. El resto del
 contenido (misión, visión, diferenciadores) se dejó intacto — ya estaba
 bien escrito y alineado con la voz de marca.
 
-### 6. La página de formulario de contacto también está huérfana
+### 6. ✅ Resuelto (4 de agosto) — formulario de contacto conectado
+
+Se decidió conservarla y darle uso, en vez de borrarla. Se enlazó desde
+el bloque de "Contacto" del footer (no el de marca, por coherencia
+temática): *"¿Prefieres un formulario? Escríbenos aquí"* →
+`/pages/contact`. La página usa el template nativo de Shopify
+(`page.contact.json`, con `{% form 'contact' %}`), que ya hereda el
+sistema de diseño oscuro sin necesitar ajustes — campos de nombre,
+correo, teléfono y comentario. Le da al cliente una vía de contacto
+alterna a WhatsApp y a Cartucho, útil para quien prefiere no compartir
+su teléfono o para consultas fuera de horario.
+
+Detalle original del hallazgo, antes de resolverse:
 
 `/pages/contact` tiene un formulario de contacto funcional (nombre,
 correo, teléfono, comentario). El footer solo enlaza a
@@ -282,7 +294,7 @@ Responden correctamente: las 5 políticas oficiales, búsqueda, carrito,
 | 3 | Verificar visualmente si WhatsApp y el chat se encaman | 🟠 | ✅ Resuelto 4 ago — botón flotante eliminado |
 | 4 | Reescribir la línea "no bots ni formularios" | 🟡 | ✅ Resuelto 4 ago |
 | 5 | Enlazar "Quiénes Somos" desde el footer | 🟡 | ✅ Resuelto 4 ago |
-| 6 | Decidir qué hacer con `/pages/contact` | 🟡 | ⏳ Pendiente — decisión de negocio |
+| 6 | Decidir qué hacer con `/pages/contact` | 🟡 | ✅ Resuelto 4 ago — conectado en el footer |
 | 7 | Ajustar `og:title` de la portada | 🟢 | ⏳ Pendiente |
 | 8 | Alt faltante en 1 imagen de producto | 🟢 | ⏳ Pendiente |
 
