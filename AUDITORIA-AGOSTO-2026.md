@@ -79,7 +79,18 @@ indexables:
 versiones oficiales `/policies/*`, así que borrarlas no rompe ninguna
 navegación.
 
-### 3. Probable choque visual entre el botón de WhatsApp y la burbuja del chat
+### 3. ✅ Resuelto (4 de agosto) — se eliminó el botón flotante de WhatsApp
+
+Confirmado por el cliente: sí chocaban. Se decidió **eliminar por
+completo el botón flotante de WhatsApp** (vivía hardcodeado en
+`layout/theme.liquid`, con `position:fixed; bottom:24px; right:24px`)
+en vez de reacomodarlo, porque ya es redundante — Cartucho ofrece el
+mismo enlace a WhatsApp (con mensaje precargado) cuando el cliente lo
+necesita, así que mantener dos vías para lo mismo solo agregaba ruido
+visual. Verificado sin rastro en home y ficha de producto, con Cartucho
+funcionando normal.
+
+Detalle original del hallazgo, antes de resolverse:
 
 El botón flotante de WhatsApp está fijado con
 `position:fixed; bottom:24px; right:24px` (60×60px). La burbuja de
@@ -268,7 +279,7 @@ Responden correctamente: las 5 políticas oficiales, búsqueda, carrito,
 |---|---|---|---|
 | 1 | Borrar `/pages/aviso-de-privacidad` (expone RFC y ciudad) | 🔴 | ✅ Resuelto 4 ago |
 | 2 | Borrar las otras 3 políticas viejas duplicadas | 🟠 | ✅ Resuelto 4 ago |
-| 3 | Verificar visualmente si WhatsApp y el chat se encaman | 🟠 | ⏳ Pendiente — necesita que abras el sitio en tu celular |
+| 3 | Verificar visualmente si WhatsApp y el chat se encaman | 🟠 | ✅ Resuelto 4 ago — botón flotante eliminado |
 | 4 | Reescribir la línea "no bots ni formularios" | 🟡 | ✅ Resuelto 4 ago |
 | 5 | Enlazar "Quiénes Somos" desde el footer | 🟡 | ✅ Resuelto 4 ago |
 | 6 | Decidir qué hacer con `/pages/contact` | 🟡 | ⏳ Pendiente — decisión de negocio |
