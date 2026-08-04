@@ -183,7 +183,17 @@ desde el footer. Si no se quiere, borrarla para no dejarla suelta.
 
 ## 🟢 BAJO / cosmético
 
-### 7. El título para compartir en redes pierde el descriptor
+### 7. ✅ Resuelto (4 de agosto) — og:title de la portada corregido
+
+Causa raíz encontrada: el `<title>` de la portada usa un texto especial
+hardcodeado en `layout/theme.liquid` para `request.page_type == 'index'`,
+pero el `og:title` en `snippets/meta-tags.liquid` lee la variable
+`page_title` (que en la portada es solo `shop.name`, sin el descriptor).
+Se corrigió `meta-tags.liquid` para replicar la misma condición especial
+del `<title>` cuando `request.page_type == 'index'`, así ambos quedan
+sincronizados sin duplicar lógica en un tercer lugar.
+
+Detalle original del hallazgo:
 
 El `<title>` de la home es **"INTEMPERIE MÉXICO | Pesca, Óptica y Tiro
 Deportivo"** (correcto, como dice el manual), pero el `og:title` — el que
@@ -193,11 +203,16 @@ se ve al compartir el link en WhatsApp, Facebook o X — es solo
 En las fichas de producto sí está correcto (usa el nombre del producto).
 Solo afecta a la portada.
 
-### 8. Una imagen sin texto alternativo
+### 8. ✅ Resuelto (4 de agosto) — alt agregado a la imagen faltante
 
-En la ficha de producto hay 1 imagen (de 25) sin atributo `alt`. Es un
-archivo del CDN, probablemente de una app instalada, no del tema. Impacto
-mínimo en accesibilidad, pero vale anotarlo.
+No era un bug del tema — el snippet `product-media.liquid` renderiza
+correctamente el campo `alt` de cada imagen, pero a esa imagen en
+particular (la única del producto "Pistola Bullet's P30 Eléctrica
+Full-Auto H&K") nunca se le asignó texto alternativo al subirla. Se
+corrigió directo en el activo de la imagen vía API (no en el tema):
+*"Pistola Bullet's P30 Eléctrica Full-Auto H&K, réplica de airsoft
+calibre 6mm"*. Verificado: 0 imágenes con alt vacío en esa ficha de
+producto tras el cambio.
 
 ---
 
@@ -295,8 +310,10 @@ Responden correctamente: las 5 políticas oficiales, búsqueda, carrito,
 | 4 | Reescribir la línea "no bots ni formularios" | 🟡 | ✅ Resuelto 4 ago |
 | 5 | Enlazar "Quiénes Somos" desde el footer | 🟡 | ✅ Resuelto 4 ago |
 | 6 | Decidir qué hacer con `/pages/contact` | 🟡 | ✅ Resuelto 4 ago — conectado en el footer |
-| 7 | Ajustar `og:title` de la portada | 🟢 | ⏳ Pendiente |
-| 8 | Alt faltante en 1 imagen de producto | 🟢 | ⏳ Pendiente |
+| 7 | Ajustar `og:title` de la portada | 🟢 | ✅ Resuelto 4 ago |
+| 8 | Alt faltante en 1 imagen de producto | 🟢 | ✅ Resuelto 4 ago |
+
+**Los 8 hallazgos de esta auditoría quedaron resueltos.**
 
 ---
 
