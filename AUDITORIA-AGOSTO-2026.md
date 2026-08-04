@@ -11,7 +11,14 @@ acción inmediata**.
 
 ---
 
-## 🔴 CRÍTICO — requiere acción inmediata
+## 🔴 CRÍTICO — ✅ Resuelto (4 de agosto)
+
+Las 4 páginas duplicadas (`aviso-de-privacidad`, `terminos-y-condiciones`,
+`politica-de-envios`, `politica-de-devoluciones`) fueron **borradas** vía
+API tras ampliar el token con permiso `write_content` (ver
+`INSTRUCTIVO-APP-SHOPIFY.md`). Verificado: las 4 URLs devuelven 404, las
+páginas "Contacto" y "Quiénes Somos" siguen intactas, y las 5 políticas
+oficiales en `/policies/*` siguen funcionando con normalidad.
 
 ### 1. Una página vieja está exponiendo públicamente el RFC y la ciudad
 
