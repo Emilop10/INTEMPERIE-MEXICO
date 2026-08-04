@@ -136,6 +136,16 @@ es el dominio principal de la tienda, con DNS verificado en Namecheap
 (registro A y CNAME agregados sin tocar los registros de correo de
 Workspace) y certificado TLS activo.
 
+✅ **Escalación a WhatsApp agregada (3 de agosto)**: no existe una
+función nativa de "handoff a humano con enlace" en Zipchat (el único
+skill relacionado solo notifica internamente al equipo, no le muestra
+nada al cliente), así que se resolvió con una instrucción explícita en
+"Additional instructions": cuando Cartucho no puede resolver la duda, o
+el cliente pide hablar con una persona, incluye el link
+`https://wa.me/527773277340`. Confirmado en el widget público (no solo
+en el Test chat del admin, que renderiza distinto) que el link aparece
+como hipervínculo clicable real y abre WhatsApp correctamente.
+
 ---
 
 ## Datos de contacto ya integrados
