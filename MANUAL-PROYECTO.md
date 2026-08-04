@@ -46,6 +46,7 @@ como respaldo
 16. [Pendientes](#16-pendientes)
 17. [Publicación del rediseño y dominio propio](#17-publicación-del-rediseño-y-dominio-propio)
 18. [Chatbot de IA: Cartucho (Zipchat AI)](#18-chatbot-de-ia-cartucho-zipchat-ai)
+19. [Auditoría completa del sitio en vivo (4 de agosto de 2026)](#19-auditoría-completa-del-sitio-en-vivo-4-de-agosto-de-2026)
 
 ---
 
@@ -598,3 +599,52 @@ pruebas — sitio limpio, sin residuos.
 
 Detalle completo de la configuración, hallazgos y decisiones en
 📄 **[`PENDIENTES.md`](./PENDIENTES.md)**.
+
+---
+
+## 19. Auditoría completa del sitio en vivo (4 de agosto de 2026)
+
+Con el rediseño publicado, el dominio conectado y el chatbot en
+funcionamiento, se hizo una auditoría exhaustiva **contra el sitio en
+vivo** (no contra el código) recorriendo todos los puntos de este
+manual: dominio y redirecciones, catálogo completo, las 26 colecciones,
+SEO, fichas de producto, footer, chatbot, y las páginas de política.
+
+### Hallazgo crítico y ya resuelto: páginas viejas con RFC y ciudad expuestos
+Existían **4 páginas antiguas** (`/pages/aviso-de-privacidad`,
+`terminos-y-condiciones`, `politica-de-envios`,
+`politica-de-devoluciones`) que sobrevivieron desde antes del proyecto,
+sin enlace en ningún menú, pero **públicamente indexables** vía sitemap.
+La de privacidad exponía el RFC completo y "Cuernavaca, Morelos" —
+exactamente el dato que se pidió ocultar del resto del sitio (ver
+[sección 10](#10-políticas-legales)). Se identificaron con una revisión
+directa del `sitemap.xml` (nunca habían aparecido en auditorías
+anteriores por no estar enlazadas) y se **borraron las 4** vía API,
+tras ampliar el token con el permiso `write_content` siguiendo
+`INSTRUCTIVO-APP-SHOPIFY.md`. Verificado: 404 en las 4 URLs, sin afectar
+las políticas oficiales (`/policies/*`) ni las páginas legítimas
+("Contacto", "Quiénes Somos").
+
+### "Quiénes Somos" — enlazada y pulida
+La página existía con buen contenido (misión, visión, diferenciadores)
+pero no estaba enlazada desde ningún lugar del sitio, y contenía dos
+frases que contradecían la existencia de Cartucho ("no bots ni
+formularios", "sin complicaciones ni formularios" — escritas antes del
+chatbot). Se reescribieron esas frases para integrar a Cartucho como
+parte de la propuesta de valor, y se enlazó la página desde el bloque de
+marca del footer ("Conoce nuestra historia →") — deliberadamente sin
+usar el menú "Categorías" del footer, porque ese menú es el mismo
+`main-menu` compartido con el mega-menú de compra del header.
+
+### Otros hallazgos, pendientes de resolver
+- Posible choque visual entre el botón flotante de WhatsApp y la
+  burbuja de Cartucho (ambos en la esquina inferior derecha) — no se
+  pudo confirmar por no tener acceso a un navegador real en este
+  entorno, requiere verificación visual directa
+- `/pages/contact` (formulario de contacto) sigue sin uso, pendiente de
+  decidir si se conecta o se elimina
+- Dos ajustes cosméticos menores (og:title de la portada, un alt
+  faltante en una imagen de producto)
+
+Detalle completo, con toda la evidencia técnica de cada verificación, en
+📄 **[`AUDITORIA-AGOSTO-2026.md`](./AUDITORIA-AGOSTO-2026.md)**.

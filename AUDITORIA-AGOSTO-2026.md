@@ -100,7 +100,17 @@ clicables.
 
 ## 🟡 MEDIO
 
-### 4. La página "Quiénes Somos" existe, está bien escrita, y nadie puede llegar a ella
+### 4. ✅ Resuelto (4 de agosto) — "Quiénes Somos" enlazada desde el footer
+
+Se agregó "Conoce nuestra historia →" al bloque de marca del footer
+(`sections/footer-group.json`, block `footer_brand`), enlazando a
+`/pages/quienessomos`. Deliberadamente **no** se usó el menú
+"Categorías" del footer para esto — ese menú es el mismo `main-menu`
+compartido con el mega-menú de compra del header, y mezclar ahí un
+enlace institucional no correspondía.
+
+La página "Quiénes Somos" existe, está bien escrita, y nadie podía
+llegar a ella
 
 `/pages/quienessomos` tiene contenido genuinamente bueno y alineado con
 la voz de marca (misión, visión, "selección honesta", garantía de
@@ -115,19 +125,23 @@ confianza".
 **Solución sugerida:** enlazarla desde el footer (y opcionalmente desde
 el menú principal).
 
-### 5. Esa misma página contradice al chatbot
+### 5. ✅ Resuelto (4 de agosto) — contradicción con el chatbot corregida
 
-El texto de "Quiénes Somos" dice literalmente:
+El texto original decía "Atención real por WhatsApp, **no bots ni
+formularios**" y, en la sección de garantía, "Sin complicaciones **ni
+formularios**" — escrito antes de que existiera Cartucho. Se reescribieron
+ambos pasajes para incorporar a Cartucho como parte de la propuesta de
+valor en vez de negarlo:
 
-> "Atención real por WhatsApp, **no bots ni formularios**"
+- *"Atención real: resuelve tus dudas al instante con Cartucho, nuestro
+  asistente en el sitio, o escríbenos directo por WhatsApp"*
+- *"Sin complicaciones. Escríbenos por WhatsApp o pregúntale a Cartucho
+  en el chat, y encontramos la solución."*
 
-Eso se escribió antes de que existiera Cartucho. Ahora el sitio tiene un
-chatbot y un formulario de contacto, así que la frase quedó desactualizada
-y contradice la experiencia real del cliente.
-
-**Solución:** reescribir esa línea antes de enlazar la página. Algo como
-"Atención real por WhatsApp cuando la necesitas" mantiene el espíritu sin
-contradecirse.
+También se actualizó "¿Dudas antes de comprar?" para mencionar a
+Cartucho como primera opción de respuesta inmediata. El resto del
+contenido (misión, visión, diferenciadores) se dejó intacto — ya estaba
+bien escrito y alineado con la voz de marca.
 
 ### 6. La página de formulario de contacto también está huérfana
 
@@ -252,14 +266,14 @@ Responden correctamente: las 5 políticas oficiales, búsqueda, carrito,
 
 | # | Acción | Prioridad | Dónde |
 |---|---|---|---|
-| 1 | Borrar `/pages/aviso-de-privacidad` (expone RFC y ciudad) | 🔴 Ya | Admin → Contenido → Páginas |
-| 2 | Borrar las otras 3 políticas viejas duplicadas | 🟠 Pronto | Admin → Contenido → Páginas |
-| 3 | Verificar visualmente si WhatsApp y el chat se encaman | 🟠 Pronto | Abrir el sitio en celular |
-| 4 | Reescribir la línea "no bots ni formularios" | 🟡 Cuando se pueda | Admin → Páginas → Quiénes Somos |
-| 5 | Enlazar "Quiénes Somos" desde el footer | 🟡 Cuando se pueda | Tema |
-| 6 | Decidir qué hacer con `/pages/contact` | 🟡 Cuando se pueda | Admin / Tema |
-| 7 | Ajustar `og:title` de la portada | 🟢 Opcional | Tema |
-| 8 | Alt faltante en 1 imagen de producto | 🟢 Opcional | Probablemente de una app |
+| 1 | Borrar `/pages/aviso-de-privacidad` (expone RFC y ciudad) | 🔴 | ✅ Resuelto 4 ago |
+| 2 | Borrar las otras 3 políticas viejas duplicadas | 🟠 | ✅ Resuelto 4 ago |
+| 3 | Verificar visualmente si WhatsApp y el chat se encaman | 🟠 | ⏳ Pendiente — necesita que abras el sitio en tu celular |
+| 4 | Reescribir la línea "no bots ni formularios" | 🟡 | ✅ Resuelto 4 ago |
+| 5 | Enlazar "Quiénes Somos" desde el footer | 🟡 | ✅ Resuelto 4 ago |
+| 6 | Decidir qué hacer con `/pages/contact` | 🟡 | ⏳ Pendiente — decisión de negocio |
+| 7 | Ajustar `og:title` de la portada | 🟢 | ⏳ Pendiente |
+| 8 | Alt faltante en 1 imagen de producto | 🟢 | ⏳ Pendiente |
 
 ---
 
