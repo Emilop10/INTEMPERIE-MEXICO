@@ -146,6 +146,15 @@ el cliente pide hablar con una persona, incluye el link
 en el Test chat del admin, que renderiza distinto) que el link aparece
 como hipervínculo clicable real y abre WhatsApp correctamente.
 
+El enlace además lleva un **mensaje precargado** ("Hola, vengo del chat
+de Cartucho en la página y tengo una duda que no pude resolver.") vía el
+parámetro `?text=` de wa.me, para que el cliente no llegue a un chat
+vacío. Esto obligó a **desactivar "Enable UTM tracking"** en Chat
+settings → Configuration, porque Zipchat sobreescribía cualquier query
+string del link con sus propios parámetros UTM — decisión consciente:
+se prioriza la experiencia del cliente (mensaje con contexto) sobre el
+tracking interno de origen de conversación de Zipchat.
+
 ---
 
 ## Datos de contacto ya integrados
