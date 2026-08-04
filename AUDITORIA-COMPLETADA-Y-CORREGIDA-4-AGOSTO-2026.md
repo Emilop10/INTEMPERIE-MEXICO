@@ -1,13 +1,12 @@
-# Auditoría completa del sitio — 4 de agosto de 2026
+# ✅ Auditoría completada y corregida — 4 de agosto de 2026
 
 Revisión exhaustiva de `https://intemperiemexico.com` recorriendo **todos**
 los puntos del [`MANUAL-PROYECTO.md`](./MANUAL-PROYECTO.md), verificados
 contra el sitio en vivo (no contra el código ni contra lo documentado).
 
-**Resultado general:** el sitio está sólido. La gran mayoría de lo
-documentado está funcionando exactamente como dice el manual. Se
-encontraron **8 hallazgos**, de los cuales **1 es crítico y requiere
-acción inmediata**.
+**Estado: CERRADA.** Se encontraron 8 hallazgos (1 crítico, 2 altos, 3
+medios, 2 bajos) y **los 8 quedaron resueltos y verificados en vivo** el
+mismo día. No hay pendientes abiertos de esta auditoría.
 
 ---
 

@@ -604,6 +604,10 @@ Detalle completo de la configuración, hallazgos y decisiones en
 
 ## 19. Auditoría completa del sitio en vivo (4 de agosto de 2026)
 
+> ✅ **Estado: cerrada.** Los 8 hallazgos quedaron resueltos y
+> verificados en vivo el mismo día — ver
+> [`AUDITORIA-COMPLETADA-Y-CORREGIDA-4-AGOSTO-2026.md`](./AUDITORIA-COMPLETADA-Y-CORREGIDA-4-AGOSTO-2026.md).
+
 Con el rediseño publicado, el dominio conectado y el chatbot en
 funcionamiento, se hizo una auditoría exhaustiva **contra el sitio en
 vivo** (no contra el código) recorriendo todos los puntos de este
@@ -647,4 +651,4 @@ usar el menú "Categorías" del footer, porque ese menú es el mismo
   faltante en una imagen de producto)
 
 Detalle completo, con toda la evidencia técnica de cada verificación, en
-📄 **[`AUDITORIA-AGOSTO-2026.md`](./AUDITORIA-AGOSTO-2026.md)**.
+📄 **[`AUDITORIA-COMPLETADA-Y-CORREGIDA-4-AGOSTO-2026.md`](./AUDITORIA-COMPLETADA-Y-CORREGIDA-4-AGOSTO-2026.md)**.
