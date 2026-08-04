@@ -5,8 +5,11 @@ datos tuyos; el resto de la auditoría ya quedó implementado en el tema de trab
 
 **Tema en vivo:** "Intemperie Mexico - Rediseño 2026" — publicado el 31 de
 julio de 2026. Ya no hay tema de trabajo separado; todo cambio se ve en
-vivo de inmediato en `https://wfuxvx-yn.myshopify.com/`.
-**Última actualización:** 31 de julio de 2026
+vivo de inmediato.
+**Dominio principal:** `https://intemperiemexico.com` — conectado y
+verificado el 3 de agosto de 2026. `wfuxvx-yn.myshopify.com` ahora
+redirige automáticamente al dominio propio.
+**Última actualización:** 3 de agosto de 2026
 
 **Correo profesional:** Google Workspace reactivado con `admin@intemperiemexico.com`
 como cuenta principal. DNS (MX, SPF, DKIM) verificado y propagado. 6 alias activos
@@ -101,6 +104,37 @@ responde correctamente.
 usadas (más las 120 respuestas de IA/mes incluidas). Si en el futuro se
 necesita indexar más contenido, hay que subir al plan Starter ($49
 USD/mes).
+
+**Prueba exhaustiva realizada (3 de agosto)**: 30 preguntas reales
+cubriendo envíos, devoluciones, catálogo, pago, temas legales/sensibles
+e intentos de manipulación del bot. Se detectaron y corrigieron 3
+problemas:
+- Tiempo de entrega inconsistente (la copia de marketing decía "2 a 4
+  días", la política real dice "2 a 7 días hábiles") → corregido en el
+  sitio (homepage, ficha de producto) y en el entrenamiento del bot,
+  ahora todo coincide.
+- El bot se identificaba con el dominio técnico
+  (`wfuxvx-yn.myshopify.com`) en vez de "Intemperie México" → corregido
+  con una instrucción explícita en "Additional instructions" (Prompt and
+  Skills).
+- El bot negaba tener número de WhatsApp pese a que sí estaba en el
+  texto de entrenamiento — causa real: Zipchat tiene una integración
+  dedicada de WhatsApp Business (vía Meta) que exige conectar un número
+  exclusivo; como no está conectada, el bot daba esa respuesta fija sin
+  importar el texto. Se decidió **no conectar esa integración** (fuera
+  de alcance, requeriría dedicar un número solo a eso) y en su lugar se
+  agregó una instrucción explícita que fuerza al bot a dar el número de
+  WhatsApp de todos modos.
+- Se verificó que no existan las 4 cañas de pescar mencionadas por el
+  bot fueran alucinación — sí existen en el catálogo real, sin problema.
+- Se revisó Contenido → Páginas y Artículos del blog por si los atajos
+  de teclado accidentales durante la prueba habían creado borradores
+  vacíos — no se encontró nada, sitio limpio.
+
+✅ **Dominio propio conectado (3 de agosto)**: `intemperiemexico.com` ya
+es el dominio principal de la tienda, con DNS verificado en Namecheap
+(registro A y CNAME agregados sin tocar los registros de correo de
+Workspace) y certificado TLS activo.
 
 ---
 
