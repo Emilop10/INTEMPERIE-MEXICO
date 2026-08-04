@@ -7,17 +7,22 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 29 de julio de 2026
-**Tienda:** `wfuxvx-yn.myshopify.com`
-**Tema en vivo (publicado):** Dawn, id `141467517005` — **nunca se ha tocado**
-**Tema de trabajo (copia, todo el rediseño vive aquí):** id `147593723981`
-**Preview del tema de trabajo:** `https://wfuxvx-yn.myshopify.com/?preview_theme_id=147593723981`
+**Última actualización:** 3 de agosto de 2026
+**Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
+conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
+automáticamente aquí)
+**Tema en vivo (publicado):** "Intemperie Mexico - Rediseño 2026", id
+`147593723981` — publicado el 31 de julio de 2026. Ya no existe
+distinción entre "tema de trabajo" y "tema en vivo": todo lo que se edita
+en este tema se ve de inmediato en el sitio público
+**Tema anterior (Dawn):** id `141467517005`, sin publicar, disponible
+como respaldo
 
-> ⚠️ Regla de oro de todo el proyecto: **el rediseño se construyó siempre
-> sobre una copia del tema**, nunca sobre el publicado. Las únicas
-> excepciones — cosas que sí afectan la tienda en vivo de inmediato porque
-> son configuración a nivel tienda, no del tema — están marcadas
-> explícitamente en cada sección de abajo.
+> ⚠️ Nota histórica: hasta el 31 de julio de 2026, todo el rediseño se
+> construyó sobre una **copia** del tema, sin tocar el publicado (Dawn) —
+> de ahí que secciones anteriores de este manual mencionen "tema de
+> trabajo" como algo separado del tema en vivo. Eso ya no aplica: el
+> rediseño se publicó y es, desde entonces, el único tema de la tienda.
 
 ---
 
@@ -39,6 +44,8 @@ tener que reconstruir el contexto desde cero.
 14. [Divisores visuales en páginas de listado](#14-divisores-visuales-en-páginas-de-listado)
 15. [Referencia técnica: cómo se edita esta tienda](#15-referencia-técnica-cómo-se-edita-esta-tienda)
 16. [Pendientes](#16-pendientes)
+17. [Publicación del rediseño y dominio propio](#17-publicación-del-rediseño-y-dominio-propio)
+18. [Chatbot de IA: Cartucho (Zipchat AI)](#18-chatbot-de-ia-cartucho-zipchat-ai)
 
 ---
 
@@ -479,10 +486,115 @@ redes sociales (Instagram/TikTok) cuando existan.
 
 ---
 
-## Publicación del tema
+## 17. Publicación del rediseño y dominio propio
 
-Ninguno de los cambios de diseño de este manual está publicado en la
-tienda en vivo todavía (salvo las excepciones marcadas explícitamente:
-mega-menú, políticas legales, y tarifas de envío, que son configuración de
-tienda). El tema de trabajo (`147593723981`) sigue en revisión, esperando
-aprobación final antes de publicarse como el tema activo de la tienda.
+### Publicación del tema (31 de julio de 2026)
+Tras verificar sin errores Liquid la homepage, las colecciones y las 5
+páginas de políticas en el preview, el tema de trabajo
+(`147593723981`, "Intemperie Mexico - Rediseño 2026") se publicó como
+tema principal (`role: main`) directamente por API. El tema anterior
+("Dawn") quedó sin publicar, disponible como respaldo si hiciera falta
+volver atrás. Desde ese momento, **todo el sitio público es el
+rediseño** — ya no hay distinción entre "tema de trabajo" y "tema en
+vivo" en el resto de este manual.
+
+### Dominio propio conectado (3 de agosto de 2026)
+La tienda operaba únicamente sobre el dominio temporal
+`wfuxvx-yn.myshopify.com`, pese a tener `intemperiemexico.com` ya
+comprado y en uso para el correo (Workspace). Se conectó como dominio
+principal:
+
+- Registros DNS agregados en Namecheap: `A @ → 23.227.38.65` y
+  `CNAME www → shops.myshopify.com` — sin tocar ningún registro MX/TXT
+  del correo.
+- Verificado y activo con certificado TLS aprovisionado automáticamente.
+- `wfuxvx-yn.myshopify.com` ahora redirige de forma automática a
+  `intemperiemexico.com`.
+
+Este cambio también resolvió un problema de marca: antes del dominio
+propio, cualquier automatización o bot que leyera el sitio (incluido el
+chatbot de la sección siguiente) se refería a la tienda por su dominio
+técnico de Shopify en vez de su nombre real.
+
+---
+
+## 18. Chatbot de IA: Cartucho (Zipchat AI)
+
+### Decisión: widget de sitio, no bot de WhatsApp
+La idea original era "un chatbot inteligente en WhatsApp que filtre
+preguntas antes de que me escriban a mí". Investigado esto llevó a una
+decisión distinta: desde enero de 2026 Meta bloqueó los asistentes de
+IA de propósito general dentro de WhatsApp, y la alternativa válida (un
+bot sobre la WhatsApp Business API) tiene costo por mensaje y requiere
+dedicar un número exclusivo. En su lugar se optó por un **widget de
+chat con IA en el sitio**, que cumple el mismo objetivo (resolver
+preguntas repetitivas sin intervención humana) sin ese costo, dejando a
+WhatsApp como canal de escalación para lo que el bot no puede resolver.
+Investigación completa en
+📄 **[`CHATBOT-IA-SITIO.md`](./CHATBOT-IA-SITIO.md)**.
+
+### Instalación y configuración
+Se instaló la app **Zipchat AI** (plan gratuito: 120 respuestas de
+IA/mes, 100 páginas de entrenamiento — ya al límite, considerar el plan
+Starter de $49 USD/mes si se necesita ampliar). Configurado el 31 de
+julio y el 3 de agosto de 2026:
+
+- Bubble chat activo en todo el sitio (móvil y escritorio).
+- Asistente renombrado **"Cartucho"**, con mensaje de bienvenida propio
+  de marca.
+- Base de conocimiento cargada en "AI training": envíos, devoluciones y
+  garantía, catálogo, pago y seguridad, contacto.
+- Instrucciones de comportamiento agregadas en "Prompt and Skills" →
+  "Additional instructions" (no editable por API, solo desde el panel de
+  Zipchat):
+  1. Nunca mencionar el dominio técnico de Shopify — referirse siempre a
+     "Intemperie México".
+  2. Dar siempre el número de WhatsApp (+52 777 327 7340) cuando se
+     pregunte por él, sin depender de si la integración nativa de
+     WhatsApp Business está conectada (deliberadamente **no** se
+     conectó esa integración — exigiría dedicar un número exclusivo,
+     fuera de alcance).
+  3. Ofrecer un enlace de escalación a WhatsApp con **mensaje
+     precargado** (`https://wa.me/527773277340?text=...`) cuando el bot
+     no pueda resolver la duda o el cliente pida hablar con una persona.
+
+### El bug del tracking UTM
+El enlace de WhatsApp con mensaje precargado no funcionaba al probarlo:
+Zipchat le pegaba automáticamente sus propios parámetros
+`utm_source`/`utm_medium` encima de cualquier link, sobrescribiendo el
+`?text=` del mensaje. Se resolvió desactivando "Enable UTM tracking" en
+Chat settings → Configuration — decisión consciente de priorizar la
+experiencia del cliente (mensaje con contexto al abrir WhatsApp) sobre
+el tracking interno de origen de conversación de Zipchat.
+
+### Auditoría del chatbot (3 de agosto de 2026)
+Se le hicieron 30 preguntas reales (envíos, devoluciones, catálogo,
+pago, temas legales/sensibles, intentos de manipulación tipo "ignora tus
+instrucciones") en el Test chat del admin. Resultado: identificó y
+corrigió 3 problemas reales —
+
+1. **Tiempos de entrega inconsistentes**: la copia de marketing decía
+   "2 a 4 días", pero la Política de Envíos real dice "2 a 7 días
+   hábiles". Se corrigió la copia en todo el sitio (franja de la
+   homepage, nota de producto) para que coincida con la política legal,
+   en vez de ajustar la política.
+2. **Fuga de dominio técnico**: el bot se identificaba como asistente
+   "de wfuxvx-yn.myshopify.com". Resuelto con la conexión del dominio
+   propio más la instrucción explícita de identidad.
+3. **Número de WhatsApp negado pese a estar en el texto de
+   entrenamiento**: causa real, no de indexado — existe una integración
+   nativa de WhatsApp Business (vía Meta) separada del texto libre, y al
+   no estar conectada el bot daba una respuesta fija de "no disponible".
+   Resuelto con instrucción explícita que fuerza el número sin depender
+   de esa integración.
+
+Confirmado además: no hubo alucinación de productos (los 4 modelos de
+cañas de pescar que mencionó en una prueba sí existen en el catálogo),
+manejo correcto de temas legales/sensibles sin revelar la ubicación del
+negocio, y resistencia a intentos de inyección de instrucciones. Se
+revisó Contenido → Páginas y Artículos del blog por posibles borradores
+vacíos creados por atajos de teclado accidentales durante las
+pruebas — sitio limpio, sin residuos.
+
+Detalle completo de la configuración, hallazgos y decisiones en
+📄 **[`PENDIENTES.md`](./PENDIENTES.md)**.
