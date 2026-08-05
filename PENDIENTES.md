@@ -3,6 +3,11 @@
 Temas abiertos de la auditoría de la tienda. Los tres requieren una decisión o
 datos tuyos; el resto de la auditoría ya quedó implementado en el tema de trabajo.
 
+> 📌 **Nota de trabajo (4 de agosto):** al redactar prompts para Claude en
+> Chrome, ser conciso y pedirle explícitamente que si no encuentra algo en
+> 1-2 lugares razonables de la interfaz, lo reporte directo en vez de seguir
+> buscando — evita gastar tokens de más explorando pantallas.
+
 **Tema en vivo:** "Intemperie Mexico - Rediseño 2026" — publicado el 31 de
 julio de 2026. Ya no hay tema de trabajo separado; todo cambio se ve en
 vivo de inmediato.
