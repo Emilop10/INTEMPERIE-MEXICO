@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 3 de agosto de 2026
+**Última actualización:** 6 de agosto de 2026
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -47,6 +47,7 @@ como respaldo
 17. [Publicación del rediseño y dominio propio](#17-publicación-del-rediseño-y-dominio-propio)
 18. [Chatbot de IA: Cartucho (Zipchat AI)](#18-chatbot-de-ia-cartucho-zipchat-ai)
 19. [Auditoría completa del sitio en vivo (4 de agosto de 2026)](#19-auditoría-completa-del-sitio-en-vivo-4-de-agosto-de-2026)
+20. [Identidad visual de Cartucho: mascota y avatar del chat](#20-identidad-visual-de-cartucho-mascota-y-avatar-del-chat)
 
 ---
 
@@ -640,15 +641,72 @@ marca del footer ("Conoce nuestra historia →") — deliberadamente sin
 usar el menú "Categorías" del footer, porque ese menú es el mismo
 `main-menu` compartido con el mega-menú de compra del header.
 
-### Otros hallazgos, pendientes de resolver
-- Posible choque visual entre el botón flotante de WhatsApp y la
-  burbuja de Cartucho (ambos en la esquina inferior derecha) — no se
-  pudo confirmar por no tener acceso a un navegador real en este
-  entorno, requiere verificación visual directa
-- `/pages/contact` (formulario de contacto) sigue sin uso, pendiente de
-  decidir si se conecta o se elimina
-- Dos ajustes cosméticos menores (og:title de la portada, un alt
-  faltante en una imagen de producto)
+### Estado final: los 8 hallazgos resueltos
+Confirmado (sí chocaban): se **eliminó por completo** el botón flotante
+de WhatsApp de `layout/theme.liquid` — quedaba redundante porque
+Cartucho ya ofrece el mismo enlace a WhatsApp cuando hace falta.
+`/pages/contact` se conectó desde el bloque de contacto del footer
+("¿Prefieres un formulario? Escríbenos aquí"). Los dos ajustes
+cosméticos (`og:title` de la portada, alt faltante en una imagen de
+producto) también se corrigieron de raíz. **Los 8 hallazgos de la
+auditoría quedaron cerrados el mismo día.**
 
 Detalle completo, con toda la evidencia técnica de cada verificación, en
 📄 **[`AUDITORIA-COMPLETADA-Y-CORREGIDA-4-AGOSTO-2026.md`](./AUDITORIA-COMPLETADA-Y-CORREGIDA-4-AGOSTO-2026.md)**.
+
+---
+
+## 20. Identidad visual de Cartucho: mascota y avatar del chat
+
+### El widget "Ask AI" no deseado
+Al revisar el sitio se encontró una barra de búsqueda "Ask AI..."
+superpuesta en medio del hero de la home — no era nuestra, era el
+widget **"AI search"** de Zipchat (activo por defecto desde la
+instalación, distinto de "Bubble chat"). Se desactivó por completo
+desde Chat settings → Channels, dejando solo la burbuja normal.
+
+### De caja de texto a solo ícono
+La burbuja mostraba un "Placeholder message" en una píldora de texto
+("¿Dudas? Pregúntale a Cartucho") que se cortaba visualmente sin
+importar qué tan corto fuera el texto — el ancho del contenedor es fijo.
+No existe un toggle de "solo ícono", pero sí un selector de **"Chat
+bubble type"** con 4 estilos; se cambió de "Type bar" (la píldora con
+texto) a **"Modern bubble"**, que muestra solo un círculo con ícono —
+resultado limpio, y el punto verde de notificación de Zipchat combina
+de forma natural con el acento de marca.
+
+### Diseño de la mascota
+Decisión explícita del cliente: un personaje de cartucho de escopeta
+antropomorfizado (ojos, brazos, piernas), estilo cálido y carismático —
+"que genere amor hacia la gente", pensado como el amigo que ayuda con
+las compras. Se decidió **rojo como color de identidad propio de
+Cartucho** (deliberadamente distinto de la paleta negro/verde del resto
+del sitio — es un acento de personaje, no del sitio).
+
+El cliente generó las imágenes con una herramienta externa de IA a
+partir de prompts detallados (estilo render 3D suave, banda verde de
+marca `#57B58A` como detalle, base dorada). Quedaron 2 versiones madre
+en `diseno-cartucho/`:
+- `CON ACCESORIOS.png` — con caña de pescar y binoculares (referencia a
+  Pesca y Miras), para usos grandes/marketing a futuro
+- `SIN ACCESORIOS.png` — cuerpo completo neutral, ya con fondo
+  transparente
+
+### Ícono del avatar del chat
+Primer intento: recortar solo cabeza/hombros para simplificar a tamaño
+pequeño — el cliente lo corrigió, pidiendo que se viera el **personaje
+completo**, no cortado. Se generó `cartucho-icono-512.png` (512×512,
+fondo transparente) recortando el bounding box completo del personaje
+de `SIN ACCESORIOS.png` con margen de aire alrededor, verificado
+legible incluso a 60px (el tamaño real del ícono en el sitio). Subido
+manualmente por el cliente al campo "Avatar of your AI Agent" en
+Bubble chat → Edit — confirmado visible en el sitio en vivo.
+
+### Pendiente para más adelante
+- Versión para redes sociales (fondo sólido, 1080×1080) — cuando se
+  conecten Instagram/TikTok
+- Variantes temáticas de Cartucho por departamento (con caña para
+  Pesca, con binoculares para Miras, etc.) — reservado para cuando se
+  decida **dónde y cómo reforzar en el sitio** que los clientes pueden
+  preguntarle a Cartucho (sección explícitamente pospuesta por el
+  cliente hasta terminar el diseño del personaje)
