@@ -702,11 +702,31 @@ legible incluso a 60px (el tamaño real del ícono en el sitio). Subido
 manualmente por el cliente al campo "Avatar of your AI Agent" en
 Bubble chat → Edit — confirmado visible en el sitio en vivo.
 
+### Página "Conoce a Cartucho" en el menú principal (6 de agosto)
+Se creó la página `/pages/conoce-a-cartucho` con la presentación del
+personaje (quién es, qué puede resolver: producto, envíos, devoluciones,
+escalar a WhatsApp con contexto) y la foto `CON ACCESORIOS.png` — subida
+a Shopify Files vía `stagedUploadsCreate` + `fileCreate` (mismo patrón
+usado para las fotos e imágenes generadas de la homepage). Se agregó
+como sexto elemento del `main-menu` (junto a Inicio, Pesca, Miras y
+Binoculares, Diábolos y Municiones, Rifles y Pistolas de Aire) vía la
+mutación GraphQL `menuUpdate`.
+
+> ⚠️ **El mega-menú es un recurso compartido con el tema en vivo** — a
+> diferencia de la mayoría del código del sitio, este cambio se ve
+> reflejado de inmediato en la tienda publicada (igual que la nota de la
+> [sección 8](#8-nuevas-subcategorías-y-menú)).
+
+Gotcha técnico encontrado: la mutación `menuUpdate` requiere reenviar el
+árbol **completo** de items del menú (no solo el nuevo), y cada item —
+incluidos los sub-items anidados— necesita su `resourceId` real
+consultado explícitamente vía GraphQL; si se omite, Shopify rechaza la
+mutación completa con un error de "collection not found" en el primer
+sub-item, aunque la colección exista y funcione perfectamente.
+
 ### Pendiente para más adelante
 - Versión para redes sociales (fondo sólido, 1080×1080) — cuando se
   conecten Instagram/TikTok
 - Variantes temáticas de Cartucho por departamento (con caña para
   Pesca, con binoculares para Miras, etc.) — reservado para cuando se
-  decida **dónde y cómo reforzar en el sitio** que los clientes pueden
-  preguntarle a Cartucho (sección explícitamente pospuesta por el
-  cliente hasta terminar el diseño del personaje)
+  decida si se ilustra cada capítulo de la home con el personaje
