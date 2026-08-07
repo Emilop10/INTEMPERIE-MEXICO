@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 6 de agosto de 2026
+**Última actualización:** 7 de agosto de 2026
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -48,6 +48,7 @@ como respaldo
 18. [Chatbot de IA: Cartucho (Zipchat AI)](#18-chatbot-de-ia-cartucho-zipchat-ai)
 19. [Auditoría completa del sitio en vivo (4 de agosto de 2026)](#19-auditoría-completa-del-sitio-en-vivo-4-de-agosto-de-2026)
 20. [Identidad visual de Cartucho: mascota y avatar del chat](#20-identidad-visual-de-cartucho-mascota-y-avatar-del-chat)
+21. [Herramientas de desarrollo: Graphify y respaldo del código del tema](#21-herramientas-de-desarrollo-graphify-y-respaldo-del-código-del-tema)
 
 ---
 
@@ -749,3 +750,72 @@ Zipchat que es aceptable tal cual.
 - Variantes temáticas de Cartucho por departamento (con caña para
   Pesca, con binoculares para Miras, etc.) — reservado para cuando se
   decida si se ilustra cada capítulo de la home con el personaje
+
+---
+
+## 21. Herramientas de desarrollo: Graphify y respaldo del código del tema
+
+### Browser Harness — investigado, descartado
+El cliente pidió instalar
+[`browser-use/browser-harness`](https://github.com/browser-use/browser-harness),
+una herramienta que permite a Claude controlar un navegador real
+directo vía protocolo CDP (con "auto-sanación": escribe y mejora su
+propio código auxiliar en ejecución) — en teoría, un reemplazo más
+autónomo de "Claude en Chrome". **No se instaló**: CDP funciona sobre
+WebSocket, y el proxy de red de este entorno de trabajo tiene las
+conexiones WebSocket explícitamente marcadas como no soportadas. No es
+un problema de configuración — requeriría correrla en una máquina con
+acceso de red real (como la computadora del cliente), no en este
+entorno remoto. Documentado en
+[`SKILLS-USADAS.md`](./SKILLS-USADAS.md).
+
+### Respaldo completo del tema en el repositorio
+Hasta este punto, el código real del tema (secciones, snippets,
+templates, JS, CSS) vivía únicamente en los servidores de Shopify —
+se editaba vía API hacia una carpeta temporal que nunca se guardaba en
+GitHub. Se descargaron los **364 archivos** del tema en vivo a
+[`tema-shopify/`](./tema-shopify/), que ahora sirve como **respaldo
+versionado real** del tema — algo que no existía antes en el proyecto.
+
+### Graphify — instalado y en uso
+El cliente pidió investigar e instalar
+[`Graphify-Labs/graphify`](https://github.com/Graphify-Labs/graphify),
+que convierte una base de código en un grafo de conocimiento
+consultable (análisis AST local, sin mandar código a ningún servidor).
+A diferencia de Browser Harness, no depende de WebSocket, así que sí se
+pudo instalar en este entorno. Corrido sobre `tema-shopify/`, generó:
+
+- **452 nodos, 697 conexiones, 37 comunidades** de código relacionado
+- Los "god nodes" (componentes más centrales de la arquitectura del
+  tema): `PredictiveSearch`, `FacetFiltersForm`, `SlideshowComponent`,
+  `CartItems`, `CartDrawer`, `MenuDrawer`, entre otros
+- Consultable por comandos (`graphify explain "X"`, `graphify path "A"
+  "B"`, `graphify query "pregunta"`) para entender rápido qué toca qué
+  en el código, sin tener que releer todo el tema
+
+Detalle completo de instalación y uso en
+[`SKILLS-USADAS.md`](./SKILLS-USADAS.md).
+
+### Mapa 3D interactivo del código (a la medida)
+Petición explícita del cliente: visualizar el grafo "como una red
+neuronal, en 3D" — más allá de la visualización 2D estándar que trae
+Graphify por defecto. Se construyó una pieza propia desde cero
+(físicas de repulsión + resortes + cohesión por comunidad, calculadas y
+verificadas con Node.js antes de integrarlas, proyección 3D con cámara
+orbital, todo renderizado en Canvas 2D sin librerías externas), usando
+las fuentes y paleta de marca del sitio.
+
+- Archivo autocontenido, abre directo en cualquier navegador:
+  [`tema-shopify/graphify-out/intemperie-mapa-codigo-3d.html`](./tema-shopify/graphify-out/intemperie-mapa-codigo-3d.html)
+- También publicado como Artifact privado para verlo sin descargar nada
+- Interacción: arrastrar para rotar, rueda para zoom, búsqueda en vivo
+  que vuela la cámara hasta el nodo encontrado, clic en cualquier nodo
+  para ver sus conexiones reales en un panel lateral
+
+> Nota técnica: antes de integrar el motor de físicas y la proyección
+> 3D al HTML final, ambos se probaron por separado con Node.js contra
+> los datos reales del grafo (sin coordenadas inválidas, sin explosión
+> de la simulación, matemática de proyección verificada con casos de
+> prueba) — reduce el riesgo de bugs invisibles en una pieza que no se
+> puede probar visualmente en este entorno (sin navegador real
+> disponible, ver limitación de Browser Harness arriba).
