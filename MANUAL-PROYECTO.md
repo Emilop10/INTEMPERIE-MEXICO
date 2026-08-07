@@ -51,6 +51,7 @@ como respaldo
 21. [Herramientas de desarrollo: Graphify y respaldo del código del tema](#21-herramientas-de-desarrollo-graphify-y-respaldo-del-código-del-tema)
 22. [Diversidad en "También te interese"](#22-diversidad-en-también-te-interese)
 23. [Botones del hero: texto claro y scroll que sí funciona](#23-botones-del-hero-texto-claro-y-scroll-que-sí-funciona)
+24. [Flechas en la franja de subcategorías](#24-flechas-en-la-franja-de-subcategorías)
 
 ---
 
@@ -920,3 +921,29 @@ escenas). Se aumentó a blanco casi puro (`#F5F5F7`), 11px, con el mismo
 `text-shadow` que ya usa el resto del texto del hero para legibilidad
 sobre foto/video, y la línea se hizo más gruesa (1px → 2px) con una
 sombra propia para que se distinga incluso sobre fondos claros.
+
+---
+
+## 24. Flechas en la franja de subcategorías
+
+La fila horizontal de subcategorías dentro de cada capítulo (Cañas,
+Anzuelos, Carretes... debajo del producto destacado) tenía el scroll
+oculto a propósito (`scrollbar-width: none`), pensado para arrastre
+táctil en móvil — pero en escritorio, sin trackpad, no había ninguna
+forma visible de moverla. El cliente reportó "no se puede mover".
+
+Se agregaron flechas de navegación (◀ ▶) a los lados de la franja,
+solo visibles en escritorio (ocultas en móvil vía media query, donde el
+swipe táctil ya funciona bien):
+
+- `sections/brand-experience.liquid` — cada franja de subcategorías se
+  envolvió en `.subcat-row` con dos `<button>` (`data-subcat-prev` /
+  `data-subcat-next`), estilo "vidrio esmerilado" consistente con el
+  resto de botones flotantes sobre foto del sitio
+- `assets/brand-experience.js` — al hacer clic, desplaza la franja con
+  `scrollBy` (80% del ancho visible por clic, suave salvo con "reducir
+  movimiento" activado). Las flechas se ocultan solas cuando ya no hay
+  más contenido de ese lado (al inicio no se ve la de "atrás", al final
+  no se ve la de "adelante")
+- Verificado en vivo: las 22 subcategorías siguen intactas en los 4
+  departamentos, sin errores Liquid

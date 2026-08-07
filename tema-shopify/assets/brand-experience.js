@@ -176,4 +176,32 @@
       }
     });
   });
+
+  // Flechas de la franja de subcategorías (Cañas, Anzuelos, etc.): la
+  // franja se puede arrastrar en móvil, pero en escritorio con mouse no
+  // había forma clara de moverla — estas flechas la desplazan a mano.
+  root.querySelectorAll('.subcat-row').forEach(function (row) {
+    var track = row.querySelector('[data-subcat-scroll]');
+    var prevBtn = row.querySelector('[data-subcat-prev]');
+    var nextBtn = row.querySelector('[data-subcat-next]');
+    if (!track || !prevBtn || !nextBtn) return;
+
+    function scrollByAmount(dir) {
+      var amount = track.clientWidth * 0.8 * dir;
+      track.scrollBy({ left: amount, behavior: reduce ? 'auto' : 'smooth' });
+    }
+    prevBtn.addEventListener('click', function () { scrollByAmount(-1); });
+    nextBtn.addEventListener('click', function () { scrollByAmount(1); });
+
+    function updateArrows() {
+      var max = track.scrollWidth - track.clientWidth;
+      var atStart = track.scrollLeft <= 4;
+      var atEnd = track.scrollLeft >= max - 4;
+      prevBtn.hidden = atStart;
+      nextBtn.hidden = atEnd || max <= 4;
+    }
+    track.addEventListener('scroll', updateArrows, { passive: true });
+    window.addEventListener('resize', updateArrows);
+    updateArrows();
+  });
 })();
