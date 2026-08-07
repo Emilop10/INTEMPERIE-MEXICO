@@ -82,8 +82,8 @@
 .brand-exp .is-light .btn-link { color: #234D3B; }
 .brand-exp .btn-link::after { content: " →"; transition: transform .2s var(--ease-out); display: inline-block; }
 .brand-exp .btn-link:hover::after { transform: translateX(3px); }
-.brand-exp .scroll-hint { position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); font-family: 'Geist Mono', monospace; font-size: 10px; color: #98989D; letter-spacing: 0.08em; display: flex; flex-direction: column; align-items: center; gap: 7px; }
-.brand-exp .scroll-hint .line { width: 1px; height: 22px; background: currentColor; animation: brandScrollPulse 1.6s ease-in-out infinite; }
+.brand-exp .scroll-hint { position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); font-family: 'Geist Mono', monospace; font-size: 11px; font-weight: 600; color: #F5F5F7; letter-spacing: 0.1em; display: flex; flex-direction: column; align-items: center; gap: 9px; text-shadow: 0 1px 3px rgba(0,0,0,.9), 0 4px 14px rgba(0,0,0,.65); }
+.brand-exp .scroll-hint .line { width: 2px; height: 26px; background: currentColor; box-shadow: 0 0 8px rgba(0,0,0,.6); animation: brandScrollPulse 1.6s ease-in-out infinite; }
 @keyframes brandScrollPulse { 0%,100% { opacity: 0.15; } 50% { opacity: .9; } }
 
 /* Kinetic statement */

@@ -911,3 +911,12 @@ hero ahora comparten exactamente la misma clase (`.btn.btn-secondary`).
 La clase `.btn-primary` quedó sin uso en este archivo (no se borró del
 CSS por si se retoma en otro contexto, no genera ningún problema
 mantenerla ahí sin usar).
+
+### "DESLIZA" se perdía contra el video
+El indicador de scroll al pie del hero (texto "DESLIZA" + línea
+vertical animada) usaba gris apagado (`#98989D`) a 10px, sin sombra —
+se perdía contra el video del hero (fondo claro/brumoso en varias
+escenas). Se aumentó a blanco casi puro (`#F5F5F7`), 11px, con el mismo
+`text-shadow` que ya usa el resto del texto del hero para legibilidad
+sobre foto/video, y la línea se hizo más gruesa (1px → 2px) con una
+sombra propia para que se distinga incluso sobre fondos claros.
