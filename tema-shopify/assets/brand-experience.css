@@ -196,19 +196,18 @@
    con el mouse en cualquier navegador (a diferencia del scrollbar
    nativo, que no se puede ver/estilizar igual en todos). */
 .brand-exp .subcat-scrollbar {
-  position: relative; height: 8px; margin: 12px 4px 4px;
-  border-radius: 999px; background: #000000;
-  border: 1px solid rgba(255, 255, 255, .18);
+  position: relative; height: 10px; margin: 14px 4px 4px;
+  border-radius: 999px; background: rgba(255, 255, 255, .13);
   cursor: pointer;
 }
-.brand-exp .is-light .subcat-scrollbar { background: #e5e5e7; border-color: rgba(0, 0, 0, .12); }
+.brand-exp .is-light .subcat-scrollbar { background: rgba(0, 0, 0, .09); }
 .brand-exp .subcat-scrollbar-thumb {
   position: absolute; top: 0; left: 0; height: 100%;
-  border-radius: 999px; background: #B8B8BD;
-  min-width: 32px;
+  border-radius: 999px; background: #C7C7CC;
+  min-width: 40px;
   transition: background .15s var(--ease-out);
 }
-.brand-exp .is-light .subcat-scrollbar-thumb { background: #48484A; }
+.brand-exp .is-light .subcat-scrollbar-thumb { background: #86868B; }
 .brand-exp .subcat-scrollbar:hover .subcat-scrollbar-thumb,
 .brand-exp .subcat-scrollbar-thumb.is-dragging { background: #F5F5F7; }
 .brand-exp .is-light .subcat-scrollbar:hover .subcat-scrollbar-thumb,

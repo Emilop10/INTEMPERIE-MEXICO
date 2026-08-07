@@ -195,10 +195,12 @@
       if (overflow <= 4) { bar.hidden = true; return; }
       bar.hidden = false;
       var ratio = track.clientWidth / track.scrollWidth;
-      // Tope de 85% del ancho de la pista: si casi todo el contenido ya
-      // es visible, el thumb proporcional real ocuparía casi toda la
-      // barra y no se distinguiría de la pista vacía.
-      var thumbWidth = Math.min(bar.clientWidth * 0.85, Math.max(32, ratio * bar.clientWidth));
+      // Tope de 45% del ancho de la pista: cuando casi todo el contenido
+      // ya es visible, el thumb proporcional real ocuparía casi toda la
+      // barra y se leería como una sola barra sólida en vez de "barrita
+      // dentro de barra". Recortarlo garantiza que siempre se distinga
+      // el thumb de la pista, y que haya recorrido visible al arrastrar.
+      var thumbWidth = Math.min(bar.clientWidth * 0.45, Math.max(40, ratio * bar.clientWidth));
       thumb.style.width = thumbWidth + 'px';
       var mtl = bar.clientWidth - thumbWidth;
       var scrollRatio = track.scrollLeft / overflow;
