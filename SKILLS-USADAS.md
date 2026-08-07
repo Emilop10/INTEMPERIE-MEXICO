@@ -55,6 +55,19 @@ antes). Con eso, se corrió Graphify y generó:
   `SlideshowComponent`, `CartItems`, `CartDrawer`, `MenuDrawer`, entre
   otros
 - `tema-shopify/graphify-out/graph.html` — visualización interactiva
+  generada por Graphify (2D, la que trae la herramienta por defecto)
+
+**Visualización 3D a la medida (6 de agosto de 2026):** además de la
+visualización estándar de Graphify, se construyó una versión propia —
+`tema-shopify/graphify-out/intemperie-mapa-codigo-3d.html` — con
+renderizado 3D estilo "red neuronal": los 452 nodos flotan en el
+espacio agrupados por comunidad (simulación de física con repulsión +
+resortes + cohesión de grupo), con rotación libre, zoom, búsqueda en
+vivo, y un panel de detalle al hacer clic en cualquier nodo. Usa las
+mismas fuentes y paleta de marca del sitio (Instrument Sans, Geist Mono,
+negro/verde). Es un archivo HTML autocontenido — se puede abrir
+directo en cualquier navegador sin instalar nada. También publicado
+como Artifact privado para verlo sin descargar nada.
 
 **Cómo usarla en el futuro:**
 ```bash
