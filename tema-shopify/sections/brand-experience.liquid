@@ -19,7 +19,7 @@
       <p>{{ section.settings.hero_subheading | escape }}</p>
       <div class="hero-cta">
         {%- if section.settings.hero_cta_link != blank -%}
-          <a class="btn btn-primary" href="{{ section.settings.hero_cta_link }}">{{ section.settings.hero_cta_text | escape }}</a>
+          <a class="btn btn-secondary" href="{{ section.settings.hero_cta_link }}">{{ section.settings.hero_cta_text | escape }}</a>
         {%- endif -%}
         {%- if section.settings.hero_cta_secondary_link != blank -%}
           <a class="btn btn-secondary" href="{{ section.settings.hero_cta_secondary_link }}">{{ section.settings.hero_cta_secondary_text | escape }}</a>

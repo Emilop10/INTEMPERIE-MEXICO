@@ -902,3 +902,12 @@ sin depender de que el hash cambie. También se agregó
 `scroll-margin-top: 108px` a las secciones de capítulo, para que el
 destino no quede tapado por el header fijo (mismo alto que ya usaba el
 propio hero).
+
+### Ajuste final: mismo estilo en los dos botones
+Tras ver el resultado en vivo, el cliente pidió que el botón principal
+("Explorar catálogo de pesca") usara el mismo estilo "vidrio
+esmerilado" del secundario en vez del verde sólido — los dos botones del
+hero ahora comparten exactamente la misma clase (`.btn.btn-secondary`).
+La clase `.btn-primary` quedó sin uso en este archivo (no se borró del
+CSS por si se retoma en otro contexto, no genera ningún problema
+mantenerla ahí sin usar).
