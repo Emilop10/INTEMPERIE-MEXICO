@@ -977,3 +977,29 @@ timing:
   la pista — casi indistinguible de la pista completa. Con el tope,
   siempre queda un tramo de pista vacía visible, aunque no represente
   matemáticamente exacto cuánto falta por recorrer
+
+### Rediseño a máximo contraste (pista negra, thumb gris)
+Después de ~10 minutos el cliente seguía sin ver diferencia — para
+entonces ya no era solo cuestión de caché. Se rediseñó a los colores
+más simples y contrastantes posibles, por petición explícita del
+cliente: **pista negra pura (`#000000`) con thumb gris claro
+(`#B8B8BD`)**, sin depender de que el verde de marca se note bien
+contra el fondo. Se agregó también un borde sutil claro a la pista
+(`rgba(255,255,255,.18)`) para que se distinga del fondo negro de la
+página, no solo del thumb.
+
+### Diagnóstico real del retraso de caché
+Se investigaron los headers de respuesta para entender por qué esta
+vez tardaba tanto (mucho más que otros cambios del mismo día):
+- El archivo CSS tiene `Cache-Control: max-age=31557600` (1 año) — esto
+  es normal y correcto para archivos con huella de versión en la URL
+  (`?v=...`), Cloudflare lo cachea agresivamente pero cada versión
+  nueva debería generar una URL distinta
+- La home en sí muestra `cf-cache-status: DYNAMIC` — Cloudflare **no**
+  está cacheando el HTML de la página
+- Conclusión: el retraso está en la **caché interna de Shopify**
+  (`page_cache`, visible en el header `etag`), que en este caso tardó
+  más de lo habitual en invalidarse tras varios cambios seguidos en
+  poco tiempo. No es nada que se pueda forzar desde la API — solo
+  esperar, o guardar cualquier cambio trivial desde el editor de temas
+  del Admin (a veces limpia esa caché de inmediato)
