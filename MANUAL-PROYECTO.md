@@ -932,18 +932,28 @@ oculto a propósito (`scrollbar-width: none`), pensado para arrastre
 táctil en móvil — pero en escritorio, sin trackpad, no había ninguna
 forma visible de moverla. El cliente reportó "no se puede mover".
 
-Se agregaron flechas de navegación (◀ ▶) a los lados de la franja,
-solo visibles en escritorio (ocultas en móvil vía media query, donde el
-swipe táctil ya funciona bien):
+### Primer intento: flechas
+Se agregaron flechas de navegación (◀ ▶) a los lados de la franja, con
+estilo "vidrio esmerilado". El cliente las vio y pidió algo más visible
+— prefería una barra de scroll de verdad, abajo de la franja.
 
-- `sections/brand-experience.liquid` — cada franja de subcategorías se
-  envolvió en `.subcat-row` con dos `<button>` (`data-subcat-prev` /
-  `data-subcat-next`), estilo "vidrio esmerilado" consistente con el
-  resto de botones flotantes sobre foto del sitio
-- `assets/brand-experience.js` — al hacer clic, desplaza la franja con
-  `scrollBy` (80% del ancho visible por clic, suave salvo con "reducir
-  movimiento" activado). Las flechas se ocultan solas cuando ya no hay
-  más contenido de ese lado (al inicio no se ve la de "atrás", al final
-  no se ve la de "adelante")
+### Solución final: barra deslizable propia
+Se reemplazaron las flechas por una **barra deslizable construida a
+mano** debajo de cada franja (no el scrollbar nativo del navegador,
+que no se puede estilizar igual en todos — Safari en particular no
+soporta personalizarlo como Chrome):
+
+- `sections/brand-experience.liquid` — cada franja tiene ahora
+  `.subcat-scrollbar` (la pista) con `.subcat-scrollbar-thumb` (la
+  barrita verde que se arrastra) debajo de `.subcat-grid`
+- `assets/brand-experience.js`:
+  - El ancho y posición de la barrita se calculan en proporción a
+    cuánto contenido hay visible vs. total (`clientWidth / scrollWidth`)
+  - Se puede **arrastrar directamente con el mouse** (eventos
+    `pointerdown`/`pointermove`/`pointerup`)
+  - Clic en cualquier parte de la pista (fuera de la barrita) salta
+    directo a ese punto de la franja
+  - La barra se oculta sola si no hay suficiente contenido para
+    necesitar scroll
 - Verificado en vivo: las 22 subcategorías siguen intactas en los 4
   departamentos, sin errores Liquid

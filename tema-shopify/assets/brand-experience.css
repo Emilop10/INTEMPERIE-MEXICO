@@ -187,32 +187,29 @@
 /* Subcategory tile row — Apple-style horizontal browse, real collection cover images */
 .brand-exp .subcat-row { position: relative; margin-top: 36px; }
 .brand-exp .subcat-grid {
-  display: flex; gap: 12px; overflow-x: auto; padding: 6px 4px 18px; margin-top: 0;
+  display: flex; gap: 12px; overflow-x: auto; padding: 6px 4px 6px; margin-top: 0;
   scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; scrollbar-width: none;
 }
 .brand-exp .subcat-grid::-webkit-scrollbar { display: none; }
-.brand-exp .subcat-nav {
-  position: absolute; top: 0; bottom: 18px; z-index: 2;
-  width: 44px; display: flex; align-items: center; justify-content: center;
-  border: none; cursor: pointer; padding: 0;
-  background: none;
-  color: inherit; opacity: .85;
-  transition: opacity .2s var(--ease-out);
+
+/* Barra deslizable propia debajo de la franja — visible y arrastrable
+   con el mouse en cualquier navegador (a diferencia del scrollbar
+   nativo, que no se puede ver/estilizar igual en todos). */
+.brand-exp .subcat-scrollbar {
+  position: relative; height: 6px; margin: 10px 4px 4px;
+  border-radius: 999px; background: rgba(255, 255, 255, .12);
+  cursor: pointer;
 }
-.brand-exp .subcat-nav:hover { opacity: 1; }
-.brand-exp .subcat-nav svg {
-  width: 34px; height: 34px; padding: 8px; border-radius: 50%;
-  background: rgba(0, 0, 0, .45); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, .18);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, .3);
+.brand-exp .is-light .subcat-scrollbar { background: rgba(0, 0, 0, .1); }
+.brand-exp .subcat-scrollbar-thumb {
+  position: absolute; top: 0; left: 0; height: 100%;
+  border-radius: 999px; background: #57B58A;
+  min-width: 32px;
+  transition: background .15s var(--ease-out);
 }
-.brand-exp .is-light .subcat-nav svg { background: rgba(255, 255, 255, .82); border-color: rgba(0, 0, 0, .1); color: #1d1d1f; }
-.brand-exp .subcat-nav--prev { left: -6px; }
-.brand-exp .subcat-nav--next { right: -6px; }
-.brand-exp .subcat-nav[hidden] { display: none; }
-@media (max-width: 640px) {
-  .brand-exp .subcat-nav { display: none; }
-}
+.brand-exp .subcat-scrollbar:hover .subcat-scrollbar-thumb,
+.brand-exp .subcat-scrollbar-thumb.is-dragging { background: #7ad4ac; }
+.brand-exp .subcat-scrollbar[hidden] { display: none; }
 .brand-exp .subcat-tile {
   position: relative; flex: 0 0 auto; width: 132px;
   text-decoration: none; color: inherit; scroll-snap-align: start;

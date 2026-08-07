@@ -177,31 +177,66 @@
     });
   });
 
-  // Flechas de la franja de subcategorías (Cañas, Anzuelos, etc.): la
-  // franja se puede arrastrar en móvil, pero en escritorio con mouse no
-  // había forma clara de moverla — estas flechas la desplazan a mano.
+  // Barra deslizable de la franja de subcategorías (Cañas, Anzuelos,
+  // etc.): en escritorio con mouse no había forma visible de moverla,
+  // así que se agregó esta barra propia (arrastrable con el mouse,
+  // igual de visible en cualquier navegador).
   root.querySelectorAll('.subcat-row').forEach(function (row) {
     var track = row.querySelector('[data-subcat-scroll]');
-    var prevBtn = row.querySelector('[data-subcat-prev]');
-    var nextBtn = row.querySelector('[data-subcat-next]');
-    if (!track || !prevBtn || !nextBtn) return;
+    var bar = row.querySelector('[data-subcat-scrollbar]');
+    var thumb = row.querySelector('[data-subcat-thumb]');
+    if (!track || !bar || !thumb) return;
 
-    function scrollByAmount(dir) {
-      var amount = track.clientWidth * 0.8 * dir;
-      track.scrollBy({ left: amount, behavior: reduce ? 'auto' : 'smooth' });
-    }
-    prevBtn.addEventListener('click', function () { scrollByAmount(-1); });
-    nextBtn.addEventListener('click', function () { scrollByAmount(1); });
+    function maxThumbLeft() { return bar.clientWidth - thumb.offsetWidth; }
+    function maxScroll() { return Math.max(0, track.scrollWidth - track.clientWidth); }
 
-    function updateArrows() {
-      var max = track.scrollWidth - track.clientWidth;
-      var atStart = track.scrollLeft <= 4;
-      var atEnd = track.scrollLeft >= max - 4;
-      prevBtn.hidden = atStart;
-      nextBtn.hidden = atEnd || max <= 4;
+    function updateThumb() {
+      var overflow = track.scrollWidth - track.clientWidth;
+      if (overflow <= 4) { bar.hidden = true; return; }
+      bar.hidden = false;
+      var ratio = track.clientWidth / track.scrollWidth;
+      var thumbWidth = Math.max(32, ratio * bar.clientWidth);
+      thumb.style.width = thumbWidth + 'px';
+      var mtl = bar.clientWidth - thumbWidth;
+      var scrollRatio = track.scrollLeft / overflow;
+      thumb.style.left = (scrollRatio * mtl) + 'px';
     }
-    track.addEventListener('scroll', updateArrows, { passive: true });
-    window.addEventListener('resize', updateArrows);
-    updateArrows();
+
+    track.addEventListener('scroll', updateThumb, { passive: true });
+    window.addEventListener('resize', updateThumb);
+    updateThumb();
+
+    // Arrastrar el thumb directamente
+    var dragging = false, startX = 0, startLeft = 0;
+    thumb.addEventListener('pointerdown', function (e) {
+      dragging = true;
+      thumb.classList.add('is-dragging');
+      startX = e.clientX;
+      startLeft = parseFloat(thumb.style.left) || 0;
+      thumb.setPointerCapture(e.pointerId);
+      e.preventDefault();
+    });
+    thumb.addEventListener('pointermove', function (e) {
+      if (!dragging) return;
+      var mtl = maxThumbLeft();
+      if (mtl <= 0) return;
+      var newLeft = Math.min(mtl, Math.max(0, startLeft + (e.clientX - startX)));
+      thumb.style.left = newLeft + 'px';
+      track.scrollLeft = (newLeft / mtl) * maxScroll();
+    });
+    ['pointerup', 'pointercancel'].forEach(function (evt) {
+      thumb.addEventListener(evt, function () {
+        dragging = false;
+        thumb.classList.remove('is-dragging');
+      });
+    });
+
+    // Clic en la barra (fuera del thumb) salta directo a ese punto
+    bar.addEventListener('click', function (e) {
+      if (e.target === thumb) return;
+      var rect = bar.getBoundingClientRect();
+      var clickRatio = (e.clientX - rect.left) / rect.width;
+      track.scrollTo({ left: clickRatio * maxScroll(), behavior: reduce ? 'auto' : 'smooth' });
+    });
   });
 })();
