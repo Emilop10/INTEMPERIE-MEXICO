@@ -48,15 +48,8 @@ futuro de la tienda:
 
 ---
 
-## Nota sobre "Browser Harness" (investigado, no instalado)
+## Investigadas — no instaladas
 
-Se investigó `github.com/browser-use/browser-harness` como posible
-herramienta para que Claude controle un navegador real de forma directa
-(en vez de pasar prompts a la extensión "Claude en Chrome"). **No se
-instaló**: la herramienta depende del protocolo CDP de Chrome, que
-funciona sobre WebSocket — y el proxy de red de este entorno de trabajo
-tiene las conexiones WebSocket explícitamente marcadas como no
-soportadas ("Not supported through the proxy — report, do not work
-around"). No es un problema de configuración resoluble instalando la
-herramienta; sería necesario correrla en una máquina con acceso de red
-real (como la computadora del cliente), no en este entorno remoto.
+| Nombre | Repositorio | Para qué serviría | Estado |
+|---|---|---|---|
+| **Browser Harness** | [`browser-use/browser-harness`](https://github.com/browser-use/browser-harness) | Que Claude controle un navegador real directamente vía protocolo CDP (con "auto-sanación": escribe y mejora su propio código auxiliar en ejecución), en vez de pasar prompts a la extensión "Claude en Chrome" | ❌ **No instalada.** CDP funciona sobre WebSocket, y el proxy de red de este entorno de trabajo tiene las conexiones WebSocket explícitamente marcadas como no soportadas ("Not supported through the proxy — report, do not work around"). No es un problema de configuración resoluble instalando la herramienta; requeriría correrla en una máquina con acceso de red real (como la computadora del cliente), no en este entorno remoto. Revisar de nuevo si en el futuro se trabaja desde un entorno sin esa restricción. |
