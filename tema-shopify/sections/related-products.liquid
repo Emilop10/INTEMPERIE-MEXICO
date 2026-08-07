@@ -18,41 +18,118 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  /* Evita el destello del pool completo (hasta 60 productos) antes de
+     que imx-related-diversify.js elija y muestre los definitivos. */
+  ul[data-imx-related-pool] > li:nth-child(n+{{ section.settings.products_to_show | plus: 1 }}) {
+    display: none;
+  }
 {%- endstyle -%}
 
+{%- comment -%}
+  Intemperie México: reemplaza el motor de recomendaciones nativo de
+  Shopify (routes.product_recommendations_url), que tendía a repetir
+  siempre el mismo subtipo de producto (ej. solo señuelos si el
+  producto es un señuelo). En su lugar, se arma un pool de productos
+  del mismo DEPARTAMENTO (Pesca, Miras y Binoculares, Diábolos y
+  Municiones, Rifles y Pistolas de Aire) y JS elige, priorizando
+  diversidad de tipo, para mostrar cosas relacionadas pero distintas
+  (ej. anzuelos y cañas junto a un señuelo, no más señuelos).
+  Deliberadamente NO se usa la etiqueta <product-recommendations>: ese
+  elemento nativo de Dawn (ver global.js) reemplaza su propio contenido
+  vía fetch al cargar, y sobrescribiría este pool.
+{%- endcomment -%}
+{%- assign department_handles = 'todo-pesca,miras-y-binoculares,diabolos-y-municiones,rifles-y-pistolas-de-aire' | split: ',' -%}
+{%- assign dept_collection = blank -%}
+{%- for c in product.collections -%}
+  {%- if department_handles contains c.handle -%}
+    {%- assign dept_collection = c -%}
+    {%- break -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- comment -%}
+  El orden por defecto de la colección de departamento agrupa productos
+  por subcategoría consecutiva (no está mezclado), así que tomar los
+  primeros N con `limit` da puros productos del mismo subtipo. En su
+  lugar, se toman unos cuantos productos de CADA subcategoría del
+  departamento — así la diversidad queda garantizada desde el servidor.
+{%- endcomment -%}
+{%- assign subcat_handles = '' | split: ',' -%}
+{%- case dept_collection.handle -%}
+  {%- when 'todo-pesca' -%}
+    {%- assign subcat_handles = 'canas,anzuelos,carretes,combos,cajas,cucharillas,senuelos,destorcedores,flotadores,hilos-y-lineas,plomos-y-lastres' | split: ',' -%}
+  {%- when 'miras-y-binoculares' -%}
+    {%- assign subcat_handles = 'binoculares,miras-telescopicas,monoculares,accesorios-de-optica' | split: ',' -%}
+  {%- when 'diabolos-y-municiones' -%}
+    {%- assign subcat_handles = 'diabolos-calibre-4-5mm,diabolos-calibre-5-5mm,municiones-airsoft-6mm,diabolos-calibre-6-35mm,co2-y-cartuchos' | split: ',' -%}
+  {%- when 'rifles-y-pistolas-de-aire' -%}
+    {%- assign subcat_handles = 'pistolas-de-aire,rifles-de-aire' | split: ',' -%}
+{%- endcase -%}
+
 <div class="color-{{ section.settings.color_scheme }} gradient">
-  <product-recommendations
-    class="related-products page-width section-{{ section.id }}-padding isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-    data-url="{{ routes.product_recommendations_url }}?limit={{ section.settings.products_to_show }}"
-    data-section-id="{{ section.id }}"
-    data-product-id="{{ product.id }}"
-  >
-    {% if recommendations.performed and recommendations.products_count > 0 %}
+  {%- if dept_collection != blank and dept_collection.products.size > 1 -%}
+    <div
+      class="related-products page-width section-{{ section.id }}-padding isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+    >
       <h2 class="related-products__heading inline-richtext {{ section.settings.heading_size }}">
         {{ section.settings.heading }}
       </h2>
       <ul
         class="grid product-grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down"
         role="list"
+        data-imx-related-pool
+        data-current-type="{{ product.type | escape }}"
+        data-show-count="{{ section.settings.products_to_show }}"
       >
         {% assign skip_card_product_styles = false %}
-        {% for recommendation in recommendations.products %}
-          <li class="grid__item">
-            {% render 'card-product',
-              card_product: recommendation,
-              media_aspect_ratio: section.settings.image_ratio,
-              image_shape: section.settings.image_shape,
-              show_secondary_image: section.settings.show_secondary_image,
-              show_vendor: section.settings.show_vendor,
-              show_rating: section.settings.show_rating,
-              skip_styles: skip_card_product_styles
-            %}
-          </li>
-          {%- assign skip_card_product_styles = true -%}
+        {% assign seen_ids = '' %}
+        {% for handle in subcat_handles %}
+          {% assign subcat = collections[handle] %}
+          {% if subcat != blank and subcat.title != blank %}
+            {% for item in subcat.products limit: 5 %}
+              {% assign item_marker = ',' | append: item.id | append: ',' %}
+              {% unless item.id == product.id or seen_ids contains item_marker %}
+                <li class="grid__item" data-imx-type="{{ item.type | escape }}">
+                  {% render 'card-product',
+                    card_product: item,
+                    media_aspect_ratio: section.settings.image_ratio,
+                    image_shape: section.settings.image_shape,
+                    show_secondary_image: section.settings.show_secondary_image,
+                    show_vendor: section.settings.show_vendor,
+                    show_rating: section.settings.show_rating,
+                    skip_styles: skip_card_product_styles
+                  %}
+                </li>
+                {%- assign skip_card_product_styles = true -%}
+                {%- assign seen_ids = seen_ids | append: item_marker -%}
+              {% endunless %}
+            {% endfor %}
+          {% endif %}
         {% endfor %}
+        {% comment %} Respaldo: si por alguna razón no se armaron subcategorías, usa la colección del departamento entera {% endcomment %}
+        {% if subcat_handles.size == 0 %}
+          {% for item in dept_collection.products limit: 40 %}
+            {% unless item.id == product.id %}
+              <li class="grid__item" data-imx-type="{{ item.type | escape }}">
+                {% render 'card-product',
+                  card_product: item,
+                  media_aspect_ratio: section.settings.image_ratio,
+                  image_shape: section.settings.image_shape,
+                  show_secondary_image: section.settings.show_secondary_image,
+                  show_vendor: section.settings.show_vendor,
+                  show_rating: section.settings.show_rating,
+                  skip_styles: skip_card_product_styles
+                %}
+              </li>
+              {%- assign skip_card_product_styles = true -%}
+            {% endunless %}
+          {% endfor %}
+        {% endif %}
       </ul>
-    {% endif %}
-  </product-recommendations>
+    </div>
+    {{ 'imx-related-diversify.js' | asset_url | script_tag }}
+  {%- endif -%}
   {% if section.settings.image_shape == 'arch' %}
     {{ 'mask-arch.svg' | inline_asset_content }}
   {%- endif -%}

@@ -49,6 +49,7 @@ como respaldo
 19. [Auditoría completa del sitio en vivo (4 de agosto de 2026)](#19-auditoría-completa-del-sitio-en-vivo-4-de-agosto-de-2026)
 20. [Identidad visual de Cartucho: mascota y avatar del chat](#20-identidad-visual-de-cartucho-mascota-y-avatar-del-chat)
 21. [Herramientas de desarrollo: Graphify y respaldo del código del tema](#21-herramientas-de-desarrollo-graphify-y-respaldo-del-código-del-tema)
+22. [Diversidad en "También te interese"](#22-diversidad-en-también-te-interese)
 
 ---
 
@@ -819,3 +820,51 @@ las fuentes y paleta de marca del sitio.
 > prueba) — reduce el riesgo de bugs invisibles en una pieza que no se
 > puede probar visualmente en este entorno (sin navegador real
 > disponible, ver limitación de Browser Harness arriba).
+
+---
+
+## 22. Diversidad en "También te interese"
+
+### El problema
+La sección de productos relacionados en la ficha de producto usaba el
+motor nativo de recomendaciones de Shopify
+(`routes.product_recommendations_url`), cuyo algoritmo tendía a repetir
+siempre el mismo subtipo de producto — abrir un señuelo mostraba más
+señuelos, abrir un rifle mostraba más rifles, en vez de sugerir cosas
+relacionadas pero distintas (anzuelos, cañas, miras, diábolos, etc.).
+
+### Intento fallido y causa real
+Primer intento: reemplazar las recomendaciones nativas por un pool de
+productos tomado directo de la colección grande del departamento
+(`todo-pesca`, `miras-y-binoculares`, etc.) con `limit: 60`, dejando que
+JS eligiera diversidad de tipo. **No funcionó**: el orden por defecto
+("más relevante") de esas colecciones grandes agrupa los productos por
+subtipo consecutivo — los primeros 60 de `todo-pesca` resultaron ser
+puros señuelos, así que no había nada diverso de dónde elegir.
+
+### Solución final
+En vez de depender del orden de la colección grande, el pool se arma
+tomando **5 productos de cada subcategoría** del departamento
+(`canas`, `anzuelos`, `carretes`... para Pesca; `binoculares`,
+`miras-telescopicas`... para Miras; etc. — mapeo fijo por departamento
+en el Liquid), garantizando diversidad real desde el servidor. Luego
+`imx-related-diversify.js` elige, priorizando que cada producto
+mostrado sea de un tipo distinto al del producto actual (ronda-robin
+por tipo, con relleno del mismo tipo solo como último recurso si el
+departamento es muy chico).
+
+- `sections/related-products.liquid` — reescrito por completo;
+  deliberadamente ya **no** usa la etiqueta `<product-recommendations>`
+  nativa de Dawn, porque ese elemento reemplaza su propio contenido vía
+  fetch al cargar (`global.js`) y hubiera sobrescrito el pool
+- `assets/imx-related-diversify.js` — nuevo, sigue el mismo patrón de
+  `imx-shuffle.js` (pool + JS elige y reordena) ya usado en la homepage
+- El motor de selección (`pickDiverse`) se probó con Node.js contra
+  casos reales y casos límite (departamento chico, todo un mismo tipo,
+  pool vacío) antes de subirlo — mismo enfoque de verificación previa
+  que se usó en el mapa 3D de la sección 21
+- Verificado en vivo en los 4 departamentos: Pesca (10 subcategorías,
+  54 productos en el pool), Rifles y Pistolas de Aire (2 subcategorías,
+  9 productos), Miras y Binoculares (4 subcategorías, 16 productos) —
+  sin errores Liquid, sin afectar el resto de la ficha de producto
+  (nota de envío, insignias de confianza, chatbot siguen intactos)
