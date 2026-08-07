@@ -1,0 +1,276 @@
+/* Intemperie México — Brand experience (homepage), v5 approved direction, real Apple timings */
+
+.brand-exp {
+  --ease: cubic-bezier(.4,0,.6,1);
+  --ease-out: cubic-bezier(.25,.1,.3,1);
+  font-family: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+.brand-exp * { box-sizing: border-box; }
+.brand-exp .wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+
+.brand-exp .section { position: relative; }
+.brand-exp .section.is-dark {
+  background:
+    radial-gradient(ellipse 70% 50% at 18% 0%, rgba(87,181,138,.10), transparent 60%),
+    radial-gradient(ellipse 60% 45% at 88% 100%, rgba(87,181,138,.07), transparent 60%),
+    #000000;
+  color: #F5F5F7;
+}
+.brand-exp .section.is-dark .muted-text { color: #98989D; }
+.brand-exp .section.is-dark .surface { background: #1C1C1E; }
+.brand-exp .section.is-light {
+  background:
+    radial-gradient(ellipse 65% 45% at 85% 0%, rgba(35,77,59,.05), transparent 60%),
+    radial-gradient(ellipse 55% 40% at 10% 100%, rgba(35,77,59,.04), transparent 60%),
+    #FBFBFD;
+  color: #1D1D1F;
+}
+.brand-exp .section.is-light .muted-text { color: #6E6E73; }
+.brand-exp .section.is-light .surface { background: #F5F5F7; }
+.brand-exp .section.is-accent { background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,255,255,.08), transparent 60%), #234D3B; color: #FFFFFF; }
+
+/* Fine grain — keeps flat color fields from feeling empty, imperceptible but adds depth */
+.brand-exp .section::before {
+  content: "";
+  position: absolute; inset: 0; pointer-events: none; opacity: .035; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Hero */
+.brand-exp .hero {
+  /* svh keeps the hero from jumping when mobile browsers hide/show the URL bar */
+  min-height: 100vh; min-height: 100svh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; overflow: hidden; padding-top: 108px;
+}
+.brand-exp .hero-bg {
+  position: absolute; inset: -6% -6%;
+  transform: translateY(calc(var(--sy, 0) * 0.25px)) scale(calc(1.06 + var(--sy, 0) * 0.00015));
+  will-change: transform;
+}
+.brand-exp .hero-bg img,
+.brand-exp .hero-bg video { width: 100%; height: 100%; object-fit: cover; object-position: center; background: #000; filter: saturate(.85) brightness(.62); }
+.brand-exp .hero-bg-overlay {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.62) 0%, rgba(0,0,0,.5) 38%, rgba(0,0,0,.62) 72%, rgba(0,0,0,.9) 100%),
+    radial-gradient(ellipse 62% 48% at 50% 42%, rgba(0,0,0,.4) 0%, rgba(0,0,0,0) 72%);
+}
+.brand-exp .hero-content { position: relative; max-width: 680px; padding: 0 24px; text-shadow: 0 1px 3px rgba(0,0,0,.9), 0 4px 14px rgba(0,0,0,.65); }
+.brand-exp .hero-content .word { display: inline-block; opacity: 0; transform: translateY(0.3em); filter: blur(6px); animation: brandWordIn .6s var(--ease-out) forwards; }
+@keyframes brandWordIn { to { opacity: 1; transform: translateY(0); filter: blur(0); } }
+.brand-exp .eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #57B58A; margin: 0 0 16px; opacity: 0; animation: brandFadeUp .5s var(--ease-out) .05s forwards; }
+@keyframes brandFadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.brand-exp .hero h1 { font-weight: 600; font-size: clamp(38px, 6vw, 72px); line-height: 1.03; letter-spacing: -0.022em; margin: 0 0 20px; text-wrap: balance; color: #F5F5F7; }
+.brand-exp .hero p { font-size: 18px; line-height: 1.55; color: #C7C7CC; margin: 0 0 32px; opacity: 0; animation: brandFadeUp .5s var(--ease-out) .5s forwards; }
+.brand-exp .hero-cta { display: flex; gap: 26px; align-items: center; justify-content: center; opacity: 0; animation: brandFadeUp .5s var(--ease-out) .6s forwards; }
+.brand-exp .btn { font-weight: 600; font-size: 14px; padding: 11px 22px; border-radius: 980px; border: none; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; transition: transform .2s var(--ease-out); }
+.brand-exp .btn:hover { transform: scale(1.04); }
+.brand-exp .btn-primary { background: #57B58A; color: #06120D; }
+.brand-exp .btn-white { background: #fff; color: #234D3B; }
+.brand-exp .btn-link { color: #57B58A; font-weight: 500; padding: 11px 4px; text-decoration: none; display: inline-flex; align-items: center; }
+.brand-exp .is-light .btn-link { color: #234D3B; }
+.brand-exp .btn-link::after { content: " →"; transition: transform .2s var(--ease-out); display: inline-block; }
+.brand-exp .btn-link:hover::after { transform: translateX(3px); }
+.brand-exp .scroll-hint { position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); font-family: 'Geist Mono', monospace; font-size: 10px; color: #98989D; letter-spacing: 0.08em; display: flex; flex-direction: column; align-items: center; gap: 7px; }
+.brand-exp .scroll-hint .line { width: 1px; height: 22px; background: currentColor; animation: brandScrollPulse 1.6s ease-in-out infinite; }
+@keyframes brandScrollPulse { 0%,100% { opacity: 0.15; } 50% { opacity: .9; } }
+
+/* Kinetic statement */
+.brand-exp .statement { min-height: 78vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 60px 24px; }
+.brand-exp .statement-text {
+  font-weight: 600; font-size: clamp(30px, 5.6vw, 62px); line-height: 1.08; letter-spacing: -0.022em;
+  max-width: 860px; text-wrap: balance; margin: 0 auto;
+  opacity: var(--kp, 0); filter: blur(calc((1 - var(--kp, 0)) * 8px)); transform: scale(calc(0.92 + var(--kp, 0) * 0.08));
+}
+.brand-exp .is-dark .statement-text .accent { color: #57B58A; }
+.brand-exp .is-light .statement-text .accent { color: #234D3B; }
+
+/* Chapter */
+.brand-exp .chapter { padding: 84px 0; }
+.brand-exp .chapter-head { max-width: 620px; margin: 0 auto 44px; text-align: center; opacity: 0; transform: translateY(16px); transition: opacity .45s var(--ease-out), transform .45s var(--ease-out); }
+.brand-exp .chapter-head.visible { opacity: 1; transform: translateY(0); }
+.brand-exp .chapter-head .eyebrow { color: inherit; opacity: .55; animation: none; }
+.brand-exp .chapter-head h2 { font-weight: 600; font-size: clamp(26px, 3.6vw, 40px); letter-spacing: -0.016em; margin: 10px 0 12px; text-wrap: balance; color: inherit; }
+.brand-exp .chapter-head p { font-size: 16px; line-height: 1.6; margin: 0; }
+
+.brand-exp .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.brand-exp .product-card {
+  display: flex; flex-direction: column; gap: 12px; text-decoration: none; color: inherit;
+  opacity: 0; transform: translateY(18px);
+  transition: opacity .4s var(--ease-out), transform .4s var(--ease-out);
+  transition-delay: var(--d, 0ms);
+}
+.brand-exp .product-card.visible { opacity: 1; transform: translateY(0); }
+.brand-exp .product-media {
+  aspect-ratio: 1; padding: 16px; border-radius: 18px;
+  background: #F2F1EC;
+  display: flex; align-items: center; justify-content: center; overflow: hidden;
+  transition: transform .3s var(--ease-out);
+}
+.brand-exp .product-card:hover .product-media { transform: scale(1.015); }
+.brand-exp .product-media img { width: 100%; height: 100%; object-fit: contain; transition: transform .35s var(--ease-out); }
+.brand-exp .product-card:hover .product-media img { transform: scale(1.05); }
+.brand-exp .product-body { padding: 0 2px; display: flex; flex-direction: column; gap: 2px; }
+.brand-exp .product-cat { font-size: 11px; opacity: .55; }
+.brand-exp .product-title { font-size: 14.5px; font-weight: 600; letter-spacing: -0.005em; line-height: 1.3; }
+.brand-exp .product-price { font-family: 'Geist Mono', monospace; font-size: 13.5px; opacity: .6; margin-top: 2px; }
+
+.brand-exp .chapter-collage { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; opacity: 0; transform: translateY(14px); transition: opacity .45s var(--ease-out) .08s, transform .45s var(--ease-out) .08s; }
+.brand-exp .chapter-collage.visible { opacity: 1; transform: translateY(0); }
+.brand-exp .collage-chip { font-size: 13.5px; font-weight: 500; padding: 10px 20px; border-radius: 980px; transition: transform .2s var(--ease-out); }
+.brand-exp .collage-chip:hover { transform: translateY(-2px); }
+.brand-exp .is-dark .collage-chip { background: #1C1C1E; }
+.brand-exp .is-light .collage-chip { background: #F5F5F7; }
+
+.brand-exp .chapter-more { text-align: center; margin-top: 40px; }
+
+/* Large featured-product editorial moment inside a chapter — real product photography, bigger scale */
+.brand-exp .chapter-feature {
+  display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: center;
+  max-width: 980px; margin: 0 auto 56px; text-decoration: none; color: inherit;
+  padding: 32px; border-radius: 28px; background: rgba(127,127,127,.06);
+  opacity: 0; transform: translateY(18px);
+  transition: opacity .45s var(--ease-out), transform .45s var(--ease-out);
+}
+.brand-exp .chapter-feature.visible { opacity: 1; transform: translateY(0); }
+.brand-exp .chapter-feature-media {
+  aspect-ratio: 4/3; border-radius: 20px; background: #F2F1EC;
+  display: flex; align-items: center; justify-content: center; padding: 28px; overflow: hidden;
+}
+.brand-exp .chapter-feature-media img { width: 100%; height: 100%; object-fit: contain; transition: transform .4s var(--ease-out); }
+.brand-exp .chapter-feature:hover .chapter-feature-media img { transform: scale(1.04); }
+.brand-exp .chapter-feature-eyebrow { font-size: 11.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; opacity: .55; margin-bottom: 10px; }
+.brand-exp .chapter-feature-title { font-size: clamp(20px, 2.6vw, 28px); font-weight: 600; letter-spacing: -0.012em; line-height: 1.25; margin-bottom: 10px; }
+.brand-exp .chapter-feature-price { font-family: 'Geist Mono', monospace; font-size: 16px; opacity: .65; margin-bottom: 18px; }
+
+@media (max-width: 720px) {
+  .brand-exp .chapter-feature { grid-template-columns: 1fr; padding: 20px; }
+}
+
+/* Chapter editorial photo banner — real environmental photography, breaks up flat color fields */
+/* Chapter hero — banner image + text integrated in one layer, like the page hero */
+.brand-exp .chapter-hero {
+  position: relative; min-height: 64vh; display: flex; align-items: flex-end;
+  padding: 0 0 56px; margin-bottom: 56px; overflow: hidden;
+}
+.brand-exp .chapter-hero-bg { position: absolute; inset: 0; }
+.brand-exp .chapter-hero-bg img,
+.brand-exp .chapter-hero-bg video { width: 100%; height: 100%; object-fit: cover; object-position: center; background: #000; filter: saturate(.88) brightness(.7); }
+.brand-exp .chapter-hero-overlay {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,.3) 35%, rgba(0,0,0,.62) 62%, rgba(0,0,0,.92) 100%),
+    radial-gradient(ellipse 70% 55% at 22% 88%, rgba(0,0,0,.45) 0%, rgba(0,0,0,0) 70%);
+}
+.brand-exp .chapter-hero-content { position: relative; max-width: 1180px; margin: 0 auto; padding: 0 32px; width: 100%; color: #F5F5F7; text-shadow: 0 2px 16px rgba(0,0,0,.4); }
+.brand-exp .chapter-hero-content .eyebrow { color: #57B58A; opacity: 1; animation: none; }
+.brand-exp .chapter-hero-content h2 { font-weight: 600; font-size: clamp(26px, 3.6vw, 42px); letter-spacing: -0.016em; margin: 10px 0 12px; text-wrap: balance; max-width: 620px; color: #F5F5F7; }
+.brand-exp .chapter-hero-content .muted-text { color: #E4E4E7; font-size: 16px; line-height: 1.6; margin: 0; max-width: 520px; text-shadow: 0 1px 3px rgba(0,0,0,.9), 0 4px 14px rgba(0,0,0,.65); }
+
+/* Secondary full-bleed strip — no text, pure visual break */
+/* 21/9 rather than 21/7 — the videos are 16:9, so a shallower strip crops far less of the frame */
+.brand-exp .chapter-strip { margin-top: 56px; aspect-ratio: 21/9; overflow: hidden; }
+.brand-exp .chapter-strip img,
+.brand-exp .chapter-strip video { width: 100%; height: 100%; object-fit: cover; object-position: center; background: #000; filter: saturate(.88) brightness(.8); }
+
+/* Subcategory tile row — Apple-style horizontal browse, real collection cover images */
+.brand-exp .subcat-grid {
+  display: flex; gap: 12px; overflow-x: auto; padding: 6px 4px 18px; margin-top: 36px;
+  scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+}
+.brand-exp .subcat-grid::-webkit-scrollbar { display: none; }
+.brand-exp .subcat-tile {
+  position: relative; flex: 0 0 auto; width: 132px;
+  text-decoration: none; color: inherit; scroll-snap-align: start;
+  display: flex; flex-direction: column; gap: 10px;
+  opacity: 0; transform: translateY(14px);
+  transition: opacity .4s var(--ease-out), transform .4s var(--ease-out);
+}
+.brand-exp .subcat-tile.visible { opacity: 1; transform: translateY(0); }
+.brand-exp .subcat-media {
+  aspect-ratio: 1; border-radius: 18px; overflow: hidden; padding: 14px;
+  background: radial-gradient(circle at 50% 30%, #fbfbf9, #ece9e2 100%);
+  transition: transform .3s var(--ease-out);
+}
+.brand-exp .subcat-tile:hover .subcat-media { transform: translateY(-3px); }
+.brand-exp .subcat-media img { width: 100%; height: 100%; object-fit: contain; transition: transform .4s var(--ease-out); }
+.brand-exp .subcat-tile:hover .subcat-media img { transform: scale(1.05); }
+.brand-exp .subcat-label {
+  font-size: 12.5px; font-weight: 600; letter-spacing: -0.005em; line-height: 1.25; opacity: .82;
+  padding: 0 2px;
+}
+
+@media (max-width: 640px) {
+  .brand-exp .subcat-tile { width: 122px; }
+}
+
+/* Closing */
+.brand-exp .closing { min-height: 66vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 60px 24px; overflow: hidden; }
+.brand-exp .closing-bg { position: absolute; inset: 0; }
+.brand-exp .closing-bg img,
+.brand-exp .closing-bg video { width: 100%; height: 100%; object-fit: cover; object-position: center; background: #000; filter: saturate(.85); }
+.brand-exp .closing-bg-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,50,38,.82), rgba(15,38,29,.92)); }
+.brand-exp .closing-text { opacity: 0; transform: translateY(16px); transition: opacity .45s var(--ease-out), transform .45s var(--ease-out); }
+.brand-exp .closing-text.visible { opacity: 1; transform: translateY(0); }
+.brand-exp .closing h2 { font-weight: 600; font-size: clamp(28px, 4.2vw, 46px); letter-spacing: -0.022em; margin: 0 0 26px; text-wrap: balance; color: #FFFFFF; }
+
+@media (max-width: 860px) {
+  .brand-exp .product-grid { grid-template-columns: repeat(2, 1fr); }
+  .brand-exp .statement { min-height: 56vh; }
+  .brand-exp .chapter { padding: 56px 0; }
+  .brand-exp .wrap { padding: 0 20px; }
+  .brand-exp .chapter-hero { min-height: 58vh; padding-bottom: 40px; margin-bottom: 40px; }
+  .brand-exp .chapter-hero-content { padding: 0 20px; }
+  .brand-exp .chapter-strip { aspect-ratio: 16/9; margin-top: 40px; }
+  .brand-exp .hero-cta { flex-direction: column; gap: 14px; }
+  .brand-exp .hero p { font-size: 16.5px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .brand-exp .hero-bg { transform: none !important; }
+  .brand-exp .hero-content .word, .brand-exp .eyebrow, .brand-exp .hero p, .brand-exp .hero-cta { animation: none !important; opacity: 1 !important; filter: none !important; transform: none !important; }
+  .brand-exp .chapter-head, .brand-exp .chapter-collage, .brand-exp .product-card,
+  .brand-exp .chapter-feature, .brand-exp .subcat-tile, .brand-exp .closing-text { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .brand-exp .statement-text { opacity: 1 !important; filter: none !important; transform: none !important; }
+  .brand-exp .scroll-hint .line { animation: none; }
+}
+
+/* Homepage-only nav invert (see brand-experience.js + header.liquid brand-nav-invert hook) */
+/* Default state is ALWAYS the light, legible bar — safe regardless of what's behind it.
+   Only switches to the dark look once JS confirms (via .brand-theme-dark) the nav is
+   actually sitting over a confirmed-dark section further down the page. */
+/* At the very top the bar floats over the hero film with only a soft scrim —
+   never fully transparent, so the wordmark and links stay legible while the
+   video is still loading. On scroll it settles into the same dark glass bar
+   the rest of the store uses. */
+.shopify-section-header .header-wrapper.brand-nav-invert {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.28) 62%, rgba(0,0,0,0) 100%);
+  backdrop-filter: none; -webkit-backdrop-filter: none;
+  border-bottom-color: transparent !important;
+  transition: background-color .32s cubic-bezier(.4,0,.6,1), background .32s cubic-bezier(.4,0,.6,1), border-color .32s cubic-bezier(.4,0,.6,1), color .32s cubic-bezier(.4,0,.6,1);
+  color: #F5F5F7;
+}
+.shopify-section-header .header-wrapper.brand-nav-invert.brand-theme-light,
+.shopify-section-header .header-wrapper.brand-nav-invert.brand-theme-dark {
+  background: rgba(0,0,0,.72); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px);
+  color: #F5F5F7; border-bottom-color: rgba(255,255,255,.08) !important;
+}
+/* Explicit, direct colors per state — no currentColor/inheritance, so nothing can
+   silently override it from an inner span (e.g. Dawn's .header__active-menu-item). */
+/* Explicit, direct colors — no currentColor/inheritance, so nothing can silently
+   override it from an inner span (e.g. Dawn's .header__active-menu-item).
+   The store is dark end to end now, so the bar is light-on-dark in every state. */
+.shopify-section-header .header-wrapper.brand-nav-invert .header__menu-item,
+.shopify-section-header .header-wrapper.brand-nav-invert .header__active-menu-item,
+.shopify-section-header .header-wrapper.brand-nav-invert .header__icon,
+.shopify-section-header .header-wrapper.brand-nav-invert .header__icon--cart,
+.shopify-section-header .header-wrapper.brand-nav-invert summary,
+.shopify-section-header .header-wrapper.brand-nav-invert svg {
+  color: #F5F5F7 !important;
+  fill: #F5F5F7 !important;
+}
+
+body.template-index { padding-top: 0 !important; }

@@ -1,0 +1,281 @@
+{{ 'brand-experience.css' | asset_url | stylesheet_tag }}
+
+<div class="brand-exp">
+
+  <section class="section is-dark hero" data-nav-theme="dark">
+    <div class="hero-bg" id="heroBg">
+      {%- if section.settings.hero_video != blank -%}
+        <video class="bg-video" autoplay muted loop playsinline preload="auto" poster="https://cdn.shopify.com/s/files/1/0680/3557/5885/files/banner-hero-lago-niebla-v2.jpg" data-bg-video data-eager>
+          <source data-src="{{ section.settings.hero_video }}" type="video/mp4">
+        </video>
+      {%- else -%}
+        <img src="https://cdn.shopify.com/s/files/1/0680/3557/5885/files/banner-hero-lago-niebla-v2.jpg" alt="" loading="eager">
+      {%- endif -%}
+      <div class="hero-bg-overlay"></div>
+    </div>
+    <div class="hero-content">
+      <p class="eyebrow">{{ section.settings.hero_eyebrow | escape }}</p>
+      <h1 id="heroHeadline">{{ section.settings.hero_heading | escape }}</h1>
+      <p>{{ section.settings.hero_subheading | escape }}</p>
+      <div class="hero-cta">
+        {%- if section.settings.hero_cta_link != blank -%}
+          <a class="btn btn-primary" href="{{ section.settings.hero_cta_link }}">{{ section.settings.hero_cta_text | escape }}</a>
+        {%- endif -%}
+        {%- if section.settings.hero_cta_secondary_link != blank -%}
+          <a class="btn-link" href="{{ section.settings.hero_cta_secondary_link }}">{{ section.settings.hero_cta_secondary_text | escape }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+    <div class="scroll-hint"><span>DESLIZA</span><span class="line"></span></div>
+  </section>
+
+  {%- if section.settings.shipping_show -%}
+    <section class="section is-dark im-ship-band" data-nav-theme="dark">
+      <div class="im-ship-inner">
+        <span class="im-ship-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 8v8a2 2 0 0 1-1 1.73l-7 4a2 2 0 0 1-2 0l-7-4A2 2 0 0 1 3 16V8a2 2 0 0 1 1-1.73l7-4a2 2 0 0 1 2 0l7 4A2 2 0 0 1 21 8z"/>
+            <polyline points="3.3 7 12 12 20.7 7"/>
+            <line x1="12" y1="22" x2="12" y2="12"/>
+          </svg>
+          {{ section.settings.shipping_badge | escape }}
+        </span>
+        <p class="im-ship-head">{{ section.settings.shipping_headline | escape }}</p>
+        <p class="im-ship-detail">{{ section.settings.shipping_detail | escape }}</p>
+      </div>
+    </section>
+  {%- endif -%}
+
+  {%- for block in section.blocks -%}
+
+    {%- if block.type == 'statement' -%}
+      <section class="section {% if block.settings.dark %}is-dark{% else %}is-light{% endif %} statement" data-nav-theme="{% if block.settings.dark %}dark{% else %}light{% endif %}" {{ block.shopify_attributes }}>
+        <div class="statement-text kinetic">{{ block.settings.line_1 }}{%- if block.settings.line_2 != blank -%}<br><span class="accent">{{ block.settings.line_2 }}</span>{%- endif -%}</div>
+      </section>
+    {%- endif -%}
+
+    {%- if block.type == 'chapter' -%}
+      {%- assign col = collections[block.settings.collection] -%}
+      <section class="section {% if block.settings.dark %}is-dark{% else %}is-light{% endif %} chapter" id="{{ block.settings.anchor }}" data-nav-theme="{% if block.settings.dark %}dark{% else %}light{% endif %}" {{ block.shopify_attributes }}>
+
+        {%- if block.settings.banner_image != blank -%}
+          <div class="chapter-hero">
+            <div class="chapter-hero-bg">
+              {%- if block.settings.banner_video != blank -%}
+                <video class="bg-video" muted loop playsinline preload="none" poster="{{ block.settings.banner_image | image_url: width: 1800 }}" data-bg-video>
+                  <source data-src="{{ block.settings.banner_video }}" type="video/mp4">
+                </video>
+              {%- else -%}
+                <img src="{{ block.settings.banner_image | image_url: width: 1800 }}" alt="" loading="lazy">
+              {%- endif -%}
+              <div class="chapter-hero-overlay"></div>
+            </div>
+            <div class="chapter-hero-content">
+              <p class="eyebrow">{{ block.settings.index }} — {{ block.settings.title | escape }}</p>
+              <h2>{{ block.settings.headline }}</h2>
+              <p class="muted-text">{{ block.settings.subheading | escape }}</p>
+            </div>
+          </div>
+        {%- endif -%}
+
+        <div class="wrap">
+          {%- unless block.settings.banner_image != blank -%}
+            <div class="chapter-head">
+              <p class="eyebrow">{{ block.settings.index }} — {{ block.settings.title | escape }}</p>
+              <h2>{{ block.settings.headline }}</h2>
+              <p class="muted-text">{{ block.settings.subheading | escape }}</p>
+            </div>
+          {%- endunless -%}
+
+          {%- if col != blank and col.products.size > 0 -%}
+            <div class="chapter-feature-pool" data-rotate-grid data-show="1">
+              {%- for product in col.products limit: 5 -%}
+                {%- if product.featured_image -%}
+                  <a class="chapter-feature" href="{{ product.url }}">
+                    <div class="chapter-feature-media">
+                      {{ product.featured_image | image_url: width: 1000 | image_tag: loading: 'lazy', alt: product.featured_image.alt }}
+                    </div>
+                    <div class="chapter-feature-body">
+                      <div class="chapter-feature-eyebrow">Destacado</div>
+                      <div class="chapter-feature-title">{{ product.title }}</div>
+                      <div class="chapter-feature-price">{{ product.price | money }}</div>
+                      <span class="btn-link">Ver producto</span>
+                    </div>
+                  </a>
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+
+          {%- if col != blank and col.products.size > 0 -%}
+            <div class="product-grid" data-rotate-grid data-show="6">
+              {%- for product in col.products limit: 14 -%}
+                <a class="product-card" href="{{ product.url }}">
+                  <div class="product-media">
+                    {%- if product.featured_image -%}
+                      {{ product.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: product.featured_image.alt }}
+                    {%- endif -%}
+                  </div>
+                  <div class="product-body">
+                    <div class="product-cat">{{ col.title }}</div>
+                    <div class="product-title">{{ product.title }}</div>
+                    <div class="product-price">{{ product.price | money }}</div>
+                  </div>
+                </a>
+              {%- endfor -%}
+            </div>
+          {%- else -%}
+            <div class="chapter-collage">
+              {%- for tag in block.settings.chips -%}
+                <div class="collage-chip">{{ tag | strip }}</div>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+
+          {%- liquid
+            assign subcats = blank
+            case block.settings.anchor
+              when 'pesca'
+                assign subcats = 'canas,anzuelos,carretes,senuelos,combos,cajas,cucharillas,destorcedores,flotadores,hilos-y-lineas,plomos-y-lastres'
+              when 'miras-y-binoculares'
+                assign subcats = 'binoculares,miras-telescopicas,monoculares,accesorios-de-optica'
+              when 'diabolos-y-municiones'
+                assign subcats = 'diabolos-calibre-4-5mm,diabolos-calibre-5-5mm,diabolos-calibre-6-35mm,municiones-airsoft-6mm,co2-y-cartuchos'
+              when 'rifles-y-pistolas-de-aire'
+                assign subcats = 'pistolas-de-aire,rifles-de-aire'
+            endcase
+          -%}
+          {%- if subcats != blank -%}
+            {%- assign subcat_list = subcats | split: ',' -%}
+            <div class="subcat-grid">
+              {%- for handle in subcat_list -%}
+                {%- assign sc = collections[handle] -%}
+                {%- comment -%}
+                  collections[handle] returns a truthy empty object for a handle that
+                  doesn't resolve (unpublished or renamed), which would render a blank,
+                  linkless tile. Checking the title is what actually proves it resolved.
+                {%- endcomment -%}
+                {%- if sc != blank and sc.title != blank -%}
+                  <a class="subcat-tile" href="{{ sc.url }}">
+                    <span class="subcat-media">
+                      {%- if sc.image -%}
+                        {{ sc.image | image_url: width: 400 | image_tag: loading: 'lazy', alt: sc.title }}
+                      {%- endif -%}
+                    </span>
+                    <span class="subcat-label">{{ sc.title }}</span>
+                  </a>
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+
+          {%- if col != blank -%}
+            <div class="chapter-more">
+              <a class="btn-link" href="{{ col.url }}">Ver todo {{ col.title }}</a>
+            </div>
+          {%- endif -%}
+        </div>
+
+        {%- if block.settings.banner_image_2 != blank -%}
+          <div class="chapter-strip">
+            {%- if block.settings.banner_video_2 != blank -%}
+              <video class="bg-video" muted loop playsinline preload="none" poster="{{ block.settings.banner_image_2 | image_url: width: 1800 }}" data-bg-video>
+                <source data-src="{{ block.settings.banner_video_2 }}" type="video/mp4">
+              </video>
+            {%- else -%}
+              <img src="{{ block.settings.banner_image_2 | image_url: width: 1800 }}" alt="" loading="lazy">
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </section>
+    {%- endif -%}
+
+  {%- endfor -%}
+
+  <section class="section is-accent closing" data-nav-theme="dark">
+    <div class="closing-bg">
+      {%- if section.settings.closing_video != blank -%}
+        <video class="bg-video" muted loop playsinline preload="none" poster="https://cdn.shopify.com/s/files/1/0680/3557/5885/files/ambient-closing-landscape-hiker.webp" data-bg-video>
+          <source data-src="{{ section.settings.closing_video }}" type="video/mp4">
+        </video>
+      {%- else -%}
+        <img src="https://cdn.shopify.com/s/files/1/0680/3557/5885/files/ambient-closing-landscape-hiker.webp" alt="" loading="lazy">
+      {%- endif -%}
+      <div class="closing-bg-overlay"></div>
+    </div>
+    <div class="closing-text">
+      <h2>{{ section.settings.closing_heading }}</h2>
+      {%- if section.settings.closing_link != blank -%}
+        <a class="btn btn-white" href="{{ section.settings.closing_link }}">{{ section.settings.closing_cta_text | escape }}</a>
+      {%- endif -%}
+    </div>
+  </section>
+
+</div>
+
+<script src="{{ 'brand-experience.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "Experiencia de marca",
+  "settings": [
+    { "type": "header", "content": "Hero" },
+    { "type": "text", "id": "hero_eyebrow", "label": "Eyebrow", "default": "Equipo técnico para exteriores" },
+    { "type": "text", "id": "hero_heading", "label": "Título", "default": "Preparado para lo que sigue." },
+    { "type": "textarea", "id": "hero_subheading", "label": "Subtítulo", "default": "Pesca, óptica y equipo de aire comprimido, seleccionados y verificados uno por uno." },
+    { "type": "text", "id": "hero_cta_text", "label": "Texto botón principal", "default": "Explorar catálogo" },
+    { "type": "url", "id": "hero_cta_link", "label": "Link botón principal" },
+    { "type": "text", "id": "hero_cta_secondary_text", "label": "Texto botón secundario", "default": "Rifles y pistolas de aire" },
+    { "type": "url", "id": "hero_cta_secondary_link", "label": "Link botón secundario" },
+    { "type": "url", "id": "hero_video", "label": "Video de fondo del hero (mp4, opcional)" },
+    { "type": "header", "content": "Franja de envío" },
+    { "type": "checkbox", "id": "shipping_show", "label": "Mostrar franja de envío", "default": true },
+    { "type": "text", "id": "shipping_badge", "label": "Etiqueta", "default": "Envío gratis" },
+    { "type": "text", "id": "shipping_headline", "label": "Título", "default": "Desde $799 MXN, a todo México." },
+    { "type": "text", "id": "shipping_detail", "label": "Detalle", "default": "Pedidos menores, $189. Entrega en 2 a 7 días hábiles." },
+    { "type": "header", "content": "Cierre" },
+    { "type": "text", "id": "closing_heading", "label": "Título de cierre", "default": "Equipo real. Terreno real." },
+    { "type": "text", "id": "closing_cta_text", "label": "Texto botón de cierre", "default": "Ver todo el catálogo" },
+    { "type": "url", "id": "closing_link", "label": "Link de cierre" },
+    { "type": "url", "id": "closing_video", "label": "Video de fondo del cierre (mp4, opcional)" }
+  ],
+  "blocks": [
+    {
+      "type": "statement",
+      "name": "Declaración kinética",
+      "settings": [
+        { "type": "text", "id": "line_1", "label": "Línea 1", "default": "Diseñado para el terreno." },
+        { "type": "text", "id": "line_2", "label": "Línea 2 (acento, opcional)" },
+        { "type": "checkbox", "id": "dark", "label": "Fondo oscuro", "default": true }
+      ]
+    },
+    {
+      "type": "chapter",
+      "name": "Capítulo de categoría",
+      "settings": [
+        { "type": "text", "id": "index", "label": "Número", "default": "01" },
+        { "type": "text", "id": "anchor", "label": "Ancla (id)", "default": "pesca" },
+        { "type": "text", "id": "title", "label": "Título corto", "default": "Pesca" },
+        { "type": "text", "id": "headline", "label": "Frase principal", "default": "Del río a la carnada exacta." },
+        { "type": "textarea", "id": "subheading", "label": "Subtítulo", "default": "Cañas, carretes, señuelos y todo lo que necesitas para cada tipo de agua." },
+        { "type": "collection", "id": "collection", "label": "Colección (productos reales)" },
+        { "type": "image_picker", "id": "banner_image", "label": "Banner fotográfico (opcional)" },
+        { "type": "url", "id": "banner_video", "label": "Video del banner (mp4, opcional — reemplaza la foto de fondo)" },
+        { "type": "image_picker", "id": "banner_image_2", "label": "Segundo banner fotográfico (opcional)" },
+        { "type": "url", "id": "banner_video_2", "label": "Video del segundo banner (mp4, opcional — reemplaza la foto)" },
+        { "type": "textarea", "id": "chips", "label": "Chips alternativos (si no hay colección, uno por línea)", "default": "Cañas\nCarretes\nSeñuelos\nAnzuelos\nHilos y Líneas" },
+        { "type": "checkbox", "id": "dark", "label": "Fondo oscuro", "default": false }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Experiencia de marca",
+      "blocks": [
+        { "type": "statement" },
+        { "type": "chapter" }
+      ]
+    }
+  ]
+}
+{% endschema %}
