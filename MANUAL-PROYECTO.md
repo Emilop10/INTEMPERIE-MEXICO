@@ -724,6 +724,25 @@ consultado explícitamente vía GraphQL; si se omite, Shopify rechaza la
 mutación completa con un error de "collection not found" en el primer
 sub-item, aunque la colección exista y funcione perfectamente.
 
+### Botón de enviar invisible — resuelto (6 de agosto)
+En el chat público, el botón circular de "enviar mensaje" se veía
+prácticamente blanco sobre blanco, casi invisible. Causa: el campo
+**"Primary color"** en Zipchat → Bubble chat → Edit → Look & feel
+(el color de acento que controla ese botón) estaba en `#FFFFFF`. Se
+cambió a `#57B58A`, el verde de la marca. Confirmado en el sitio en
+vivo que el botón ya no es blanco.
+
+### Persistencia de conversación entre recargas — investigado, sin acción
+Se probó si Cartucho debía "olvidar" la conversación al recargar la
+página. Se revisó a fondo el panel de Zipchat (Look & feel, Configuration,
+Integrations, Account) y **no existe ningún campo expuesto** para
+controlar esto — el historial vive en el navegador del visitante
+(localStorage/cookie de sesión), sin toggle en el admin. Confirmado en
+vivo: recargar la página sí mantiene la conversación visible. Decisión
+del cliente: **no hace falta resolverlo** — se observó que el historial
+sí se limpia solo pasado un tiempo, comportamiento por defecto de
+Zipchat que es aceptable tal cual.
+
 ### Pendiente para más adelante
 - Versión para redes sociales (fondo sólido, 1080×1080) — cuando se
   conecten Instagram/TikTok
