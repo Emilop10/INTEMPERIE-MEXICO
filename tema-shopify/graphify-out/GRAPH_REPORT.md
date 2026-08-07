@@ -1,51 +1,54 @@
-# Graph Report - .  (2026-08-07)
+# Graph Report - tema-shopify  (2026-08-07)
 
 ## Corpus Check
-- cluster-only mode — file stats not available
+- 108 files · ~239,348 words
+- Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 452 nodes · 697 edges · 37 communities (20 shown, 17 thin omitted)
+- 456 nodes · 702 edges · 39 communities (21 shown, 18 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 3 edges (avg confidence: 0.7)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `7e40cffa`
+- Built from commit: `a22735e6`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
-- Community 0
-- Community 1
-- Community 2
-- Community 3
-- Community 4
-- Community 5
-- Community 6
-- Community 7
-- Community 8
-- Community 9
-- Community 10
-- Community 11
-- Community 12
-- Community 13
-- Community 14
-- Community 15
-- Community 16
-- Community 17
-- Community 18
-- Community 19
-- Community 20
-- Community 21
-- Community 22
-- Community 23
-- Community 25
-- Community 27
-- Community 30
-- Community 31
-- Community 32
-- Community 33
-- Community 34
-- Community 35
+- global.js
+- product-info.js
+- CartItems
+- quick-order-list.js
+- FacetFiltersForm
+- SlideshowComponent
+- PredictiveSearch
+- CartDrawer
+- BulkAdd
+- quick-add-bulk.js
+- localization-form.js
+- recipient-form.js
+- CustomerAddresses
+- CartNotification
+- pickup-availability.js
+- DetailsDisclosure
+- media-gallery.js
+- quick-add.js
+- DetailsModal
+- MainSearch
+- price-per-item.js
+- magnify.js
+- SearchForm
+- PriceRange
+- animations.js
+- product-modal.js
+- pubsub.js
+- quantity-popover.js
+- imx-shuffle.js
+- PasswordModal
+- show-more.js
+- constants.js
+- QuantityInput
+- imx-related-diversify.js
 
 ## God Nodes (most connected - your core abstractions)
 1. `PredictiveSearch` - 23 edges
@@ -60,93 +63,96 @@
 10. `handleUpdateProductInfo()` - 9 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `show()` --calls--> `preprocessHTML()`  [EXTRACTED]
-  tema-shopify/assets/quick-add.js → tema-shopify/assets/quick-add.js  _Bridges community 1 → community 17_
+- None detected - all connections are within the same source files.
 
 ## Import Cycles
 - None detected.
 
-## Communities (37 total, 17 thin omitted)
+## Communities (39 total, 18 thin omitted)
 
-### Community 0 - "Community 0"
-Cohesion: 0.05
+### Community 0 - "global.js"
+Cohesion: 0.06
 Nodes (14): AccountIcon, BulkModal, DeferredMedia, getFocusableElements(), HeaderDrawer, MenuDrawer, ModalDialog, ModalOpener (+6 more)
 
-### Community 1 - "Community 1"
+### Community 1 - "product-info.js"
 Cohesion: 0.09
-Nodes (23): HTMLUpdateUtility, SectionId, buildRequestUrlWithParams(), connectedCallback(), fetchQuantityRules(), getSelectedVariant(), handleOptionValueChange(), handleSwapProduct() (+15 more)
+Nodes (22): HTMLUpdateUtility, SectionId, buildRequestUrlWithParams(), connectedCallback(), fetchQuantityRules(), getSelectedVariant(), handleOptionValueChange(), handleSwapProduct() (+14 more)
 
-### Community 2 - "Community 2"
+### Community 2 - "CartItems"
 Cohesion: 0.11
 Nodes (6): CartItems, CartRemoveButton, constructor(), CartPerformance, handleErrorMessage(), onSubmitHandler()
 
-### Community 3 - "Community 3"
+### Community 3 - "quick-order-list.js"
 Cohesion: 0.12
 Nodes (24): cleanErrorMessageOnType(), connectedCallback(), constructor(), getSectionsToRender(), getTotalBar(), handleScrollIntoView(), handleSwitchVariantOnEnter(), initEventListeners() (+16 more)
 
-### Community 7 - "Community 7"
+### Community 7 - "CartDrawer"
 Cohesion: 0.19
 Nodes (3): CartDrawer, CartDrawerItems, onKeyUpEscape()
 
-### Community 9 - "Community 9"
+### Community 9 - "quick-add-bulk.js"
 Cohesion: 0.26
 Nodes (10): connectedCallback(), constructor(), getSectionsToRender(), getSectionsUrl(), listenForActiveInput(), listenForKeydown(), onCartUpdate(), renderSections() (+2 more)
 
-### Community 10 - "Community 10"
+### Community 10 - "localization-form.js"
 Cohesion: 0.21
 Nodes (7): closeSelector(), filterCountries(), hidePanel(), normalizeString(), onContainerKeyUp(), openSelector(), resetFilter()
 
-### Community 11 - "Community 11"
+### Community 11 - "recipient-form.js"
 Cohesion: 0.31
 Nodes (12): clearErrorMessage(), clearInputFields(), connectedCallback(), constructor(), createErrorListItem(), disableableFields(), disableInputFields(), displayErrorMessage() (+4 more)
 
-### Community 12 - "Community 12"
+### Community 12 - "CustomerAddresses"
 Cohesion: 0.24
 Nodes (3): attributes, CustomerAddresses, selectors
 
-### Community 14 - "Community 14"
+### Community 14 - "pickup-availability.js"
 Cohesion: 0.38
 Nodes (9): constructor(), fetchAvailability(), handleBodyClick(), hide(), onClickRefreshList(), renderError(), renderPreview(), show() (+1 more)
 
-### Community 16 - "Community 16"
+### Community 16 - "media-gallery.js"
 Cohesion: 0.39
 Nodes (8): announceLiveRegion(), constructor(), onSlideChanged(), playActiveMedia(), preventStickyHeader(), removeListSemantic(), setActiveMedia(), setActiveThumbnail()
 
-### Community 17 - "Community 17"
-Cohesion: 0.36
-Nodes (6): preprocessHTML(), preventDuplicatedIDs(), preventVariantURLSwitching(), removeDOMElements(), removeGalleryListSemantic(), updateImageSizes()
+### Community 17 - "quick-add.js"
+Cohesion: 0.33
+Nodes (7): preprocessHTML(), preventDuplicatedIDs(), preventVariantURLSwitching(), removeDOMElements(), removeGalleryListSemantic(), show(), updateImageSizes()
 
-### Community 20 - "Community 20"
+### Community 20 - "price-per-item.js"
 Cohesion: 0.43
 Nodes (6): connectedCallback(), constructor(), getCartQuantity(), getVolumePricingArray(), onInputChange(), updatePricePerItem()
 
-### Community 21 - "Community 21"
+### Community 21 - "magnify.js"
 Cohesion: 0.57
 Nodes (6): createOverlay(), enableZoomOnHover(), magnify(), moveWithHover(), prepareOverlay(), toggleLoadingSpinner()
 
-### Community 25 - "Community 25"
+### Community 25 - "animations.js"
 Cohesion: 0.60
 Nodes (4): initializeScrollAnimationTrigger(), initializeScrollZoomAnimationTrigger(), onIntersection(), percentageSeen()
+
+### Community 38 - "imx-related-diversify.js"
+Cohesion: 0.83
+Nodes (3): pickDiverse(), run(), shuffle()
 
 ## Knowledge Gaps
 - **5 isolated node(s):** `PUB_SUB_EVENTS`, `selectors`, `attributes`, `trapFocusHandlers`, `subscribers`
   These have ≤1 connection - possible missing edges or undocumented components.
-- **17 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **18 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `onKeyUpEscape()` connect `Community 7` to `Community 0`, `Community 4`?**
-  _High betweenness centrality (0.078) - this node is a cross-community bridge._
-- **Why does `CartPerformance` connect `Community 2` to `Community 0`?**
-  _High betweenness centrality (0.053) - this node is a cross-community bridge._
+- **Why does `onKeyUpEscape()` connect `CartDrawer` to `global.js`, `FacetFiltersForm`?**
+  _High betweenness centrality (0.077) - this node is a cross-community bridge._
+- **Why does `CartPerformance` connect `CartItems` to `global.js`?**
+  _High betweenness centrality (0.052) - this node is a cross-community bridge._
 - **What connects `PUB_SUB_EVENTS`, `selectors`, `attributes` to the rest of the system?**
   _5 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `Community 0` be split into smaller, more focused modules?**
-  _Cohesion score 0.05389610389610389 - nodes in this community are weakly interconnected._
-- **Should `Community 1` be split into smaller, more focused modules?**
-  _Cohesion score 0.09009009009009009 - nodes in this community are weakly interconnected._
-- **Should `Community 2` be split into smaller, more focused modules?**
+- **Should `global.js` be split into smaller, more focused modules?**
+  _Cohesion score 0.05660377358490566 - nodes in this community are weakly interconnected._
+- **Should `product-info.js` be split into smaller, more focused modules?**
+  _Cohesion score 0.09365079365079365 - nodes in this community are weakly interconnected._
+- **Should `CartItems` be split into smaller, more focused modules?**
   _Cohesion score 0.11494252873563218 - nodes in this community are weakly interconnected._
-- **Should `Community 3` be split into smaller, more focused modules?**
+- **Should `quick-order-list.js` be split into smaller, more focused modules?**
   _Cohesion score 0.12183908045977011 - nodes in this community are weakly interconnected._
