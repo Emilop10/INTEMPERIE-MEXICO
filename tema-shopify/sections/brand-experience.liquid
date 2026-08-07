@@ -22,7 +22,7 @@
           <a class="btn btn-primary" href="{{ section.settings.hero_cta_link }}">{{ section.settings.hero_cta_text | escape }}</a>
         {%- endif -%}
         {%- if section.settings.hero_cta_secondary_link != blank -%}
-          <a class="btn-link" href="{{ section.settings.hero_cta_secondary_link }}">{{ section.settings.hero_cta_secondary_text | escape }}</a>
+          <a class="btn btn-secondary" href="{{ section.settings.hero_cta_secondary_link }}">{{ section.settings.hero_cta_secondary_text | escape }}</a>
         {%- endif -%}
       </div>
     </div>
@@ -223,7 +223,7 @@
     { "type": "text", "id": "hero_eyebrow", "label": "Eyebrow", "default": "Equipo técnico para exteriores" },
     { "type": "text", "id": "hero_heading", "label": "Título", "default": "Preparado para lo que sigue." },
     { "type": "textarea", "id": "hero_subheading", "label": "Subtítulo", "default": "Pesca, óptica y equipo de aire comprimido, seleccionados y verificados uno por uno." },
-    { "type": "text", "id": "hero_cta_text", "label": "Texto botón principal", "default": "Explorar catálogo" },
+    { "type": "text", "id": "hero_cta_text", "label": "Texto botón principal", "default": "Explorar catálogo de pesca" },
     { "type": "url", "id": "hero_cta_link", "label": "Link botón principal" },
     { "type": "text", "id": "hero_cta_secondary_text", "label": "Texto botón secundario", "default": "Rifles y pistolas de aire" },
     { "type": "url", "id": "hero_cta_secondary_link", "label": "Link botón secundario" },

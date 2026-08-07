@@ -157,4 +157,23 @@
   } else {
     revealTargets.forEach(function (el) { el.classList.add('visible'); });
   }
+
+  // Scroll suave a los capítulos desde los botones del hero (y cualquier
+  // enlace interno con "#"). Se maneja a mano en vez de dejarlo al
+  // navegador porque si el hash de la URL ya es el mismo (ej. el
+  // visitante ya había hecho clic antes y regresó arriba), el navegador
+  // no vuelve a saltar solo con un clic nuevo.
+  root.querySelectorAll('a[href^="#"]').forEach(function (link) {
+    var targetId = link.getAttribute('href').slice(1);
+    if (!targetId) return;
+    link.addEventListener('click', function (e) {
+      var target = document.getElementById(targetId);
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+      if (history.pushState) {
+        history.pushState(null, '', '#' + targetId);
+      }
+    });
+  });
 })();

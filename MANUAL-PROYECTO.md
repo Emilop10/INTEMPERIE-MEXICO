@@ -50,6 +50,7 @@ como respaldo
 20. [Identidad visual de Cartucho: mascota y avatar del chat](#20-identidad-visual-de-cartucho-mascota-y-avatar-del-chat)
 21. [Herramientas de desarrollo: Graphify y respaldo del código del tema](#21-herramientas-de-desarrollo-graphify-y-respaldo-del-código-del-tema)
 22. [Diversidad en "También te interese"](#22-diversidad-en-también-te-interese)
+23. [Botones del hero: texto claro y scroll que sí funciona](#23-botones-del-hero-texto-claro-y-scroll-que-sí-funciona)
 
 ---
 
@@ -868,3 +869,36 @@ departamento es muy chico).
   9 productos), Miras y Binoculares (4 subcategorías, 16 productos) —
   sin errores Liquid, sin afectar el resto de la ficha de producto
   (nota de envío, insignias de confianza, chatbot siguen intactos)
+
+---
+
+## 23. Botones del hero: texto claro y scroll que sí funciona
+
+### Aclarar el botón principal
+"Explorar catálogo" se cambió a **"Explorar catálogo de pesca"** — el
+botón lleva específicamente a la sección de Pesca (`#pesca`), y el
+texto genérico generaba confusión (parecía llevar a todo el catálogo).
+
+### Botón secundario ilegible sobre la foto
+"Rifles y pistolas de aire" era solo texto plano (`.btn-link`, sin
+fondo) sobre la foto del hero — dependiendo de qué parte de la imagen
+quedaba detrás, el contraste era inconsistente. Se creó una clase nueva,
+`.btn-secondary` (fondo oscuro semitransparente + blur + borde claro,
+mismo estilo "vidrio esmerilado" ya usado en el header), para que se lea
+bien sin importar qué haya de fondo. **No se tocó `.btn-link`** — esa
+clase se sigue usando tal cual en "Ver producto" y "Ver todo
+[colección]", donde sí funciona bien por tener un fondo sólido detrás.
+
+### El scroll no bajaba a la sección
+Al hacer clic en los botones del hero, la URL cambiaba a `#pesca` pero
+la página no se movía. Causa: es un comportamiento conocido de los
+navegadores — si la URL ya tiene ese mismo `#ancla` (por ejemplo, el
+visitante ya había hecho clic antes y volvió arriba con el scroll), un
+clic nuevo en el mismo enlace no dispara el salto porque el hash no
+"cambió". Se agregó una interceptación de clics en `brand-experience.js`
+para todos los enlaces internos (`a[href^="#"]`) que hace el scroll
+manualmente (`scrollIntoView` suave, respetando "reducir movimiento"),
+sin depender de que el hash cambie. También se agregó
+`scroll-margin-top: 108px` a las secciones de capítulo, para que el
+destino no quede tapado por el header fijo (mismo alto que ya usaba el
+propio hero).

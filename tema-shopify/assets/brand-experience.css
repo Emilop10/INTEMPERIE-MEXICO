@@ -70,6 +70,14 @@
 .brand-exp .btn:hover { transform: scale(1.04); }
 .brand-exp .btn-primary { background: #57B58A; color: #06120D; }
 .brand-exp .btn-white { background: #fff; color: #234D3B; }
+.brand-exp .btn-secondary {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1.5px solid rgba(245, 245, 247, 0.55);
+  color: #F5F5F7;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.brand-exp .btn-secondary:hover { border-color: #F5F5F7; background: rgba(0, 0, 0, 0.55); }
 .brand-exp .btn-link { color: #57B58A; font-weight: 500; padding: 11px 4px; text-decoration: none; display: inline-flex; align-items: center; }
 .brand-exp .is-light .btn-link { color: #234D3B; }
 .brand-exp .btn-link::after { content: " →"; transition: transform .2s var(--ease-out); display: inline-block; }
@@ -89,7 +97,7 @@
 .brand-exp .is-light .statement-text .accent { color: #234D3B; }
 
 /* Chapter */
-.brand-exp .chapter { padding: 84px 0; }
+.brand-exp .chapter { padding: 84px 0; scroll-margin-top: 108px; }
 .brand-exp .chapter-head { max-width: 620px; margin: 0 auto 44px; text-align: center; opacity: 0; transform: translateY(16px); transition: opacity .45s var(--ease-out), transform .45s var(--ease-out); }
 .brand-exp .chapter-head.visible { opacity: 1; transform: translateY(0); }
 .brand-exp .chapter-head .eyebrow { color: inherit; opacity: .55; animation: none; }

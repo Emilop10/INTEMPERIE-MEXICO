@@ -14,10 +14,10 @@
             "collection": "todo-pesca",
             "chips": "Cañas\nCarretes\nSeñuelos\nAnzuelos\nHilos y Líneas",
             "dark": true,
-            "banner_image": "shopify:\/\/shop_images\/banner-hero-pescador-montana-v2.jpg",
-            "banner_image_2": "shopify:\/\/shop_images\/lifestyle-bass-catch.jpg",
-            "banner_video": "https:\/\/cdn.shopify.com\/s\/files\/1\/0680\/3557\/5885\/files\/brand-video-pesca-pescador-montana.mp4?v=1785216076",
-            "banner_video_2": "https:\/\/cdn.shopify.com\/s\/files\/1\/0680\/3557\/5885\/files\/brand-video-pesca-lifestyle-bass-catch.mp4?v=1785216078"
+            "banner_image": "shopify://shop_images/banner-hero-pescador-montana-v2.jpg",
+            "banner_image_2": "shopify://shop_images/lifestyle-bass-catch.jpg",
+            "banner_video": "https://cdn.shopify.com/s/files/1/0680/3557/5885/files/brand-video-pesca-pescador-montana.mp4?v=1785216076",
+            "banner_video_2": "https://cdn.shopify.com/s/files/1/0680/3557/5885/files/brand-video-pesca-lifestyle-bass-catch.mp4?v=1785216078"
           }
         },
         "statement_1": {
@@ -38,8 +38,8 @@
             "subheading": "Miras telescópicas, binoculares y monoculares — probados donde de verdad cuentan: en el campo.",
             "collection": "miras-y-binoculares",
             "dark": true,
-            "banner_image": "shopify:\/\/shop_images\/ambient-miras-hunter-scope.webp",
-            "banner_video": "https:\/\/cdn.shopify.com\/s\/files\/1\/0680\/3557\/5885\/files\/brand-video-miras-hunter-scope.mp4?v=1785216080"
+            "banner_image": "shopify://shop_images/ambient-miras-hunter-scope.webp",
+            "banner_video": "https://cdn.shopify.com/s/files/1/0680/3557/5885/files/brand-video-miras-hunter-scope.mp4?v=1785216080"
           }
         },
         "statement_2": {
@@ -60,8 +60,8 @@
             "subheading": "Mendoza, Gamo y Daisy — el mismo peso, el mismo vuelo, disparo tras disparo.",
             "collection": "diabolos-y-municiones",
             "dark": true,
-            "banner_image": "shopify:\/\/shop_images\/ambient-diabolos-loading-pellets.webp",
-            "banner_video": "https:\/\/cdn.shopify.com\/s\/files\/1\/0680\/3557\/5885\/files\/brand-video-diabolos-loading-pellets.mp4?v=1785216082"
+            "banner_image": "shopify://shop_images/ambient-diabolos-loading-pellets.webp",
+            "banner_video": "https://cdn.shopify.com/s/files/1/0680/3557/5885/files/brand-video-diabolos-loading-pellets.mp4?v=1785216082"
           }
         },
         "statement_3": {
@@ -82,8 +82,8 @@
             "subheading": "Rifles y pistolas de aire comprimido, verificados en origen antes de publicarse.",
             "collection": "rifles-y-pistolas-de-aire",
             "dark": true,
-            "banner_image": "shopify:\/\/shop_images\/ambient-rifles-shooting-range.webp",
-            "banner_video": "https:\/\/cdn.shopify.com\/s\/files\/1\/0680\/3557\/5885\/files\/brand-video-rifles-shooting-range.mp4?v=1785216084"
+            "banner_image": "shopify://shop_images/ambient-rifles-shooting-range.webp",
+            "banner_video": "https://cdn.shopify.com/s/files/1/0680/3557/5885/files/brand-video-rifles-shooting-range.mp4?v=1785216084"
           }
         }
       },
@@ -100,15 +100,15 @@
         "hero_eyebrow": "Para los que viven outdoor",
         "hero_heading": "El outdoor no espera a nadie.",
         "hero_subheading": "Pesca, óptica y tiro deportivo — cada pieza verificada antes de llegar a tus manos.",
-        "hero_cta_text": "Explorar catálogo",
+        "hero_cta_text": "Explorar catálogo de pesca",
         "hero_cta_link": "#pesca",
         "hero_cta_secondary_text": "Rifles y pistolas de aire",
         "hero_cta_secondary_link": "#rifles-y-pistolas-de-aire",
         "closing_heading": "Equipo real. Terreno real. Sin atajos.",
         "closing_cta_text": "Ver todo el catálogo",
-        "closing_link": "\/collections\/all",
-        "hero_video": "https:\/\/cdn.shopify.com\/s\/files\/1\/0680\/3557\/5885\/files\/brand-video-hero-lago-niebla.mp4?v=1785216074",
-        "closing_video": "https:\/\/cdn.shopify.com\/s\/files\/1\/0680\/3557\/5885\/files\/brand-video-closing-landscape-hiker.mp4?v=1785216087",
+        "closing_link": "/collections/all",
+        "hero_video": "https://cdn.shopify.com/s/files/1/0680/3557/5885/files/brand-video-hero-lago-niebla.mp4?v=1785216074",
+        "closing_video": "https://cdn.shopify.com/s/files/1/0680/3557/5885/files/brand-video-closing-landscape-hiker.mp4?v=1785216087",
         "shipping_show": true,
         "shipping_badge": "Envío gratis",
         "shipping_headline": "Desde $799 MXN, a todo México.",
