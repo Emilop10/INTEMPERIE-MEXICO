@@ -957,3 +957,23 @@ soporta personalizarlo como Chrome):
     necesitar scroll
 - Verificado en vivo: las 22 subcategorías siguen intactas en los 4
   departamentos, sin errores Liquid
+
+### Ajuste de contraste: "se ve como una barra gris completa"
+El cliente reportó que no distinguía la barrita verde de la pista — solo
+veía gris uniforme. Causa real, confirmada revisando el CSS servido en
+vivo: el caché de la home tardó en propagar la versión con estilos del
+thumb (mismo patrón de retraso visto varias veces hoy), así que la
+captura se tomó con la pista sin colorear todavía.
+
+Aun así, se subió el contraste de forma preventiva, sin depender del
+timing:
+- Pista más oscura (`rgba(255,255,255,.07)` en vez de `.12`) con borde
+  sutil propio, para que se lea claramente como "vacío"
+- Thumb con sombra/borde oscuro alrededor (`box-shadow`), para que
+  destaque incluso si el verde se pierde contra el fondo
+- **Tope de 85% en el ancho del thumb**: en departamentos con pocas
+  subcategorías (como Pesca en pantallas anchas, donde casi todo el
+  contenido ya es visible), el thumb proporcional real ocuparía ~93% de
+  la pista — casi indistinguible de la pista completa. Con el tope,
+  siempre queda un tramo de pista vacía visible, aunque no represente
+  matemáticamente exacto cuánto falta por recorrer
