@@ -195,23 +195,28 @@
 /* Barra deslizable propia debajo de la franja — visible y arrastrable
    con el mouse en cualquier navegador (a diferencia del scrollbar
    nativo, que no se puede ver/estilizar igual en todos). */
+/* Pista = "riel" gris oscuro, solido y visible contra el fondo negro de la
+   pagina. Thumb = barrita casi blanca, corta (tope del 30% en el JS), que se
+   lee de inmediato como una pieza distinta metida dentro de la pista. Los
+   intentos previos fallaban porque el thumb ocupaba casi todo el ancho: por
+   mucho contraste de color que tuviera, se leia como una sola barra. */
 .brand-exp .subcat-scrollbar {
   position: relative; height: 10px; margin: 14px 4px 4px;
-  border-radius: 999px; background: rgba(255, 255, 255, .13);
+  border-radius: 999px; background: #2C2C2E;
   cursor: pointer;
 }
-.brand-exp .is-light .subcat-scrollbar { background: rgba(0, 0, 0, .09); }
+.brand-exp .is-light .subcat-scrollbar { background: #D1D1D6; }
 .brand-exp .subcat-scrollbar-thumb {
   position: absolute; top: 0; left: 0; height: 100%;
-  border-radius: 999px; background: #C7C7CC;
+  border-radius: 999px; background: #F5F5F7;
   min-width: 40px;
   transition: background .15s var(--ease-out);
 }
-.brand-exp .is-light .subcat-scrollbar-thumb { background: #86868B; }
+.brand-exp .is-light .subcat-scrollbar-thumb { background: #1D1D1F; }
 .brand-exp .subcat-scrollbar:hover .subcat-scrollbar-thumb,
-.brand-exp .subcat-scrollbar-thumb.is-dragging { background: #F5F5F7; }
+.brand-exp .subcat-scrollbar-thumb.is-dragging { background: #FFFFFF; }
 .brand-exp .is-light .subcat-scrollbar:hover .subcat-scrollbar-thumb,
-.brand-exp .is-light .subcat-scrollbar-thumb.is-dragging { background: #1d1d1f; }
+.brand-exp .is-light .subcat-scrollbar-thumb.is-dragging { background: #000000; }
 .brand-exp .subcat-scrollbar[hidden] { display: none; }
 .brand-exp .subcat-tile {
   position: relative; flex: 0 0 auto; width: 132px;

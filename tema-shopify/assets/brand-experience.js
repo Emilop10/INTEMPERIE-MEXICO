@@ -195,12 +195,14 @@
       if (overflow <= 4) { bar.hidden = true; return; }
       bar.hidden = false;
       var ratio = track.clientWidth / track.scrollWidth;
-      // Tope de 45% del ancho de la pista: cuando casi todo el contenido
-      // ya es visible, el thumb proporcional real ocuparía casi toda la
-      // barra y se leería como una sola barra sólida en vez de "barrita
-      // dentro de barra". Recortarlo garantiza que siempre se distinga
-      // el thumb de la pista, y que haya recorrido visible al arrastrar.
-      var thumbWidth = Math.min(bar.clientWidth * 0.45, Math.max(40, ratio * bar.clientWidth));
+      // Tope de 30% del ancho de la pista. La franja apenas desborda (8
+      // fichas de 132px en ~1116px visibles), así que el thumb proporcional
+      // real ocuparía ~97% y se leería como una sola barra sólida, no como
+      // "barrita dentro de barra". El tope garantiza que siempre quede
+      // riel vacío visible a los lados y recorrido real al arrastrar.
+      // Se probó con 85% y con 45%: en pantalla ancha ambos seguían
+      // leyéndose como una barra larga.
+      var thumbWidth = Math.min(bar.clientWidth * 0.30, Math.max(40, ratio * bar.clientWidth));
       thumb.style.width = thumbWidth + 'px';
       var mtl = bar.clientWidth - thumbWidth;
       var scrollRatio = track.scrollLeft / overflow;
