@@ -32,6 +32,39 @@ secciones, nuevos componentes, revisiones de paleta — debería consultarse
 primero contra las reglas ya establecidas en el `MASTER.md` antes de
 improvisar estilos nuevos, para no romper la consistencia visual lograda.
 
+### `playwright` + Chromium — usada el 7 de agosto de 2026
+**Qué es:** control de un navegador real desde Python, para renderizar
+páginas y medirlas de verdad en vez de deducir desde capturas.
+
+**Descubrimiento importante:** se había concluido (al descartar Browser
+Harness) que este entorno no tenía navegador. **Es incorrecto** — Chromium
+viene preinstalado en `/opt/pw-browsers/chromium-1194/`, y basta
+`pip install playwright` para usarlo. Lo que sí está bloqueado es la
+navegación a sitios externos (el proxy corta con `ERR_CONNECTION_RESET`),
+pero se rodea descargando la página con `curl`, reescribiendo las URLs de
+CSS/JS a rutas locales, y abriéndola con `file://`.
+
+**Para qué se usó:** encontrar por qué la barrita deslizable de la franja
+de subcategorías era invisible, después de que tres teorías equivocadas
+(caché de Shopify, caché del navegador, deploy fallido) costaran dos días.
+Renderizando la página completa se vio que el thumb tenía `display: none`,
+y consultando la cascada real con **CDP** (`CSS.getMatchedStylesForNode`)
+apareció el culpable: `base.css` trae `div:empty { display: none }` y el
+thumb es un div sin contenido.
+
+**Dos trampas que hay que conocer:**
+- Hay que hacer `scroll_into_view_if_needed()` antes de medir: Chrome no
+  renderiza lo que está fuera de pantalla y `getComputedStyle` devuelve
+  `display: none` para esos elementos (produjo una pista falsa).
+- Recorrer `document.styleSheets` desde `file://` **no sirve**: Chrome
+  bloquea leer `cssRules` de hojas externas, y saltarlas con `try/catch`
+  devuelve "ninguna regla aplica" — un falso negativo. Usar CDP.
+
+Método completo en
+[`INSTRUCTIVO-CAMBIOS-QUE-NO-SE-VEN.md`](./INSTRUCTIVO-CAMBIOS-QUE-NO-SE-VEN.md).
+
+---
+
 ### `graphify` (Graphify Labs) — instalada el 6 de agosto de 2026
 **Qué es:** convierte una base de código en un grafo de conocimiento
 consultable, usando análisis AST local (tree-sitter, sin enviar código a
@@ -94,10 +127,15 @@ construido a mano, así que no había forma práctica de refrescarlo.
 bloque, dejando intacto el resto del HTML.
 
 **Estado al 7 de agosto de 2026:** 459 nodos, 705 conexiones, 39
-comunidades (commit `bc436f3`). Nota: `graphify update` avisa que 72
-archivos producen cero nodos y quedan fuera del grafo — son los `.json`
-de `locales/` y `config/`, que no tienen estructura de código. Es
-esperado, no es un error.
+comunidades (topología construida en el commit `bc436f3`).
+
+Dos avisos normales de `graphify update` que **no son errores**:
+- *"72 source files produced zero nodes"* — son los `.json` de `locales/`
+  y `config/`, que no tienen estructura de código.
+- *"No code-graph topology changes detected; outputs left untouched"* —
+  aparece cuando los cambios fueron solo de CSS, comentarios o textos.
+  Esas ediciones no crean ni eliminan nodos ni conexiones, así que el
+  grafo sigue siendo exacto aunque el commit estampado sea anterior.
 
 ⚠️ **Importante:** el grafo es una fotografía del código al momento de
 generarlo (commit `7e40cffa`). Si se vuelve a descargar el tema después

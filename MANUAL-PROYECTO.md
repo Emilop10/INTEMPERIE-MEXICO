@@ -483,6 +483,18 @@ funcionan, en:
 
 📄 **[`INSTRUCTIVO-APP-SHOPIFY.md`](./INSTRUCTIVO-APP-SHOPIFY.md)**
 
+### Cuando un cambio "no se ve" en el sitio
+Antes de tocar código por un reporte visual, seguir el árbol de diagnóstico
+documentado (verificar qué sirve el sitio, las 4 capas de caché de Shopify que
+son distintas entre sí, y cómo renderizar la página en Chromium para encontrar
+qué regla CSS está ganando):
+
+📄 **[`INSTRUCTIVO-CAMBIOS-QUE-NO-SE-VEN.md`](./INSTRUCTIVO-CAMBIOS-QUE-NO-SE-VEN.md)**
+
+> ⚠️ **Trampa conocida del tema:** `base.css` trae
+> `div:empty { display: none }`. Cualquier elemento decorativo sin contenido
+> queda invisible salvo que se le declare `display` explícito.
+
 ---
 
 ## 16. Pendientes
@@ -778,6 +790,28 @@ acceso de red real (como la computadora del cliente), no en este
 entorno remoto. Documentado en
 [`SKILLS-USADAS.md`](./SKILLS-USADAS.md).
 
+### Chromium + Playwright — sí funciona (7 de agosto de 2026)
+La conclusión de arriba ("no hay navegador real disponible en este
+entorno") resultó **parcialmente equivocada**, y esa creencia costó horas
+de diagnóstico a ciegas sobre la barra deslizable. El entorno **sí trae
+Chromium preinstalado** en `/opt/pw-browsers/`, y con `pip install
+playwright` se puede renderizar y medir de verdad.
+
+La limitación real es más acotada: el proxy bloquea que el navegador
+**navegue a sitios externos** (`ERR_CONNECTION_RESET`). Pero eso se
+resuelve fácil:
+
+1. Descargar la página y sus assets con `curl`
+2. Reescribir las URLs de CSS/JS a rutas locales
+3. Abrirla con `file://` en Chromium
+
+Con eso se puede inspeccionar la cascada CSS real, medir elementos,
+detectar qué regla está ganando, y tomar capturas. Fue lo que encontró el
+bug de `div:empty` que ninguna otra técnica había detectado.
+
+📄 Método completo:
+**[`INSTRUCTIVO-CAMBIOS-QUE-NO-SE-VEN.md`](./INSTRUCTIVO-CAMBIOS-QUE-NO-SE-VEN.md)**
+
 ### Respaldo completo del tema en el repositorio
 Hasta este punto, el código real del tema (secciones, snippets,
 templates, JS, CSS) vivía únicamente en los servidores de Shopify —
@@ -1030,7 +1064,7 @@ vez tardaba tanto (mucho más que otros cambios del mismo día):
 > forzar (guardando un `.liquid`, no un asset), y de todos modos no era
 > el problema. Ver abajo.
 
-### La causa real: el código nunca llegó a la tienda
+### Primera causa encontrada: el código nunca llegó a la tienda
 Al día siguiente el cliente seguía viendo la barra igual, ya en
 incógnito. En vez de tocar más CSS se consultó **qué estaba sirviendo
 el sitio en vivo**, y ahí apareció todo:
@@ -1061,16 +1095,78 @@ Corrección aplicada (`6a968af`): tope del thumb bajado de 85% a **45%**,
 pista discreta (`rgba(255,255,255,.13)`) y thumb sólido `#C7C7CC` de
 10px de alto, al estilo del scrollbar de macOS.
 
+Corregido el deploy, el cliente **seguía viendo lo mismo** — y con razón.
+Faltaba el problema de fondo.
+
+### La causa raíz de verdad: `base.css` ocultaba el thumb
+
+El tema (heredado de Dawn) trae en `assets/base.css`, líneas 468-481:
+
+```css
+a:empty, ul:empty, dl:empty, div:empty, section:empty, article:empty,
+p:empty, h1:empty, h2:empty, h3:empty, h4:empty, h5:empty, h6:empty {
+  display: none;
+}
+```
+
+Y la barrita es un div sin contenido:
+
+```html
+<div class="subcat-scrollbar-thumb" data-subcat-thumb></div>
+```
+
+**Estaba oculta desde la primera versión.** Lo único visible era la pista: una
+barra de un solo color de lado a lado — exactamente lo que el cliente reportó
+desde el principio, en todas las rondas. Ningún ajuste de color (verde → gris
+claro → blanco) ni de ancho (85% → 45% → 30%) podía cambiar nada, porque el
+elemento nunca se pintaba.
+
+**El arreglo** (`fd26ba8`) es declarar `display: block` en la regla del thumb.
+El selector `.brand-exp .subcat-scrollbar-thumb` ya ganaba por especificidad
+(`0,2,0` contra el `0,1,1` de `div:empty`), pero **la especificidad solo decide
+entre reglas que declaran la misma propiedad**: como nunca se declaró
+`display`, la única declaración existente era la de `base.css`.
+
+> 💡 **Esto va a volver a pasar.** Cualquier elemento decorativo sin contenido
+> en este tema (barras de progreso, separadores, indicadores, puntos de
+> carrusel, overlays) queda oculto por la misma regla. Si creas un `<div>`
+> vacío y no se ve, es esto.
+
+### Cómo se encontró (y por qué tardó tanto)
+
+Se instaló Playwright y se renderizó la página con Chromium, en vez de seguir
+teorizando sobre capturas de pantalla. Dos detalles fueron decisivos:
+
+- **Probar el componente aislado no sirve.** Se extrajo el bloque HTML de la
+  barra y se probó con solo `brand-experience.css`: funcionaba perfecto. Eso
+  llevó a concluir varias veces que "el código está bien, debe ser caché". El
+  bug solo aparece con **todos los CSS del tema** cargados.
+- **`document.styleSheets` da falsos negativos en `file://`.** Chrome bloquea
+  el acceso a `cssRules` de hojas externas; el código las saltaba con
+  `try/catch` y devolvía "ninguna regla aplica". Consultar la cascada real con
+  **CDP** (`CSS.getMatchedStylesForNode`) mostró el culpable de inmediato.
+
 ### Lecciones de método (esto es lo que más costó)
 - **Antes de cambiar código por un reporte visual, verificar qué está
-  sirviendo el sitio.** Un `curl` al asset en vivo hubiera ahorrado tres
-  rondas de cambios a ciegas.
+  sirviendo el sitio**, y si el archivo es correcto, **renderizar la página
+  completa** en un navegador real.
 - **Un cambio que "no se ve" no siempre es caché.** Se asumió caché tres
-  veces seguidas; nunca lo fue. Que el fingerprint `?v=...` del asset
-  **no cambie** es la señal de que el archivo no cambió en el servidor.
-- **No pedir capturas para diagnosticar lo que se puede consultar.** Las
-  capturas mandaron la investigación por el camino equivocado; los
-  headers y el contenido del asset la resolvieron en minutos.
+  veces seguidas; nunca lo fue.
+- **Si otro navegador sin caché muestra lo mismo, la teoría del caché está
+  muerta.** Safari mostró idéntico resultado y aun así se insistió en limpiar
+  el navegador del cliente. Ahí había que cambiar de enfoque.
+- **No pedir capturas para diagnosticar lo que se puede consultar.**
+- **El cliente tenía razón desde el primer reporte.** "Se ve una sola barra"
+  era una descripción exacta de lo que pasaba.
+
+📄 Método completo de diagnóstico, con comandos:
+**[`INSTRUCTIVO-CAMBIOS-QUE-NO-SE-VEN.md`](./INSTRUCTIVO-CAMBIOS-QUE-NO-SE-VEN.md)**
+
+### Diseño final (en vivo)
+- Pista `#2C2C2E` (gris oscuro sólido) de 10px de alto
+- Thumb `#F5F5F7` casi blanco, con tope del **30%** del ancho de la pista
+- Al pasar el mouse o arrastrar, el thumb pasa a blanco puro
+- Variante clara: pista `#D1D1D6`, thumb `#1D1D1F`
 
 ---
 
@@ -1150,6 +1246,14 @@ curl -s -A "$UA" https://intemperiemexico.com/ | grep -o 'brand-experience.css?v
 ```
 
 Si el `?v=...` no cambia después de un deploy, el archivo no llegó.
+
+**4. Republicar el tema NO invalida el caché de página.**
+Se probó: los renders ya cacheados siguen sirviéndose igual. Lo único que los
+invalida es guardar un `.liquid` con contenido **realmente distinto** (volver a
+guardar un archivo idéntico no bumpea nada, Shopify lo detecta).
+
+📄 Árbol de diagnóstico completo, con las 4 capas de caché y cómo distinguirlas:
+**[`INSTRUCTIVO-CAMBIOS-QUE-NO-SE-VEN.md`](./INSTRUCTIVO-CAMBIOS-QUE-NO-SE-VEN.md)**
 
 ### Credenciales
 El token vive como variable de entorno o como secret de GitHub Actions —

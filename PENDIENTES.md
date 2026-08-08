@@ -4,9 +4,8 @@ Temas abiertos de la tienda. Casi todos requieren una decisión o datos tuyos;
 el resto de la auditoría ya quedó implementado y en vivo.
 
 **Abiertos ahora mismo:** redes sociales pendientes ([2](#2-redes-sociales--parcialmente-resuelto-28-jul)),
-señales de confianza ([3](#3-señales-de-confianza-ausentes)), activar el deploy
-automático ([5](#5-activar-el-deploy-automático--1-minuto-y-es-lo-único-que-requiere-tus-manos))
-y terminar la barra deslizable ([6](#6-barra-deslizable-de-subcategorías--sigue-sin-quedar-como-el-cliente-quiere)).
+señales de confianza ([3](#3-señales-de-confianza-ausentes)) y activar el deploy
+automático ([5](#5-activar-el-deploy-automático--1-minuto-y-es-lo-único-que-requiere-tus-manos)).
 
 > 📌 **Nota de trabajo (4 de agosto):** al redactar prompts para Claude en
 > Chrome, ser conciso y pedirle explícitamente que si no encuentra algo en
@@ -107,24 +106,18 @@ acordarse de hacerlo.
 
 ---
 
-## 6. Barra deslizable de subcategorías — sigue sin quedar como el cliente quiere
+## ~~6. Barra deslizable de subcategorías~~ ✅ Resuelto (7 ago)
 
-Estado al 7 de agosto: en vivo y funcionando, con pista discreta
-(`rgba(255,255,255,.13)`), thumb gris claro `#C7C7CC` de 10px de alto y
-tope del 45% del ancho de la pista.
+Confirmado funcionando por el cliente. Diseño final: pista `#2C2C2E` de 10px
+con thumb `#F5F5F7` casi blanco, tope del 30% del ancho.
 
-**El cliente indicó que todavía no queda como la quiere**, pero se pausó el
-ajuste para resolver primero el deploy y la documentación. **Falta definir
-qué exactamente:** grosor, largo del thumb, color, o contraste de la pista.
+**La causa nunca fue el color ni el ancho.** `base.css` trae
+`div:empty { display: none }`, y el thumb es un div sin contenido — estaba
+oculto desde la primera versión. Se corrigió declarándole `display: block`.
 
-Con el deploy ya resuelto, cada ajuste se puede subir y verificar en vivo
-en el momento — sin las rondas a ciegas que costó este tema.
-
-> ⚠️ **Antes de tocar CSS por un reporte visual, verificar qué está
-> sirviendo el sitio.** Que el `?v=...` del asset no cambie significa que
-> el archivo no llegó al servidor. Y verificar siempre con User-Agent de
-> navegador: sin él, Shopify devuelve versiones viejas de forma
-> consistente. Detalle completo en la sección 25 del manual.
+> ⚠️ **Trampa para el futuro:** cualquier elemento decorativo sin contenido en
+> este tema queda invisible por esa misma regla. Método de diagnóstico completo
+> en [`INSTRUCTIVO-CAMBIOS-QUE-NO-SE-VEN.md`](./INSTRUCTIVO-CAMBIOS-QUE-NO-SE-VEN.md).
 
 ---
 
