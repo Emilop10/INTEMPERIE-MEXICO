@@ -1444,14 +1444,19 @@ hero, producto sigue con su propia foto, home sin cambios).
 
 ### Alta en Google Search Console — pendiente del lado del cliente
 Requiere una cuenta de Google del negocio (`admin@intemperiemexico.com`,
-la de Workspace) y varios clics dentro de esa cuenta que Claude no puede
-hacer por las razones explicadas arriba. Instructivo completo, mismo
-formato que `INSTRUCTIVO-APP-SHOPIFY.md`:
+la de Workspace) y varios clics dentro de esa cuenta que esta sesión de
+Claude no puede hacer (razones explicadas arriba). El documento está
+escrito como un **prompt listo para pegarle a Claude en Chrome** — esa
+extensión sí controla un navegador real y puede llegar a Google — con un
+punto de entrega obligatorio a la mitad (el código de verificación tiene
+que volver a esta sesión para desplegarlo) y un informe final de qué
+logró hacer y qué no:
 
 📄 **[`INSTRUCTIVO-GOOGLE-SEARCH-CONSOLE.md`](./INSTRUCTIVO-GOOGLE-SEARCH-CONSOLE.md)**
 
-Resumen: verificar la propiedad (Claude pega la etiqueta HTML de
-verificación en cuanto el cliente la tenga — 2 minutos), enviar el
-sitemap, y solicitar indexación manual de la home + 4 departamentos +
-varios productos (esto es lo que de verdad acelera el proceso de semanas
+Resumen: Claude en Chrome verifica la propiedad hasta el punto de
+conseguir la etiqueta HTML → se la pasa al cliente → el cliente se la da
+a esta sesión → se despliega y se confirma → Claude en Chrome retoma para
+enviar el sitemap y solicitar indexación manual de la home + 4
+departamentos + varios productos (esto es lo que de verdad acelera el proceso de semanas
 a horas/días).

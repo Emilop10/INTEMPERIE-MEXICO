@@ -134,16 +134,19 @@ Ya se hizo todo lo que se podía por código (sección 27 del manual):
 `BreadcrumbList`, Organization ampliado, `og:locale`, `og:image` genérico
 en páginas sin foto propia.
 
-**Lo que falta (tú):** dar de alta la propiedad en Search Console. Se
-intentó que Claude lo hiciera directo iniciando sesión en Google — no se
-puede, el entorno bloquea la navegación a Google por completo. Instructivo
-paso a paso, 10 minutos:
+**Lo que falta (tú):** dar de alta la propiedad en Search Console. Esta
+sesión de Claude no puede iniciar sesión en Google directo (el entorno
+bloquea la navegación a Google por completo), así que el documento está
+escrito como un **prompt para pegarle a Claude en Chrome**, que sí puede
+navegar de verdad en tu computadora:
 
 📄 **[`INSTRUCTIVO-GOOGLE-SEARCH-CONSOLE.md`](./INSTRUCTIVO-GOOGLE-SEARCH-CONSOLE.md)**
 
-En resumen: crear la propiedad con `admin@intemperiemexico.com` →
-verificarla (me pasas el código, yo lo despliego en 2 minutos) → enviar
-el sitemap → pedir indexación manual de la home + 4 departamentos +
+En resumen: le pegas el prompt a Claude en Chrome → él crea la propiedad
+con `admin@intemperiemexico.com` y llega hasta conseguir el código de
+verificación → te lo da a ti, tú me lo pasas a mí, yo lo despliego en
+2 minutos → le dices a Claude en Chrome que continúe: envía el sitemap →
+pide indexación manual de la home + 4 departamentos +
 varios productos. Eso último es lo que de verdad acelera todo, de semanas
 a horas/días.
 
