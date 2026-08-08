@@ -1,0 +1,30 @@
+name: Desplegar tema a Shopify
+
+# Sube a la tienda los archivos de tema-shopify/ que cambian en cada push.
+# Sin esto, el repo y la tienda se desincronizan en silencio: los commits
+# quedan en GitHub y el sitio sigue sirviendo la version anterior.
+
+on:
+  push:
+    paths:
+      - 'tema-shopify/**'
+  workflow_dispatch:  # permite lanzarlo a mano desde la pestana Actions
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # El script compara contra el commit anterior, asi que necesita
+          # algo mas que el ultimo.
+          fetch-depth: 2
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Subir archivos cambiados
+        env:
+          SHOPIFY_ADMIN_TOKEN: ${{ secrets.SHOPIFY_ADMIN_TOKEN }}
+        run: python3 scripts/deploy-shopify.py --since "${{ github.event.before || 'HEAD~1' }}"

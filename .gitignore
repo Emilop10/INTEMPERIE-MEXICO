@@ -1,3 +1,11 @@
 __pycache__/
 *.pyc
 .coverage
+
+# Credenciales de Shopify — nunca deben entrar al repo.
+# El token va como variable de entorno o como secret de GitHub Actions.
+.env
+.env.*
+*token*.txt
+*token*.json
+shopify-token*
