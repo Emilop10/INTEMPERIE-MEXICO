@@ -4,8 +4,9 @@ Temas abiertos de la tienda. Casi todos requieren una decisión o datos tuyos;
 el resto de la auditoría ya quedó implementado y en vivo.
 
 **Abiertos ahora mismo:** redes sociales pendientes ([2](#2-redes-sociales--parcialmente-resuelto-28-jul)),
-señales de confianza ([3](#3-señales-de-confianza-ausentes)) y activar el deploy
-automático ([5](#5-activar-el-deploy-automático--1-minuto-y-es-lo-único-que-requiere-tus-manos)).
+señales de confianza ([3](#3-señales-de-confianza-ausentes)), activar el deploy
+automático ([5](#5-activar-el-deploy-automático--1-minuto-y-es-lo-único-que-requiere-tus-manos))
+y dar de alta el sitio en Google Search Console ([7](#7-alta-en-google-search-console--10-minutos-y-es-lo-único-que-requiere-tus-manos)).
 
 > 📌 **Nota de trabajo (4 de agosto):** al redactar prompts para Claude en
 > Chrome, ser conciso y pedirle explícitamente que si no encuentra algo en
@@ -118,6 +119,33 @@ oculto desde la primera versión. Se corrigió declarándole `display: block`.
 > ⚠️ **Trampa para el futuro:** cualquier elemento decorativo sin contenido en
 > este tema queda invisible por esa misma regla. Método de diagnóstico completo
 > en [`INSTRUCTIVO-CAMBIOS-QUE-NO-SE-VEN.md`](./INSTRUCTIVO-CAMBIOS-QUE-NO-SE-VEN.md).
+
+---
+
+## 7. Alta en Google Search Console — **10 minutos, y es lo único que requiere tus manos**
+
+El sitio no aparece en Google (`site:intemperiemexico.com` da 0
+resultados). Confirmado que **no es un problema técnico**: robots.txt,
+sitemap, canonical y meta description ya estaban bien. La causa real es
+que nunca se dio de alta en Search Console — sin eso, Google puede tardar
+semanas en encontrarlo solo.
+
+Ya se hizo todo lo que se podía por código (sección 27 del manual):
+`BreadcrumbList`, Organization ampliado, `og:locale`, `og:image` genérico
+en páginas sin foto propia.
+
+**Lo que falta (tú):** dar de alta la propiedad en Search Console. Se
+intentó que Claude lo hiciera directo iniciando sesión en Google — no se
+puede, el entorno bloquea la navegación a Google por completo. Instructivo
+paso a paso, 10 minutos:
+
+📄 **[`INSTRUCTIVO-GOOGLE-SEARCH-CONSOLE.md`](./INSTRUCTIVO-GOOGLE-SEARCH-CONSOLE.md)**
+
+En resumen: crear la propiedad con `admin@intemperiemexico.com` →
+verificarla (me pasas el código, yo lo despliego en 2 minutos) → enviar
+el sitemap → pedir indexación manual de la home + 4 departamentos +
+varios productos. Eso último es lo que de verdad acelera todo, de semanas
+a horas/días.
 
 ---
 

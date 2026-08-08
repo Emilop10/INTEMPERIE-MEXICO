@@ -54,6 +54,7 @@ como respaldo
 24. [Flechas en la franja de subcategorías](#24-flechas-en-la-franja-de-subcategorías)
 25. [Deploy del tema a Shopify](#25-deploy-del-tema-a-shopify)
 26. [Rediseño del carrito: panel lateral, botón y carrito vacío](#26-rediseño-del-carrito-panel-lateral-botón-y-carrito-vacío)
+27. [Indexación en Google: SEO técnico y alta en Search Console](#27-indexación-en-google-seo-técnico-y-alta-en-search-console)
 
 ---
 
@@ -1371,3 +1372,86 @@ midió con `getBoundingClientRect()` — incluyendo reproducir cada bug en
 aislamiento **antes** de tocar código, para confirmar la causa exacta antes
 de escribir el fix. Detalle del método en
 [`INSTRUCTIVO-CAMBIOS-QUE-NO-SE-VEN.md`](./INSTRUCTIVO-CAMBIOS-QUE-NO-SE-VEN.md).
+
+---
+
+## 27. Indexación en Google: SEO técnico y alta en Search Console
+
+**Fecha:** 8 de agosto de 2026
+**Síntoma reportado:** el sitio no aparece al buscarlo en Google.
+
+### Diagnóstico (verificado, no supuesto)
+Se confirmó con evidencia externa antes de tocar nada: `site:intemperiemexico.com`
+devuelve **0 resultados**, y una búsqueda genérica de la categoría solo
+muestra competidores. Se revisó todo lo que suele bloquear indexación:
+
+- `robots.txt` permite crawleo completo (sin bloqueos anómalos)
+- `sitemap.xml` existe, bien formado, gestionado automáticamente por Shopify
+- Sin contraseña de tienda, sin `noindex`, con `canonical`, title y meta
+  description presentes
+- **Sin ninguna verificación de Google en el sitio** — cero rastro de
+  Search Console o Analytics en el código
+
+**Conclusión: no hay ningún bloqueo técnico.** El sitio simplemente nunca
+se dio de alta en Google — el dominio propio se conectó apenas el 3 de
+agosto (sección 17), y sin una señal explícita a Google (vía Search
+Console), el rastreo orgánico puede tardar semanas.
+
+> Se intentó que Claude iniciara sesión en Google directamente para
+> resolverlo de una — no se pudo: el entorno donde corre bloquea la
+> navegación a Google por completo (`net::ERR_CONNECTION_RESET`, incluso
+> con Chromium real, sin importar tener credenciales). Por eso esa parte
+> quedó como instructivo para el cliente.
+
+### Mejoras técnicas de SEO (código)
+No eran la causa de la falta de indexación, pero sí importan para que
+Google muestre bien el sitio una vez que lo indexe:
+
+- **`BreadcrumbList`** (datos estructurados) nuevo en fichas de producto
+  (Inicio → Departamento → Producto) y colecciones (Inicio → Departamento)
+  — `sections/header.liquid`. Ayuda a que Google muestre la ruta en los
+  resultados en vez de solo la URL.
+- **Organization** ampliado con `priceRange` y `address` (solo país "MX",
+  sin ciudad — respeta la decisión ya tomada de no exponer la ubicación
+  exacta del negocio).
+- **`og:locale`** agregado (`es_MX`).
+- **`og:image` genérico extendido a todas las páginas**: ya existía una
+  corrección para la home ("el logo se ve como una marca chiquita sobre
+  fondo blanco al compartir en redes, usar la foto del hero en su lugar"),
+  pero solo aplicaba ahí. Se descubrió que **cualquier página sin imagen
+  propia** (políticas, cuenta) tenía el mismo problema sin que se notara
+  en el código — Shopify les asigna automáticamente el logo como
+  `page_image` en vez de dejarlo vacío. Se generalizó la misma corrección
+  comparando `page_image == settings.logo`.
+
+**Tres cosas que el plan original marcaba como huecos y NO se tocaron**,
+tras revisar el código con más cuidado — para no deshacer decisiones ya
+tomadas a propósito:
+- El `<title>`/`og:title` hardcodeado de la home coincide a propósito
+  (ya fue una corrección deliberada, ver sección 7).
+- El `og:image` hardcodeado de la home también es deliberado — el propio
+  comentario en el código explica el problema del logo.
+- Las 4 imágenes con `alt=""` en `brand-experience.liquid` (hero + 2
+  banners + cierre) son fondos decorativos con su texto real superpuesto
+  en un `h1`/`h2` — `alt` vacío es el comportamiento correcto de
+  accesibilidad ahí (evita que un lector de pantalla anuncie dos veces lo
+  mismo), no un hueco a rellenar.
+
+Verificado en el sitio real: JSON-LD válido (`json.loads` sin errores) en
+producto y colección con la ruta de breadcrumb correcta; `og:image`
+confirmado cambiando solo donde debía (política ahora usa la foto del
+hero, producto sigue con su propia foto, home sin cambios).
+
+### Alta en Google Search Console — pendiente del lado del cliente
+Requiere una cuenta de Google del negocio (`admin@intemperiemexico.com`,
+la de Workspace) y varios clics dentro de esa cuenta que Claude no puede
+hacer por las razones explicadas arriba. Instructivo completo, mismo
+formato que `INSTRUCTIVO-APP-SHOPIFY.md`:
+
+📄 **[`INSTRUCTIVO-GOOGLE-SEARCH-CONSOLE.md`](./INSTRUCTIVO-GOOGLE-SEARCH-CONSOLE.md)**
+
+Resumen: verificar la propiedad (Claude pega la etiqueta HTML de
+verificación en cuanto el cliente la tenga — 2 minutos), enviar el
+sitemap, y solicitar indexación manual de la home + 4 departamentos +
+varios productos (esto es lo que de verdad acelera el proceso de semanas
+a horas/días).
