@@ -52,6 +52,7 @@ como respaldo
 22. [Diversidad en "También te interese"](#22-diversidad-en-también-te-interese)
 23. [Botones del hero: texto claro y scroll que sí funciona](#23-botones-del-hero-texto-claro-y-scroll-que-sí-funciona)
 24. [Flechas en la franja de subcategorías](#24-flechas-en-la-franja-de-subcategorías)
+25. [Deploy del tema a Shopify](#25-deploy-del-tema-a-shopify)
 
 ---
 
@@ -451,6 +452,9 @@ para poder ajustarlos desde un solo lugar.
   crea temas vacíos — es un bug/gotcha conocido, no usar)
 - Los cambios se aplican vía la Admin API de Shopify (REST para assets del
   tema, GraphQL para políticas, colecciones, menús, y subida de archivos)
+- **Commitear NO despliega.** El repo y la tienda son dos cosas separadas:
+  hay que correr `scripts/deploy-shopify.py` (o dejar que lo haga el
+  workflow) — ver [sección 25](#25-deploy-del-tema-a-shopify)
 - Verificación constante con `curl` (con cookies frescas y User-Agent único
   por request para evitar caché de CDN) contra el preview del tema de
   trabajo, comparado contra el tema en vivo para confirmar que no se tocó
@@ -459,6 +463,8 @@ para poder ajustarlos desde un solo lugar.
 - `sections/brand-experience.liquid` — sección custom de la homepage
 - `assets/brand-experience.css` / `.js` — estilos y comportamiento
   exclusivos de la homepage
+- `scripts/deploy-shopify.py` — sube el tema a la tienda (fuera de
+  `tema-shopify/`, porque es herramienta del repo, no parte del tema)
 - `assets/brand-tokens.css` — estilos **sitewide** (header, mega-menú,
   fichas de producto, colecciones, divisores) — la mayoría del trabajo de
   integración visual posterior a la auditoría vive aquí
@@ -788,7 +794,8 @@ consultable (análisis AST local, sin mandar código a ningún servidor).
 A diferencia de Browser Harness, no depende de WebSocket, así que sí se
 pudo instalar en este entorno. Corrido sobre `tema-shopify/`, generó:
 
-- **452 nodos, 697 conexiones, 37 comunidades** de código relacionado
+- **459 nodos, 705 conexiones, 39 comunidades** de código relacionado
+  (cifra al 7 de agosto de 2026; era 452/697/37 en la primera corrida)
 - Los "god nodes" (componentes más centrales de la arquitectura del
   tema): `PredictiveSearch`, `FacetFiltersForm`, `SlideshowComponent`,
   `CartItems`, `CartDrawer`, `MenuDrawer`, entre otros
@@ -810,6 +817,19 @@ las fuentes y paleta de marca del sitio.
 
 - Archivo autocontenido, abre directo en cualquier navegador:
   [`tema-shopify/graphify-out/intemperie-mapa-codigo-3d.html`](./tema-shopify/graphify-out/intemperie-mapa-codigo-3d.html)
+- **Cómo mantenerlo al día** (agregado el 7 de agosto de 2026): el mapa
+  lleva los datos embebidos en un `var DATA = {...}`, y al haberse
+  construido a mano quedaba desactualizado sin forma práctica de
+  refrescarlo. Ahora se regenera con:
+
+  ```bash
+  cd tema-shopify && graphify update .    # reconstruye el grafo
+  cd .. && python3 scripts/rebuild-mapa-3d.py
+  ```
+
+  El script reescribe **solo** el bloque de datos y deja intacto el resto
+  del HTML (motor de físicas, cámara, estilos, panel lateral) — verificado
+  comparando todo lo que no es el bloque `DATA` contra la versión anterior
 - También publicado como Artifact privado para verlo sin descargar nada
 - Interacción: arrastrar para rotar, rueda para zoom, búsqueda en vivo
   que vuela la cámara hasta el nodo encontrado, clic en cualquier nodo
@@ -960,10 +980,14 @@ soporta personalizarlo como Chrome):
 
 ### Ajuste de contraste: "se ve como una barra gris completa"
 El cliente reportó que no distinguía la barrita verde de la pista — solo
-veía gris uniforme. Causa real, confirmada revisando el CSS servido en
-vivo: el caché de la home tardó en propagar la versión con estilos del
-thumb (mismo patrón de retraso visto varias veces hoy), así que la
-captura se tomó con la pista sin colorear todavía.
+veía gris uniforme.
+
+> ⚠️ **Corrección (ver "La causa real" al final de esta sección).** En su
+> momento se atribuyó el síntoma al caché de la home. Era falso. La causa
+> real era doble: el thumb ocupaba ~97% de la pista, y ninguno de los
+> cambios de contraste había llegado siquiera a la tienda. Se deja
+> registrado el diagnóstico equivocado a propósito, porque perseguirlo
+> costó tres rondas de cambios a ciegas.
 
 Aun así, se subió el contraste de forma preventiva, sin depender del
 timing:
@@ -997,9 +1021,139 @@ vez tardaba tanto (mucho más que otros cambios del mismo día):
   nueva debería generar una URL distinta
 - La home en sí muestra `cf-cache-status: DYNAMIC` — Cloudflare **no**
   está cacheando el HTML de la página
-- Conclusión: el retraso está en la **caché interna de Shopify**
-  (`page_cache`, visible en el header `etag`), que en este caso tardó
-  más de lo habitual en invalidarse tras varios cambios seguidos en
-  poco tiempo. No es nada que se pueda forzar desde la API — solo
-  esperar, o guardar cualquier cambio trivial desde el editor de temas
-  del Admin (a veces limpia esa caché de inmediato)
+- Conclusión de entonces: el retraso está en la **caché interna de
+  Shopify** (`page_cache`, visible en el header `etag`), que tardó más
+  de lo habitual en invalidarse tras varios cambios seguidos
+
+> ⚠️ **Esa conclusión era incorrecta**, en particular la parte de "no es
+> nada que se pueda forzar desde la API — solo esperar". Sí se puede
+> forzar (guardando un `.liquid`, no un asset), y de todos modos no era
+> el problema. Ver abajo.
+
+### La causa real: el código nunca llegó a la tienda
+Al día siguiente el cliente seguía viendo la barra igual, ya en
+incógnito. En vez de tocar más CSS se consultó **qué estaba sirviendo
+el sitio en vivo**, y ahí apareció todo:
+
+```
+# lo que servía intemperiemexico.com
+.subcat-scrollbar-thumb{background:#57b58a}          ← thumb VERDE
+thumbWidth=Math.max(32,ratio*bar.clientWidth)        ← sin tope
+```
+
+Eso corresponde al commit `b903ee3`, es decir **tres commits atrás**.
+Ni el gris `#B8B8BD` ni el tope del 85% habían llegado nunca a Shopify.
+
+Dos problemas encadenados, ninguno de ellos el color:
+
+1. **El thumb ocupaba ~97% de la pista.** Sin tope, el ancho sale
+   proporcional al contenido. La franja tiene 8 tiles (~1140px) en un
+   contenedor de ~1116px visibles: desborda apenas 24px, así que el
+   thumb proporcional era casi toda la barra. Por eso se leía como una
+   sola barra sólida. **El reporte del cliente era correcto desde el
+   principio.**
+2. **Nada desplegaba a la tienda.** El repo no tiene `main` ni GitHub
+   Actions, y la integración nativa de Shopify con GitHub no estaba
+   conectada. Los commits se quedaban en GitHub. Se resolvió creando un
+   deploy propio — ver **[sección 25](#25-deploy-del-tema-a-shopify)**.
+
+Corrección aplicada (`6a968af`): tope del thumb bajado de 85% a **45%**,
+pista discreta (`rgba(255,255,255,.13)`) y thumb sólido `#C7C7CC` de
+10px de alto, al estilo del scrollbar de macOS.
+
+### Lecciones de método (esto es lo que más costó)
+- **Antes de cambiar código por un reporte visual, verificar qué está
+  sirviendo el sitio.** Un `curl` al asset en vivo hubiera ahorrado tres
+  rondas de cambios a ciegas.
+- **Un cambio que "no se ve" no siempre es caché.** Se asumió caché tres
+  veces seguidas; nunca lo fue. Que el fingerprint `?v=...` del asset
+  **no cambie** es la señal de que el archivo no cambió en el servidor.
+- **No pedir capturas para diagnosticar lo que se puede consultar.** Las
+  capturas mandaron la investigación por el camino equivocado; los
+  headers y el contenido del asset la resolvieron en minutos.
+
+---
+
+## 25. Deploy del tema a Shopify
+
+### El problema que resolvió
+Hasta el 7 de agosto de 2026 **nada desplegaba automáticamente**. El repo
+no tiene rama `main`, no tenía GitHub Actions, y la integración nativa de
+Shopify con GitHub nunca se conectó. Los cambios se commiteaban, se
+pusheaban, y la tienda seguía sirviendo la versión anterior — sin ningún
+aviso de que algo faltaba.
+
+Eso hizo que tres correcciones seguidas de la barra deslizable parecieran
+no surtir efecto (ver [sección 24](#24-flechas-en-la-franja-de-subcategorías)),
+y mandó el diagnóstico por el camino equivocado durante dos sesiones.
+
+### Cómo desplegar ahora
+
+```bash
+export SHOPIFY_ADMIN_TOKEN=shpat_...        # token Admin API con write_themes
+python3 scripts/deploy-shopify.py           # sube lo cambiado en git
+```
+
+| Comando | Qué hace |
+|---|---|
+| `deploy-shopify.py` | Lo cambiado en el último commit + working tree |
+| `deploy-shopify.py --since origin/main` | Todo lo cambiado desde ese ref |
+| `deploy-shopify.py --all` | El tema completo |
+| `deploy-shopify.py assets/x.css` | Solo los archivos indicados |
+| `deploy-shopify.py --dry-run` | Muestra qué haría, sin subir nada |
+
+El script descarga cada archivo de la tienda y **compara el contenido real**
+antes de subirlo, así que correrlo dos veces seguidas no hace nada la
+segunda vez. Detalle completo en
+[`scripts/README-deploy.md`](./scripts/README-deploy.md).
+
+### Automático en cada push
+`.github/workflows/deploy-shopify.yml` corre el script en cada push que
+toque `tema-shopify/`. Requiere **un paso manual, una sola vez**: agregar
+el secret `SHOPIFY_ADMIN_TOKEN` en GitHub → Settings → Secrets and
+variables → Actions.
+
+### Qué NO sube, a propósito
+`config/settings_data.json` guarda lo que se edita en el personalizador de
+Shopify. Subirlo desde el repo **borraría** los cambios hechos en el admin,
+así que está excluido. Existe `--include-settings` para forzarlo, pero
+casi nunca es lo que se quiere.
+
+### Tres trampas verificadas (no volver a caer)
+
+**1. El campo `checksum` de la API no es el MD5 del contenido.**
+La primera versión del script comparaba contra él y marcaba ~60 archivos
+de idioma como distintos siendo byte a byte idénticos. Comprobado con
+`locales/es.json`: mismo MD5 local y remoto (`4d30b7f6...`), mismos 21826
+bytes, y aun así `checksum` reportaba `8b2b6a4d...`. Por eso el script
+descarga y compara el contenido real.
+
+**2. Guardar solo assets NO invalida el caché de página del storefront.**
+Los visitantes siguen recibiendo el HTML viejo, que apunta a las URLs de
+assets anteriores — aunque los assets nuevos ya existan. Un cambio real
+en un `.liquid` sí fuerza la regeneración. Ojo: re-guardar un archivo con
+contenido **idéntico** no sirve, Shopify lo detecta y no bumpea nada
+(`updated_at` no cambia).
+
+**3. Verificar con `curl` sin `User-Agent` engaña.**
+Shopify sirve una variante de caché distinta al tráfico que parece bot:
+devuelve versiones viejas de forma consistente aunque los navegadores
+reales ya reciban las nuevas. Durante ~40 minutos pareció que el deploy
+no había funcionado; en cuanto se mandó un User-Agent de Chrome, el sitio
+devolvió el asset nuevo al primer intento. **Al verificar, siempre mandar
+User-Agent de navegador:**
+
+```bash
+UA="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 \
+(KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36"
+curl -s -A "$UA" https://intemperiemexico.com/ | grep -o 'brand-experience.css?v=[0-9]*'
+```
+
+Si el `?v=...` no cambia después de un deploy, el archivo no llegó.
+
+### Credenciales
+El token vive como variable de entorno o como secret de GitHub Actions —
+**nunca en el repo**. El `.gitignore` está blindado contra archivos de
+credenciales (`.env`, `*token*.txt`, `*token*.json`, `shopify-token*`).
+Para regenerarlo, ver
+[`INSTRUCTIVO-APP-SHOPIFY.md`](./INSTRUCTIVO-APP-SHOPIFY.md).

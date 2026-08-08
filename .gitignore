@@ -2,6 +2,10 @@ __pycache__/
 *.pyc
 .coverage
 
+# Respaldos automáticos de Graphify: cada `graphify update` guarda una copia
+# fechada del grafo anterior (~500KB). El grafo vigente sí se versiona.
+tema-shopify/graphify-out/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]/
+
 # Credenciales de Shopify — nunca deben entrar al repo.
 # El token va como variable de entorno o como secret de GitHub Actions.
 .env

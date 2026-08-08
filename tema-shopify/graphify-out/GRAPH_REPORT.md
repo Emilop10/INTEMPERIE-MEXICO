@@ -1,16 +1,16 @@
-# Graph Report - tema-shopify  (2026-08-07)
+# Graph Report - tema-shopify  (2026-08-08)
 
 ## Corpus Check
-- 108 files · ~239,348 words
+- 108 files · ~239,698 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 456 nodes · 702 edges · 39 communities (21 shown, 18 thin omitted)
+- 459 nodes · 705 edges · 39 communities (21 shown, 18 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 3 edges (avg confidence: 0.7)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `a22735e6`
+- Built from commit: `bc436f35`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -143,7 +143,7 @@ Nodes (3): pickDiverse(), run(), shuffle()
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `onKeyUpEscape()` connect `CartDrawer` to `global.js`, `FacetFiltersForm`?**
-  _High betweenness centrality (0.077) - this node is a cross-community bridge._
+  _High betweenness centrality (0.076) - this node is a cross-community bridge._
 - **Why does `CartPerformance` connect `CartItems` to `global.js`?**
   _High betweenness centrality (0.052) - this node is a cross-community bridge._
 - **What connects `PUB_SUB_EVENTS`, `selectors`, `attributes` to the rest of the system?**

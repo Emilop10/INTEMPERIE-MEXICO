@@ -122,6 +122,42 @@
       "norm_label": "updatekinetics()"
     },
     {
+      "label": "maxThumbLeft()",
+      "file_type": "code",
+      "source_file": "assets/brand-experience.js",
+      "source_location": "L190",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "assets_brand_experience_maxthumbleft",
+      "community": 26,
+      "community_name": "brand-experience.js",
+      "norm_label": "maxthumbleft()"
+    },
+    {
+      "label": "maxScroll()",
+      "file_type": "code",
+      "source_file": "assets/brand-experience.js",
+      "source_location": "L191",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "assets_brand_experience_maxscroll",
+      "community": 26,
+      "community_name": "brand-experience.js",
+      "norm_label": "maxscroll()"
+    },
+    {
+      "label": "updateThumb()",
+      "file_type": "code",
+      "source_file": "assets/brand-experience.js",
+      "source_location": "L193",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "assets_brand_experience_updatethumb",
+      "community": 26,
+      "community_name": "brand-experience.js",
+      "norm_label": "updatethumb()"
+    },
+    {
       "label": "cart-drawer.js",
       "file_type": "code",
       "source_file": "assets/cart-drawer.js",
@@ -5562,6 +5598,28 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "assets/brand-experience.js",
+      "source_location": "L191",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_brand_experience",
+      "target": "assets_brand_experience_maxscroll",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/brand-experience.js",
+      "source_location": "L190",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_brand_experience",
+      "target": "assets_brand_experience_maxthumbleft",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/brand-experience.js",
       "source_location": "L40",
       "weight": 1.0,
       "_origin": "ast",
@@ -5578,6 +5636,17 @@
       "_origin": "ast",
       "source": "assets_brand_experience",
       "target": "assets_brand_experience_updatekinetics",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/brand-experience.js",
+      "source_location": "L193",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_brand_experience",
+      "target": "assets_brand_experience_updatethumb",
       "confidence_score": 1.0
     },
     {
@@ -13474,5 +13543,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "a22735e610bd1775e9b16cef9dcbbf5128299c44"
+  "built_at_commit": "bc436f35e610ec51d632923536888193822ee009"
 }

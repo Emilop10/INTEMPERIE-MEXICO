@@ -48,6 +48,7 @@ además sirve como respaldo versionado del tema, algo que no existía
 antes). Con eso, se corrió Graphify y generó:
 
 - **452 nodos, 697 conexiones, 37 comunidades** de código relacionado
+  (en la primera corrida; ver "Estado" más abajo para la cifra vigente)
 - `tema-shopify/graphify-out/graph.json` — el grafo completo
 - `tema-shopify/graphify-out/GRAPH_REPORT.md` — resumen legible con los
   "god nodes" (componentes más conectados/importantes de la
@@ -77,6 +78,26 @@ graphify path "A" "B"                        # camino entre dos piezas de códig
 graphify query "pregunta en lenguaje natural"
 graphify god-nodes --top 15                  # los archivos/componentes más centrales
 ```
+
+**Mantenerlo al día (agregado el 7 de agosto de 2026):** el grafo se
+queda viejo en cuanto se toca el código. `GRAPH_REPORT.md` indica el
+commit desde el que se construyó, para detectarlo. Para refrescar todo:
+
+```bash
+cd tema-shopify && graphify update .        # reconstruye el grafo (sin costo de API)
+cd .. && python3 scripts/rebuild-mapa-3d.py # actualiza el mapa 3D
+```
+
+El mapa 3D lleva los datos embebidos en un `var DATA = {...}` y se había
+construido a mano, así que no había forma práctica de refrescarlo.
+`scripts/rebuild-mapa-3d.py` lee `graph.json` y reescribe **solo** ese
+bloque, dejando intacto el resto del HTML.
+
+**Estado al 7 de agosto de 2026:** 459 nodos, 705 conexiones, 39
+comunidades (commit `bc436f3`). Nota: `graphify update` avisa que 72
+archivos producen cero nodos y quedan fuera del grafo — son los `.json`
+de `locales/` y `config/`, que no tienen estructura de código. Es
+esperado, no es un error.
 
 ⚠️ **Importante:** el grafo es una fotografía del código al momento de
 generarlo (commit `7e40cffa`). Si se vuelve a descargar el tema después
