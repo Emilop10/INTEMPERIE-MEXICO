@@ -207,6 +207,13 @@
 }
 .brand-exp .is-light .subcat-scrollbar { background: #D1D1D6; }
 .brand-exp .subcat-scrollbar-thumb {
+  /* `display: block` es obligatorio, no cosmetico: base.css trae la regla
+     `div:empty { display: none }` (linea ~471) y este thumb es un div sin
+     contenido, asi que sin esta declaracion queda oculto y solo se ve la
+     pista — una sola barra de un color, que fue exactamente el sintoma
+     reportado. Nuestro selector gana por especificidad (0,2,0 contra el
+     0,1,1 de `div:empty`), pero solo si declaramos la propiedad. */
+  display: block;
   position: absolute; top: 0; left: 0; height: 100%;
   border-radius: 999px; background: #F5F5F7;
   min-width: 40px;
