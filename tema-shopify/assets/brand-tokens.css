@@ -84,6 +84,24 @@ h1, h2, h3,
 .product-single__sku {
   font-family: var(--font-mono-family);
   font-variant-numeric: tabular-nums;
+  /* El money_format de la tienda es "$ {{amount}}" (con espacio), y Geist
+     Mono es mas ancho que la fuente sans original de Dawn — en columnas
+     angostas (celda de precio del carrito en movil) el navegador partia
+     la linea justo en ese espacio: "$" arriba, "3,300.00" abajo. */
+  white-space: nowrap;
+}
+
+/* El precio unitario bajo el titulo en el carrito reusa la clase generica
+   ".product-option" (Dawn), que trae `word-break: break-word` porque esa
+   misma clase tambien muestra texto de variante que si puede ser largo
+   ("Color: Rojo"). Ese break-word partia el precio en el mismo punto que
+   el bug de arriba. Se aisla con clases propias, sin tocar
+   ".product-option" en general -- las opciones de variante siguen
+   pudiendo partirse si son largas. */
+.cart-item__unit-price,
+.cart-item__old-price,
+.cart-item__final-price {
+  white-space: nowrap;
 }
 
 /* Pill buttons, matching approved Apple-style CTA treatment */
