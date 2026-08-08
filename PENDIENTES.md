@@ -1,7 +1,12 @@
 # Pendientes — Intemperie México
 
-Temas abiertos de la auditoría de la tienda. Los tres requieren una decisión o
-datos tuyos; el resto de la auditoría ya quedó implementado en el tema de trabajo.
+Temas abiertos de la tienda. Casi todos requieren una decisión o datos tuyos;
+el resto de la auditoría ya quedó implementado y en vivo.
+
+**Abiertos ahora mismo:** redes sociales pendientes ([2](#2-redes-sociales--parcialmente-resuelto-28-jul)),
+señales de confianza ([3](#3-señales-de-confianza-ausentes)), activar el deploy
+automático ([5](#5-activar-el-deploy-automático--1-minuto-y-es-lo-único-que-requiere-tus-manos))
+y terminar la barra deslizable ([6](#6-barra-deslizable-de-subcategorías--sigue-sin-quedar-como-el-cliente-quiere)).
 
 > 📌 **Nota de trabajo (4 de agosto):** al redactar prompts para Claude en
 > Chrome, ser conciso y pedirle explícitamente que si no encuentra algo en
@@ -14,7 +19,7 @@ vivo de inmediato.
 **Dominio principal:** `https://intemperiemexico.com` — conectado y
 verificado el 3 de agosto de 2026. `wfuxvx-yn.myshopify.com` ahora
 redirige automáticamente al dominio propio.
-**Última actualización:** 3 de agosto de 2026
+**Última actualización:** 7 de agosto de 2026
 
 **Correo profesional:** Google Workspace reactivado con `admin@intemperiemexico.com`
 como cuenta principal. DNS (MX, SPF, DKIM) verificado y propagado. 6 alias activos
@@ -72,6 +77,54 @@ ejemplo: *"Envío en 24-48h · Garantía de fábrica · Producto verificado"*.
 **Qué se necesita:** confirmar los datos reales (¿cuántos días de envío? ¿qué
 garantía se ofrece? ¿se aceptan devoluciones?). El diseño y el montaje ya están
 resueltos, solo faltan los datos.
+
+---
+
+## 5. Activar el deploy automático — **1 minuto, y es lo único que requiere tus manos**
+
+Hasta el 7 de agosto, guardar código en GitHub **no lo subía a la tienda**.
+Eran dos cajones separados. Eso hizo que tres arreglos seguidos de la barra
+deslizable parecieran no funcionar: estaban guardados, pero nunca habían
+llegado a Shopify (ver sección 25 del manual).
+
+Ya quedó resuelto por dos vías: ahora los cambios se pueden subir por API en
+el momento, y además hay un mecanismo que lo hace solo en cada guardado.
+
+**Lo que falta (tú):** pegar el token para que el automático funcione.
+
+1. GitHub → repositorio → **Settings → Secrets and variables → Actions**
+2. **New repository secret**
+3. Nombre: `SHOPIFY_ADMIN_TOKEN`
+4. Valor: el token `shpat_...` (te lo pasé por chat; guárdalo en tu gestor
+   de contraseñas — **no debe escribirse en este repositorio**)
+
+**No es urgente.** Sin esto los cambios igual se pueden subir a mano con
+`python3 scripts/deploy-shopify.py`. El secret solo evita tener que
+acordarse de hacerlo.
+
+> Si el token deja de servir en el futuro, regenerarlo toma 5 minutos con
+> `INSTRUCTIVO-APP-SHOPIFY.md`, y solo hay que actualizar este secret.
+
+---
+
+## 6. Barra deslizable de subcategorías — sigue sin quedar como el cliente quiere
+
+Estado al 7 de agosto: en vivo y funcionando, con pista discreta
+(`rgba(255,255,255,.13)`), thumb gris claro `#C7C7CC` de 10px de alto y
+tope del 45% del ancho de la pista.
+
+**El cliente indicó que todavía no queda como la quiere**, pero se pausó el
+ajuste para resolver primero el deploy y la documentación. **Falta definir
+qué exactamente:** grosor, largo del thumb, color, o contraste de la pista.
+
+Con el deploy ya resuelto, cada ajuste se puede subir y verificar en vivo
+en el momento — sin las rondas a ciegas que costó este tema.
+
+> ⚠️ **Antes de tocar CSS por un reporte visual, verificar qué está
+> sirviendo el sitio.** Que el `?v=...` del asset no cambie significa que
+> el archivo no llegó al servidor. Y verificar siempre con User-Agent de
+> navegador: sin él, Shopify devuelve versiones viejas de forma
+> consistente. Detalle completo en la sección 25 del manual.
 
 ---
 
