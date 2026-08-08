@@ -175,8 +175,8 @@
     "semantic_hash": ""
   },
   "config/settings_data.json": {
-    "mtime": 1786065903.895507,
-    "ast_hash": "845b96001faeb260c4dd7850dbf48b52",
+    "mtime": 1786157727.0621722,
+    "ast_hash": "29e31e5f05d7994b66c50d25c1f4665d",
     "semantic_hash": ""
   },
   "config/settings_schema.json": {
@@ -235,7 +235,7 @@
     "semantic_hash": ""
   },
   "locales/es.json": {
-    "mtime": 1786065910.651448,
+    "mtime": 1786157650.6421719,
     "ast_hash": "4d30b7f682ebe613f2aa309568956de2",
     "semantic_hash": ""
   },
@@ -525,8 +525,8 @@
     "semantic_hash": ""
   },
   "templates/product.json": {
-    "mtime": 1786065984.8817978,
-    "ast_hash": "df3977ed61a2547f8496e195750563ee",
+    "mtime": 1786156000.0661635,
+    "ast_hash": "690300cbc3a2cabd77733f4a7f665da6",
     "semantic_hash": ""
   },
   "templates/search.json": {

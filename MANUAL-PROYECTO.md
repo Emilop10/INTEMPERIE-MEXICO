@@ -53,6 +53,7 @@ como respaldo
 23. [Botones del hero: texto claro y scroll que sí funciona](#23-botones-del-hero-texto-claro-y-scroll-que-sí-funciona)
 24. [Flechas en la franja de subcategorías](#24-flechas-en-la-franja-de-subcategorías)
 25. [Deploy del tema a Shopify](#25-deploy-del-tema-a-shopify)
+26. [Rediseño del carrito: panel lateral, botón y carrito vacío](#26-rediseño-del-carrito-panel-lateral-botón-y-carrito-vacío)
 
 ---
 
@@ -1261,3 +1262,112 @@ El token vive como variable de entorno o como secret de GitHub Actions —
 credenciales (`.env`, `*token*.txt`, `*token*.json`, `shopify-token*`).
 Para regenerarlo, ver
 [`INSTRUCTIVO-APP-SHOPIFY.md`](./INSTRUCTIVO-APP-SHOPIFY.md).
+
+---
+
+## 26. Rediseño del carrito: panel lateral, botón y carrito vacío
+
+Tras activar el deploy automático (sección 25), esta fue la primera tanda de
+cambios visuales hecha con el ciclo completo funcionando: código → deploy →
+verificación en el sitio real en minutos, en vez de rondas a ciegas.
+
+### Botón "Comprar con Shop" eliminado
+El botón dinámico de Shop Pay (morado, fuera de la identidad de marca) se
+apagó con el setting nativo del tema:
+`templates/product.json` → bloque `buy_buttons` →
+`show_dynamic_checkout: false`. Al desactivarlo, "Agregar al carrito" pasa
+automáticamente de botón secundario a primario (lógica ya existente en
+`snippets/buy-buttons.liquid`), quedando como botón sólido único.
+
+> El texto del botón se probó primero como "Comprar ahora" (petición
+> explícita), pero al verlo en vivo el cliente prefirió volver a
+> "Agregar al carrito" — es el mismo botón, solo cambia el texto
+> (`locales/es.json`, clave `add_to_cart`).
+
+### Carrito activado como panel lateral (drawer)
+El tema (Dawn) ya traía todo el código del panel de carrito, apagado por
+setting: `config/settings_data.json` → `cart_type: "notification"` →
+`"drawer"`. Con eso, agregar un producto abre un panel sobre la misma
+página en vez de navegar a `/cart`.
+
+**Antes de subir `settings_data.json`** (que normalmente se protege porque
+ahí vive lo que se edita en el personalizador de Shopify), se comparó la
+copia local contra lo que la tienda ya tenía guardado, confirmando que las
+únicas diferencias eran las que se querían cambiar — para no pisar nada
+hecho desde el admin. Ese chequeo se repitió en cada cambio de settings de
+esta sección.
+
+### Carrito vacío: botones de categoría en vez de una colección gigante
+La primera versión mostraba la colección "Todo Pesca" completa como una
+tarjeta cuadrada a todo el ancho del panel — desproporcionada. Se reemplazó
+por 4 botones de departamento (Pesca, Miras y Binoculares, Diábolos y
+Municiones, Rifles y Pistolas de Aire), estilo Gymshark (sus botones
+Hombre/Mujer en el carrito vacío), reusando el mismo patrón de handles que
+`sections/related-products.liquid`. El setting `cart_drawer_collection`
+quedó sin uso (se limpió a `""` para no dejar configuración fantasma).
+
+**Posición vertical:** Dawn centra `.cart-drawer__warnings` dentro de todo
+el alto del panel (pensado para cuando el contenido era solo un botón), así
+que con las 4 categorías agregadas el conjunto quedaba muy abajo (~76% del
+alto). Se quitó ese centrado y se ancló el bloque cerca de arriba.
+
+### Barra de envío gratis: de verde genérico a on-brand
+Estaba duplicada en 2 archivos (`snippets/cart-drawer.liquid` y
+`sections/main-cart-items.liquid`, la página `/cart` completa), cada uno
+con su propio verde claro tipo plugin (`#f0f9eb`/`#d4edda`) que no
+combinaba con el negro/verde de marca. Se rediseñó como variante de
+`.im-ship-note` (el mismo componente ya usado bajo el botón de compra en la
+ficha de producto): fondo oscuro sutil, borde verde tenue, ícono de caja,
+progreso real en verde de marca. El umbral ($799) no cambió.
+
+### Bugs encontrados y corregidos durante la verificación
+
+**1. `var(--brand-accent)` no es un verde fijo.** Ese token cambia a un
+verde oscuro (`#234D3B`) casi invisible cuando el sistema operativo del
+visitante está en modo claro — nada que ver con que el carrito en sí sea
+oscuro. Se corrigió usando `#57B58A` fijo, igual que hace `.im-ship-note`,
+que nunca depende de ese token porque su superficie siempre es oscura.
+Detectado renderizando en Chromium con emulación de color-scheme por
+default (light), no se hubiera visto en una revisión visual rápida.
+
+**2. El mismo bug de `div:empty` otra vez, dos veces más.** `base.css` trae
+`div:empty { display: none }` (documentado desde el episodio de la barra
+de subcategorías, sección 24). Se volvió a caer en la misma trampa:
+
+- El relleno de la barra de progreso es un `<div style="width:X%"></div>`
+  vacío. La primera corrección (`.free-shipping-bar__progress-fill {
+  display: block }`, un solo selector de clase) **no alcanzaba** — la
+  especificidad de una clase (0,1,0) sigue perdiendo contra `div:empty`
+  (elemento + pseudo-clase, 0,1,1). Hubo que calificar con el padre
+  (`.free-shipping-bar__progress .free-shipping-bar__progress-fill`),
+  mismo patrón que ya había funcionado para el thumb de la barra.
+- El precio unitario bajo el título del producto en el carrito usa la
+  clase genérica `.product-option` de Dawn, que trae
+  `word-break: break-word` (necesario para texto de variante largo, tipo
+  "Color: Rojo"). Esa misma propiedad partía el precio ("$" arriba,
+  "3,300.00" abajo) en el espacio del `money_format` de la tienda
+  (`"$ {{amount}}"`, con espacio). Se aisló dándole al div del precio una
+  clase propia (`cart-item__unit-price`) y aplicando `nowrap` solo a esa
+  clase y a `.cart-item__old-price`/`.cart-item__final-price` — sin tocar
+  `.product-option` en general, para que las opciones de variante largas
+  sigan pudiendo partirse cuando haga falta.
+
+> 💡 **Patrón a vigilar:** cualquier `<div>` decorativo vacío en este tema
+> (barras de progreso, separadores, indicadores) puede quedar oculto por
+> `div:empty`. Un solo selector de clase no siempre gana en especificidad —
+> verificar con las herramientas de desarrollo o CDP, no asumir.
+
+**3. El precio de la columna total también se partía**, por una causa
+distinta: la celda del grid móvil de Dawn ya era angosta (preexistente),
+agravada por `brand-tokens.css` al ponerle Geist Mono (más ancho que la
+fuente sans original) sin declarar `white-space`. Se agregó `nowrap` a la
+regla `.price` ya existente.
+
+### Método de verificación
+Todo el ciclo de esta sección usó Chromium real (no capturas ni HTML
+estático): se agregaron productos de verdad al carrito vía POST a
+`/cart/add.js`, se descargó la página resultante con sus assets, y se
+midió con `getBoundingClientRect()` — incluyendo reproducir cada bug en
+aislamiento **antes** de tocar código, para confirmar la causa exacta antes
+de escribir el fix. Detalle del método en
+[`INSTRUCTIVO-CAMBIOS-QUE-NO-SE-VEN.md`](./INSTRUCTIVO-CAMBIOS-QUE-NO-SE-VEN.md).
