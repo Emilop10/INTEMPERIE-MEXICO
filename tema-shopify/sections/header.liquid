@@ -445,9 +445,77 @@
       {{ settings.social_youtube_link | json }},
       {{ settings.social_vimeo_link | json }}
     ],
-    "url": {{ request.origin | append: page.url | json }}
+    "url": {{ request.origin | append: page.url | json }},
+    {%- comment -%}
+      Solo pais, sin ciudad: por decision explicita (ver PENDIENTES.md /
+      MANUAL-PROYECTO.md) el sitio no expone la ubicacion exacta del
+      negocio en ningun lado, tampoco aqui.
+    {%- endcomment -%}
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "MX"
+    },
+    "priceRange": "$$"
   }
 </script>
+
+{%- comment -%}
+  BreadcrumbList: ayuda a que Google muestre la ruta (Inicio > Departamento
+  > Producto) en los resultados en vez de solo la URL. Solo datos
+  estructurados, no hay breadcrumb visible en el diseño (no se pidio).
+{%- endcomment -%}
+{%- if request.page_type == 'product' -%}
+  {%- assign bc_collection = product.collections.first -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": {{ shop.name | json }},
+          "item": {{ request.origin | json }}
+        }
+        {%- if bc_collection -%}
+        ,{
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ bc_collection.title | json }},
+          "item": {{ bc_collection.url | prepend: request.origin | json }}
+        }
+        {%- endif -%}
+        ,{
+          "@type": "ListItem",
+          "position": {% if bc_collection %}3{% else %}2{% endif %},
+          "name": {{ product.title | json }},
+          "item": {{ product.url | prepend: request.origin | json }}
+        }
+      ]
+    }
+  </script>
+{%- elsif request.page_type == 'collection' and collection -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": {{ shop.name | json }},
+          "item": {{ request.origin | json }}
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ collection.title | json }},
+          "item": {{ collection.url | prepend: request.origin | json }}
+        }
+      ]
+    }
+  </script>
+{%- endif -%}
 
 {%- if request.page_type == 'index' -%}
   {% assign potential_action_target = request.origin | append: routes.search_url | append: '?q={search_term_string}' %}

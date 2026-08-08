@@ -21,18 +21,29 @@
 <meta property="og:title" content="{{ og_title | escape }}">
 <meta property="og:type" content="{{ og_type }}">
 <meta property="og:description" content="{{ og_description | escape }}">
+<meta property="og:locale" content="es_MX">
 
 {%- comment -%}
-  On the homepage the shop-level share image is the logo, which social platforms
-  render as a small mark on a white pad. Use the hero photograph instead.
+  El logo se ve como una marca chiquita sobre fondo blanco al compartir un
+  link en redes — se usa la foto del hero en su lugar. Esto ya estaba
+  resuelto para la home; las paginas sin imagen propia (politicas, cuenta,
+  etc.) no caen en "sin imagen" como parecia — Shopify les asigna
+  automaticamente el logo como page_image, asi que tenian el mismo
+  problema sin que se notara desde el codigo. Se extiende la misma
+  correccion a cualquier pagina cuya imagen resulte ser el logo.
 {%- endcomment -%}
-{%- if request.page_type == 'index' -%}
-  {%- assign home_share_image = 'https://cdn.shopify.com/s/files/1/0680/3557/5885/files/banner-hero-lago-niebla-v2.jpg' -%}
-  <meta property="og:image" content="{{ home_share_image }}">
-  <meta property="og:image:secure_url" content="{{ home_share_image }}">
+{%- assign generic_share_image = 'https://cdn.shopify.com/s/files/1/0680/3557/5885/files/banner-hero-lago-niebla-v2.jpg' -%}
+{%- assign page_image_is_logo = false -%}
+{%- if settings.logo and page_image and page_image == settings.logo -%}
+  {%- assign page_image_is_logo = true -%}
+{%- endif -%}
+
+{%- if request.page_type == 'index' or page_image_is_logo or page_image == blank -%}
+  <meta property="og:image" content="{{ generic_share_image }}">
+  <meta property="og:image:secure_url" content="{{ generic_share_image }}">
   <meta property="og:image:width" content="1920">
   <meta property="og:image:height" content="800">
-{%- elsif page_image -%}
+{%- else -%}
   <meta property="og:image" content="http:{{ page_image | image_url }}">
   <meta property="og:image:secure_url" content="https:{{ page_image | image_url }}">
   <meta property="og:image:width" content="{{ page_image.width }}">
