@@ -4,9 +4,8 @@ Temas abiertos de la tienda. Casi todos requieren una decisión o datos tuyos;
 el resto de la auditoría ya quedó implementado y en vivo.
 
 **Abiertos ahora mismo:** redes sociales pendientes ([2](#2-redes-sociales--parcialmente-resuelto-28-jul)),
-señales de confianza ([3](#3-señales-de-confianza-ausentes)), activar el deploy
-automático ([5](#5-activar-el-deploy-automático--1-minuto-y-es-lo-único-que-requiere-tus-manos))
-y dar de alta el sitio en Google Search Console ([7](#7-alta-en-google-search-console--10-minutos-y-es-lo-único-que-requiere-tus-manos)).
+señales de confianza ([3](#3-señales-de-confianza-ausentes)) y activar el deploy
+automático ([5](#5-activar-el-deploy-automático--1-minuto-y-es-lo-único-que-requiere-tus-manos)).
 
 > 📌 **Nota de trabajo (4 de agosto):** al redactar prompts para Claude en
 > Chrome, ser conciso y pedirle explícitamente que si no encuentra algo en
@@ -122,33 +121,35 @@ oculto desde la primera versión. Se corrigió declarándole `display: block`.
 
 ---
 
-## 7. Alta en Google Search Console — **10 minutos, y es lo único que requiere tus manos**
+## ~~7. Alta en Google Search Console~~ ✅ Ejecutado (9 ago) — ahora solo esperar
 
-El sitio no aparece en Google (`site:intemperiemexico.com` da 0
-resultados). Confirmado que **no es un problema técnico**: robots.txt,
-sitemap, canonical y meta description ya estaban bien. La causa real es
-que nunca se dio de alta en Search Console — sin eso, Google puede tardar
-semanas en encontrarlo solo.
+El sitio no aparecía en Google. Confirmado que **no era un problema
+técnico**: robots.txt, sitemap, canonical y meta description ya estaban
+bien. La causa real era que nunca se dio de alta en Search Console — ya
+se resolvió.
 
 Ya se hizo todo lo que se podía por código (sección 27 del manual):
 `BreadcrumbList`, Organization ampliado, `og:locale`, `og:image` genérico
 en páginas sin foto propia.
 
-**Lo que falta (tú):** dar de alta la propiedad en Search Console. Esta
-sesión de Claude no puede iniciar sesión en Google directo (el entorno
-bloquea la navegación a Google por completo), así que el documento está
-escrito como un **prompt para pegarle a Claude en Chrome**, que sí puede
-navegar de verdad en tu computadora:
+**Lo que se hizo** (vía Claude en Chrome, instructivo en
+[`INSTRUCTIVO-GOOGLE-SEARCH-CONSOLE.md`](./INSTRUCTIVO-GOOGLE-SEARCH-CONSOLE.md)):
+resultó que ya existía una propiedad verificada de tipo Dominio desde
+mayo — se saltó la verificación y se fue directo a enviar el sitemap
+(415 páginas descubiertas) y pedir indexación manual de la home + 4
+departamentos + un producto.
 
-📄 **[`INSTRUCTIVO-GOOGLE-SEARCH-CONSOLE.md`](./INSTRUCTIVO-GOOGLE-SEARCH-CONSOLE.md)**
+**Verificado después, no solo confiando en el reporte:** la home ya está
+indexada de verdad (confirmado con el texto exacto de Search Console). De
+36 páginas evaluadas por Google, 29 marcaban algún error — se revisaron
+todas en vivo con `curl` y **ninguna es un problema actual**: son
+nombres de colecciones de antes de la reorganización en departamentos,
+productos ya retirados del catálogo, o ruido de rastreo. Detalle completo
+en la sección 27 del manual.
 
-En resumen: le pegas el prompt a Claude en Chrome → él crea la propiedad
-con `admin@intemperiemexico.com` y llega hasta conseguir el código de
-verificación → te lo da a ti, tú me lo pasas a mí, yo lo despliego en
-2 minutos → le dices a Claude en Chrome que continúe: envía el sitemap →
-pide indexación manual de la home + 4 departamentos +
-varios productos. Eso último es lo que de verdad acelera todo, de semanas
-a horas/días.
+**No queda nada por hacer** — ni de tu lado ni del mío. Solo esperar a
+que Google termine de evaluar el resto de las 415 páginas del sitemap
+(normal que tome de días a un par de semanas).
 
 ---
 

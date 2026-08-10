@@ -1460,3 +1460,61 @@ a esta sesión → se despliega y se confirma → Claude en Chrome retoma para
 enviar el sitemap y solicitar indexación manual de la home + 4
 departamentos + varios productos (esto es lo que de verdad acelera el proceso de semanas
 a horas/días).
+
+### Ejecución (9 de agosto de 2026) — hallazgo que cambió el plan
+Al ejecutar el Paso 1, Claude en Chrome encontró que **ya existía una
+propiedad verificada** en la cuenta, de tipo **Dominio**
+(`sc-domain:intemperiemexico.com`), con datos desde mayo de 2026. Ese tipo
+de verificación es por registro DNS (TXT), invisible desde el código del
+tema — por eso el diagnóstico original ("cero rastro de Google en el
+código") no la detectó. No cambia el diagnóstico de fondo (el sitio seguía
+sin indexar), pero sí simplificó el plan: se saltaron los pasos de
+verificación y se fue directo a enviar el sitemap y pedir indexación,
+usando la propiedad de Dominio ya existente (es además la mejor opción
+posible — cubre `http`/`https`/con y sin `www` en una sola vista, mejor
+que la propiedad de prefijo que se iba a crear).
+
+**Resultado del primer informe de Claude en Chrome** (sitemap enviado con
+estado "Correcto", indexación solicitada en las 6 URLs clave) incluía una
+afirmación que no cuadraba: decía que las páginas ya aparecían como
+"indexadas" *antes* de solicitar la indexación. Se verificó por cuenta
+propia con una búsqueda `site:intemperiemexico.com` — seguía en 0
+resultados. En vez de aceptar el reporte tal cual, se pidió una segunda
+ronda con datos exactos de pantalla (no interpretación):
+
+- **Home**: confirmada indexada de verdad — texto literal "La URL está en
+  Google" / "La página está indexada", copiado por Claude en Chrome. La
+  discrepancia con la búsqueda `site:` propia se debe a que esa búsqueda
+  no siempre refleja el índice de Google en tiempo real — Search Console
+  es la fuente autorizada, no ese atajo.
+- **Reporte de Páginas**: 0 indexadas, 36 sin indexar de las 415 que el
+  sitemap descubrió (el resto sigue en cola de evaluación). De esas 36,
+  29 marcaban algún tipo de error (4xx/404/403) y 6 "rastreada, sin
+  indexar todavía" (normal).
+- **Sin acciones manuales** (sin penalización de Google).
+
+**Verificación de las 29 URLs "con error" — hecha en vivo con `curl`, no
+solo confiando en el reporte de Google:**
+
+| Categoría | Veredicto tras verificar en vivo |
+|---|---|
+| `http://` → `https://` | Funciona perfecto, 4xx que vio Google era viejo |
+| `/policies/terms-of-service` | 200, sin problema |
+| 3 productos/colección "Shimano" | 404 reales — productos ya retirados del catálogo, normal |
+| `/llms-full.txt` | 200 — archivo de Shopify para agentes de IA, el 403 fue puntual |
+| Colecciones "hilos-de-pesca", "combos-de-pesca", "anzuelos-de-pesca", "tiro-deportivo-1" | 404 confirmado — son los **nombres de antes** de la reorganización en departamentos (hoy: `hilos-y-lineas`, `combos`, `anzuelos`) |
+| `/v1/produce`, `/cdn`, `/b` | 404 — nunca fueron páginas reales, ruido de rastreo |
+| `/collections/salva-con-diabolos` | 404 confirmado, rastreada el 7 de agosto (reciente). Sin coincidencias en el código del tema ni en el listado de colecciones de la tienda vía API — no viene de nada nuestro. Única sin explicación clara; no urgente, es una sola URL |
+
+**Conclusión: nada de esto era un problema real del sitio en este
+momento.** Casi todo era memoria vieja de Google — de antes del 3 de
+agosto (cuando se conectó el dominio propio) o de antes de la
+reorganización de colecciones en departamentos. No se necesitó ningún
+cambio de código. Queda pendiente solo el tiempo: Google reevaluando el
+resto de las 415 páginas del sitemap.
+
+> 💡 **Lección de método:** un agente de navegador puede leer mal una UI
+> ambigua (confundir "disponible para rastrear" con "ya indexada"). Pedir
+> texto exacto de pantalla en vez de un resumen, y cruzarlo con
+> verificación propia cuando se pueda (`curl`, búsquedas), evitó actuar
+> sobre una conclusión equivocada.
