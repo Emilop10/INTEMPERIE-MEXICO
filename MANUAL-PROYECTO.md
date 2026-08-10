@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 7 de agosto de 2026
+**Última actualización:** 10 de agosto de 2026
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -55,6 +55,7 @@ como respaldo
 25. [Deploy del tema a Shopify](#25-deploy-del-tema-a-shopify)
 26. [Rediseño del carrito: panel lateral, botón y carrito vacío](#26-rediseño-del-carrito-panel-lateral-botón-y-carrito-vacío)
 27. [Indexación en Google: SEO técnico y alta en Search Console](#27-indexación-en-google-seo-técnico-y-alta-en-search-console)
+28. [Conciliación de inventario físico contra Shopify](#28-conciliación-de-inventario-físico-contra-shopify)
 
 ---
 
@@ -1518,3 +1519,78 @@ resto de las 415 páginas del sitemap.
 > texto exacto de pantalla en vez de un resumen, y cruzarlo con
 > verificación propia cuando se pueda (`curl`, búsquedas), evitó actuar
 > sobre una conclusión equivocada.
+
+---
+
+## 28. Conciliación de inventario físico contra Shopify
+
+**Fecha de la primera ejecución:** 10 de agosto de 2026
+
+El cliente hace conteos físicos periódicos de la tienda (piso de venta) en
+un Excel exportado de su sistema de punto de venta, y necesita que esa
+cuenta real se refleje en las existencias de Shopify — el POS físico y la
+tienda online no están conectados entre sí. Como esto se va a repetir casi
+a diario, quedó documentado como proceso repetible, con un instructivo
+aparte para ejecutarlo rápido las próximas veces:
+
+📄 **[`INSTRUCTIVO-CONCILIAR-INVENTARIO.md`](./INSTRUCTIVO-CONCILIAR-INVENTARIO.md)**
+
+### Cómo funciona
+
+El Excel tiene columnas `No Parte` (SKU), `Departamento`, `Descripción`,
+`proveedor`, `ConstoN`, `Ubicacion`, `Existencia` (el conteo físico de
+hoy). Se cruza cada fila por `No Parte` contra el SKU de las variantes de
+producto en Shopify (API Admin, `products.json` con paginación, 383
+productos/variantes al momento de la primera corrida) y se clasifica:
+
+- **Verde** — el conteo físico coincide con la existencia en Shopify. No
+  se toca nada.
+- **Amarillo** — hay diferencia (venta, entrada de mercancía, ajuste).
+  Se actualiza Shopify al número del conteo físico vía
+  `POST /admin/api/2024-01/inventory_levels/set.json` (requiere el
+  `inventory_item_id` de la variante y el `location_id` de la tienda,
+  que se obtiene de `shop.json → primary_location_id` — pedir el scope
+  `read_locations` de por sí devuelve error de aprobación de Shopify, no
+  hace falta para este flujo con una sola ubicación).
+- **Rojo** — el conteo físico está en 0 (agotado) **o** el SKU no existe
+  como producto en la tienda online. Si Shopify tenía existencia y el
+  conteo dice 0, también se actualiza a 0.
+- **Gris** — no se puede vincular con certeza, así que **no se toca
+  Shopify**: filas sin `No Parte` (el POS a veces exporta líneas sin
+  código), o códigos que se repiten en el mismo Excel apuntando a
+  productos distintos (ej. `9291PS` correspondía a tres anzuelos VMC
+  diferentes en la primera corrida). Cada fila gris trae una nota
+  explicando el motivo exacto.
+
+El archivo final se entrega con una pestaña **Resumen** (totales por
+color) y la hoja original con tres columnas nuevas al final
+(`Existencia Shopify (antes)`, `Estatus`, `Nota`) y cada fila coloreada.
+
+### Detalles que costó descubrir en la primera corrida
+
+- **Conteos en negativo** (ej. `-1`, `-4`) aparecen en el Excel del POS
+  cuando se registra una venta sin existencia previa suficiente. No se
+  suben tal cual a Shopify (un `available` negativo no tiene sentido ahí)
+  — se tratan como agotado (0), con nota sugiriendo revisar el POS.
+- **El endpoint `GET /admin/api/2024-01/products.json?status=any` devuelve
+  0 productos** sin error visible (bug o comportamiento no documentado de
+  esa versión de API) — hay que pedir sin el parámetro `status` (trae
+  todos los estados) o con `status=active` explícito, nunca `status=any`.
+- **`GET /locations.json` pide el scope protegido `read_locations`**, que
+  requiere aprobación manual de Shopify y no se puede activar solo desde
+  el Dev Dashboard. Se evita por completo usando
+  `shop.json → primary_location_id`, válido mientras la tienda tenga una
+  sola ubicación (es el caso).
+- El token de la app necesita agregar los scopes **`read_inventory`** y
+  **`write_inventory`** — los que ya tenía (`read_products`/
+  `write_products`) no alcanzan para ajustar existencias.
+
+### Resultado de la primera corrida (10 de agosto de 2026)
+
+De 1,207 filas del conteo físico: 228 verde, 109 amarillo, 766 rojo (732
+sin SKU coincidente en Shopify + 34 agotados), 104 gris (88 sin código +
+16 por códigos duplicados). Se aplicaron 143 actualizaciones a Shopify
+(109 ajustes de cantidad + 29 puestas en 0 partiendo de un valor previo
+mayor a 0) — las 143 vía API, con 0 errores. Se detectaron además 12
+productos activos en Shopify que no aparecían en el conteo del día (no se
+tocaron, quedan para que el cliente confirme si es intencional).
