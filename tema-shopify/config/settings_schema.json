@@ -1360,6 +1360,21 @@
     ]
   },
   {
+    "name": "Meta Ads (Facebook / Instagram)",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Pegar aquí el ID del Pixel de Meta una vez creado en Business Manager. Mientras esté vacío, el pixel no se carga en el sitio."
+      },
+      {
+        "type": "text",
+        "id": "meta_pixel_id",
+        "label": "Meta Pixel ID",
+        "placeholder": "Ej. 1234567890123456"
+      }
+    ]
+  },
+  {
     "name": "t:settings_schema.search_input.name",
     "settings": [
       {

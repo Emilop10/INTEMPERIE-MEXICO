@@ -1594,3 +1594,86 @@ sin SKU coincidente en Shopify + 34 agotados), 104 gris (88 sin código +
 mayor a 0) — las 143 vía API, con 0 errores. Se detectaron además 12
 productos activos en Shopify que no aparecían en el conteo del día (no se
 tocaron, quedan para que el cliente confirme si es intencional).
+
+---
+
+## 29. Meta Ads (Facebook/Instagram): medición y catálogo anunciable
+
+El cliente pidió empezar a invertir en publicidad de Meta, dándole a
+Claude el manejo completo (crear, publicar, optimizar, reportar) y
+poniendo él solo el presupuesto. Antes de tocar código se verificaron
+tres cosas que cambiaron la forma del proyecto.
+
+### Restricción real de catálogo, no interpretación
+
+Meta prohíbe por política explícita anunciar armas, munición y accesorios
+que modifiquen la función de un arma ([Transparency
+Center](https://transparency.meta.com/policies/ad-standards/restricted-goods-services/weapons-ammunitions-explosives/)),
+incluyendo miras telescópicas. El riesgo de ignorarlo no es que se
+rechace un anuncio puntual: es el **baneo permanente de la cuenta
+publicitaria y del Business Manager completo**, arrastrando también la
+página de Facebook.
+
+Aplicado al catálogo: pesca (~303 productos) y binoculares/ópticos no
+armamentísticos (~20) sí son anunciables — **~84% del catálogo**. Miras
+telescópicas (~9), diábolos/municiones (~31) y rifles/pistolas de aire
+(~20) no lo son. Esto no cambia nada en la tienda ni en lo que se puede
+comprar — solo qué entra en los anuncios y en el catálogo sincronizado
+con Meta.
+
+### Estado de medición verificado en vivo
+
+Se confirmó con `curl` sobre `intemperiemexico.com` que no existe ningún
+rastro de `fbq` ni `connect.facebook.net` — no había píxel de Meta antes
+de este trabajo. Sí existía ya un `<meta
+name="facebook-domain-verification">` en `layout/theme.liquid`, sin
+documentar en el repo, lo que indica que alguien ya abrió un Business
+Manager de Meta antes — hay que ubicarlo antes de crear uno nuevo (ver
+`INSTRUCTIVO-META-ADS.md`).
+
+### Lo que se implementó
+
+- **`config/settings_schema.json`**: nuevo grupo "Meta Ads (Facebook /
+  Instagram)" con un campo de texto `meta_pixel_id`, editable desde
+  Personalizar tema sin tocar código.
+- **`snippets/meta-pixel.liquid`**: carga el pixel de Meta solo si
+  `settings.meta_pixel_id` no está vacío. Eventos: `PageView` (todas las
+  páginas), `ViewContent` (ficha de producto, con precio real),
+  `InitiateCheckout` (página de carrito).
+- **`assets/meta-pixel.js`**: se suscribe al pubsub `cart-update` del
+  tema (el mismo que usa el carrito lateral) para disparar `AddToCart`
+  con el precio real del ítem agregado, sin necesidad de recargar la
+  página.
+- **`Purchase` queda fuera de este mecanismo a propósito**: el checkout
+  de Shopify (plan no-Plus) no usa `theme.liquid`, es una página aparte
+  fuera del control del tema — no hay forma correcta de instrumentarlo
+  desde aquí. Se resuelve instalando el canal de ventas oficial
+  "Facebook & Instagram" de Shopify, que agrega el evento `Purchase` y
+  la Conversions API del lado del servidor automáticamente.
+- **`scripts/meta-ads.py`**: contra la Marketing API de Meta
+  (`graph.facebook.com/v21.0`), mismas convenciones que
+  `deploy-shopify.py` (librería estándar, token por variable de entorno,
+  nunca commiteado). Comandos: `listar`, `reporte`, `pausar`, `activar`,
+  `presupuesto`.
+- **`INSTRUCTIVO-META-ADS.md`**: guía para el cliente — ubicar/crear
+  Business Manager, vincular página + Instagram, crear cuenta
+  publicitaria en MXN con método de pago, crear System User con token
+  permanente (mismo patrón que `INSTRUCTIVO-APP-SHOPIFY.md`), instalar
+  el canal Facebook & Instagram y obtener el Pixel ID.
+
+### Por qué no se instaló el canal de Shopify directamente
+
+Instalar una app de Shopify requiere el flujo OAuth completo por
+navegador con la sesión del dueño ya iniciada (el mismo motivo por el
+que el token de Shopify se generó a mano en `INSTRUCTIVO-APP-SHOPIFY.md`)
+— no hay forma de completarlo por API. Por eso el pixel queda listo en
+el código pero inactivo (el campo `meta_pixel_id` vacío no carga nada)
+hasta que el cliente complete esa parte y dé el ID.
+
+### Pendiente
+
+Todo lo que requiere credenciales o acceso a la cuenta de Meta del
+cliente — ver sección 8 de `PENDIENTES.md` y el instructivo. Una vez que
+llegue el token del System User y el Pixel ID, la primera campaña
+(solo pesca, presupuesto a definir) se arma y se deja **pausada** para
+revisión antes de activarla.

@@ -4,8 +4,9 @@ Temas abiertos de la tienda. Casi todos requieren una decisión o datos tuyos;
 el resto de la auditoría ya quedó implementado y en vivo.
 
 **Abiertos ahora mismo:** redes sociales pendientes ([2](#2-redes-sociales--parcialmente-resuelto-28-jul)),
-señales de confianza ([3](#3-señales-de-confianza-ausentes)) y activar el deploy
-automático ([5](#5-activar-el-deploy-automático--1-minuto-y-es-lo-único-que-requiere-tus-manos)).
+señales de confianza ([3](#3-señales-de-confianza-ausentes)), activar el deploy
+automático ([5](#5-activar-el-deploy-automático--1-minuto-y-es-lo-único-que-requiere-tus-manos))
+y preparar Meta Ads ([8](#8-meta-ads-facebookinstagram--nuevo-11-ago)).
 
 > 📌 **Nota de trabajo (4 de agosto):** al redactar prompts para Claude en
 > Chrome, ser conciso y pedirle explícitamente que si no encuentra algo en
@@ -237,6 +238,42 @@ settings → Configuration, porque Zipchat sobreescribía cualquier query
 string del link con sus propios parámetros UTM — decisión consciente:
 se prioriza la experiencia del cliente (mensaje con contexto) sobre el
 tracking interno de origen de conversación de Zipchat.
+
+---
+
+## 8. Meta Ads (Facebook/Instagram) — nuevo, 11 ago
+
+Arrancó el proyecto de publicidad en Meta. Antes de gastar un peso se
+verificó algo importante: **Meta prohíbe anunciar armas, municiones y
+accesorios de armas** (política oficial, riesgo real de baneo permanente
+de la cuenta publicitaria). Del catálogo, pesca y binoculares (~84%) sí
+se pueden anunciar; miras, diábolos/municiones y rifles/pistolas de aire
+(~16%) no. Esto no cambia nada en la tienda — solo qué se muestra en los
+anuncios. Detalle completo en `INSTRUCTIVO-META-ADS.md`.
+
+**Ya hecho (código):**
+- Setting nuevo en el tema — Personalizar tema → **"Meta Ads (Facebook /
+  Instagram)"** — para pegar el Pixel ID sin tocar código.
+- Snippet `meta-pixel.liquid` con los eventos PageView, ViewContent,
+  AddToCart e InitiateCheckout. Mientras el campo esté vacío, no carga
+  nada. El evento Purchase no se puede armar por código (el checkout no
+  vive en el tema) — lo agrega el canal oficial de Meta en Shopify (paso
+  5 de abajo).
+- Script `scripts/meta-ads.py` para listar, reportar, pausar/activar
+  campañas y ajustar presupuesto por la Marketing API de Meta.
+
+**Lo que falta (tú) — instructivo paso a paso en `INSTRUCTIVO-META-ADS.md`:**
+1. Ubicar el Business Manager (el dominio ya está verificado, alguien lo
+   creó antes) o crear uno nuevo.
+2. Vincular la página de Facebook y abrir Instagram si no existe.
+3. Crear la cuenta publicitaria en MXN + método de pago.
+4. Crear un System User con token permanente (igual que se hizo para
+   Shopify) y dármelo.
+5. Instalar el canal oficial "Facebook & Instagram" en Shopify, crear el
+   pixel ahí y darme el Pixel ID (o pegarlo tú mismo en el tema).
+
+Con eso armo la primera campaña — solo pesca, presupuesto que definas,
+**pausada hasta que la revises** — y quedo operando el día a día.
 
 ---
 

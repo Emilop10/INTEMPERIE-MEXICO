@@ -1,0 +1,46 @@
+{%- comment -%}
+  Meta Pixel (Facebook/Instagram Ads). No hace nada mientras
+  settings.meta_pixel_id esté vacío — se activa pegando el ID en
+  Personalizar tema → Meta Ads (Facebook / Instagram).
+{%- endcomment -%}
+{%- if settings.meta_pixel_id != blank -%}
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '{{ settings.meta_pixel_id }}');
+    fbq('track', 'PageView');
+
+    {%- if template contains 'product' and product != blank -%}
+      fbq('track', 'ViewContent', {
+        content_ids: ['{{ product.selected_or_first_available_variant.id | default: product.id }}'],
+        content_type: 'product',
+        value: {{ product.selected_or_first_available_variant.price | default: product.price | money_without_currency | remove: ',' }},
+        currency: '{{ cart.currency.iso_code }}'
+      });
+    {%- endif -%}
+
+    {%- if template contains 'cart' -%}
+      fbq('track', 'InitiateCheckout', {
+        value: {{ cart.total_price | money_without_currency | remove: ',' }},
+        currency: '{{ cart.currency.iso_code }}',
+        num_items: {{ cart.item_count }}
+      });
+    {%- endif -%}
+  </script>
+  {%- comment -%}
+    Purchase NO se puede rastrear desde aquí: el checkout de Shopify
+    (no-Plus) no usa este layout, es una página aparte. Se resuelve
+    instalando el canal de ventas oficial "Facebook & Instagram" de
+    Shopify (agrega el evento Purchase + Conversions API del lado del
+    servidor automáticamente) — ver INSTRUCTIVO-META-ADS.md. Alternativa
+    manual: Configuración → Pago → Scripts adicionales, solo editable
+    desde el admin, no por API.
+  {%- endcomment -%}
+  <noscript>
+    <img height="1" width="1" style="display:none" alt=""
+      src="https://www.facebook.com/tr?id={{ settings.meta_pixel_id }}&ev=PageView&noscript=1">
+  </noscript>
+{%- endif -%}

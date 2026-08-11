@@ -32,10 +32,14 @@
     {% endif %}
 
     {% render 'meta-tags' %}
+    {% render 'meta-pixel' %}
 
     <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+    {%- if settings.meta_pixel_id != blank -%}
+      <script src="{{ 'meta-pixel.js' | asset_url }}" defer="defer"></script>
+    {%- endif -%}
     <script src="{{ 'details-disclosure.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'details-modal.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'search-form.js' | asset_url }}" defer="defer"></script>
