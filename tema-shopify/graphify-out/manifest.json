@@ -180,8 +180,8 @@
     "semantic_hash": ""
   },
   "config/settings_schema.json": {
-    "mtime": 1786065904.3720024,
-    "ast_hash": "cc4804219fed3ddfaeb68b41ee2a9a01",
+    "mtime": 1786408488.556552,
+    "ast_hash": "be5d02d8002a0f54bc4a36960db056b9",
     "semantic_hash": ""
   },
   "locales/bg.json": {
@@ -987,6 +987,11 @@
   "assets/imx-related-diversify.js": {
     "mtime": 1786076905.3453703,
     "ast_hash": "ea6db23d4b98af018729a4ad8c989261",
+    "semantic_hash": ""
+  },
+  "assets/meta-pixel.js": {
+    "mtime": 1786408547.7165556,
+    "ast_hash": "f4e6de62f99c6f74adc92e7bf5685e98",
     "semantic_hash": ""
   }
 }

@@ -37,5 +37,6 @@
   "35": "constants.js",
   "36": "theme-editor.js",
   "37": "QuantityInput",
-  "38": "imx-related-diversify.js"
+  "38": "imx-related-diversify.js",
+  "39": "meta-pixel.js"
 }

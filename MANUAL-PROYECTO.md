@@ -1670,10 +1670,111 @@ que el token de Shopify se generó a mano en `INSTRUCTIVO-APP-SHOPIFY.md`)
 el código pero inactivo (el campo `meta_pixel_id` vacío no carga nada)
 hasta que el cliente complete esa parte y dé el ID.
 
+### Lo que apareció al ejecutar el instructivo (11-12 de agosto): nada partía de cero
+
+El plan de arriba asumía una cuenta nueva. La realidad, descubierta paso a
+paso vía Claude en Chrome guiando al cliente por Business Manager, fue
+otra — **todo ya existía desde el 16 de febrero de 2026**, sin que
+quedara documentado en ningún lado del proyecto:
+
+- **Business Manager, página, cuenta publicitaria y canal de Shopify ya
+  estaban conectados.** Cuenta publicitaria "Intemperie México Ads"
+  (`act_1264279685553718`), moneda MXN, dos tarjetas cargadas
+  (Amex ...8065, Visa ...6497).
+- **Ya había gasto real:** $1,823.44 MXN entre el 17 de febrero y el 13
+  de abril de 2026 (39 días con gasto). Desde mediados de abril, cero
+  gasto — pero **6 campañas seguían marcadas "Activas"** cuatro meses
+  después, sin entregar nada (`"Test"`, `"Test 3D"`, `"Nueva campaña de
+  Interacción"`, `"PAGINA DE FACEBOOK"` — nombres de una configuración
+  de prueba/agencia dejada a medias). **Se eliminaron las 6** por
+  instrucción explícita del cliente, confirmada aparte por tratarse de
+  una acción destructiva (el modo automático del harness la bloqueó
+  hasta recibir esa confirmación).
+- **El pixel de Meta ya estaba activo** ("Intemperie México Pixel", ID
+  `2011984246408291`), inyectado automáticamente por la app oficial
+  "Facebook & Instagram" de Shopify — instalada desde el 16 de febrero.
+  Por eso el setting `meta_pixel_id` del tema (ver arriba) se deja
+  **vacío a propósito**: si se llenara, se duplicarían los eventos
+  (PageView, AddToCart, etc. contados dos veces por dos pixeles
+  cargando el mismo ID), lo cual arruina la optimización de Meta. El
+  snippet manual queda como plan B inerte, no en uso.
+- **El catálogo de Meta estaba desactualizado y con productos
+  prohibidos.** Solo 56 de 250+ productos activos estaban sincronizados
+  (los del alta inicial de febrero; nada agregado después se había
+  publicado nunca al canal). Se corrigió en dos pasadas desde Shopify
+  Admin → Productos → Buscar y filtrar → seleccionar todos los
+  resultados → "Más acciones":
+  1. Publicar **todos** los productos al canal "Facebook & Instagram"
+     (corrigió la desactualización, pero de paso publicó también las
+     categorías prohibidas — riesgo real de baneo mientras estuvo así).
+  2. Excluir del canal, de inmediato: colección "Rifles y Pistolas de
+     Aire" completa (20), "Diábolos y Municiones" completa (31), y solo
+     la subcolección "Miras Telescópicas" (8) — sin tocar Binoculares,
+     Monoculares ni Accesorios de Óptica, que sí quedan anunciables.
+     Total: 59 productos excluidos. Verificado en un producto de prueba
+     ("Pistola Bullet's P30 Eléctrica Full-Auto H&K") que el canal
+     "Facebook & Instagram" ya no aparece en su panel de publicación.
+
+### Fricciones para generar el token del System User (para no repetirlas)
+
+Documentado porque costó varias vueltas, igual que el instructivo de
+Shopify documentó el flujo OAuth que sí funciona:
+
+1. **Crear un Usuario del Sistema exige que el negocio tenga al menos
+   una app registrada.** Sin eso, el botón "Añadir" queda inactivo con
+   el aviso "una aplicación debe formar parte de este porfolio
+   empresarial".
+2. **Crear esa app exige verificar la cuenta personal** (teléfono o
+   tarjeta) la primera vez — se usó el teléfono del cliente, nunca una
+   tarjeta.
+3. **El nombre "Claude Integration System User" fue rechazado** por Meta
+   como "nombre no válido" (probablemente por la palabra "System User"
+   duplicando el tipo de objeto) — se resolvió simplificando a "Claude
+   Integration".
+4. **Asignar activos al usuario del sistema no basta para generar el
+   token.** El paso "Asignar permisos" del asistente de "Generar
+   identificador" mostraba "No hay permisos disponibles" a pesar de que
+   el usuario del sistema ya era Administrador de la app. Causa real: la
+   app se había creado **sin ningún caso de uso** ("Crea una aplicación
+   sin un caso de uso"), así que no existía ningún producto (Marketing
+   API) del que ofrecer permisos. Se resolvió en Panel de la app →
+   Casos de uso → Añadir → **"Crea y administra anuncios con la API de
+   marketing"**. Tras eso, `ads_management`, `ads_read`,
+   `business_management` y `catalog_management` aparecieron disponibles
+   de inmediato.
+5. **No hizo falta Verificación de la empresa (Business Verification).**
+   Apareció como opción disponible ("Sin verificar" con botón "Iniciar
+   verificación") pero **no se tocó** — la app quedó en modo Desarrollo
+   ("Marketing API Access Tier: Limited"), suficiente para que un
+   administrador del propio negocio use esos permisos sobre sus propios
+   activos. Verificar la empresa (RFC, acta constitutiva, identificación)
+   solo sería necesario para subir de nivel de acceso o publicar la app
+   para terceros — no es el caso.
+
+**División de responsabilidades que se mantuvo todo el proceso:**
+navegación y verificación de estado (leer pantallas, confirmar qué
+existe) sí las hizo Claude en Chrome; crear el usuario del sistema,
+asignarle activos y el clic final de generar/copiar el token los hizo
+el cliente directamente con su propio mouse — son las acciones que
+otorgan acceso administrativo y una credencial capaz de gastar dinero,
+y ese límite lo puso primero el propio Claude en Chrome al negarse a
+ejecutarlas, con buen criterio.
+
+### Estado al 12 de agosto de 2026
+
+- Token de System User verificado por API: válido, tipo `SYSTEM_USER`,
+  con los 4 scopes necesarios.
+- Cuenta publicitaria confirmada: activa, MXN, sin campañas (feed
+  limpio tras el borrado).
+- Pixel confirmado activo (vía canal oficial, no vía el snippet manual).
+- Catálogo corregido: sin armas, munición ni miras.
+- **A petición del cliente, el lanzamiento de la primera campaña queda
+  en pausa** hasta que confirme una lista adicional de pendientes antes
+  de invertir presupuesto real.
+
 ### Pendiente
 
-Todo lo que requiere credenciales o acceso a la cuenta de Meta del
-cliente — ver sección 8 de `PENDIENTES.md` y el instructivo. Una vez que
-llegue el token del System User y el Pixel ID, la primera campaña
-(solo pesca, presupuesto a definir) se arma y se deja **pausada** para
-revisión antes de activarla.
+Ver sección 8 de `PENDIENTES.md`. La infraestructura de medición y la
+cuenta publicitaria ya están operativas — lo que falta es la decisión
+del cliente sobre qué resolver antes de lanzar, y después, presupuesto
+y aprobación de la primera campaña (solo pesca, pausada hasta revisión).

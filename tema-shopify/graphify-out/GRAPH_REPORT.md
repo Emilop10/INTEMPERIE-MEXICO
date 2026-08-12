@@ -1,16 +1,16 @@
-# Graph Report - tema-shopify  (2026-08-08)
+# Graph Report - tema-shopify  (2026-08-12)
 
 ## Corpus Check
-- 108 files · ~239,698 words
+- 109 files · ~239,820 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 459 nodes · 705 edges · 39 communities (21 shown, 18 thin omitted)
+- 460 nodes · 705 edges · 40 communities (22 shown, 18 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 3 edges (avg confidence: 0.7)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `bc436f35`
+- Built from commit: `b0dc2d6c`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -68,7 +68,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (39 total, 18 thin omitted)
+## Communities (40 total, 18 thin omitted)
 
 ### Community 0 - "global.js"
 Cohesion: 0.06
@@ -145,7 +145,7 @@ _Questions this graph is uniquely positioned to answer:_
 - **Why does `onKeyUpEscape()` connect `CartDrawer` to `global.js`, `FacetFiltersForm`?**
   _High betweenness centrality (0.076) - this node is a cross-community bridge._
 - **Why does `CartPerformance` connect `CartItems` to `global.js`?**
-  _High betweenness centrality (0.052) - this node is a cross-community bridge._
+  _High betweenness centrality (0.051) - this node is a cross-community bridge._
 - **What connects `PUB_SUB_EVENTS`, `selectors`, `attributes` to the rest of the system?**
   _5 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `global.js` be split into smaller, more focused modules?**

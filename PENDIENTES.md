@@ -6,7 +6,9 @@ el resto de la auditoría ya quedó implementado y en vivo.
 **Abiertos ahora mismo:** redes sociales pendientes ([2](#2-redes-sociales--parcialmente-resuelto-28-jul)),
 señales de confianza ([3](#3-señales-de-confianza-ausentes)), activar el deploy
 automático ([5](#5-activar-el-deploy-automático--1-minuto-y-es-lo-único-que-requiere-tus-manos))
-y preparar Meta Ads ([8](#8-meta-ads-facebookinstagram--nuevo-11-ago)).
+y lanzar la primera campaña de Meta Ads ([8](#8-meta-ads-facebookinstagram--infraestructura-lista-12-ago)) —
+la infraestructura ya está lista, solo falta que el cliente confirme sus
+pendientes antes de invertir presupuesto real.
 
 > 📌 **Nota de trabajo (4 de agosto):** al redactar prompts para Claude en
 > Chrome, ser conciso y pedirle explícitamente que si no encuentra algo en
@@ -241,7 +243,7 @@ tracking interno de origen de conversación de Zipchat.
 
 ---
 
-## 8. Meta Ads (Facebook/Instagram) — nuevo, 11 ago
+## 8. Meta Ads (Facebook/Instagram) — infraestructura lista, 12 ago
 
 Arrancó el proyecto de publicidad en Meta. Antes de gastar un peso se
 verificó algo importante: **Meta prohíbe anunciar armas, municiones y
@@ -249,31 +251,38 @@ accesorios de armas** (política oficial, riesgo real de baneo permanente
 de la cuenta publicitaria). Del catálogo, pesca y binoculares (~84%) sí
 se pueden anunciar; miras, diábolos/municiones y rifles/pistolas de aire
 (~16%) no. Esto no cambia nada en la tienda — solo qué se muestra en los
-anuncios. Detalle completo en `INSTRUCTIVO-META-ADS.md`.
+anuncios.
 
-**Ya hecho (código):**
-- Setting nuevo en el tema — Personalizar tema → **"Meta Ads (Facebook /
-  Instagram)"** — para pegar el Pixel ID sin tocar código.
-- Snippet `meta-pixel.liquid` con los eventos PageView, ViewContent,
-  AddToCart e InitiateCheckout. Mientras el campo esté vacío, no carga
-  nada. El evento Purchase no se puede armar por código (el checkout no
-  vive en el tema) — lo agrega el canal oficial de Meta en Shopify (paso
-  5 de abajo).
-- Script `scripts/meta-ads.py` para listar, reportar, pausar/activar
-  campañas y ajustar presupuesto por la Marketing API de Meta.
+**Sorpresa al revisar la cuenta (vía Claude en Chrome guiando al
+cliente):** no partíamos de cero. Ya existía todo desde el 16 de febrero
+— cuenta publicitaria, pixel activo, canal de Shopify instalado, y
+$1,823 MXN de gasto real entre febrero y abril. Quedaban 6 campañas
+"activas" pero sin entregar nada desde hace 4 meses (config de
+prueba/agencia abandonada) — **se eliminaron por instrucción del
+cliente**. También se corrigió el catálogo de Meta: estaba desactualizado
+(solo 56 de 250+ productos) y al republicar todo por error quedaron
+incluidas armas y municiones — **ya se excluyeron 59 productos
+prohibidos** del canal, confirmado en vivo. Detalle completo de todo el
+proceso en la sección 29 del `MANUAL-PROYECTO.md`.
 
-**Lo que falta (tú) — instructivo paso a paso en `INSTRUCTIVO-META-ADS.md`:**
-1. Ubicar el Business Manager (el dominio ya está verificado, alguien lo
-   creó antes) o crear uno nuevo.
-2. Vincular la página de Facebook y abrir Instagram si no existe.
-3. Crear la cuenta publicitaria en MXN + método de pago.
-4. Crear un System User con token permanente (igual que se hizo para
-   Shopify) y dármelo.
-5. Instalar el canal oficial "Facebook & Instagram" en Shopify, crear el
-   pixel ahí y darme el Pixel ID (o pegarlo tú mismo en el tema).
+**Ya hecho:**
+- Setting del tema, snippet del pixel (`meta-pixel.liquid`) y JS
+  (`meta-pixel.js`) — quedan **inactivos a propósito**: el pixel real ya
+  corre vía el canal oficial de Shopify desde febrero, activar el manual
+  duplicaría eventos.
+- `scripts/meta-ads.py` para listar, reportar, pausar/activar campañas y
+  presupuesto.
+- Token de System User creado, verificado y funcionando (`ads_management`,
+  `ads_read`, `business_management`, `catalog_management`).
+- Cuenta publicitaria limpia, catálogo corregido, pixel confirmado activo.
+- `INSTRUCTIVO-FACEBOOK-ADS.md` — guía operativa completa (cómo se opera
+  la cuenta, convenciones de nombres, reglas de presupuesto, comandos del
+  script, lecciones aprendidas de esta puesta en marcha).
 
-Con eso armo la primera campaña — solo pesca, presupuesto que definas,
-**pausada hasta que la revises** — y quedo operando el día a día.
+**A petición del cliente, el lanzamiento de la primera campaña queda en
+pausa** hasta que confirme una lista de pendientes adicionales antes de
+invertir presupuesto real. En cuanto la dé, se arma la campaña — solo
+pesca — y se deja **pausada para su revisión** antes de activarla.
 
 ---
 

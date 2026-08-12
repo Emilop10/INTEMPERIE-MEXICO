@@ -3299,6 +3299,17 @@
       "norm_label": "removelistsemantic()"
     },
     {
+      "label": "meta-pixel.js",
+      "file_type": "code",
+      "source_file": "assets/meta-pixel.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "assets_meta_pixel",
+      "community": 39,
+      "community_name": "meta-pixel.js",
+      "norm_label": "meta-pixel.js"
+    },
+    {
       "label": "password-modal.js",
       "file_type": "code",
       "source_file": "assets/password-modal.js",
@@ -13543,5 +13554,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "bc436f35e610ec51d632923536888193822ee009"
+  "built_at_commit": "b0dc2d6c98e5031b6a5909ecac889ca1dbc18b5b"
 }
