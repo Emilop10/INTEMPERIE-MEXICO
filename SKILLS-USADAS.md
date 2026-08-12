@@ -152,6 +152,63 @@ consultables tal como están.
 
 ---
 
+### "Claude en Chrome" (extensión de navegador) — usada intensivamente el 11-12 de agosto de 2026
+**Qué es:** extensión que deja a Claude navegar y hacer clics en un
+navegador real con la sesión del usuario ya iniciada, a partir de un
+prompt de texto — no es una skill instalable, es una superficie
+distinta de Claude con su propio criterio de qué ejecutar y qué no.
+
+**Para qué se usó:** todo el proceso de configurar Meta Business
+Manager para Intemperie México (ver `INSTRUCTIVO-META-ADS.md` e
+`INSTRUCTIVO-FACEBOOK-ADS.md`) — vincular la página, revisar la cuenta
+publicitaria existente, instalar el canal de Shopify, corregir el
+catálogo, y crear la app/usuario del sistema necesarios para el token.
+Fue la primera vez en el proyecto que se usó para un flujo largo de
+varias idas y vueltas (más de 10 prompts encadenados), no para una
+tarea puntual.
+
+**Patrón de trabajo que funcionó (y por qué):**
+- **Prompts concisos, con pasos numerados y qué reportar al final** —
+  ya estaba anotado como buena práctica desde el 4 de agosto
+  (`PENDIENTES.md`), y se confirmó aquí a mayor escala.
+- **Modo "guía, no ejecutes"** para las acciones sensibles: se le pidió
+  explícitamente que navegara y describiera qué botón tenía enfrente,
+  pero que los clics de crear el usuario del sistema, asignar activos y
+  generar el token los hiciera el dueño de la cuenta con su propio
+  mouse. Esto se volvió necesario porque **Claude en Chrome se negó por
+  su cuenta** a crear el usuario del sistema y generar el token la
+  primera vez que se le pidió completo — juicio correcto: son acciones
+  que otorgan acceso administrativo y una credencial capaz de gastar
+  dinero real, del tipo que no debería ejecutar un agente sin que el
+  dueño confirme cada clic. Esa misma línea (navegación y acciones de
+  bajo riesgo sí, acceso/credenciales/pagos no) se mantuvo el resto del
+  proceso sin que hiciera falta repetir la instrucción cada vez.
+- **Freno explícito para verificación de identidad/negocio:** en un
+  prompt se le pidió detenerse si aparecía cualquier paso de
+  "Verificación de la empresa" (documentos legales, RFC) — apareció, y
+  se detuvo ahí tal como se le pidió, sin intentar completarlo ni
+  rodearlo.
+- **Diagnóstico antes de actuar en masa:** cuando el catálogo de Meta
+  apareció desactualizado, primero se le pidió confirmar la causa
+  (filtrar y contar productos sin publicar) antes de ejecutar una
+  acción sobre 250+ productos a ciegas.
+
+**Limitación real encontrada:** al ejecutar una corrección masiva
+("publicar todos los productos al canal") sin filtrar por categoría
+primero, se publicaron también productos prohibidos (armas, munición)
+al catálogo de Meta — tuvo que corregirse con una segunda pasada
+explícita de exclusión. Lección para prompts futuros: cuando una
+acción masiva puede tocar categorías con reglas distintas, hay que
+decir explícitamente qué excluir en el mismo prompt, no asumir que se
+va a inferir solo.
+
+**Vigente para:** cualquier tarea futura que requiera tocar una cuenta
+externa con sesión de navegador (Meta, Google, cualquier plataforma sin
+API accesible desde este entorno) — usar el mismo patrón de prompts
+numerados + modo guía para lo sensible.
+
+---
+
 ## Disponibles pero no usadas todavía (relevantes para este proyecto)
 
 Estas skills están disponibles en el entorno y podrían aplicar a trabajo
