@@ -7,7 +7,9 @@ esto se va a hacer casi a diario, aquí queda el proceso exacto para no
 tener que reexplicarlo cada vez.
 
 **Primera vez que se hizo:** 10 de agosto de 2026 (ver sección 28 del
-manual para el detalle completo de esa corrida).
+manual para el detalle completo de esa corrida). Desde el 12 de agosto
+el proceso corre con un script guardado en el repo
+(`scripts/conciliar-inventario.py`), no a mano cada vez.
 
 ---
 
@@ -75,6 +77,17 @@ OAuth manual — son los mismos 7 pasos de siempre, 5 minutos.
   POS, porque un conteo negativo casi siempre significa que se vendió
   algo sin existencia suficiente registrada.
 
+## Cómo se corre (script)
+
+```bash
+export SHOPIFY_ADMIN_TOKEN=shpat_...
+python3 scripts/conciliar-inventario.py conteo-de-hoy.xlsx resultado.xlsx
+```
+
+Lee el Excel, cruza por SKU contra Shopify, sube los cambios, y escribe
+`resultado.xlsx` con las 3 columnas nuevas, cada fila coloreada, y una
+pestaña "Resumen" con los totales por estatus.
+
 ## Notas técnicas (por si la sesión de Claude cambia y hay que retomar)
 
 - Traer productos: `GET /admin/api/2024-01/products.json?limit=250` con
@@ -90,3 +103,10 @@ OAuth manual — son los mismos 7 pasos de siempre, 5 minutos.
   `inventory_item_id` viene en cada variante del producto.
 - Con ~140 actualizaciones, calcula medio segundo entre llamada y llamada
   para no chocar con el límite de la API (2 req/s en el bucket estándar).
+
+## Historial de corridas
+
+| Fecha | Filas conteo | Verde | Amarillo | Rojo | Gris | Actualizaciones |
+|---|---|---|---|---|---|---|
+| 10 ago 2026 | 1,207 | 228 | 109 | 766 | 104 | 143 |
+| 12 ago 2026 | 1,175 | 306 | 20 | 746 | 103 | 23 |

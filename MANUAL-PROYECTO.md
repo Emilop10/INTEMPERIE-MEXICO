@@ -1595,6 +1595,17 @@ mayor a 0) — las 143 vía API, con 0 errores. Se detectaron además 12
 productos activos en Shopify que no aparecían en el conteo del día (no se
 tocaron, quedan para que el cliente confirme si es intencional).
 
+### Segunda corrida (12 de agosto de 2026) — ya como script reutilizable
+
+La primera vez se hizo con código ad-hoc dentro de la sesión, sin quedar
+guardado. Esta vez se guardó como `scripts/conciliar-inventario.py`
+(misma lógica documentada arriba, ahora reutilizable con dos argumentos:
+Excel de entrada y de salida). Resultado de 1,175 filas del conteo: 306
+verde, 20 amarillo, 746 rojo, 103 gris — 23 actualizaciones subidas a
+Shopify, 0 errores. El token se generó de nuevo (los contenedores de
+sesión no lo conservan entre sesiones distintas) con el mismo flujo OAuth
+manual de `INSTRUCTIVO-APP-SHOPIFY.md`.
+
 ---
 
 ## 29. Meta Ads (Facebook/Instagram): medición y catálogo anunciable
