@@ -3,12 +3,15 @@
 Temas abiertos de la tienda. Casi todos requieren una decisión o datos tuyos;
 el resto de la auditoría ya quedó implementado y en vivo.
 
-**Abiertos ahora mismo:** redes sociales pendientes ([2](#2-redes-sociales--parcialmente-resuelto-28-jul)),
-señales de confianza ([3](#3-señales-de-confianza-ausentes)), activar el deploy
-automático ([5](#5-activar-el-deploy-automático--1-minuto-y-es-lo-único-que-requiere-tus-manos))
-y lanzar la primera campaña de Meta Ads ([8](#8-meta-ads-facebookinstagram--infraestructura-lista-12-ago)) —
-la infraestructura ya está lista, solo falta que el cliente confirme sus
-pendientes antes de invertir presupuesto real.
+**Abiertos ahora mismo:** crear y vincular Instagram ([2](#2-redes-sociales--parcialmente-resuelto-28-jul)),
+TikTok cuando exista, y lanzar la primera campaña de Meta Ads
+([8](#8-meta-ads-facebookinstagram--infraestructura-lista-12-ago)) — la
+infraestructura ya está lista, solo falta Instagram y que el cliente
+confirme sus pendientes antes de invertir presupuesto real.
+
+**Resuelto el 13 de agosto:** señales de confianza en la homepage
+([3](#3-señales-de-confianza-ausentes--resuelto-13-agosto-2026)) y el deploy
+automático ([5](#5-activar-el-deploy-automático--resuelto-13-agosto-2026)).
 
 > 📌 **Nota de trabajo (4 de agosto):** al redactar prompts para Claude en
 > Chrome, ser conciso y pedirle explícitamente que si no encuentra algo en
@@ -21,7 +24,7 @@ vivo de inmediato.
 **Dominio principal:** `https://intemperiemexico.com` — conectado y
 verificado el 3 de agosto de 2026. `wfuxvx-yn.myshopify.com` ahora
 redirige automáticamente al dominio propio.
-**Última actualización:** 7 de agosto de 2026
+**Última actualización:** 13 de agosto de 2026
 
 **Correo profesional:** Google Workspace reactivado con `admin@intemperiemexico.com`
 como cuenta principal. DNS (MX, SPF, DKIM) verificado y propagado. 6 alias activos
@@ -56,9 +59,18 @@ homepage y en el mega-menú (este último ya es visible en el sitio en vivo):
 ✅ **Facebook conectado**: `https://www.facebook.com/people/Intemperie-México/61588253103964/`
 ya aparece como ícono en el footer del tema de trabajo.
 
-⏳ **Pendiente**: Instagram y TikTok — de momento solo existe la página de
-Facebook. Cuando se abran esas cuentas, mandar el link y se conecta igual de
-rápido.
+⏳ **Pendiente — Instagram (13 agosto 2026):** todavía no existe cuenta de
+Instagram del negocio (confirmado: "No se ha añadido ninguna cuenta de
+Instagram" en el Business Manager). Sin ella, los anuncios de Meta solo
+pueden salir en Facebook, perdiendo las colocaciones que mejor suelen
+rendir (Reels, Explorar). **Lo tienes que crear tú** — requiere
+verificación por teléfono/correo, no se puede delegar. Pasos exactos ya
+documentados en [`INSTRUCTIVO-META-ADS.md`](./INSTRUCTIVO-META-ADS.md)
+(Paso 2): se crea directo desde Meta Business Suite, ya vinculada a la
+página de Facebook existente, sin pasar por la app de Instagram.
+
+⏳ **Pendiente:** TikTok — cuando se abra esa cuenta, mandar el link y se
+conecta igual de rápido.
 
 ---
 
@@ -77,7 +89,7 @@ de cierre, con los 3 puntos confirmados por el cliente:
   texto ya usado en la ficha de producto, para no crear otra inconsistencia
   de copy)
 - Devoluciones: "7 días para cambios o devoluciones", con link directo a la
-  política de devoluciones real (`shop.policies.refund_policy.url`)
+  política de devoluciones real (`shop.refund_policy.url`)
 
 Implementado en `sections/brand-experience.liquid` (nueva sección +
 settings `trust_*` editables desde Personalizar tema) y
@@ -86,30 +98,26 @@ settings `trust_*` editables desde Personalizar tema) y
 
 ---
 
-## 5. Activar el deploy automático — **1 minuto, y es lo único que requiere tus manos**
+## 5. Activar el deploy automático — ✅ resuelto (13 agosto 2026)
 
 Hasta el 7 de agosto, guardar código en GitHub **no lo subía a la tienda**.
 Eran dos cajones separados. Eso hizo que tres arreglos seguidos de la barra
 deslizable parecieran no funcionar: estaban guardados, pero nunca habían
 llegado a Shopify (ver sección 25 del manual).
 
-Ya quedó resuelto por dos vías: ahora los cambios se pueden subir por API en
-el momento, y además hay un mecanismo que lo hace solo en cada guardado.
+El mecanismo (`.github/workflows/deploy-shopify.yml`) ya existía desde el 7
+de agosto pero le faltaba el secret `SHOPIFY_ADMIN_TOKEN` en GitHub —
+llevaba fallando en silencio varios commits sin que nadie lo notara. El
+cliente lo configuró el 13 de agosto (GitHub → Settings → Secrets and
+variables → Actions). Verificado reintentando la corrida fallida más
+reciente: terminó en éxito.
 
-**Lo que falta (tú):** pegar el token para que el automático funcione.
+Desde ahora, cualquier push que toque `tema-shopify/` se despliega solo,
+sin pasos manuales.
 
-1. GitHub → repositorio → **Settings → Secrets and variables → Actions**
-2. **New repository secret**
-3. Nombre: `SHOPIFY_ADMIN_TOKEN`
-4. Valor: el token `shpat_...` (te lo pasé por chat; guárdalo en tu gestor
-   de contraseñas — **no debe escribirse en este repositorio**)
-
-**No es urgente.** Sin esto los cambios igual se pueden subir a mano con
-`python3 scripts/deploy-shopify.py`. El secret solo evita tener que
-acordarse de hacerlo.
-
-> Si el token deja de servir en el futuro, regenerarlo toma 5 minutos con
-> `INSTRUCTIVO-APP-SHOPIFY.md`, y solo hay que actualizar este secret.
+> Si el token deja de servir en el futuro (expira o cambian los scopes de
+> la app), regenerarlo toma 5 minutos con `INSTRUCTIVO-APP-SHOPIFY.md`, y
+> solo hay que actualizar este mismo secret.
 
 ---
 

@@ -838,8 +838,12 @@ consultable (análisis AST local, sin mandar código a ningún servidor).
 A diferencia de Browser Harness, no depende de WebSocket, así que sí se
 pudo instalar en este entorno. Corrido sobre `tema-shopify/`, generó:
 
-- **459 nodos, 705 conexiones, 39 comunidades** de código relacionado
-  (cifra al 7 de agosto de 2026; era 452/697/37 en la primera corrida)
+- **460 nodos, 705 conexiones, 40 comunidades** de código relacionado
+  (cifra al 13 de agosto de 2026; era 452/697/37 en la primera corrida,
+  459/705/39 al 7 de agosto). Los cambios de la franja de confianza de
+  esta fecha no agregaron nodos nuevos (`graphify update` los reportó sin
+  cambios de topología) porque son marcado y estilos sobre una sección ya
+  existente, no componentes nuevos
 - Los "god nodes" (componentes más centrales de la arquitectura del
   tema): `PredictiveSearch`, `FacetFiltersForm`, `SlideshowComponent`,
   `CartItems`, `CartDrawer`, `MenuDrawer`, entre otros
@@ -1213,11 +1217,16 @@ antes de subirlo, así que correrlo dos veces seguidas no hace nada la
 segunda vez. Detalle completo en
 [`scripts/README-deploy.md`](./scripts/README-deploy.md).
 
-### Automático en cada push
+### Automático en cada push — ✅ activo desde el 13 de agosto de 2026
 `.github/workflows/deploy-shopify.yml` corre el script en cada push que
-toque `tema-shopify/`. Requiere **un paso manual, una sola vez**: agregar
-el secret `SHOPIFY_ADMIN_TOKEN` en GitHub → Settings → Secrets and
-variables → Actions.
+toque `tema-shopify/`. El secret `SHOPIFY_ADMIN_TOKEN` (GitHub →
+Settings → Secrets and variables → Actions) llevaba varios commits sin
+configurarse — el workflow fallaba en silencio con "Falta
+SHOPIFY_ADMIN_TOKEN" desde el 8 de agosto sin que nadie lo notara, así
+que el código quedaba en el repo pero no llegaba a la tienda hasta que
+se corría el script a mano. El cliente lo configuró el 13 de agosto;
+verificado reintentando la corrida fallida más reciente
+(`rerun_failed_jobs`), que terminó en `success`.
 
 ### Qué NO sube, a propósito
 `config/settings_data.json` guarda lo que se edita en el personalizador de
