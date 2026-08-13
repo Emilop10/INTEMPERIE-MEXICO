@@ -217,8 +217,8 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10h11M3 10l4-4M3 10l4 4"/><path d="M21 14H10M21 14l-4-4M21 14l-4 4"/></svg>
           <span>
             {{ section.settings.trust_returns | escape }}
-            {%- if shop.policies.refund_policy.url != blank -%}
-              — <a href="{{ shop.policies.refund_policy.url }}">ver política</a>
+            {%- if shop.refund_policy.url != blank -%}
+              — <a href="{{ shop.refund_policy.url }}">ver política</a>
             {%- endif -%}
           </span>
         </div>
