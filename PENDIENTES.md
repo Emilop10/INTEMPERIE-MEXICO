@@ -62,23 +62,27 @@ rápido.
 
 ---
 
-## 3. Señales de confianza ausentes
+## 3. Señales de confianza ausentes — ✅ resuelto (13 agosto 2026)
 
-La tienda vende rifles y ópticas de precio alto, pero la página **no comunica en
-ningún lado**:
+La tienda vende rifles y ópticas de precio alto, pero la página no comunicaba
+en ningún lado tiempos de entrega, garantía ni política de devoluciones (las
+políticas legales existen, link en el footer, pero prácticamente nadie las
+abre).
 
-- Tiempos de entrega
-- Política de garantía
-- Si hay devoluciones o cambios
+Se agregó una franja de confianza en la homepage, justo antes de la sección
+de cierre, con los 3 puntos confirmados por el cliente:
 
-Las políticas legales existen (link en el footer) pero prácticamente nadie las abre.
+- Envío: "Entrega en 2 a 7 días hábiles a todo México"
+- Garantía: "Garantía de compra — si algo llega mal, lo resolvemos." (mismo
+  texto ya usado en la ficha de producto, para no crear otra inconsistencia
+  de copy)
+- Devoluciones: "7 días para cambios o devoluciones", con link directo a la
+  política de devoluciones real (`shop.policies.refund_policy.url`)
 
-**Propuesta:** una franja discreta antes de la sección de cierre con 3 puntos, por
-ejemplo: *"Envío en 24-48h · Garantía de fábrica · Producto verificado"*.
-
-**Qué se necesita:** confirmar los datos reales (¿cuántos días de envío? ¿qué
-garantía se ofrece? ¿se aceptan devoluciones?). El diseño y el montaje ya están
-resueltos, solo faltan los datos.
+Implementado en `sections/brand-experience.liquid` (nueva sección +
+settings `trust_*` editables desde Personalizar tema) y
+`assets/brand-tokens.css` (`.im-trust-band`), reutilizando el componente
+`.im-trust-item` que ya existía en la ficha de producto.
 
 ---
 

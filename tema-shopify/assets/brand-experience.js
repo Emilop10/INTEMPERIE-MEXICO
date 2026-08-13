@@ -146,7 +146,7 @@
   }
 
   // Reveal-on-scroll
-  var revealTargets = root.querySelectorAll('.chapter-head, .chapter-collage, .product-card, .chapter-feature, .subcat-tile, .im-ship-inner, .closing-text');
+  var revealTargets = root.querySelectorAll('.chapter-head, .chapter-collage, .product-card, .chapter-feature, .subcat-tile, .im-ship-inner, .im-trust-band-inner, .closing-text');
   if ('IntersectionObserver' in window && !reduce) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {

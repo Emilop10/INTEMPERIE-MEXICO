@@ -431,6 +431,41 @@ variant-selects .select__select {
   .im-ship-inner { opacity: 1 !important; transform: none !important; transition: none !important; }
 }
 
+/* ============================================================
+   Franja de confianza (envío / garantía / devoluciones), antes
+   del cierre de la homepage. Reutiliza .im-trust-item (definida
+   más abajo, ya usada en la ficha de producto) en layout de fila.
+   ============================================================ */
+.im-trust-band {
+  padding: 40px 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+.im-trust-band-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 28px 40px;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .5s cubic-bezier(.25,.1,.3,1), transform .5s cubic-bezier(.25,.1,.3,1);
+}
+.im-trust-band-inner.visible { opacity: 1; transform: translateY(0); }
+.im-trust-band .im-trust-item {
+  flex: 1 1 240px;
+  max-width: 300px;
+}
+@media (max-width: 749px) {
+  .im-trust-band { padding: 32px 20px; }
+  .im-trust-band-inner { gap: 20px; }
+  .im-trust-band .im-trust-item { flex: 1 1 100%; max-width: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .im-trust-band-inner { opacity: 1 !important; transform: none !important; transition: none !important; }
+}
+
 /* Nota de confianza en la ficha de producto (reemplaza un recuadro claro con
    estilos en línea que no seguía el sistema de diseño de la tienda) */
 .im-trust-note {

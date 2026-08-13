@@ -49,14 +49,27 @@ Si no aparece nada, crea un Business Manager nuevo desde
 [business.facebook.com/overview](https://business.facebook.com/overview)
 con el nombre "Intemperie México".
 
-## Paso 2 — Vincular la página de Facebook y abrir Instagram
+## Paso 2 — Vincular la página de Facebook y crear Instagram
 
 1. Dentro del Business Manager: Configuración del negocio → Cuentas →
    Páginas → agrega la página ya existente
    (`facebook.com/people/Intemperie-México/61588253103964/`).
-2. Si todavía no existe una cuenta de Instagram del negocio, créala y
-   vincúlala ahí mismo (Cuentas → Cuentas de Instagram). Sin Instagram se
-   pierden las mejores colocaciones de anuncios (Reels, Explorar).
+2. Todavía no existe cuenta de Instagram del negocio (confirmado: "No se
+   ha añadido ninguna cuenta de Instagram"). Sin ella, los anuncios solo
+   pueden salir en Facebook, perdiendo las colocaciones que mejor suelen
+   rendir (Reels, Explorar). Camino más corto — crearla ya vinculada a la
+   página, sin pasar por la app de Instagram:
+   - Meta Business Suite ([business.facebook.com](https://business.facebook.com)) → selecciona la
+     página "Intemperie México" → **Cuentas de Instagram** (o
+     Configuración del negocio → Cuentas → Cuentas de Instagram) →
+     **Crear cuenta profesional**.
+   - Sigue el flujo: nombre de usuario, foto de perfil, categoría del
+     negocio (Deportes/aire libre). Pide verificación por teléfono o
+     correo — este paso lo tiene que hacer el dueño de la cuenta, no se
+     puede delegar.
+   - Al terminar, la cuenta queda **ya vinculada** a la página de
+     Facebook y visible en Configuración del negocio → Cuentas → Cuentas
+     de Instagram, lista para usarse en las campañas del Paso 6.
 
 ## Paso 3 — Crear la cuenta publicitaria
 

@@ -418,6 +418,10 @@ configuración de tienda, en vivo de inmediato**.
   (fondo gris claro, emojis) que no seguían el sistema de diseño —
   rediseñado con iconos de línea y la misma tarjeta oscura translúcida que
   el resto del sitio
+- **Franja de confianza en la homepage** (13 agosto 2026), antes de la
+  sección de cierre: envío, garantía y devoluciones, reutilizando el
+  componente `.im-trust-item` de la ficha de producto — ver
+  `sections/brand-experience.liquid` (settings `trust_*`)
 - **WhatsApp de contacto**: `+52 777 327 7340`, botón flotante en todo el
   sitio (ya existía, preexistente al proyecto) y enlazado en el footer, la
   ficha de producto, y las páginas de políticas
@@ -507,9 +511,12 @@ negocio (no del código) — ver:
 
 📄 **[`PENDIENTES.md`](./PENDIENTES.md)**
 
-Al momento de escribir este manual, quedan abiertos: señales de confianza
-adicionales (garantía/tiempos de envío formalizados en el sitio) y ampliar
-redes sociales (Instagram/TikTok) cuando existan.
+Al momento de escribir este manual, queda abierto: crear y vincular la
+cuenta de Instagram del negocio (pasos exactos en
+`INSTRUCTIVO-META-ADS.md`, Paso 2 — lo tiene que hacer el dueño de la
+cuenta) y, más adelante, TikTok. Las señales de confianza (franja de
+envío/garantía/devoluciones en la homepage) se resolvieron el 13 de
+agosto de 2026.
 
 ---
 

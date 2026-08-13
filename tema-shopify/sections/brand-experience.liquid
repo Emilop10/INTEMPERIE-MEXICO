@@ -198,6 +198,34 @@
 
   {%- endfor -%}
 
+  {%- if section.settings.trust_show -%}
+    <section class="section is-dark im-trust-band" data-nav-theme="dark">
+      <div class="im-trust-band-inner">
+        <div class="im-trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 8v8a2 2 0 0 1-1 1.73l-7 4a2 2 0 0 1-2 0l-7-4A2 2 0 0 1 3 16V8a2 2 0 0 1 1-1.73l7-4a2 2 0 0 1 2 0l7 4A2 2 0 0 1 21 8z"/>
+            <polyline points="3.3 7 12 12 20.7 7"/>
+            <line x1="12" y1="22" x2="12" y2="12"/>
+          </svg>
+          <span>{{ section.settings.trust_shipping | escape }}</span>
+        </div>
+        <div class="im-trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5 4 6v6c0 5 3.4 8.7 8 9.5 4.6-.8 8-4.5 8-9.5V6l-8-3.5Z"/><path d="m9 12 2 2 4-4.5"/></svg>
+          <span>{{ section.settings.trust_warranty | escape }}</span>
+        </div>
+        <div class="im-trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10h11M3 10l4-4M3 10l4 4"/><path d="M21 14H10M21 14l-4-4M21 14l-4 4"/></svg>
+          <span>
+            {{ section.settings.trust_returns | escape }}
+            {%- if shop.policies.refund_policy.url != blank -%}
+              — <a href="{{ shop.policies.refund_policy.url }}">ver política</a>
+            {%- endif -%}
+          </span>
+        </div>
+      </div>
+    </section>
+  {%- endif -%}
+
   <section class="section is-accent closing" data-nav-theme="dark">
     <div class="closing-bg">
       {%- if section.settings.closing_video != blank -%}
@@ -239,6 +267,11 @@
     { "type": "text", "id": "shipping_badge", "label": "Etiqueta", "default": "Envío gratis" },
     { "type": "text", "id": "shipping_headline", "label": "Título", "default": "Desde $799 MXN, a todo México." },
     { "type": "text", "id": "shipping_detail", "label": "Detalle", "default": "Pedidos menores, $189. Entrega en 2 a 7 días hábiles." },
+    { "type": "header", "content": "Franja de confianza (antes del cierre)" },
+    { "type": "checkbox", "id": "trust_show", "label": "Mostrar franja de confianza", "default": true },
+    { "type": "text", "id": "trust_shipping", "label": "Punto de envío", "default": "Entrega en 2 a 7 días hábiles a todo México" },
+    { "type": "text", "id": "trust_warranty", "label": "Punto de garantía", "default": "Garantía de compra — si algo llega mal, lo resolvemos." },
+    { "type": "text", "id": "trust_returns", "label": "Punto de devoluciones", "default": "7 días para cambios o devoluciones" },
     { "type": "header", "content": "Cierre" },
     { "type": "text", "id": "closing_heading", "label": "Título de cierre", "default": "Equipo real. Terreno real." },
     { "type": "text", "id": "closing_cta_text", "label": "Texto botón de cierre", "default": "Ver todo el catálogo" },
