@@ -1799,9 +1799,82 @@ ejecutarlas, con buen criterio.
   en pausa** hasta que confirme una lista adicional de pendientes antes
   de invertir presupuesto real.
 
+### Instagram creado y vinculado (14 de agosto de 2026)
+
+De los pendientes que bloqueaban el lanzamiento, faltaba crear la cuenta
+de Instagram del negocio. Se intentó primero el camino que describía
+`INSTRUCTIVO-META-ADS.md` (crear la cuenta directo desde Business Suite),
+y resultó **incorrecto** — Business Suite → Cuentas de Instagram solo
+tiene un botón "+ Añadir" que abre "Reclamar una cuenta de Instagram",
+un flujo para **vincular una cuenta que ya existe** iniciando sesión, no
+para crear una nueva. Se corrigió el instructivo (ver ahí, Paso 2) con
+el camino real, en dos partes separadas:
+
+1. Crear la cuenta en instagram.com — hecho por el cliente directamente
+   (usuario `@intemperiemexico`, cuenta Empresa, categoría deportes al
+   aire libre). Verificación por correo, es un paso que no se puede
+   delegar (login/registro de Instagram automatizado viola sus términos).
+2. Vincularla desde Business Suite → Configuración del negocio → Cuentas
+   → Cuentas de Instagram → "+ Añadir" → "Reclamar una cuenta de
+   Instagram" → login con la cuenta ya creada. Confirmado: *"@intemperiemexico
+   was added to the business portfolio"*.
+
+**División de trabajo:** igual que con el System User (ver arriba),
+Claude en Chrome guió la navegación y verificó cada pantalla, pero los
+formularios de registro/login los completó el cliente con su teclado.
+
+### Bloqueo descubierto: la API de Meta no responde desde este entorno remoto
+
+Al intentar generar el token del System User nuevo y llamar a la
+Marketing API (`graph.facebook.com`) desde este entorno de trabajo, toda
+llamada con un token real devuelve `{"error": {"message": "API access
+blocked.", "code": 200}}`. Se descartó que fuera el token: la misma
+llamada con un token inválido responde con el error normal de OAuth
+("Invalid OAuth access token", code 190) — es decir, la red sí llega a
+Meta y el token se procesa, pero Meta bloquea específicamente el acceso
+a activos reales. Es el mismo tipo de bloqueo anti-abuso por reputación
+de IP que ya se había documentado para Browser Harness/CDP (sección 21)
+— Meta filtra tráfico de IPs de centros de datos hacia su Marketing API,
+incluso con credenciales válidas.
+
+**Consecuencia práctica:** `scripts/meta-ads.py` no se puede correr desde
+este entorno contra la cuenta real. Sí lo puede correr el cliente desde
+su propia máquina (IP residencial/de oficina, sin ese bloqueo) — es la
+misma lógica que ya regía para Browser Harness. El token de System User
+generado el 14 de agosto se le entregó al cliente por chat para que él
+lo exporte y corra los comandos localmente.
+
+### `crear-campania`: agregado el 14 de agosto
+
+`scripts/meta-ads.py` solo tenía comandos de gestión (`listar`, `reporte`,
+`pausar`, `activar`, `presupuesto`) — nada para crear una campaña nueva.
+Se agregaron dos comandos:
+
+- **`activos`**: solo lectura. Descubre por API la página de Facebook, la
+  cuenta de Instagram, el catálogo de productos y el pixel del negocio
+  (vía `/{business_id}/owned_pages`, `/instagram_accounts`,
+  `/owned_product_catalogs`, `/{account_id}/adspixels`), y aborta con un
+  mensaje claro si encuentra más de un resultado en cualquiera de esos
+  — nunca adivina cuál usar.
+- **`crear-campania --presupuesto <monto>`**: arma campaña + conjunto de
+  anuncios + creativo dinámico + anuncio, usando el catálogo de Shopify
+  ya sincronizado y filtrado (excluye armas/municiones/miras desde el
+  origen, no hace falta armar un conjunto de productos separado — si no
+  existe ninguno todavía, el comando crea uno que cubre todo el catálogo,
+  ya de por sí filtrado). Objetivo `OUTCOME_SALES`, targeting México,
+  18+, Facebook + Instagram. **Todo se crea siempre con `status: PAUSED`**
+  — no hay bandera para saltarse eso; activar requiere correr el comando
+  `activar` aparte, a propósito, como capa extra antes de que se gaste
+  presupuesto real.
+
+**No se pudo probar contra la API real** por el bloqueo de red de arriba
+— el cliente es quien lo corre y verifica. Decisión del cliente (14 de
+agosto): formato catálogo dinámico (no imagen única), presupuesto
+$600 MXN/día para la primera semana.
+
 ### Pendiente
 
-Ver sección 8 de `PENDIENTES.md`. La infraestructura de medición y la
-cuenta publicitaria ya están operativas — lo que falta es la decisión
-del cliente sobre qué resolver antes de lanzar, y después, presupuesto
-y aprobación de la primera campaña (solo pesca, pausada hasta revisión).
+Ver sección 8 de `PENDIENTES.md`. Instagram ya está creado y vinculado.
+Sigue pendiente: que el cliente corra `activos` y `crear-campania` desde
+su propia máquina, revise lo creado (queda pausado) y decida cuándo
+activar.

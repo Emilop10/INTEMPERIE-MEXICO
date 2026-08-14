@@ -3,15 +3,40 @@
 Temas abiertos de la tienda. Casi todos requieren una decisión o datos tuyos;
 el resto de la auditoría ya quedó implementado y en vivo.
 
-**Abiertos ahora mismo:** crear y vincular Instagram ([2](#2-redes-sociales--parcialmente-resuelto-28-jul)),
-TikTok cuando exista, y lanzar la primera campaña de Meta Ads
-([8](#8-meta-ads-facebookinstagram--infraestructura-lista-12-ago)) — la
-infraestructura ya está lista, solo falta Instagram y que el cliente
-confirme sus pendientes antes de invertir presupuesto real.
+## 🔴 URGENTE — Lanzar la primera campaña de Meta Ads
 
-**Resuelto el 13 de agosto:** señales de confianza en la homepage
-([3](#3-señales-de-confianza-ausentes--resuelto-13-agosto-2026)) y el deploy
-automático ([5](#5-activar-el-deploy-automático--resuelto-13-agosto-2026)).
+Es lo próximo que sigue, literal, en cuanto el cliente indique una
+corrección pendiente y se actualice el inventario. Todo lo demás ya está
+listo:
+
+- ✅ Instagram creado y vinculado (14 agosto) — ver [2](#2-redes-sociales--parcialmente-resuelto-28-jul)
+- ✅ `scripts/meta-ads.py` ya tiene los comandos `activos` y
+  `crear-campania` (agregados 14 agosto) — ver [8](#8-meta-ads-facebookinstagram--infraestructura-lista-12-ago)
+- ✅ Decisión tomada: catálogo dinámico, $600 MXN/día la primera semana
+
+**Lo único que falta:** correr desde tu propia máquina (la API de Meta
+bloquea este entorno remoto, ver sección 29 del manual):
+
+```bash
+export META_ACCESS_TOKEN="..."               # el que ya generaste el 14 de agosto
+export META_AD_ACCOUNT_ID="act_1264279685553718"
+python3 scripts/meta-ads.py activos           # solo revisa, no crea nada — mándame el resultado
+python3 scripts/meta-ads.py crear-campania --presupuesto 600   # crea todo PAUSADO
+```
+
+Después de correr `crear-campania`, la campaña queda pausada — se
+revisa en el Administrador de anuncios y se activa con
+`meta-ads.py activar --campania <id>` cuando la apruebes.
+
+---
+
+**Abiertos ahora mismo:** TikTok cuando exista, y activar la primera
+campaña de Meta Ads (arriba 🔴).
+
+**Resuelto el 13-14 de agosto:** señales de confianza en la homepage
+([3](#3-señales-de-confianza-ausentes--resuelto-13-agosto-2026)), el deploy
+automático ([5](#5-activar-el-deploy-automático--resuelto-13-agosto-2026)),
+e Instagram creado y vinculado ([2](#2-redes-sociales--parcialmente-resuelto-28-jul)).
 
 > 📌 **Nota de trabajo (4 de agosto):** al redactar prompts para Claude en
 > Chrome, ser conciso y pedirle explícitamente que si no encuentra algo en
@@ -24,7 +49,7 @@ vivo de inmediato.
 **Dominio principal:** `https://intemperiemexico.com` — conectado y
 verificado el 3 de agosto de 2026. `wfuxvx-yn.myshopify.com` ahora
 redirige automáticamente al dominio propio.
-**Última actualización:** 13 de agosto de 2026
+**Última actualización:** 14 de agosto de 2026
 
 **Correo profesional:** Google Workspace reactivado con `admin@intemperiemexico.com`
 como cuenta principal. DNS (MX, SPF, DKIM) verificado y propagado. 6 alias activos
@@ -54,20 +79,18 @@ homepage y en el mega-menú (este último ya es visible en el sitio en vivo):
 
 ---
 
-## 2. Redes sociales — parcialmente resuelto (28 jul)
+## 2. Redes sociales — parcialmente resuelto (28 jul, Instagram 14 ago)
 
 ✅ **Facebook conectado**: `https://www.facebook.com/people/Intemperie-México/61588253103964/`
 ya aparece como ícono en el footer del tema de trabajo.
 
-⏳ **Pendiente — Instagram (13 agosto 2026):** todavía no existe cuenta de
-Instagram del negocio (confirmado: "No se ha añadido ninguna cuenta de
-Instagram" en el Business Manager). Sin ella, los anuncios de Meta solo
-pueden salir en Facebook, perdiendo las colocaciones que mejor suelen
-rendir (Reels, Explorar). **Lo tienes que crear tú** — requiere
-verificación por teléfono/correo, no se puede delegar. Pasos exactos ya
-documentados en [`INSTRUCTIVO-META-ADS.md`](./INSTRUCTIVO-META-ADS.md)
-(Paso 2): se crea directo desde Meta Business Suite, ya vinculada a la
-página de Facebook existente, sin pasar por la app de Instagram.
+✅ **Instagram creado y vinculado (14 agosto 2026):** cuenta `@intemperiemexico`,
+tipo Empresa, creada por el cliente y vinculada al Business Manager desde
+Meta Business Suite. El camino que proponía originalmente
+`INSTRUCTIVO-META-ADS.md` (crear directo desde Business Suite) resultó
+incorrecto — se corrigió el instructivo con el camino real (crear en
+instagram.com primero, vincular después). Detalle completo en la sección
+29 del `MANUAL-PROYECTO.md`.
 
 ⏳ **Pendiente:** TikTok — cuando se abra esa cuenta, mandar el link y se
 conecta igual de rápido.
@@ -255,7 +278,7 @@ tracking interno de origen de conversación de Zipchat.
 
 ---
 
-## 8. Meta Ads (Facebook/Instagram) — infraestructura lista, 12 ago
+## 8. Meta Ads (Facebook/Instagram) — 🔴 lista para lanzar, 14 ago
 
 Arrancó el proyecto de publicidad en Meta. Antes de gastar un peso se
 verificó algo importante: **Meta prohíbe anunciar armas, municiones y
@@ -283,18 +306,22 @@ proceso en la sección 29 del `MANUAL-PROYECTO.md`.
   corre vía el canal oficial de Shopify desde febrero, activar el manual
   duplicaría eventos.
 - `scripts/meta-ads.py` para listar, reportar, pausar/activar campañas y
-  presupuesto.
+  presupuesto — y (agregado 14 agosto) `activos` para descubrir
+  página/Instagram/catálogo/pixel, y `crear-campania` para armar la
+  campaña completa (siempre en pausa).
 - Token de System User creado, verificado y funcionando (`ads_management`,
   `ads_read`, `business_management`, `catalog_management`).
 - Cuenta publicitaria limpia, catálogo corregido, pixel confirmado activo.
+- Instagram creado y vinculado (ver sección 2 de arriba).
 - `INSTRUCTIVO-FACEBOOK-ADS.md` — guía operativa completa (cómo se opera
   la cuenta, convenciones de nombres, reglas de presupuesto, comandos del
   script, lecciones aprendidas de esta puesta en marcha).
 
-**A petición del cliente, el lanzamiento de la primera campaña queda en
-pausa** hasta que confirme una lista de pendientes adicionales antes de
-invertir presupuesto real. En cuanto la dé, se arma la campaña — solo
-pesca — y se deja **pausada para su revisión** antes de activarla.
+**Único bloqueo real: la API de Meta no responde desde este entorno
+remoto** (bloqueo anti-abuso por IP de datacenter, ver sección 29 del
+manual) — el cliente corre `activos` y `crear-campania` desde su propia
+máquina. Ver el recuadro 🔴 URGENTE al principio de este archivo para el
+comando exacto.
 
 ---
 
