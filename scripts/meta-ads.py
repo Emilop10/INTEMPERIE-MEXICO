@@ -12,10 +12,13 @@ Uso:
     ... meta-ads.py pausar --campania <id>
     ... meta-ads.py activar --campania <id>
     ... meta-ads.py presupuesto --campania <id> --monto 150
+    ... meta-ads.py activos                              # descubre página/IG/catálogo/pixel, no crea nada
+    ... meta-ads.py crear-campania --presupuesto 600      # arma campaña de catálogo dinámico, SIEMPRE en pausa
 
 Variables de entorno:
     META_ACCESS_TOKEN   (obligatoria) token de System User (ads_management, ads_read)
     META_AD_ACCOUNT_ID  (obligatoria) "act_..." de la cuenta publicitaria
+    META_BUSINESS_ID    (opcional) default: 1324138699447721 ("Intemperie México")
 """
 
 import argparse
@@ -28,6 +31,7 @@ import urllib.request
 
 API_VERSION = "v21.0"
 BASE_URL = f"https://graph.facebook.com/{API_VERSION}"
+DEFAULT_BUSINESS_ID = "1324138699447721"  # "Intemperie México" (INSTRUCTIVO-FACEBOOK-ADS.md)
 
 
 def api_request(method, path, token, params=None, body=None):
@@ -121,6 +125,165 @@ def cmd_presupuesto(token, account_id, args):
     print(f"Presupuesto diario de {args.campania} actualizado a ${args.monto:.2f} MXN/día.")
 
 
+def _resolve_business_assets(token, business_id, account_id):
+    """Descubre página, cuenta de Instagram, catálogo y pixel del negocio.
+
+    Solo lecturas (GET). No crea ni modifica nada. Aborta con un mensaje
+    claro si algo aparece ambiguo (más de un resultado) o ausente, en vez
+    de adivinar cuál usar.
+    """
+    pages = api_request("GET", f"/{business_id}/owned_pages", token, params={"fields": "id,name"}).get("data", [])
+    if len(pages) != 1:
+        print(f"Se esperaba 1 página, se encontraron {len(pages)}: {pages}", file=sys.stderr)
+        sys.exit(1)
+    page = pages[0]
+
+    ig_accounts = api_request(
+        "GET", f"/{business_id}/instagram_accounts", token, params={"fields": "id,username"}
+    ).get("data", [])
+    if len(ig_accounts) != 1:
+        print(f"Se esperaba 1 cuenta de Instagram, se encontraron {len(ig_accounts)}: {ig_accounts}", file=sys.stderr)
+        sys.exit(1)
+    ig = ig_accounts[0]
+
+    catalogs = api_request(
+        "GET", f"/{business_id}/owned_product_catalogs", token, params={"fields": "id,name,product_count"}
+    ).get("data", [])
+    if len(catalogs) != 1:
+        print(f"Se esperaba 1 catálogo, se encontraron {len(catalogs)}: {catalogs}", file=sys.stderr)
+        sys.exit(1)
+    catalog = catalogs[0]
+
+    pixels = api_request("GET", f"/{account_id}/adspixels", token, params={"fields": "id,name"}).get("data", [])
+    if len(pixels) != 1:
+        print(f"Se esperaba 1 pixel, se encontraron {len(pixels)}: {pixels}", file=sys.stderr)
+        sys.exit(1)
+    pixel = pixels[0]
+
+    product_sets = api_request(
+        "GET", f"/{catalog['id']}/product_sets", token, params={"fields": "id,name,product_count"}
+    ).get("data", [])
+
+    return {"page": page, "instagram": ig, "catalog": catalog, "pixel": pixel, "product_sets": product_sets}
+
+
+def cmd_activos(token, account_id, args):
+    business_id = os.environ.get("META_BUSINESS_ID", DEFAULT_BUSINESS_ID)
+    assets = _resolve_business_assets(token, business_id, account_id)
+    print(f"Página:    {assets['page']['id']}  {assets['page']['name']}")
+    print(f"Instagram: {assets['instagram']['id']}  @{assets['instagram']['username']}")
+    catalog = assets["catalog"]
+    print(f"Catálogo:  {catalog['id']}  {catalog['name']}  ({catalog.get('product_count', '?')} productos)")
+    print(f"Pixel:     {assets['pixel']['id']}  {assets['pixel']['name']}")
+    if not assets["product_sets"]:
+        print("Conjuntos de productos: ninguno todavía — crear-campania creará uno que cubre todo el catálogo")
+    else:
+        print("Conjuntos de productos:")
+        for ps in assets["product_sets"]:
+            print(f"  {ps['id']}  {ps['name']}  ({ps.get('product_count', '?')} productos)")
+
+
+def cmd_crear_campania(token, account_id, args):
+    _require(args.presupuesto, "--presupuesto")
+    business_id = os.environ.get("META_BUSINESS_ID", DEFAULT_BUSINESS_ID)
+    assets = _resolve_business_assets(token, business_id, account_id)
+    page, ig, catalog, pixel = assets["page"], assets["instagram"], assets["catalog"], assets["pixel"]
+
+    product_sets = assets["product_sets"]
+    if len(product_sets) == 1:
+        product_set_id = product_sets[0]["id"]
+        print(f"Usando conjunto de productos existente: {product_set_id} ({product_sets[0]['name']})")
+    elif len(product_sets) == 0:
+        ps = api_request(
+            "POST",
+            f"/{catalog['id']}/product_sets",
+            token,
+            body={"name": "Todos los productos anunciables", "filter": json.dumps({})},
+        )
+        product_set_id = ps["id"]
+        print(f"Creado conjunto de productos nuevo (todo el catálogo, ya filtrado por Shopify): {product_set_id}")
+    else:
+        print(f"Hay {len(product_sets)} conjuntos de productos, no sé cuál usar: {product_sets}", file=sys.stderr)
+        print("Pasa el que corresponda editando este comando, o bórralos y vuelve a correr.", file=sys.stderr)
+        sys.exit(1)
+
+    nombre = args.nombre or "Pesca y Óptica — Catálogo dinámico"
+    centavos = int(round(args.presupuesto * 100))
+
+    campaign = api_request(
+        "POST",
+        f"/{account_id}/campaigns",
+        token,
+        body={
+            "name": nombre,
+            "objective": "OUTCOME_SALES",
+            "status": "PAUSED",
+            "special_ad_categories": json.dumps([]),
+        },
+    )
+    print(f"Campaña creada (PAUSADA): {campaign['id']}")
+
+    adset = api_request(
+        "POST",
+        f"/{account_id}/adsets",
+        token,
+        body={
+            "name": f"{nombre} — Conjunto",
+            "campaign_id": campaign["id"],
+            "daily_budget": centavos,
+            "billing_event": "IMPRESSIONS",
+            "optimization_goal": "OFFSITE_CONVERSIONS",
+            "bid_strategy": "LOWEST_COST_WITHOUT_CAP",
+            "promoted_object": json.dumps({"product_set_id": product_set_id, "pixel_id": pixel["id"], "custom_event_type": "PURCHASE"}),
+            "targeting": json.dumps(
+                {
+                    "geo_locations": {"countries": ["MX"]},
+                    "age_min": 18,
+                    "publisher_platforms": ["facebook", "instagram"],
+                }
+            ),
+            "status": "PAUSED",
+        },
+    )
+    print(f"Conjunto de anuncios creado (PAUSADO): {adset['id']}  presupuesto ${args.presupuesto:.2f} MXN/día")
+
+    creative = api_request(
+        "POST",
+        f"/{account_id}/adcreatives",
+        token,
+        body={
+            "name": f"{nombre} — Creativo",
+            "product_set_id": product_set_id,
+            "object_story_spec": json.dumps(
+                {
+                    "page_id": page["id"],
+                    "instagram_actor_id": ig["id"],
+                    "template_data": {
+                        "link": "https://www.intemperiemexico.com/collections/todo-pesca",
+                        "call_to_action": {"type": "SHOP_NOW"},
+                    },
+                }
+            ),
+        },
+    )
+    print(f"Creativo dinámico creado: {creative['id']}")
+
+    ad = api_request(
+        "POST",
+        f"/{account_id}/ads",
+        token,
+        body={
+            "name": f"{nombre} — Anuncio",
+            "adset_id": adset["id"],
+            "creative": json.dumps({"creative_id": creative["id"]}),
+            "status": "PAUSED",
+        },
+    )
+    print(f"Anuncio creado (PAUSADO): {ad['id']}")
+    print()
+    print(f"Listo. Todo quedó en PAUSA — revisa en Ads Manager y corre 'activar --campania {campaign['id']}' cuando la apruebes.")
+
+
 def _require(value, flag):
     if value is None:
         print(f"Falta {flag}", file=sys.stderr)
@@ -146,6 +309,12 @@ def main():
     p_presupuesto.add_argument("--campania", required=True)
     p_presupuesto.add_argument("--monto", type=float, required=True, help="Presupuesto diario en MXN")
 
+    sub.add_parser("activos", help="Descubre página/Instagram/catálogo/pixel del negocio (solo lectura)")
+
+    p_crear = sub.add_parser("crear-campania", help="Crea campaña de catálogo dinámico, siempre en pausa")
+    p_crear.add_argument("--presupuesto", type=float, required=True, help="Presupuesto diario en MXN")
+    p_crear.add_argument("--nombre", default=None, help="Nombre de la campaña (default: 'Pesca y Óptica — Catálogo dinámico')")
+
     args = parser.parse_args()
 
     token = require_env("META_ACCESS_TOKEN")
@@ -157,6 +326,8 @@ def main():
         "pausar": cmd_pausar,
         "activar": cmd_activar,
         "presupuesto": cmd_presupuesto,
+        "activos": cmd_activos,
+        "crear-campania": cmd_crear_campania,
     }
     commands[args.comando](token, account_id, args)
 
