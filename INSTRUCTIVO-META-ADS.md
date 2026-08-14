@@ -57,19 +57,30 @@ con el nombre "Intemperie México".
 2. Todavía no existe cuenta de Instagram del negocio (confirmado: "No se
    ha añadido ninguna cuenta de Instagram"). Sin ella, los anuncios solo
    pueden salir en Facebook, perdiendo las colocaciones que mejor suelen
-   rendir (Reels, Explorar). Camino más corto — crearla ya vinculada a la
-   página, sin pasar por la app de Instagram:
-   - Meta Business Suite ([business.facebook.com](https://business.facebook.com)) → selecciona la
-     página "Intemperie México" → **Cuentas de Instagram** (o
-     Configuración del negocio → Cuentas → Cuentas de Instagram) →
-     **Crear cuenta profesional**.
-   - Sigue el flujo: nombre de usuario, foto de perfil, categoría del
-     negocio (Deportes/aire libre). Pide verificación por teléfono o
-     correo — este paso lo tiene que hacer el dueño de la cuenta, no se
-     puede delegar.
-   - Al terminar, la cuenta queda **ya vinculada** a la página de
-     Facebook y visible en Configuración del negocio → Cuentas → Cuentas
-     de Instagram, lista para usarse en las campañas del Paso 6.
+   rendir (Reels, Explorar).
+
+**Corrección (13 agosto 2026):** se probó con Claude en Chrome el camino de
+crear la cuenta directo desde Business Suite (Configuración del negocio →
+Cuentas → **Cuentas de Instagram**) y **no existe esa opción ahí**. El
+único botón disponible es **"+ Añadir"**, que abre "Reclamar una cuenta de
+Instagram" — sirve para **vincular una cuenta que ya existe** iniciando
+sesión, no para crear una nueva. El camino correcto son dos pasos
+separados:
+
+1. **Crear la cuenta primero, fuera de Business Suite** — en
+   [instagram.com](https://instagram.com) o la app de Instagram, como
+   cuenta nueva de negocio. Nombre de usuario sugerido: `intemperiemexico`
+   (si está ocupado, `intemperie.mexico` o `intemperiemx`). Categoría:
+   "Tienda de artículos deportivos" o "Deportes al aire libre". Este paso
+   es 100% tuyo — pide usuario/contraseña y verificación por teléfono o
+   correo, y automatizar un login/registro de Instagram viola sus
+   términos, así que Claude no puede hacerlo por ti ni observando.
+2. **Vincularla a la página**, ya con la cuenta creada: Business Suite →
+   Configuración del negocio → Cuentas → Cuentas de Instagram → **"+
+   Añadir"** → "Reclamar una cuenta de Instagram" → inicia sesión con la
+   cuenta del paso 1. Este segundo paso sí lo puede guiar Claude en
+   Chrome (indicando dónde hacer clic en cada pantalla), aunque el login
+   en sí lo tienes que teclear tú.
 
 ## Paso 3 — Crear la cuenta publicitaria
 
