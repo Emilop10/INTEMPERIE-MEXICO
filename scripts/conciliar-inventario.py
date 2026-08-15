@@ -94,6 +94,29 @@ def build_sku_map(products):
     return sku_map
 
 
+def build_barcode_map(products):
+    """Indexa por `barcode`, donde vive el "Codigo B1" del POS.
+
+    Es la llave que cierra los huecos del cruce por SKU: filas del conteo
+    sin `No Parte`, y productos cuyo SKU en Shopify viene del catalogo del
+    fabricante en vez del codigo interno. Ver scripts/vincular-codigo-b1.py
+    e INSTRUCTIVO-CONCILIAR-INVENTARIO.md.
+    """
+    barcode_map = {}
+    for product in products:
+        for variant in product.get("variants", []):
+            barcode = (variant.get("barcode") or "").strip()
+            if not barcode:
+                continue
+            barcode_map[barcode] = {
+                "product_title": product["title"],
+                "variant_id": variant["id"],
+                "inventory_item_id": variant["inventory_item_id"],
+                "available": variant.get("inventory_quantity", 0),
+            }
+    return barcode_map
+
+
 def normalize_name(text):
     """Uppercase, sin acentos, sin puntuación, espacios colapsados.
 
@@ -195,8 +218,12 @@ def main():
     print("Descargando productos de Shopify...")
     products = fetch_all_products(token, store)
     sku_map = build_sku_map(products)
+    barcode_map = build_barcode_map(products)
     title_index = build_title_index(products)
-    print(f"  {len(products)} productos, {len(sku_map)} variantes con SKU")
+    print(
+        f"  {len(products)} productos, {len(sku_map)} con SKU, "
+        f"{len(barcode_map)} con codigo B1 (barcode)"
+    )
 
     shop_data, _ = api_get("/shop.json", token, store)
     location_id = shop_data["shop"]["primary_location_id"]
@@ -227,6 +254,7 @@ def main():
 
     counts = {"verde": 0, "amarillo": 0, "rojo": 0, "gris": 0}
     vinculados_por_nombre = 0
+    vinculados_por_b1 = 0
     updates = []
 
     for row in rows:
@@ -240,18 +268,29 @@ def main():
         info = None
         nota_vinculo = None
 
-        if not sku:
+        # El codigo B1 es la llave universal (100% del conteo, sin duplicados),
+        # asi que sirve tanto de respaldo cuando falta el SKU como de rescate
+        # cuando el SKU de Shopify no es el del POS.
+        raw_b1 = row[col["Codigo B1"]].value if "Codigo B1" in col else None
+        b1 = str(raw_b1).strip() if raw_b1 not in (None, "") else ""
+        info_b1 = barcode_map.get(b1) if b1 else None
+
+        if sku and sku_counts.get(sku, 0) > 1:
+            estatus, nota, fill = "gris", f"Código duplicado en el conteo ({sku_counts[sku]} veces)", COLOR_GRAY
+        elif sku and sku in sku_map:
+            info = sku_map[sku]
+        elif info_b1 is not None:
+            info = info_b1
+            nota_vinculo = f"Vinculado por código B1 {b1}"
+            vinculados_por_b1 += 1
+        elif sku:
+            estatus, nota, fill = "rojo", "No existe en Shopify", COLOR_RED
+        else:
             descripcion = row[col["Descripción"]].value if "Descripción" in col else None
             info, nota_vinculo = find_by_name(descripcion, title_index)
             if info is None:
                 estatus, nota, fill = "gris", nota_vinculo, COLOR_GRAY
             vinculados_por_nombre += 1 if info else 0
-        elif sku_counts.get(sku, 0) > 1:
-            estatus, nota, fill = "gris", f"Código duplicado en el conteo ({sku_counts[sku]} veces)", COLOR_GRAY
-        elif sku not in sku_map:
-            estatus, nota, fill = "rojo", "No existe en Shopify", COLOR_RED
-        else:
-            info = sku_map[sku]
 
         if info is not None:
             antes = info["available"]
@@ -291,7 +330,8 @@ def main():
             cell.fill = fill
 
     print(f"Clasificación: {counts}")
-    print(f"  (de ellos, {vinculados_por_nombre} vinculados por nombre — sin código de parte)")
+    print(f"  (de ellos, {vinculados_por_b1} vinculados por código B1 y "
+          f"{vinculados_por_nombre} por nombre)")
     print(f"Actualizando {len(updates)} variantes en Shopify...")
     errors = 0
     for i, (id_log, info, new_qty) in enumerate(updates):
@@ -309,7 +349,8 @@ def main():
         summary_ws.append([k, v])
     summary_ws.append(["Actualizaciones aplicadas", len(updates) - errors])
     summary_ws.append(["Errores al actualizar", errors])
-    summary_ws.append(["Vinculados por nombre (sin código de parte)", vinculados_por_nombre])
+    summary_ws.append(["Vinculados por código B1", vinculados_por_b1])
+    summary_ws.append(["Vinculados por nombre (último recurso)", vinculados_por_nombre])
 
     wb.save(output_path)
     print(f"Listo. {len(updates) - errors} actualizaciones aplicadas, {errors} errores.")
