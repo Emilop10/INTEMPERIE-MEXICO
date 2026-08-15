@@ -168,6 +168,17 @@ def main():
         action="store_true",
         help="Muestra que cambiaria, sin tocar nada en Shopify",
     )
+    parser.add_argument(
+        "--forzar-resync",
+        action="store_true",
+        help=(
+            "Despublica y vuelve a publicar TODO lo anunciable, aunque ya este "
+            "correcto. Sirve para destrabar un catalogo de Meta recien conectado: "
+            "Shopify solo empuja al catalogo cuando algo cambia, asi que un "
+            "catalogo nuevo se queda vacio si los productos ya estaban publicados "
+            "desde antes. Este ciclo genera los eventos que faltan."
+        ),
+    )
     args = parser.parse_args()
 
     token = os.environ.get("SHOPIFY_ADMIN_TOKEN")
@@ -192,8 +203,16 @@ def main():
     print(f"  Por despublicar (prohibidos que estan en el canal): {len(a_despublicar)}")
     print(f"  Por publicar    (anunciables fuera del canal)     : {len(a_publicar)}")
 
-    if not a_despublicar and not a_publicar:
+    if args.forzar_resync:
+        # El ciclo despublicar->publicar sobre TODO lo anunciable es lo que
+        # genera los eventos de cambio que Shopify empuja al catalogo.
+        ya_publicados = [p for p in permitidos if p["publicado"]]
+        print(f"\n--forzar-resync: ademas se recicla la publicacion de {len(ya_publicados)} productos ya correctos")
+        a_despublicar = a_despublicar + ya_publicados
+        a_publicar = permitidos
+    elif not a_despublicar and not a_publicar:
         print("\nEl canal ya esta correcto. Nada que hacer.")
+        print("(Si el catalogo de Meta sigue vacio, corre con --forzar-resync)")
         return
 
     if args.dry_run:
