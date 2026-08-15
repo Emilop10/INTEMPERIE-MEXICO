@@ -44,6 +44,15 @@ def api_request(method, path, token, params=None, body=None):
     else:
         data = urllib.parse.urlencode({**query, **(body or {})}).encode()
     req = urllib.request.Request(url, data=data, method=method)
+    # Sin esto, urllib manda "Python-urllib/3.x" como User-Agent, una firma
+    # clásica de bot que el sistema anti-abuso de Meta bloquea de entrada
+    # ("API access blocked") aunque el token y los permisos sean válidos
+    # (confirmado: el mismo token funciona bien en Graph API Explorer).
+    req.add_header(
+        "User-Agent",
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
+        "(KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+    )
     try:
         with urllib.request.urlopen(req) as resp:
             return json.loads(resp.read())
