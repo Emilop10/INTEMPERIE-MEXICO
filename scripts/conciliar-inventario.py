@@ -2,9 +2,16 @@
 """Concilia un conteo físico (Excel) contra el inventario real de Shopify.
 
 Ver INSTRUCTIVO-CONCILIAR-INVENTARIO.md para el proceso completo. Cruza
-por SKU (`No Parte` en el Excel contra `variant.sku` en Shopify), sube a
-Shopify lo que cambió, y regresa el mismo Excel coloreado con el
-resultado.
+por SKU (`No Parte` en el Excel contra `variant.sku` en Shopify) y, para
+las filas sin SKU, intenta un segundo cruce por nombre (`Descripción`
+contra el título del producto). Sube a Shopify lo que cambió, y regresa
+el mismo Excel coloreado con el resultado.
+
+El cruce por nombre es deliberadamente conservador: solo actualiza
+automático cuando hay una sola coincidencia confiable (exacta tras
+normalizar, o aproximada por encima del 90% sin empate con otra). Si hay
+ambigüedad, la fila queda gris con los candidatos anotados — nunca
+adivina entre dos productos parecidos.
 
 Uso:
     SHOPIFY_ADMIN_TOKEN=shpat_... python3 scripts/conciliar-inventario.py entrada.xlsx salida.xlsx
@@ -15,10 +22,13 @@ Variables de entorno:
 """
 
 import copy
+import difflib
 import json
 import os
+import re
 import sys
 import time
+import unicodedata
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -84,6 +94,77 @@ def build_sku_map(products):
     return sku_map
 
 
+def normalize_name(text):
+    """Uppercase, sin acentos, sin puntuación, espacios colapsados.
+
+    Suficiente para que "Caña de Pescar Shimano Sellus Spinning 5'8\""
+    y "CAÑA DE PESCAR SHIMANO SELLUS SPINNING 5'8" (POS en mayúsculas,
+    Shopify con mayúsculas/minúsculas normales) se reconozcan como el
+    mismo texto.
+    """
+    if not text:
+        return ""
+    text = unicodedata.normalize("NFKD", str(text))
+    text = "".join(c for c in text if not unicodedata.combining(c))
+    text = text.upper()
+    text = re.sub(r"[^A-Z0-9\s]", " ", text)
+    text = re.sub(r"\s+", " ", text).strip()
+    return text
+
+
+def build_title_index(products):
+    """Normalized product title -> info de la variante (asume 1 variante
+    por producto, cierto para este catálogo — build_sku_map ya lo
+    confirma: mismo número de productos que de variantes con SKU)."""
+    index = {}
+    for product in products:
+        variants = product.get("variants", [])
+        if len(variants) != 1:
+            continue  # ambiguo a qué variante actualizar, no se intenta por nombre
+        variant = variants[0]
+        norm = normalize_name(product["title"])
+        if not norm:
+            continue
+        index.setdefault(norm, []).append(
+            {
+                "product_title": product["title"],
+                "variant_id": variant["id"],
+                "inventory_item_id": variant["inventory_item_id"],
+                "available": variant.get("inventory_quantity", 0),
+            }
+        )
+    return index
+
+
+def find_by_name(descripcion, title_index):
+    """Busca una descripción del conteo físico contra los títulos de Shopify.
+
+    Devuelve (info, nota) si hay una sola coincidencia confiable, o
+    (None, nota_explicando_por_que_no) en cualquier caso ambiguo — nunca
+    elige entre dos candidatos parecidos.
+    """
+    norm = normalize_name(descripcion)
+    if not norm:
+        return None, "Sin código de parte ni descripción utilizable"
+
+    exactas = title_index.get(norm)
+    if exactas and len(exactas) == 1:
+        return exactas[0], f"Vinculado por nombre exacto: \"{exactas[0]['product_title']}\""
+    if exactas and len(exactas) > 1:
+        return None, f"Sin código de parte; nombre coincide con {len(exactas)} productos distintos en Shopify — revisar a mano"
+
+    titulos = list(title_index.keys())
+    cercanos = difflib.get_close_matches(norm, titulos, n=3, cutoff=0.90)
+    if len(cercanos) == 1:
+        info = title_index[cercanos[0]][0]
+        return info, f"Vinculado por nombre aproximado: \"{info['product_title']}\""
+    if len(cercanos) > 1:
+        candidatos = "; ".join(title_index[c][0]["product_title"] for c in cercanos)
+        return None, f"Sin código de parte; {len(cercanos)} nombres parecidos en Shopify ({candidatos}) — revisar a mano"
+
+    return None, "Sin código de parte; sin coincidencia por nombre en Shopify"
+
+
 def set_inventory(token, store, location_id, inventory_item_id, available):
     url = f"https://{store}/admin/api/{API_VERSION}/inventory_levels/set.json"
     body = json.dumps(
@@ -114,6 +195,7 @@ def main():
     print("Descargando productos de Shopify...")
     products = fetch_all_products(token, store)
     sku_map = build_sku_map(products)
+    title_index = build_title_index(products)
     print(f"  {len(products)} productos, {len(sku_map)} variantes con SKU")
 
     shop_data, _ = api_get("/shop.json", token, store)
@@ -144,6 +226,7 @@ def main():
             sku_counts[sku] = sku_counts.get(sku, 0) + 1
 
     counts = {"verde": 0, "amarillo": 0, "rojo": 0, "gris": 0}
+    vinculados_por_nombre = 0
     updates = []
 
     for row in rows:
@@ -154,16 +237,26 @@ def main():
         except (TypeError, ValueError):
             existencia = None
 
+        info = None
+        nota_vinculo = None
+
         if not sku:
-            estatus, nota, fill = "gris", "Sin código de parte", COLOR_GRAY
+            descripcion = row[col["Descripción"]].value if "Descripción" in col else None
+            info, nota_vinculo = find_by_name(descripcion, title_index)
+            if info is None:
+                estatus, nota, fill = "gris", nota_vinculo, COLOR_GRAY
+            vinculados_por_nombre += 1 if info else 0
         elif sku_counts.get(sku, 0) > 1:
             estatus, nota, fill = "gris", f"Código duplicado en el conteo ({sku_counts[sku]} veces)", COLOR_GRAY
         elif sku not in sku_map:
             estatus, nota, fill = "rojo", "No existe en Shopify", COLOR_RED
         else:
             info = sku_map[sku]
+
+        if info is not None:
             antes = info["available"]
             row[col_antes].value = antes
+            id_log = sku or info["product_title"]
 
             if existencia is None:
                 estatus, nota, fill = "gris", "Existencia no numérica", COLOR_GRAY
@@ -172,12 +265,12 @@ def main():
                 nota = f"Conteo negativo ({existencia}) — tratado como agotado, revisar POS"
                 fill = COLOR_RED
                 if antes != 0:
-                    updates.append((sku, info, 0))
+                    updates.append((id_log, info, 0))
             elif existencia == 0:
                 estatus, fill = "rojo", COLOR_RED
                 nota = "Agotado"
                 if antes != 0:
-                    updates.append((sku, info, 0))
+                    updates.append((id_log, info, 0))
                 else:
                     nota = "Agotado (ya estaba en 0)"
             elif existencia == antes:
@@ -186,7 +279,10 @@ def main():
                 estatus = "amarillo"
                 nota = f"Actualizado de {antes} a {existencia}"
                 fill = COLOR_YELLOW
-                updates.append((sku, info, existencia))
+                updates.append((id_log, info, existencia))
+
+            if nota_vinculo:
+                nota = f"{nota_vinculo} — {nota}"
 
         row[col_estatus].value = estatus
         row[col_nota].value = nota
@@ -195,12 +291,13 @@ def main():
             cell.fill = fill
 
     print(f"Clasificación: {counts}")
+    print(f"  (de ellos, {vinculados_por_nombre} vinculados por nombre — sin código de parte)")
     print(f"Actualizando {len(updates)} variantes en Shopify...")
     errors = 0
-    for i, (sku, info, new_qty) in enumerate(updates):
+    for i, (id_log, info, new_qty) in enumerate(updates):
         result = set_inventory(token, store, location_id, info["inventory_item_id"], new_qty)
         if "error" in result:
-            print(f"  ERROR {sku}: {result['error']}", file=sys.stderr)
+            print(f"  ERROR {id_log}: {result['error']}", file=sys.stderr)
             errors += 1
         time.sleep(0.5)
         if (i + 1) % 20 == 0:
@@ -212,6 +309,7 @@ def main():
         summary_ws.append([k, v])
     summary_ws.append(["Actualizaciones aplicadas", len(updates) - errors])
     summary_ws.append(["Errores al actualizar", errors])
+    summary_ws.append(["Vinculados por nombre (sin código de parte)", vinculados_por_nombre])
 
     wb.save(output_path)
     print(f"Listo. {len(updates) - errors} actualizaciones aplicadas, {errors} errores.")

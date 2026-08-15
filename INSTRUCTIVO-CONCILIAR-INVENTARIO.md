@@ -54,29 +54,71 @@ OAuth manual — son los mismos 7 pasos de siempre, 5 minutos.
 
 1. Lee el Excel y lo cruza por `No Parte` contra el SKU de cada variante
    de producto en Shopify.
-2. Clasifica cada fila:
+2. **Para las filas sin `No Parte`** (actualizado 15 agosto 2026): antes
+   de rendirse, intenta un segundo cruce por nombre — la `Descripción`
+   del conteo contra el título del producto en Shopify. Solo dos formas
+   de coincidencia cuentan como confiables:
+   - **Exacta** tras normalizar (mayúsculas, sin acentos, sin puntuación)
+     y sin ambigüedad — un único producto con ese nombre.
+   - **Aproximada** por encima del 90% de parecido, y sin empate con otro
+     nombre parecido.
+
+   Si hay ambigüedad (el nombre se parece a dos productos, o coincide
+   exacto con más de uno), la fila se queda gris — nunca elige entre
+   candidatos parecidos.
+
+   **Por qué el umbral es tan alto:** se probó bajarlo y aparecieron
+   coincidencias peligrosas, no solo imprecisas. Por ejemplo
+   *"ANZUELO MUSTAD #2 94151-NI"* se parece en un 77% a *"Anzuelo Mustad
+   94151-NI Live Bait #8"* — es el mismo anzuelo, pero de **talla
+   distinta**. Con un catálogo donde decenas de productos se diferencian
+   solo por un número (calibre, talla, piezas), un umbral bajo
+   actualizaría el inventario del producto equivocado en silencio. Se
+   prefirió resolver pocas filas de más pero con seguridad, a resolver
+   muchas con riesgo real de aplicar el conteo al producto que no es.
+
+   **Expectativa realista:** en la primera prueba (15 agosto), de 87
+   filas sin código de parte, solo 1 se resolvió por nombre. La causa no
+   es el algoritmo — es que las descripciones del sistema POS
+   (`"BOLSA CON 500 BULLETS"`) y los títulos de Shopify
+   (`"Diábolo Mendoza Combate..."`) están escritos con vocabulario y
+   orden distintos, no son el mismo texto con formato diferente. Ningún
+   matching de texto cierra esa brecha de forma segura — la solución real
+   sería cargar el `No Parte` en el sistema POS para los artículos que no
+   lo tienen.
+3. Clasifica cada fila:
    - 🟢 **Verde** — coincide, no se toca nada.
    - 🟡 **Amarillo** — hay diferencia, se actualiza Shopify al conteo de
      hoy.
    - 🔴 **Rojo** — el conteo está en 0 (agotado) o el código no existe
      como producto en la tienda online.
-   - ⬜ **Gris** — no se puede vincular con certeza (fila sin código, o
-     código repetido en el Excel apuntando a productos distintos). Estas
-     **no se tocan en Shopify** — quedan para que las revises tú a mano,
-     con una nota explicando el motivo en cada una.
-3. Sube los cambios a Shopify vía API (verde y gris no generan ningún
-   cambio; solo amarillo y el rojo-que-tenía-existencia-previa).
-4. Te regresa el mismo Excel con:
+   - ⬜ **Gris** — no se puede vincular con certeza (sin código y sin
+     coincidencia confiable por nombre, o código repetido en el Excel
+     apuntando a productos distintos). Estas **no se tocan en Shopify** —
+     quedan para que las revises tú a mano, con una nota explicando el
+     motivo en cada una.
+4. Sube los cambios a Shopify vía API (verde y gris no generan ningún
+   cambio; solo amarillo, rojo-que-tenía-existencia-previa, y lo
+   vinculado por nombre que haya cambiado).
+5. Te regresa el mismo Excel con:
    - Cada fila coloreada.
-   - Tres columnas nuevas: `Existencia Shopify (antes)`, `Estatus`, `Nota`.
-   - Una pestaña **Resumen** con los totales.
+   - Tres columnas nuevas: `Existencia Shopify (antes)`, `Estatus`, `Nota`
+     (la nota dice explícitamente cuándo una fila se vinculó por nombre,
+     y con qué producto).
+   - Una pestaña **Resumen** con los totales, incluido cuántas filas se
+     vincularon por nombre.
 
 ## Qué revisar tú al final
 
 - Las filas **grises** — son las únicas que Claude no pudo resolver solo.
-  Casi siempre son de dos tipos: artículos sin código de parte en tu
-  sistema, o un mismo código usado para más de un producto (error de
-  captura en el POS que vale la pena corregir ahí, no solo en Shopify).
+  La nota de cada una dice el motivo exacto: sin código y sin coincidencia
+  de nombre confiable, nombre parecido a **más de un** producto (revisa
+  cuál es el correcto a mano), o un mismo código usado para más de un
+  producto (error de captura en el POS que vale la pena corregir ahí, no
+  solo en Shopify). La mayoría de las grises por falta de código no tienen
+  solución automática — la brecha real es que el POS y Shopify describen
+  el mismo producto con palabras distintas; la corrección de fondo es
+  cargar el `No Parte` en el POS para esos artículos.
 - Si ves muchas filas en **rojo por "no existe en Shopify"**, probablemente
   sea normal — la tienda física maneja más SKUs de los que están puestos
   a la venta online. Pero si esperabas ver alguno ahí y no aparece, dilo.
@@ -92,9 +134,10 @@ export SHOPIFY_ADMIN_TOKEN=shpat_...
 python3 scripts/conciliar-inventario.py conteo-de-hoy.xlsx resultado.xlsx
 ```
 
-Lee el Excel, cruza por SKU contra Shopify, sube los cambios, y escribe
-`resultado.xlsx` con las 3 columnas nuevas, cada fila coloreada, y una
-pestaña "Resumen" con los totales por estatus.
+Lee el Excel, cruza por SKU contra Shopify (y por nombre las filas sin
+SKU, ver arriba), sube los cambios, y escribe `resultado.xlsx` con las 3
+columnas nuevas, cada fila coloreada, y una pestaña "Resumen" con los
+totales por estatus y cuántas se vincularon por nombre.
 
 ## Notas técnicas (por si la sesión de Claude cambia y hay que retomar)
 
@@ -109,6 +152,14 @@ pestaña "Resumen" con los totales por estatus.
 - Ajuste de existencia: `POST /admin/api/2024-01/inventory_levels/set.json`
   con `{location_id, inventory_item_id, available}` — el
   `inventory_item_id` viene en cada variante del producto.
+- Matching por nombre (`build_title_index` / `find_by_name` en el
+  script): solo indexa productos con **exactamente 1 variante** — con
+  más de una no hay forma de saber a cuál aplicar el conteo, así que se
+  excluyen del cruce por nombre (siguen resolviéndose por SKU si lo
+  traen). Normalización: mayúsculas, sin acentos (`unicodedata`), sin
+  puntuación, espacios colapsados. Umbral de coincidencia aproximada:
+  `difflib.get_close_matches(..., cutoff=0.90)` — no bajar este número,
+  ver la sección de arriba sobre por qué es peligroso.
 - Con ~140 actualizaciones, calcula medio segundo entre llamada y llamada
   para no chocar con el límite de la API (2 req/s en el bucket estándar).
 
@@ -121,3 +172,10 @@ pestaña "Resumen" con los totales por estatus.
 | 13 ago 2026 | 1,204 | 319 | 12 | 769 | 104 | 12 |
 | 14 ago 2026 | 1,178 | 310 | 16 | 748 | 104 | 17 |
 | 15 ago 2026 | 1,178 | 301 | 22 | 751 | 104 | 25 |
+
+> El matching por nombre se agregó **después** de esta última corrida, así
+> que la fila de arriba no lo incluye. Prueba en seco (sin tocar Shopify)
+> contra el mismo conteo del 15 de agosto: de las 87 filas sin código de
+> parte, **1** se resolvió por nombre con el umbral de 90% — ver la
+> sección 2 de "Qué va a hacer Claude" para el detalle de por qué el
+> resultado es modesto a propósito.
