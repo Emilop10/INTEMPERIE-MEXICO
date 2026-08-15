@@ -76,6 +76,14 @@ def gql(query, token, store, variables=None):
                 continue
             print(f"Error HTTP {e.code}: {e.read().decode()[:500]}", file=sys.stderr)
             sys.exit(1)
+        except (urllib.error.URLError, TimeoutError, OSError) as e:
+            # Corridas largas (cientos de mutaciones) chocan de vez en cuando
+            # con cortes de TLS o de red. Sin reintento aqui, el script muere a
+            # media corrida y deja productos despublicados — que fue justo lo
+            # que paso el 15 de agosto de 2026 con 159 productos.
+            print(f"  red inestable ({type(e).__name__}), reintento {intento + 1}/5...", file=sys.stderr)
+            time.sleep(2 * (intento + 1))
+            continue
     print("Se agotaron los reintentos contra la API de Shopify", file=sys.stderr)
     sys.exit(1)
 
