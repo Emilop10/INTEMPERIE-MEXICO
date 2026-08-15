@@ -1826,26 +1826,51 @@ el camino real, en dos partes separadas:
 Claude en Chrome guió la navegación y verificó cada pantalla, pero los
 formularios de registro/login los completó el cliente con su teclado.
 
-### Bloqueo descubierto: la API de Meta no responde desde este entorno remoto
+### Bloqueo "API access blocked" — NO era de red/IP (corregido)
 
-Al intentar generar el token del System User nuevo y llamar a la
-Marketing API (`graph.facebook.com`) desde este entorno de trabajo, toda
-llamada con un token real devuelve `{"error": {"message": "API access
-blocked.", "code": 200}}`. Se descartó que fuera el token: la misma
-llamada con un token inválido responde con el error normal de OAuth
-("Invalid OAuth access token", code 190) — es decir, la red sí llega a
-Meta y el token se procesa, pero Meta bloquea específicamente el acceso
-a activos reales. Es el mismo tipo de bloqueo anti-abuso por reputación
-de IP que ya se había documentado para Browser Harness/CDP (sección 21)
-— Meta filtra tráfico de IPs de centros de datos hacia su Marketing API,
-incluso con credenciales válidas.
+Al llamar a la Marketing API (`graph.facebook.com`) con `scripts/meta-ads.py`,
+toda llamada con un token real devolvía `{"error": {"message": "API
+access blocked.", "code": 200}}`. La primera hipótesis (documentada
+aquí mismo, ahora corregida) fue un bloqueo anti-abuso por reputación de
+IP de datacenter, igual que el ya conocido para Browser Harness/CDP
+(sección 21) — **esa hipótesis era incorrecta**, descartada el 14 de
+agosto cuando el cliente corrió el mismo script desde su propia Mac (IP
+residencial) y obtuvo **el mismo error exacto**.
 
-**Consecuencia práctica:** `scripts/meta-ads.py` no se puede correr desde
-este entorno contra la cuenta real. Sí lo puede correr el cliente desde
-su propia máquina (IP residencial/de oficina, sin ese bloqueo) — es la
-misma lógica que ya regía para Browser Harness. El token de System User
-generado el 14 de agosto se le entregó al cliente por chat para que él
-lo exporte y corra los comandos localmente.
+Diagnóstico real, paso a paso:
+1. Se revisó la app "Claude Integration" y el Business Manager en busca
+   de restricciones visibles (App Review, alertas de política,
+   "Problemas recientes de la cuenta") — **nada**, todo limpio.
+2. Se probó el mismo token en el **Graph API Explorer oficial de Meta**
+   (`developers.facebook.com/tools/explorer`), que ejecuta la llamada
+   desde la infraestructura de Meta, no desde nuestro cliente HTTP — la
+   consulta `act_1264279685553718?fields=name,account_status` funcionó
+   perfecto (`account_status: 1`, ACTIVE). Esto aisló el problema: no era
+   el token, la cuenta ni los permisos — era específicamente cómo
+   `meta-ads.py` arma la petición.
+3. Causa real: `urllib` (librería estándar de Python) manda
+   `User-Agent: Python-urllib/3.x` por defecto — una firma reconocida
+   como bot que el sistema anti-abuso de Meta bloquea antes de evaluar
+   el token, sin importar desde qué IP llegue. Se agregó un
+   `User-Agent` de navegador real a `api_request()` en `meta-ads.py`, y
+   el bloqueo desapareció — confirmado corriendo `activos` y `listar`
+   sin el error "API access blocked".
+
+**Lección para el futuro:** un error igual desde dos redes distintas
+(este entorno remoto y la Mac del cliente) es evidencia de que **no es
+de red** — hay que descartarlo probando la llamada por un canal
+completamente distinto (herramienta oficial del proveedor, navegador)
+antes de asumir un bloqueo de IP. La hipótesis de Browser Harness/CDP
+(sección 21) sigue siendo válida — ahí sí se confirmó que es
+específicamente el protocolo WebSocket lo que el proxy de este entorno
+bloquea — pero no todo error de conexión hacia una API externa es del
+mismo origen, y conviene no generalizar de un caso a otro sin
+verificarlo de nuevo.
+
+**Estado real tras el fix:** el script sí puede correr contra la cuenta
+real, incluso desde este entorno — no hacía falta que el cliente lo
+corriera desde su máquina por el motivo original que se pensó (aunque de
+todas formas lo terminó corriendo él, y así se detectó el error real).
 
 ### `crear-campania`: agregado el 14 de agosto
 
@@ -1870,16 +1895,32 @@ Se agregaron dos comandos:
   `activar` aparte, a propósito, como capa extra antes de que se gaste
   presupuesto real.
 
-**No se pudo probar contra la API real** por el bloqueo de red de arriba
-— el cliente es quien lo corre y verifica. Decisión del cliente (14 de
-agosto): formato catálogo dinámico (no imagen única), presupuesto
-$600 MXN/día para la primera semana.
+Decisión del cliente (14 de agosto): formato catálogo dinámico (no
+imagen única), presupuesto $600 MXN/día para la primera semana.
+
+**Actualización tras el fix del User-Agent (arriba):** con `activos` ya
+funcionando, se descubrió que el ID de página que se venía usando
+(`61588253103964`, sacado de la URL pública de Facebook) **no es el ID
+real de la página en la API** — el real es `924461404093150`. El
+catálogo (`1230530145855635`) sí resolvió bien vía
+`/{business_id}/owned_product_catalogs`. Pero `/instagram_accounts`
+devuelve vacío pese a que la cuenta `@intemperiemexico` sí está agregada
+al portfolio empresarial (confirmado visualmente en Business Suite,
+sección 14 de este manual) — el token de System User generado el 14 de
+agosto no incluye el permiso `instagram_basic`, necesario para leer
+cuentas de Instagram por API aunque el usuario del sistema tenga acceso
+total a ese activo en la interfaz. Pendiente regenerar el token una vez
+más agregando ese permiso antes de poder correr `crear-campania` con
+éxito (necesita el ID de la cuenta de Instagram para el creativo
+dinámico).
 
 ### Pendiente
 
-Ver sección 8 de `PENDIENTES.md`. Instagram ya está creado y vinculado.
-Sigue pendiente: que el cliente corra `activos` y `crear-campania` desde
-su propia máquina, revise lo creado (queda pausado) y decida cuándo
+Ver sección 8 de `PENDIENTES.md`. Instagram ya está creado y vinculado
+en Business Suite, pero falta regenerar el token con el permiso
+`instagram_basic` para que `crear-campania` pueda leerlo por API. Una
+vez con eso, el cliente corre `activos` (ya no falla) y
+`crear-campania`, revisa lo creado (queda pausado) y decide cuándo
 activar.
 
 ---

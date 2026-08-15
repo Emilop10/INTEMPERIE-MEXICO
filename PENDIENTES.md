@@ -5,22 +5,34 @@ el resto de la auditoría ya quedó implementado y en vivo.
 
 ## 🔴 URGENTE — Lanzar la primera campaña de Meta Ads
 
-Es lo próximo que sigue, literal, en cuanto el cliente indique una
-corrección pendiente y se actualice el inventario. Todo lo demás ya está
-listo:
+Todo resuelto salvo un permiso que falta en el token. Estado (14 agosto):
 
-- ✅ Instagram creado y vinculado (14 agosto) — ver [2](#2-redes-sociales--parcialmente-resuelto-28-jul)
+- ✅ Instagram creado y vinculado — ver [2](#2-redes-sociales--parcialmente-resuelto-28-jul)
 - ✅ `scripts/meta-ads.py` ya tiene los comandos `activos` y
-  `crear-campania` (agregados 14 agosto) — ver [8](#8-meta-ads-facebookinstagram--infraestructura-lista-12-ago)
+  `crear-campania` — ver [8](#8-meta-ads-facebookinstagram--infraestructura-lista-12-ago)
 - ✅ Decisión tomada: catálogo dinámico, $600 MXN/día la primera semana
+- ✅ El error "API access blocked" que daba el script **ya se corrigió**
+  (no era de red — el script mandaba un User-Agent de bot; detalle en
+  sección 29 del manual). `activos` y `listar` ya corren bien.
+- ⏳ **Falta:** el token actual no tiene el permiso `instagram_basic`,
+  así que `activos` no puede leer la cuenta de Instagram por API todavía
+  (aunque sí está vinculada). Hay que regenerar el token una vez más.
 
-**Lo único que falta:** correr desde tu propia máquina (la API de Meta
-bloquea este entorno remoto, ver sección 29 del manual):
+**Próximo paso — regenerar el token:**
+
+1. Business Manager → Usuarios del sistema → Claude Integration →
+   "Generar identificador".
+2. Marca los 4 de siempre (`ads_management`, `ads_read`,
+   `business_management`, `catalog_management`) **+ `instagram_basic`**.
+3. Pásale el token nuevo a Claude.
+
+**Luego, correr (desde donde sea — ya no hace falta que sea tu propia
+máquina, el bloqueo de red era falso positivo):**
 
 ```bash
-export META_ACCESS_TOKEN="..."               # el que ya generaste el 14 de agosto
+export META_ACCESS_TOKEN="..."
 export META_AD_ACCOUNT_ID="act_1264279685553718"
-python3 scripts/meta-ads.py activos           # solo revisa, no crea nada — mándame el resultado
+python3 scripts/meta-ads.py activos           # solo revisa, no crea nada
 python3 scripts/meta-ads.py crear-campania --presupuesto 600   # crea todo PAUSADO
 ```
 
