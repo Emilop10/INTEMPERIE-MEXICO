@@ -13,14 +13,48 @@ el proceso corre con un script guardado en el repo
 
 ---
 
+## Las dos llaves del cruce (lo más importante de este documento)
+
+El conteo y Shopify se emparejan por **dos identificadores exactos**, en
+este orden de prioridad:
+
+| # | Llave | En el Excel | En Shopify | Cobertura |
+|---|---|---|---|---|
+| 1 | SKU | `No Parte` | `variant.sku` | 371/383 |
+| 2 | Código interno | `Codigo B1` | `variant.barcode` | 371/383 |
+
+**Por qué hacen falta las dos:** el `No Parte` falta en ~88 filas del
+conteo, y hay 12 productos cuyo SKU en Shopify viene del catálogo del
+fabricante (`632252557`) en vez del código interno del POS
+(`15ANZUEL658EC`). El `Codigo B1` sí está en el **100%** de las filas y
+sin duplicados, así que cierra esos huecos.
+
+El `Codigo B1` se guarda en el campo **"Código de barras"** de Shopify —
+que estaba completamente vacío y no se usa para nada más. Se pobló el 15
+de agosto de 2026 con `scripts/vincular-codigo-b1.py`.
+
+> **Al dar de alta un producto nuevo en Shopify**, ponle su `Codigo B1`
+> en el campo "Código de barras". Con eso se concilia solo desde el primer
+> día, sin importar qué SKU le pongas.
+
+Hay un tercer cruce, **por nombre**, como último recurso — pero resuelve
+muy poco (1 de 87 en la prueba real) y es deliberadamente estricto. Ver
+la sección "Cruce por nombre" más abajo.
+
+---
+
 ## Qué necesitas de tu lado
 
 1. El **Excel del conteo físico** del día, exportado del sistema de la
    tienda, con al menos estas columnas (no importa el orden):
-   `No Parte` (el SKU/código de cada artículo) y `Existencia` (la
-   cantidad contada hoy). El resto de columnas (`Departamento`,
-   `Descripción`, `proveedor`, `ConstoN`, `Ubicacion`) se conservan pero
-   no se usan para la conciliación.
+   `Codigo B1` (el código interno), `No Parte` (el SKU) y `Existencia`
+   (la cantidad contada hoy). El resto (`Departamento`, `Descripción`,
+   `proveedor`, `ConstoN`, `Ubicacion`) se conservan pero casi no se usan
+   — `Descripción` solo entra en el cruce por nombre de último recurso.
+
+   ⚠️ **Asegúrate de exportar con la columna `Codigo B1`.** Sin ella el
+   script sigue funcionando, pero pierde la segunda llave y vuelven a
+   quedar filas sin conciliar.
 2. Un token de **Shopify Admin API** con los scopes `read_products`,
    `write_products`, `read_inventory`, `write_inventory`. Si el token
    activo ya los tiene (revisado la primera vez, 10 de agosto de 2026),
@@ -52,19 +86,19 @@ OAuth manual — son los mismos 7 pasos de siempre, 5 minutos.
 
 ## Qué va a hacer Claude (para que sepas qué esperar)
 
-1. Lee el Excel y lo cruza por `No Parte` contra el SKU de cada variante
-   de producto en Shopify.
-2. **Para las filas sin `No Parte`** (actualizado 15 agosto 2026): antes
-   de rendirse, intenta un segundo cruce por nombre — la `Descripción`
-   del conteo contra el título del producto en Shopify. Solo dos formas
-   de coincidencia cuentan como confiables:
-   - **Exacta** tras normalizar (mayúsculas, sin acentos, sin puntuación)
-     y sin ambigüedad — un único producto con ese nombre.
-   - **Aproximada** por encima del 90% de parecido, y sin empate con otro
-     nombre parecido.
+1. **Cruce por SKU** — `No Parte` contra `variant.sku`. Es la llave
+   principal, resuelve la gran mayoría.
+2. **Cruce por Código B1** — si la fila no trae `No Parte`, o su SKU no
+   existe en Shopify, busca el `Codigo B1` en el campo `barcode`. Exacto
+   también, sin adivinar nada.
+3. **Cruce por nombre** — solo si fallaron las dos anteriores. Compara la
+   `Descripción` contra el título del producto. Únicamente cuenta como
+   confiable si:
+   - Coincide **exacto** tras normalizar (mayúsculas, sin acentos, sin
+     puntuación) y hay un solo producto con ese nombre, o
+   - Coincide **por encima del 90%** de parecido, sin empate con otro.
 
-   Si hay ambigüedad (el nombre se parece a dos productos, o coincide
-   exacto con más de uno), la fila se queda gris — nunca elige entre
+   Si hay ambigüedad, la fila se queda gris — nunca elige entre
    candidatos parecidos.
 
    **Por qué el umbral es tan alto:** se probó bajarlo y aparecieron
@@ -73,20 +107,16 @@ OAuth manual — son los mismos 7 pasos de siempre, 5 minutos.
    94151-NI Live Bait #8"* — es el mismo anzuelo, pero de **talla
    distinta**. Con un catálogo donde decenas de productos se diferencian
    solo por un número (calibre, talla, piezas), un umbral bajo
-   actualizaría el inventario del producto equivocado en silencio. Se
-   prefirió resolver pocas filas de más pero con seguridad, a resolver
-   muchas con riesgo real de aplicar el conteo al producto que no es.
+   actualizaría el inventario del producto equivocado en silencio.
 
-   **Expectativa realista:** en la primera prueba (15 agosto), de 87
-   filas sin código de parte, solo 1 se resolvió por nombre. La causa no
-   es el algoritmo — es que las descripciones del sistema POS
+   **No esperes gran cosa de este tercer cruce:** en la prueba real
+   resolvió 1 de 87 filas. Las descripciones del POS
    (`"BOLSA CON 500 BULLETS"`) y los títulos de Shopify
-   (`"Diábolo Mendoza Combate..."`) están escritos con vocabulario y
-   orden distintos, no son el mismo texto con formato diferente. Ningún
-   matching de texto cierra esa brecha de forma segura — la solución real
-   sería cargar el `No Parte` en el sistema POS para los artículos que no
-   lo tienen.
-3. Clasifica cada fila:
+   (`"Diábolo Mendoza Combate..."`) usan vocabulario distinto, no son el
+   mismo texto con otro formato. La solución de fondo no es mejorar el
+   algoritmo: es tener el `Codigo B1` en el campo "Código de barras" del
+   producto (paso 2), que sí es exacto.
+4. Clasifica cada fila:
    - 🟢 **Verde** — coincide, no se toca nada.
    - 🟡 **Amarillo** — hay diferencia, se actualiza Shopify al conteo de
      hoy.
@@ -97,28 +127,32 @@ OAuth manual — son los mismos 7 pasos de siempre, 5 minutos.
      apuntando a productos distintos). Estas **no se tocan en Shopify** —
      quedan para que las revises tú a mano, con una nota explicando el
      motivo en cada una.
-4. Sube los cambios a Shopify vía API (verde y gris no generan ningún
-   cambio; solo amarillo, rojo-que-tenía-existencia-previa, y lo
-   vinculado por nombre que haya cambiado).
-5. Te regresa el mismo Excel con:
+5. Sube los cambios a Shopify vía API (verde y gris no generan ningún
+   cambio; solo amarillo y el rojo-que-tenía-existencia-previa).
+6. Te regresa el mismo Excel con:
    - Cada fila coloreada.
    - Tres columnas nuevas: `Existencia Shopify (antes)`, `Estatus`, `Nota`
-     (la nota dice explícitamente cuándo una fila se vinculó por nombre,
-     y con qué producto).
+     (la nota dice con qué llave se vinculó cada fila cuando no fue por
+     SKU, y con qué producto).
    - Una pestaña **Resumen** con los totales, incluido cuántas filas se
-     vincularon por nombre.
+     vincularon por código B1 y cuántas por nombre.
 
 ## Qué revisar tú al final
 
 - Las filas **grises** — son las únicas que Claude no pudo resolver solo.
-  La nota de cada una dice el motivo exacto: sin código y sin coincidencia
-  de nombre confiable, nombre parecido a **más de un** producto (revisa
-  cuál es el correcto a mano), o un mismo código usado para más de un
-  producto (error de captura en el POS que vale la pena corregir ahí, no
-  solo en Shopify). La mayoría de las grises por falta de código no tienen
-  solución automática — la brecha real es que el POS y Shopify describen
-  el mismo producto con palabras distintas; la corrección de fondo es
-  cargar el `No Parte` en el POS para esos artículos.
+  La nota de cada una dice el motivo exacto: sin ninguna de las dos llaves
+  y sin coincidencia de nombre confiable, nombre parecido a **más de un**
+  producto, o un mismo `No Parte` usado para más de un producto (error de
+  captura en el POS que vale la pena corregir ahí, no solo en Shopify).
+- La mayoría de las grises son de artículos que **solo existen en la
+  tienda física**, no en la web — ahí no hay nada que hacer, es normal.
+  Si una gris corresponde a un producto que sí vendes online, la solución
+  es ponerle su `Codigo B1` en el campo "Código de barras" del producto en
+  Shopify; a partir de ahí se concilia solo.
+- 📄 **[`PRODUCTOS-PENDIENTES.md`](./PRODUCTOS-PENDIENTES.md)** — lista
+  viva de los productos de Shopify que todavía no tienen su `Codigo B1`
+  asignado y por eso no se concilian solos. Ahí está cada uno con su
+  candidato propuesto, para irlos cerrando.
 - Si ves muchas filas en **rojo por "no existe en Shopify"**, probablemente
   sea normal — la tienda física maneja más SKUs de los que están puestos
   a la venta online. Pero si esperabas ver alguno ahí y no aparece, dilo.
@@ -134,10 +168,28 @@ export SHOPIFY_ADMIN_TOKEN=shpat_...
 python3 scripts/conciliar-inventario.py conteo-de-hoy.xlsx resultado.xlsx
 ```
 
-Lee el Excel, cruza por SKU contra Shopify (y por nombre las filas sin
-SKU, ver arriba), sube los cambios, y escribe `resultado.xlsx` con las 3
-columnas nuevas, cada fila coloreada, y una pestaña "Resumen" con los
-totales por estatus y cuántas se vincularon por nombre.
+Lee el Excel, cruza por SKU → código B1 → nombre (ver arriba), sube los
+cambios, y escribe `resultado.xlsx` con las 3 columnas nuevas, cada fila
+coloreada, y una pestaña "Resumen" con los totales por estatus y con qué
+llave se vinculó cada grupo.
+
+### Vincular códigos B1 (solo cuando haga falta)
+
+Este segundo script escribe el `Codigo B1` del conteo en el campo
+`barcode` de Shopify. **Ya se corrió el 15 de agosto de 2026** (371
+productos), así que normalmente no hay que volver a usarlo — solo si
+entran muchos productos nuevos de golpe:
+
+```bash
+export SHOPIFY_ADMIN_TOKEN=shpat_...        # necesita write_products
+python3 scripts/vincular-codigo-b1.py conteo-de-hoy.xlsx --dry-run
+python3 scripts/vincular-codigo-b1.py conteo-de-hoy.xlsx
+```
+
+Solo escribe donde el producto ya casa por SKU (ahí el vínculo es
+seguro). Los que no casan los reporta al final para revisión manual —
+esos son los que viven en
+[`PRODUCTOS-PENDIENTES.md`](./PRODUCTOS-PENDIENTES.md).
 
 ## Notas técnicas (por si la sesión de Claude cambia y hay que retomar)
 
@@ -152,12 +204,19 @@ totales por estatus y cuántas se vincularon por nombre.
 - Ajuste de existencia: `POST /admin/api/2024-01/inventory_levels/set.json`
   con `{location_id, inventory_item_id, available}` — el
   `inventory_item_id` viene en cada variante del producto.
+- Escribir el código B1: `PUT /admin/api/2024-01/variants/{id}.json` con
+  `{"variant": {"id": ..., "barcode": "..."}}`. Requiere `write_products`
+  (no basta con los scopes de inventario).
+- El `Codigo B1` mezcla dos formatos y **ambos son válidos**: ~1045
+  códigos internos de 4 dígitos (`4747`) y ~162 códigos de barras reales
+  EAN-13/UPC-A (`793676021461`). Lo importante es que es único y está en
+  el 100% de las filas — no hay que normalizarlo ni validarlo.
 - Matching por nombre (`build_title_index` / `find_by_name` en el
   script): solo indexa productos con **exactamente 1 variante** — con
   más de una no hay forma de saber a cuál aplicar el conteo, así que se
-  excluyen del cruce por nombre (siguen resolviéndose por SKU si lo
-  traen). Normalización: mayúsculas, sin acentos (`unicodedata`), sin
-  puntuación, espacios colapsados. Umbral de coincidencia aproximada:
+  excluyen del cruce por nombre (siguen resolviéndose por SKU o código B1
+  si los traen). Normalización: mayúsculas, sin acentos (`unicodedata`),
+  sin puntuación, espacios colapsados. Umbral de coincidencia aproximada:
   `difflib.get_close_matches(..., cutoff=0.90)` — no bajar este número,
   ver la sección de arriba sobre por qué es peligroso.
 - Con ~140 actualizaciones, calcula medio segundo entre llamada y llamada
@@ -173,9 +232,11 @@ totales por estatus y cuántas se vincularon por nombre.
 | 14 ago 2026 | 1,178 | 310 | 16 | 748 | 104 | 17 |
 | 15 ago 2026 | 1,178 | 301 | 22 | 751 | 104 | 25 |
 
-> El matching por nombre se agregó **después** de esta última corrida, así
-> que la fila de arriba no lo incluye. Prueba en seco (sin tocar Shopify)
-> contra el mismo conteo del 15 de agosto: de las 87 filas sin código de
-> parte, **1** se resolvió por nombre con el umbral de 90% — ver la
-> sección 2 de "Qué va a hacer Claude" para el detalle de por qué el
-> resultado es modesto a propósito.
+> **15 de agosto, más tarde:** se agregó el cruce por `Codigo B1` y se
+> poblaron 371 códigos de barras en Shopify (0 errores). La cobertura de
+> conciliación automática pasó de 366 a **371 de 383 productos (97%)**.
+> Los 12 restantes están en
+> [`PRODUCTOS-PENDIENTES.md`](./PRODUCTOS-PENDIENTES.md).
+>
+> El cruce por nombre, agregado el mismo día, resolvió 1 de 87 filas —
+> quedó como último recurso, ver la sección 3 de "Qué va a hacer Claude".
