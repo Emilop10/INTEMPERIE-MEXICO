@@ -30,10 +30,9 @@ python3 scripts/meta-ads.py crear-campania --presupuesto 600   # crea todo PAUSA
 Queda pausada — se revisa en el Administrador de anuncios y se activa con
 `meta-ads.py activar --campania <id>` cuando la apruebes.
 
-**Pendiente menor de higiene:** borrar el catálogo viejo
-`1230530145855635` desde Meta Commerce Manager. Ninguna campaña apunta
-ahí, pero sigue conteniendo 56 productos huérfanos incluidos rifles y
-miras — es riesgo latente si alguien lo selecciona por error.
+✅ El catálogo viejo `1230530145855635` **se borró** el 15 de agosto,
+tras verificar que ninguna campaña dependía de él. Queda un solo
+catálogo en el negocio.
 
 ---
 
@@ -56,7 +55,7 @@ vivo de inmediato.
 **Dominio principal:** `https://intemperiemexico.com` — conectado y
 verificado el 3 de agosto de 2026. `wfuxvx-yn.myshopify.com` ahora
 redirige automáticamente al dominio propio.
-**Última actualización:** 14 de agosto de 2026
+**Última actualización:** 15 de agosto de 2026
 
 **Correo profesional:** Google Workspace reactivado con `admin@intemperiemexico.com`
 como cuenta principal. DNS (MX, SPF, DKIM) verificado y propagado. 6 alias activos

@@ -155,15 +155,15 @@ print('OK, ninguno prohibido' if not mal else 'REVISAR URGENTE')
 | Dato | Valor |
 |---|---|
 | Canal en Shopify | `Facebook & Instagram` — publicación `163249258573` |
-| Catálogo de Meta (vigente) | `1746844133017649` — creado 15 ago 2026 |
-| Catálogo viejo (muerto, no usar) | `1230530145855635` — 56 productos huérfanos |
+| Catálogo de Meta | `1746844133017649` — creado 15 ago 2026, **el único** |
 | Business Manager | `1324138699447721` — Intemperie México |
 | Pixel | `2011984246408291` — Intemperie México Pixel |
 
-> ⚠️ El catálogo viejo (`1230530145855635`) sigue existiendo en el Business
-> Manager con 56 productos huérfanos, **varios de ellos rifles, pistolas y
-> miras**. Ninguna campaña debe apuntar ahí. Conviene borrarlo desde
-> Commerce Manager para que no quede como riesgo latente.
+> El catálogo viejo `1230530145855635` (56 productos huérfanos, varios de
+> ellos armas) **se borró el 15 de agosto de 2026**, tras verificar que
+> ninguna campaña ni conjunto de anuncios dependía de él. Queda un solo
+> catálogo en el negocio, así que ya no hay forma de apuntar una campaña
+> por error a productos prohibidos.
 
 ## 7. Lo que NO hay que hacer
 
@@ -172,7 +172,6 @@ print('OK, ninguno prohibido' if not mal else 'REVISAR URGENTE')
   **todos los productos preseleccionados**, incluidos los prohibidos —
   es exactamente como se publicaron armas al canal por accidente en
   febrero de 2026. Usa el script, que respeta las exclusiones.
-- **No apuntar campañas al catálogo viejo** (`1230530145855635`).
 - **No agregar filtros de "conjunto de productos" por categoría** en Meta
   como si fueran la protección. Se evaluó y se descartó: una lista blanca
   de categorías excluye en silencio productos legítimos cuando aparece una

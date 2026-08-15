@@ -17,8 +17,7 @@ que el token deje de servir.
 | Moneda | MXN |
 | Business Manager | ID `1324138699447721` — "Intemperie México" |
 | Pixel de Meta | `2011984246408291` — "Intemperie México Pixel" |
-| Catálogo de Meta | `1746844133017649` — 324 productos (vigente desde 15 ago 2026) |
-| Catálogo viejo — **NO USAR** | `1230530145855635` — 56 huérfanos, incluye armas |
+| Catálogo de Meta | `1746844133017649` — 324 productos, el único (desde 15 ago 2026) |
 | App del System User | "Claude Integration" — ID `1038516402111748` |
 | Canal en Shopify | App oficial "Facebook & Instagram", instalada desde el 16 feb 2026 |
 
@@ -48,11 +47,10 @@ de agosto):**
   Binoculares, Monoculares y Accesorios de Óptica sí quedan incluidos)
 
 **Antes de crear cualquier campaña o conjunto de anuncios nuevo**,
-verificar que apunte al catálogo vigente `1746844133017649` — que ya
-viene filtrado desde Shopify y contiene solo los 324 productos
-anunciables. **Nunca apuntar al catálogo viejo `1230530145855635`**: sigue
-existiendo en el Business Manager con 56 productos huérfanos, varios de
-ellos rifles, pistolas y miras.
+verificar que apunte al catálogo `1746844133017649` — el único que
+existe, ya filtrado desde Shopify, con solo los 324 productos
+anunciables. (El catálogo viejo `1230530145855635`, que tenía 56
+huérfanos incluidas armas, se borró el 15 de agosto.)
 
 La verificación de que el catálogo está limpio (0 categorías prohibidas)
 está en `INSTRUCTIVO-CATALOGO-META.md`, sección 5.

@@ -2189,7 +2189,9 @@ botón "Publicar productos" de la app, que preselecciona *todos* los
 productos incluidos los prohibidos — así fue como se publicaron armas al
 canal por accidente en febrero).
 
-**Pendiente menor:** el catálogo viejo `1230530145855635` sigue existiendo
-en el Business Manager con sus 56 huérfanos, varios de ellos armas.
-Ninguna campaña apunta ahí, pero conviene borrarlo desde Commerce Manager
-para que no quede como riesgo latente.
+**El catálogo viejo se borró** (`1230530145855635`), el mismo 15 de
+agosto y a petición del cliente, después de verificar por API que la
+cuenta publicitaria no tenía ninguna campaña ni conjunto de anuncios que
+dependiera de él. Queda un solo catálogo en el negocio, así que ya no
+existe la posibilidad de apuntar una campaña por error a los 56
+huérfanos —varios de ellos armas— que contenía.
