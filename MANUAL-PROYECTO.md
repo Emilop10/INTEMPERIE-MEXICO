@@ -56,6 +56,8 @@ como respaldo
 26. [Rediseño del carrito: panel lateral, botón y carrito vacío](#26-rediseño-del-carrito-panel-lateral-botón-y-carrito-vacío)
 27. [Indexación en Google: SEO técnico y alta en Search Console](#27-indexación-en-google-seo-técnico-y-alta-en-search-console)
 28. [Conciliación de inventario físico contra Shopify](#28-conciliación-de-inventario-físico-contra-shopify)
+29. [Meta Ads (Facebook/Instagram): medición y catálogo anunciable](#29-meta-ads-facebookinstagram-medición-y-catálogo-anunciable)
+30. [Aviso de Shopify Trust & Safety: retención de pagos por "armas"](#30-aviso-de-shopify-trust--safety-retención-de-pagos-por-armas)
 
 ---
 
@@ -1878,3 +1880,83 @@ Ver sección 8 de `PENDIENTES.md`. Instagram ya está creado y vinculado.
 Sigue pendiente: que el cliente corra `activos` y `crear-campania` desde
 su propia máquina, revise lo creado (queda pausado) y decida cuándo
 activar.
+
+---
+
+## 30. Aviso de Shopify Trust & Safety: retención de pagos por "armas"
+
+### Qué pasó
+
+El 15 de agosto de 2026 Shopify mandó un aviso de "Trust & Safety"
+(PDF, Ticket ID `b724b907-5dbb-454c-aa07-1b32e2cdb3f7`): su socio bancario
+identificó productos de "Air Guns" / "Air Rifles" (el departamento
+"Rifles y Pistolas de Aire") como armas, y **retenía los payouts de
+Shopify Payments** hasta resolverlo. Dos caminos que ofrecía el aviso:
+quitar esos productos de todos los canales de venta, o dejar de usar
+Shopify Payments. Plazo: 19 de agosto para responder el formulario de
+revisión.
+
+Es el mismo patrón de fondo que ya se había documentado con Meta Ads
+(sección 29): rifles/pistolas de aire comprimido caen en zona gris de
+"arma" para plataformas externas (bancos, redes), aunque en México sean
+categoría deportiva no letal. Primero afectó a qué se puede anunciar;
+ahora, a qué se puede cobrar.
+
+### La solución encontrada: no hacía falta quitar nada
+
+Antes de decidir entre las dos opciones del aviso, se verificó algo
+importante en el checkout real: la tienda **ya tenía PayPal y Mercado
+Pago Checkout Pro activos** además de Shopify Payments (visible en
+Configuración → Pagos → "Proveedores de pagos adicionales" — nadie lo
+había documentado en el proyecto hasta ahora). Eso cambió el problema:
+en vez de "¿quito productos o cambio de proveedor para toda la tienda?",
+la opción real era **desactivar solo Shopify Payments** y dejar que
+PayPal + Mercado Pago sigan cubriendo el checkout — sin tocar el
+catálogo ni las ventas.
+
+Razonamiento (no confirmado directamente con Shopify, pero consistente
+con el texto del aviso): la retención es específica de **"Shopify
+Payments payouts"** — PayPal y Mercado Pago son procesadores
+independientes, el dinero de esas ventas nunca pasa por el sistema de
+payouts de Shopify, así que no deberían estar afectados por este aviso
+en absoluto.
+
+### Qué se hizo (14-15 de agosto de 2026)
+
+1. Se confirmó con el cliente que la tienda no tiene ventas presenciales
+   por Shopify POS — punto importante porque el modal de desactivación
+   advierte que puede afectar "Facebook, Instagram y Tienda física"; sin
+   POS físico, ese riesgo no aplicaba.
+2. El cliente desactivó Shopify Payments desde Configuración → Pagos →
+   Shopify Payments → "Gestionar" → menú "Más acciones" → "Desactivar
+   Shopify Payments" (motivo seleccionado: **"El producto está
+   prohibido"**, el más preciso de la lista — no había una opción
+   literal de "uso otro proveedor").
+3. Guiado por Claude en Chrome hasta el modal de confirmación final,
+   pero **el clic de confirmar lo dio el cliente**, no Claude — mismo
+   criterio de todo el proyecto: acciones que cambian cómo se recibe
+   dinero las ejecuta el dueño, Claude en Chrome solo navega y reporta.
+4. Confirmado después en la pantalla de Pagos: PayPal y Mercado Pago
+   siguen activos, el checkout sigue funcionando.
+
+**No se tocó ningún producto del catálogo** — la tienda sigue vendiendo
+rifles y pistolas de aire comprimido normal, solo cambió por dónde se
+procesa el pago de tarjeta.
+
+### Qué vigilar después de esto
+
+- **El dinero ya retenido antes de la desactivación sigue retenido** —
+  desactivar Shopify Payments no libera fondos ya en revisión, solo
+  evita que ventas *futuras* queden atrapadas ahí. En este caso no
+  aplicaba: el cliente confirmó que no había ventas todavía, cero riesgo.
+- **Conversión del checkout**: Shopify Payments procesaba tarjeta sin
+  salir de la página; PayPal y Mercado Pago redirigen al cliente a otra
+  pantalla ("Se te redirigirá a Mercado Pago para que completes la
+  compra"). Vale la pena revisar la tasa de conversión las próximas
+  semanas por si ese paso extra afecta las ventas — especialmente
+  relevante justo ahora que se está por lanzar la primera campaña de
+  Meta Ads (sección 29).
+- **No se llenó el formulario de Shopify** — al resolverse desactivando
+  Shopify Payments, dejó de ser necesario. Si en el futuro se quiere
+  reactivar Shopify Payments, probablemente haga falta retomarlo o abrir
+  un ticket nuevo con Shopify.
