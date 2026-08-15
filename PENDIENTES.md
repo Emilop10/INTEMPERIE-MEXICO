@@ -5,40 +5,35 @@ el resto de la auditoría ya quedó implementado y en vivo.
 
 ## 🔴 URGENTE — Lanzar la primera campaña de Meta Ads
 
-Todo resuelto salvo un permiso que falta en el token. Estado (14 agosto):
+Toda la infraestructura quedó lista y verificada. Estado (15 agosto):
 
 - ✅ Instagram creado y vinculado — ver [2](#2-redes-sociales--parcialmente-resuelto-28-jul)
-- ✅ `scripts/meta-ads.py` ya tiene los comandos `activos` y
-  `crear-campania` — ver [8](#8-meta-ads-facebookinstagram--infraestructura-lista-12-ago)
+- ✅ Token de System User con los 9 permisos necesarios (incluido
+  `instagram_basic`, que requirió agregar un caso de uso a la app)
+- ✅ El error "API access blocked" **ya se corrigió** (no era de red — el
+  script mandaba un User-Agent de bot; sección 29 del manual)
+- ✅ **Catálogo de Meta arreglado** — llevaba desde febrero desconectado,
+  con 56 productos huérfanos de una generación borrada de Shopify (varios
+  de ellos armas). Ahora tiene los 324 productos correctos, 0 prohibidos.
+  Historia completa en la sección 32 del manual; mantenimiento en
+  [`INSTRUCTIVO-CATALOGO-META.md`](./INSTRUCTIVO-CATALOGO-META.md)
 - ✅ Decisión tomada: catálogo dinámico, $600 MXN/día la primera semana
-- ✅ El error "API access blocked" que daba el script **ya se corrigió**
-  (no era de red — el script mandaba un User-Agent de bot; detalle en
-  sección 29 del manual). `activos` y `listar` ya corren bien.
-- ⏳ **Falta:** el token actual no tiene el permiso `instagram_basic`,
-  así que `activos` no puede leer la cuenta de Instagram por API todavía
-  (aunque sí está vinculada). Hay que regenerar el token una vez más.
 
-**Próximo paso — regenerar el token:**
-
-1. Business Manager → Usuarios del sistema → Claude Integration →
-   "Generar identificador".
-2. Marca los 4 de siempre (`ads_management`, `ads_read`,
-   `business_management`, `catalog_management`) **+ `instagram_basic`**.
-3. Pásale el token nuevo a Claude.
-
-**Luego, correr (desde donde sea — ya no hace falta que sea tu propia
-máquina, el bloqueo de red era falso positivo):**
+**Lo único que falta — crear la campaña:**
 
 ```bash
 export META_ACCESS_TOKEN="..."
 export META_AD_ACCOUNT_ID="act_1264279685553718"
-python3 scripts/meta-ads.py activos           # solo revisa, no crea nada
 python3 scripts/meta-ads.py crear-campania --presupuesto 600   # crea todo PAUSADO
 ```
 
-Después de correr `crear-campania`, la campaña queda pausada — se
-revisa en el Administrador de anuncios y se activa con
+Queda pausada — se revisa en el Administrador de anuncios y se activa con
 `meta-ads.py activar --campania <id>` cuando la apruebes.
+
+**Pendiente menor de higiene:** borrar el catálogo viejo
+`1230530145855635` desde Meta Commerce Manager. Ninguna campaña apunta
+ahí, pero sigue conteniendo 56 productos huérfanos incluidos rifles y
+miras — es riesgo latente si alguien lo selecciona por error.
 
 ---
 

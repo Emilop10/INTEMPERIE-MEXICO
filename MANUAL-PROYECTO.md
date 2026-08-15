@@ -59,6 +59,7 @@ como respaldo
 29. [Meta Ads (Facebook/Instagram): medición y catálogo anunciable](#29-meta-ads-facebookinstagram-medición-y-catálogo-anunciable)
 30. [Aviso de Shopify Trust & Safety: retención de pagos por "armas"](#30-aviso-de-shopify-trust--safety-retención-de-pagos-por-armas)
 31. [Dirección de la tienda: quitar el domicilio personal del dueño](#31-dirección-de-la-tienda-quitar-el-domicilio-personal-del-dueño)
+32. [El catálogo de Meta llevaba medio año muerto](#32-el-catálogo-de-meta-llevaba-medio-año-muerto)
 
 ---
 
@@ -475,6 +476,8 @@ para poder ajustarlos desde un solo lugar.
   exclusivos de la homepage
 - `scripts/deploy-shopify.py` — sube el tema a la tienda (fuera de
   `tema-shopify/`, porque es herramienta del repo, no parte del tema)
+- `scripts/sincronizar-canal-meta.py` — mantiene correcto qué productos
+  se publican al canal de Meta (ver [sección 32](#32-el-catálogo-de-meta-llevaba-medio-año-muerto))
 - `assets/brand-tokens.css` — estilos **sitewide** (header, mega-menú,
   fichas de producto, colecciones, divisores) — la mayoría del trabajo de
   integración visual posterior a la auditoría vive aquí
@@ -2053,3 +2056,140 @@ exacta (lo más identificable de un domicilio personal) ya no aparece.
 blanco (fallido) y reportó los errores exactos; la decisión de qué datos
 usar en su lugar la tomó el cliente (ver `AskUserQuestion` en el
 historial de la sesión) antes de escribir nada.
+
+---
+
+## 32. El catálogo de Meta llevaba medio año muerto
+
+### Cómo se descubrió
+
+Al ir a crear por fin la primera campaña (15 de agosto de 2026), el paso
+previo de descubrimiento (`meta-ads.py activos`) reportó un catálogo con
+**56 productos**. La tienda tiene 383. Ese número no cuadraba con nada, y
+peor: entre esos 56 había *"Pistola Deportiva Mendoza"*, *"Rifle Black
+Hawk"*, *"Mira Telescópica NAKASHI"*, *"Diábolos Mendoza"* — justo las
+categorías que la sección 29 daba por excluidas desde el 12 de agosto.
+
+Se paró el armado de la campaña ahí mismo. Anunciar contra ese catálogo
+habría puesto armas en los anuncios, con riesgo real de baneo permanente.
+
+### El diagnóstico, en tres cruces de datos
+
+1. **El lado de Shopify estaba impecable.** 383 productos, 324 publicados
+   al canal "Facebook & Instagram", 59 excluidos — y los 59 eran
+   exactamente los correctos (Diábolos y Municiones 31 + Rifles y Pistolas
+   de Aire 20 + Miras Telescópicas 8). El trabajo del 12 de agosto sí
+   había funcionado.
+2. **Ninguno de los 56 productos del catálogo existía ya en Shopify.**
+   Cruzando el `retailer_product_group_id` de cada uno contra la tienda:
+   0 coincidencias, 56 huérfanos. Confirmado con un 404 directo a la API.
+3. **Los rangos de ID no se tocaban.** Shopify iba de `7882022715469` a
+   `7895371907149`; el catálogo, de `7658842488909` a `7756596412493`. En
+   algún momento se borró y recreó el catálogo completo en Shopify, y Meta
+   se quedó con la generación anterior.
+
+O sea: la sincronización no estaba atrasada, estaba **cortada**. Desde
+febrero. Todo lo que se hizo el 12 de agosto arregló Shopify, pero nunca
+llegó a Meta porque no había quién lo empujara.
+
+### La causa raíz
+
+La app "Facebook & Instagram" de Shopify estaba **desvinculada de Meta**.
+Su pantalla mostraba un widget promocional en vez del panel real, y en
+lugar del nombre de la cuenta conectada ofrecía un enlace "Conectar cuenta
+de Facebook". Ese enlace, además, **no hacía nada al pulsarlo** — Claude
+en Chrome verificó en la consola de red que el clic solo generaba
+telemetría de Shopify, sin ninguna petición hacia Facebook.
+
+### La reparación
+
+1. **Antes de tocar nada, la red de seguridad.** Se escribió
+   `scripts/sincronizar-canal-meta.py`, que repone el estado de
+   publicación por API. Con eso, reconectar o reinstalar la app dejaba de
+   ser arriesgado: pasara lo que pasara con las publicaciones, se
+   restauraban en un comando. Requirió agregar los scopes
+   `read_publications` / `write_publications` al token de Shopify.
+2. **Se reconectó la app** desde cero (el cliente hizo el login de
+   Facebook y las selecciones). Business Manager "Intemperie México",
+   modo **"Solo anuncios"** (no "Tienda y anuncios" — no hacía falta
+   montar una tienda dentro de Facebook), pixel **existente**
+   `2011984246408291`, y **catálogo nuevo** en vez de reconectar el viejo
+   contaminado. Nuevo catálogo: `1746844133017649`.
+3. **El catálogo nuevo se quedó en 0 productos.** Aquí apareció el
+   segundo obstáculo, menos obvio: Shopify solo empuja al catálogo
+   **cuando algo cambia**. Los 324 productos ya estaban publicados desde
+   antes, así que no había ningún evento que empujar, y el catálogo nuevo
+   se quedó esperando indefinidamente. La app de Shopify **no tiene
+   ningún botón de "sincronizar ahora"** (se revisaron las 5 secciones de
+   su pestaña Configuración; lo único disponible es "Desconectar").
+4. **Se agregó `--forzar-resync` al script**: despublica y vuelve a
+   publicar todo lo anunciable, aunque ya esté correcto, para generar los
+   eventos faltantes. El resultado fue inmediato — el catálogo pasó de 0
+   a 159, exactamente los productos que alcanzaron a reciclarse.
+
+### El error que se cometió en el camino
+
+La primera corrida de `--forzar-resync` **se cayó a media ejecución** con
+`SSL: UNEXPECTED_EOF_WHILE_READING`, dejando **159 productos
+despublicados**. El script no tenía reintentos ante cortes de red, y en
+una corrida de ~650 mutaciones eso era cuestión de tiempo.
+
+Dos cosas amortiguaron el golpe:
+
+- **El orden de las operaciones.** El script despublica lo prohibido
+  *antes* de publicar lo permitido, precisamente para que un corte a media
+  corrida nunca deje un arma expuesta. Se verificó tras la caída: 0
+  productos prohibidos publicados. La propiedad de seguridad aguantó.
+- **El script era idempotente**, así que restaurar fue correrlo otra vez
+  sin banderas: publicó los 159 faltantes, 0 errores.
+
+Se agregó manejo de `URLError`/`OSError` con backoff antes de reintentar.
+La segunda corrida completa terminó limpia: 324 despublicados, 324
+publicados, 0 errores.
+
+### Estado final verificado
+
+| | |
+|---|---|
+| Productos en Shopify | 383 |
+| Publicados al canal Meta | 324 |
+| Excluidos (armas/municiones/miras) | 59 |
+| Productos en el catálogo de Meta | **324** |
+| Categorías prohibidas en el catálogo | **0** |
+| Productos sin categoría | **0** |
+
+### Una decisión de diseño que se revirtió
+
+El plan original incluía una segunda red de seguridad del lado de Meta: un
+"conjunto de productos" filtrado por una **lista blanca de categorías**
+(taxonomía de Google), para que aunque algo se colara al catálogo, la
+campaña no lo tocara. Se diseñó mirando el catálogo viejo, donde los 56
+productos caían en 6 categorías limpias.
+
+Con el catálogo real a la vista, ese diseño resultó **peor que no tener
+nada**: los 324 productos se reparten en más de 12 categorías, y una lista
+blanca dejaría fuera —en silencio— cualquier producto legítimo que llegue
+con una categoría nueva. El cliente había pedido explícitamente que *"todos
+los productos que sí se puedan anunciar se anuncien"*, y esto hacía justo
+lo contrario. La variante inversa (lista negra) tampoco sirve: no cubre
+productos con categoría vacía o inesperada.
+
+Se descartó. La compuerta queda en un solo lugar —la publicación al canal
+en Shopify, por pertenencia a colección— que es más confiable porque no
+depende de un campo que Shopify puede dejar vacío, y porque se validó
+contra la realidad: la regla del script marca exactamente los mismos 59
+productos que estaban excluidos a mano.
+
+### Mantenimiento
+
+📄 **[`INSTRUCTIVO-CATALOGO-META.md`](./INSTRUCTIVO-CATALOGO-META.md)** —
+el comando de mantenimiento, cuándo hace falta `--forzar-resync`, cómo
+verificar ambas puntas, y qué no hay que hacer nunca (empezando por el
+botón "Publicar productos" de la app, que preselecciona *todos* los
+productos incluidos los prohibidos — así fue como se publicaron armas al
+canal por accidente en febrero).
+
+**Pendiente menor:** el catálogo viejo `1230530145855635` sigue existiendo
+en el Business Manager con sus 56 huérfanos, varios de ellos armas.
+Ninguna campaña apunta ahí, pero conviene borrarlo desde Commerce Manager
+para que no quede como riesgo latente.

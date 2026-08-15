@@ -17,6 +17,8 @@ que el token deje de servir.
 | Moneda | MXN |
 | Business Manager | ID `1324138699447721` — "Intemperie México" |
 | Pixel de Meta | `2011984246408291` — "Intemperie México Pixel" |
+| Catálogo de Meta | `1746844133017649` — 324 productos (vigente desde 15 ago 2026) |
+| Catálogo viejo — **NO USAR** | `1230530145855635` — 56 huérfanos, incluye armas |
 | App del System User | "Claude Integration" — ID `1038516402111748` |
 | Canal en Shopify | App oficial "Facebook & Instagram", instalada desde el 16 feb 2026 |
 
@@ -46,17 +48,27 @@ de agosto):**
   Binoculares, Monoculares y Accesorios de Óptica sí quedan incluidos)
 
 **Antes de crear cualquier campaña o conjunto de anuncios nuevo**,
-verificar que el público objetivo apunte a colecciones permitidas
-(Pesca, Binoculares, Monoculares, Accesorios de Óptica). Nunca usar
-"todo el catálogo" sin filtrar en un catálogo dinámico — usar el
-catálogo ya filtrado que sincroniza Shopify, o un conjunto de productos
-(product set) armado explícitamente sobre las colecciones permitidas.
+verificar que apunte al catálogo vigente `1746844133017649` — que ya
+viene filtrado desde Shopify y contiene solo los 324 productos
+anunciables. **Nunca apuntar al catálogo viejo `1230530145855635`**: sigue
+existiendo en el Business Manager con 56 productos huérfanos, varios de
+ellos rifles, pistolas y miras.
+
+La verificación de que el catálogo está limpio (0 categorías prohibidas)
+está en `INSTRUCTIVO-CATALOGO-META.md`, sección 5.
 
 **Si en algún momento se agrega un producto nuevo a esas 3 categorías
-prohibidas**, hay que excluirlo del canal manualmente (Shopify Admin →
-Productos → seleccionar el producto → "Canales de venta y aplicaciones"
-→ desmarcar "Facebook & Instagram"). No hay automatización para esto
-todavía — es un punto de fricción a vigilar.
+prohibidas**, ya no hay que excluirlo a mano (actualizado 15 ago 2026).
+Correr:
+
+```bash
+export SHOPIFY_ADMIN_TOKEN=shpat_...   # necesita scope write_publications
+python3 scripts/sincronizar-canal-meta.py
+```
+
+Publica lo anunciable, excluye lo prohibido, y no toca lo que ya está
+bien. Detalle completo en
+📄 **[`INSTRUCTIVO-CATALOGO-META.md`](./INSTRUCTIVO-CATALOGO-META.md)**.
 
 ---
 
@@ -127,6 +139,8 @@ Resumen accionable:
 | "No hay permisos disponibles" al generar el token, aunque el rol ya era Administrador | La app se creó sin ningún caso de uso — sin producto Marketing API, no hay `ads_management` que ofrecer | Panel de la app → Casos de uso → Añadir → "Crea y administra anuncios con la API de marketing" |
 | Catálogo de Meta desactualizado (56 de 250+ productos) | Los productos agregados después del alta inicial (feb 2026) nunca se publicaron al canal | Shopify Admin → Productos → seleccionar todos → "Incluir en los canales de venta" → Facebook & Instagram |
 | Productos prohibidos apareciendo en el catálogo de Meta | La publicación masiva de arriba no filtra por categoría | Repetir el mismo flujo pero con "Excluir de los canales de venta", filtrando por las 3 colecciones prohibidas |
+| El catálogo seguía en 56 productos pese a lo anterior (15 ago) | La app de Shopify llevaba desvinculada de Meta desde febrero: arreglar Shopify no servía de nada porque nadie empujaba los datos | Reconectar la app con un catálogo nuevo + `sincronizar-canal-meta.py --forzar-resync`. Ver sección 32 del manual |
+| Catálogo nuevo recién conectado se queda en 0 productos | Shopify solo empuja cuando algo *cambia*; si los productos ya estaban publicados, no hay evento que enviar | `sincronizar-canal-meta.py --forzar-resync` (recicla la publicación para generar los eventos) |
 
 **División de trabajo que funcionó:** Claude en Chrome navega, lee
 pantallas y ejecuta acciones de bajo riesgo (crear la app sin caso de
