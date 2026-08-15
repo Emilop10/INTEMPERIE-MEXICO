@@ -58,6 +58,7 @@ como respaldo
 28. [Conciliación de inventario físico contra Shopify](#28-conciliación-de-inventario-físico-contra-shopify)
 29. [Meta Ads (Facebook/Instagram): medición y catálogo anunciable](#29-meta-ads-facebookinstagram-medición-y-catálogo-anunciable)
 30. [Aviso de Shopify Trust & Safety: retención de pagos por "armas"](#30-aviso-de-shopify-trust--safety-retención-de-pagos-por-armas)
+31. [Dirección de la tienda: quitar el domicilio personal del dueño](#31-dirección-de-la-tienda-quitar-el-domicilio-personal-del-dueño)
 
 ---
 
@@ -1960,3 +1961,54 @@ procesa el pago de tarjeta.
   Shopify Payments, dejó de ser necesario. Si en el futuro se quiere
   reactivar Shopify Payments, probablemente haga falta retomarlo o abrir
   un ticket nuevo con Shopify.
+
+---
+
+## 31. Dirección de la tienda: quitar el domicilio personal del dueño
+
+### El problema
+
+Al revisar Configuración → General en el Admin (14 de agosto de 2026),
+el cliente notó que **su domicilio personal** (calle "Colorín",
+Cuernavaca) aparecía en la tarjeta "Detalles de contacto de la tienda" —
+un campo explícitamente marcado por Shopify como *"Tus clientes pueden
+ver esta información"*. Como la tienda es 100% en línea (sin local
+físico), no había razón para exponer esa dirección en absoluto.
+
+Es un campo **distinto** de "Información comercial" (arriba en la misma
+página), que muestra la misma dirección pero como entidad legal para
+impuestos — ese sí puede (y debe) tener la dirección real, porque no es
+customer-facing y es lo que exige el registro fiscal ante el SAT. No se
+tocó.
+
+### Por qué no se pudo dejar en blanco
+
+Se intentó vaciar los 3 campos de calle, código postal y ciudad, y
+Shopify rechazó el guardado con validación obligatoria en los tres
+(`"Street can't be blank"`, `"Zip can't be blank"`, `"City can't be
+blank"`). No existe la opción de dejar la tienda sin ninguna dirección
+de contacto pública — solo "Nombre de la empresa" y "Apartamento, local,
+etc." son opcionales.
+
+### Solución y trade-off aceptado
+
+Se dejó **"S/N, 62120 Cuernavaca Morelos, México"** — sin la calle ni
+número reales del domicilio del dueño, pero con ciudad/estado/CP
+verdaderos (obligatorios). El cliente aceptó explícitamente el
+trade-off: esto expone la ciudad de origen del negocio, algo que
+**ya se había decidido ocultar antes** en el footer del sitio (ver
+sección 11, "Envíos" — el footer dice solo "Envíos a todo México", sin
+mencionar Cuernavaca/Morelos, por decisión consciente de no exponer la
+ubicación).
+
+**Nota para el futuro:** si el cliente consigue un apartado postal o
+dirección de oficina virtual, se puede volver a este campo y reemplazar
+"S/N" + la ciudad real por esa dirección alterna, cerrando del todo la
+inconsistencia con la decisión del footer. Mientras tanto, es la mejor
+opción posible sin domicilio de negocio propio: el nombre de la calle
+exacta (lo más identificable de un domicilio personal) ya no aparece.
+
+**División de trabajo:** Claude en Chrome navegó, probó el guardado en
+blanco (fallido) y reportó los errores exactos; la decisión de qué datos
+usar en su lugar la tomó el cliente (ver `AskUserQuestion` en el
+historial de la sesión) antes de escribir nada.

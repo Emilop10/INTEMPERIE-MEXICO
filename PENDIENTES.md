@@ -335,3 +335,14 @@ Por si se necesitan para otros usos:
 Nota: por decisión explícita, el footer **no menciona la ciudad de origen de los
 envíos** (Cuernavaca, Morelos) — solo dice "Envíos a todo México", para no exponer
 la ubicación del negocio.
+
+**Actualización (14 agosto 2026):** Shopify exige calle, código postal y
+ciudad como obligatorios en Configuración → General → "Dirección de la
+tienda" (el campo visible para clientes, distinto de la entidad legal
+para impuestos) — no se puede dejar vacío. Se quitó la calle y número de
+casa real (domicilio personal del dueño) y se dejó solo "S/N, 62120
+Cuernavaca Morelos, México". Esto sí expone la ciudad/CP en ese campo
+puntual — trade-off aceptado explícitamente por el cliente para no
+mostrar el domicilio exacto, aunque no es 100% consistente con la
+decisión de arriba de ocultar la ciudad en el footer. Detalle completo
+en la sección 31 del `MANUAL-PROYECTO.md`.
