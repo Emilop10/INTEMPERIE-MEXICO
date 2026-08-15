@@ -30,6 +30,14 @@ el proceso corre con un script guardado en el repo
    estos 4 scopes (más los que ya tenía la app: legal policies,
    navigation, themes).
 
+   ⚠️ **Fricción del 14 de agosto:** la URL de autorización "de referencia"
+   que trae `INSTRUCTIVO-APP-SHOPIFY.md` **no incluye** `read_inventory`
+   ni `write_inventory` — ese instructivo documenta el flujo genérico, no
+   los scopes de este proceso en particular. Si el token se generó con esa
+   URL tal cual, la conciliación falla al ajustar inventario. Hay que
+   agregar `,read_inventory,write_inventory` al parámetro `scope=` de la
+   URL antes de abrirla.
+
 ## Qué le tienes que decir a Claude
 
 Simplemente adjunta el Excel del conteo del día y pide algo como:
@@ -111,3 +119,4 @@ pestaña "Resumen" con los totales por estatus.
 | 10 ago 2026 | 1,207 | 228 | 109 | 766 | 104 | 143 |
 | 12 ago 2026 | 1,175 | 306 | 20 | 746 | 103 | 23 |
 | 13 ago 2026 | 1,204 | 319 | 12 | 769 | 104 | 12 |
+| 14 ago 2026 | 1,178 | 310 | 16 | 748 | 104 | 17 |
