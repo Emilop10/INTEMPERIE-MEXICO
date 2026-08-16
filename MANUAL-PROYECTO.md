@@ -478,6 +478,10 @@ para poder ajustarlos desde un solo lugar.
   `tema-shopify/`, porque es herramienta del repo, no parte del tema)
 - `scripts/sincronizar-canal-meta.py` — mantiene correcto qué productos
   se publican al canal de Meta (ver [sección 32](#32-el-catálogo-de-meta-llevaba-medio-año-muerto))
+- `scripts/conciliar-inventario.py` — concilia el conteo físico contra
+  Shopify (ver [sección 28](#28-conciliación-de-inventario-físico-contra-shopify))
+- `scripts/vincular-codigo-b1.py` — guarda el código interno del POS en
+  el campo `barcode`, la segunda llave del cruce de inventario
 - `assets/brand-tokens.css` — estilos **sitewide** (header, mega-menú,
   fichas de producto, colecciones, divisores) — la mayoría del trabajo de
   integración visual posterior a la auditoría vive aquí
@@ -1627,6 +1631,81 @@ verde, 20 amarillo, 746 rojo, 103 gris — 23 actualizaciones subidas a
 Shopify, 0 errores. El token se generó de nuevo (los contenedores de
 sesión no lo conservan entre sesiones distintas) con el mismo flujo OAuth
 manual de `INSTRUCTIVO-APP-SHOPIFY.md`.
+
+### El cruce por SKU dejaba productos fuera (15 de agosto de 2026)
+
+Al revisar por qué había ~104 filas grises en cada corrida, apareció un
+problema de fondo: el cruce por SKU (`No Parte` ↔ `variant.sku`) no
+cubría todo el catálogo. Medido con precisión:
+
+- **88 filas del conteo no traen `No Parte`** — el POS no les asignó
+  código, así que nunca podían casar con nada.
+- **17 productos de Shopify que el conteo nunca tocaba**, porque su SKU
+  venía del catálogo del fabricante (`632252557`, `MAGENERGY55-250`) en
+  vez del código interno del POS (`15ANZUEL658EC`). Se cargaron en
+  momentos distintos, con criterios distintos.
+
+Se intentó primero un **cruce por nombre** (descripción del conteo contra
+título del producto). Fracasó como solución general —resolvió 1 de 87— y
+más importante: al probar umbrales más bajos aparecieron coincidencias
+**peligrosas**, no solo imprecisas. `"ANZUELO MUSTAD #2 94151-NI"` se
+parece en un 77% a `"Anzuelo Mustad 94151-NI Live Bait #8"`: mismo
+anzuelo, **talla distinta**. En un catálogo donde decenas de productos se
+diferencian solo por un número (calibre, talla, piezas), un umbral
+permisivo actualizaría el inventario del producto equivocado en silencio.
+Quedó como último recurso con umbral del 90%.
+
+### La solución real: una segunda llave exacta
+
+El cliente hizo notar que su sistema maneja también un **código interno**
+(`Codigo B1`) y mandó el export con esa columna. Los números lo
+resolvieron todo:
+
+| | |
+|---|---|
+| Filas del conteo con `Codigo B1` | **1207 / 1207 (100%)** |
+| Filas sin `No Parte` que sí traen `Codigo B1` | **88 de 88** |
+| Códigos B1 duplicados | **0** |
+
+Y del lado de Shopify había un campo perfecto y **completamente vacío**:
+`barcode` (0 de 383 usados). Se pobló con el `Codigo B1` mediante
+`scripts/vincular-codigo-b1.py` — **371 productos escritos, 0 errores**.
+
+El conciliador ahora cruza en tres niveles de prioridad: **SKU → código
+B1 → nombre**, los dos primeros exactos.
+
+> El script solo escribe el código B1 en productos que **ya casan por
+> SKU**, donde el vínculo es seguro. Los que no casan los reporta para
+> revisión manual, en vez de emparejarlos por parecido de nombre — que es
+> justo la operación que se demostró peligrosa arriba.
+
+**Detalle del campo `barcode`:** el `Codigo B1` mezcla dos formatos y
+ambos son legítimos — ~1045 códigos internos de 4 dígitos (`4747`) y ~162
+códigos de barras reales EAN-13/UPC-A (`793676021461`). Guardar un número
+interno en un campo llamado "código de barras" es semánticamente
+impreciso, pero es el único campo identificador libre que ofrece Shopify,
+es visible y buscable en el admin, y para 162 productos es literalmente
+correcto. Se prefirió sobre un metafield por simplicidad operativa.
+
+### Estado y pendientes
+
+Cobertura de conciliación automática: **371 de 383 productos (97%)**.
+
+Los 12 restantes son diábolos Gamo, un rifle y una mira cuyo vínculo no
+se pudo determinar con certeza. Quedaron listados con su candidato
+propuesto en:
+
+📄 **[`PRODUCTOS-PENDIENTES.md`](./PRODUCTOS-PENDIENTES.md)**
+
+Separados en dos grupos: 8 con candidato claro que solo falta confirmar,
+y 4 que requieren decisión del dueño (dos productos distintos reciben el
+mismo código candidato, otro cuyo candidato no especifica cantidad de
+piezas, etc.). No afectan las campañas de Meta — son todas categorías
+prohibidas para anunciar — solo la exactitud del inventario online.
+
+> **Para productos nuevos:** ponerles el `Codigo B1` en el campo "Código
+> de barras" al darlos de alta en Shopify. Con eso se concilian solos
+> desde el primer día, sin importar qué SKU tengan.
 
 ---
 
