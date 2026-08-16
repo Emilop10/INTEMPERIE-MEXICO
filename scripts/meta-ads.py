@@ -270,10 +270,18 @@ def cmd_crear_campania(token, account_id, args):
             "object_story_spec": json.dumps(
                 {
                     "page_id": page["id"],
+                    # Meta solo acepta esta cuenta si esta vinculada a la
+                    # PAGINA, no basta con que este en el portafolio del
+                    # negocio: son dos cosas distintas y la segunda no
+                    # implica la primera (se descubrio el 15 ago 2026, la
+                    # API respondia "must be a valid Instagram account id").
+                    # Verificar con: GET /{page_id}?fields=instagram_business_account
+                    # usando un token de PAGINA, no el del System User.
                     "instagram_actor_id": ig["id"],
                     "template_data": {
                         "link": "https://www.intemperiemexico.com/collections/todo-pesca",
                         "call_to_action": {"type": "SHOP_NOW"},
+                        "message": "Equipo verificado para pesca y óptica. Envío a todo México en 2 a 7 días hábiles.",
                     },
                 }
             ),
