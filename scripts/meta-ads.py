@@ -324,7 +324,22 @@ def cmd_crear_campania(token, account_id, args):
                     "template_data": {
                         "link": "https://www.intemperiemexico.com/collections/todo-pesca",
                         "call_to_action": {"type": "SHOP_NOW"},
-                        "message": "Equipo verificado para pesca y óptica. Envío a todo México en 2 a 7 días hábiles.",
+                        # Copy v2 (15 ago 2026). El v1 era "Equipo verificado
+                        # para pesca y óptica. Envío a todo México en 2 a 7
+                        # días hábiles." — correcto pero plano: enterraba el
+                        # envío gratis, que es el gancho más fuerte, y
+                        # "verificado" no decía nada concreto.
+                        #
+                        # Sesgado a pesca a propósito: es el 78% del catálogo
+                        # (252 de 324 productos). Hablarle al pescador rinde
+                        # más que un texto genérico que no le hable a nadie.
+                        # Revisar si algún día se separan campañas por
+                        # categoría, ahí conviene un texto por cada una.
+                        "message": (
+                            "🎣 El pez de tu vida no se escapó por mala suerte.\n\n"
+                            "Cañas, carretes y señuelos probados en agua real — no en catálogo.\n\n"
+                            "⚡ ENVÍO GRATIS desde $799 · Entrega en 2-7 días a todo México"
+                        ),
                     },
                 }
             ),

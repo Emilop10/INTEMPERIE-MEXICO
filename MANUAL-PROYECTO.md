@@ -2427,6 +2427,69 @@ un error: se resuelve solo en minutos y pasa a `ACTIVE`. Si Meta lo
 rechazara, avisa por correo y el estado cambiaría a `DISAPPROVED` con el
 motivo. No hay que hacer nada mientras esté en `IN_PROCESS`.
 
+### El creativo: v1 → v2 el mismo día
+
+El anuncio nació con este texto:
+
+> Equipo verificado para pesca y óptica. Envío a todo México en 2 a 7 días
+> hábiles.
+
+Correcto pero plano. El cliente preguntó si convenía mejorarlo y de paso
+si valía la pena **separar la campaña en pesca y óptica**. Se le dio una
+respuesta razonada, no complaciente:
+
+**Sobre separar: no, todavía no.** Con $100 MXN/día partir el
+presupuesto en dos conjuntos de $50 daría **dos campañas que nunca salen
+de la fase de aprendizaje** en vez de una que aprende despacio — Meta
+pide del orden de 50 conversiones semanales *por conjunto*. Además ambos
+competirían entre sí en la subasta por la misma audiencia mexicana,
+encareciendo el propio inventario. Y el desbalance del catálogo lo agrava:
+**252 de los 324 productos son de pesca** contra ~19 de óptica; un
+conjunto de óptica con 19 productos y $50/día tiene muy poco con qué
+trabajar. Separar tiene sentido cuando suba el presupuesto o cuando haya
+2-3 semanas de datos que muestren comportamientos distintos por categoría.
+
+**Sobre el texto: sí, pero sabiendo cuánto pesa.** En anuncios de
+catálogo dinámico el texto es el párrafo superior; lo que vende es la
+tarjeta del producto (foto, nombre, precio), que Meta arma
+individualmente para cada usuario según su comportamiento y el pixel.
+Mejorar el copy ayuda en el margen, no es la palanca principal. Se le
+dijo así antes de cambiarlo.
+
+Se ofrecieron tres versiones (dolor+prueba, marca+autoridad,
+directo+oferta) y el cliente eligió la primera:
+
+> 🎣 El pez de tu vida no se escapó por mala suerte.
+>
+> Cañas, carretes y señuelos probados en agua real — no en catálogo.
+>
+> ⚡ ENVÍO GRATIS desde $799 · Entrega en 2-7 días a todo México
+
+Qué cambió y por qué:
+
+- Abre con una **frustración concreta** del pescador en vez de una
+  descripción de catálogo
+- *"probados en agua real — no en catálogo"* aterriza el "equipo
+  verificado" de la marca, que era abstracto
+- **El envío gratis desde $799 pasa al frente**, en mayúsculas: es el
+  gancho más fuerte del negocio y en la v1 estaba enterrado al final
+- Emojis al inicio de línea, que suben el CTR en feed móvil
+
+**Trade-off aceptado y anotado:** el texto le habla al pescador, no al
+comprador de binoculares. Es deliberado — con el 78% del catálogo en
+pesca, hablarle a ese cliente rinde más que un texto neutro que no le
+hable a nadie. Es exactamente el escenario donde separar campañas sí
+valdría la pena, el día que el presupuesto lo permita.
+
+El creativo nuevo (`1514670357100398`) reemplazó al anterior en el
+anuncio en vivo. El texto por defecto de `meta-ads.py crear-campania`
+también se actualizó, para que las campañas futuras nazcan con la v2.
+
+> ⚠️ Cambiar el creativo de un anuncio activo **reinicia parte de la fase
+> de aprendizaje**. Se hizo el mismo día del lanzamiento, con la campaña
+> aún sin datos, así que el costo fue nulo. Hacerlo con una campaña
+> madura sí tiene precio.
+
 ### Recomendación operativa que se le dio al cliente
 
 - **No tocar la campaña en 48-72 horas.** Editar presupuesto o

@@ -194,6 +194,65 @@ para no reiniciar el aprendizaje.
 
 ---
 
+## 4-ter. El texto del anuncio (copy)
+
+**Vigente desde el 15 de agosto de 2026** (creativo `1514670357100398`):
+
+> 🎣 El pez de tu vida no se escapó por mala suerte.
+>
+> Cañas, carretes y señuelos probados en agua real — no en catálogo.
+>
+> ⚡ ENVÍO GRATIS desde $799 · Entrega en 2-7 días a todo México
+
+CTA: **Comprar ahora** (`SHOP_NOW`).
+
+### Qué pesa y qué no en un anuncio de catálogo
+
+Lo que ve el cliente son **dos capas**:
+
+| Capa | Quién la controla |
+|---|---|
+| Texto superior | Tú (este copy, es fijo para todos) |
+| Tarjetas de producto (foto, nombre, precio) | **Meta**, individualmente por usuario |
+
+Meta arma la vitrina de cada persona según lo que vio en el sitio (pixel)
+y su comportamiento: al que anduvo viendo cañas le muestra cañas. **No se
+elige qué producto ve cada quien**, y eso es deseable — el algoritmo
+acierta más que una selección manual.
+
+Consecuencia práctica: **el copy importa menos de lo que parece.** Lo que
+vende es la tarjeta del producto. Vale la pena tener un buen texto, pero
+no es donde está la palanca principal de rendimiento.
+
+### Reglas al cambiar el copy
+
+- **Cambiar el creativo reinicia parte de la fase de aprendizaje.** En
+  una campaña recién lanzada da igual; en una madura y funcionando, tiene
+  costo real. No lo toques por gusto.
+- El texto actual **está sesgado a pesca a propósito** (252 de 324
+  productos). Si algún día se separan campañas por categoría, cada una
+  necesita su propio copy.
+- Nada de afirmaciones exageradas o falsas urgencias: Meta las sanciona,
+  y esta cuenta ya arrastra dos señalamientos por armas (uno del banco de
+  Shopify, otro de la política de anuncios). No conviene sumar un tercero.
+
+### Cómo cambiarlo
+
+El texto por defecto de campañas nuevas vive en `scripts/meta-ads.py`,
+dentro de `cmd_crear_campania` (campo `message` de `template_data`). Para
+cambiarlo en un anuncio ya existente hay que crear un creativo nuevo y
+asignarlo — un creativo no se edita en su lugar:
+
+```bash
+# 1. crear el creativo nuevo (POST /act_<id>/adcreatives)
+# 2. asignarlo al anuncio:
+curl -X POST "https://graph.facebook.com/v21.0/<ad_id>" \
+  --data-urlencode 'creative={"creative_id":"<nuevo_id>"}' \
+  -d "access_token=$META_ACCESS_TOKEN"
+```
+
+---
+
 ## 5. Reglas de presupuesto y optimización (para operación día a día)
 
 - Nunca exceder el presupuesto mensual que el cliente fije.
