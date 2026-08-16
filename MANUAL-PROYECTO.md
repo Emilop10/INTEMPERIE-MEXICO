@@ -865,6 +865,44 @@ pudo instalar en este entorno. Corrido sobre `tema-shopify/`, generó:
 Detalle completo de instalación y uso en
 [`SKILLS-USADAS.md`](./SKILLS-USADAS.md).
 
+### Segundo grafo: las herramientas del repo (15 de agosto de 2026)
+
+Durante meses el grafo cubrió **solo `tema-shopify/`**. Eso dejaba fuera
+`scripts/`, que para entonces ya eran ~1,500 líneas de Python en 6
+herramientas (deploy del tema, conciliación de inventario, sincronización
+del canal de Meta, gestión de campañas, vinculación de códigos B1,
+reconstrucción del mapa 3D). Cada vez que se corría `graphify update`
+sobre el tema y reportaba "sin cambios de topología" tras tocar un
+script, la respuesta correcta no era "Graphify no aplica" sino "ese
+código está fuera del alcance del grafo".
+
+Se construyó un segundo grafo con `cd scripts && graphify update .`. El
+propio Graphify dictaminó que valía la pena (*"corpus is large enough
+that graph structure adds value"*):
+
+- **74 nodos, 125 conexiones, 10 comunidades**
+- God node principal: **`api_request()`** con 9 conexiones — es el patrón
+  compartido entre casi todas las herramientas (petición HTTP con
+  reintentos, backoff y manejo de errores contra Shopify o Meta). Que
+  aparezca como el nodo más conectado confirma lo que ya se sabía por
+  escrito: cada script reimplementa una variante de la misma función
+- Cada script forma su propia comunidad, con `main()` como hub local
+
+**Por qué dos grafos y no uno:** correr Graphify en la raíz del repo
+arrastraría `.claude/skills/` y otras carpetas que no son código del
+proyecto. Dos grafos acotados dan señal más limpia que uno ruidoso. Si
+alguna vez se quiere una vista unificada, Graphify trae
+`merge-graphs g1 g2` para combinarlos sin rehacer nada.
+
+```bash
+cd tema-shopify && graphify update .   # grafo del tema
+cd scripts && graphify update .        # grafo de las herramientas
+```
+
+Del `.gitignore` se excluye `*/graphify-out/cache/ast/` (se regenera solo
+y pesa más que el grafo) y las carpetas fechadas de respaldo. El grafo,
+el reporte y la visualización sí se versionan.
+
 ### Mapa 3D interactivo del código (a la medida)
 Petición explícita del cliente: visualizar el grafo "como una red
 neuronal, en 3D" — más allá de la visualización 2D estándar que trae
@@ -2299,7 +2337,7 @@ cliente la revise y la active.
 | Pixel | `2011984246408291` |
 | Público | México, 18-65 |
 | Colocaciones | Facebook + Instagram |
-| Estado | `PAUSED` en los tres niveles |
+| Estado | **`ACTIVE`** — activada el 15 de agosto de 2026 tras revisión del cliente |
 
 ### El presupuesto: una corrección importante
 
@@ -2352,6 +2390,49 @@ sitio), categoría ("Empresa y páginas") e ícono de 1024×1024 (se tomó el
 logo de la tienda, que ya existía en esa medida exacta en los archivos de
 Shopify, y se le aplicó fondo sólido porque el original era transparente
 y eso renderiza mal como ícono).
+
+### La activación: un fallo silencioso que se atrapó a tiempo
+
+La campaña se creó en pausa y se activó el mismo día, ya con el visto
+bueno del cliente. Al ir a hacerlo apareció un bug en el propio script
+que vale la pena registrar porque **no habría dado ningún error**.
+
+`meta-ads.py activar --campania <id>` ponía en `ACTIVE` **únicamente la
+campaña**, dejando el conjunto de anuncios y el anuncio en `PAUSED`. En
+Meta los tres niveles tienen que estar activos para que haya entrega: con
+cualquiera de ellos pausado no se muestra ni una impresión. El comando
+habría impreso *"Campaña activada"*, todo se habría visto correcto, y la
+campaña no habría entregado nada — el tipo de fallo que se descubre días
+después preguntándose por qué no pasa nada y por qué el gasto sigue en
+cero.
+
+Se detectó al verificar el estado de los tres niveles por API antes de
+activar, en vez de confiar en la salida del comando.
+
+**La corrección:** `activar` ahora recorre los hijos de la campaña y los
+enciende **de adentro hacia afuera** (anuncios → conjuntos → campaña).
+Ese orden es deliberado: si el proceso se corta a la mitad, nunca queda
+una campaña activa con hijos a medio encender. Salta lo que ya esté
+activo, así que es idempotente.
+
+`pausar` se dejó como estaba, y quedó documentado por qué no necesita el
+mismo tratamiento: **pausar la campaña basta** para detener toda la
+entrega y todo el gasto de lo que cuelga de ella.
+
+### El anuncio en `IN_PROCESS`
+
+Tanto al crear el anuncio como al activarlo, su `effective_status` pasa
+por `IN_PROCESS`. Es la revisión automática de Meta sobre el creativo, no
+un error: se resuelve solo en minutos y pasa a `ACTIVE`. Si Meta lo
+rechazara, avisa por correo y el estado cambiaría a `DISAPPROVED` con el
+motivo. No hay que hacer nada mientras esté en `IN_PROCESS`.
+
+### Recomendación operativa que se le dio al cliente
+
+- **No tocar la campaña en 48-72 horas.** Editar presupuesto o
+  segmentación reinicia la fase de aprendizaje de Meta.
+- Revisar al día siguiente que el anuncio haya salido de `IN_PROCESS`.
+- Primer reporte real a los 7 días: `meta-ads.py reporte --dias 7`.
 
 ### Operación
 

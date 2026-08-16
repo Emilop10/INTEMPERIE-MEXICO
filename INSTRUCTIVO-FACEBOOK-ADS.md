@@ -79,13 +79,56 @@ export META_AD_ACCOUNT_ID=act_1264279685553718
 
 python3 scripts/meta-ads.py listar                       # campañas y su estado
 python3 scripts/meta-ads.py reporte --dias 7              # métricas por campaña
-python3 scripts/meta-ads.py pausar --campania <id>
-python3 scripts/meta-ads.py activar --campania <id>
-python3 scripts/meta-ads.py presupuesto --campania <id> --monto 150   # MXN/día
+python3 scripts/meta-ads.py activos                       # página/IG/catálogo/pixel (solo lectura)
+python3 scripts/meta-ads.py crear-campania --presupuesto 100   # crea todo en PAUSA. MXN por DÍA
+python3 scripts/meta-ads.py activar --campania <id>       # enciende los 3 niveles
+python3 scripts/meta-ads.py pausar --campania <id>        # detiene entrega y gasto
+python3 scripts/meta-ads.py presupuesto --campania <id> --monto 100   # MXN/día
 ```
 
 El token se pide siempre por variable de entorno, nunca se escribe en
 ningún archivo del repo (mismo patrón que `SHOPIFY_ADMIN_TOKEN`).
+
+> ⚠️ **`--presupuesto` y `--monto` son MXN por DÍA, no por semana.** El
+> presupuesto acordado con el cliente son **$700 MXN/semana = $100/día**.
+> Antes de correr cualquiera de los dos comandos, reconfirma la cifra:
+> una vez se arrastró "$600/día" durante días en la documentación, que
+> era seis veces el presupuesto real.
+
+### Los tres niveles de Meta (la trampa más importante)
+
+Una campaña de Meta tiene tres niveles anidados, y **los tres deben estar
+en `ACTIVE` para que se entregue un solo anuncio**:
+
+```
+Campaña  →  Conjunto de anuncios  →  Anuncio
+```
+
+Con cualquiera de ellos en `PAUSED`, no se muestra nada. Esto causó un
+bug real el 15 de agosto: `activar` solo encendía la campaña, imprimía
+"Campaña activada" y dejaba los otros dos pausados — éxito aparente, cero
+entrega. Ya está corregido (enciende de adentro hacia afuera), pero
+**verifica siempre los tres** después de activar:
+
+```bash
+for id in <campania> <conjunto> <anuncio>; do
+  curl -sS -A "Mozilla/5.0" \
+    "https://graph.facebook.com/v21.0/$id?fields=name,status,effective_status&access_token=$META_ACCESS_TOKEN"
+done
+```
+
+Para **pausar** sí basta con la campaña: nada de lo que cuelga de ella se
+entrega.
+
+### Estados que vas a ver
+
+| Estado | Qué significa |
+|---|---|
+| `ACTIVE` | Entregando normal |
+| `PAUSED` | Detenido a propósito, no gasta |
+| `IN_PROCESS` | Revisión automática de Meta sobre el creativo. Normal al crear o activar un anuncio, se resuelve solo en minutos. **No hay que hacer nada.** |
+| `DISAPPROVED` | Meta rechazó el anuncio. Avisa por correo con el motivo. Revisar que no haya productos prohibidos en el catálogo. |
+| `WITH_ISSUES` | Problema de cuenta o pago, revisar en el Administrador de anuncios |
 
 ---
 
@@ -108,6 +151,46 @@ Ejemplos: `IMX | Ventas | Pesca | Carretes Shimano | Ago26`
   no exponer que opera desde Cuernavaca).
 - **Toda campaña nueva se crea en estado `PAUSED`** y se deja así hasta
   que el cliente la revise y confirme activarla explícitamente.
+
+---
+
+## 4-bis. La campaña vigente y su seguimiento
+
+**Activa desde el 15 de agosto de 2026.**
+
+| | |
+|---|---|
+| Campaña | `IMX \| Ventas \| Pesca y Óptica \| Catálogo dinámico \| Ago26` |
+| ID | `120249613902440175` |
+| Conjunto | `120249613902510175` |
+| Anuncio | `120249614071740175` |
+| Presupuesto | $100 MXN/día ($700/semana) |
+| Optimización | Conversiones → evento Compra |
+
+### Calendario de revisión
+
+| Cuándo | Qué hacer |
+|---|---|
+| **Primeras 48-72 h** | **No tocar nada.** Editar presupuesto o segmentación reinicia la fase de aprendizaje de Meta. Solo verificar que el anuncio salió de `IN_PROCESS`. |
+| Día 7 | Primer reporte real: `meta-ads.py reporte --dias 7` |
+| Semanal | Gasto, CPM, CTR, compras y costo por compra |
+
+### Qué esperar de verdad con este presupuesto
+
+$100 MXN/día son unos ~5 USD. Meta necesita del orden de **50
+conversiones por semana** para que una campaña salga de la fase de
+aprendizaje y el algoritmo optimice bien. Con este presupuesto es
+previsible ver **1-3 ventas por semana**.
+
+Eso no significa que la campaña esté mal configurada: significa que es un
+**test de validación del embudo**, no una campaña optimizada. Sirve para
+comprobar que el pixel registra, que el catálogo se muestra bien y que
+hay tráfico que convierte. Juzgarla con las métricas de una campaña
+madura llevaría a conclusiones equivocadas.
+
+Si tras 2-3 semanas hay señales de que convierte, el camino es subir
+presupuesto **gradualmente** (no más de ~20% por ajuste, ver sección 5)
+para no reiniciar el aprendizaje.
 
 ---
 

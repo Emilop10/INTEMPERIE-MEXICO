@@ -1,0 +1,37 @@
+{
+  "conciliar-inventario.py": {
+    "mtime": 1786833928.9280746,
+    "ast_hash": "200b84eee053299a60e1f6c0760fbde8",
+    "semantic_hash": ""
+  },
+  "deploy-shopify.py": {
+    "mtime": 1786149552.9680884,
+    "ast_hash": "7b23702fea2426f0c715ccd89edb5ac1",
+    "semantic_hash": ""
+  },
+  "meta-ads.py": {
+    "mtime": 1786843814.6591134,
+    "ast_hash": "5fa7e4a356338eadabd5c535c2a7a612",
+    "semantic_hash": ""
+  },
+  "rebuild-mapa-3d.py": {
+    "mtime": 1786150212.8080916,
+    "ast_hash": "68db0c203c7b64e8b1b22780a848b321",
+    "semantic_hash": ""
+  },
+  "sincronizar-canal-meta.py": {
+    "mtime": 1786815824.6556413,
+    "ast_hash": "7e34b80a9a495d36e390d53ace8c5b70",
+    "semantic_hash": ""
+  },
+  "vincular-codigo-b1.py": {
+    "mtime": 1786833858.4445243,
+    "ast_hash": "3fb51f8ff8ea8b5d788d6450952a2da5",
+    "semantic_hash": ""
+  },
+  "README-deploy.md": {
+    "mtime": 1786149599.6400886,
+    "ast_hash": "133535efb5dd3cb8e54f23ba592737f8",
+    "semantic_hash": ""
+  }
+}

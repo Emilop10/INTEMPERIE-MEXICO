@@ -4,7 +4,13 @@ __pycache__/
 
 # Respaldos automáticos de Graphify: cada `graphify update` guarda una copia
 # fechada del grafo anterior (~500KB). El grafo vigente sí se versiona.
+# Hay dos grafos: tema-shopify/ (el tema) y scripts/ (las herramientas).
 tema-shopify/graphify-out/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]/
+scripts/graphify-out/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]/
+
+# Caché de árboles de sintaxis: se regenera solo con `graphify update` y
+# pesa más que el grafo mismo. El grafo y el reporte sí se versionan.
+*/graphify-out/cache/ast/
 
 # Credenciales de Shopify — nunca deben entrar al repo.
 # El token va como variable de entorno o como secret de GitHub Actions.
