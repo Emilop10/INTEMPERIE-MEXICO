@@ -228,6 +228,10 @@ def cmd_crear_campania(token, account_id, args):
             "objective": "OUTCOME_SALES",
             "status": "PAUSED",
             "special_ad_categories": json.dumps([]),
+            # Obligatorio desde 2026 cuando el presupuesto vive en el conjunto
+            # de anuncios y no en la campana. En false porque aqui hay un solo
+            # conjunto: no hay con quien compartir presupuesto.
+            "is_adset_budget_sharing_enabled": "false",
         },
     )
     print(f"Campaña creada (PAUSADA): {campaign['id']}")
