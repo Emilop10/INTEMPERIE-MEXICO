@@ -3,43 +3,44 @@
 Temas abiertos de la tienda. Casi todos requieren una decisión o datos tuyos;
 el resto de la auditoría ya quedó implementado y en vivo.
 
-## 🔴 URGENTE — Lanzar la primera campaña de Meta Ads
+## ✅ Primera campaña de Meta Ads — creada y en pausa (15 agosto 2026)
 
-Toda la infraestructura quedó lista y verificada. Estado (15 agosto):
+La campaña ya existe. **Está pausada y no gasta nada** hasta que la
+revises y la actives.
 
-- ✅ Instagram creado y vinculado — ver [2](#2-redes-sociales--parcialmente-resuelto-28-jul)
-- ✅ Token de System User con los 9 permisos necesarios (incluido
-  `instagram_basic`, que requirió agregar un caso de uso a la app)
-- ✅ El error "API access blocked" **ya se corrigió** (no era de red — el
-  script mandaba un User-Agent de bot; sección 29 del manual)
-- ✅ **Catálogo de Meta arreglado** — llevaba desde febrero desconectado,
-  con 56 productos huérfanos de una generación borrada de Shopify (varios
-  de ellos armas). Ahora tiene los 324 productos correctos, 0 prohibidos.
-  Historia completa en la sección 32 del manual; mantenimiento en
-  [`INSTRUCTIVO-CATALOGO-META.md`](./INSTRUCTIVO-CATALOGO-META.md)
-- ✅ Decisión tomada: catálogo dinámico, $600 MXN/día la primera semana
+| | |
+|---|---|
+| Campaña | `IMX \| Ventas \| Pesca y Óptica \| Catálogo dinámico \| Ago26` |
+| ID | `120249613902440175` |
+| Presupuesto | **$100 MXN/día** ($700/semana) |
+| Objetivo | Ventas, optimizado a evento Compra |
+| Catálogo | 324 productos, 0 prohibidos |
+| Público | México, 18-65, Facebook + Instagram |
 
-**Lo único que falta — crear la campaña:**
+**Para activarla cuando la apruebes:**
 
 ```bash
 export META_ACCESS_TOKEN="..."
 export META_AD_ACCOUNT_ID="act_1264279685553718"
-python3 scripts/meta-ads.py crear-campania --presupuesto 600   # crea todo PAUSADO
+python3 scripts/meta-ads.py activar --campania 120249613902440175
 ```
 
-Queda pausada — se revisa en el Administrador de anuncios y se activa con
-`meta-ads.py activar --campania <id>` cuando la apruebes.
+**Expectativa realista:** $100 MXN/día (~$5 USD) es un presupuesto de
+prueba. Meta necesita ~50 conversiones semanales para salir de la fase
+de aprendizaje y optimizar bien; con este monto probablemente se vean
+1-3 ventas por semana. Sirve para validar que el embudo funciona, no
+para esperar rendimiento optimizado desde el arranque.
 
-✅ El catálogo viejo `1230530145855635` **se borró** el 15 de agosto,
-tras verificar que ninguna campaña dependía de él. Queda un solo
-catálogo en el negocio.
+Seguimiento semanal: `python3 scripts/meta-ads.py reporte --dias 7`
 
 ---
 
-**Abiertos ahora mismo:** TikTok cuando exista, y activar la primera
-campaña de Meta Ads (arriba 🔴).
+**Abiertos ahora mismo:** revisar y activar la primera campaña de Meta
+Ads (arriba ✅ — ya creada, en pausa), cerrar los productos de
+[`PRODUCTOS-PENDIENTES.md`](./PRODUCTOS-PENDIENTES.md), y TikTok cuando
+exista.
 
-**Resuelto el 13-14 de agosto:** señales de confianza en la homepage
+**Resuelto el 13-15 de agosto:** señales de confianza en la homepage
 ([3](#3-señales-de-confianza-ausentes--resuelto-13-agosto-2026)), el deploy
 automático ([5](#5-activar-el-deploy-automático--resuelto-13-agosto-2026)),
 e Instagram creado y vinculado ([2](#2-redes-sociales--parcialmente-resuelto-28-jul)).
@@ -284,7 +285,7 @@ tracking interno de origen de conversación de Zipchat.
 
 ---
 
-## 8. Meta Ads (Facebook/Instagram) — 🔴 lista para lanzar, 14 ago
+## 8. Meta Ads (Facebook/Instagram) — ✅ campaña creada, 15 ago
 
 Arrancó el proyecto de publicidad en Meta. Antes de gastar un peso se
 verificó algo importante: **Meta prohíbe anunciar armas, municiones y
@@ -323,11 +324,15 @@ proceso en la sección 29 del `MANUAL-PROYECTO.md`.
   la cuenta, convenciones de nombres, reglas de presupuesto, comandos del
   script, lecciones aprendidas de esta puesta en marcha).
 
-**Único bloqueo real: la API de Meta no responde desde este entorno
-remoto** (bloqueo anti-abuso por IP de datacenter, ver sección 29 del
-manual) — el cliente corre `activos` y `crear-campania` desde su propia
-máquina. Ver el recuadro 🔴 URGENTE al principio de este archivo para el
-comando exacto.
+**Ya no hay bloqueos.** La primera campaña se creó el 15 de agosto y
+está en pausa esperando revisión — ver el recuadro ✅ al principio de
+este archivo para el ID y el comando de activación.
+
+En el camino se resolvieron tres obstáculos que no estaban previstos, los
+tres documentados en la sección 33 del manual: el "API access blocked"
+(era el User-Agent del script, no la red), el catálogo de Meta muerto
+desde febrero, y que la app tenía que pasar a modo Público para poder
+crear anuncios.
 
 ---
 

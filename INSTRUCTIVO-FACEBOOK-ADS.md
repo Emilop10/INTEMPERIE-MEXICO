@@ -18,6 +18,7 @@ que el token deje de servir.
 | Business Manager | ID `1324138699447721` — "Intemperie México" |
 | Pixel de Meta | `2011984246408291` — "Intemperie México Pixel" |
 | Catálogo de Meta | `1746844133017649` — 324 productos, el único (desde 15 ago 2026) |
+| Campaña vigente | `120249613902440175` — "IMX \| Ventas \| Pesca y Óptica...", **en pausa** |
 | App del System User | "Claude Integration" — ID `1038516402111748` |
 | Canal en Shopify | App oficial "Facebook & Instagram", instalada desde el 16 feb 2026 |
 
@@ -139,6 +140,10 @@ Resumen accionable:
 | Productos prohibidos apareciendo en el catálogo de Meta | La publicación masiva de arriba no filtra por categoría | Repetir el mismo flujo pero con "Excluir de los canales de venta", filtrando por las 3 colecciones prohibidas |
 | El catálogo seguía en 56 productos pese a lo anterior (15 ago) | La app de Shopify llevaba desvinculada de Meta desde febrero: arreglar Shopify no servía de nada porque nadie empujaba los datos | Reconectar la app con un catálogo nuevo + `sincronizar-canal-meta.py --forzar-resync`. Ver sección 32 del manual |
 | Catálogo nuevo recién conectado se queda en 0 productos | Shopify solo empuja cuando algo *cambia*; si los productos ya estaban publicados, no hay evento que enviar | `sincronizar-canal-meta.py --forzar-resync` (recicla la publicación para generar los eventos) |
+| `"Se debe especificar Verdadero o Falso en el campo is_adset_budget_sharing_enabled"` al crear campaña | Campo obligatorio desde 2026 cuando el presupuesto vive en el conjunto y no en la campaña | Mandar `is_adset_budget_sharing_enabled=false` (ya está en el script) |
+| `"Param instagram_actor_id must be a valid Instagram account id"` | El campo está deprecado — falla con cualquier ID, incluido el de la cuenta "page-backed" | Usar `instagram_user_id` con el ID de la cuenta real |
+| El ID de Instagram sigue sin ser aceptado | Estar en el portafolio del negocio **no** es estar vinculado a la página; los anuncios exigen lo segundo | Vincular desde la página de Facebook → Configuración → Instagram. Verificar: `GET /{page_id}?fields=instagram_business_account` **con token de página** |
+| `"...aplicación que se encuentra en modo de desarrollo"` al crear el creativo | Meta exige la app en modo Público para crear anuncios (el modo Desarrollo sí permite leer y gestionar) | Publicar la app: requiere política de privacidad, categoría ("Empresa y páginas") e ícono 1024×1024 |
 
 **División de trabajo que funcionó:** Claude en Chrome navega, lee
 pantallas y ejecuta acciones de bajo riesgo (crear la app sin caso de

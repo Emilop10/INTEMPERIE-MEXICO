@@ -60,6 +60,7 @@ como respaldo
 30. [Aviso de Shopify Trust & Safety: retención de pagos por "armas"](#30-aviso-de-shopify-trust--safety-retención-de-pagos-por-armas)
 31. [Dirección de la tienda: quitar el domicilio personal del dueño](#31-dirección-de-la-tienda-quitar-el-domicilio-personal-del-dueño)
 32. [El catálogo de Meta llevaba medio año muerto](#32-el-catálogo-de-meta-llevaba-medio-año-muerto)
+33. [La primera campaña de Meta Ads](#33-la-primera-campaña-de-meta-ads)
 
 ---
 
@@ -1978,7 +1979,9 @@ Se agregaron dos comandos:
   presupuesto real.
 
 Decisión del cliente (14 de agosto): formato catálogo dinámico (no
-imagen única), presupuesto $600 MXN/día para la primera semana.
+imagen única). El presupuesto se corrigió al crear la campaña: el
+cliente aclaró que eran **$700 MXN por semana**, no $600 diarios —
+seis veces menos de lo que se había anotado. Quedó en $100 MXN/día.
 
 **Actualización tras el fix del User-Agent (arriba):** con `activos` ya
 funcionando, se descubrió que el ID de página que se venía usando
@@ -2274,3 +2277,93 @@ cuenta publicitaria no tenía ninguna campaña ni conjunto de anuncios que
 dependiera de él. Queda un solo catálogo en el negocio, así que ya no
 existe la posibilidad de apuntar una campaña por error a los 56
 huérfanos —varios de ellos armas— que contenía.
+
+
+---
+
+## 33. La primera campaña de Meta Ads
+
+Creada el **15 de agosto de 2026**, después de resolver los tres
+obstáculos de las secciones 29 y 32. Queda **en pausa** hasta que el
+cliente la revise y la active.
+
+### Configuración final
+
+| | |
+|---|---|
+| Campaña | `IMX \| Ventas \| Pesca y Óptica \| Catálogo dinámico \| Ago26` |
+| ID | `120249613902440175` |
+| Objetivo | `OUTCOME_SALES`, optimizado a `OFFSITE_CONVERSIONS` / `PURCHASE` |
+| Presupuesto | **$100 MXN/día** (a nivel conjunto de anuncios) |
+| Catálogo | `1746844133017649` — conjunto "All Products", 324 productos, 0 prohibidos |
+| Pixel | `2011984246408291` |
+| Público | México, 18-65 |
+| Colocaciones | Facebook + Instagram |
+| Estado | `PAUSED` en los tres niveles |
+
+### El presupuesto: una corrección importante
+
+Durante días se trabajó con la cifra de **$600 MXN/día**, anotada así en
+`PENDIENTES.md` y en la sección 29. Al momento de crear la campaña el
+cliente aclaró que su presupuesto real era **$700 MXN por semana** — es
+decir, **$100 MXN/día**. La cifra que se traía era **seis veces mayor**
+que la real ($4,200/semana contra $700).
+
+Vale la pena registrarlo porque el error sobrevivió varias sesiones sin
+que nadie lo detectara: quedó escrito una vez, se citó de vuelta en cada
+resumen posterior, y así se fue confirmando solo. Una cifra que va a
+gastar dinero real conviene reconfirmarla justo antes de ejecutar, no
+darla por buena porque ya está en el documento.
+
+**Sobre la expectativa de rendimiento**, se le dijo al cliente sin
+adornos: $100 MXN/día (~$5 USD) optimizando a compra es un presupuesto de
+prueba. Meta necesita del orden de 50 conversiones semanales para salir
+de la fase de aprendizaje; con este monto es previsible ver 1-3 ventas
+por semana. Sirve para validar que el embudo funciona de punta a punta,
+no para esperar rendimiento optimizado desde el arranque.
+
+### Dos trampas de la API que costaron el intento
+
+**1. `instagram_actor_id` está deprecado.** Devolvía
+`"must be a valid Instagram account id"` con *cualquier* valor: con el ID
+de la cuenta real (`17841434418853671`) y también con el de la cuenta
+"page-backed" que Meta autogenera (`17841444307092124`). Se resolvió
+probando ambos campos contra la API real: el vigente es
+**`instagram_user_id`**, y funciona con el ID de la cuenta real.
+
+**2. Estar en el portafolio del negocio ≠ estar vinculado a la página.**
+Son dos relaciones distintas, y para anuncios hace falta la segunda. La
+cuenta llevaba desde el 14 de agosto en el portafolio, pero la página no
+la tenía conectada. Se detecta así — y hay que usar un **token de
+página**, el del System User no puede leer ese campo:
+
+```bash
+GET /{page_id}?fields=instagram_business_account
+```
+
+**3. La app tenía que estar en modo Público.** La sección 29 daba por
+bueno que el modo Desarrollo bastaba "para que un administrador use esos
+permisos sobre sus propios activos". Es cierto para leer y gestionar,
+pero **no para crear creativos de anuncios** — ahí Meta responde
+`"La publicación del laboratorio de contenidos se ha realizado con una
+aplicación que se encuentra en modo de desarrollo"`. Pasarla a Público
+requirió tres campos: URL de política de privacidad (se usó la del
+sitio), categoría ("Empresa y páginas") e ícono de 1024×1024 (se tomó el
+logo de la tienda, que ya existía en esa medida exacta en los archivos de
+Shopify, y se le aplicó fondo sólido porque el original era transparente
+y eso renderiza mal como ícono).
+
+### Operación
+
+```bash
+export META_ACCESS_TOKEN="..."
+export META_AD_ACCOUNT_ID="act_1264279685553718"
+
+python3 scripts/meta-ads.py activar --campania 120249613902440175
+python3 scripts/meta-ads.py reporte --dias 7
+python3 scripts/meta-ads.py presupuesto --campania <id> --monto 100
+```
+
+Convenciones de nombres, reglas de presupuesto y el resto de la operación
+día a día están en
+📄 **[`INSTRUCTIVO-FACEBOOK-ADS.md`](./INSTRUCTIVO-FACEBOOK-ADS.md)**.
