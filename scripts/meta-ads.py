@@ -116,15 +116,50 @@ def _n_days_ago(n):
 
 
 def cmd_pausar(token, account_id, args):
+    """Pausar la campaña basta para detener la entrega y el gasto.
+
+    No hace falta tocar conjuntos ni anuncios: con la campaña en PAUSED
+    nada de lo que cuelga de ella se entrega.
+    """
     _require(args.campania, "--campania")
     api_request("POST", f"/{args.campania}", token, body={"status": "PAUSED"})
-    print(f"Campaña {args.campania} pausada.")
+    print(f"Campaña {args.campania} pausada. Deja de entregar y de gastar.")
+
+
+def _hijos_de_campania(token, campania):
+    """Devuelve (conjuntos, anuncios) de una campaña."""
+    adsets = api_request(
+        "GET", f"/{campania}/adsets", token, params={"fields": "id,name,status", "limit": 100}
+    ).get("data", [])
+    ads = api_request(
+        "GET", f"/{campania}/ads", token, params={"fields": "id,name,status", "limit": 200}
+    ).get("data", [])
+    return adsets, ads
 
 
 def cmd_activar(token, account_id, args):
+    """Activa la campaña Y sus conjuntos y anuncios.
+
+    Activar solo la campaña no entrega nada: si el conjunto o el anuncio
+    siguen en PAUSED, no se muestra ni un impacto. Se activa de adentro
+    hacia afuera (anuncios -> conjuntos -> campaña) para que la campaña
+    no quede activa con hijos a medio encender.
+    """
     _require(args.campania, "--campania")
+    adsets, ads = _hijos_de_campania(token, args.campania)
+
+    for ad in ads:
+        if ad["status"] != "ACTIVE":
+            api_request("POST", f"/{ad['id']}", token, body={"status": "ACTIVE"})
+            print(f"  anuncio activado: {ad['name'][:55]}")
+    for adset in adsets:
+        if adset["status"] != "ACTIVE":
+            api_request("POST", f"/{adset['id']}", token, body={"status": "ACTIVE"})
+            print(f"  conjunto activado: {adset['name'][:55]}")
+
     api_request("POST", f"/{args.campania}", token, body={"status": "ACTIVE"})
-    print(f"Campaña {args.campania} activada.")
+    print(f"Campaña {args.campania} activada ({len(adsets)} conjuntos, {len(ads)} anuncios).")
+    print("Ya está entregando. Para detenerla: meta-ads.py pausar --campania <id>")
 
 
 def cmd_presupuesto(token, account_id, args):
