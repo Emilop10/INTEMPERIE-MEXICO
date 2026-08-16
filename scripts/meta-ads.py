@@ -13,7 +13,8 @@ Uso:
     ... meta-ads.py activar --campania <id>
     ... meta-ads.py presupuesto --campania <id> --monto 150
     ... meta-ads.py activos                              # descubre página/IG/catálogo/pixel, no crea nada
-    ... meta-ads.py crear-campania --presupuesto 600      # arma campaña de catálogo dinámico, SIEMPRE en pausa
+    ... meta-ads.py crear-campania --presupuesto 100      # arma campaña de catálogo dinámico, SIEMPRE en pausa
+                                                          # (--presupuesto es MXN por DIA, no por semana)
 
 Variables de entorno:
     META_ACCESS_TOKEN   (obligatoria) token de System User (ads_management, ads_read)
@@ -270,14 +271,21 @@ def cmd_crear_campania(token, account_id, args):
             "object_story_spec": json.dumps(
                 {
                     "page_id": page["id"],
-                    # Meta solo acepta esta cuenta si esta vinculada a la
-                    # PAGINA, no basta con que este en el portafolio del
-                    # negocio: son dos cosas distintas y la segunda no
-                    # implica la primera (se descubrio el 15 ago 2026, la
-                    # API respondia "must be a valid Instagram account id").
-                    # Verificar con: GET /{page_id}?fields=instagram_business_account
-                    # usando un token de PAGINA, no el del System User.
-                    "instagram_actor_id": ig["id"],
+                    # OJO con dos trampas, ambas descubiertas el 15 ago 2026
+                    # contra la API real:
+                    #
+                    # 1. El campo es `instagram_user_id`. El viejo
+                    #    `instagram_actor_id` esta deprecado y devuelve
+                    #    "must be a valid Instagram account id" pase lo que
+                    #    pase — tampoco funciona con el id de la cuenta
+                    #    "page-backed" que Meta autogenera.
+                    # 2. La cuenta debe estar vinculada a la PAGINA, no
+                    #    basta con que este en el portafolio del negocio:
+                    #    son relaciones distintas y la segunda no implica
+                    #    la primera. Verificar con un token de PAGINA (el
+                    #    del System User no sirve para leer ese campo):
+                    #    GET /{page_id}?fields=instagram_business_account
+                    "instagram_user_id": ig["id"],
                     "template_data": {
                         "link": "https://www.intemperiemexico.com/collections/todo-pesca",
                         "call_to_action": {"type": "SHOP_NOW"},
