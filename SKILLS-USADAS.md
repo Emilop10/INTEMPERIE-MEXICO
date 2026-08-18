@@ -318,28 +318,50 @@ que quedan son `.md` con instrucciones. El único código que corre es el
 propio `install.sh`, y lo que hace es copiar archivos — se revisó antes
 de ejecutarlo.
 
-Se instaló completo (270 agentes, 17 divisiones). Si la lista estorba,
-`install.sh` acepta `--division a,b` y `--agent slug` para instalar solo
-una parte.
+Se instaló completo: **270 agentes en 17 divisiones**. El repositorio
+tiene 316 archivos `.md`, pero los 46 restantes no son agentes — son
+`README.md` de cada división, `CONTRIBUTING`, `SECURITY` y ejemplos de
+flujos de trabajo. No falta ninguno.
 
-### Los que aplican a esta tienda
+Si la lista estorba, `install.sh` acepta `--division a,b` y
+`--agent slug` para instalar solo una parte.
 
-La división que más encaja con el trabajo actual es **`paid-media`**, que
-es exactamente el terreno de la campaña de Meta (secciones 33 y 35 del
-manual):
+### Inventario completo
+
+Los 270 están listados uno por uno, con su slug y qué hace cada uno, en
+📄 **[`INVENTARIO-AGENTES.md`](./INVENTARIO-AGENTES.md)** — agrupados por
+división y con ⭐ en los 17 que tienen aplicación directa en esta tienda.
+
+Resumen de qué hay:
+
+| División | Agentes | Aplica aquí |
+|---|---|---|
+| Ingeniería | 58 | Parcialmente (pagos, rendimiento, bases de datos) |
+| Especializados | 57 | Poco — muchos son del mercado chino |
+| Marketing | 36 | **Sí** (SEO, contenido, Instagram, TikTok, correo) |
+| Videojuegos | 21 | No |
+| GIS / geoespacial | 13 | No |
+| Seguridad | 12 | Parcialmente |
+| Diseño | 10 | **Sí** (UX, marca, accesibilidad) |
+| Ventas · Pruebas | 18 | Poco — están pensados para B2B |
+| **Publicidad pagada** | **7** | **Sí — es el terreno de la campaña de Meta** |
+| Gestión de proyectos · Académicos · Soporte | 19 | Parcialmente (soporte y devoluciones sí) |
+| Cómputo espacial · Salud · Finanzas · Producto | 19 | Poco |
+
+La división que más encaja con el trabajo actual es **`paid-media`**,
+exactamente el terreno de las secciones 33 y 35 del manual:
 
 | Agente | Para qué aquí |
 |---|---|
-| `paid-media-paid-social-strategist` | Estrategia de embudo completo en Meta — el problema abierto de prospección → retargeting |
-| `paid-media-tracking-specialist` | Medición y eventos del pixel; útil para el tema de optimizar a `PURCHASE` sin compras |
-| `paid-media-creative-strategist` | Iteración de creativos y copy más allá de la v2 actual |
-| `paid-media-auditor` | Revisión de cuenta cuando haya datos suficientes (día 7 en adelante) |
+| `paid-media-paid-social-strategist` | Embudo completo en Meta — el hueco abierto de prospección → retargeting |
+| `paid-media-tracking-specialist` | Pixel y atribución; toca el problema de optimizar a `PURCHASE` sin compras |
+| `paid-media-creative-strategist` | Iteración de creativos y copy más allá de la v2 |
+| `paid-media-auditor` | Auditoría de cuenta cuando haya datos (día 7 en adelante) |
 
-También hay 36 agentes de `marketing` (SEO, contenido, growth) y 10 de
-`design`, que se cruzan con trabajo ya hecho — conviene compararlos
-contra lo que ya está documentado en este proyecto antes de darles peso:
-lo que aquí está escrito salió de la tienda real, no de un manual
-genérico.
+**Lo que NO aplica también sirve saberlo.** Unos 100 de los 270 son de
+videojuegos, GIS, cómputo espacial, salud y mercado chino. No estorban
+—solo se invocan si se piden— pero conviene no perder tiempo buscando
+ahí la respuesta a un problema de esta tienda.
 
 ### Advertencias
 
