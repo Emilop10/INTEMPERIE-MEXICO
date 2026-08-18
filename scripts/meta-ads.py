@@ -291,12 +291,47 @@ def cmd_crear_campania(token, account_id, args):
             "billing_event": "IMPRESSIONS",
             "optimization_goal": "OFFSITE_CONVERSIONS",
             "bid_strategy": "LOWEST_COST_WITHOUT_CAP",
-            "promoted_object": json.dumps({"product_set_id": product_set_id, "pixel_id": pixel["id"], "custom_event_type": "PURCHASE"}),
+            # CONTENT_VIEW, no PURCHASE. Meta necesita ~50 eventos del tipo
+            # optimizado por semana para salir de fase de aprendizaje. A un
+            # CPA realista de $250 MXN eso son $1,785/dia optimizando a
+            # compra — 18 veces el presupuesto de esta tienda. Con PURCHASE
+            # la campana no aprende despacio: no aprende nunca. Se sube a
+            # PURCHASE cuando haya historial de ventas, no antes.
+            "promoted_object": json.dumps({"product_set_id": product_set_id, "pixel_id": pixel["id"], "custom_event_type": "CONTENT_VIEW"}),
+            # Sin `attribution_spec` explicito Meta resuelve el conjunto como
+            # SOLO CLIC. Eso oculto en los reportes un carrito de $9,127 y un
+            # checkout iniciado (18 ago 2026), y ademas el algoritmo tampoco
+            # usa esas conversiones para optimizar.
+            "attribution_spec": json.dumps(
+                [
+                    {"event_type": "CLICK_THROUGH", "window_days": 7},
+                    {"event_type": "VIEW_THROUGH", "window_days": 1},
+                ]
+            ),
             "targeting": json.dumps(
                 {
                     "geo_locations": {"countries": ["MX"]},
-                    "age_min": 18,
+                    # 35+ y no 18+: en los primeros 4 dias el tramo 55-64
+                    # dio CTR 6.49% contra 2.26% de 25-34, y la vista de
+                    # pagina mas barata de la cuenta. El equipo de pesca lo
+                    # compra quien ya tiene el hobby establecido.
+                    "age_min": 35,
+                    "age_max": 65,
                     "publisher_platforms": ["facebook", "instagram"],
+                    # Solo feeds. Reels y Stories se llevaron $42 de $234 para
+                    # 3 de 52 vistas de pagina: el catalogo dinamico genera
+                    # tarjetas cuadradas que en vertical se recortan y compiten
+                    # contra video nativo. Instagram Reels dio 0 clics de
+                    # enlace en 207 impresiones.
+                    "facebook_positions": ["feed", "marketplace"],
+                    "instagram_positions": ["stream"],
+                    # Escritorio gasto $8.19 para CERO vistas de pagina.
+                    "device_platforms": ["mobile"],
+                    # Obligatorio desde 2025: sin esta marca la API responde
+                    # "Se requiere la marca de audiencia de Advantage". En 0
+                    # Meta respeta el corte de edad; en 1 lo ignora y vuelve
+                    # a gastar en 18-34.
+                    "targeting_automation": {"advantage_audience": 0},
                 }
             ),
             "status": "PAUSED",

@@ -19,6 +19,9 @@ que el token deje de servir.
 | Pixel de Meta | `2011984246408291` — "Intemperie México Pixel" |
 | Catálogo de Meta | `1746844133017649` — 324 productos, el único (desde 15 ago 2026) |
 | Campaña vigente | `120249613902440175` — "IMX \| Ventas \| Pesca y Óptica...", **activa desde el 15 ago 2026** |
+| Conjunto vigente | `120249666491620175` — optimiza a `CONTENT_VIEW`, $95/día (el conjunto original quedó en pausa el 18 ago) |
+| Conjunto de productos | `1455189226500365` — 72 productos ≥$300, en stock, sin accesorios de arma |
+| Tope de gasto | **a nivel de CUENTA**, $285 restantes de los $700 de la semana |
 | App del System User | "Claude Integration" — ID `1038516402111748` |
 | Canal en Shopify | App oficial "Facebook & Instagram", instalada desde el 16 feb 2026 |
 
@@ -310,6 +313,58 @@ dueño de la cuenta directamente — son las acciones que otorgan acceso
 administrativo y una credencial capaz de gastar dinero real, y ese
 límite se respeta siempre, sin excepción, incluso si se pide
 explícitamente lo contrario.
+
+---
+
+## 6-bis. Presupuesto: Meta no entiende de semanas
+
+El presupuesto que se configura es **diario**. No existe un límite
+semanal, y nada impide que la campaña siga gastando esa cifra
+indefinidamente. Un "presupuesto de $700 a la semana" es una cuenta
+mental hasta que se configura un tope.
+
+**El tope de campaña no sirve en pesos mexicanos:** Meta exige un mínimo
+de $1,500 MXN, más del doble del presupuesto semanal de esta tienda.
+
+**El que sí funciona es el tope de cuenta:**
+
+```bash
+curl -X POST "https://graph.facebook.com/v21.0/act_1264279685553718" \
+  -d "spend_cap=285" \
+  -d "access_token=$META_ACCESS_TOKEN"
+```
+
+Dos trampas de la API, ambas comprobadas el 18 de agosto de 2026:
+
+1. **`spend_cap` va en unidades de la moneda, no en centavos** — al revés
+   que `daily_budget`. Enviar `252344` guarda `$252,344.00`. Verificar
+   siempre lo que quedó guardado.
+2. **Cambiar el tope reinicia `amount_spent` a cero.** Eso es útil: el
+   tope pasa a medir solo el gasto futuro, sin calcular el histórico.
+
+> ⚠️ Es un tope de **cuenta**: cualquier campaña o publicación promocionada
+> consume de la misma bolsa. Para continuar la semana siguiente hay que
+> **subir el tope**, no basta con reactivar la campaña.
+
+**Para calcular gasto, nunca uses `amount_spent` ni `date_preset=maximum`.**
+El primero se actualiza con el ciclo de facturación (le faltaba el día en
+curso) y el segundo devolvió $190.12 cuando el gasto real era $414.69.
+Usa siempre `insights` con `time_range` explícito.
+
+---
+
+## 6-ter. Sustituir un conjunto: pausar primero, activar después
+
+Es el orden **opuesto** al de encender una campaña (sección 4-bis:
+anuncios → conjuntos → campaña, de adentro hacia afuera).
+
+Al **sustituir** un conjunto por otro hay que **pausar el viejo antes de
+activar el nuevo**. Si se hace al revés, ambos corren a la vez, cada uno
+con su presupuesto diario completo, y el nuevo además arranca acelerado
+porque Meta front-loadea los conjuntos recién creados.
+
+Pasó el 18 de agosto: **$224.57 gastados en un día** con presupuesto de
+$100 (viejo $48.87 + nuevo $175.70).
 
 ---
 

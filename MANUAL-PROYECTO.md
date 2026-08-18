@@ -64,6 +64,10 @@ como respaldo
 34. [Dónde viven las credenciales (y por qué nunca en el repo)](#34-dónde-viven-las-credenciales-y-por-qué-nunca-en-el-repo)
 35. [Los primeros días de la campaña: leer datos chicos sin engañarse](#35-los-primeros-días-de-la-campaña-leer-datos-chicos-sin-engañarse)
 36. [Herramientas de terceros instaladas: plugins y agentes](#36-herramientas-de-terceros-instaladas-plugins-y-agentes)
+37. [Los 6 accesorios de arma que se colaron al catálogo](#37-los-6-accesorios-de-arma-que-se-colaron-al-catálogo)
+38. [La reconstrucción de la campaña: por qué no vendía](#38-la-reconstrucción-de-la-campaña-por-qué-no-vendía)
+39. [Botón de WhatsApp y la trampa del deploy incremental](#39-botón-de-whatsapp-y-la-trampa-del-deploy-incremental)
+40. [Control de presupuesto: cómo poner un tope real](#40-control-de-presupuesto-cómo-poner-un-tope-real)
 
 ---
 
@@ -2782,12 +2786,391 @@ determinaba cómo instalarlo.
 
 ### Lo que Graphify no cubre
 
-Los dos grafos de Graphify (sección 21) indexan `tema-shopify/` y
-`scripts/` — el **código** del proyecto. Ni los agentes ni el plugin
-entran ahí: viven fuera del repositorio y no son código de esta tienda.
-Tampoco entran los documentos de la raíz (este manual, los instructivos,
-el inventario de agentes), que son prosa, no código.
+Conviene tenerlo escrito, porque es fácil suponer que el grafo cubre más
+de lo que cubre. Se verificó leyendo su propio manifiesto el 18 de agosto
+de 2026:
 
-No es una carencia que haya que arreglar: Graphify existe para responder
-"qué toca qué" en el código, y para eso los `.md` de la raíz no aportan
-nodos. La documentación se navega por su índice, no por el grafo.
+| | ¿En el grafo? |
+|---|---|
+| `.js` de `tema-shopify/assets/` | ✅ Sí (37 archivos) |
+| `.json` de configuración y plantillas | ✅ Sí (72) |
+| `.svg` e imágenes | ✅ Sí (90) |
+| `.py` de `scripts/` | ✅ Sí (grafo aparte) |
+| **`.liquid` — secciones y snippets** | ❌ **No. Ninguno.** |
+| `.md` de la raíz (manual, instructivos) | ❌ No |
+| Plugins y agentes instalados | ❌ No (viven fuera del repo) |
+
+**Graphify no tiene analizador de Liquid.** Su manifiesto del tema lista
+199 archivos y **cero** `.liquid`. Eso significa que las secciones y
+snippets —donde vive la mayor parte de la lógica del tema— **no están
+representados**: ni `main-product.liquid`, ni `brand-experience.liquid`,
+ni el `whatsapp-button.liquid` de la sección 39.
+
+Si algún archivo `.liquid` aparece mencionado en el grafo (por ejemplo
+`cart-drawer`), es porque un `.js` o un `.json` lo nombra — no porque el
+archivo se haya analizado.
+
+**Consecuencia práctica:** para "qué toca qué" en JavaScript y en los
+scripts de Python, el grafo sirve. Para rastrear una dependencia entre
+plantillas Liquid hay que usar `grep`. Y una pregunta como *"¿quién
+invoca este snippet?"* el grafo **no la puede responder** — que es
+exactamente el tipo de pregunta cuya respuesta faltante causó el incidente
+del deploy incremental (sección 39).
+
+---
+
+## 37. Los 6 accesorios de arma que se colaron al catálogo
+
+**18 de agosto de 2026.** Escaneando el catálogo de Meta aparecieron seis
+productos que violan la política de armas de Meta, en un catálogo que
+esta misma documentación declaraba **"324 productos, 0 prohibidos"**:
+
+| Producto | Precio |
+|---|---|
+| Montura Universal Konus 11/22mm | $1,090 |
+| Monturas p/Mira 11mm Alta Nakashi | $480 |
+| Monturas p/Mira 22mm Alta Nakashi | $390 |
+| Monturas Bajas Mendoza 11mm | $390 |
+| Monturas Picatinny Bajas Mendoza 21mm | $390 |
+| Linterna Táctica Konus (riel Picatinny/Weaver) | $3,180 |
+
+**Tres de ellos ya se habían mostrado en anuncios** — 4 impresiones,
+$0.22 de gasto. Poco, pero se sirvieron: la exposición fue real, no
+hipotética.
+
+### Por qué falló la verificación anterior
+
+La sección 32 verificó el catálogo de dos formas: por **colección**
+(excluyendo "Rifles y Pistolas de Aire", "Diábolos y Municiones",
+"Miras Telescópicas") y por **palabras clave**. Ambas pasaron, y con eso
+se dio el catálogo por limpio.
+
+El error es de categoría, y es instructivo: **una montura no es un rifle,
+ni una mira, ni una munición. Es la pieza que une la mira al rifle.** No
+vivía en ninguna colección prohibida porque, en la taxonomía de la
+tienda, es un accesorio de óptica. Y "montura" no estaba en la lista de
+palabras clave porque nadie la pensó como arma.
+
+Meta sí la piensa así. Su política prohíbe los *"accesorios que
+modifiquen o mejoren la función de un arma"*, y una montura es
+literalmente eso.
+
+**La lección no es "faltó una palabra en la lista".** Es que una
+verificación por lista cerrada solo encuentra lo que ya sabías buscar, y
+declararla exhaustiva ("0 prohibidos") le dio a esa lista una autoridad
+que no tenía. Cuando el costo del falso negativo es la cuenta completa,
+la red tiene que ser deliberadamente más amplia que el riesgo conocido.
+
+### La corrección
+
+`scripts/sincronizar-canal-meta.py` ahora aplica **dos redes**:
+
+1. La de colecciones, que ya existía.
+2. Una nueva por **nombre y descripción** (`RE_ACCESORIO_ARMA`), que cubre
+   monturas, rieles, Picatinny/Weaver, bípodes, silenciadores, culatas,
+   gatillos, cargadores, diábolos, balines, municiones, postas, y las
+   palabras rifle/carabina/pistola/PCP/CO2.
+
+La descripción se revisa porque la linterna táctica **no dice nada
+sospechoso en su nombre**: el riel Picatinny aparece solo en el texto.
+Se leen los primeros 400 caracteres; más abajo suelen venir textos de
+marca que disparan falsos positivos.
+
+Hay una lista de **excepciones comprobadas** (`RE_EXCEPCIONES`) para los
+falsos positivos reales: las cañas "Tele Surf" son telescópicas de pesca,
+y "calibre" en una descripción de pesca es el grosor del hilo.
+
+> **Regla de sesgo, escrita a propósito:** el filtro prefiere dejar fuera
+> un producto legítimo a colar uno prohibido. Lo primero cuesta unas
+> ventas; lo segundo cuesta la cuenta publicitaria y el Business Manager,
+> de forma permanente. Si un producto legítimo cae en el filtro, se
+> agrega a `RE_EXCEPCIONES` — **nunca se afloja el patrón**.
+
+El filtro se probó contra los 6 casos reales más 6 productos legítimos
+que debían pasar. Los 12 dieron el resultado esperado.
+
+### Mitigación inmediata
+
+No se pudo despublicar desde Shopify (no había token en la sesión), así
+que la exposición se cortó por el lado de Meta: se creó un **conjunto de
+productos** que los excluye por `retailer_id` y se apuntó la campaña ahí
+(sección 38).
+
+---
+
+## 38. La reconstrucción de la campaña: por qué no vendía
+
+Al cuarto día la campaña llevaba $234 gastados, CTR de 3.67% —por encima
+del promedio mexicano— y **cero compras**. El diagnóstico encontró tres
+causas, y ninguna era el anuncio.
+
+### Causa 1 — El anuncio prometía algo que sus productos no cumplían
+
+Cruzando el precio de cada producto que recibió gasto contra el umbral de
+envío gratis:
+
+| | Gasto | % |
+|---|---|---|
+| Productos **debajo de $799** (pagan $189 de envío) | $220.23 | **94%** |
+| Productos de $799 o más (envío gratis) | $14.03 | 6% |
+
+**Precio mediano del producto anunciado: $147.**
+
+El recorrido real del cliente era: ve *"⚡ ENVÍO GRATIS desde $799"*, hace
+clic en un señuelo de $147, y en el checkout el envío cuesta **$189 —
+más que el producto**. Se va.
+
+Es un efecto secundario del catálogo dinámico: Meta optimiza a clics, los
+productos baratos generan más clics por peso, y sin restricción el
+algoritmo deriva a lo barato. **$101.93 de $234 (43%) se fueron a un solo
+señuelo de $310.**
+
+El síntoma medible: **solo 1 de cada 52 visitantes agregaba al carrito
+(1.9%)**, contra un rango sano de 5-10%.
+
+### Causa 2 — Optimizar a compra era imposible, no lento
+
+Meta necesita ~50 conversiones semanales del evento optimizado para salir
+de fase de aprendizaje. A un CPA optimista de $250 MXN:
+
+> 50 × $250 = **$12,500/semana = $1,785/día = 18 veces el presupuesto.**
+
+No es que la campaña "todavía no aprendiera": con $100 MXN/día
+optimizando a `PURCHASE` **nunca** iba a aprender. Se le pedía al
+algoritmo encontrar un evento que jamás había visto ocurrir.
+
+`ViewContent` sí tiene volumen: ~100 por semana, el doble del umbral.
+
+> El reinicio de la fase de aprendizaje que provoca cambiar el evento
+> **costó cero**, precisamente porque la campaña nunca había aprendido
+> nada. Ese es el único momento en que conviene hacer todos los cambios
+> grandes de una vez — más adelante cada uno tiene precio.
+
+### Causa 3 — La atribución escondía clientes reales
+
+El conjunto tenía `attribution_spec` de **solo clic de 7 días**, sin
+ventana de visualización, porque `meta-ads.py` no lo mandaba explícito y
+Meta lo resolvió así. Al pedir los datos con las dos ventanas apareció
+lo que no se veía:
+
+| | Por clic | Por visualización |
+|---|---|---|
+| Carritos | 1 ($310) | **2 ($9,127)** |
+| Checkout iniciado | — | **1 ($9,127)** |
+
+**Había una persona real con un carrito de $9,127 que llegó a la pantalla
+de pago.** Doce veces el ticket promedio, invisible en todos los reportes.
+
+Peor que el reporte: **el algoritmo tampoco usaba esas conversiones para
+optimizar**.
+
+### La reconstrucción
+
+Se creó un conjunto de anuncios nuevo (el viejo quedó en pausa, no
+borrado) con todo corregido de una sola vez:
+
+| | Antes | Ahora |
+|---|---|---|
+| Evento optimizado | `PURCHASE` | **`CONTENT_VIEW`** |
+| Conjunto de productos | 324 ("All Products") | **72** (≥$300, en stock, sin armas) |
+| Precio medio anunciado | $147 | **$747** |
+| Edad | 18-65 | **35-65** |
+| Colocaciones | Automáticas | **Solo feeds** (FB feed, Marketplace, IG feed) |
+| Dispositivo | Todos | **Solo móvil** |
+| Atribución | Clic 7d | **Clic 7d + visualización 1d** |
+
+**El umbral de $300 no es arbitrario:** es el corte donde el precio medio
+del conjunto toca los $747, es decir el umbral de envío gratis. Con un
+accesorio añadido, el carrito ya califica. Se probaron otros cortes —
+≥$700 dejaba solo 24 productos en stock, muy poco para catálogo dinámico.
+
+El copy también cambió: *"ENVÍO GRATIS desde $799"* → **"ENVÍO GRATIS en
+este pedido"**, que ahora sí es cierto para la mayoría de lo que se
+muestra.
+
+### Las cifras que justificaron cada recorte
+
+**Por colocación (4 días):**
+
+| Colocación | Gasto | Vistas de página | Costo/vista |
+|---|---|---|---|
+| Facebook feed | $121.85 | 32 | **$3.81** |
+| Instagram feed | $43.32 | 11 | $3.94 |
+| Instagram stories | $33.36 | 3 | $11.12 |
+| Facebook Reels | $17.84 | 3 | $5.95 |
+| Instagram Reels | $8.92 | **0** | ∞ |
+
+Reels y Stories: **$42 de $234 (18%) para 3 de 52 vistas (6%)**. La causa
+es mecánica: el catálogo dinámico genera tarjetas cuadradas sobre fondo
+blanco, que en formato vertical se recortan y compiten contra video
+nativo.
+
+**Por edad:** 55-64 dio CTR de **6.49%** contra 2.26% de 25-34, y la
+vista de página más barata de la cuenta ($3.01). **Escritorio: $8.19
+gastados, cero vistas de página.**
+
+### Sobre WhatsApp como campaña: los números dicen que no
+
+Se evaluó lanzar una campaña de mensajes (Click-to-WhatsApp), atractiva
+en México por el uso del canal. El cálculo con el costo que casi nadie
+incluye —el tiempo humano—:
+
+- Costo por conversación iniciada: ~$15 MXN
+- $700/semana ÷ $15 = ~47 conversaciones = **7 al día**
+- Vender una caña son 8-10 min de conversación real → **70 min/día**
+- A $150/hora de tiempo propio: **costo real por conversación $39**, no $15
+- A 15% de cierre: **CPA real $262** contra un margen de $150-200
+
+**Se pierde dinero en cada venta.** Se vuelve rentable con ticket ≥$1,200
+(carretes, combos, binoculares) o con cierre ≥25%, no con señuelos.
+
+Lo que sí se hizo, y cuesta $0, es el **botón de WhatsApp en el sitio**
+(sección 39): captura la demanda que ya se está pagando, en vez de
+comprar demanda nueva.
+
+### Un error propio: el sobregasto del 18 de agosto
+
+Al aplicar los cambios se **activó el conjunto nuevo antes de pausar el
+viejo**. Durante unas horas corrieron los dos, cada uno con su propio
+presupuesto diario, y el nuevo además arrancó acelerado como hace Meta
+con un conjunto recién creado:
+
+> 18 de agosto: **$224.57** contra un presupuesto de $100/día.
+> (Conjunto viejo $48.87 + conjunto nuevo $175.70.)
+
+**El orden correcto es pausar primero y activar después.** Es el reflejo
+opuesto al de la sección 33 (activar de adentro hacia afuera), y por eso
+se confundió: al *encender* una campaña se va de adentro hacia afuera,
+pero al *sustituir* un conjunto por otro se apaga el viejo primero.
+
+---
+
+## 39. Botón de WhatsApp y la trampa del deploy incremental
+
+### El botón
+
+`tema-shopify/snippets/whatsapp-button.liquid`, invocado desde
+`layout/theme.liquid` al final del `<body>`.
+
+**Va abajo a la izquierda a propósito:** Cartucho (Zipchat) se monta
+abajo a la derecha y dos burbujas encimadas no se pueden tocar en móvil.
+
+En la ficha de producto el mensaje se rellena con el **nombre y el enlace
+del producto**, para que la conversación no arranque con "¿de cuál me
+hablas?". En móvil se muestra solo el ícono. Usa
+`env(safe-area-inset-bottom)` para no quedar bajo la barra de gestos del
+iPhone.
+
+Número, textos y visibilidad son editables desde **Personalizar tema →
+WhatsApp**, sin tocar código.
+
+**Por qué existe:** el mejor público de la campaña resultó ser hombres de
+35-65 años, que rara vez le dan su tarjeta a una tienda desconocida sin
+preguntar antes. Y hubo un carrito de $9,127 que se cayó en la pantalla
+de pago sin que nadie pudiera hablar con esa persona.
+
+### Error 1 — Liquid partido en varias líneas
+
+El deploy falló con `Unknown tag '| replace: ...'`. **Dentro de un bloque
+`{% liquid %}` cada salto de línea CIERRA la etiqueta**, así que una
+cadena de filtros repartida en varias líneas se lee como etiquetas
+sueltas inválidas. Va en una sola línea, o partida en varios `assign`.
+
+### Error 2 — La trampa del deploy incremental
+
+Tras corregir lo anterior, **todo el sitio empezó a mostrar**:
+
+```
+Liquid error (layout/theme line 35):
+Could not find asset snippets/meta-pixel.liquid
+```
+
+La causa: `scripts/deploy-shopify.py` sube **solo los archivos que
+cambiaron** desde el commit anterior. `meta-pixel.liquid` se creó hace
+meses y desde entonces no se tocó, así que **nunca entró en un push que
+lo incluyera** — existía en el repo y no en la tienda. Mientras
+`theme.liquid` tampoco se subiera, nadie lo notaba. Al subirlo por el
+botón de WhatsApp, llegó con la llamada a un snippet inexistente.
+
+> **La regla que sale de aquí:** con deploy incremental, un archivo puede
+> desplegarse sin su dependencia. Al agregar un `render` a un archivo que
+> sí cambia, hay que verificar que el destino **ya esté en la tienda**, no
+> solo en el repo. El error únicamente aparece en vivo.
+
+Queda documentada dentro del propio `meta-pixel.liquid`, junto con la
+razón por la que ese snippet debe permanecer inerte (el pixel real lo
+inyecta el canal oficial de Shopify; llenarlo duplicaría eventos).
+
+### Verificación
+
+Botón confirmado en ficha de producto, carrito, páginas, buscador,
+políticas y colecciones. **En la home y en `/collections/todo-pesca` no
+apareció** en las primeras horas; se descartó caché de Cloudflare y los
+parámetros de bypass de Shopify, y el dueño lo confirmó visible desde su
+teléfono poco después — era caché del lado del cliente.
+
+---
+
+## 40. Control de presupuesto: cómo poner un tope real
+
+**Meta no entiende de presupuestos semanales.** El límite que se
+configura es **diario**, y nada impide que la campaña siga gastando esa
+cifra indefinidamente. Los "$700 a la semana" eran una cuenta mental, no
+una regla configurada — y el 18 de agosto se gastaron $224 en un día sin
+que nada lo impidiera.
+
+### Lo que NO funcionó
+
+**Tope a nivel de campaña** (`spend_cap` en la campaña): rechazado.
+
+```
+"El límite de gasto de la campaña debe ser de al menos $1500,00
+ para esta divisa."
+```
+
+En pesos mexicanos el mínimo son $1,500 — más del doble del presupuesto
+semanal de esta tienda. Inútil aquí.
+
+### Lo que sí funcionó
+
+**Tope a nivel de cuenta publicitaria**, que no tiene ese mínimo.
+
+Dos comportamientos de la API que hay que conocer:
+
+1. **El campo va en unidades de la moneda, no en centavos.** Enviar
+   `252344` guardó `$252,344.00`, no `$2,523.44`. Esto es al revés que
+   `daily_budget`, que sí va en centavos. Verificar siempre lo que quedó
+   guardado.
+2. **Cambiar el tope REINICIA el contador `amount_spent` a cero.** Es una
+   ventaja: el tope pasa a medir solo lo que se gaste de ahí en adelante,
+   sin tener que calcular el histórico.
+
+Configuración vigente:
+
+```
+tope de la cuenta:  $285.00
+consumido:          $  0.00   (reiniciado al fijar el tope)
+```
+
+$414.69 ya gastados + $285 de tope = **$699.69**, treinta y un centavos
+por debajo del presupuesto. Al llegar, Meta deja de entregar sola.
+
+El presupuesto diario se bajó de $100 a **$95**, que por tres días
+(miércoles, jueves y viernes) da exactamente $285.
+
+> ⚠️ **Es un tope de CUENTA, no de campaña.** Cualquier otra campaña o
+> publicación promocionada consume de la misma bolsa y también se
+> detendría. Para seguir la semana siguiente hay que **subir el tope**;
+> no basta con reactivar la campaña.
+
+### El contador de Meta va con retraso
+
+`amount_spent` de la cuenta marcaba $2,013.56 mientras la suma real por
+campaña daba $2,238.13. La diferencia era **exactamente el gasto del día
+en curso**: ese contador se actualiza con el ciclo de facturación, no en
+tiempo real.
+
+Para cualquier cálculo de dinero, usar la suma de `insights` con
+`time_range` explícito, no `amount_spent` ni `date_preset=maximum` (que
+también devolvió una cifra desactualizada, $190.12 contra los $414.69
+reales).

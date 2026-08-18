@@ -1,16 +1,16 @@
 # Graph Report - scripts  (2026-08-18)
 
 ## Corpus Check
-- 7 files · ~6,753 words
+- 7 files · ~7,355 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 74 nodes · 125 edges · 10 communities (9 shown, 1 thin omitted)
+- 75 nodes · 126 edges · 10 communities (9 shown, 1 thin omitted)
 - Extraction: 94% EXTRACTED · 6% INFERRED · 0% AMBIGUOUS · INFERRED: 7 edges (avg confidence: 0.5)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `9ba2a721`
+- Built from commit: `ec9b9993`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -72,8 +72,8 @@ Cohesion: 0.38
 Nodes (7): cmd_crear_campania(), cmd_pausar(), cmd_presupuesto(), main(), Pausar la campaña basta para detener la entrega y el gasto. No hace falta tocar…, _require(), require_env()
 
 ### Community 4 - "sincronizar-canal-meta.py"
-Cohesion: 0.62
-Nodes (6): aplicar(), es_prohibido(), gql(), main(), resolver_canal(), traer_productos()
+Cohesion: 0.50
+Nodes (7): aplicar(), es_prohibido(), gql(), main(), Prohibido por coleccion O por nombre. La red de colecciones sola NO alcanza, y…, resolver_canal(), traer_productos()
 
 ### Community 5 - "vincular-codigo-b1.py"
 Cohesion: 0.52
@@ -100,7 +100,7 @@ Nodes (3): cmd_activos(), Descubre página, cuenta de Instagram, catálogo y pix
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `api_request()` connect `api_request` to `_resolve_business_assets`, `main`, `meta-ads.py`?**
-  _High betweenness centrality (0.009) - this node is a cross-community bridge._
+  _High betweenness centrality (0.008) - this node is a cross-community bridge._
 - **Why does `cmd_activar()` connect `api_request` to `main`, `meta-ads.py`?**
   _High betweenness centrality (0.008) - this node is a cross-community bridge._
 - **Are the 7 inferred relationships involving `main()` (e.g. with `cmd_activar()` and `cmd_activos()`) actually correct?**

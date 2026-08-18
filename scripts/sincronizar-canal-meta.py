@@ -30,6 +30,7 @@ Variables de entorno:
 
 import argparse
 import json
+import re
 import os
 import sys
 import time
@@ -50,6 +51,26 @@ COLECCIONES_PROHIBIDAS = {
     "Diábolos y Municiones",
     "Miras Telescópicas",
 }
+
+# Segunda red: nombres que delatan un accesorio de arma aunque el producto
+# no viva en ninguna coleccion prohibida. Ver es_prohibido() para el caso
+# real que obligo a agregar esto.
+RE_ACCESORIO_ARMA = re.compile(
+    r"montura|picatinny|weaver|riel\s*(de\s*)?(11|21|22)\s*mm"
+    r"|mira\s+telesc|red\s*dot|holograf|bip[ié]e?\b"
+    r"|silenciador|moderador|culata|ca[ñn][oó]n|gatillo|cargador"
+    r"|di[aá]bolo|bal[ií]n|munici[oó]n|posta[s]?\b|perdig[oó]n"
+    r"|rifle|carabina|pistola|airgun|aire\s+comprimido|\bpcp\b|\bco2\b",
+    re.IGNORECASE,
+)
+
+# Falsos positivos comprobados del patron de arriba. "Tele Surf" son canas
+# de pescar telescopicas y "calibre" en una descripcion de pesca es el
+# grosor del hilo, no el de un proyectil.
+RE_EXCEPCIONES = re.compile(
+    r"ca[ñn]a\s+de\s+pescar|tele\s*surf|telesc[oó]pica\s+de\s+pesca",
+    re.IGNORECASE,
+)
 
 # Canal "Facebook & Instagram" de esta tienda. Si se reinstala la app, el
 # id cambia — el script lo vuelve a resolver por nombre y avisa.
@@ -108,7 +129,7 @@ def traer_productos(token, store, canal_id):
       products(first: 100, after: $cursor) {
         pageInfo { hasNextPage endCursor }
         edges { node {
-          id title status
+          id title status description
           collections(first: 20) { edges { node { title } } }
           publishedOnPublication(publicationId: $pub)
         } }
@@ -125,6 +146,7 @@ def traer_productos(token, store, canal_id):
                 {
                     "gid": nodo["id"],
                     "titulo": nodo["title"],
+                    "descripcion": nodo.get("description") or "",
                     "status": nodo["status"],
                     "colecciones": {c["node"]["title"] for c in nodo["collections"]["edges"]},
                     "publicado": nodo["publishedOnPublication"],
@@ -136,7 +158,39 @@ def traer_productos(token, store, canal_id):
 
 
 def es_prohibido(producto):
-    return bool(COLECCIONES_PROHIBIDAS & producto["colecciones"])
+    """Prohibido por coleccion O por nombre.
+
+    La red de colecciones sola NO alcanza, y costo caro comprobarlo: el 18
+    de agosto de 2026 aparecieron 6 accesorios de arma dentro del catalogo
+    de Meta que se declaraba "0 prohibidos" — cinco monturas para mira
+    telescopica y una linterna tactica con riel Picatinny. Ninguno estaba
+    en las tres colecciones prohibidas, porque una montura no es un rifle
+    ni una mira ni una municion: es una pieza que las une. Tres de ellos
+    ya se habian mostrado en anuncios.
+
+    Meta prohibe los "accesorios que modifiquen o mejoren la funcion de un
+    arma", y una montura es exactamente eso. El castigo no es que rechacen
+    el anuncio: es baneo permanente de la cuenta y del Business Manager.
+
+    Por eso el filtro por nombre es una segunda red, deliberadamente
+    amplia. Prefiere dejar fuera un producto legitimo a colar uno
+    prohibido: lo primero cuesta unas ventas, lo segundo cuesta la cuenta.
+    Si un producto legitimo cae aqui, se agrega a EXCEPCIONES_NOMBRE, nunca
+    se afloja el patron.
+    """
+    if COLECCIONES_PROHIBIDAS & producto["colecciones"]:
+        return True
+    titulo = producto.get("titulo") or ""
+    if RE_EXCEPCIONES.search(titulo):
+        return False
+    if RE_ACCESORIO_ARMA.search(titulo):
+        return True
+    # Tambien la descripcion: la "Linterna Tactica Konus" no dice nada
+    # sospechoso en el nombre, pero su descripcion menciona riel Picatinny
+    # y Weaver — o sea, va montada en un arma. Solo los primeros 400
+    # caracteres: mas abajo suelen venir textos de marca que disparan
+    # falsos positivos.
+    return bool(RE_ACCESORIO_ARMA.search((producto.get("descripcion") or "")[:400]))
 
 
 MUT_PUBLICAR = """
