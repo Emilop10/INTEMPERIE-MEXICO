@@ -133,6 +133,11 @@
         }
       }
     },
+    "wa_show": true,
+    "wa_number": "527773277340",
+    "wa_label": "Escríbenos",
+    "wa_message": "Hola, vengo de la tienda y tengo una pregunta.",
+    "wa_message_product": "Hola, me interesa este producto: [producto]",
     "content_for_index": [],
     "blocks": {
       "13245967176993778395": {

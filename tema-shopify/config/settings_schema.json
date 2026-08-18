@@ -1375,6 +1375,48 @@
     ]
   },
   {
+    "name": "WhatsApp",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Botón flotante para que el visitante escriba por WhatsApp. Aparece abajo a la izquierda, para no encimarse con Cartucho. En la ficha de producto el mensaje se rellena solo con el nombre y el enlace del producto."
+      },
+      {
+        "type": "checkbox",
+        "id": "wa_show",
+        "default": true,
+        "label": "Mostrar el botón de WhatsApp"
+      },
+      {
+        "type": "text",
+        "id": "wa_number",
+        "default": "527773277340",
+        "label": "Número con código de país",
+        "info": "Sin espacios ni signos. México: 52 + los 10 dígitos. Ej. 527773277340"
+      },
+      {
+        "type": "text",
+        "id": "wa_label",
+        "default": "Escríbenos",
+        "label": "Texto del botón",
+        "info": "Solo se ve en computadora. En móvil aparece únicamente el ícono."
+      },
+      {
+        "type": "text",
+        "id": "wa_message",
+        "default": "Hola, vengo de la tienda y tengo una pregunta.",
+        "label": "Mensaje inicial (páginas generales)"
+      },
+      {
+        "type": "text",
+        "id": "wa_message_product",
+        "default": "Hola, me interesa este producto: [producto]",
+        "label": "Mensaje inicial (ficha de producto)",
+        "info": "Escribe [producto] donde quieras que aparezca el nombre. El enlace se agrega automáticamente al final."
+      }
+    ]
+  },
+  {
     "name": "t:settings_schema.search_input.name",
     "settings": [
       {
