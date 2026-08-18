@@ -21,11 +21,9 @@
     assign wa_num = settings.wa_number | remove: ' ' | remove: '+' | remove: '-' | remove: '(' | remove: ')'
     assign wa_msg = settings.wa_message
     if template contains 'product' and product
-      assign wa_msg = settings.wa_message_product
-        | replace: '[producto]', product.title
-        | append: ' '
-        | append: shop.url
-        | append: product.url
+      assign wa_producto = settings.wa_message_product | replace: '[producto]', product.title
+      assign wa_enlace = shop.url | append: product.url
+      assign wa_msg = wa_producto | append: ' ' | append: wa_enlace
     endif
   -%}
   <a
