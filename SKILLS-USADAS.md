@@ -297,6 +297,72 @@ con `claude plugin uninstall the-architect@soyenriquerocha`.
 
 ---
 
+## Agentes instalados: The Agency (`agency-agents`)
+
+| | |
+|---|---|
+| Repositorio | [`msitarzewski/agency-agents`](https://github.com/msitarzewski/agency-agents) |
+| Licencia | MIT |
+| Instalado | 18 de agosto de 2026 |
+| Cantidad | **270 agentes** en `/root/.claude/agents/` |
+
+```bash
+git clone --depth 1 https://github.com/msitarzewski/agency-agents
+cd agency-agents && ./scripts/install.sh --tool claude-code --no-interactive
+```
+
+**No es un plugin ni un marketplace.** Es una colección de definiciones de
+agentes en Markdown (personalidad, alcance, entregables) que un script
+copia a `~/.claude/agents/`. No instala código ejecutable: los archivos
+que quedan son `.md` con instrucciones. El único código que corre es el
+propio `install.sh`, y lo que hace es copiar archivos — se revisó antes
+de ejecutarlo.
+
+Se instaló completo (270 agentes, 17 divisiones). Si la lista estorba,
+`install.sh` acepta `--division a,b` y `--agent slug` para instalar solo
+una parte.
+
+### Los que aplican a esta tienda
+
+La división que más encaja con el trabajo actual es **`paid-media`**, que
+es exactamente el terreno de la campaña de Meta (secciones 33 y 35 del
+manual):
+
+| Agente | Para qué aquí |
+|---|---|
+| `paid-media-paid-social-strategist` | Estrategia de embudo completo en Meta — el problema abierto de prospección → retargeting |
+| `paid-media-tracking-specialist` | Medición y eventos del pixel; útil para el tema de optimizar a `PURCHASE` sin compras |
+| `paid-media-creative-strategist` | Iteración de creativos y copy más allá de la v2 actual |
+| `paid-media-auditor` | Revisión de cuenta cuando haya datos suficientes (día 7 en adelante) |
+
+También hay 36 agentes de `marketing` (SEO, contenido, growth) y 10 de
+`design`, que se cruzan con trabajo ya hecho — conviene compararlos
+contra lo que ya está documentado en este proyecto antes de darles peso:
+lo que aquí está escrito salió de la tienda real, no de un manual
+genérico.
+
+### Advertencias
+
+> ⚠️ **Los agentes traen `tools: ... Bash` en su definición.** Son
+> personalidades con permiso de ejecutar comandos, no solo texto. En un
+> repositorio conectado a una tienda con ventas reales y a una cuenta
+> publicitaria que gasta dinero, conviene revisar qué propone un agente
+> antes de dejarlo actuar solo.
+
+> ⚠️ **Consejos genéricos contra hechos verificados.** Estos agentes
+> traen buenas prácticas generales; este repositorio tiene hallazgos
+> específicos y comprobados de *esta* tienda (que Meta prohíbe anunciar
+> armas de aire, que el presupuesto real son $700/semana, que el catálogo
+> estuvo muerto medio año). Cuando se contradigan, gana lo documentado
+> aquí.
+
+> ⚠️ **Se instalaron en el contenedor, no en el repositorio.**
+> `/root/.claude/agents/` vive en el entorno remoto, que es efímero. Si
+> en una sesión futura los agentes no aparecen, hay que volver a correr
+> el `install.sh` — no es un fallo, es dónde quedan los archivos.
+
+---
+
 ## Investigadas — no instaladas
 
 | Nombre | Repositorio | Para qué serviría | Estado |
