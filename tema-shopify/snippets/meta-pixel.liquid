@@ -2,6 +2,21 @@
   Meta Pixel (Facebook/Instagram Ads). No hace nada mientras
   settings.meta_pixel_id esté vacío — se activa pegando el ID en
   Personalizar tema → Meta Ads (Facebook / Instagram).
+
+  DEBE QUEDARSE VACÍO. El pixel en vivo lo inyecta el canal oficial
+  "Facebook & Instagram" de Shopify, que además manda los eventos por
+  Conversions API (server-side). Si se llena este campo se duplican los
+  eventos y se arruina la atribución de las campañas. Esto es un plan B
+  para el día que se migre fuera del canal oficial, no algo que activar.
+
+  Aunque el archivo esté inerte, `layout/theme.liquid` lo invoca con
+  {% raw %}{% render 'meta-pixel' %}{% endraw %} en cada página: si el snippet no está
+  subido a la tienda, Shopify imprime un "Liquid error: Could not find
+  asset" VISIBLE en el HTML de todo el sitio. Pasó el 18 de agosto de
+  2026 — el deploy es incremental y sube solo lo que cambió, así que
+  theme.liquid llegó a la tienda con la llamada y este archivo nunca se
+  había subido. Si se renombra o se borra, hay que quitar también la
+  llamada en theme.liquid.
 {%- endcomment -%}
 {%- if settings.meta_pixel_id != blank -%}
   <script>
