@@ -6,6 +6,11 @@ disponibles para trabajo futuro. Una skill es un paquete de
 conocimiento/herramientas específico que Claude puede invocar para
 tareas de un dominio concreto (en vez de improvisar desde cero cada vez).
 
+Incluye también los **plugins de terceros** instalados desde marketplaces
+de la comunidad (sección "Plugins instalados"), que son código externo y
+por eso se documentan con su origen, versión y qué se revisó antes de
+instalarlos.
+
 ---
 
 ## Usada activamente en este proyecto
@@ -220,6 +225,75 @@ futuro de la tienda:
 | `banner-design` | Banners para redes sociales/ads si se activa Instagram/TikTok o campañas pagadas |
 | `dataviz` | Si en algún momento se quiere mostrar gráficas de ventas/tráfico en algún dashboard o reporte |
 | `artifact-design` / `artifact-diagramming` | Para construir páginas o diagramas visuales que se comparten como link (no aplica al tema de Shopify en sí, sí a reportes internos) |
+
+---
+
+## Plugins instalados
+
+Además de las skills del entorno, el proyecto tiene plugins de terceros
+instalados desde marketplaces de la comunidad. A diferencia de las skills
+integradas, estos son **código de terceros que se ejecuta con los mismos
+permisos que Claude**, así que cada uno se revisa antes de instalarlo y
+se anota aquí qué es y de dónde viene.
+
+### `the-architect` — diseño de arquitectura antes de construir
+
+| | |
+|---|---|
+| Marketplace | `soyenriquerocha` — [`Hainrixz/the-architect`](https://github.com/Hainrixz/the-architect) |
+| Versión | 2.5.0 |
+| Licencia | MIT |
+| Instalado | 18 de agosto de 2026 |
+| Alcance | Usuario (disponible en todas las sesiones, no solo este repo) |
+
+```bash
+claude plugin marketplace add Hainrixz/the-architect
+claude plugin install the-architect@soyenriquerocha
+```
+
+**Qué hace.** Es un meta-agente de arquitectura: entrevista sobre lo que
+se quiere construir y genera un *blueprint* autocontenido —
+suficientemente detallado como para que otra sesión de Claude lo
+construya sin volver a preguntar nada. Escribe en `./blueprints/` del
+directorio de trabajo.
+
+**Comandos que agrega:**
+
+| Comando | Para qué |
+|---|---|
+| `/architect` | Entrevista completa en cuatro fases → blueprint |
+| `/architect-quick` | Versión de tres preguntas con valores por defecto (~10 min) |
+| `/architect-brownfield` | Diseña cambios sobre un repo que ya existe; mapea el código antes de preguntar |
+| `/architect-next` | Retoma una construcción interrumpida: devuelve el siguiente paso desbloqueado |
+| `/architect-refresh` | Revalida versiones de dependencias contra los registros en vivo |
+| `/architect-audit` | Audita un blueprint existente y marca criterios de aceptación faltantes |
+
+Trae además tres subagentes propios (`stack-researcher`,
+`blueprint-writer`, `blueprint-validator`), y funciona en español.
+
+**Dónde encaja en este proyecto.** El trabajo de la tienda hasta ahora ha
+sido incremental — arreglar el carrito, conciliar inventario, lanzar una
+campaña — y para eso no hace falta un blueprint. Donde sí serviría es en
+lo que aún no existe y es de tamaño considerable: por ejemplo un panel
+propio de métricas de tienda + campañas, o automatizar la conciliación de
+inventario de punta a punta contra el POS. Ahí el patrón de "diseñar
+completo antes de escribir código" evita justo el tipo de error que ya
+costó caro en este proyecto (la allowlist de categorías diseñada sobre un
+catálogo obsoleto, sección 32 del manual).
+
+**Lo que hay que saber antes de usarlo.** Los blueprints que genera
+incluyen un campo `Verify` con **comandos de bash pensados para
+ejecutarse solos** (correr pruebas, consultar la base de datos, hacer
+tags de git). Eso es potente y también es la parte a revisar: conviene
+leer los comandos antes de dejar que una sesión los ejecute en
+automático, sobre todo en un repo conectado a una tienda con ventas
+reales.
+
+**Antes de instalar se verificó:** repositorio público con 462 estrellas
+y 86 forks, licencia MIT, autor identificable (Enrique Rocha,
+tododeia.com). No es una recomendación permanente — si el plugin deja de
+mantenerse o cambia de manos, hay que volver a evaluarlo. Se desinstala
+con `claude plugin uninstall the-architect@soyenriquerocha`.
 
 ---
 
