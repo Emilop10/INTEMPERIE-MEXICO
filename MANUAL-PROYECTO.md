@@ -61,6 +61,9 @@ como respaldo
 31. [Dirección de la tienda: quitar el domicilio personal del dueño](#31-dirección-de-la-tienda-quitar-el-domicilio-personal-del-dueño)
 32. [El catálogo de Meta llevaba medio año muerto](#32-el-catálogo-de-meta-llevaba-medio-año-muerto)
 33. [La primera campaña de Meta Ads](#33-la-primera-campaña-de-meta-ads)
+34. [Dónde viven las credenciales (y por qué nunca en el repo)](#34-dónde-viven-las-credenciales-y-por-qué-nunca-en-el-repo)
+35. [Los primeros días de la campaña: leer datos chicos sin engañarse](#35-los-primeros-días-de-la-campaña-leer-datos-chicos-sin-engañarse)
+36. [Herramientas de terceros instaladas: plugins y agentes](#36-herramientas-de-terceros-instaladas-plugins-y-agentes)
 
 ---
 
@@ -2702,3 +2705,89 @@ aprendizaje.
 
 **El punto de decisión es el día 7.** Hasta entonces, los movimientos
 diarios son ruido.
+
+---
+
+## 36. Herramientas de terceros instaladas: plugins y agentes
+
+El 18 de agosto de 2026 se instalaron dos paquetes de terceros que
+amplían lo que Claude puede hacer en este proyecto. Se documentan aquí
+porque no son parte de la tienda pero sí cambian cómo se trabaja sobre
+ella — y porque tienen implicaciones de seguridad que conviene tener
+escritas.
+
+El detalle completo vive en
+📄 **[`SKILLS-USADAS.md`](./SKILLS-USADAS.md)** y en
+📄 **[`INVENTARIO-AGENTES.md`](./INVENTARIO-AGENTES.md)**.
+
+### Qué se instaló
+
+| | `the-architect` | The Agency (`agency-agents`) |
+|---|---|---|
+| Qué es | **Plugin** de Claude Code | **Colección de agentes** en Markdown |
+| Origen | [`Hainrixz/the-architect`](https://github.com/Hainrixz/the-architect) | [`msitarzewski/agency-agents`](https://github.com/msitarzewski/agency-agents) |
+| Licencia | MIT | MIT |
+| Cómo se instala | `claude plugin marketplace add` + `claude plugin install` | `./scripts/install.sh --tool claude-code` |
+| Qué aporta | 6 comandos `/architect*` + 3 subagentes | 270 agentes en 17 divisiones |
+| Dónde queda | `~/.claude/plugins/` | `/root/.claude/agents/` |
+
+**`the-architect`** entrevista sobre lo que se quiere construir y emite
+un *blueprint* autocontenido que otra sesión puede ejecutar sin volver a
+preguntar. Aplica a lo que todavía no existe y es de tamaño considerable
+— por ejemplo un panel propio de métricas de tienda y campañas, o
+automatizar la conciliación de inventario contra el POS. No aplica al
+trabajo incremental que ha sido la norma hasta ahora.
+
+**The Agency** son personalidades especializadas. La división que
+importa aquí es `paid-media` (7 agentes), que cae exactamente sobre el
+terreno de las secciones 33 y 35.
+
+### Dos lecciones del proceso de instalación
+
+**1. No todo lo que se instala en Claude Code es un plugin.** Los dos
+paquetes se pidieron con la misma frase ("instala esto"), pero
+`agency-agents` **no tiene** `.claude-plugin/marketplace.json`:
+`claude plugin install` no habría funcionado. La forma de instalarlo
+solo se supo abriendo el repositorio.
+
+**2. Leer la página del repositorio no es verificarlo.** La primera
+lectura de `agency-agents` reportó 146,000 estrellas — una cifra que no
+cuadraba con un proyecto de ese tipo. En vez de darla por buena se clonó
+el repositorio y se inspeccionó directamente. Bien que se hizo: fue así
+como se descubrió que no era un marketplace, que es justo lo que
+determinaba cómo instalarlo.
+
+### Las advertencias que aplican
+
+> ⚠️ **Un plugin o un agente es código de terceros que corre con los
+> mismos permisos que Claude.** Este repositorio está conectado a una
+> tienda con ventas reales y a una cuenta publicitaria que gasta dinero.
+> Antes de instalar cualquier otro paquete: revisar qué hace, quién lo
+> mantiene y qué ejecuta. Los dos de aquí se revisaron antes de correrse
+> (`install.sh` solo copia archivos; los blueprints de `the-architect`
+> traen comandos de bash pensados para ejecutarse solos).
+
+> ⚠️ **Consejo genérico contra hallazgo verificado: gana lo verificado.**
+> Estos agentes traen buenas prácticas de manual. Este repositorio tiene
+> hechos comprobados de *esta* tienda — que Meta prohíbe anunciar armas
+> de aire (sección 29), que el presupuesto real son $700/semana (sección
+> 33), que el catálogo estuvo muerto medio año (sección 32). Cuando se
+> contradigan, manda lo que está documentado aquí.
+
+> ⚠️ **Todo vive en el contenedor, no en el repositorio.** Tanto
+> `~/.claude/plugins/` como `/root/.claude/agents/` están en el entorno
+> remoto, que es efímero. Si en una sesión futura no aparecen, hay que
+> reinstalar — los comandos exactos están en `SKILLS-USADAS.md`. Es lo
+> mismo que pasa con las credenciales (sección 34), por la misma razón.
+
+### Lo que Graphify no cubre
+
+Los dos grafos de Graphify (sección 21) indexan `tema-shopify/` y
+`scripts/` — el **código** del proyecto. Ni los agentes ni el plugin
+entran ahí: viven fuera del repositorio y no son código de esta tienda.
+Tampoco entran los documentos de la raíz (este manual, los instructivos,
+el inventario de agentes), que son prosa, no código.
+
+No es una carencia que haya que arreglar: Graphify existe para responder
+"qué toca qué" en el código, y para eso los `.md` de la raíz no aportan
+nodos. La documentación se navega por su índice, no por el grafo.
