@@ -18,7 +18,7 @@ que el token deje de servir.
 | Business Manager | ID `1324138699447721` — "Intemperie México" |
 | Pixel de Meta | `2011984246408291` — "Intemperie México Pixel" |
 | Catálogo de Meta | `1746844133017649` — 324 productos, el único (desde 15 ago 2026) |
-| Campaña vigente | `120249613902440175` — "IMX \| Ventas \| Pesca y Óptica...", **en pausa** |
+| Campaña vigente | `120249613902440175` — "IMX \| Ventas \| Pesca y Óptica...", **activa desde el 15 ago 2026** |
 | App del System User | "Claude Integration" — ID `1038516402111748` |
 | Canal en Shopify | App oficial "Facebook & Instagram", instalada desde el 16 feb 2026 |
 
@@ -88,6 +88,21 @@ python3 scripts/meta-ads.py presupuesto --campania <id> --monto 100   # MXN/día
 
 El token se pide siempre por variable de entorno, nunca se escribe en
 ningún archivo del repo (mismo patrón que `SHOPIFY_ADMIN_TOKEN`).
+
+Desde el 18 de agosto de 2026, `META_ACCESS_TOKEN`, `META_AD_ACCOUNT_ID`
+y `SHOPIFY_ADMIN_TOKEN` están configurados como **variables de entorno
+del entorno de Claude Code** (claude.ai/code → configuración del
+entorno), así que se cargan solas en cada sesión nueva. Si algún comando
+falla por token ausente, ver la **sección 34 del manual** antes de pedir
+uno por chat. Un secret de GitHub **no** sirve para esto: solo es
+legible dentro de un workflow, no desde una sesión de Claude.
+
+> ⚠️ `reporte --dias N` **incluye el día en curso** y calcula las fechas
+> en `America/Chihuahua`, la zona de la cuenta. No siempre fue así: usaba
+> `date_preset=last_7d`, que excluye el día de hoy, y eso produjo un
+> falso *"no hay impresiones"* el 17 de agosto de 2026. Si en el futuro
+> se agregan comandos que consulten `/insights`, usar `time_range`
+> explícito, nunca un preset.
 
 > ⚠️ **`--presupuesto` y `--monto` son MXN por DÍA, no por semana.** El
 > presupuesto acordado con el cliente son **$700 MXN/semana = $100/día**.
@@ -305,6 +320,21 @@ Los System User tokens no expiran por tiempo, pero pueden invalidarse si:
   "Revocar identificadores"
 - Se elimina el usuario del sistema o la app "Claude Integration"
 
-Para generar uno nuevo, repetir la sección 4 de `INSTRUCTIVO-META-ADS.md`
-(ya no hace falta crear la app ni resolver el problema del caso de uso —
-eso queda hecho permanentemente).
+**Un token de Meta no se puede volver a consultar.** Meta lo muestra una
+sola vez, al generarlo; no hay pantalla para verlo después. Si se
+perdió, no se busca — se genera uno nuevo.
+
+Ruta directa (la app y el usuario del sistema ya existen, no hay que
+rehacer nada de eso):
+
+1. https://business.facebook.com/settings/system-users?business_id=1324138699447721
+2. Seleccionar **`Claude Integration`** → **Generar nuevo token**
+3. App: `Claude Integration` · Caducidad: **Nunca**
+4. Permisos: `ads_management`, `ads_read`, `business_management`,
+   `catalog_management`
+5. Copiarlo y **actualizar la variable de entorno** en claude.ai/code —
+   si no, la siguiente sesión arranca con el token viejo, que puede
+   haber quedado invalidado al generar el nuevo.
+
+El detalle de por qué las credenciales van ahí y no en el repo está en la
+**sección 34 del manual**.

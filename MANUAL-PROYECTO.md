@@ -2322,8 +2322,9 @@ huérfanos —varios de ellos armas— que contenía.
 ## 33. La primera campaña de Meta Ads
 
 Creada el **15 de agosto de 2026**, después de resolver los tres
-obstáculos de las secciones 29 y 32. Queda **en pausa** hasta que el
-cliente la revise y la active.
+obstáculos de las secciones 29 y 32. Nació en pausa y el cliente la
+activó ese mismo día tras revisarla. Los primeros resultados están en la
+**sección 35**.
 
 ### Configuración final
 
@@ -2511,3 +2512,193 @@ python3 scripts/meta-ads.py presupuesto --campania <id> --monto 100
 Convenciones de nombres, reglas de presupuesto y el resto de la operación
 día a día están en
 📄 **[`INSTRUCTIVO-FACEBOOK-ADS.md`](./INSTRUCTIVO-FACEBOOK-ADS.md)**.
+
+---
+
+## 34. Dónde viven las credenciales (y por qué nunca en el repo)
+
+El 18 de agosto de 2026 el cliente preguntó, de forma razonable, si el
+token de Meta no podía guardarse en un archivo `.md` del repositorio
+para que Claude lo tomara cuando lo necesitara. La respuesta fue no, y
+conviene dejar escrito el porqué junto con la alternativa que sí
+resuelve el problema — porque la pregunta va a volver a surgir con la
+siguiente credencial.
+
+### Por qué un token en el repo no funciona
+
+No es una objeción de estilo. Son tres problemas concretos, del más
+práctico al más grave:
+
+1. **GitHub lo detecta y el proveedor lo revoca.** El escaneo de
+   secretos de GitHub avisa al proveedor cuando encuentra una credencial
+   conocida, y los tokens de Meta están entre los tipos reconocidos. El
+   token dejaría de servir en horas: la solución sería autodestructiva.
+2. **En git nada se borra.** Un token subido y luego eliminado sigue en
+   el historial para siempre. Revertirlo de verdad exige reescribir la
+   historia del repo o rotar la credencial.
+3. **Ese token gasta dinero real.** Lleva `ads_management` y
+   `business_management`: quien lo tenga puede crear campañas contra la
+   tarjeta del dueño y modificar el portafolio de negocio. No es una
+   credencial de solo lectura.
+
+### Por qué un secret de GitHub tampoco da acceso a Claude
+
+Distinción que costó explicar y vale la pena fijar: **un secret de
+GitHub no es legible desde una sesión de Claude.** Los secrets solo se
+descifran dentro de un workflow corriendo en los servidores de GitHub.
+Se verificó en vivo: `SHOPIFY_ADMIN_TOKEN` lleva meses guardado como
+secret y usado por `deploy-shopify.yml`, y aun así **no aparece en el
+entorno de una sesión interactiva**.
+
+Los secrets sirven para automatizar (workflows), no para dar acceso a
+Claude.
+
+### Dónde van entonces
+
+**Variables de entorno del entorno de Claude Code**, configuradas por el
+dueño desde claude.ai/code → configuración del entorno del proyecto.
+Esas sí se cargan en cada sesión nueva, sin pasar por el chat y sin
+tocar el repositorio.
+
+Configuradas el 18 de agosto de 2026:
+
+| Variable | Para qué |
+|---|---|
+| `META_ACCESS_TOKEN` | Marketing API de Meta (`scripts/meta-ads.py`) |
+| `META_AD_ACCOUNT_ID` | `act_1264279685553718` |
+| `SHOPIFY_ADMIN_TOKEN` | Admin API de Shopify (deploy, inventario, canal Meta) |
+
+> ⚠️ Las variables se cargan **al iniciar una sesión**. Agregarlas no las
+> hace aparecer en la sesión que ya está corriendo — hay que abrir una
+> nueva. No es un fallo, es cuándo se lee la configuración.
+
+### El token de Meta no se puede volver a ver
+
+Meta muestra un token de System User **una sola vez**, en el momento de
+generarlo. No existe pantalla para consultarlo después. Si se perdió, no
+se busca: **se genera uno nuevo** (Configuración del negocio → Usuarios
+del sistema → `Claude Integration` → Generar nuevo token), con los
+permisos `ads_management`, `ads_read`, `business_management`,
+`catalog_management` y caducidad **Nunca**.
+
+Generar uno nuevo puede invalidar el anterior de esa misma app. Como el
+único consumidor es Claude, no rompe nada — pero hay que actualizar la
+variable de entorno, o la siguiente sesión arranca con un token muerto.
+
+### Regla permanente
+
+`.gitignore` bloquea `.env`, `*token*.txt`, `*token*.json` y
+`shopify-token*` justamente para que un descuido no llegue a un commit.
+Cuando haga falta un token dentro de una sesión y no esté en el entorno,
+se pide por chat y se usa en memoria o en el scratchpad
+(fuera del repositorio), nunca dentro del árbol de trabajo.
+
+---
+
+## 35. Los primeros días de la campaña: leer datos chicos sin engañarse
+
+La campaña de la sección 33 arrancó el 15 de agosto de 2026. Esta
+sección registra los primeros cuatro días, pero sobre todo **los tres
+errores de lectura** que aparecieron en el camino — que es lo que va a
+volver a pasar con la siguiente campaña.
+
+### Los números (corte: 18 de agosto, 12:52 CST, día en curso)
+
+| Día | Gasto | Impres. | Clics | CTR | CPC | Frecuencia |
+|---|---|---|---|---|---|---|
+| 15 ago | $18.35 | 536 | 19 | 3.54% | $0.97 | 1.26 |
+| 16 ago | $95.83 | 1,392 | 52 | 3.74% | $1.84 | 1.60 |
+| 17 ago | $75.87 | 1,119 | 38 | 3.40% | $2.00 | 1.38 |
+| 18 ago* | $40.61 | 615 | 28 | 4.55% | $1.45 | 1.19 |
+| **Total** | **$230.66** | 3,662 | 137 | 3.74% | $1.68 | — |
+
+Embudo acumulado: 137 clics → 73 clics de enlace → 52 vistas de página →
+57 `ViewContent` → **1 carrito real** → **0 compras**.
+
+Gasto contra presupuesto: $230.66 de $700 semanales. Dentro de lo
+previsto.
+
+### Error de lectura 1 — el preset que esconde el día de hoy
+
+El 17 de agosto se reportó *"hoy no hay impresiones"*. Era falso: la
+campaña llevaba horas entregando. La causa es que
+`date_preset=last_7d` de la API de Meta **excluye el día en curso**.
+
+Se corrigió en el código, no solo en la costumbre: `cmd_reporte` ahora
+usa **siempre `time_range` explícito**, y calcula las fechas en
+`America/Chihuahua` — porque la cuenta corta los días en esa zona y
+`date.today()` corre en UTC, así que entre las 18:00 y la medianoche
+locales el contenedor ya cree que es el día siguiente y pide un rango
+que todavía no existe. Dos bugs distintos en la misma línea.
+
+### Error de lectura 2 — el divisor equivocado
+
+Se reportó una tasa de "clic → página cargada" del **39%**, con tono de
+alarma. Estaba mal calculada: usaba `clicks` (137) como divisor, que
+incluye reacciones, comentarios y clics en el nombre de la página.
+
+El divisor correcto es `inline_link_clicks` — la gente que efectivamente
+pulsó el enlace. Con ese: **52 de 73 = 71%**, una cifra sana para
+tráfico móvil.
+
+La lección es sobre el reflejo, no sobre la fórmula: se buscó un
+culpable técnico (velocidad del sitio, checkout roto) antes de revisar
+si la métrica que disparó la alarma estaba bien construida.
+
+### Error de lectura 3 — la conversión que era del propio dueño
+
+El 17 de agosto aparece **1 `AddPaymentInfo` por $738** sin compra
+posterior. No es un cliente: es la prueba de checkout que el dueño hizo
+desde su iPhone ese mismo día. El pixel registra las pruebas del dueño
+igual que las de cualquier visitante.
+
+Se identificó porque estaba anotado que la prueba se había hecho. **Al
+probar el checkout en una tienda con campaña activa, hay que anotar el
+día y el monto**, o esos eventos se cuentan después como señal real.
+
+### El riesgo estructural: optimizar a un evento que no ocurre
+
+Este es el hallazgo que importa de verdad, y no se ve en el gasto ni en
+el CTR.
+
+El conjunto optimiza a `OFFSITE_CONVERSIONS` / `PURCHASE`. Meta necesita
+del orden de **50 conversiones semanales por conjunto** para salir de la
+fase de aprendizaje. Con **0 compras en 4 días**, el algoritmo no está
+recibiendo ninguna señal de la que aprender: no es que aprenda despacio,
+es que no aprende.
+
+No es un fallo de configuración — es el arranque normal de una tienda
+sin historial. Pero tiene una salida conocida: **bajar temporalmente el
+evento de optimización** a `ADD_TO_CART` o `VIEW_CONTENT`, que sí
+ocurren con volumen suficiente, dejar que el algoritmo aprenda a quién
+mostrar el anuncio, y subir a `PURCHASE` cuando haya historial.
+
+Queda como la decisión a tomar el **jueves 21 de agosto (día 7)**, con
+~250 clics acumulados. Antes no: cambiar el objetivo **reinicia la fase
+de aprendizaje desde cero**, así que hacerlo dos veces en una semana
+cuesta más de lo que resuelve.
+
+### Lo que se descartó y no hay que volver a proponer
+
+Verificado el 17 de agosto, para no repetir el diagnóstico:
+
+- **El checkout funciona.** Probado de punta a punta por el dueño desde
+  iPhone.
+- **El sitio es rápido.** 0.86–0.92s en caliente para la ficha de
+  producto. (La primera medición dio 4.4s: era la latencia del proxy de
+  este entorno, no del sitio. Medir siempre en caliente y más de una vez.)
+- **La entrega está sana.** Campaña, conjunto y anuncio en `ACTIVE`, sin
+  advertencias, y la frecuencia entre 1.19 y 1.60 — muy lejos del ~3 que
+  indicaría saturación de audiencia.
+
+### La regla de fondo
+
+Con 137 clics, a una tasa de conversión típica de 1-2%, lo *esperado*
+son **1 a 3 compras**. Cero está dentro del rango de lo normal por pura
+variación estadística. Ninguna decisión sobre esta campaña debe tomarse
+con esta cantidad de datos, y revisar los números a diario sobre una
+muestra así solo produce ansiedad y cambios prematuros que reinician el
+aprendizaje.
+
+**El punto de decisión es el día 7.** Hasta entonces, los movimientos
+diarios son ruido.

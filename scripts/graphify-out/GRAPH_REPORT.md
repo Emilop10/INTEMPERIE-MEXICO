@@ -1,7 +1,7 @@
-# Graph Report - scripts  (2026-08-16)
+# Graph Report - scripts  (2026-08-18)
 
 ## Corpus Check
-- 7 files · ~6,656 words
+- 7 files · ~6,753 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `de42beaa`
+- Built from commit: `9ba2a721`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -85,7 +85,7 @@ Nodes (6): api_request(), cmd_activar(), cmd_listar(), _hijos_de_campania(), Dev
 
 ### Community 7 - "meta-ads.py"
 Cohesion: 0.83
-Nodes (3): cmd_reporte(), _n_days_ago(), _today()
+Nodes (3): cmd_reporte(), _hace_dias(), _hoy()
 
 ### Community 8 - "_resolve_business_assets"
 Cohesion: 0.67

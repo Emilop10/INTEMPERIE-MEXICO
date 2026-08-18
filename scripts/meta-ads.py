@@ -8,7 +8,7 @@ real es el baneo permanente de la cuenta publicitaria.
 
 Uso:
     META_ACCESS_TOKEN=... python3 scripts/meta-ads.py listar
-    ... meta-ads.py reporte --dias 7
+    ... meta-ads.py reporte --dias 7      # incluye el dia en curso (zona de la cuenta)
     ... meta-ads.py pausar --campania <id>
     ... meta-ads.py activar --campania <id>
     ... meta-ads.py presupuesto --campania <id> --monto 150
@@ -23,6 +23,7 @@ Variables de entorno:
 """
 
 import argparse
+import datetime
 import json
 import os
 import sys
@@ -81,9 +82,13 @@ def cmd_listar(token, account_id, args):
 
 
 def cmd_reporte(token, account_id, args):
-    since_until = {"date_preset": "last_7d" if args.dias == 7 else "today"}
-    if args.dias != 7:
-        since_until = {"time_range": json.dumps({"since": _n_days_ago(args.dias), "until": _today()})}
+    # Siempre `time_range` explicito, nunca `date_preset`. El preset
+    # `last_7d` EXCLUYE el dia en curso: el 17 de agosto de 2026 eso hizo
+    # reportar "hoy no hay impresiones" cuando la campana llevaba horas
+    # entregando con normalidad. Un rango explicito no tiene ese matiz.
+    since_until = {
+        "time_range": json.dumps({"since": _hace_dias(args.dias - 1), "until": _hoy()})
+    }
     fields = "campaign_name,spend,impressions,clicks,ctr,cpm,actions"
     data = api_request(
         "GET",
@@ -103,16 +108,19 @@ def cmd_reporte(token, account_id, args):
         )
 
 
-def _today():
-    import datetime
+# La cuenta publicitaria factura y corta los dias en America/Chihuahua,
+# no en UTC. `date.today()` corre en el reloj del contenedor (UTC), asi
+# que entre las 18:00 y la medianoche locales devuelve el dia siguiente y
+# el reporte pide un rango que aun no existe.
+TZ_CUENTA = datetime.timezone(datetime.timedelta(hours=-6))  # America/Chihuahua (MDT)
 
-    return datetime.date.today().isoformat()
+
+def _hoy():
+    return datetime.datetime.now(TZ_CUENTA).date().isoformat()
 
 
-def _n_days_ago(n):
-    import datetime
-
-    return (datetime.date.today() - datetime.timedelta(days=n)).isoformat()
+def _hace_dias(n):
+    return (datetime.datetime.now(TZ_CUENTA).date() - datetime.timedelta(days=n)).isoformat()
 
 
 def cmd_pausar(token, account_id, args):
