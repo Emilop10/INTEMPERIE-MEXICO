@@ -2128,10 +2128,68 @@ procesa el pago de tarjeta.
   semanas por si ese paso extra afecta las ventas — especialmente
   relevante justo ahora que se está por lanzar la primera campaña de
   Meta Ads (sección 29).
-- **No se llenó el formulario de Shopify** — al resolverse desactivando
-  Shopify Payments, dejó de ser necesario. Si en el futuro se quiere
-  reactivar Shopify Payments, probablemente haga falta retomarlo o abrir
-  un ticket nuevo con Shopify.
+### El seguimiento del 19 de agosto: resolverlo no era suficiente
+
+Esta sección afirmaba que llenar el formulario de Shopify *"dejó de ser
+necesario"* al desactivar Shopify Payments. **Fue un error de criterio, y
+Shopify lo demostró cuatro días después.**
+
+El 19 de agosto de 2026 llegó un segundo correo sobre **el mismo ticket**
+(`b724b907-5dbb-454c-aa07-1b32e2cdb3f7`):
+
+> *"We recently contacted you about your Shopify store [...] and require
+> you to take the necessary actions outlined in our previous
+> communications [...] we have temporarily placed a hold on your Shopify
+> Payments payouts while we complete our review."*
+
+Plazo movido del 19 al **21 de agosto**, con la coletilla *"to avoid
+further action"*.
+
+No pedían nada nuevo. **Esperaban una respuesta que nunca llegó.** El
+problema estaba resuelto en la tienda desde el 14 de agosto, pero el
+sistema de Shopify solo veía un ticket abierto y sin contestar, y por eso
+escalaba solo.
+
+> **La lección, que aplica a cualquier plataforma:** resolver un problema
+> operativamente **no lo cierra**. Un ticket se cierra respondiéndolo. Un
+> proveedor no puede saber que actuaste si no se lo dices, y sus sistemas
+> automáticos escalan por silencio, no por incumplimiento. Cuando una
+> plataforma da un plazo, hay que responder aunque la respuesta sea "ya
+> lo resolví por la otra vía que ustedes ofrecían".
+
+**Lo que se detectó al revisar el aviso otra vez:** quitar los productos
+era condición **solo para seguir usando Shopify Payments**
+(*"To continue processing payments through Shopify Payments, we require
+the identified products removed"*). Con Shopify Payments desactivado, no
+aplicaba. Y la frase sobre retener payouts era texto automático: no hay
+payouts que retener en una cuenta desactivada, y no había ventas.
+
+**Qué se envió** (formulario "Respond to an action taken by Shopify", en
+inglés, el 19 de agosto): que el 14 de agosto se eligió la segunda opción
+del aviso —desactivar Shopify Payments en vez de quitar productos—, que
+el checkout lo sirven PayPal y Mercado Pago como procesadores
+independientes, que no hay fondos retenidos porque no hay ventas, y
+—deliberadamente— que **se acepta la restricción y no se pide reactivar
+Shopify Payments**. Ese último punto cierra el ciclo en vez de dejarlo
+abierto a interpretación.
+
+**Respuesta de Shopify:** *"Thank you for your submission. If any
+additional information is required, we will be in touch."* Ticket
+respondido dentro del plazo.
+
+### Qué queda pendiente
+
+- **Vigilar si Shopify vuelve a escribir.** El acuse es automático; si
+  piden algo más, llegará por correo al mismo ticket.
+- **La decisión de fondo sigue abierta:** quitar los ~20 rifles y
+  pistolas de aire para recuperar Shopify Payments, o conservarlos y
+  quedarse con PayPal + Mercado Pago. A favor de recuperarlo: Shopify
+  Payments cobra sin sacar al cliente de la página, y ese salto cuesta
+  conversión — especialmente relevante con tráfico pagado. En contra:
+  esos productos ya no se pueden anunciar en Meta de todas formas
+  (sección 29), y solo el dueño sabe cuánto pesan en sus ventas reales.
+  Conviene decidirlo con datos de conversión del checkout actual, no
+  antes.
 
 ---
 
