@@ -552,8 +552,19 @@
                   resenas reales ya cargadas. El bloque de arriba se
                   deja tal cual: es inocuo, nunca se va a encender solo,
                   no estorba.
+
+                  Ola 5b (22 ago 2026): el metafield NO basta solo. El
+                  Core Snippet de Judge.me busca en el DOM un div con
+                  clase jdgm-widget y data-id para rellenarlo via su
+                  API cuando el metafield viene vacio (que es el caso
+                  hoy). Sin este div, no hay nada que pintar aunque el
+                  app embed este activo. Cuando Judge.me pueble el
+                  metafield, sale ya renderizado desde el servidor
+                  dentro de este mismo div — no quitar el wrapper.
                 {%- endcomment -%}
-                {{ product.metafields.judgeme.badge }}
+                <div class="jdgm-widget jdgm-preview-badge" data-id="{{ product.id }}">
+                  {{ product.metafields.judgeme.badge }}
+                </div>
               {%- when 'complementary' -%}
                 <product-recommendations
                   class="complementary-products quick-add-hidden{% if block.settings.make_collapsible_row %} is-accordion{% endif %}{% if block.settings.enable_quick_add %} complementary-products-contains-quick-add{% endif %}"
@@ -714,8 +725,27 @@
             fondo de la pagina (templates/product.json, id
             1774315432f96585bd): esa seccion queda debajo de "Tambien
             te interese", lejos del punto donde se decide la compra.
+
+            Ola 5b (22 ago 2026): mismo motivo que el badge de arriba —
+            el metafield solo no basta, hace falta el div con los
+            data-* que el Core Snippet de Judge.me busca en el DOM.
+            data-auto-install="false" es a proposito: evita que
+            Judge.me inyecte su propia copia del widget dentro de
+            templates/product.json (seccion "apps"), que es justo lo
+            que este proyecto decidio evitar en C2.
           {%- endcomment -%}
-          {{ product.metafields.judgeme.widget }}
+          <div
+            id="judgeme_product_reviews"
+            class="jdgm-widget jdgm-review-widget"
+            data-product-title="{{ product.title | escape }}"
+            data-id="{{ product.id }}"
+            data-product-id="{{ product.id }}"
+            data-widget="review"
+            data-auto-install="false"
+            data-shop-reviews-count="{{ shop.metafields.judgeme.shop_reviews_count | default: 0 | escape }}"
+          >
+            {{ product.metafields.judgeme.widget }}
+          </div>
           <a href="{{ product.url }}" class="link product__view-details animate-arrow">
             {{ 'products.product.view_full_details' | t }}
             {{- 'icon-arrow.svg' | inline_asset_content -}}

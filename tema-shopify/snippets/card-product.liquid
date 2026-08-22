@@ -211,8 +211,16 @@
               que Judge.me nunca pobla, ver main-product.liquid). El
               badge trae su propio "sin resenas" en blanco, asi que no
               hace falta condicionarlo aqui.
+
+              Ola 5b (22 ago 2026): el metafield necesita el div
+              jdgm-widget/jdgm-preview-badge con data-id — sin eso el
+              Core Snippet de Judge.me no tiene donde inyectar el
+              contenido via su API. Mismo mecanismo que en la ficha
+              (main-product.liquid).
             {%- endcomment -%}
-            {{ card_product.metafields.judgeme.badge }}
+            <div class="jdgm-widget jdgm-preview-badge" data-id="{{ card_product.id }}">
+              {{ card_product.metafields.judgeme.badge }}
+            </div>
 
             {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
             {%- if card_product.quantity_price_breaks_configured? -%}
