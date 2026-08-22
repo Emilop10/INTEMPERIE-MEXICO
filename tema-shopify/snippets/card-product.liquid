@@ -204,6 +204,16 @@
               </p>
             {%- endif -%}
 
+            {%- comment -%}
+              Badge de Judge.me (Ola 5, 22 ago 2026), independiente del
+              setting `show_rating` de arriba — ese solo controla el
+              bloque generico de Dawn, que lee reviews.rating (metafield
+              que Judge.me nunca pobla, ver main-product.liquid). El
+              badge trae su propio "sin resenas" en blanco, asi que no
+              hace falta condicionarlo aqui.
+            {%- endcomment -%}
+            {{ card_product.metafields.judgeme.badge }}
+
             {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
             {%- if card_product.quantity_price_breaks_configured? -%}
               {% if card_product.variants_count == 1 and quick_add == 'bulk' %}

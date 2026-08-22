@@ -541,6 +541,19 @@
                     </p>
                   </div>
                 {%- endif -%}
+                {%- comment -%}
+                  Judge.me (Ola 5, 22 ago 2026) NO usa este metafield
+                  generico de Dawn (product.metafields.reviews.rating).
+                  Escribe en su propio namespace, product.metafields.
+                  judgeme.badge — asi es como cualquier tienda con
+                  Judge.me integra el badge de estrellas sin sus
+                  app-blocks nativos de OS 2.0. Verificado en vivo antes
+                  de escribir esto: reviews.rating seguia vacio con
+                  resenas reales ya cargadas. El bloque de arriba se
+                  deja tal cual: es inocuo, nunca se va a encender solo,
+                  no estorba.
+                {%- endcomment -%}
+                {{ product.metafields.judgeme.badge }}
               {%- when 'complementary' -%}
                 <product-recommendations
                   class="complementary-products quick-add-hidden{% if block.settings.make_collapsible_row %} is-accordion{% endif %}{% if block.settings.enable_quick_add %} complementary-products-contains-quick-add{% endif %}"
@@ -694,6 +707,15 @@
                 {% render 'icon-with-text', block: block %}
             {%- endcase -%}
           {%- endfor -%}
+          {%- comment -%}
+            Listado completo de reseñas de Judge.me (Ola 5, 22 ago
+            2026). Va aqui — despues de los tabs de Envios/Devoluciones/
+            Garantia, dentro de la ficha — y no en la seccion "apps" del
+            fondo de la pagina (templates/product.json, id
+            1774315432f96585bd): esa seccion queda debajo de "Tambien
+            te interese", lejos del punto donde se decide la compra.
+          {%- endcomment -%}
+          {{ product.metafields.judgeme.widget }}
           <a href="{{ product.url }}" class="link product__view-details animate-arrow">
             {{ 'products.product.view_full_details' | t }}
             {{- 'icon-arrow.svg' | inline_asset_content -}}
