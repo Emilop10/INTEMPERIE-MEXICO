@@ -69,6 +69,7 @@ como respaldo
 39. [Botón de WhatsApp y la trampa del deploy incremental](#39-botón-de-whatsapp-y-la-trampa-del-deploy-incremental)
 40. [Control de presupuesto: cómo poner un tope real](#40-control-de-presupuesto-cómo-poner-un-tope-real)
 41. [Auditoría de conversión: por qué 367 visitas no vendieron](#41-auditoría-de-conversión-por-qué-367-visitas-no-vendieron)
+42. [Judge.me: instalación, y por qué el metafield solo no basta](#42-judgeme-instalación-y-por-qué-el-metafield-solo-no-basta)
 
 ---
 
@@ -3403,3 +3404,104 @@ cruzar $799 (confirmado en las tres superficies: ficha, panel lateral,
 - **Actualizar `PENDIENTES.md`**, que sigue describiendo la campaña de
   Meta como "creada y en pausa a $100/día" — desactualizado desde el 15
   de agosto, no refleja nada de las secciones 30 ni 37-41.
+
+## 42. Judge.me: instalación, y por qué el metafield solo no basta
+
+**22 de agosto de 2026.** El dueño ya tenía una cuenta de Judge.me con
+reseñas reales guardadas de una integración anterior. Se instaló la
+app desde el App Store, entró con esa cuenta existente (no una nueva —
+el punto donde es fácil terminar con una cuenta vacía), y las reseñas
+quedaron ahí: **8 reales, 4 de producto (5.0★ promedio) y 4 "reseñas de
+tienda"** sin producto asociado. El dueño verificó el panel él mismo,
+vía Claude en Chrome en modo solo-lectura: 3 de las 4 reseñas de
+producto emparejan con productos reales del catálogo activo (Mira
+Nakashi, Rifle Mendoza Quetzalcoatl, Caña Blue Fox Tolten); la cuarta
+("Carrete Okuma Cascade CA-30") no tiene coincidencia — puede ser un
+producto descontinuado o renombrado, decisión del dueño, no bloquea
+nada.
+
+### No existe un toggle de "sincronizar con metafields de Shopify"
+
+Verificado en vivo antes de escribir código: `product.metafields.
+reviews.rating` (el metafield genérico de Dawn, el mismo que ya
+condiciona el bloque `rating` agregado en la Ola 1) **seguía vacío**
+con reseñas reales ya cargadas. Judge.me no lo pobla. Usa su **propio**
+namespace — `product.metafields.judgeme.badge` para el badge de
+estrellas, `product.metafields.judgeme.widget` para el listado completo
+— que es su forma estándar de integrarse en temas que no usan sus
+app-blocks nativos de OS 2.0, independiente del toggle de "inserción de
+aplicación" del personalizador.
+
+### Ola 5: se conectó el metafield, pero no aparecía nada
+
+Se agregó `{{ product.metafields.judgeme.badge }}` y `{{ product.
+metafields.judgeme.widget }}` en `main-product.liquid` y `card-product.
+liquid`, con `data-auto-install="false"` implícito en la intención (no
+dejar que Judge.me meta su propia copia del widget en `templates/
+product.json`). Desplegado, verificado que no rompía nada (0 errores de
+Liquid en productos con y sin reseñas).
+
+El dueño activó el app embed de Judge.me en el personalizador y le dio
+Guardar — y preguntó por qué, aun así, no se veía ninguna estrella.
+
+### Ola 5b: la causa raíz — el metafield necesita su `div`
+
+Verificado con `curl` (UA de Chrome real) contra producción: el Core
+Snippet de Judge.me **sí** cargaba (`<script class='jdgm-script'>`,
+su CDN, ~9 KB de CSS) — el app embed estaba correctamente activo. Pero
+un barrido del HTML por `<div class="...jdgm...">` no encontró **ni
+un solo contenedor de widget**. Todas las apariciones de `jdgm-*` eran
+nombres de clase dentro del `<style>` y del script de configuración.
+
+Consultada la documentación oficial de Judge.me ([Liquid code for
+Judge.me widgets](https://judge.me/help/en/articles/12058208-liquid-code-for-judge-me-widgets),
+[Adding Judge.me widgets in Vintage themes](https://judge.me/help/en/articles/8205142-adding-judge-me-widgets-in-vintage-themes)):
+el metafield no se imprime solo, va **dentro** de un `<div
+class='jdgm-widget ...' data-id='...'>`. Son dos capas que trabajan
+juntas, no alternativas:
+
+1. **El metafield** — contenido pre-renderizado en el servidor
+   (rápido, indexable).
+2. **El `div` con `data-id`** — lo que el Core Snippet de Judge.me
+   busca en el DOM para rellenarlo vía su API cuando el metafield
+   viene vacío, que es exactamente lo que pasaba: la Ola 5 emitió el
+   metafield desnudo, sin la capa 2, así que no había literalmente
+   nada que pintar.
+
+Se corrigió envolviendo los tres usos del metafield (badge en ficha,
+badge en tarjetas, listado completo) en el `div` documentado por
+Judge.me. El del listado lleva `data-auto-install="false"` — el
+mecanismo real (no solo la intención) para que Judge.me no inyecte su
+propia copia del widget dentro de `templates/product.json`.
+
+**Verificado en vivo tras el segundo despliegue:** los tres `div`
+aparecen ahora en el HTML de Nakashi y Mendoza, con `data-id` correcto
+y `data-shop-reviews-count="4"`; un producto sin reseñas (Rifle
+Munición Cal 4.5 Buck 105 Daisy) emite el mismo `div` vacío, sin error
+de Liquid ni hueco raro — ahí es donde Judge.me va a mostrar "sé el
+primero en escribir una reseña", que es señal de confianza válida por
+sí sola. Tiempo de carga de la ficha en caliente: 0.31-0.90 s, dentro
+del rango normal, sin regresión.
+
+### Lección para no repetir
+
+Cuando una app externa expone un metafield para integración manual,
+**revisar su documentación oficial antes de imprimirlo solo** — casi
+siempre hay un contrato de markup (clases, `data-*`) del que depende
+que su JavaScript lo encuentre y lo use. Imprimir el metafield sin ese
+contrato compila sin error y no rompe nada, así que el fallo es
+silencioso: solo se nota como "no aparece nada", sin pista de por qué.
+
+### Lo que sigue pendiente
+
+- **Pase de contraste en `assets/brand-tokens.css`** para los widgets
+  de Judge.me contra el fondo oscuro del sitio (`scheme-1`, negro) —
+  deliberadamente diferido hasta tener el contenido real renderizado
+  en Chromium para ver qué clases emite la API, en vez de adivinar.
+- **Widget "Fragmentos de reseñas"** en el propio panel de Judge.me
+  (Widgets → estrellas junto a "Añadir al carrito" en colecciones) —
+  sigue sin instalarse. No es la causa de lo de esta sección, pero
+  sirve como verificación cruzada: si las estrellas salen en la ficha
+  pero no en las tarjetas de colección, ese es el widget que falta.
+- Cerrar el ítem de Judge.me en `PENDIENTES.md` una vez confirmado el
+  contraste correcto.

@@ -353,6 +353,33 @@ crear anuncios.
 
 ---
 
+## 9. Judge.me (reseñas reales) — 🟡 en tienda, falta contraste y "Fragmentos de reseñas"
+
+Instalado con la cuenta existente del dueño: **8 reseñas reales**, 4 de
+producto (5.0★ promedio, 3 de 4 emparejadas con productos activos) y 4
+de tienda sin producto asociado. Conectado al tema en la ficha de
+producto (badge + listado completo) y en las tarjetas de producto,
+usando el namespace propio de Judge.me
+(`product.metafields.judgeme.badge`/`.widget` — Judge.me no usa el
+metafield genérico de Dawn). Verificado en vivo con `curl` contra
+producción tras dos rondas de despliegue: el HTML trae el markup
+correcto (`div.jdgm-widget` con `data-id`), sin errores de Liquid en
+productos con y sin reseñas, sin regresión de velocidad. Detalle
+completo, incluida la causa raíz de por qué no se veía nada al
+principio (el metafield necesita su `div`, no basta imprimirlo solo),
+en la sección 42 del `MANUAL-PROYECTO.md`.
+
+**Falta:**
+- Pase de contraste en `assets/brand-tokens.css` — los widgets de
+  Judge.me traen estilos para fondo claro, este sitio es oscuro.
+  Deliberadamente pendiente hasta ver el contenido real renderizado.
+- Instalar "Fragmentos de reseñas" desde el panel de Judge.me
+  (Widgets) — las estrellas junto a "Añadir al carrito" en colecciones.
+- Decisión del dueño sobre la reseña "Carrete Okuma Cascade CA-30" sin
+  match en el catálogo activo (no bloquea nada).
+
+---
+
 ## Datos de contacto ya integrados
 
 Por si se necesitan para otros usos:
