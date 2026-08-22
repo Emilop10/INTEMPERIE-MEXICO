@@ -68,6 +68,7 @@ como respaldo
 38. [La reconstrucción de la campaña: por qué no vendía](#38-la-reconstrucción-de-la-campaña-por-qué-no-vendía)
 39. [Botón de WhatsApp y la trampa del deploy incremental](#39-botón-de-whatsapp-y-la-trampa-del-deploy-incremental)
 40. [Control de presupuesto: cómo poner un tope real](#40-control-de-presupuesto-cómo-poner-un-tope-real)
+41. [Auditoría de conversión: por qué 367 visitas no vendieron](#41-auditoría-de-conversión-por-qué-367-visitas-no-vendieron)
 
 ---
 
@@ -404,13 +405,21 @@ Configurado directamente en **Configuración → Envío y entrega** del Admin
 de Shopify (no es editable por API con el token actual). Esto **es
 configuración de tienda, en vivo de inmediato**.
 
-### Comunicación en el sitio (parte del tema de trabajo, no en vivo aún)
+### Comunicación en el sitio
 - Franja en la homepage, justo después del hero
 - Nota compacta en cada ficha de producto, debajo del botón de compra
-- Texto: *"Envío gratis desde $799 MXN. Pedidos menores, $189. Entrega en 2
-  a 4 días aproximados."* — el tiempo de entrega se ajustó deliberadamente
-  para no prometer de más (las cotizaciones reales dieron hasta 5-6 días
-  hábiles en destinos lejanos)
+- Desde la Ola 1 de la sección 41: también en un `collapsible_tab`
+  "Envíos y entrega" dentro de la propia ficha, y en el pie del
+  carrito (panel lateral y `/cart`)
+- Texto real en vivo: *"Envío gratis desde $799 MXN. Pedidos menores,
+  $189. Entrega en 2 a 7 días hábiles."* — corregido el párrafo de
+  arriba, que llevaba semanas desactualizado ("2 a 4 días
+  aproximados"). El tiempo de entrega se ajustó deliberadamente para
+  no prometer de más (las cotizaciones reales dieron hasta 5-6 días
+  hábiles en destinos lejanos), y en algún punto el código se corrigió
+  a "2 a 7 días" sin que este párrafo se actualizara junto — verificado
+  con `curl` en vivo el 22 de agosto de 2026 antes de tocar esta línea,
+  no de memoria.
 
 ---
 
@@ -700,6 +709,14 @@ Cartucho ya ofrece el mismo enlace a WhatsApp cuando hace falta.
 cosméticos (`og:title` de la portada, alt faltante en una imagen de
 producto) también se corrigieron de raíz. **Los 8 hallazgos de la
 auditoría quedaron cerrados el mismo día.**
+
+> ⚠️ **Esto dejó de ser cierto el 18 de agosto.** El botón se volvió a
+> agregar por una razón de negocio distinta (el público de la campaña
+> resultó ser gente de 35-65 años que prefiere preguntar antes de
+> comprar) — ver la sección 39. No es una contradicción entre el manual
+> y el código: son dos decisiones tomadas en momentos distintos, ambas
+> correctas para su fecha. Se anota aquí para que nadie lea este párrafo
+> aislado y concluya que hay un bug.
 
 Detalle completo, con toda la evidencia técnica de cada verificación, en
 📄 **[`AUDITORIA-COMPLETADA-Y-CORREGIDA-4-AGOSTO-2026.md`](./AUDITORIA-COMPLETADA-Y-CORREGIDA-4-AGOSTO-2026.md)**.
@@ -3232,3 +3249,157 @@ Para cualquier cálculo de dinero, usar la suma de `insights` con
 `time_range` explícito, no `amount_spent` ni `date_preset=maximum` (que
 también devolvió una cifra desactualizada, $190.12 contra los $414.69
 reales).
+
+---
+
+## 41. Auditoría de conversión: por qué 367 visitas no vendieron
+
+**22 de agosto de 2026.** Con la campaña ya funcionando bien (367
+visitas al sitio en 6 días, tráfico barato y del público correcto), el
+problema seguía siendo el mismo: **1 solo carrito y cero compras.** El
+dueño pidió una auditoría completa de la tienda para arreglarlo.
+
+### El diagnóstico de fondo
+
+Dos cifras explican casi todo:
+
+- **94% del gasto publicitario fue a productos por debajo de $799**
+  (mediana $147), donde el envío de $189 cuesta más que el producto.
+- **Tasa de agregar al carrito: 1.9%**, contra un rango sano de 5-10%.
+
+La ficha de producto no comunicaba devoluciones ni garantía de forma
+visible, no tenía espacio activado para reseñas, y — el hallazgo más
+concreto — **la descripción del producto iba después del botón de
+compra**: el visitante decidía antes de leer qué compraba.
+
+### Verificación antes de tocar código (Parte A del plan)
+
+Con el método ya documentado en `INSTRUCTIVO-CAMBIOS-QUE-NO-SE-VEN.md`
+(mirror de la página + Chromium local vía CDP, porque el entorno
+bloquea navegación directa a sitios externos, checkout hospedado
+incluido):
+
+- **El botón "Agregar al carrito" ya queda fuera de pantalla en móvil**
+  (980px de scroll en un viewport de 844px), incluso en el orden
+  original. Este dato decidió cómo mover la descripción: se midió el
+  largo real en 4 productos de alto gasto publicitario (212-517
+  caracteres, muy por debajo de un umbral de 900) antes de decidir que
+  subirla inline no empeoraba el problema de forma relevante.
+- Se armó un carrito real vía `POST /cart/add.js` replicando los UTM
+  exactos de la campaña, y se siguió hasta el checkout hospedado de
+  Shopify (`GET /checkout` con redirecciones). El HTML inicial confirma
+  **PayPal y Mercado Pago como opciones de pago visibles**, ambos en
+  español. No se pudo completar el recorrido interactivo (información
+  de envío, monto exacto de envío, flujo completo de cada pasarela)
+  porque el checkout hospedado es una aplicación de JavaScript sin
+  estado inicial embebido en el HTML, y este entorno no puede navegar
+  un navegador real hasta `intemperiemexico.com` — ni siquiera al
+  checkout. Se preparó un prompt de "Claude en Chrome, modo guía, no
+  ejecutes" (`prompt-claude-chrome-verificar-checkout.md`, fuera del
+  repo) para que el dueño complete esa verificación en paralelo a las
+  Olas de código.
+- Se confirmó que `/policies/refund-policy` responde 200 (no 404) antes
+  de enlazarla en el tab de devoluciones.
+- Se corrigieron tres falsos positivos del diagnóstico inicial antes de
+  planear nada: el enlace "Ver todos los detalles" está oculto por CSS
+  fuera del quick-add (`display: none`, no es un enlace muerto visible);
+  ya existían badges de métodos de pago, en el footer
+  (`shop.enabled_payment_types` + `payment_type_svg_tag`) — faltaba
+  subirlos al punto de decisión, no crearlos; y el botón de WhatsApp no
+  era una discrepancia manual-código, era una historia secuencial
+  correcta (sección 19 vs sección 39, ver arriba).
+
+### Ola 1 — Confianza y orden en la ficha de producto
+
+`templates/product.json` + `sections/main-product.liquid`. Nuevo
+`block_order`: `rating` sube bajo el título (no pinta nada hasta que
+haya reseñas — queda listo para Judge.me sin tocar el archivo otra
+vez), `inventory` se activa con umbral 3 sin mostrar cantidad exacta
+(estado real, no urgencia fabricada), `description` sube antes de
+`quantity_selector`/`buy_buttons`, y tres `collapsible_tab` nuevos
+(Envíos, Devoluciones, Garantía) con copy ya validado en el proyecto —
+el mismo texto que ya usaban `brand-experience.liquid` y
+`.im-trust-note`, sin inventar nada. La nota "Imágenes ilustrativas...
+el diseño puede variar" se quita del costado de la galería (sembraba
+duda junto a la única prueba visual del cliente) y se reescribe en
+positivo dentro del tab de Garantía.
+
+`quantity_selector` se quedó donde estaba: no había evidencia de que
+fuera la fricción, y moverlo rompe una clase CSS que depende del orden
+(`product-form__quantity-top`).
+
+### Ola 2 — Un solo umbral de envío, una sola barra
+
+El umbral de $799 vivía hardcodeado (`79900` centavos) de forma
+independiente en 3 archivos de código activo:
+`snippets/cart-drawer.liquid`, `sections/main-cart-items.liquid`, y el
+JS de `sections/announcement-bar.liquid` — el mismo riesgo que ya había
+causado la desincronización de "2 a 4 días" vs "2 a 7 días" (arriba),
+pero en un número que toca el carrito directamente.
+
+Nuevo grupo **"Envíos"** en `config/settings_schema.json`
+(`envio_umbral_centavos`, `envio_costo`, `envio_tiempo`), mismo patrón
+ya probado del grupo "WhatsApp": funciona en vivo solo con sus
+`default`, porque `config/settings_data.json` no se despliega
+(`CUSTOMIZER_OWNED` en `deploy-shopify.py`). Nuevo snippet
+`envio-gratis-barra.liquid` absorbe el HTML que estaba duplicado letra
+por letra en los dos archivos del carrito. `announcement-bar.liquid` no
+se borró — parecía código muerto (no está en ningún grupo de
+header/footer hoy) pero es Dawn estándar y el dueño puede activarla
+desde el personalizador en un clic — se conectó al mismo setting para
+que no traiga un umbral fantasma si algún día se activa.
+
+### Ola 3 — Pagos visibles y un carrito sin sorpresas
+
+El hallazgo más grande de esta ola: **el monto real de envío ($189)
+nunca aparecía en el carrito**, ni en el panel lateral ni en `/cart` —
+solo el faltante para envío gratis ("Te faltan $489 MXN"), nunca el
+costo en sí. El cliente lo descubría hasta el checkout de Shopify,
+después de ya haber invertido sus datos personales.
+
+Nuevo snippet `pagos-aceptados.liquid`, reusa
+`shop.enabled_payment_types` + `payment_type_svg_tag` — la misma
+técnica del footer, así es imposible que muestre un método
+desactivado. **Verificado en vivo antes de escribir nada: esa lista
+solo trae PayPal.** Mercado Pago Checkout Pro está activo (confirmado
+por otra vía — aparece en el checkout hospedado real), pero Shopify no
+lo clasifica dentro de ese enum. Sin acceso al admin para confirmar el
+logo oficial vigente, no se fabricó un ícono de Mercado Pago a mano: se
+completa con texto ("y Mercado Pago").
+
+Se agregó en la ficha de producto (junto a `.im-trust-note`) y en el
+pie del carrito (panel lateral y `/cart`), junto con la línea nueva del
+costo real de envío, usando el umbral centralizado de la Ola 2.
+
+**Hallazgo no anticipado, encontrado al implementar esta ola:** `/cart`
+ya tenía un bloque de "Garantía de compra" con estilos en línea de
+fondo claro (`#f8f9fa`, texto `#555`) — una caja blanca suelta sobre el
+fondo negro del resto del sitio (`scheme-1`: `#000000` de fondo). Es
+exactamente el mismo bug que `brand-tokens.css` documenta haber
+corregido una vez en la ficha de producto; en `/cart` nadie lo había
+notado porque esa página se visita menos que la ficha. Se reemplazó por
+el mismo `.im-trust-note` que ya usan la ficha y el panel lateral, para
+que las tres superficies compartan un solo patrón visual.
+
+### Verificado en vivo, las tres olas
+
+Con `curl` (UA de navegador real) contra la tienda en producción
+después de cada despliegue, no solo leyendo el código: cero errores de
+Liquid, los tres tabs y el bloque de inventario en la ficha, la línea
+de envío mostrando "$189 MXN" para un carrito de $310 y "Gratis" al
+cruzar $799 (confirmado en las tres superficies: ficha, panel lateral,
+`/cart`), y el badge de PayPal + texto de Mercado Pago presentes.
+
+### Lo que sigue pendiente
+
+- **El recorrido interactivo del checkout** (información de envío,
+  ambas pasarelas hasta el último paso) — el prompt para el dueño
+  quedó preparado, falta que lo corra.
+- **Parte C del plan — Judge.me**: instalar la app, importar las
+  reseñas ya existentes en la cuenta del dueño, y conectar el bloque
+  `rating` (ya agregado en la Ola 1, condicionado a que exista el
+  metafield) y el widget completo en la sección `apps` vacía de
+  `templates/product.json`.
+- **Actualizar `PENDIENTES.md`**, que sigue describiendo la campaña de
+  Meta como "creada y en pausa a $100/día" — desactualizado desde el 15
+  de agosto, no refleja nada de las secciones 30 ni 37-41.

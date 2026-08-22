@@ -3,42 +3,42 @@
 Temas abiertos de la tienda. Casi todos requieren una decisión o datos tuyos;
 el resto de la auditoría ya quedó implementado y en vivo.
 
-## ✅ Primera campaña de Meta Ads — creada y en pausa (15 agosto 2026)
+## ⚠️ Este archivo llevaba desde el 15 de agosto sin actualizar
 
-La campaña ya existe. **Está pausada y no gasta nada** hasta que la
-revises y la actives.
+El bloque de abajo describía la campaña como "creada y en pausa,
+$100/día, optimizada a Compra, 324 productos". Nada de eso es cierto
+hoy. **Estado real, verificado el 22 de agosto de 2026** — detalle
+completo en `MANUAL-PROYECTO.md`, secciones 33 y 35 (arranque y
+primeros días), 37 (6 accesorios de arma que se colaron y se
+excluyeron), 38-40 (reconstrucción completa: por qué no vendía, el
+tope de gasto), y 41 (auditoría de conversión del sitio):
 
 | | |
 |---|---|
 | Campaña | `IMX \| Ventas \| Pesca y Óptica \| Catálogo dinámico \| Ago26` |
-| ID | `120249613902440175` |
-| Presupuesto | **$100 MXN/día** ($700/semana) |
-| Objetivo | Ventas, optimizado a evento Compra |
-| Catálogo | 324 productos, 0 prohibidos |
-| Público | México, 18-65, Facebook + Instagram |
+| Estado | **Activa**, entregando |
+| Conjunto vigente | optimiza a `CONTENT_VIEW` (no a Compra — con este presupuesto, optimizar a Compra nunca sale de aprendizaje), $55/día |
+| Conjunto de productos | 72 productos ≥$300, en stock, sin accesorios de arma (no 324) |
+| Tope de gasto | a nivel de **cuenta**, se ajusta cada semana — ver sección 40 del manual |
+| Resultado a la fecha | 0 compras, 1 carrito real en 6 días — la sección 41 documenta la auditoría completa de por qué |
 
-**Para activarla cuando la apruebes:**
+Seguimiento: `python3 scripts/meta-ads.py reporte --dias 7` (usa
+`time_range` explícito, no `date_preset` — ver sección 34/35 del
+manual sobre por qué).
 
-```bash
-export META_ACCESS_TOKEN="..."
-export META_AD_ACCOUNT_ID="act_1264279685553718"
-python3 scripts/meta-ads.py activar --campania 120249613902440175
-```
-
-**Expectativa realista:** $100 MXN/día (~$5 USD) es un presupuesto de
-prueba. Meta necesita ~50 conversiones semanales para salir de la fase
-de aprendizaje y optimizar bien; con este monto probablemente se vean
-1-3 ventas por semana. Sirve para validar que el embudo funciona, no
-para esperar rendimiento optimizado desde el arranque.
-
-Seguimiento semanal: `python3 scripts/meta-ads.py reporte --dias 7`
+También pendiente de reflejar aquí hasta ahora: **Shopify Payments está
+desactivado** desde el 14 de agosto (aviso de Trust & Safety por los
+rifles de aire; el checkout corre por PayPal y Mercado Pago) — sección
+30 del manual, con una decisión de negocio abierta sobre si conviene
+quitar esos productos para recuperarlo.
 
 ---
 
-**Abiertos ahora mismo:** revisar y activar la primera campaña de Meta
-Ads (arriba ✅ — ya creada, en pausa), cerrar los productos de
-[`PRODUCTOS-PENDIENTES.md`](./PRODUCTOS-PENDIENTES.md), y TikTok cuando
-exista.
+**Abiertos ahora mismo:** cerrar los productos de
+[`PRODUCTOS-PENDIENTES.md`](./PRODUCTOS-PENDIENTES.md), TikTok cuando
+exista, la decisión sobre Shopify Payments (sección 30 del manual), y
+completar el recorrido interactivo del checkout que quedó pendiente en
+la auditoría de conversión (sección 41).
 
 **Resuelto el 13-15 de agosto:** señales de confianza en la homepage
 ([3](#3-señales-de-confianza-ausentes--resuelto-13-agosto-2026)), el deploy
@@ -56,7 +56,7 @@ vivo de inmediato.
 **Dominio principal:** `https://intemperiemexico.com` — conectado y
 verificado el 3 de agosto de 2026. `wfuxvx-yn.myshopify.com` ahora
 redirige automáticamente al dominio propio.
-**Última actualización:** 15 de agosto de 2026
+**Última actualización:** 22 de agosto de 2026
 
 **Correo profesional:** Google Workspace reactivado con `admin@intemperiemexico.com`
 como cuenta principal. DNS (MX, SPF, DKIM) verificado y propagado. 6 alias activos
@@ -104,7 +104,15 @@ conecta igual de rápido.
 
 ---
 
-## 3. Señales de confianza ausentes — ✅ resuelto (13 agosto 2026)
+## 3. Señales de confianza ausentes — 🟡 resuelto en homepage, ampliado 22 ago
+
+> **Actualización 22 de agosto:** este ítem se cerró resolviendo solo la
+> homepage. La ficha de producto — que es donde de verdad se decide la
+> compra — siguió sin devoluciones, garantía visible ni tiempo de entrega
+> estructurado hasta la auditoría de conversión (sección 41 del manual),
+> que agregó tres pestañas colapsables a la ficha y llevó las mismas
+> señales al carrito. Se deja el registro original abajo tal cual, porque
+> la lección importa: un ✅ prematuro puede tapar la mitad del problema.
 
 La tienda vende rifles y ópticas de precio alto, pero la página no comunicaba
 en ningún lado tiempos de entrega, garantía ni política de devoluciones (las
@@ -285,7 +293,16 @@ tracking interno de origen de conversación de Zipchat.
 
 ---
 
-## 8. Meta Ads (Facebook/Instagram) — ✅ campaña creada, 15 ago
+## 8. Meta Ads (Facebook/Instagram) — 🟡 activa, reconstruida (ver arriba)
+
+> **Actualización 22 de agosto:** todo lo que sigue describe el arranque
+> del 15 de agosto (correcto en su momento). La campaña se reconstruyó
+> por completo entre el 18 y el 20 de agosto — ver el recuadro de estado
+> real al principio de este archivo y `MANUAL-PROYECTO.md` secciones
+> 37-40. Se deja el registro original abajo porque documenta bien la
+> puesta en marcha inicial (System User, catálogo, Instagram), que sigue
+> siendo válida.
+
 
 Arrancó el proyecto de publicidad en Meta. Antes de gastar un peso se
 verificó algo importante: **Meta prohíbe anunciar armas, municiones y
