@@ -369,12 +369,26 @@ completo, incluida la causa raíz de por qué no se veía nada al
 principio (el metafield necesita su `div`, no basta imprimirlo solo),
 en la sección 42 del `MANUAL-PROYECTO.md`.
 
+> **Actualización 22 de agosto, tarde:** el fix de código (envolver el
+> metafield en su `div`, arriba) no fue suficiente — el dueño confirmó
+> con capturas reales que seguía sin verse nada. Causa real encontrada
+> leyendo el código fuente de Judge.me en vivo: esta tienda ya está
+> migrada a su arquitectura nueva de widgets ("revamp"), que exige
+> atributos `data-entry-point`/`data-entry-key` que solo genera el
+> propio Judge.me al instalar desde su panel — no algo que se pueda
+> escribir a mano. El único camino que queda es instalar "Fragmentos
+> de reseñas" desde Judge.me. Detalle completo en la sección 42 del
+> manual (Ola 5c).
+
 **Falta:**
+- **Instalar "Fragmentos de reseñas" desde el panel de Judge.me**
+  (Widgets) — ya no es solo una verificación cruzada, es el único
+  camino que funciona para que aparezca algo.
+- Bajar `templates/product.json` vivo tras la instalación y confirmar
+  dónde quedó el App Block que Judge.me agregue.
 - Pase de contraste en `assets/brand-tokens.css` — los widgets de
   Judge.me traen estilos para fondo claro, este sitio es oscuro.
   Deliberadamente pendiente hasta ver el contenido real renderizado.
-- Instalar "Fragmentos de reseñas" desde el panel de Judge.me
-  (Widgets) — las estrellas junto a "Añadir al carrito" en colecciones.
 - Decisión del dueño sobre la reseña "Carrete Okuma Cascade CA-30" sin
   match en el catálogo activo (no bloquea nada).
 

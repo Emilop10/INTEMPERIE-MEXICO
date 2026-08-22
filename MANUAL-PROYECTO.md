@@ -3492,16 +3492,63 @@ que su JavaScript lo encuentre y lo use. Imprimir el metafield sin ese
 contrato compila sin error y no rompe nada, así que el fallo es
 silencioso: solo se nota como "no aparece nada", sin pista de por qué.
 
+### Ola 5c: la causa real era otra — Judge.me cambió de arquitectura
+
+**22 de agosto, tarde.** Con la Ola 5b ya desplegada, el dueño confirmó
+con capturas de su propio navegador: seguía sin verse ninguna estrella
+ni reseña en ningún lado. El `div` de la Ola 5b no fue suficiente.
+
+Se investigó leyendo directamente el código que Judge.me sirve en
+producción, no adivinando: `window.jdgmSettings` (inyectado en el HTML
+real) trae `review_widget_revamp_enabled: true` y un campo
+`review_widget_revamp_dual_publish_end_date: "2026-04-07"` — ya pasado.
+Esta tienda quedó migrada a una arquitectura nueva de widgets de
+Judge.me, y el período de convivencia con la arquitectura vieja ya
+terminó.
+
+Se descargó el `loader.js` real que carga esta tienda
+(`cdn.shopify.com/extensions/.../judgeme-719/assets/loader.js`) y se
+leyó su código: la arquitectura nueva busca en el DOM elementos
+`.jdgm-widget[data-entry-point]` — un atributo `data-entry-point` (más
+`data-entry-key`) que **no aparece en ningún artículo público de ayuda
+de Judge.me**. Sin ese par de atributos, la función que carga el
+contenido corta de inmediato (`if(!t||!r)return;`) sin hacer nada. El
+`div` de la Ola 5b, con `data-widget="review"` — exactamente lo que
+documenta Judge.me para integración manual — ni siquiera entra en el
+`querySelectorAll` que dispara el renderizado, porque ese selector
+exige `data-entry-point`, y el nuestro no lo tiene.
+
+**Conclusión: no es un bug de nuestro código.** Es una app de terceros
+que cambió de arquitectura y dejó su propio método de integración
+manual documentado (el que seguimos en la Ola 5 y 5b) sin efecto para
+las cuentas ya migradas al "revamp". `data-entry-point`/`data-entry-key`
+son valores que solo genera el backend de Judge.me cuando el widget se
+instala desde su panel o desde sus App Blocks nativos de OS 2.0 — no
+se pueden escribir a mano ni adivinar. El `div` de la Ola 5b no se
+retira: sigue siendo la forma correcta de exponer el metafield si
+Judge.me revierte el cambio o si se usa en otro contexto — pero ya no
+es lo que hace falta para que esta tienda muestre reseñas.
+
+**El único camino que queda es instalar el widget desde el propio
+panel de Judge.me** — Widgets → "Fragmentos de reseñas" → Instalar.
+Ese botón es lo que genera el App Block de OS 2.0 con el
+`data-entry-point`/`data-entry-key` correctos, y es el único método
+soportado hoy para esta cuenta. Una vez instalado, hay que bajar
+`templates/product.json` vivo por Admin API (nunca al revés, se
+pierde la instalación real) y ver dónde quedó el bloque, reubicándolo
+si Judge.me lo deja en la posición por defecto en vez de bajo el
+título o en los tabs.
+
 ### Lo que sigue pendiente
 
+- **Instalar "Fragmentos de reseñas" desde el panel de Judge.me** —
+  ahora confirmado como el único camino que funciona, no solo una
+  verificación cruzada opcional (ver Ola 5c arriba).
+- Bajar `templates/product.json` vivo tras la instalación y confirmar
+  dónde quedó el App Block; reubicarlo si hace falta.
 - **Pase de contraste en `assets/brand-tokens.css`** para los widgets
   de Judge.me contra el fondo oscuro del sitio (`scheme-1`, negro) —
   deliberadamente diferido hasta tener el contenido real renderizado
   en Chromium para ver qué clases emite la API, en vez de adivinar.
-- **Widget "Fragmentos de reseñas"** en el propio panel de Judge.me
-  (Widgets → estrellas junto a "Añadir al carrito" en colecciones) —
-  sigue sin instalarse. No es la causa de lo de esta sección, pero
-  sirve como verificación cruzada: si las estrellas salen en la ficha
-  pero no en las tarjetas de colección, ese es el widget que falta.
 - Cerrar el ítem de Judge.me en `PENDIENTES.md` una vez confirmado el
   contraste correcto.
