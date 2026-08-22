@@ -78,10 +78,6 @@
       <div class="grid__item product__media-wrapper">
         <div class="im-media-sticky">
           {% render 'product-media-gallery', variant_images: variant_images %}
-          <p class="imx-illustrative-note">
-            {{ 'icon-info.svg' | inline_asset_content }}
-            <span>Imágenes ilustrativas. El producto que recibes es el que se anuncia en el título y la descripción; el diseño o color del empaque puede variar respecto a la foto.</span>
-          </p>
         </div>
       </div>
       <div class="product__info-wrapper grid__item{% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">

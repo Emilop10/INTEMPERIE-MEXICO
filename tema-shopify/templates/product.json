@@ -14,9 +14,21 @@
           "type": "title",
           "settings": {}
         },
+        "rating": {
+          "type": "rating",
+          "settings": {}
+        },
         "price": {
           "type": "price",
           "settings": {}
+        },
+        "inventory": {
+          "type": "inventory",
+          "settings": {
+            "text_style": "body",
+            "inventory_threshold": 3,
+            "show_inventory_quantity": false
+          }
         },
         "variant_picker": {
           "type": "variant_picker",
@@ -24,6 +36,10 @@
             "picker_type": "button",
             "swatch_shape": "circle"
           }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
         },
         "quantity_selector": {
           "type": "quantity_selector",
@@ -36,32 +52,57 @@
             "show_gift_card_recipient": true
           }
         },
-        "description": {
-          "type": "description",
-          "settings": {}
+        "envio_nota": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div class=\"im-ship-note\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M21 8v8a2 2 0 0 1-1 1.73l-7 4a2 2 0 0 1-2 0l-7-4A2 2 0 0 1 3 16V8a2 2 0 0 1 1-1.73l7-4a2 2 0 0 1 2 0l7 4A2 2 0 0 1 21 8z\"\/><polyline points=\"3.3 7 12 12 20.7 7\"\/><line x1=\"12\" y1=\"22\" x2=\"12\" y2=\"12\"\/><\/svg><span><strong>Envío gratis desde $799 MXN.<\/strong><span class=\"im-ship-note-sub\">Pedidos menores, $189 a todo México · Entrega en 2 a 7 días hábiles.<\/span><\/span><\/div>"
+          }
+        },
+        "tab_envios": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Envíos y entrega",
+            "icon": "truck",
+            "content": "<p>Envío gratis desde $799 MXN, a todo México. Pedidos menores, $189 MXN. Entrega en 2 a 7 días hábiles.<\/p>"
+          }
+        },
+        "tab_devoluciones": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Devoluciones",
+            "icon": "return",
+            "content": "<p>7 días para cambios o devoluciones. <a href=\"https:\/\/intemperiemexico.com\/policies\/refund-policy\">Ver política completa<\/a>.<\/p>"
+          }
+        },
+        "tab_garantia": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Garantía",
+            "icon": "check_mark",
+            "content": "<p>Garantía de compra — si algo llega mal, lo resolvemos.<\/p><p>Recibes exactamente el producto del título y la descripción. El empaque puede variar de presentación.<\/p>"
+          }
         },
         "share": {
           "type": "share",
           "settings": {
             "share_label": "Compartir"
           }
-        },
-        "envio_nota": {
-          "type": "custom_liquid",
-          "settings": {
-            "custom_liquid": "<div class=\"im-ship-note\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M21 8v8a2 2 0 0 1-1 1.73l-7 4a2 2 0 0 1-2 0l-7-4A2 2 0 0 1 3 16V8a2 2 0 0 1 1-1.73l7-4a2 2 0 0 1 2 0l7 4A2 2 0 0 1 21 8z\"\/><polyline points=\"3.3 7 12 12 20.7 7\"\/><line x1=\"12\" y1=\"22\" x2=\"12\" y2=\"12\"\/><\/svg><span><strong>Envío gratis desde $799 MXN.<\/strong><span class=\"im-ship-note-sub\">Pedidos menores, $189 a todo México · Entrega en 2 a 7 días hábiles.<\/span><\/span><\/div>"
-          }
         }
       },
       "block_order": [
         "vendor",
         "title",
+        "rating",
         "price",
+        "inventory",
         "variant_picker",
+        "description",
         "quantity_selector",
         "buy_buttons",
         "envio_nota",
-        "description",
+        "tab_envios",
+        "tab_devoluciones",
+        "tab_garantia",
         "share"
       ],
       "settings": {
