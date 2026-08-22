@@ -1,5 +1,11 @@
+{%- comment -%}
+  Umbral centralizado en Personalizar tema → Envíos
+  (settings.envio_umbral_centavos). Antes era un 79900 fijo aquí mismo,
+  sin relación con el resto del tema — ver envio-gratis-barra.liquid,
+  que ahora comparte la misma fuente.
+{%- endcomment -%}
 <div id="intemperie-shipping-bar" style="background:#f0f9eb;border-bottom:1px solid #c3e6cb;padding:8px 16px;text-align:center;font-size:13px;position:fixed;top:0;left:0;right:0;z-index:99999;width:100%;box-sizing:border-box;">
-  <span id="intemperie-shipping-msg">🚚 Envío gratis en pedidos mayores a <strong>$799 MXN</strong></span>
+  <span id="intemperie-shipping-msg">🚚 Envío gratis en pedidos mayores a <strong>${{ settings.envio_umbral_centavos | default: 79900 | divided_by: 100 }} MXN</strong></span>
   <svg id="intemperie-shipping-svg" width="200" height="6" style="display:inline-block;vertical-align:middle;margin-left:10px;border-radius:4px;overflow:hidden;background:#dee2e6;">
     <rect id="intemperie-shipping-fill" width="0%" height="6" fill="#28a745" rx="3"/>
   </svg>
@@ -11,7 +17,7 @@
     fetch('/cart.js')
       .then(function(r){ return r.json(); })
       .then(function(cart) {
-        var threshold = 79900;
+        var threshold = {{ settings.envio_umbral_centavos | default: 79900 }};
         var total = cart.total_price;
         var pct = Math.min(Math.round(total / threshold * 100), 100);
         var remaining = Math.ceil((threshold - total) / 100);
@@ -20,7 +26,7 @@
         var svg = document.getElementById('intemperie-shipping-svg');
         if (!msg || !fill) return;
         if (total === 0) {
-          msg.innerHTML = '🚚 Envío gratis en pedidos mayores a <strong>$799 MXN</strong>';
+          msg.innerHTML = '🚚 Envío gratis en pedidos mayores a <strong>${{ settings.envio_umbral_centavos | default: 79900 | divided_by: 100 }} MXN</strong>';
           fill.setAttribute('width', '0%');
         } else if (total >= threshold) {
           msg.innerHTML = '🎉 ¡Tu envío es <strong>GRATIS</strong>!';

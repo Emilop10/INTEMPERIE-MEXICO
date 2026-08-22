@@ -1417,6 +1417,34 @@
     ]
   },
   {
+    "name": "Envíos",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Umbral de envío gratis, costo y tiempo de entrega. Un solo lugar para editarlo: lo usan la barra de progreso del carrito (panel lateral y /cart) y la franja del anuncio de envío en la tienda. Antes estaba repetido en 3 archivos distintos y se llegó a desincronizar."
+      },
+      {
+        "type": "number",
+        "id": "envio_umbral_centavos",
+        "default": 79900,
+        "label": "Umbral de envío gratis (centavos)",
+        "info": "En centavos MXN. $799.00 = 79900."
+      },
+      {
+        "type": "text",
+        "id": "envio_costo",
+        "default": "$189",
+        "label": "Costo de envío bajo el umbral"
+      },
+      {
+        "type": "text",
+        "id": "envio_tiempo",
+        "default": "2 a 7 días hábiles",
+        "label": "Tiempo de entrega"
+      }
+    ]
+  },
+  {
     "name": "t:settings_schema.search_input.name",
     "settings": [
       {

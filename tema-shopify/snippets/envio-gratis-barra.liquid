@@ -1,0 +1,52 @@
+{%- comment -%}
+  Barra de progreso de envío gratis. Antes estaba duplicada, HTML y
+  lógica idénticos, en snippets/cart-drawer.liquid y
+  sections/main-cart-items.liquid, cada una con su propio umbral
+  hardcodeado (79900 centavos). El umbral vive ahora en un solo lugar
+  (Personalizar tema → Envíos → settings.envio_umbral_centavos), así
+  no se puede volver a desincronizar como ya pasó una vez entre el
+  código y MANUAL-PROYECTO.md.
+
+  Requiere `cart` en contexto. No imprime nada si el carrito está
+  vacío — el llamador ya lo comprueba con `{% unless cart == empty %}`
+  o equivalente, igual que antes de este snippet.
+{%- endcomment -%}
+{%- liquid
+  assign free_shipping_threshold = settings.envio_umbral_centavos | default: 79900
+  assign cart_total_cents = cart.total_price
+  assign remaining_cents = free_shipping_threshold | minus: cart_total_cents
+  assign progress_pct = cart_total_cents | times: 100 | divided_by: free_shipping_threshold
+  if progress_pct > 100
+    assign progress_pct = 100
+  endif
+-%}
+{%- if cart_total_cents >= free_shipping_threshold -%}
+  <div class="free-shipping-bar free-shipping-bar--achieved">
+    <svg class="free-shipping-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M21 8v8a2 2 0 0 1-1 1.73l-7 4a2 2 0 0 1-2 0l-7-4A2 2 0 0 1 3 16V8a2 2 0 0 1 1-1.73l7-4a2 2 0 0 1 2 0l7 4A2 2 0 0 1 21 8z"/>
+      <polyline points="3.3 7 12 12 20.7 7"/>
+      <line x1="12" y1="22" x2="12" y2="12"/>
+    </svg>
+    <div class="free-shipping-bar__body">
+      Tu envío es <strong>GRATIS</strong>
+      <div class="free-shipping-bar__progress">
+        <div class="free-shipping-bar__progress-fill" style="width: 100%;"></div>
+      </div>
+    </div>
+  </div>
+{%- else -%}
+  {%- assign remaining_pesos = remaining_cents | divided_by: 100.0 | ceil -%}
+  <div class="free-shipping-bar">
+    <svg class="free-shipping-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M21 8v8a2 2 0 0 1-1 1.73l-7 4a2 2 0 0 1-2 0l-7-4A2 2 0 0 1 3 16V8a2 2 0 0 1 1-1.73l7-4a2 2 0 0 1 2 0l7 4A2 2 0 0 1 21 8z"/>
+      <polyline points="3.3 7 12 12 20.7 7"/>
+      <line x1="12" y1="22" x2="12" y2="12"/>
+    </svg>
+    <div class="free-shipping-bar__body">
+      Te faltan <strong>${{ remaining_pesos }} MXN</strong> para envío gratis
+      <div class="free-shipping-bar__progress">
+        <div class="free-shipping-bar__progress-fill" style="width: {{ progress_pct }}%;"></div>
+      </div>
+    </div>
+  </div>
+{%- endif -%}
