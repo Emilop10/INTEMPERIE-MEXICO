@@ -501,6 +501,34 @@ variant-selects .select__select {
 }
 .im-trust-item a:hover { text-decoration: underline; }
 
+/* Metodos de pago aceptados (ficha de producto y pie del carrito).
+   Los iconos vienen de shop.enabled_payment_types via
+   payment_type_svg_tag — el mismo que ya usa el footer — asi que
+   ya traen su propio fondo blanco redondeado y se ven igual sobre
+   fondo claro u oscuro. Solo el contenedor y el texto complementario
+   ("y Mercado Pago", ver snippets/pagos-aceptados.liquid) son
+   propios de este bloque. */
+.im-pagos-aceptados {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  margin-top: 10px;
+}
+.im-pagos-aceptados .list-payment {
+  margin: 0;
+  padding: 0;
+  justify-content: flex-start;
+}
+.im-pagos-aceptados .list-payment__item {
+  padding: 0;
+}
+.im-pagos-aceptados__extra {
+  font-family: var(--font-body-family);
+  font-size: 12.5px;
+  color: #93A79B;
+}
+
 /* Aviso "imágenes ilustrativas" — sobrescribe base.css, que traía colores para
    fondo claro (texto casi negro sobre un tinte casi transparente) y por eso
    se veía invisible sobre el nuevo fondo oscuro de la tienda. */

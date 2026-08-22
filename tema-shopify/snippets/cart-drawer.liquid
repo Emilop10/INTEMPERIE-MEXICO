@@ -647,6 +647,41 @@
           </small>
         </div>
 
+        {%- comment -%}
+          Antes el pie del panel terminaba en el boton de pagar sin
+          ninguna senal de confianza, y el costo real de envio
+          ($189) no aparecia hasta el checkout de Shopify — el
+          cliente lo descubria despues de ya haber invertido sus
+          datos. Mismo bloque .im-trust-note que ya usan la ficha de
+          producto y /cart (main-cart-footer.liquid), para que el
+          patron visual sea el mismo en los tres lugares.
+        {%- endcomment -%}
+        {%- liquid
+          assign envio_umbral = settings.envio_umbral_centavos | default: 79900
+          assign envio_costo_texto = settings.envio_costo | default: '$189'
+        -%}
+        <div class="im-trust-note">
+          <div class="im-trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8v8a2 2 0 0 1-1 1.73l-7 4a2 2 0 0 1-2 0l-7-4A2 2 0 0 1 3 16V8a2 2 0 0 1 1-1.73l7-4a2 2 0 0 1 2 0l7 4A2 2 0 0 1 21 8z"/><polyline points="3.3 7 12 12 20.7 7"/><line x1="12" y1="22" x2="12" y2="12"/></svg>
+            <span>
+              {%- if cart.total_price >= envio_umbral -%}
+                Envío: <strong>Gratis</strong>
+              {%- else -%}
+                Envío: <strong>{{ envio_costo_texto }} MXN</strong>
+              {%- endif -%}
+            </span>
+          </div>
+          <div class="im-trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10.5" width="16" height="10" rx="2"/><path d="M7.5 10.5V7a4.5 4.5 0 0 1 9 0v3.5"/></svg>
+            <span>Pago 100% seguro</span>
+          </div>
+          <div class="im-trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5 4 6v6c0 5 3.4 8.7 8 9.5 4.6-.8 8-4.5 8-9.5V6l-8-3.5Z"/><path d="m9 12 2 2 4-4.5"/></svg>
+            <span>Garantía de compra — si algo llega mal, lo resolvemos.</span>
+          </div>
+        </div>
+        {%- render 'pagos-aceptados' -%}
+
         <!-- CTAs -->
 
         <div class="cart__ctas" {{ block.shopify_attributes }}>

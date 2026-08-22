@@ -1,0 +1,28 @@
+{%- comment -%}
+  Métodos de pago aceptados, para la ficha de producto y el pie del
+  carrito. Reusa `shop.enabled_payment_types` + `payment_type_svg_tag`,
+  la misma técnica que ya usa sections/footer.liquid:289-292 — así es
+  IMPOSIBLE que muestre un método desactivado: la lista sale de la
+  configuración real de Pagos en el admin, no de un texto a mano.
+
+  Verificado en vivo el 22 de agosto de 2026: esa lista trae PayPal,
+  pero NO trae Mercado Pago Checkout Pro, aunque confirmado por otra
+  vía (el checkout hospedado real) que sí está activo — Shopify lo
+  clasifica fuera del enum que cubre `enabled_payment_types`. Sin
+  acceso al admin para confirmar el logo oficial vigente, no se
+  fabrica un ícono de Mercado Pago a mano: se menciona por texto. Si
+  en el futuro Judge.me u otra integración expone el asset oficial, se
+  puede sumar al lado del ícono de PayPal sin tocar este comentario.
+{%- endcomment -%}
+{%- if shop.enabled_payment_types.size > 0 -%}
+  <div class="im-pagos-aceptados">
+    <ul class="list list-payment" role="list">
+      {%- for type in shop.enabled_payment_types -%}
+        <li class="list-payment__item">
+          {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+        </li>
+      {%- endfor -%}
+    </ul>
+    <span class="im-pagos-aceptados__extra">y Mercado Pago</span>
+  </div>
+{%- endif -%}

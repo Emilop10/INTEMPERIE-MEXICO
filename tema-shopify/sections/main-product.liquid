@@ -502,6 +502,7 @@
                     <span>¿Dudas? Escríbenos por <a href="https://wa.me/527773277340" target="_blank" rel="noopener">WhatsApp</a> antes de pagar.</span>
                   </div>
                 </div>
+                {%- render 'pagos-aceptados' -%}
               {%- when 'rating' -%}
                 {%- if product.metafields.reviews.rating.value != blank -%}
                   <div class="rating-wrapper">
