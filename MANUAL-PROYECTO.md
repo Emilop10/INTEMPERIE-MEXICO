@@ -3704,11 +3704,39 @@ corregido y el bloque reubicado ya están en producción; una sola
 instancia real del carrusel en la ficha (no quedó duplicado al
 moverlo).
 
+### Ola 5g: orden final y traducción del título (23 ago, madrugada)
+
+El dueño hizo dos últimos ajustes de pulido, verificados con `curl`
+contra producción, ninguno tocó código del repo (ambos son
+configuración del personalizador/Judge.me):
+
+- **Reordenó las secciones** de la ficha de producto, vía Claude en
+  Chrome: la sección "Aplicaciones" (Cards Carousel) pasó de estar
+  después de "Productos relacionados" a estar **antes** — reseñas
+  justo después de toda la info de compra (imagen, precio, botones,
+  tabs de envío/devoluciones/garantía), no al fondo de la página tras
+  "también te puede interesar". Verificado: el índice del carrusel en
+  el HTML real es menor que el de `related-products`.
+- **Tradujo el título del carrusel**: "Customers are saying" → "Lo que
+  dicen nuestros clientes". No estaba en el panel de idioma de
+  Judge.me (Configuraciones → General → Idioma — ese solo controla
+  idioma global de admin/widgets/correos, sin editor de textos
+  sueltos) ni en los ajustes de texto del "Widget de reseñas" (widget
+  distinto, con su propio acordeón de Texto). El campo real es
+  **"Header text"**, dentro del grupo HEADER de los ajustes del propio
+  bloque Cards Carousel, en el editor de temas de Shopify — es un
+  ajuste **por bloque**, no global: hubo que cambiarlo dos veces, una
+  por cada instancia (home y ficha de producto). Confirmado con
+  `curl`: el texto nuevo aparece en el HTML de ambas páginas en
+  producción, "Customers are saying" ya no aparece en ninguna.
+
+**Lección para no repetir**: cualquier Cards Carousel nuevo que se
+agregue en el futuro nace con "Customers are saying" en inglés por
+defecto — hay que traducirlo cada vez, en su propio campo "Header
+text" dentro del editor de temas, no en el panel de Judge.me.
+
 ### Lo que sigue pendiente
 
-- **Confirmación visual final del dueño**: que el conjunto (home +
-  ficha de producto) se vea bien de principio a fin, no solo que el
-  código haya llegado — `curl` no sustituye ver la pantalla real.
 - **Reasignar las 4 reseñas de producto huérfanas** (sección 43) —
   ya no es urgente para que se vean reseñas (el Cards Carousel las
   muestra igual), pero sigue siendo lo correcto para que "Review
@@ -3722,5 +3750,5 @@ moverlo).
   dos App Blocks (Review Snippets + Cards Carousel), para que quede
   documentado el ID real (evita que un futuro deploy de código los
   pise sin darse cuenta — riesgo ya conocido de este archivo).
-- Cerrar el ítem de Judge.me en `PENDIENTES.md` una vez confirmado el
-  pulido visual final.
+- Cerrar el ítem de Judge.me en `PENDIENTES.md` — con esto, la parte
+  visual/funcional del carrusel queda resuelta.

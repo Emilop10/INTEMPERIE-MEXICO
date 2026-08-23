@@ -353,7 +353,7 @@ crear anuncios.
 
 ---
 
-## 9. Judge.me (reseñas reales) — 🟡 en tienda, falta contraste y "Fragmentos de reseñas"
+## 9. Judge.me (reseñas reales) — 🟡 visual y funcional en tienda, falta reasignar 4 reseñas huérfanas
 
 Instalado con la cuenta existente del dueño: **8 reseñas reales**, 4 de
 producto (5.0★ promedio, 3 de 4 emparejadas con productos activos) y 4
@@ -413,10 +413,17 @@ en la sección 42 del `MANUAL-PROYECTO.md`.
 > relacionados"). Ambos verificados con `curl` en producción. Detalle
 > en sección 44 del manual (Ola 5f).
 
+> **Actualización 23 de agosto, madrugada (2):** dos ajustes finales de
+> pulido, confirmados con `curl` — la sección "Aplicaciones" se movió
+> a **antes** de "Productos relacionados" (reseñas justo después de
+> toda la info de compra, no al fondo), y el título del carrusel se
+> tradujo de "Customers are saying" a "Lo que dicen nuestros clientes"
+> en las dos instancias (home y ficha, es un ajuste por bloque, no
+> global — está en el campo "Header text" del propio bloque, no en el
+> panel de Judge.me). Con esto, la parte visual y funcional del
+> carrusel queda resuelta. Detalle en sección 44 del manual (Ola 5g).
+
 **Falta:**
-- Confirmación visual **final** del dueño en el home y en una ficha de
-  producto — que el conjunto se vea bien de principio a fin, no solo
-  que el código haya llegado.
 - Reasignar las 4 reseñas de producto huérfanas — ya no es urgente
   para que se vean reseñas (el Cards Carousel las muestra igual), pero
   sigue pendiente para que "Review Snippets" funcione en las fichas
