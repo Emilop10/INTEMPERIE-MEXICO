@@ -631,3 +631,20 @@ variant-selects .select__select {
 .footer__content-bottom {
   border-top: 1px solid var(--im-divider) !important;
 }
+
+/* Widget "Cards Carousel" de Judge.me (Ola 5e, 22 ago 2026): trae sus
+   colores fijos en negro (--header-color/--text-color/--arrows-color,
+   pensados para fondo claro) como estilo inline en el propio div, así
+   que gana sobre cualquier regla externa sin !important. El título,
+   el promedio de estrellas y las flechas de navegación quedan fuera
+   de las tarjetas claras del carrusel (--card-color sigue siendo
+   claro y se deja tal cual, es autocontenido) — directo sobre el
+   fondo negro del sitio, texto negro sobre negro, invisible. Se
+   reasignan esas variables al color de texto real del scheme activo
+   de Dawn (rgb(var(--color-foreground))), no a un color inventado,
+   para que siga funcionando si el scheme cambia. */
+.jdgm-cards-carousel {
+  --header-color: rgb(var(--color-foreground)) !important;
+  --text-color: rgb(var(--color-foreground)) !important;
+  --arrows-color: rgb(var(--color-foreground)) !important;
+}
