@@ -45,6 +45,12 @@ la auditoría de conversión (sección 41).
 automático ([5](#5-activar-el-deploy-automático--resuelto-13-agosto-2026)),
 e Instagram creado y vinculado ([2](#2-redes-sociales--parcialmente-resuelto-28-jul)).
 
+**Resuelto el 22-23 de agosto:** auditoría de conversión completa —
+ficha de producto, carrito, umbral de envío único, métodos de pago
+visibles ([sección 41 del manual](./MANUAL-PROYECTO.md)) — e
+integración de reseñas reales de Judge.me
+([9](#9-judgeme-reseñas-reales--resuelto-23-agosto-2026)).
+
 > 📌 **Nota de trabajo (4 de agosto):** al redactar prompts para Claude en
 > Chrome, ser conciso y pedirle explícitamente que si no encuentra algo en
 > 1-2 lugares razonables de la interfaz, lo reporte directo en vez de seguir
@@ -353,7 +359,7 @@ crear anuncios.
 
 ---
 
-## 9. Judge.me (reseñas reales) — 🟡 visual y funcional en tienda, falta reasignar 4 reseñas huérfanas
+## ~~9. Judge.me (reseñas reales)~~ ✅ Resuelto (23 agosto 2026)
 
 Instalado con la cuenta existente del dueño: **8 reseñas reales**, 4 de
 producto (5.0★ promedio, 3 de 4 emparejadas con productos activos) y 4
@@ -423,17 +429,21 @@ en la sección 42 del `MANUAL-PROYECTO.md`.
 > panel de Judge.me). Con esto, la parte visual y funcional del
 > carrusel queda resuelta. Detalle en sección 44 del manual (Ola 5g).
 
-**Falta:**
-- Reasignar las 4 reseñas de producto huérfanas — ya no es urgente
-  para que se vean reseñas (el Cards Carousel las muestra igual), pero
-  sigue pendiente para que "Review Snippets" funcione en las fichas
-  específicas. Mensaje para soporte de Judge.me ya redactado (sección
-  43 del manual), falta decidir si se envía.
+> **Cierre, 23 de agosto:** el dueño confirmó las dos últimas dudas —
+> solo existe una plantilla de producto (no hay "otras plantillas" a
+> las que agregar el bloque), y que las reseñas se muestren de forma
+> aleatoria sin filtrar por producto **no es un problema**, es
+> justamente lo que resuelve el Cards Carousel. Con eso, reasignar las
+> 4 reseñas huérfanas deja de ser un pendiente — el mensaje para
+> soporte de Judge.me queda redactado y disponible si algún día se
+> quiere retomar, sin bloquear nada. Badge de estrellas + carrusel de
+> reseñas de tienda, legibles y bien ubicados, en home y ficha de
+> producto. Detalle completo en la sección 44 del `MANUAL-PROYECTO.md`.
+
+**Mantenimiento (no bloqueante):**
 - Bajar `templates/product.json` vivo y anotar el ID real de los dos
   App Blocks (Review Snippets + Cards Carousel), para que un futuro
   deploy de código no los pise sin darse cuenta.
-- Agregar "Review Snippets" a otras plantillas de producto si existen
-  (quedó solo en "Producto predeterminado").
 
 ---
 

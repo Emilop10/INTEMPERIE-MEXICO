@@ -878,10 +878,14 @@ pudo instalar en este entorno. Corrido sobre `tema-shopify/`, generó:
 
 - **460 nodos, 705 conexiones, 40 comunidades** de código relacionado
   (cifra al 13 de agosto de 2026; era 452/697/37 en la primera corrida,
-  459/705/39 al 7 de agosto). Los cambios de la franja de confianza de
-  esta fecha no agregaron nodos nuevos (`graphify update` los reportó sin
-  cambios de topología) porque son marcado y estilos sobre una sección ya
-  existente, no componentes nuevos
+  459/705/39 al 7 de agosto; sigue igual al 23 de agosto tras toda la
+  auditoría de conversión y la integración de Judge.me — `graphify
+  update` reportó "sin cambios de topología" porque las Olas 1-5g
+  fueron marcado, estilos y bloques de app sobre secciones ya
+  existentes, no componentes de JS nuevos). Los cambios de la franja
+  de confianza del 13 de agosto tampoco agregaron nodos nuevos por el
+  mismo motivo — marcado y estilos sobre una sección ya existente, no
+  componentes nuevos
 - Los "god nodes" (componentes más centrales de la arquitectura del
   tema): `PredictiveSearch`, `FacetFiltersForm`, `SlideshowComponent`,
   `CartItems`, `CartDrawer`, `MenuDrawer`, entre otros
@@ -3735,20 +3739,31 @@ agregue en el futuro nace con "Customers are saying" en inglés por
 defecto — hay que traducirlo cada vez, en su propio campo "Header
 text" dentro del editor de temas, no en el panel de Judge.me.
 
-### Lo que sigue pendiente
+### Cierre (23 de agosto de 2026)
 
-- **Reasignar las 4 reseñas de producto huérfanas** (sección 43) —
-  ya no es urgente para que se vean reseñas (el Cards Carousel las
-  muestra igual), pero sigue siendo lo correcto para que "Review
-  Snippets" funcione en las fichas específicas. El mensaje para
-  soporte de Judge.me con los 4 IDs de reseña + productos destino ya
-  está redactado, solo falta enviarlo si el dueño decide seguir ese
-  camino.
-- Agregar el bloque "Review Snippets" a otras plantillas de producto
-  si existen (quedó solo en "Producto predeterminado").
+El dueño confirmó dos decisiones que cierran los últimos pendientes
+abiertos:
+
+1. **Solo existe una plantilla de producto** ("Producto
+   predeterminado") — el punto de "agregar Review Snippets a otras
+   plantillas" no aplica, no hay ninguna otra.
+2. **Las reseñas mostradas de forma aleatoria (sin filtrar por
+   producto) no son un problema** — es justo lo que resuelve el Cards
+   Carousel de la Ola 5e. Con esto, reasignar las 4 reseñas de
+   producto huérfanas (sección 43) deja de ser un pendiente: sigue
+   siendo técnicamente correcto y el mensaje para soporte de Judge.me
+   con los 4 IDs de reseña queda redactado y disponible si algún día
+   se quiere retomar, pero no bloquea nada ni requiere seguimiento.
+
+**Con esto, la integración de Judge.me queda cerrada**: badge de
+estrellas junto al título (donde haya coincidencia de producto),
+carrusel de reseñas de tienda visible y legible en home y ficha de
+producto, ubicado justo después de la información de compra, con
+título en español. Único pendiente real, de mantenimiento (no
+bloqueante):
+
 - Bajar `templates/product.json` vivo y confirmar dónde quedaron los
   dos App Blocks (Review Snippets + Cards Carousel), para que quede
-  documentado el ID real (evita que un futuro deploy de código los
-  pise sin darse cuenta — riesgo ya conocido de este archivo).
-- Cerrar el ítem de Judge.me en `PENDIENTES.md` — con esto, la parte
-  visual/funcional del carrusel queda resuelta.
+  documentado el ID real y un futuro deploy de código no los pise sin
+  darse cuenta — riesgo ya conocido de este archivo (sección 6/34 del
+  manual).
