@@ -3666,13 +3666,49 @@ usando el token real de texto del scheme activo de Dawn
 (`rgb(var(--color-foreground))`) — no un color inventado, así sigue
 funcionando si el scheme del sitio cambia.
 
+### Ola 5f: dos correcciones tras verlo en pantalla real
+
+**22 de agosto, noche.** El dueño mandó capturas del home y de una
+ficha de producto ya con el Cards Carousel visible — título y
+estrellas ya legibles, el primer fix funcionó — pero señaló dos
+problemas nuevos que solo se detectan viéndolo, no con `curl`:
+
+1. **El texto dentro de las tarjetas casi no se leía** (gris muy claro
+   sobre la tarjeta clara). Causa: el fix anterior sobreescribió
+   `--text-color` además de `--header-color`/`--arrows-color` — pero
+   Judge.me **reusa `--text-color` para el contenido de cada tarjeta**
+   (nombre del reseñador, cuerpo de la reseña), que vive sobre
+   `--card-color` (claro). Ponerlo claro ahí lo volvió casi invisible,
+   por el problema contrario al que se venía corrigiendo. Se revirtió
+   `--text-color` a su valor original (`#000000`, correcto sobre
+   fondo claro) y el override quedó solo en `--header-color` y
+   `--arrows-color` — los dos elementos que sí están sobre el fondo
+   negro de la página.
+2. **En la ficha de producto se veía apretado**, una sola tarjeta sin
+   flechas — porque el bloque estaba dentro de la columna angosta de
+   "Información de producto" (junto al precio), la misma limitación
+   de ancho que tiene esa columna para todo lo demás. Se movió, vía
+   Claude en Chrome, a la sección "Aplicaciones" que ya existía
+   (vacía) en la plantilla de producto — quedó después de "Productos
+   relacionados" y antes del footer, en ancho completo, igual que en
+   la home.
+
+También se agregó `padding-top/bottom: 56px` a
+`.shopify-section:has(.jdgm-cards-carousel)` — la sección
+"Aplicaciones" (`sections/apps.liquid`, genérica de Shopify) no trae
+padding propio como sí tienen las secciones nativas de Dawn, así que
+el carrusel quedaba pegado directo contra el hero de la home.
+
+Verificado con `curl` tras cada uno de los dos despliegues: el CSS
+corregido y el bloque reubicado ya están en producción; una sola
+instancia real del carrusel en la ficha (no quedó duplicado al
+moverlo).
+
 ### Lo que sigue pendiente
 
-- **Confirmación visual del dueño**: entrar al home y a una ficha de
-  producto y confirmar que el Cards Carousel ya se ve legible (título
-  y estrellas visibles, no negro sobre negro) — el `curl` confirma que
-  el CSS y el markup llegaron, pero hace falta la confirmación en
-  pantalla real.
+- **Confirmación visual final del dueño**: que el conjunto (home +
+  ficha de producto) se vea bien de principio a fin, no solo que el
+  código haya llegado — `curl` no sustituye ver la pantalla real.
 - **Reasignar las 4 reseñas de producto huérfanas** (sección 43) —
   ya no es urgente para que se vean reseñas (el Cards Carousel las
   muestra igual), pero sigue siendo lo correcto para que "Review
@@ -3687,4 +3723,4 @@ funcionando si el scheme del sitio cambia.
   documentado el ID real (evita que un futuro deploy de código los
   pise sin darse cuenta — riesgo ya conocido de este archivo).
 - Cerrar el ítem de Judge.me en `PENDIENTES.md` una vez confirmado el
-  contraste correcto.
+  pulido visual final.

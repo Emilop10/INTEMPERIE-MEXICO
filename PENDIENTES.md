@@ -403,11 +403,20 @@ en la sección 42 del `MANUAL-PROYECTO.md`.
 > negro del sitio) en `assets/brand-tokens.css`. Detalle en sección 44
 > del manual (Ola 5e).
 
+> **Actualización 23 de agosto, madrugada:** con capturas reales en
+> mano, el dueño señaló dos problemas más — el fix de contraste
+> anterior se pasó y dejó el texto DENTRO de las tarjetas casi
+> invisible (corregido, solo se tocan `--header-color`/`--arrows-color`
+> ahora, no `--text-color`), y el bloque en la ficha de producto se
+> veía apretado por estar en la columna angosta del precio (movido a
+> la sección "Aplicaciones" de ancho completo, después de "Productos
+> relacionados"). Ambos verificados con `curl` en producción. Detalle
+> en sección 44 del manual (Ola 5f).
+
 **Falta:**
-- Confirmación visual del dueño en el home y en una ficha de producto
-  — que el Cards Carousel ya se vea legible y con reseñas reales (las
-  pinta el JS en el navegador real, `curl` solo confirma que el código
-  llegó correcto).
+- Confirmación visual **final** del dueño en el home y en una ficha de
+  producto — que el conjunto se vea bien de principio a fin, no solo
+  que el código haya llegado.
 - Reasignar las 4 reseñas de producto huérfanas — ya no es urgente
   para que se vean reseñas (el Cards Carousel las muestra igual), pero
   sigue pendiente para que "Review Snippets" funcione en las fichas
