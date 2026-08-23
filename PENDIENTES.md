@@ -380,15 +380,25 @@ en la sección 42 del `MANUAL-PROYECTO.md`.
 > de reseñas" desde Judge.me. Detalle completo en la sección 42 del
 > manual (Ola 5c).
 
+> **Actualización 22 de agosto, noche:** instalado. El botón "Instalar"
+> de Judge.me resultó tener un bug (abría el editor sobre el tema Dawn
+> en borrador sin importar el tema seleccionado). Se agregó el bloque
+> "Review Snippets" a mano desde el personalizador del tema en vivo
+> (Apps → Judge.me Reviews). Verificado con `curl`: los tres productos
+> con reseñas reales ya traen el markup correcto
+> (`data-entry-point="review_snippet.js"`). Detalle en sección 42 del
+> manual (Ola 5d).
+
 **Falta:**
-- **Instalar "Fragmentos de reseñas" desde el panel de Judge.me**
-  (Widgets) — ya no es solo una verificación cruzada, es el único
-  camino que funciona para que aparezca algo.
-- Bajar `templates/product.json` vivo tras la instalación y confirmar
-  dónde quedó el App Block que Judge.me agregue.
+- Confirmación visual del dueño en una ficha con reseñas (las estrellas
+  las pinta el JS en el navegador real, `curl` no las muestra).
+- Bajar `templates/product.json` vivo y anotar el ID real del App Block
+  (para que un futuro deploy de código no lo pise sin darse cuenta).
+- Agregar el bloque a otras plantillas de producto si existen (quedó
+  solo en "Producto predeterminado").
 - Pase de contraste en `assets/brand-tokens.css` — los widgets de
-  Judge.me traen estilos para fondo claro, este sitio es oscuro.
-  Deliberadamente pendiente hasta ver el contenido real renderizado.
+  Judge.me traen estilos para fondo claro, este sitio es oscuro. Ahora
+  sí hay contenido real que ver antes de escribirlo.
 - Decisión del dueño sobre la reseña "Carrete Okuma Cascade CA-30" sin
   match en el catálogo activo (no bloquea nada).
 

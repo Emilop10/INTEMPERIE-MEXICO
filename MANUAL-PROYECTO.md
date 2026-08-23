@@ -3539,16 +3539,61 @@ pierde la instalación real) y ver dónde quedó el bloque, reubicándolo
 si Judge.me lo deja en la posición por defecto en vez de bajo el
 título o en los tabs.
 
+### Ola 5d: instalado por fin — el bloque nativo de Judge.me, a mano
+
+**22 de agosto, más tarde.** El botón "Instalar ↗" de la propia página
+de Widgets de Judge.me resultó tener un bug: sin importar qué tema
+estuviera seleccionado en su selector (incluso con "Intemperie Mexico –
+Rediseño 2026 (live)" ya elegido), siempre abría el editor de temas
+sobre **Dawn (borrador)**, tema ID `141467517005`, y encima sobre la
+plantilla de la página 404 en vez de una ficha de producto. Se detectó
+esto en dos intentos independientes con Claude en Chrome (dando los
+clics él mismo, a pedido del dueño) — el segundo intento confirmó que
+no era un error de selección, el enlace del botón está fijo.
+
+**Solución:** en vez de usar ese botón, se agregó el bloque a mano
+desde el personalizador del tema en vivo — Editar tema →
+"Agregar bloque" en la sección de producto → pestaña **Apps** → **Review
+Snippets** (de Judge.me Reviews). Colocado debajo del título, arriba de
+precio y calificación. Guardado y confirmado.
+
+**Verificado en vivo con `curl` sobre las tres fichas con reseñas
+reales** (Nakashi, Mendoza Quetzalcoatl, Blue Fox Tolten): el bloque
+trae exactamente los atributos que la Ola 5c identificó como
+faltantes —
+```html
+data-entry-point="review_snippet.js"
+data-entry-key="review-snippet-widget/main.js"
+```
+Esto confirma la causa raíz de la Ola 5c: el bloque nativo de Shopify
+(`shopify-app-block`) sí genera el contrato correcto; nuestro código
+manual (Ola 5/5b) nunca podía hacerlo porque esos valores solo los
+emite el propio backend de Judge.me al instalarse desde el
+personalizador. Los `div` de la Ola 5b (badge y listado, con
+`data-widget`) se quedan en el código — siguen vacíos e inofensivos,
+un solo bloque real de Judge.me aparece por ficha, no hay duplicados.
+
+El aviso amarillo "Falta la inserción de aplicación en el tema en
+vivo" que sigue mostrando el panel de Judge.me **no aplica** — se
+confirmó por `curl` que el Core Snippet (`jdgm-script`) sigue cargando
+en las tres fichas, el mismo app embed que ya se había guardado en la
+Ola 5b. Es un aviso desactualizado de su panel, no se tocó nada más.
+
 ### Lo que sigue pendiente
 
-- **Instalar "Fragmentos de reseñas" desde el panel de Judge.me** —
-  ahora confirmado como el único camino que funciona, no solo una
-  verificación cruzada opcional (ver Ola 5c arriba).
-- Bajar `templates/product.json` vivo tras la instalación y confirmar
-  dónde quedó el App Block; reubicarlo si hace falta.
+- **Confirmación visual del dueño**: entrar a una ficha con reseñas
+  (Nakashi, Mendoza o Blue Fox Tolten) y confirmar que ya se ven
+  estrellas/reseñas reales en pantalla — el `curl` confirma que el
+  markup correcto llegó, pero el contenido lo pinta el JS en el
+  navegador real.
+- Agregar el mismo bloque a otras plantillas de producto si existen
+  (quedó solo en "Producto predeterminado").
+- Bajar `templates/product.json` vivo y confirmar dónde quedó el App
+  Block, para que quede documentado el ID real (evita que un futuro
+  deploy de código lo pise sin darse cuenta — riesgo ya conocido de
+  este archivo).
 - **Pase de contraste en `assets/brand-tokens.css`** para los widgets
   de Judge.me contra el fondo oscuro del sitio (`scheme-1`, negro) —
-  deliberadamente diferido hasta tener el contenido real renderizado
-  en Chromium para ver qué clases emite la API, en vez de adivinar.
+  ahora sí con contenido real que ver en Chromium, en vez de adivinar.
 - Cerrar el ítem de Judge.me en `PENDIENTES.md` una vez confirmado el
   contraste correcto.
