@@ -70,6 +70,8 @@ como respaldo
 40. [Control de presupuesto: cómo poner un tope real](#40-control-de-presupuesto-cómo-poner-un-tope-real)
 41. [Auditoría de conversión: por qué 367 visitas no vendieron](#41-auditoría-de-conversión-por-qué-367-visitas-no-vendieron)
 42. [Judge.me: instalación, y por qué el metafield solo no basta](#42-judgeme-instalación-y-por-qué-el-metafield-solo-no-basta)
+43. [Judge.me: 4 reseñas huérfanas del catálogo anterior](#43-judgeme-4-reseñas-huérfanas-del-catálogo-anterior)
+44. [Cards Carousel: reseñas de tienda sin depender del match de producto](#44-cards-carousel-reseñas-de-tienda-sin-depender-del-match-de-producto)
 
 ---
 
@@ -3579,21 +3581,110 @@ confirmó por `curl` que el Core Snippet (`jdgm-script`) sigue cargando
 en las tres fichas, el mismo app embed que ya se había guardado en la
 Ola 5b. Es un aviso desactualizado de su panel, no se tocó nada más.
 
+## 43. Judge.me: 4 reseñas huérfanas del catálogo anterior
+
+**22 de agosto, noche.** Con "Review Snippets" ya instalado
+correctamente (sección 42, Ola 5d), el dueño confirmó con capturas
+reales que seguía sin verse ninguna estrella en las fichas de
+producto. Se investigó comparando los 4 productos reales que Judge.me
+tiene vinculados a sus 4 reseñas de producto contra el catálogo activo
+de Shopify — vía Claude en Chrome, entrando a cada reseña en el panel
+de Judge.me y anotando el nombre/handle exacto del producto:
+
+| Reseñador | Producto original en Judge.me | ¿Existe hoy? |
+|---|---|---|
+| Javier Valderrama | Carrete Okuma Cascade CA-30 Spinning | ❌ 404 |
+| Marco Hernandez | Mira NAKASHI 3-9×40 Iluminada con Montura 11mm | ❌ 404 |
+| Jorge Alberto López Carrillo | Combo Spinning Blue Fox Tolten 1.80m | ❌ 404 |
+| Emiliano López | Rifle Mendoza Quetzalcoatl NitroPistón 5.5mm | ❌ 404 |
+
+**Los 4 productos originales de las 4 reseñas de producto ya no
+existen** (confirmado con `curl` directo a cada handle, 404 los
+cuatro) — no era solo el caso del Okuma que ya se sabía. Quedaron
+huérfanos de una versión anterior del catálogo, antes de que se
+renombraran/reestructuraran productos. Judge.me mantiene su propio
+registro interno de esos productos como "Activo" con sus IDs viejos,
+desincronizado de Shopify.
+
+**Intentado y descartado, con evidencia de por qué no funciona:**
+- **Reasignar desde el panel de Judge.me**: no existe esa opción.
+  "Editar reseña" solo permite cambios menores de texto (título,
+  cuerpo con límite de 30 caracteres, archivos) — nunca el producto
+  vinculado. Confirmado entrando al diálogo real, no adivinado.
+- **CSV export/edit/reimport**: el asistente de Judge.me
+  ("Importación manual de reseñas") es un flujo de **alta**, no de
+  actualización — no tiene paso de "hacer match por ID y sobrescribir".
+  Reimportar un CSV con las 8 reseñas y 4 handles corregidos
+  probablemente habría duplicado a 16 reseñas en vez de corregir 8.
+  Se detectó esto leyendo los 4 pasos del asistente antes de subir
+  nada — no se llegó a ejecutar.
+- Camino que sí funcionaría sin riesgo: pedirle a soporte de Judge.me
+  que reasigne las 4 reseñas por su ID interno — quedó preparado
+  (4 IDs de reseña recolectados) pero no se usó porque apareció una
+  alternativa mejor (sección 44).
+
+## 44. Cards Carousel: reseñas de tienda sin depender del match de producto
+
+**22 de agosto, noche.** El dueño propuso rodear el problema de la
+sección 43 por completo: en vez de perseguir la reasignación exacta de
+cada reseña a su producto, mostrar un **carrusel de reseñas de tienda**
+(no atado a un producto específico) tanto en el home como en las
+fichas de producto — así ninguna reseña real queda invisible mientras
+se resuelve la reasignación (o aunque nunca se resuelva).
+
+Instalado el bloque **"Cards Carousel"** de Judge.me (evitando
+"Reviews Carousel - Legacy", la arquitectura vieja que la sección 42
+ya identificó como no funcional en esta cuenta) con el mismo método
+confiable de las Olas 5c/5d — Personalizar tema → Agregar bloque →
+Apps, nunca el botón "Instalar" del panel de Judge.me (roto, ver
+sección 42) — en dos lugares: home (antes del footer) y ficha de
+producto (después de "Review Snippets").
+
+**Verificado con `curl`, contenido real ya en el HTML del servidor**
+(no solo el contenedor vacío, como pasaba antes de entender la
+arquitectura "revamp"): `5.00 ★ (8)` — el promedio real y las 8
+reseñas de la tienda, sin filtrar por el producto de la página. Los
+atributos correctos están presentes:
+`data-entry-point="carousel_lightbox.js"`, `data-has-revamp="1"`.
+
+**Hallazgo de contraste, encontrado antes de que el dueño tuviera que
+reportarlo:** el widget trae `--header-color`/`--text-color`/
+`--arrows-color` fijos en negro (`#000000`) como estilo **inline** en
+el propio `div` — pensado para fondo claro. Se confirmó leyendo el CSS
+real del widget (`carousels.css` descargado de su CDN): el título
+"Customers are saying", el promedio de estrellas y las flechas de
+navegación **no tienen fondo propio** — solo las tarjetas individuales
+de cada reseña lo tienen (`--card-color: #F9F9F9`, clara y
+autocontenida, se deja tal cual). Ese texto/iconos quedaban
+directamente sobre el fondo negro del sitio (`scheme-1`) — negro sobre
+negro, invisible.
+
+Corregido en `assets/brand-tokens.css`: como el color problemático
+viene de un estilo inline (gana sobre cualquier regla externa sin
+`!important`), se sobreescriben esas tres variables con `!important`,
+usando el token real de texto del scheme activo de Dawn
+(`rgb(var(--color-foreground))`) — no un color inventado, así sigue
+funcionando si el scheme del sitio cambia.
+
 ### Lo que sigue pendiente
 
-- **Confirmación visual del dueño**: entrar a una ficha con reseñas
-  (Nakashi, Mendoza o Blue Fox Tolten) y confirmar que ya se ven
-  estrellas/reseñas reales en pantalla — el `curl` confirma que el
-  markup correcto llegó, pero el contenido lo pinta el JS en el
-  navegador real.
-- Agregar el mismo bloque a otras plantillas de producto si existen
-  (quedó solo en "Producto predeterminado").
-- Bajar `templates/product.json` vivo y confirmar dónde quedó el App
-  Block, para que quede documentado el ID real (evita que un futuro
-  deploy de código lo pise sin darse cuenta — riesgo ya conocido de
-  este archivo).
-- **Pase de contraste en `assets/brand-tokens.css`** para los widgets
-  de Judge.me contra el fondo oscuro del sitio (`scheme-1`, negro) —
-  ahora sí con contenido real que ver en Chromium, en vez de adivinar.
+- **Confirmación visual del dueño**: entrar al home y a una ficha de
+  producto y confirmar que el Cards Carousel ya se ve legible (título
+  y estrellas visibles, no negro sobre negro) — el `curl` confirma que
+  el CSS y el markup llegaron, pero hace falta la confirmación en
+  pantalla real.
+- **Reasignar las 4 reseñas de producto huérfanas** (sección 43) —
+  ya no es urgente para que se vean reseñas (el Cards Carousel las
+  muestra igual), pero sigue siendo lo correcto para que "Review
+  Snippets" funcione en las fichas específicas. El mensaje para
+  soporte de Judge.me con los 4 IDs de reseña + productos destino ya
+  está redactado, solo falta enviarlo si el dueño decide seguir ese
+  camino.
+- Agregar el bloque "Review Snippets" a otras plantillas de producto
+  si existen (quedó solo en "Producto predeterminado").
+- Bajar `templates/product.json` vivo y confirmar dónde quedaron los
+  dos App Blocks (Review Snippets + Cards Carousel), para que quede
+  documentado el ID real (evita que un futuro deploy de código los
+  pise sin darse cuenta — riesgo ya conocido de este archivo).
 - Cerrar el ítem de Judge.me en `PENDIENTES.md` una vez confirmado el
   contraste correcto.

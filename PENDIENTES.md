@@ -389,18 +389,35 @@ en la sección 42 del `MANUAL-PROYECTO.md`.
 > (`data-entry-point="review_snippet.js"`). Detalle en sección 42 del
 > manual (Ola 5d).
 
+> **Actualización 22 de agosto, más noche:** con "Review Snippets" ya
+> instalado, seguía sin verse nada — resultó que **los 4 productos
+> originales de las 4 reseñas de producto ya no existen** (404 los
+> cuatro, no solo el Okuma). Judge.me no ofrece reasignar reseñas a
+> otro producto desde su panel, y el reimport de CSV habría duplicado
+> las 8 reseñas en vez de corregirlas (detalle en sección 43 del
+> manual). Se resolvió rodeando el problema: se instaló también el
+> bloque **"Cards Carousel"** (reseñas de tienda, sin filtrar por
+> producto) en el home y en la ficha de producto — verificado con
+> `curl`, ya trae "5.00 ★ (8)" real en el HTML. Se encontró y corrigió
+> además un problema de contraste (texto negro fijo sobre el fondo
+> negro del sitio) en `assets/brand-tokens.css`. Detalle en sección 44
+> del manual (Ola 5e).
+
 **Falta:**
-- Confirmación visual del dueño en una ficha con reseñas (las estrellas
-  las pinta el JS en el navegador real, `curl` no las muestra).
-- Bajar `templates/product.json` vivo y anotar el ID real del App Block
-  (para que un futuro deploy de código no lo pise sin darse cuenta).
-- Agregar el bloque a otras plantillas de producto si existen (quedó
-  solo en "Producto predeterminado").
-- Pase de contraste en `assets/brand-tokens.css` — los widgets de
-  Judge.me traen estilos para fondo claro, este sitio es oscuro. Ahora
-  sí hay contenido real que ver antes de escribirlo.
-- Decisión del dueño sobre la reseña "Carrete Okuma Cascade CA-30" sin
-  match en el catálogo activo (no bloquea nada).
+- Confirmación visual del dueño en el home y en una ficha de producto
+  — que el Cards Carousel ya se vea legible y con reseñas reales (las
+  pinta el JS en el navegador real, `curl` solo confirma que el código
+  llegó correcto).
+- Reasignar las 4 reseñas de producto huérfanas — ya no es urgente
+  para que se vean reseñas (el Cards Carousel las muestra igual), pero
+  sigue pendiente para que "Review Snippets" funcione en las fichas
+  específicas. Mensaje para soporte de Judge.me ya redactado (sección
+  43 del manual), falta decidir si se envía.
+- Bajar `templates/product.json` vivo y anotar el ID real de los dos
+  App Blocks (Review Snippets + Cards Carousel), para que un futuro
+  deploy de código no los pise sin darse cuenta.
+- Agregar "Review Snippets" a otras plantillas de producto si existen
+  (quedó solo en "Producto predeterminado").
 
 ---
 
