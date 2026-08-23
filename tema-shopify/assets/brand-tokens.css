@@ -635,16 +635,37 @@ variant-selects .select__select {
 /* Widget "Cards Carousel" de Judge.me (Ola 5e, 22 ago 2026): trae sus
    colores fijos en negro (--header-color/--text-color/--arrows-color,
    pensados para fondo claro) como estilo inline en el propio div, así
-   que gana sobre cualquier regla externa sin !important. El título,
-   el promedio de estrellas y las flechas de navegación quedan fuera
-   de las tarjetas claras del carrusel (--card-color sigue siendo
-   claro y se deja tal cual, es autocontenido) — directo sobre el
-   fondo negro del sitio, texto negro sobre negro, invisible. Se
-   reasignan esas variables al color de texto real del scheme activo
-   de Dawn (rgb(var(--color-foreground))), no a un color inventado,
-   para que siga funcionando si el scheme cambia. */
+   que gana sobre cualquier regla externa sin !important. El título y
+   las flechas de navegación quedan fuera de las tarjetas claras del
+   carrusel (--card-color sigue siendo claro y se deja tal cual, es
+   autocontenido) — directo sobre el fondo negro del sitio, texto
+   negro sobre negro, invisible. Se reasignan esas dos variables al
+   color de texto real del scheme activo de Dawn
+   (rgb(var(--color-foreground))), no a un color inventado, para que
+   siga funcionando si el scheme cambia.
+
+   OJO: --text-color NO se toca aquí (bug real de la primera versión
+   de este fix, corregido el mismo día al verlo en pantalla) — Judge.me
+   reusa esa misma variable para el texto DENTRO de cada tarjeta clara
+   (nombre del reseñador, cuerpo de la reseña). Si se pone clara ahí
+   también, el texto queda casi blanco sobre una tarjeta casi blanca:
+   ilegible por el motivo opuesto. --text-color se deja en su valor
+   original (#000000, correcto sobre --card-color claro). */
 .jdgm-cards-carousel {
   --header-color: rgb(var(--color-foreground)) !important;
-  --text-color: rgb(var(--color-foreground)) !important;
   --arrows-color: rgb(var(--color-foreground)) !important;
+}
+
+/* Espacio de respiro: la sección "Aplicaciones" que aloja el bloque
+   (tema-shopify/sections/apps.liquid) es la sección genérica de
+   Shopify para app blocks — no trae padding propio (a diferencia de
+   las secciones nativas de Dawn, que sí tienen settings de
+   padding_top/padding_bottom). Sin esto, el carrusel queda pegado
+   directo contra lo que esté arriba (el hero de la home, en este
+   caso) y contra el footer abajo. Se apunta por :has() a cualquier
+   sección que contenga el carrusel, en vez del ID de sección
+   autogenerado por Judge.me (cambia si se reinstala el bloque). */
+.shopify-section:has(.jdgm-cards-carousel) {
+  padding-top: 56px;
+  padding-bottom: 56px;
 }
