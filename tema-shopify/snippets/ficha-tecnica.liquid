@@ -1,0 +1,73 @@
+{%- comment -%}
+  Ficha técnica del producto (Ola 7, 24 ago 2026). Lee un único
+  metafield de lista de texto de una línea, `custom.especificaciones`,
+  con una entrada por dato en formato "Etiqueta: valor" — ej. "Peso:
+  2.4 kg", "Calibre: 5.5 mm", "Largo: 1.80 m".
+
+  Se eligió una sola lista de texto (no varios metafields sueltos de
+  peso/largo/calibre, ni un metaobject) porque el catálogo es
+  heterogéneo — cañas, miras, rifles, municiones no comparten esquema
+  — y quien captura los datos es una persona en el admin, no un
+  script: una definición sola, campos arbitrarios por producto,
+  captura tan rápida como escribir. Tampoco un metafield rich text
+  único: no se puede renderizar como tabla de dos columnas y produce
+  formato inconsistente entre productos.
+
+  Requiere `product`. Si el metafield está vacío no imprime NADA — la
+  mayoría del catálogo (~380 de ~415 productos) no tiene datos
+  todavía y no debe quedar un hueco ni un encabezado sobre una tabla
+  vacía.
+
+  Se renderiza desde sections/main-product.liquid, FUERA del `case`
+  de bloques y sin tocar templates/product.json — ese archivo no se
+  puede modificar desde el repo porque el vivo tiene los App Blocks
+  de Judge.me que el repo no conoce, y scripts/deploy-shopify.py
+  sobrescribe templates/*.json en cada push. Mismo motivo y mismo
+  patrón que el widget de reseñas de Judge.me de ese archivo, justo
+  después de este bloque.
+{%- endcomment -%}
+{%- liquid
+  assign specs = product.metafields.custom.especificaciones.value
+-%}
+{%- if specs != blank and specs.size > 0 -%}
+  <div class="im-ficha">
+    <h2 class="im-ficha__title">Ficha técnica</h2>
+    <dl class="im-ficha__list">
+      {%- for fila in specs -%}
+        {%- liquid
+          assign texto = fila | strip
+          assign partes = texto | split: ':'
+        -%}
+        {%- if partes.size > 1 -%}
+          {%- comment -%}
+            `split: ':'` parte en TODOS los dos puntos, y hay valores
+            que los llevan (ej. "Relación de recuperación: 5.2:1").
+            La etiqueta es solo partes.first; el valor se reconstruye
+            quitando ese prefijo del texto original, no con un join.
+          {%- endcomment -%}
+          {%- assign etiqueta = partes.first | strip -%}
+          {%- assign valor = texto | remove_first: partes.first | remove_first: ':' | strip -%}
+          {%- if valor != blank -%}
+            <div class="im-ficha__row">
+              <dt class="im-ficha__key">{{ etiqueta }}</dt>
+              <dd class="im-ficha__val">{{ valor }}</dd>
+            </div>
+          {%- else -%}
+            <div class="im-ficha__row im-ficha__row--full">
+              <dd class="im-ficha__val">{{ texto }}</dd>
+            </div>
+          {%- endif -%}
+        {%- elsif texto != blank -%}
+          {%- comment -%}
+            Sin dos puntos: quien capturó no siguió el formato "Etiqueta:
+            valor". Se muestra igual, a ancho completo, en vez de perder
+            el dato.
+          {%- endcomment -%}
+          <div class="im-ficha__row im-ficha__row--full">
+            <dd class="im-ficha__val">{{ texto }}</dd>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </dl>
+  </div>
+{%- endif -%}

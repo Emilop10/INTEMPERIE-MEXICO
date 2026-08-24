@@ -779,3 +779,58 @@ variant-selects .select__select {
   opacity: 0.5;
   cursor: default;
 }
+
+/* Ficha técnica del producto (Ola 7, 24 ago): snippets/ficha-tecnica.liquid.
+   Dos columnas etiqueta/valor con divisores del mismo peso que el
+   resto de la ficha. Los valores van en mono: son medidas y calibres,
+   se leen mejor alineados. */
+.im-ficha {
+  margin-top: 26px;
+  padding-top: 20px;
+  border-top: 1px solid var(--im-divider);
+}
+.im-ficha__title {
+  margin: 0 0 12px;
+  font-family: var(--font-heading-family);
+  font-weight: var(--font-heading-weight);
+  font-size: 16px;
+  letter-spacing: 0.01em;
+  color: #FFF;
+}
+.im-ficha__list {
+  margin: 0;
+  padding: 0;
+}
+.im-ficha__row {
+  display: grid;
+  grid-template-columns: minmax(110px, 38%) 1fr;
+  gap: 10px 16px;
+  padding: 9px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.im-ficha__row:last-child {
+  border-bottom: 0;
+}
+.im-ficha__row--full {
+  grid-template-columns: 1fr;
+}
+.im-ficha__key {
+  margin: 0;
+  font-family: var(--font-body-family);
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: #9B9BA3;
+}
+.im-ficha__val {
+  margin: 0;
+  font-family: var(--font-mono-family);
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: #D9D9DE;
+  overflow-wrap: anywhere;
+}
+@media screen and (max-width: 749px) {
+  .im-ficha__row {
+    grid-template-columns: minmax(96px, 42%) 1fr;
+  }
+}
