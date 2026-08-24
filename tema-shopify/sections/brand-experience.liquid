@@ -89,9 +89,27 @@
           {%- endunless -%}
 
           {%- if col != blank and col.products.size > 0 -%}
+            {%- comment -%}
+              Ola 6 (24 ago 2026): antes este loop tomaba los primeros 5
+              productos de la colección sin importar existencia — el
+              Rapala CountDown quedó destacado en el home estando
+              "Agotado" (hallazgo verificado del recorrido de un
+              comprador simulado). Ahora recorre hasta 20 productos de
+              la colección buscando 5 disponibles de verdad; si la
+              colección trae menos de 5 disponibles entre los primeros
+              20, se muestran los que haya (no se rompe el layout).
+            {%- endcomment -%}
             <div class="chapter-feature-pool" data-rotate-grid data-show="1">
-              {%- for product in col.products limit: 5 -%}
+              {%- assign chapter_feature_shown = 0 -%}
+              {%- for product in col.products limit: 20 -%}
+                {%- if chapter_feature_shown >= 5 -%}
+                  {%- break -%}
+                {%- endif -%}
+                {%- unless product.available -%}
+                  {%- continue -%}
+                {%- endunless -%}
                 {%- if product.featured_image -%}
+                  {%- assign chapter_feature_shown = chapter_feature_shown | plus: 1 -%}
                   <a class="chapter-feature" href="{{ product.url }}">
                     <div class="chapter-feature-media">
                       {{ product.featured_image | image_url: width: 1000 | image_tag: loading: 'lazy', alt: product.featured_image.alt }}
