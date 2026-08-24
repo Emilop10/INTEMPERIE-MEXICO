@@ -34,11 +34,23 @@ quitar esos productos para recuperarlo.
 
 ---
 
+**🔴 El más urgente de todos, encontrado el 24 de agosto:** revisando
+los 3 puntos bloqueantes antes de la siguiente campaña, salió que
+**la tienda lleva 6+ meses sin una sola compra completada** — 7
+personas llegaron a la pantalla de pago, cero llegaron a Compra.
+Nunca se había probado el checkout de principio a fin (todas las
+auditorías anteriores se detuvieron a propósito antes de pagar, para
+no generar cargos reales). El dueño va a hacer una compra de prueba
+real con su propia tarjeta/PayPal para confirmar si el checkout
+completa y si el pixel de Compra se dispara — **nada más importa hasta
+que esto se cierre.** Detalle completo en la sección 46 del manual.
+
 **Abiertos ahora mismo:** cerrar los productos de
 [`PRODUCTOS-PENDIENTES.md`](./PRODUCTOS-PENDIENTES.md), TikTok cuando
-exista, la decisión sobre Shopify Payments (sección 30 del manual), y
-completar el recorrido interactivo del checkout que quedó pendiente en
-la auditoría de conversión (sección 41).
+exista, y la decisión sobre Shopify Payments (sección 30 del manual).
+(El recorrido interactivo del checkout que aparecía aquí como
+pendiente ya se completó — ver "Estado al 22 de agosto" en la sección
+45 del manual; esta línea estaba desactualizada.)
 
 **Resuelto el 13-15 de agosto:** señales de confianza en la homepage
 ([3](#3-señales-de-confianza-ausentes--resuelto-13-agosto-2026)), el deploy
@@ -472,15 +484,24 @@ duplicado que apareció al unificar, corregido y verificado con
 **Sigue abierto, diferido a propósito — requiere decisión o alcance aparte:**
 - Cross-sell bajo la barra "te faltan $X" del carrito (falta una
   colección curada de productos baratos).
-- 5 de 9 combos agotados — decisión de reabastecimiento/compra.
-- Verificar que el evento Purchase de Meta se dispare de verdad (el
-  pago sale del sitio vía PayPal/Mercado Pago) — investigación técnica
-  aparte, no un arreglo de una tarde.
 - Fichas técnicas reales (medidas, peso, calibre) — proyecto de
   contenido, empezar por los ~35 productos del conjunto de Meta.
 - 2-3 combos nuevos de $899-$1,800 — decisión de catálogo/compra.
-- Meses sin intereses/OXXO visibles — verificar primero qué ofrece de
-  verdad Mercado Pago Checkout Pro en esta cuenta.
+- Mostrar MSI/OXXO de forma visible en ficha y carrito — **ya
+  confirmado que están disponibles de verdad** (sección 46 del
+  manual), solo falta implementarlo en el sitio.
+
+**Los 3 puntos bloqueantes antes de la siguiente campaña, revisados el
+24 de agosto (detalle en la sección 46 del manual):**
+- 🔴 **Verificar que el evento Purchase de Meta se dispare** — llevó a
+  un hallazgo mucho más grande: **cero compras completadas en 6+
+  meses**, el checkout nunca se probó de principio a fin. El dueño va
+  a hacer una compra de prueba real para confirmarlo. Bloquea
+  cualquier campaña nueva hasta que se cierre.
+- ✅ 5 de 9 combos agotados — el dueño ya tiene plan de reabastecerlos,
+  se quedan publicados tal cual.
+- ✅ MSI/OXXO — confirmado con evidencia real del checkout que sí están
+  disponibles.
 
 ---
 

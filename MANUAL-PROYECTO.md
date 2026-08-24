@@ -73,6 +73,7 @@ como respaldo
 43. [Judge.me: 4 reseñas huérfanas del catálogo anterior](#43-judgeme-4-reseñas-huérfanas-del-catálogo-anterior)
 44. [Cards Carousel: reseñas de tienda sin depender del match de producto](#44-cards-carousel-reseñas-de-tienda-sin-depender-del-match-de-producto)
 45. [Ola 6: punch list post-auditoría con agentes especializados](#45-ola-6-punch-list-post-auditoría-con-agentes-especializados)
+46. [Cero compras en 6 meses: el hallazgo que nadie había medido](#46-cero-compras-en-6-meses-el-hallazgo-que-nadie-había-medido)
 
 ---
 
@@ -3947,3 +3948,78 @@ Corrido `graphify update .` sobre `tema-shopify/` tras el cambio de
 — el fix fue lógica de filtrado dentro de un `for` ya existente, no un
 componente nuevo. Consistente con el mismo patrón ya documentado en la
 sección 21 para las Olas 1-5g.
+
+## 46. Cero compras en 6 meses: el hallazgo que nadie había medido
+
+**24 de agosto de 2026.** Antes de lanzar cualquier campaña nueva, se
+revisaron los 3 puntos bloqueantes de la Ola 6 (sección 45). El punto
+1 — "verificar que el evento Purchase de Meta se dispare" — llevó a
+un hallazgo mucho más grande que un problema de configuración de
+píxel.
+
+### Lo que se encontró
+
+Consulta de `insights` a nivel de cuenta con `date_preset: maximum`
+(toda la vida de la cuenta, 17 de febrero al 23 de agosto de 2026,
+$2,525.61 MXN gastados en total): **40 agregar-al-carrito, 23 inicios
+de checkout, 7 personas que llegaron a `add_payment_info` (pantalla de
+pago) — y cero acciones de tipo compra, en ningún nombre
+(`purchase`, `omni_purchase`, `offsite_conversion.fb_pixel_purchase`),
+en más de 6 meses.**
+
+Se le preguntó directamente al dueño si alguna vez ha habido un pedido
+real completado en la tienda (aunque fuera antes de esta campaña, en
+febrero-abril) — **la respuesta fue no, nunca.** Esto descarta la
+hipótesis de "el pixel está roto pero sí hay ventas": es consistente
+con los datos de Meta. El problema no es (solo) medición — es que el
+checkout nunca se ha probado completo.
+
+### Por qué nadie lo había detectado antes
+
+La auditoría de checkout de la Parte A de este mismo plan (secciones
+A2/A3, "Estado al 22 de agosto") se detuvo **a propósito antes de
+pagar de verdad**, para no generar cargos reales — tanto en la parte
+que hice yo por HTTP/Chromium como en el recorrido que hizo el dueño
+con Claude en Chrome. Se verificó todo hasta la pantalla de pago:
+envío correcto, PayPal y Mercado Pago en español, sin fricciones
+raras — y con eso se declaró "checkout sano". Pero **nunca se
+confirmó qué pasa después de dar clic en "Pagar"**: si el cobro se
+procesa, si Shopify crea el pedido, si el pixel de Compra se dispara,
+si llega el correo de confirmación. Es la única etapa del embudo que
+nadie había probado de principio a fin — con toda intención, para no
+gastar dinero real, pero con el costo de dejar sin verificar la parte
+más importante.
+
+### Decisión y siguiente paso
+
+Se le propuso al dueño tres caminos (compra de prueba real hecha por
+mí con datos que él me diera, hecha por Claude en Chrome, o investigar
+configuración sin gastar dinero primero). **Eligió hacerla él mismo**,
+con su propia tarjeta/PayPal, en un producto barato — y avisar el
+resultado. En cuanto se confirme, se revisa en Meta si el evento de
+Compra llegó.
+
+**Este hallazgo cambia la prioridad de todo lo demás.** Antes de sacar
+cualquier campaña nueva, evolucionar la actual, o invertir en
+cualquiera de los pendientes diferidos de la sección 45 (fichas
+técnicas, combos nuevos, cross-sell), lo único que importa es
+confirmar que un cliente real puede completar una compra de principio
+a fin. Todo el trabajo de conversión de las Olas 1-6 es, en el mejor
+de los casos, necesario pero no comprobado suficiente hasta que este
+punto se cierre.
+
+### Los otros 2 puntos bloqueantes, resueltos en la misma revisión
+
+- **MSI y OXXO sí están disponibles de verdad** en el checkout de
+  Mercado Pago — confirmado con evidencia real, no supuesta: el HTML
+  guardado de la auditoría de checkout anterior
+  (`A2-paso5-checkout.html`) trae
+  `"paymentBrands":["mercadopago","visa","master","american_express","oxxo","maestro","visaelectron","seveneleven"]`
+  y componentes activos de meses sin intereses
+  (`MsiInstallmentsSelect`, `InstallmentsModal`,
+  `useVaultedMsiInstallments`). Queda pendiente, no bloqueante,
+  mostrarlo visiblemente en la ficha/carrito (ya estaba en la lista de
+  diferidos de la sección 45, punto 10).
+- **Los 5 de 9 combos agotados se quedan publicados tal cual** — el
+  dueño ya tiene plan de reabastecerlos pronto. No se toca nada por
+  código ni se despublica.
