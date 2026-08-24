@@ -74,6 +74,7 @@ como respaldo
 44. [Cards Carousel: reseñas de tienda sin depender del match de producto](#44-cards-carousel-reseñas-de-tienda-sin-depender-del-match-de-producto)
 45. [Ola 6: punch list post-auditoría con agentes especializados](#45-ola-6-punch-list-post-auditoría-con-agentes-especializados)
 46. [Cero compras en 6 meses: el hallazgo que nadie había medido](#46-cero-compras-en-6-meses-el-hallazgo-que-nadie-había-medido)
+47. [Ola 7: cerrar los 4 pendientes diferidos](#47-ola-7-cerrar-los-4-pendientes-diferidos-24-ago)
 
 ---
 
@@ -4101,6 +4102,126 @@ de calidad del dato, no de que el evento exista.
 3. Evento Purchase de Meta — confirmado que se dispara con calidad 9.3/10.
 
 No queda ningún bloqueante identificado para lanzar o escalar la
-siguiente campaña. Los pendientes restantes son todos los diferidos
-de la sección 45 (cross-sell, fichas técnicas, combos nuevos,
-MSI/OXXO visibles) — mejoras, no bloqueos.
+siguiente campaña. Los pendientes restantes eran los diferidos de la
+sección 45 (cross-sell, fichas técnicas, combos nuevos, MSI/OXXO
+visibles) — mejoras, no bloqueos, cerrados a su vez en la Ola 7
+(sección 47, abajo).
+
+## 47. Ola 7: cerrar los 4 pendientes diferidos (24 ago)
+
+Con la sección 46 cerrada, el dueño pidió explícitamente "acabemos con
+todos los pendientes" — los 4 diferidos de la Ola 6 (sección 45):
+MSI/OXXO visibles, cross-sell en el carrito, fichas técnicas y combos
+nuevos.
+
+### Corrección de un hallazgo previo
+
+La sección 46 dio por confirmado que "MSI y OXXO están disponibles",
+citando `useVaultedMsiInstallments`/`MsiInstallmentsSelect` en el HTML
+del checkout guardado. **Esa evidencia era débil**: esos bundles de JS
+los precarga Shopify en todos los checkouts sin importar el gateway,
+y `shop-pay-installments` es Shop Pay, que no opera en México. Como
+Mercado Pago es *offsite*, los MSI se ofrecen dentro de su propia
+página, que la auditoría nunca vio. Lo que sí está verificado con
+evidencia dura, del `paymentBrands` que declara el propio gateway:
+`["mercadopago","visa","master","american_express","oxxo","maestro","visaelectron","seveneleven"]`
+— tarjetas, OXXO y 7-Eleven. Los MSI quedaron confirmados aparte, por
+el dueño directamente ("sí tiene meses sin intereses, pago con
+cualquier tarjeta y además pago en efectivo en diferentes puntos").
+
+### Reparto de capacidades verificado en este entorno
+
+No hay `SHOPIFY_ADMIN_TOKEN` en este entorno de ejecución (solo
+`META_ACCESS_TOKEN`/`META_AD_ACCOUNT_ID`) — no se pueden crear
+colecciones, productos ni metafields por API. Sí se pueden modificar
+archivos de tema: el workflow `.github/workflows/deploy-shopify.yml`
+corre en push de cualquier rama que toque `tema-shopify/`. Por eso
+los bloques 1-3 son código directo, y el bloque 4 (combos) queda como
+documento para Claude en Chrome o el dueño.
+
+### Bloque 1 — MSI, tarjetas y efectivo visibles
+
+`snippets/pagos-aceptados.liquid` ya se renderiza en los 3 puntos de
+decisión (ficha, cajón del carrito, `/cart`) — un solo archivo cubrió
+todo, sin tocar ningún `templates/*.json`. Se agregó "También en
+efectivo: OXXO y 7-Eleven" (siempre visible) y "Meses sin intereses
+con tarjetas participantes" (condicional a un nuevo setting
+`msi_minimo_centavos`, default $300, porque no se conoce el mínimo
+real que exige Mercado Pago para ofrecer MSI — se prefirió un umbral
+propio conservador a prometerlo en un ticket bajo). Verificado en
+vivo: ficha ≥$500 muestra ambas líneas, ficha <$300 solo efectivo.
+
+### Bloque 2 — Cross-sell bajo la barra de envío gratis
+
+El bloqueo histórico ("no existe una colección curada de productos
+baratos") se disolvió: `sections/related-products.liquid` ya resuelve
+producto→departamento→subcategorías con handles reales; el nuevo
+snippet `cross-sell-carrito.liquid` reusa ese mismo mapa. Sugiere
+hasta 3 productos disponibles, no repetidos, con precio entre 55%-125%
+de la brecha hacia el umbral de envío gratis (para que de verdad la
+cierren, ni un señuelo de $150 para una brecha de $489 ni un rifle de
+$8,000 para $200).
+
+**Corrección de diseño encontrada antes de escribir código** (un
+agente de planeación lo detectó): un botón dentro de un `<form>` se
+habría roto en `/cart`, porque la barra de envío ya vive dentro de
+`<form id="cart">` y el navegador descarta un `<form>` anidado.
+Solución: `<button data-imx-add="VARIANT_ID">` sin form, con un
+listener delegado en `document` (`assets/imx-cross-sell.js`) en vez de
+un script inline — el cajón del carrito se re-renderiza con
+`innerHTML =`, que no ejecuta `<script>` inyectados.
+
+Verificado en vivo con un carrito real (cookie jar + `cart/add.js`):
+brecha calculada correcta ($776 con carrito de $23), 3 sugerencias del
+departamento correcto y en rango de precio, deduplicado confirmado (el
+producto agregado deja de sugerirse), y desaparición confirmada al
+cruzar el umbral real ($1,221, clase `--achieved` aplicada). Los 22
+handles de subcategoría se verificaron uno por uno con `curl` antes
+del push — todos 200.
+
+### Bloque 3 — Ficha técnica
+
+Un solo metafield, `custom.especificaciones` (lista de texto, una
+línea "Etiqueta: valor" por dato) en vez de metafields sueltos o un
+metaobject: el catálogo es heterogéneo (cañas, miras, rifles,
+municiones no comparten esquema) y quien captura es una persona en el
+admin, no un script. Se renderiza en `sections/main-product.liquid`
+**fuera** del `case` de bloques, mismo patrón y mismo motivo que el
+widget de Judge.me — no se puede tocar `templates/product.json` desde
+el repo. Sin el metafield poblado no imprime nada; verificado en vivo
+que un producto sin datos da 0 coincidencias de `im-ficha` y cero
+errores de Liquid.
+
+**Entregable adicional**: `FICHAS-TECNICAS-PENDIENTES.md`, con el
+borrador ya extraído (no inventado) de las descripciones reales de los
+35 productos del conjunto de Meta — 34 de 35 con datos completos, 1
+(Binocular Kampak Visión Nocturna) con dos datos marcados `[FALTA]`
+porque no están publicados en ningún lado del catálogo.
+
+### Bloque 4 — Combos nuevos
+
+**Entregable**: `COMBOS-NUEVOS-PENDIENTES.md`. Hallazgo que cambió el
+planteamiento: de los 9 combos que ya vende la tienda, 5 están
+agotados como SKU, pero sus componentes por separado sí están en
+stock — el pendiente pasa de ser "decisión de compra" a "alta de
+producto" desde inventario existente. Tres combos propuestos con
+componentes verificados disponibles hoy (Okuma Revenger 8'0" —
+literalmente el combo agotado, rearmable; Blue Fox Power Boat +
+Ranco; Rapala Corux + Gimbel + caja), todos con precio de combo por
+debajo de la suma de partes, siguiendo el patrón de los combos
+existentes.
+
+### Cierre de la Ola 7
+
+Bloques 1-3 desplegados y verificados en vivo con `curl` (cache-busting
+confirmado, cero errores de Liquid, comportamiento correcto en los
+casos límite de cada uno). `graphify update .` corrido tras el cierre:
+461 nodos, 705 aristas, 41 comunidades (sube de 460/705/40 por los 2
+snippets nuevos). Bloque 4 entregado como documento, pendiente de alta
+por el dueño o Claude en Chrome — igual que la captura de datos del
+bloque 3.
+
+Con esto, los 4 pendientes diferidos de la Ola 6 quedan cerrados o
+con su siguiente paso ya resuelto y documentado. No queda ningún
+pendiente sin un dueño claro (código terminado, o documento listo
+para ejecutar del lado del dueño).

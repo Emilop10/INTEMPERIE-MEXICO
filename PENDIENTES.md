@@ -483,15 +483,26 @@ inventario honesto activado, política de envío con los montos reales,
 duplicado que apareció al unificar, corregido y verificado con
 `curl`).
 
-**Sigue abierto, diferido a propósito — requiere decisión o alcance aparte:**
-- Cross-sell bajo la barra "te faltan $X" del carrito (falta una
-  colección curada de productos baratos).
-- Fichas técnicas reales (medidas, peso, calibre) — proyecto de
-  contenido, empezar por los ~35 productos del conjunto de Meta.
-- 2-3 combos nuevos de $899-$1,800 — decisión de catálogo/compra.
-- Mostrar MSI/OXXO de forma visible en ficha y carrito — **ya
-  confirmado que están disponibles de verdad** (sección 46 del
-  manual), solo falta implementarlo en el sitio.
+**Los 4 diferidos, cerrados o con siguiente paso resuelto el 24 de
+agosto (Ola 7, sección 47 del manual):**
+- ✅ **MSI/OXXO visibles** — código desplegado y verificado. La ficha
+  y el carrito ya muestran "También en efectivo: OXXO y 7-Eleven" y,
+  en productos ≥$300, "Meses sin intereses con tarjetas
+  participantes".
+- ✅ **Cross-sell bajo la barra de envío gratis** — código desplegado
+  y verificado con carrito real: sugiere hasta 3 productos del mismo
+  departamento, disponibles, con precio que cierra la brecha, en el
+  cajón del carrito y en `/cart`.
+- 🟡 **Fichas técnicas** — mecanismo de código desplegado (metafield
+  `custom.especificaciones`). Falta que el dueño (o Claude en Chrome)
+  cree la definición del metafield y pegue los datos — borrador ya
+  extraído (sin inventar nada) en
+  [`FICHAS-TECNICAS-PENDIENTES.md`](./FICHAS-TECNICAS-PENDIENTES.md),
+  34 de 35 productos con datos completos.
+- 🟡 **2-3 combos nuevos** — propuesta concreta con componentes ya
+  disponibles en stock (no requiere comprar inventario) en
+  [`COMBOS-NUEVOS-PENDIENTES.md`](./COMBOS-NUEVOS-PENDIENTES.md).
+  Falta la alta del producto en el admin.
 
 **Los 3 puntos bloqueantes antes de la siguiente campaña, cerrados el
 24 de agosto (detalle en la sección 46 del manual):**
