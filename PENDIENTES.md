@@ -18,7 +18,7 @@ tope de gasto), y 41 (auditoría de conversión del sitio):
 | Campaña | `IMX \| Ventas \| Pesca y Óptica \| Catálogo dinámico \| Ago26` |
 | Estado | **Activa**, entregando |
 | Conjunto vigente | optimiza a `CONTENT_VIEW` (no a Compra — con este presupuesto, optimizar a Compra nunca sale de aprendizaje), $55/día |
-| Conjunto de productos | 72 productos ≥$300, en stock, sin accesorios de arma (no 324) |
+| Conjunto de productos | 35 productos ≥$500, en stock, sin accesorios de arma (no 324) — subido de $300 el 24 de agosto, ver sección 45 del manual |
 | Tope de gasto | a nivel de **cuenta**, se ajusta cada semana — ver sección 40 del manual |
 | Resultado a la fecha | 0 compras, 1 carrito real en 6 días — la sección 41 documenta la auditoría completa de por qué |
 
@@ -50,6 +50,18 @@ ficha de producto, carrito, umbral de envío único, métodos de pago
 visibles ([sección 41 del manual](./MANUAL-PROYECTO.md)) — e
 integración de reseñas reales de Judge.me
 ([9](#9-judgeme-reseñas-reales--resuelto-23-agosto-2026)).
+
+**Resuelto el 24 de agosto (Ola 6):** con dos agentes especializados
+(Persona Walkthrough + Paid Social Strategist), verificado hallazgo
+por hallazgo antes de actuar — piso de precio del conjunto de Meta
+subido de $300 a $500 (72→35 productos, con datos reales de la API en
+vez de la recomendación cruda del agente que hubiera dejado solo 23),
+y productos agotados ya no se destacan en el home. Ver sección 45 del
+manual, incluye un pendiente propio no reportado por ningún agente
+(`inventory_threshold` causando "Bajas existencias" en el 87% del
+catálogo) y una alerta de drift evitada a tiempo (casi se sube
+`templates/product.json` sin los App Blocks de Judge.me que el
+personalizador agregó hoy).
 
 > 📌 **Nota de trabajo (4 de agosto):** al redactar prompts para Claude en
 > Chrome, ser conciso y pedirle explícitamente que si no encuentra algo en
@@ -444,6 +456,38 @@ en la sección 42 del `MANUAL-PROYECTO.md`.
 - Bajar `templates/product.json` vivo y anotar el ID real de los dos
   App Blocks (Review Snippets + Cards Carousel), para que un futuro
   deploy de código no los pise sin darse cuenta.
+
+---
+
+## 10. Ola 6 — punch list post-auditoría (con agentes especializados)
+
+Detalle completo en la sección 45 del `MANUAL-PROYECTO.md`. Resuelto
+en código/API y verificado: productos agotados fuera del escaparate
+del home, piso de precio de Meta subido a $500 (35 productos).
+
+**Vía Claude en Chrome (pendiente):**
+- Activar "Mostrar cantidad de inventario" en el bloque Inventario del
+  personalizador — arregla el mismo problema que iba a arreglar por
+  código, sin el riesgo de pisar los App Blocks de Judge.me.
+- Reescribir `/policies/shipping-policy` con los montos reales
+  ($799/$189) y unificar los 5 correos de contacto a 3
+  (`ventas@`, `soporte@`, `facturacion@`) — el dueño no tuvo
+  preferencia sobre cuál usar, así que el criterio de cuáles mantener
+  fue mío; corregible si no coincide con cómo opera de verdad la
+  tienda.
+
+**Diferido, requiere decisión o alcance aparte:**
+- Cross-sell bajo la barra "te faltan $X" del carrito (falta una
+  colección curada de productos baratos).
+- 5 de 9 combos agotados — decisión de reabastecimiento/compra.
+- Verificar que el evento Purchase de Meta se dispare de verdad (el
+  pago sale del sitio vía PayPal/Mercado Pago) — investigación técnica
+  aparte, no un arreglo de una tarde.
+- Fichas técnicas reales (medidas, peso, calibre) — proyecto de
+  contenido, empezar por los ~35 productos del conjunto de Meta.
+- 2-3 combos nuevos de $899-$1,800 — decisión de catálogo/compra.
+- Meses sin intereses/OXXO visibles — verificar primero qué ofrece de
+  verdad Mercado Pago Checkout Pro en esta cuenta.
 
 ---
 

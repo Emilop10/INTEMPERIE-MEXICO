@@ -72,6 +72,7 @@ como respaldo
 42. [Judge.me: instalación, y por qué el metafield solo no basta](#42-judgeme-instalación-y-por-qué-el-metafield-solo-no-basta)
 43. [Judge.me: 4 reseñas huérfanas del catálogo anterior](#43-judgeme-4-reseñas-huérfanas-del-catálogo-anterior)
 44. [Cards Carousel: reseñas de tienda sin depender del match de producto](#44-cards-carousel-reseñas-de-tienda-sin-depender-del-match-de-producto)
+45. [Ola 6: punch list post-auditoría con agentes especializados](#45-ola-6-punch-list-post-auditoría-con-agentes-especializados)
 
 ---
 
@@ -3767,3 +3768,144 @@ bloqueante):
   documentado el ID real y un futuro deploy de código no los pise sin
   darse cuenta — riesgo ya conocido de este archivo (sección 6/34 del
   manual).
+
+## 45. Ola 6: punch list post-auditoría con agentes especializados
+
+**23-24 de agosto de 2026.** Con Judge.me cerrado, el dueño pidió usar
+agentes especializados para encontrar qué más hacía falta, basándose
+en el hallazgo central de toda la auditoría (94% del gasto a productos
+de ticket bajo con envío caro). Se lanzaron dos agentes en paralelo:
+
+- **Persona Walkthrough Specialist** — simuló el recorrido cognitivo
+  de un comprador mexicano real ("Ricardo, 43, Cuernavaca") por el
+  sitio en vivo, usando marcos LIFT/Cialdini/Fogg.
+- **Paid Social Strategist** — analizó la estrategia de anuncios y
+  catálogo de Meta dado el problema de AOV bajo.
+
+**Regla seguida, como con cualquier reporte de agente en este
+proyecto: nada se acepta sin verificar.** Varios hallazgos necesitaron
+corrección antes de actuar sobre ellos:
+
+- El agente reportó "100% de productos con Bajas existencias" sobre
+  una muestra de 5 — se repitió con una muestra aleatoria real de 15 y
+  dio **87%** (13/15). Sigue siendo grave, pero el número correcto es
+  otro.
+- El agente reportó "3 correos de contacto distintos" — al revisar
+  las 4 páginas de políticas (no solo las 2 que él miró), son
+  **5 distintos**: `ventas@`, `soporte@`, `facturacion@`, `pedidos@`,
+  `contacto@intemperiemexico.com`.
+- La recomendación del Paid Social Strategist de subir el piso de
+  precio del conjunto de Meta a $799 se probó contra el catálogo real
+  vía API antes de aceptarla — a $799 solo quedan **23 productos**
+  (bajando de 72), un recorte del 68% que arriesgaba el rendimiento
+  del catálogo dinámico. Se probaron los cortes intermedios
+  ($500→35, $700→24 — este último ya descartado en la reconstrucción
+  de la sección 38 por "muy poco catálogo") y el dueño eligió **$500**
+  con los números reales en mano, no la recomendación cruda del
+  agente.
+
+### Hallazgo propio, no reportado por ningún agente
+
+**`inventory_threshold: 3`** (configurado en la Ola 1, sección 41) es
+la causa raíz de que "Bajas existencias" apareciera en el 87% del
+catálogo real. El stock de esta tienda vive mayormente en ≤3 unidades
+por SKU (negocio chico, muchos SKUs), así que un umbral pensado para
+señalar urgencia real terminó disparándose casi siempre — la señal se
+volvió ruido. Es un problema que causamos nosotros mismos en una ola
+anterior, no algo preexistente del sitio.
+
+### Ejecutado directamente, verificado en vivo
+
+**1. Productos agotados fuera del escaparate del home.**
+`sections/brand-experience.liquid` armaba la sección "chapter-feature-pool"
+tomando los primeros 5 productos de la colección sin filtrar
+disponibilidad — el Rapala CountDown 07 apareció destacado en la
+sección Pesca del home estando agotado (confirmado por el agente y
+verificado de forma independiente). Se corrigió el loop para recorrer
+hasta 20 productos de la colección buscando 5 disponibles de verdad
+(`unless product.available … continue`). Desplegado y verificado: los
+4 productos que ahora aparecen destacados en Pesca están disponibles
+(`available: true` en `products.json`), el Rapala ya no es el primero.
+
+Nota de proceso: mi primera verificación post-deploy dio un falso
+positivo — grepear el texto "Agotado" en el HTML de los nuevos
+destacados lo encontró en los 4, y pensé que el fix había fallado.
+Era el mismo patrón ya documentado en este proyecto (como el enlace
+"Ver todos los detalles"): el badge `price__badge-sold-out` de Dawn
+vive siempre en el DOM, oculto por CSS salvo que el producto esté de
+verdad agotado. La fuente correcta es el campo `available` de
+`products.json`, no un grep de texto — con esa fuente, los 4
+productos están disponibles.
+
+**2. Piso de precio del conjunto de Meta a $500.** Con el token de
+Meta disponible en este entorno, se actualizó el `filter` del
+`product_set` `1455189226500365` de `price_amount.gte: 30000` a
+`50000` (centavos) vía API directa. Verificado con una llamada de
+lectura inmediata: el conjunto pasó de 72 a **35 productos**, exacto
+al número calculado antes de aplicar el cambio. Se confirmó además que
+la campaña (`120249613902440175`) y el conjunto de anuncios activo
+(`120249666491620175`) siguen en `ACTIVE`/`ACTIVE` — el cambio de
+filtro no rompió nada. Se renombró el conjunto de anuncios (que decía
+"≥$300" en el nombre) para que refleje el piso real ("≥$500").
+
+**Regla de seguridad aplicada, importante para el futuro:** antes de
+tocar el bloque `inventory` de `templates/product.json` (para el punto
+de "Bajas existencias"), se descubrió que la copia local del repo
+**no tiene** los dos App Blocks de Judge.me (Review Snippets, Cards
+Carousel) que se agregaron hoy vía el personalizador — exactamente el
+riesgo de drift que el plan original advertía desde la sección 6/34.
+Subir el archivo local habría **borrado esos dos bloques de
+producción**. Se revirtió el cambio de código antes de desplegar nada
+y se decidió resolver ese punto vía Claude en Chrome directamente en
+el personalizador, no por `git push`.
+
+### Vía Claude en Chrome (pendiente al cerrar esta sección)
+
+**3. Umbral de inventario honesto**: activar `show_inventory_quantity`
+en el bloque Inventario del personalizador (mismo efecto que el ajuste
+de código revertido, sin el riesgo de pisar los App Blocks de
+Judge.me). Cambia "Bajas existencias" genérico a "Bajas existencias:
+quedan N" — honesto incluso cuando N es bajo.
+
+**4. Política de envío y unificación de correos.** Texto a pegar en
+`/policies/shipping-policy`: *"Envío gratis desde $799 MXN. Pedidos
+menores: $189 MXN tarifa fija a todo México."* — hoy la política solo
+dice que el costo "se calcula según peso y dimensiones", sin repetir
+los montos reales que sí se muestran en la ficha y el carrito.
+
+Para los correos: se le preguntó al dueño cuál usa de verdad y
+respondió sin preferencia — criterio aplicado por mí, documentado para
+que se pueda corregir después si no coincide con cómo opera de
+verdad: **tres correos con función clara** en vez de cinco sin
+patrón — `ventas@` (contacto general, hoy en privacidad/términos),
+`soporte@` (devoluciones/postventa, hoy en envíos/reembolsos),
+`facturacion@` (solo CFDI/factura). Se retiran `pedidos@` y
+`contacto@`, que duplicaban roles ya cubiertos.
+
+### Diferido a propósito — no se improvisa código a medias
+
+- **Cross-sell bajo la barra "te faltan $X" del carrito**: necesita
+  una colección curada de productos baratos para sugerir, que no
+  existe hoy. Implementarlo sin esa colección sería frágil.
+- **5 de 9 combos agotados** (los únicos productos que cruzan $799 sin
+  combinar) — decisión de reabastecimiento/compra del dueño, no de
+  código.
+- **Verificar que el evento Purchase de Meta se dispare de verdad** —
+  el pago sale del sitio (PayPal/Mercado Pago), riesgo real de que
+  nunca se registre. Investigación técnica aparte (Conversions
+  API/webhook de orden), no un arreglo de una tarde.
+- **Fichas técnicas reales** (medidas, peso, calibre) — proyecto de
+  contenido; empezar por los ~35 productos que quedan en el conjunto
+  de Meta es el candidato lógico, pero falta decidirlo con el dueño.
+- **2-3 combos nuevos de $899-$1,800** — decisión de catálogo/compra.
+- **Meses sin intereses/OXXO visibles** — falta verificar primero qué
+  ofrece de verdad Mercado Pago Checkout Pro en esta cuenta antes de
+  prometerlo en la interfaz.
+
+### Graphify
+
+Corrido `graphify update .` sobre `tema-shopify/` tras el cambio de
+`brand-experience.liquid`: sin cambios de topología (sigue 460/705/40)
+— el fix fue lógica de filtrado dentro de un `for` ya existente, no un
+componente nuevo. Consistente con el mismo patrón ya documentado en la
+sección 21 para las Olas 1-5g.
