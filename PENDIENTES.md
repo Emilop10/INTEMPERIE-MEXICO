@@ -34,16 +34,18 @@ quitar esos productos para recuperarlo.
 
 ---
 
-**🔴 El más urgente de todos, encontrado el 24 de agosto:** revisando
-los 3 puntos bloqueantes antes de la siguiente campaña, salió que
-**la tienda lleva 6+ meses sin una sola compra completada** — 7
-personas llegaron a la pantalla de pago, cero llegaron a Compra.
-Nunca se había probado el checkout de principio a fin (todas las
-auditorías anteriores se detuvieron a propósito antes de pagar, para
-no generar cargos reales). El dueño va a hacer una compra de prueba
-real con su propia tarjeta/PayPal para confirmar si el checkout
-completa y si el pixel de Compra se dispara — **nada más importa hasta
-que esto se cierre.** Detalle completo en la sección 46 del manual.
+**✅ Cerrado el 24 de agosto — el checkout sí funciona y sí se mide.**
+La revisión de los 3 puntos bloqueantes antes de la siguiente campaña
+encontró que la tienda llevaba 6+ meses sin una compra completada, y
+el dueño hizo una compra de prueba real (pedido #1005, $190.95 MXN,
+"Pagado") para confirmarlo de punta a punta. El pixel de Meta sí
+recibió el evento Compra — calidad 9.3/10, el mejor de todo el sitio —
+la Conversions API está activa ("Comparte datos" ya en Máximo). Las
+capturas que mostraban cero compras eran por tener seleccionado el
+portafolio de negocio equivocado en Meta Business Suite ("Alcampo
+Cuernavaca" en vez de "Intemperie México"), no un problema real.
+**Ningún bloqueante queda para la siguiente campaña.** Detalle
+completo en la sección 46 del manual.
 
 **Abiertos ahora mismo:** cerrar los productos de
 [`PRODUCTOS-PENDIENTES.md`](./PRODUCTOS-PENDIENTES.md), TikTok cuando
@@ -491,13 +493,15 @@ duplicado que apareció al unificar, corregido y verificado con
   confirmado que están disponibles de verdad** (sección 46 del
   manual), solo falta implementarlo en el sitio.
 
-**Los 3 puntos bloqueantes antes de la siguiente campaña, revisados el
+**Los 3 puntos bloqueantes antes de la siguiente campaña, cerrados el
 24 de agosto (detalle en la sección 46 del manual):**
-- 🔴 **Verificar que el evento Purchase de Meta se dispare** — llevó a
-  un hallazgo mucho más grande: **cero compras completadas en 6+
-  meses**, el checkout nunca se probó de principio a fin. El dueño va
-  a hacer una compra de prueba real para confirmarlo. Bloquea
-  cualquier campaña nueva hasta que se cierre.
+- ✅ **Evento Purchase de Meta** — el dueño hizo una compra de prueba
+  real (pedido #1005, $190.95 MXN, "Pagado"). El pixel sí recibió el
+  evento Compra con calidad 9.3/10 (el mejor del sitio) vía píxel +
+  Conversions API ("Comparte datos" ya en Máximo). El "cero compras"
+  que se veía antes era por tener seleccionado el portafolio de
+  negocio equivocado en Meta Business Suite, no un problema real.
+  **Ningún bloqueante pendiente.**
 - ✅ 5 de 9 combos agotados — el dueño ya tiene plan de reabastecerlos,
   se quedan publicados tal cual.
 - ✅ MSI/OXXO — confirmado con evidencia real del checkout que sí están

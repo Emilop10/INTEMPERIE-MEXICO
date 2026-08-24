@@ -4023,3 +4023,84 @@ punto se cierre.
 - **Los 5 de 9 combos agotados se quedan publicados tal cual** — el
   dueño ya tiene plan de reabastecerlos pronto. No se toca nada por
   código ni se despublica.
+
+### Cierre — el checkout sí funciona y el evento Compra sí llega (24 de agosto, tarde)
+
+El dueño hizo la compra de prueba real (pedido #1005, $190.95 MXN,
+Shopify lo marcó "Pagado"). Con eso confirmado, el siguiente paso era
+verificar el pixel de Meta. Dos capturas del Administrador de eventos
+no mostraban ningún evento de Compra — parecía confirmar el peor
+escenario (checkout sano, medición rota). Se le dio a Claude en Chrome
+un prompt de investigación dirigida al control "Comparte datos" del
+canal Facebook e Instagram (Commerce Partner Hub), con la hipótesis —
+sacada de documentación pública de Shopify/Meta — de que el evento
+Compra se manda por Conversions API (servidor), no por el píxel del
+navegador, y que ese envío requiere el nivel "Máximo" de intercambio
+de datos.
+
+**Resultado real, verificado por Claude en Chrome dentro del propio
+Administrador de eventos de Meta:**
+
+- **"Comparte datos" ya estaba en Máximo.** No había nada que subir —
+  la tarjeta lo confirma explícitamente ("mediante el píxel de Meta,
+  las coincidencias avanzadas y la API de conversiones"). No se
+  modificó ni se guardó nada, porque no hacía falta.
+- **El evento Compra sí está llegando.** En el pixel correcto
+  (`2011984246408291`, *Intemperie México Pixel*): **Comprar — Activo
+  — 2 eventos — calidad 9.3/10 — última recepción hace 29 minutos**
+  (coincide en tiempo con el pedido #1005). Es, de hecho, **el evento
+  con mejor puntuación de calidad de todo el sitio** — mejor que
+  Añadir al carrito (4.4/10) o Finalización de compra iniciada
+  (4.4/10). El diagnóstico de Meta en la pestaña Acciones confirma que
+  la Conversions API está sumando ~14.9% más conversiones detectadas
+  en los últimos 7 días junto con el píxel.
+- **La causa de las dos capturas en cero: portafolio de negocio
+  equivocado en Meta Business Suite.** Al entrar, la sesión estaba
+  posicionada por defecto en otro portafolio ("Alcampo Cuernavaca"),
+  no en "Intemperie México" — la cuenta de Meta del dueño administra
+  varios portafolios (Alcampo Cuernavaca, Emiliano Lopez Costa,
+  Intemperie México, y otros). El Administrador de eventos muestra
+  datos del pixel del portafolio activo; con el portafolio equivocado
+  seleccionado, cero compras es exactamente lo que se esperaría ver
+  aunque todo funcione bien del otro lado. Causa secundaria posible,
+  no descartada: el rango de fechas de la primera revisión (27 jul–23
+  ago) no incluía el 24 de agosto, día real del pedido.
+
+**Conclusión: no había ningún problema de medición que arreglar.** El
+checkout completa pedidos reales, el pixel + Conversions API entregan
+el evento de Compra con la mejor calidad de señal del sitio, y el
+"cero compras" de las capturas fue un artefacto de estar viendo el
+portafolio de Meta equivocado — no del sitio, no del pixel, no de la
+configuración de Shopify. Este hallazgo cierra la sección 46
+completa: **la tienda sí puede vender y sí se puede medir.** El
+"hallazgo central" del título de esta sección (cero compras en 6
+meses) se mantiene como diagnóstico correcto de *ese momento* — la
+campaña llevaba 6 meses sin ninguna compra real porque nunca se había
+probado el checkout de punta a punta — pero deja de ser un problema
+abierto: ya se probó, y funciona.
+
+**No se tocó ningún ajuste adicional.** Existe un control aparte,
+distinto al de "Comparte datos", en Shopify → Configuración → Eventos
+del cliente → acceso a datos, con las opciones "Optimizado" (activo
+hoy) / "Siempre activo". Claude en Chrome identificó la opción pero
+no la cambió por decisión propia — afecta privacidad de datos del
+cliente y no era parte de lo pedido. Queda como posible mejora futura,
+no como pendiente bloqueante.
+
+**Único pendiente de verificación fina, opcional:** confirmar que el
+`value` del evento Compra recibido es exactamente $190.95 MXN (el
+monto real del pedido #1005) y no un valor por defecto o mal calculado
+— se puede revisar abriendo "Ver detalles" del evento en el
+Administrador de eventos. No bloquea nada; es una confirmación extra
+de calidad del dato, no de que el evento exista.
+
+### Con esto, los 3 puntos bloqueantes de la Ola 6 (sección 45) quedan cerrados
+
+1. Umbral de inventario honesto — hecho.
+2. Combos agotados — decisión del dueño tomada (reabastecer, no tocar código).
+3. Evento Purchase de Meta — confirmado que se dispara con calidad 9.3/10.
+
+No queda ningún bloqueante identificado para lanzar o escalar la
+siguiente campaña. Los pendientes restantes son todos los diferidos
+de la sección 45 (cross-sell, fichas técnicas, combos nuevos,
+MSI/OXXO visibles) — mejoras, no bloqueos.
