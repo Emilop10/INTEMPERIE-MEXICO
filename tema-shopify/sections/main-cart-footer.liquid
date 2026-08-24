@@ -141,7 +141,7 @@
                   <span>¿Dudas? Escríbenos por <a href="https://wa.me/527773277340" target="_blank" rel="noopener">WhatsApp</a> antes de pagar.</span>
                 </div>
               </div>
-              {%- render 'pagos-aceptados' -%}
+              {%- render 'pagos-aceptados', monto_centavos: cart.total_price -%}
 
               <div class="cart__ctas" {{ block.shopify_attributes }}>
                 <button

@@ -13,6 +13,21 @@
   fabrica un ícono de Mercado Pago a mano: se menciona por texto. Si
   en el futuro Judge.me u otra integración expone el asset oficial, se
   puede sumar al lado del ícono de PayPal sin tocar este comentario.
+
+  Ola 7 (24 ago): se agregan dos señales más, con el texto pegado a lo
+  verificado y sin números que no podemos sostener.
+  - Efectivo: siempre visible, cierto para cualquier monto — el
+    `paymentBrands` real del gateway de Mercado Pago (capturado en el
+    HTML de un checkout real) trae `oxxo` y `seveneleven`.
+  - MSI: condicional al parámetro opcional `monto_centavos` (precio
+    del producto en la ficha, `cart.total_price` en el carrito). No
+    se conoce el mínimo real que exige Mercado Pago para ofrecer
+    meses sin intereses, así que se usa `settings.msi_minimo_centavos`
+    como umbral propio — prometerlo en un señuelo de $149 sería una
+    fricción nueva si el checkout no lo ofrece ahí. El dueño confirmó
+    directamente que la cuenta sí tiene MSI activo con cualquier
+    tarjeta (no viene de inspección del checkout, que nunca llegó a
+    ver la pantalla de Mercado Pago con MSI real).
 {%- endcomment -%}
 {%- if shop.enabled_payment_types.size > 0 -%}
   <div class="im-pagos-aceptados">
@@ -24,5 +39,11 @@
       {%- endfor -%}
     </ul>
     <span class="im-pagos-aceptados__extra">y Mercado Pago</span>
+  </div>
+  <div class="im-pagos-extra">
+    <span class="im-pagos-extra__item">También en efectivo: OXXO y 7-Eleven</span>
+    {%- if monto_centavos and monto_centavos >= settings.msi_minimo_centavos -%}
+      <span class="im-pagos-extra__item">Meses sin intereses con tarjetas participantes</span>
+    {%- endif -%}
   </div>
 {%- endif -%}

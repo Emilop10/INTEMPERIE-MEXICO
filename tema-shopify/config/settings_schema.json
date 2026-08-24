@@ -1441,6 +1441,13 @@
         "id": "envio_tiempo",
         "default": "2 a 7 días hábiles",
         "label": "Tiempo de entrega"
+      },
+      {
+        "type": "number",
+        "id": "msi_minimo_centavos",
+        "default": 30000,
+        "label": "Monto mínimo para mostrar 'Meses sin intereses' (centavos)",
+        "info": "En centavos MXN. $300.00 = 30000. No confirmado el mínimo real de Mercado Pago para MSI; se usa como umbral propio para no prometerlo en tickets bajos donde el checkout podría no ofrecerlo."
       }
     ]
   },

@@ -680,7 +680,7 @@
             <span>Garantía de compra — si algo llega mal, lo resolvemos.</span>
           </div>
         </div>
-        {%- render 'pagos-aceptados' -%}
+        {%- render 'pagos-aceptados', monto_centavos: cart.total_price -%}
 
         <!-- CTAs -->
 

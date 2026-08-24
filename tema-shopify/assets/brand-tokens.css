@@ -529,6 +529,22 @@ variant-selects .select__select {
   color: #93A79B;
 }
 
+/* Efectivo (OXXO/7-Eleven) y meses sin intereses (Ola 7, 24 ago).
+   Debajo de los iconos de pago, mismo tono que .im-pagos-aceptados__extra
+   pero en filas separadas — son dos datos distintos, no un remate del
+   mismo texto. */
+.im-pagos-extra {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-top: 6px;
+}
+.im-pagos-extra__item {
+  font-family: var(--font-body-family);
+  font-size: 12.5px;
+  color: #93A79B;
+}
+
 /* Aviso "imágenes ilustrativas" — sobrescribe base.css, que traía colores para
    fondo claro (texto casi negro sobre un tinte casi transparente) y por eso
    se veía invisible sobre el nuevo fondo oscuro de la tienda. */
