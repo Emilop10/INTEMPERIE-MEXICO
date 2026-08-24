@@ -3882,6 +3882,44 @@ patrón — `ventas@` (contacto general, hoy en privacidad/términos),
 `facturacion@` (solo CFDI/factura). Se retiran `pedidos@` y
 `contacto@`, que duplicaban roles ya cubiertos.
 
+### Los 3 pasos vía Claude en Chrome, ejecutados y verificados (24 ago)
+
+Claude en Chrome ejecutó los tres pasos directamente en el panel
+(umbral de inventario, política de envío, unificación de correos) y
+reportó **6 cambios de correo**: 1 en la política de envío
+(`pedidos@` → `soporte@`), 0 en devoluciones (ya usaba `soporte@`), 3
+en privacidad (`contacto@` → `ventas@`), 2 en términos de servicio
+(`contacto@` → `ventas@`). No encontró ninguna mención de
+`facturacion@` en las 4 políticas, así que no hubo nada que preservar
+ahí.
+
+**Verificado con `curl` contra producción, no solo por el reporte del
+agente:** el texto de costos de envío ya dice exactamente "Envío
+gratis desde $799 MXN. Pedidos menores: $189 MXN tarifa fija a todo
+México." — correcto.
+
+**La verificación encontró además un bug real, ya avisado por el
+propio agente con honestidad antes de que yo lo revisara:** la
+sección "9. Contacto" de la política de envío quedó con el correo
+duplicado — *"escríbanos a soporte@intemperiemexico.com o a
+soporte@intemperiemexico.com"* — porque el texto original decía
+"soporte@ o pedidos@" y, al unificar ambos al mismo destino, quedó la
+misma dirección repetida dos veces. Corregido con un prompt de una
+línea para dejar la mención una sola vez.
+
+**Sobre los dos criterios que el agente marcó como dudosos** (menciones
+de derechos ARCO y datos fiscales/RFC mandadas a `ventas@` por
+descarte, en vez de un correo de privacidad/legal dedicado, y la baja
+de boletines también a `ventas@`): se mantiene `ventas@` como buzón
+único para todo lo que no sea devoluciones o factura — abrir un correo
+dedicado a privacidad/legal sería sobre-ingeniería para el tamaño
+actual de la tienda. Decisión documentada, no queda como pendiente
+abierto.
+
+Con esto, los 4 puntos ejecutables de la Ola 6 (los 3 de código/API
+más los 3 del personalizador, que en la práctica fueron 4 ediciones de
+contenido) quedan cerrados y verificados en producción.
+
 ### Diferido a propósito — no se improvisa código a medias
 
 - **Cross-sell bajo la barra "te faltan $X" del carrito**: necesita

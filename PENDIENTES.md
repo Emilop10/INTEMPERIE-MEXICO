@@ -459,24 +459,17 @@ en la sección 42 del `MANUAL-PROYECTO.md`.
 
 ---
 
-## 10. Ola 6 — punch list post-auditoría (con agentes especializados)
+## ~~10. Ola 6 — punch list post-auditoría (con agentes especializados)~~ ✅ Resuelto (24 agosto 2026)
 
-Detalle completo en la sección 45 del `MANUAL-PROYECTO.md`. Resuelto
-en código/API y verificado: productos agotados fuera del escaparate
-del home, piso de precio de Meta subido a $500 (35 productos).
+Detalle completo en la sección 45 del `MANUAL-PROYECTO.md`. Resuelto y
+verificado en producción: productos agotados fuera del escaparate del
+home, piso de precio de Meta subido a $500 (35 productos), umbral de
+inventario honesto activado, política de envío con los montos reales,
+5 correos de contacto unificados a 3 (incluyendo un bug real de correo
+duplicado que apareció al unificar, corregido y verificado con
+`curl`).
 
-**Vía Claude en Chrome (pendiente):**
-- Activar "Mostrar cantidad de inventario" en el bloque Inventario del
-  personalizador — arregla el mismo problema que iba a arreglar por
-  código, sin el riesgo de pisar los App Blocks de Judge.me.
-- Reescribir `/policies/shipping-policy` con los montos reales
-  ($799/$189) y unificar los 5 correos de contacto a 3
-  (`ventas@`, `soporte@`, `facturacion@`) — el dueño no tuvo
-  preferencia sobre cuál usar, así que el criterio de cuáles mantener
-  fue mío; corregible si no coincide con cómo opera de verdad la
-  tienda.
-
-**Diferido, requiere decisión o alcance aparte:**
+**Sigue abierto, diferido a propósito — requiere decisión o alcance aparte:**
 - Cross-sell bajo la barra "te faltan $X" del carrito (falta una
   colección curada de productos baratos).
 - 5 de 9 combos agotados — decisión de reabastecimiento/compra.
