@@ -1,0 +1,65 @@
+{%- comment -%}
+  Oferta de mejora a combo, en la ficha de un producto que forma parte de
+  uno (Ola 8, 25 ago 2026). Requiere `product`.
+
+  Por qué existe: la auditoría de recorrido de comprador encontró que el
+  argumento de venta más fuerte del catálogo estaba invisible. En la ficha
+  de la caña Okuma de $549, el cliente tenía que sacar solo estas cuentas:
+  que con envío paga $738, que está a $61 del envío gratis, y que el combo
+  con carrete cuesta $999 en vez de los $1,148 que suman por separado.
+  Nadie hace esa cuenta; se va a comparar a otro lado.
+
+  Todo se calcula con datos reales, nada escrito a mano:
+  - `custom.combo_sugerido` (metafield de referencia a producto) dice cuál
+    es el combo de este componente.
+  - El ahorro sale del `compare_at_price` del combo, que se fijó a la suma
+    real de sus partes — comprobable comprándolas sueltas.
+  - El umbral de envío gratis viene de `settings.envio_umbral_centavos`.
+
+  Así, si cambia un precio o el umbral, el mensaje se actualiza solo. No
+  hay ninguna cifra hardcodeada que pueda quedar mintiendo.
+
+  No imprime nada si el producto no tiene combo, si el combo está agotado,
+  o si el combo no es más caro que el producto (no tendría sentido
+  ofrecerlo como mejora).
+{%- endcomment -%}
+{%- liquid
+  assign combo = product.metafields.custom.combo_sugerido.value
+  assign umbral = settings.envio_umbral_centavos | default: 79900
+-%}
+{%- if combo != blank and combo.available and combo.price > product.price -%}
+  {%- liquid
+    assign extra = combo.price | minus: product.price
+    assign ahorro = 0
+    if combo.compare_at_price > combo.price
+      assign ahorro = combo.compare_at_price | minus: combo.price
+    endif
+    assign cruza_umbral = false
+    if combo.price >= umbral and product.price < umbral
+      assign cruza_umbral = true
+    endif
+  -%}
+  <a class="im-combo" href="{{ combo.url }}">
+    {%- if combo.featured_image -%}
+      <span class="im-combo__media">
+        {{ combo.featured_image | image_url: width: 160 | image_tag: loading: 'lazy', width: 72, height: 72, alt: '' }}
+      </span>
+    {%- endif -%}
+    <span class="im-combo__body">
+      <span class="im-combo__kicker">Llévalo completo</span>
+      <span class="im-combo__title">{{ combo.title }}</span>
+      <span class="im-combo__price">
+        {{ combo.price | money }}
+        {%- if ahorro > 0 -%}
+          <s>{{ combo.compare_at_price | money }}</s>
+        {%- endif -%}
+      </span>
+      <span class="im-combo__pitch">
+        Por {{ extra | money }} más que este producto solo
+        {%- if ahorro > 0 %}, y {{ ahorro | money }} menos que comprando las piezas por separado{% endif -%}
+        .
+        {%- if cruza_umbral %} <strong>Incluye envío gratis.</strong>{% endif -%}
+      </span>
+    </span>
+  </a>
+{%- endif -%}

@@ -1444,6 +1444,13 @@
       },
       {
         "type": "number",
+        "id": "destacados_precio_minimo_centavos",
+        "default": 30000,
+        "label": "Precio mínimo para destacar un producto en el inicio (centavos)",
+        "info": "En centavos MXN. $300.00 = 30000. Evita que accesorios muy baratos ocupen el escaparate de la página de inicio: el orden de las colecciones es manual y los productos económicos suelen quedar primero."
+      },
+      {
+        "type": "number",
         "id": "msi_minimo_centavos",
         "default": 30000,
         "label": "Monto mínimo para mostrar 'Meses sin intereses' (centavos)",

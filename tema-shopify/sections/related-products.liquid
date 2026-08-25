@@ -82,14 +82,34 @@
         data-current-type="{{ product.type | escape }}"
         data-show-count="{{ section.settings.products_to_show }}"
       >
+        {%- comment -%}
+          Ola 8 (25 ago 2026): dos límites nuevos sobre este pool.
+
+          Antes recorría 5 productos de cada una de las 11 subcategorías
+          sin filtrar existencia — 54 tarjetas por ficha, 8 de ellas
+          "Agotado", y ~490 KB de HTML. El JS solo muestra
+          `products_to_show` (4) y rota entre las demás, así que el resto
+          del pool era peso puro; y los agotados construían la impresión
+          de "esta tienda no tiene inventario" justo en la página donde
+          se decide la compra (hallazgo del recorrido de comprador
+          simulado, verificado contra el HTML servido).
+
+          Ahora: se saltan los agotados y el pool se corta a 12, que
+          sigue dando variedad de sobra para rotar entre 4.
+        {%- endcomment -%}
         {% assign skip_card_product_styles = false %}
         {% assign seen_ids = '' %}
+        {% assign related_pool = 0 %}
         {% for handle in subcat_handles %}
+          {% if related_pool >= 12 %}{% break %}{% endif %}
           {% assign subcat = collections[handle] %}
           {% if subcat != blank and subcat.title != blank %}
             {% for item in subcat.products limit: 5 %}
+              {% if related_pool >= 12 %}{% break %}{% endif %}
+              {% unless item.available %}{% continue %}{% endunless %}
               {% assign item_marker = ',' | append: item.id | append: ',' %}
               {% unless item.id == product.id or seen_ids contains item_marker %}
+                {%- assign related_pool = related_pool | plus: 1 -%}
                 <li class="grid__item" data-imx-type="{{ item.type | escape }}">
                   {% render 'card-product',
                     card_product: item,

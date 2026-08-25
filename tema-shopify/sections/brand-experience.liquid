@@ -99,15 +99,30 @@
               colección trae menos de 5 disponibles entre los primeros
               20, se muestran los que haya (no se rompe el layout).
             {%- endcomment -%}
+            {%- comment -%}
+              Ola 8 (25 ago 2026): además del filtro de disponibilidad, un
+              piso de precio. El escaparate de Pesca abría con un plomo de
+              $1.95 — el orden de la colección es manual y el plomo va
+              primero, así que pasaba el filtro de la Ola 6 por estar
+              disponible. Alguien que llega de un anuncio de una caña de
+              $999 veía una pieza de dos pesos como primera impresión de
+              la tienda. El piso vive en un setting para poder ajustarlo
+              sin tocar código; se recorren hasta 50 productos porque con
+              el piso puesto hay que mirar más abajo para juntar 5.
+            {%- endcomment -%}
+            {%- assign destacado_minimo = settings.destacados_precio_minimo_centavos | default: 30000 -%}
             <div class="chapter-feature-pool" data-rotate-grid data-show="1">
               {%- assign chapter_feature_shown = 0 -%}
-              {%- for product in col.products limit: 20 -%}
+              {%- for product in col.products limit: 50 -%}
                 {%- if chapter_feature_shown >= 5 -%}
                   {%- break -%}
                 {%- endif -%}
                 {%- unless product.available -%}
                   {%- continue -%}
                 {%- endunless -%}
+                {%- if product.price < destacado_minimo -%}
+                  {%- continue -%}
+                {%- endif -%}
                 {%- if product.featured_image -%}
                   {%- assign chapter_feature_shown = chapter_feature_shown | plus: 1 -%}
                   <a class="chapter-feature" href="{{ product.url }}">

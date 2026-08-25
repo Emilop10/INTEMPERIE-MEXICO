@@ -780,6 +780,83 @@ variant-selects .select__select {
   cursor: default;
 }
 
+/* Oferta de mejora a combo (Ola 8, 25 ago): snippets/combo-sugerido.liquid.
+   Va justo debajo de los botones de compra, en el punto de decisión. Se
+   destaca con el verde de acento porque es una oferta, no una señal de
+   confianza más — si se viera igual que .im-trust-note se perdería entre
+   ellas. */
+.im-combo {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-top: 16px;
+  padding: 13px 15px;
+  border: 1px solid rgba(87, 181, 138, 0.38);
+  background: rgba(87, 181, 138, 0.07);
+  border-radius: 14px;
+  text-decoration: none;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.im-combo:hover {
+  border-color: rgba(87, 181, 138, 0.65);
+  background: rgba(87, 181, 138, 0.11);
+}
+.im-combo__media {
+  flex: 0 0 64px;
+  width: 64px;
+  height: 64px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+}
+.im-combo__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.im-combo__body {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.im-combo__kicker {
+  font-family: var(--font-body-family);
+  font-size: 11px;
+  font-weight: var(--font-body-weight-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #57B58A;
+}
+.im-combo__title {
+  font-family: var(--font-body-family);
+  font-size: 14px;
+  font-weight: var(--font-body-weight-bold);
+  line-height: 1.3;
+  color: #F5F5F7;
+}
+.im-combo__price {
+  font-family: var(--font-mono-family);
+  font-size: 14px;
+  color: #FFF;
+}
+.im-combo__price s {
+  color: #8A8A90;
+  font-size: 12.5px;
+  margin-left: 6px;
+}
+.im-combo__pitch {
+  font-family: var(--font-body-family);
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: #B9C4BD;
+}
+.im-combo__pitch strong {
+  color: #57B58A;
+  font-weight: var(--font-body-weight-bold);
+}
+
 /* Ficha técnica del producto (Ola 7, 24 ago): snippets/ficha-tecnica.liquid.
    Dos columnas etiqueta/valor con divisores del mismo peso que el
    resto de la ficha. Los valores van en mono: son medidas y calibres,
