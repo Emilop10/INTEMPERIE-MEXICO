@@ -1,9 +1,38 @@
 # Combos nuevos propuestos — Ola 7, bloque 4
 
-No requiere código: es una alta de producto en el admin de Shopify (no
-hay `SHOPIFY_ADMIN_TOKEN` en este entorno de ejecución, así que esto lo
-da de alta el dueño o Claude en Chrome). Detalle completo en
-`MANUAL-PROYECTO.md`, sección 47.
+> ## ✅ YA CREADOS — falta revisarlos y publicarlos
+>
+> Los tres se crearon por API el 24 de agosto de 2026 con
+> `scripts/crear-combos.py`, **en estado BORRADOR** (`draft`):
+> no son visibles para clientes (verificado: dan 404 en la tienda).
+>
+> | Combo | Precio | Stock | Handle |
+> |---|---|---|---|
+> | Okuma Revenger 8'0" | $999 | 1 | `combo-okuma-revenger-80-2-40m-cana-carrete` |
+> | Blue Fox Power Boat 6'4" | $1,049 | 1 | `combo-blue-fox-power-boat-64-1-95m-cana-carrete` |
+> | Rapala Corux 240 | $1,499 | 1 | `combo-rapala-corux-240-710-cana-carrete-caja` |
+>
+> Cada uno lleva las imágenes de sus componentes, su ficha técnica
+> cargada, `product_type: Combos` (entra solo a la colección `combos`)
+> y stock fijado en **1**, que es el máximo real: los componentes están
+> a 1 unidad cada uno.
+>
+> **Lo que falta, y es decisión del dueño:**
+> 1. Revisar precio, título, descripción e imágenes.
+> 2. **Publicarlos** (admin → producto → estado "Activo"). Se quedaron
+>    en borrador a propósito: un combo es un producto vendible con
+>    precio, y eso no se publica sin que lo vea el dueño.
+>
+> ### ⚠️ Riesgo de sobreventa (leer antes de publicar)
+>
+> **Shopify NO descuenta el stock de los componentes cuando se vende un
+> combo.** Hoy la misma caña está publicada suelta *y* dentro del
+> combo, con 1 unidad real. Si se venden las dos cosas, hay que
+> cancelar un pedido. Opciones: descontar a mano al vender, despublicar
+> el componente mientras el combo esté activo, o instalar una app de
+> bundles que maneje inventario compartido.
+
+Detalle completo en `MANUAL-PROYECTO.md`, sección 47.
 
 ## Hallazgo que cambió el planteamiento
 

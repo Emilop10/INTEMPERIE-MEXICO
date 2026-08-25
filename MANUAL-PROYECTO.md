@@ -4219,6 +4219,53 @@ Ranco; Rapala Corux + Gimbel + caja), todos con precio de combo por
 debajo de la suma de partes, siguiendo el patrón de los combos
 existentes.
 
+### Cierre real: se recuperó el acceso por API y se ejecutó todo (24 ago, noche)
+
+Los bloques 3 y 4 iban a quedar como tarea manual del dueño porque
+`SHOPIFY_ADMIN_TOKEN` no estaba en el entorno. Él preguntó si no había
+forma de automatizarlo — y al revisar el repositorio resultó que sí,
+que llevaba semanas documentada, y que **mi respuesta inicial fue
+incorrecta en cuatro puntos** (le dije que creara una app nueva, que le
+agregara scopes que ya tenía, por una ruta de navegación que no existe
+en esta tienda, y que no había token cuando estaba vivo y funcionando).
+El incidente completo y las reglas que quedan están en
+[`INSTRUCTIVO-CREDENCIALES-SHOPIFY.md`](./INSTRUCTIVO-CREDENCIALES-SHOPIFY.md),
+documento nuevo que es ahora la fuente de verdad para el token.
+
+De esa revisión salió un riesgo real, no solo documental: **la lista de
+scopes de `INSTRUCTIVO-APP-SHOPIFY.md` estaba congelada en los 8 de
+julio.** Shopify concede exactamente lo que va en la URL de
+autorización — no hace unión con lo ya concedido — así que reautorizar
+con esa lista habría degradado el token y roto
+`sincronizar-canal-meta.py` y `conciliar-inventario.py`, con un fallo
+que habría aparecido días después sin causa aparente. Se corrigió la
+URL (13 scopes) y se verificó que las dos copias del repo coinciden.
+
+Con el token regenerado por el flujo OAuth documentado:
+
+- **Bloque 3 completado**: `scripts/cargar-fichas-tecnicas.py` cargó el
+  metafield en los **35 productos**, cada uno verificado por relectura
+  tras escribir. El script parsea `FICHAS-TECNICAS-PENDIENTES.md` en
+  vez de duplicar los datos, para que el documento que revisa el dueño
+  y lo que se sube no puedan desincronizarse; y omite las líneas
+  marcadas `[FALTA]`, así que el Binocular Kampak subió con sus 4 datos
+  reales y sin inventar los dos que no están publicados. Verificado en
+  vivo con `curl`, incluido el caso de valores con dos puntos
+  (`Relación de transmisión: 5.0:1`), que el snippet parte
+  correctamente.
+- **Bloque 4 completado a medias, a propósito**:
+  `scripts/crear-combos.py` creó los 3 combos **en borrador**, con
+  imágenes de sus componentes, ficha técnica y stock. No se publicaron:
+  un combo es un producto vendible con precio, y esa decisión es del
+  dueño. Confirmado con `curl` que dan 404 en la tienda.
+
+**Hallazgo del stock, que no estaba en la propuesta original:** los
+componentes están a 1 unidad cada uno, así que cada combo admite
+**1 sola pieza**, no las cantidades que sugería el documento. Y como
+Shopify no descuenta componentes al vender un combo, publicarlos con
+la caña también a la venta por separado crea riesgo de sobreventa real.
+Documentado como aviso en `COMBOS-NUEVOS-PENDIENTES.md`.
+
 ### Cierre de la Ola 7
 
 Bloques 1-3 desplegados y verificados en vivo con `curl` (cache-busting

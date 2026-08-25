@@ -493,16 +493,14 @@ agosto (Ola 7, sección 47 del manual):**
   y verificado con carrito real: sugiere hasta 3 productos del mismo
   departamento, disponibles, con precio que cierra la brecha, en el
   cajón del carrito y en `/cart`.
-- 🟡 **Fichas técnicas** — mecanismo de código desplegado (metafield
-  `custom.especificaciones`). Falta que el dueño (o Claude en Chrome)
-  cree la definición del metafield y pegue los datos — borrador ya
-  extraído (sin inventar nada) en
-  [`FICHAS-TECNICAS-PENDIENTES.md`](./FICHAS-TECNICAS-PENDIENTES.md),
-  34 de 35 productos con datos completos.
-- 🟡 **2-3 combos nuevos** — propuesta concreta con componentes ya
-  disponibles en stock (no requiere comprar inventario) en
-  [`COMBOS-NUEVOS-PENDIENTES.md`](./COMBOS-NUEVOS-PENDIENTES.md).
-  Falta la alta del producto en el admin.
+- ✅ **Fichas técnicas** — cargadas por API en los **35 productos**
+  del conjunto de Meta (`scripts/cargar-fichas-tecnicas.py`), las 35
+  verificadas por relectura y confirmadas en vivo con `curl`. Los
+  productos sin datos siguen sin mostrar nada.
+- 🟡 **3 combos nuevos** — creados por API
+  (`scripts/crear-combos.py`) **en estado borrador**, con imágenes de
+  sus componentes, ficha técnica y stock 1. **Falta que el dueño los
+  revise y los publique** desde el admin (ver abajo).
 
 **Los 3 puntos bloqueantes antes de la siguiente campaña, cerrados el
 24 de agosto (detalle en la sección 46 del manual):**
