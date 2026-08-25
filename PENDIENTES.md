@@ -54,6 +54,39 @@ exista, y la decisión sobre Shopify Payments (sección 30 del manual).
 pendiente ya se completó — ver "Estado al 22 de agosto" en la sección
 45 del manual; esta línea estaba desactualizada.)
 
+---
+
+## 🟡 Decisiones abiertas sobre los 3 combos nuevos (24 de agosto)
+
+Los combos ya están creados **en borrador** (no visibles al público).
+Estas dos decisiones son del dueño y conviene resolverlas **antes de
+publicarlos**. Detalle en
+[`COMBOS-NUEVOS-PENDIENTES.md`](./COMBOS-NUEVOS-PENDIENTES.md).
+
+### 1. Stock: solo alcanza para 1 pieza de cada combo
+
+Los componentes están a **1 unidad cada uno** (caña Blue Fox, carrete
+Okuma Revenger, caja Rapala), así que cada combo se creó con stock 1.
+La propuesta original no tenía este dato — asumía que se podían armar
+varios. Si se quiere vender más de uno, hay que reabastecer los
+componentes.
+
+### 2. Riesgo de sobreventa: Shopify no descuenta los componentes
+
+**Shopify NO resta el stock de la caña ni del carrete cuando se vende
+un combo.** Hoy la misma caña está publicada suelta *y* dentro del
+combo, con 1 unidad real: si se venden las dos cosas, hay que cancelar
+un pedido — algo especialmente caro en una tienda que apenas registró
+su primera compra.
+
+Tres salidas posibles, en orden de esfuerzo:
+- **Descontar a mano** el stock de los componentes cada vez que se
+  venda un combo (gratis, pero hay que acordarse).
+- **Despublicar los componentes** mientras el combo esté activo
+  (simple y seguro, pero se pierde la venta suelta).
+- **Instalar una app de bundles** que maneje inventario compartido
+  (lo resuelve de raíz, cuesta dinero y hay que evaluar cuál).
+
 **Resuelto el 13-15 de agosto:** señales de confianza en la homepage
 ([3](#3-señales-de-confianza-ausentes--resuelto-13-agosto-2026)), el deploy
 automático ([5](#5-activar-el-deploy-automático--resuelto-13-agosto-2026)),
