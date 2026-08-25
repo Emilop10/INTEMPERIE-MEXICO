@@ -26,11 +26,14 @@ Seguimiento: `python3 scripts/meta-ads.py reporte --dias 7` (usa
 `time_range` explícito, no `date_preset` — ver sección 34/35 del
 manual sobre por qué).
 
-También pendiente de reflejar aquí hasta ahora: **Shopify Payments está
-desactivado** desde el 14 de agosto (aviso de Trust & Safety por los
-rifles de aire; el checkout corre por PayPal y Mercado Pago) — sección
-30 del manual, con una decisión de negocio abierta sobre si conviene
-quitar esos productos para recuperarlo.
+**Shopify Payments está desactivado de forma definitiva** desde el 14
+de agosto (aviso de Trust & Safety por los rifles de aire). **Decisión
+cerrada el 25 de agosto:** el dueño conserva los rifles y pistolas de
+aire en el catálogo y no vuelve a usar Shopify Payments. El checkout
+se queda permanentemente en **PayPal + Mercado Pago**, que además
+aportan meses sin intereses y pago en efectivo en OXXO y 7-Eleven —
+medios que Shopify Payments no daba. Sección 30 del manual. **No hay
+que volver a evaluarlo.**
 
 ---
 
@@ -48,10 +51,11 @@ Cuernavaca" en vez de "Intemperie México"), no un problema real.
 completo en la sección 46 del manual.
 
 **Abiertos ahora mismo:** cerrar los productos de
-[`PRODUCTOS-PENDIENTES.md`](./PRODUCTOS-PENDIENTES.md), TikTok cuando
-exista, y la decisión sobre Shopify Payments (sección 30 del manual).
-(El recorrido interactivo del checkout que aparecía aquí como
-pendiente ya se completó — ver "Estado al 22 de agosto" en la sección
+[`PRODUCTOS-PENDIENTES.md`](./PRODUCTOS-PENDIENTES.md) y TikTok cuando
+exista la cuenta. (La decisión sobre Shopify Payments que aparecía
+aquí ya se cerró el 25 de agosto — ver arriba. El recorrido
+interactivo del checkout también se completó — ver "Estado al 22 de
+agosto" en la sección
 45 del manual; esta línea estaba desactualizada.)
 
 ---

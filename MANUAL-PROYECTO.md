@@ -2215,15 +2215,42 @@ respondido dentro del plazo.
 
 - **Vigilar si Shopify vuelve a escribir.** El acuse es automático; si
   piden algo más, llegará por correo al mismo ticket.
-- **La decisión de fondo sigue abierta:** quitar los ~20 rifles y
-  pistolas de aire para recuperar Shopify Payments, o conservarlos y
-  quedarse con PayPal + Mercado Pago. A favor de recuperarlo: Shopify
-  Payments cobra sin sacar al cliente de la página, y ese salto cuesta
-  conversión — especialmente relevante con tráfico pagado. En contra:
-  esos productos ya no se pueden anunciar en Meta de todas formas
-  (sección 29), y solo el dueño sabe cuánto pesan en sus ventas reales.
-  Conviene decidirlo con datos de conversión del checkout actual, no
-  antes.
+- **Vigilar si Shopify vuelve a escribir** sobre el mismo ticket.
+
+### ✅ Decisión de fondo cerrada (25 de agosto de 2026)
+
+La disyuntiva era: quitar los ~20 rifles y pistolas de aire para
+recuperar Shopify Payments, o conservarlos y quedarse con PayPal +
+Mercado Pago.
+
+**El dueño decidió conservar los productos y no volver a usar Shopify
+Payments.** Textual: *"shopify payments no lo utilizaremos, ya que sí
+quiero que se mantengan los rifles y esas cosas en nuestro catálogo"*.
+
+**Qué significa en la práctica, y por qué no es una concesión grande:**
+
+- El checkout se queda **permanentemente** en PayPal + Mercado Pago,
+  con el salto de página que eso implica. Deja de ser una situación
+  temporal a revisar: es la arquitectura de cobro definitiva de la
+  tienda.
+- Ese salto **ya se auditó y está sano** (Parte A del plan de
+  conversión, secciones A2/A3): envío correcto, ambos procesadores en
+  español, sin forzar creación de cuenta, sin cargos ocultos. Y el
+  pedido #1005 confirmó de punta a punta que un cliente real puede
+  pagar (sección 46).
+- Mercado Pago aporta algo que Shopify Payments **no** daba: meses sin
+  intereses y pago en efectivo en OXXO y 7-Eleven — dos medios que
+  pesan mucho en México y que desde la Ola 7 se muestran en la ficha y
+  el carrito (sección 47). La comparación "Shopify Payments es mejor
+  porque no saca al cliente de la página" ignoraba esto.
+- Los rifles y pistolas de aire siguen sin poder anunciarse en Meta
+  (sección 29), pero eso es independiente: se venden por tráfico
+  orgánico y por la tienda física.
+
+**Consecuencia para el trabajo futuro:** no hay que volver a evaluar
+esto ni juntar datos de conversión para decidirlo. Si alguna vez se
+retoma, sería por un cambio de circunstancias del negocio, no porque
+la decisión quedara pendiente.
 
 ---
 
@@ -4358,11 +4385,16 @@ son de ticket alto ($999-$1,499) y entran solos al conjunto por la
 regla de precio ≥$500, sin tocar la campaña.
 
 **No queda nada de código pendiente ni ninguna decisión bloqueante.**
-Los pendientes restantes del proyecto son los de siempre: los 12
-productos sin conciliar de `PRODUCTOS-PENDIENTES.md` (el dueño decidió
-dejarlos para después — son diábolos que no se anuncian y solo afectan
-la exactitud del inventario mostrado), TikTok cuando exista la cuenta,
-y la decisión de negocio sobre Shopify Payments (sección 30).
+Los pendientes restantes del proyecto son dos, y ambos por decisión
+explícita del dueño de posponerlos: los 12 productos sin conciliar de
+`PRODUCTOS-PENDIENTES.md` (son diábolos que no se anuncian y solo
+afectan la exactitud del inventario mostrado) y TikTok cuando exista
+la cuenta.
+
+La decisión de negocio sobre Shopify Payments, que llevaba abierta
+desde el 14 de agosto, **se cerró el 25 de agosto**: se conservan los
+rifles y pistolas de aire y no se vuelve a usar Shopify Payments
+(sección 30).
 
 Con esto, los 4 pendientes diferidos de la Ola 6 quedan cerrados o
 con su siguiente paso ya resuelto y documentado. No queda ningún
