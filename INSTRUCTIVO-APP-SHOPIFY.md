@@ -1,5 +1,22 @@
 # Instructivo — Cómo instalar/renovar la app de Shopify para dar acceso a Claude
 
+> ## ⚠️ LEE ESTO ANTES DE USAR LA URL DE ABAJO
+>
+> **La lista de scopes de este documento está DESACTUALIZADA** (quedó
+> congelada en los 8 permisos de julio de 2026). Después se agregaron
+> `read_publications`/`write_publications` para el canal de Meta y los
+> de inventario para la conciliación.
+>
+> **Autorizar con la lista de este documento degradaría el token** y
+> rompería `scripts/sincronizar-canal-meta.py` y
+> `scripts/conciliar-inventario.py` — con un fallo que aparecería días
+> después, sin relación aparente con el token.
+>
+> 👉 **La lista completa y la URL vigente viven en
+> [`INSTRUCTIVO-CREDENCIALES-SHOPIFY.md`](./INSTRUCTIVO-CREDENCIALES-SHOPIFY.md).**
+> Usa ésa. Este documento sigue siendo válido para entender **el flujo
+> del navegador** y los caminos que no funcionan.
+
 Esta guía existe porque la primera vez que intentamos agregar permisos a la app
 ("Claude Integration") nos tomó muchísimas vueltas por el navegador hasta
 encontrar el camino correcto. Aquí queda documentado el método que **sí
@@ -72,7 +89,12 @@ uno en el navegador (para obtener un `code` de un solo uso) y uno por API
 ### Paso 2 — Confirmar los scopes activos
 
 En la misma sección de Configuración, confirma en **"Alcances de acceso"**
-qué permisos están activos. Al momento de escribir esto, la app tiene:
+qué permisos están activos.
+
+> ⚠️ **La lista de abajo es la de julio de 2026 y ya NO es la vigente.**
+> Se conserva como registro histórico. La lista actual (13 scopes) está
+> en [`INSTRUCTIVO-CREDENCIALES-SHOPIFY.md`](./INSTRUCTIVO-CREDENCIALES-SHOPIFY.md#tabla-de-scopes-la-lista-correcta-y-completa),
+> que es la fuente de verdad.
 
 ```
 read_legal_policies, write_legal_policies,
@@ -92,8 +114,13 @@ Con la sesión de **admin.shopify.com ya iniciada** (como dueño de la tienda),
 pega esta URL completa en la barra de direcciones (ajusta la lista de
 `scope` si cambiaste los permisos en el Paso 2):
 
+**URL vigente** (13 scopes — sincronizada con
+[`INSTRUCTIVO-CREDENCIALES-SHOPIFY.md`](./INSTRUCTIVO-CREDENCIALES-SHOPIFY.md#tabla-de-scopes-la-lista-correcta-y-completa),
+que es la fuente de verdad; si actualizas una, actualiza la otra en el
+mismo commit):
+
 ```
-https://wfuxvx-yn.myshopify.com/admin/oauth/authorize?client_id=34956e1ca24e94b27c531d85cb898e99&scope=read_legal_policies,write_legal_policies,read_online_store_navigation,write_online_store_navigation,read_products,write_products,read_themes,write_themes&redirect_uri=https%3A%2F%2Fexample.com&state=intemperie2026
+https://wfuxvx-yn.myshopify.com/admin/oauth/authorize?client_id=34956e1ca24e94b27c531d85cb898e99&scope=read_legal_policies,write_legal_policies,read_online_store_navigation,write_online_store_navigation,read_products,write_products,read_themes,write_themes,read_publications,write_publications,read_inventory,write_inventory,read_locations&redirect_uri=https%3A%2F%2Fexample.com&state=intemperie2026
 ```
 
 Esto muestra la pantalla oficial de Shopify con la lista de permisos que la

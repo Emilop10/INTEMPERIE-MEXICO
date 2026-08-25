@@ -100,6 +100,15 @@ falla por token ausente, ver la **sección 34 del manual** antes de pedir
 uno por chat. Un secret de GitHub **no** sirve para esto: solo es
 legible dentro de un workflow, no desde una sesión de Claude.
 
+> ⚠️ **Esa tabla describe la intención, no un estado verificado en cada
+> sesión.** El 24 de agosto de 2026 `SHOPIFY_ADMIN_TOKEN` **no estaba
+> presente** en la sesión, aunque figuraba aquí como configurado desde
+> el 18 (las dos de Meta sí estaban). No asumas que está disponible:
+> compruébalo con `env | grep -oE '^(SHOPIFY|META)[A-Z_]*'`.
+>
+> Para el token de Shopify en concreto, el procedimiento completo está
+> en [`INSTRUCTIVO-CREDENCIALES-SHOPIFY.md`](./INSTRUCTIVO-CREDENCIALES-SHOPIFY.md).
+
 > ⚠️ `reporte --dias N` **incluye el día en curso** y calcula las fechas
 > en `America/Chihuahua`, la zona de la cuenta. No siempre fue así: usaba
 > `date_preset=last_7d`, que excluye el día de hoy, y eso produjo un

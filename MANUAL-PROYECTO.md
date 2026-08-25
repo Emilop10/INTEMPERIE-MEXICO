@@ -2609,6 +2609,14 @@ día a día están en
 
 ## 34. Dónde viven las credenciales (y por qué nunca en el repo)
 
+> 📘 **Procedimiento operativo completo:**
+> [`INSTRUCTIVO-CREDENCIALES-SHOPIFY.md`](./INSTRUCTIVO-CREDENCIALES-SHOPIFY.md)
+> — diagnóstico paso a paso, lista vigente de scopes, flujo OAuth y
+> errores comunes. Esta sección explica **la política** (por qué las
+> credenciales no van en el repo); ese documento explica **qué hacer**
+> cuando falta un token. Si un comando falla por credencial ausente,
+> empieza por el diagnóstico de ahí antes de pedirle nada al dueño.
+
 El 18 de agosto de 2026 el cliente preguntó, de forma razonable, si el
 token de Meta no podía guardarse en un archivo `.md` del repositorio
 para que Claude lo tomara cuando lo necesitara. La respuesta fue no, y
