@@ -251,6 +251,7 @@ esos son los que viven en
 | 13 ago 2026 | 1,204 | 319 | 12 | 769 | 104 | 12 |
 | 14 ago 2026 | 1,178 | 310 | 16 | 748 | 104 | 17 |
 | 15 ago 2026 | 1,178 | 301 | 22 | 751 | 104 | 25 |
+| 25 ago 2026 | 1,183 | 254 | 83 | 743 | 103 | 87 |
 
 > **15 de agosto, más tarde:** se agregó el cruce por `Codigo B1` y se
 > poblaron 371 códigos de barras en Shopify (0 errores). La cobertura de
@@ -260,3 +261,20 @@ esos son los que viven en
 >
 > El cruce por nombre, agregado el mismo día, resolvió 1 de 87 filas —
 > quedó como último recurso, ver la sección 3 de "Qué va a hacer Claude".
+
+> **25 de agosto:** primera corrida con `--dry-run` antes de escribir, y
+> la de más movimiento desde el arranque (87 cambios, contra 12-25 de las
+> corridas diarias) — eran **10 días** sin conciliar, no uno.
+>
+> **`Vinculados por código B1: 0` no es un fallo.** Significa que el cruce
+> por SKU resolvió todo lo que existe en Shopify y el B1 no tuvo que
+> rescatar nada. Es el resultado bueno: la segunda llave es una red de
+> seguridad, no un camino esperado.
+>
+> Los 103 grises se reparten en **87 sin ninguna llave** (artículos que
+> solo existen en piso de venta) y **16 por `No Parte` duplicado en el
+> POS**, concentrados en 7 códigos: `9291PS`, `IGT57` (3 filas cada uno),
+> `53003`, `MN094`, `10005701BZ00`, `P611004925557`, `15SENUEL012QI`.
+> Esos 7 conviene corregirlos en el POS, no en Shopify — mientras el
+> mismo código apunte a productos distintos, esas filas nunca se van a
+> conciliar solas.

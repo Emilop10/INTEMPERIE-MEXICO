@@ -66,6 +66,29 @@ todos disponibles y todos entre $920 y $1,499 (o sea, **todos cruzan los
 $799**, así que la promesa de envío gratis del anuncio se cumple al
 100%). Los agotados siguen publicados y vendibles por otras vías.
 
+**🔴 Decisión pendiente antes de encender: dos combos Revenger compiten
+en el aterrizaje pagado (25 ago, sección 50 del manual).**
+La conciliación de inventario devolvió a stock el **Combo Okuma Revenger
+8'0" (2.45m) a $849** (3 unidades) — el mismo que estaba agotado y por el
+que armé el **Combo Okuma Revenger 8'0" (2.40m) a $999**. Ahora los dos
+están disponibles y salen juntos en `/collections/combos`, que es la
+página que paga el anuncio. Son productos distintos (distinto carrete,
+5.0:1 contra 4.8:1, fábrica contra armado), pero en una cuadrícula de
+colección se leen como el mismo combo a dos precios, y el de $999 es el
+caro. Opciones, en orden de menos a más trabajo:
+
+1. **Ocultar el de $999 de la colección** mientras haya stock del de
+   $849, y volver a mostrarlo cuando se agote. Es reversible y no toca
+   precios.
+2. **Diferenciarlo en el título** (p. ej. "carrete RV-80, arrastre 12 kg")
+   para que la diferencia real se vea sin abrir la ficha.
+3. **Bajarle el precio** al de $999. Es la que toca margen, y no hay
+   evidencia de demanda todavía para justificarla.
+
+Mi recomendación es la 1: el de $849 es más barato, es de fábrica y tiene
+3 unidades contra 1. **No conviene encender el gasto con las dos fichas
+compitiendo.**
+
 **🔴 Antes de reanudar la campaña (Ola 8, 25 ago — sección 48 del manual):**
 La cuenta publicitaria tiene el **tope de gasto agotado** ($285 al 100%)
 y lleva sin entregar desde el 21 de agosto, aunque todo reporte "activo"

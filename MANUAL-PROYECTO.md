@@ -77,6 +77,7 @@ como respaldo
 47. [Ola 7: cerrar los 4 pendientes diferidos](#47-ola-7-cerrar-los-4-pendientes-diferidos-24-ago)
 48. [Ola 8: auditoría previa a campaña y sus correcciones](#48-ola-8-auditoría-previa-a-campaña-y-sus-correcciones-25-ago)
 49. [Los 7 que "llegaron a pagar" eran el dueño](#49-los-7-que-llegaron-a-pagar-eran-el-dueño-25-ago)
+50. [Conciliación de inventario del 25 de agosto y el choque de los dos combos Revenger](#50-conciliación-de-inventario-del-25-de-agosto-y-el-choque-de-los-dos-combos-revenger)
 
 ---
 
@@ -4740,3 +4741,82 @@ Es privado por defecto; se comparte desde el menú de la propia página.
 **Se actualiza en el mismo URL** — republicar el archivo pasando esa
 dirección como `url`, nunca publicar de nuevo sin ella, o nace un
 informe aparte y el enlace que ya circula se queda viejo.
+
+
+---
+
+## 50. Conciliación de inventario del 25 de agosto y el choque de los dos combos Revenger
+
+Primera conciliación desde el 15 de agosto — **10 días**, no uno, y se
+nota: 87 actualizaciones contra las 12-25 de una corrida diaria. Corrida
+con el `--dry-run` nuevo antes de escribir, y verificada contra
+producción después. 0 errores.
+
+| | |
+|---|---|
+| Filas del conteo | 1,183 |
+| 🟢 Verde (sin cambios) | 254 |
+| 🟡 Amarillo (actualizado) | 83 |
+| 🔴 Rojo | 743 (714 no existen online + 29 agotados) |
+| ⬜ Gris (sin tocar) | 103 |
+| Escrituras aplicadas | **87, 0 errores** |
+
+### `--dry-run`, agregado ese mismo día
+
+`scripts/conciliar-inventario.py` calculaba la lista completa de cambios
+y la escribía de inmediato: no había forma de revisar antes de tocar el
+inventario. Como la lista ya está armada **antes** del primer `POST`, el
+modo seco muestra exactamente lo que se escribiría, no una aproximación.
+Imprime cada variante (`antes -> después`) y cuántas quedarían en 0 —
+el dato que importa con campaña por encender.
+
+### Lo que movió el conteo, del lado del anuncio
+
+**4 productos a 0**, o sea fuera de la vitrina: Rifle Quetzalcoatl
+($5,388), Caña Storm Maupiti Tele Surf ($749), Hilo Araty 0.40mm Red
+Spider ($46) y Bullets Nakashi ($34). El Quetzalcoatl es uno de los 3
+productos con reseña real de Judge.me — la reseña sigue visible, el
+producto ya no se puede comprar.
+
+**19 productos volvieron a estar disponibles**, entre ellos tres de
+ticket alto: Rifle Black Hawk ($5,953.50), Telescopio Celestron ($3,400)
+y el **Combo Okuma Revenger 8'0" (2.45m) a $849** — que es el que crea
+el problema de abajo.
+
+Conjunto anunciable de Meta: **38 → 39**. La colección `combos`, que es
+el aterrizaje pagado, pasó de **7 a 8 productos**, todos disponibles y
+todos por encima de $799 (la regla de disponibilidad de la sección 49
+funcionó sola, sin intervención).
+
+### 🔴 El choque: dos combos Revenger en la misma vitrina
+
+El aterrizaje pagado ahora muestra, uno junto al otro:
+
+| Producto | Precio | Qué es |
+|---|---|---|
+| Combo Okuma Revenger 8'0" **(2.45m)** | **$849** | Combo de fábrica, un solo SKU (`RV-S-802M-40`). Caña de fibra de vidrio, carrete talla 40, relación 5.0:1, línea preinstalada. **Volvió a stock hoy, 3 unidades** |
+| Combo Okuma Revenger 8'0" **(2.40m)** — Caña + Carrete | **$999** | El que armé en la Ola 7-8 *porque el de arriba estaba agotado*. Caña `RV-S-802M` ($549) + carrete `RV-80` ($599), relación 4.8:1. `compare_at` $1,148 |
+
+**Técnicamente son productos distintos** — distinto carrete, distinta
+relación de transmisión, distinta construcción. **Comercialmente, en una
+página de colección, se leen como el mismo combo a dos precios**, y el
+mío es el caro. Es exactamente la fricción que nueve olas de trabajo
+llevan quitando, y la reintroduje yo sin querer: el combo de $999 nació
+como sustituto de uno agotado, y el original volvió.
+
+**No lo resolví por cuenta propia** — es decisión de catálogo y margen
+del dueño, no de código. Las opciones están planteadas en
+`PENDIENTES.md`. Lo que sí es seguro es que **no conviene encender el
+gasto con las dos fichas compitiendo en el aterrizaje**.
+
+### Los 103 grises
+
+87 sin ninguna llave (artículos que solo existen en piso de venta, es lo
+normal) y **16 por `No Parte` duplicado en el POS**, en 7 códigos:
+`9291PS`, `IGT57`, `53003`, `MN094`, `10005701BZ00`, `P611004925557`,
+`15SENUEL012QI`. Mientras un mismo código apunte a productos distintos,
+esas filas no se conciliarán solas — se corrige en el POS, no en Shopify.
+
+`Vinculados por código B1: 0` **no es un fallo**: significa que el cruce
+por SKU resolvió todo lo que existe en Shopify y la segunda llave no tuvo
+que rescatar nada.
