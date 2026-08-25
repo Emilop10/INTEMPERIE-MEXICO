@@ -16,6 +16,11 @@ adivina entre dos productos parecidos.
 Uso:
     SHOPIFY_ADMIN_TOKEN=shpat_... python3 scripts/conciliar-inventario.py entrada.xlsx salida.xlsx
 
+    Con --dry-run calcula todo y colorea el Excel, pero no escribe nada en
+    Shopify. Conviene siempre en la primera corrida del dia: la lista de
+    cambios ya esta armada completa antes del primer POST, asi que el modo
+    seco muestra exactamente lo que se escribiria.
+
 Variables de entorno:
     SHOPIFY_ADMIN_TOKEN  (obligatoria) token Admin API con scopes de inventario
     SHOPIFY_STORE        dominio myshopify (default: wfuxvx-yn.myshopify.com)
@@ -204,11 +209,18 @@ def set_inventory(token, store, location_id, inventory_item_id, available):
 
 
 def main():
-    if len(sys.argv) != 3:
-        print("Uso: conciliar-inventario.py entrada.xlsx salida.xlsx", file=sys.stderr)
+    args = [a for a in sys.argv[1:] if a != "--dry-run"]
+    dry_run = "--dry-run" in sys.argv
+    if len(args) != 2:
+        print(
+            "Uso: conciliar-inventario.py [--dry-run] entrada.xlsx salida.xlsx",
+            file=sys.stderr,
+        )
         sys.exit(1)
 
-    input_path, output_path = sys.argv[1], sys.argv[2]
+    input_path, output_path = args
+    if dry_run:
+        print("MODO SECO: se calcula y se colorea el Excel, pero NO se escribe en Shopify.\n")
     token = os.environ.get("SHOPIFY_ADMIN_TOKEN")
     store = os.environ.get("SHOPIFY_STORE", "wfuxvx-yn.myshopify.com")
     if not token:
@@ -332,28 +344,43 @@ def main():
     print(f"Clasificación: {counts}")
     print(f"  (de ellos, {vinculados_por_b1} vinculados por código B1 y "
           f"{vinculados_por_nombre} por nombre)")
-    print(f"Actualizando {len(updates)} variantes en Shopify...")
     errors = 0
-    for i, (id_log, info, new_qty) in enumerate(updates):
-        result = set_inventory(token, store, location_id, info["inventory_item_id"], new_qty)
-        if "error" in result:
-            print(f"  ERROR {id_log}: {result['error']}", file=sys.stderr)
-            errors += 1
-        time.sleep(0.5)
-        if (i + 1) % 20 == 0:
-            print(f"  {i + 1}/{len(updates)}")
+    if dry_run:
+        print(f"{len(updates)} variantes CAMBIARIAN en Shopify (no se escribio nada):")
+        for id_log, info, new_qty in updates:
+            print(f"  {id_log}: {info['available']} -> {new_qty}")
+        a_cero = [u for u in updates if u[2] == 0]
+        print(f"  de ellas, {len(a_cero)} quedarian en 0 (salen del conjunto anunciable)")
+    else:
+        print(f"Actualizando {len(updates)} variantes en Shopify...")
+        for i, (id_log, info, new_qty) in enumerate(updates):
+            result = set_inventory(token, store, location_id, info["inventory_item_id"], new_qty)
+            if "error" in result:
+                print(f"  ERROR {id_log}: {result['error']}", file=sys.stderr)
+                errors += 1
+            time.sleep(0.5)
+            if (i + 1) % 20 == 0:
+                print(f"  {i + 1}/{len(updates)}")
 
     summary_ws = wb.create_sheet("Resumen")
     summary_ws.append(["Estatus", "Cantidad"])
     for k, v in counts.items():
         summary_ws.append([k, v])
-    summary_ws.append(["Actualizaciones aplicadas", len(updates) - errors])
+    summary_ws.append(
+        [
+            "Actualizaciones pendientes (modo seco)" if dry_run else "Actualizaciones aplicadas",
+            len(updates) if dry_run else len(updates) - errors,
+        ]
+    )
     summary_ws.append(["Errores al actualizar", errors])
     summary_ws.append(["Vinculados por código B1", vinculados_por_b1])
     summary_ws.append(["Vinculados por nombre (último recurso)", vinculados_por_nombre])
 
     wb.save(output_path)
-    print(f"Listo. {len(updates) - errors} actualizaciones aplicadas, {errors} errores.")
+    if dry_run:
+        print(f"Listo (MODO SECO). {len(updates)} actualizaciones pendientes, 0 escritas.")
+    else:
+        print(f"Listo. {len(updates) - errors} actualizaciones aplicadas, {errors} errores.")
     print(f"Excel de resultado: {output_path}")
 
 

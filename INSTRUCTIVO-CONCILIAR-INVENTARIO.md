@@ -173,6 +173,26 @@ cambios, y escribe `resultado.xlsx` con las 3 columnas nuevas, cada fila
 coloreada, y una pestaña "Resumen" con los totales por estatus y con qué
 llave se vinculó cada grupo.
 
+### `--dry-run`: ver los cambios antes de escribirlos
+
+```bash
+python3 scripts/conciliar-inventario.py --dry-run conteo-de-hoy.xlsx resultado.xlsx
+```
+
+Hace exactamente lo mismo **menos escribir en Shopify**: descarga el
+catálogo, cruza, colorea el Excel, arma el "Resumen", e imprime la lista
+de variantes que cambiarían (`SKU: antes -> después`) y cuántas
+quedarían en 0.
+
+La lista de cambios ya está armada completa **antes** del primer envío a
+Shopify, así que el modo seco muestra exactamente lo que se escribiría —
+no es una aproximación.
+
+**Conviene siempre en la primera corrida del día**, sobre todo si hay
+campaña por encender: lo que quede en 0 sale del conjunto anunciable de
+Meta y de la colección `combos` (que filtra por disponibilidad desde el
+25 de agosto), y eso es mejor verlo antes que descubrirlo pagando.
+
 ### Vincular códigos B1 (solo cuando haga falta)
 
 Este segundo script escribe el `Codigo B1` del conteo en el campo
