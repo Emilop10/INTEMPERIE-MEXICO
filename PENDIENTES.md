@@ -50,6 +50,23 @@ Cuernavaca" en vez de "Intemperie México"), no un problema real.
 **Ningún bloqueante queda para la siguiente campaña.** Detalle
 completo en la sección 46 del manual.
 
+**🔴 Antes de reanudar la campaña (Ola 8, 25 ago — sección 48 del manual):**
+La cuenta publicitaria tiene el **tope de gasto agotado** ($285 al 100%)
+y lleva sin entregar desde el 21 de agosto, aunque todo reporte "activo"
+— Meta no lo marca como incidencia. Las correcciones de Meta y del sitio
+ya están hechas y **el conjunto v3 quedó en PAUSA a propósito**, por
+decisión del dueño de encender el gasto al final con todo pulido.
+Falta: **subir el tope y activar el conjunto v3**.
+
+**🟡 Del lado del dueño, no se puede resolver por código:**
+- **Fotografía**: 2 imágenes en el combo de $999, 1 en la caña de $549.
+  Es el bloqueador dominante del recorrido de compra.
+- **Reseñas de producto**: 8 a nivel tienda, 0 por producto. Meta: 30+
+  con promedio real (4.5-4.8), no defender el 5.00 actual.
+- **Umbral de envío**: la mediana del catálogo es $149 y el envío gratis
+  arranca en $799. Bajarlo a $599/$99 alinearía la promesa con lo que la
+  tienda vende. Decisión de margen, sin evidencia de demanda todavía.
+
 **Abiertos ahora mismo:** cerrar los productos de
 [`PRODUCTOS-PENDIENTES.md`](./PRODUCTOS-PENDIENTES.md) y TikTok cuando
 exista la cuenta. (La decisión sobre Shopify Payments que aparecía

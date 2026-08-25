@@ -75,6 +75,7 @@ como respaldo
 45. [Ola 6: punch list post-auditoría con agentes especializados](#45-ola-6-punch-list-post-auditoría-con-agentes-especializados)
 46. [Cero compras en 6 meses: el hallazgo que nadie había medido](#46-cero-compras-en-6-meses-el-hallazgo-que-nadie-había-medido)
 47. [Ola 7: cerrar los 4 pendientes diferidos](#47-ola-7-cerrar-los-4-pendientes-diferidos-24-ago)
+48. [Ola 8: auditoría previa a campaña y sus correcciones](#48-ola-8-auditoría-previa-a-campaña-y-sus-correcciones-25-ago)
 
 ---
 
@@ -4400,3 +4401,146 @@ Con esto, los 4 pendientes diferidos de la Ola 6 quedan cerrados o
 con su siguiente paso ya resuelto y documentado. No queda ningún
 pendiente sin un dueño claro (código terminado, o documento listo
 para ejecutar del lado del dueño).
+
+---
+
+## 48. Ola 8: auditoría previa a campaña y sus correcciones (25 ago)
+
+El dueño pidió una auditoría con agentes especializados antes de invertir
+en la siguiente campaña. Se lanzaron dos en paralelo — **Persona
+Walkthrough** (recorrido cognitivo de un pescador de 48 años de
+Cuernavaca llegando desde Instagram) y **Paid Social Strategist** — y
+sus hallazgos se verificaron uno por uno antes de aceptarlos.
+
+### El hallazgo que reordenó todo: los anuncios llevaban 4 días apagados
+
+La cuenta publicitaria tiene un **tope de gasto de $285 MXN consumido al
+100%**. Campaña, conjunto y anuncio reportaban `ACTIVE` y **cero
+incidencias** — Meta no marca el tope de cuenta como problema a nivel de
+anuncio, así que **se apaga en silencio**. Último día con impresiones:
+21 de agosto.
+
+Cruzando fechas apareció lo importante: **los anuncios pararon el 21 y
+todas las mejoras se desplegaron del 22 al 25**. Es decir, **ningún
+visitante de pago ha visto la tienda mejorada**, y la métrica que
+usábamos como diagnóstico (721 vistas → 3 carritos, 0.4%) mide la tienda
+*vieja*. El objetivo de la siguiente inversión no es vender: es obtener
+la primera medición honesta.
+
+> Esto ya estaba escrito en `INSTRUCTIVO-FACEBOOK-ADS.md` — que el tope
+> hay que **subirlo**, no basta con reactivar la campaña — y no se
+> aplicó. Segunda vez en este proyecto que una trampa documentada se
+> repite por no releer la documentación propia.
+
+### Tres correcciones a los agentes (y una a mí mismo)
+
+Ninguna se aceptó sin verificar. Tres afirmaciones no sobrevivieron:
+
+1. **«17 productos agotados por ficha»** → eran **8**. El agente contó
+   dos elementos de badge por producto. El fondo seguía siendo válido y
+   peor de lo que sonaba: **54 tarjetas** en el módulo de recomendados.
+2. **«El campo de marca está mal: Gimbel en un producto Araty»** →
+   **Rapala sí es dueño de Sufix**. El campo `vendor` es el
+   distribuidor, no el fabricante; la convención es legítima aunque
+   confunda.
+3. **«No reviews aparece 3 veces por ficha»** — verificado que sí está
+   en el HTML… **pero con `style='display:none'`**. Judge.me lo revela
+   por JS solo cuando hay reseñas. **No es visible para el usuario y no
+   había nada que arreglar.** Es el riesgo que el propio agente había
+   advertido (analizó HTML sin ejecutar JavaScript) y que yo repetí en
+   mi informe sin comprobarlo. Falso positivo de la misma familia que el
+   de «Agotado» de la Ola 6 y el de «Ver todos los detalles» de la
+   Parte A: **en este tema, la presencia de un texto en el HTML no
+   significa que se vea.**
+4. **Mi propio informe** afirmó que «el tráfico pagado aterriza en
+   /todo-pesca». Es catálogo dinámico (`product_set_id` presente), así
+   que **cada tarjeta enlaza a su ficha de producto**; solo la tarjeta
+   final del carrusel iba a la colección. El hallazgo era real pero
+   estaba sobredimensionado.
+
+### Ejecutado en Meta (todo queda en PAUSA por decisión del dueño)
+
+El dueño pidió explícitamente encender el gasto **al final**, con todo
+pulido, en vez de ir corrigiendo en vivo.
+
+- **Anuncio corregido**: el texto prometía «⚡ ENVÍO GRATIS en este
+  pedido» y **12 de los 38 productos anunciables (32%) están por debajo
+  de $799**, así que era falso para uno de cada tres clics. Nuevo texto
+  honesto («Envío gratis desde $799») que además comunica meses sin
+  intereses y pago en OXXO/7-Eleven. Destino del carrusel movido a
+  `/collections/combos`, donde **los 7 productos disponibles cruzan
+  $799** — la promesa sí se cumple.
+- **Segmentación acotada**: fuera Instagram feed (consumía 14.7% del
+  gasto para 2.1% de los resultados: $5.38 por vista contra $0.64 en
+  Facebook feed), y público reducido a **hombres de 45 a 65** (las
+  mujeres consumían 37% del gasto para 18% de las vistas; los hombres
+  45+ cuestan $0.41-0.68 por vista).
+- **Evento de optimización a `ADD_TO_CART`**: optimizar a
+  `CONTENT_VIEW` hizo el tráfico 6 veces más barato y ~10 veces peor en
+  tasa de carrito (0.4% contra 3.8% histórico). **Meta no permite
+  cambiar el evento de un conjunto ya publicado**, así que se creó el
+  conjunto v3 y se pausó el v2 — sin borrarlo, siguiendo la regla de
+  «pausar, nunca borrar».
+
+> Trampa de API documentada: crear un creativo de catálogo dinámico
+> falla con «especificación no válida de la historia del objeto» si
+> `template_data` no incluye `name` y `description` con los tokens
+> `{{product.name}}` / `{{product.price}}`. El GET del creativo
+> existente **no devuelve esos campos**, así que replicarlo tal cual no
+> funciona.
+
+### Ejecutado en el sitio
+
+- **Combo sugerido en la ficha de los componentes.** Era el hallazgo de
+  más impacto en ticket promedio y estaba invisible: la caña de $549
+  está a $61 del envío gratis, y su combo cuesta $999 contra $1,148 de
+  las piezas sueltas. Resuelto **con datos, no con texto fijo**: un
+  metafield `custom.combo_sugerido` (referencia a producto) conecta cada
+  componente con su combo, y el `compare_at_price` de los combos se fijó
+  a la **suma real de sus partes** — comprobable comprándolas por
+  separado. El snippet calcula diferencia, ahorro y si cruza el umbral,
+  todo desde datos vivos, así que **ninguna cifra puede quedar
+  mintiendo** si cambia un precio.
+- **Escaparate del inicio con piso de precio.** Abría con un plomo de
+  **$1.95**: el filtro de la Ola 6 solo miraba disponibilidad, y el
+  plomo está disponible. Ahora hay un mínimo configurable (default
+  $300) y el escaparate de Pesca abre con los tres combos.
+- **Recomendados recortados**: de **54 tarjetas a 12**, saltando
+  agotados. La ficha bajó de **481 KB a 301 KB** (−37%) y los 8
+  «Agotado» visibles desaparecieron.
+- **Carrito vacío**: mostraba «Envío: $189 MXN» — anclaba en el costo
+  antes de que el cliente tuviera nada. Ahora dice «Envío gratis desde
+  $799».
+- **Ubicación y redes**: el footer dice «Enviamos desde **Cuernavaca,
+  Morelos**» (las palabras Cuernavaca y Morelos **no aparecían en
+  ninguna página**, y el miedo central del comprador simulado era la
+  tienda fantasma), y se agregó el enlace a **Instagram**, que faltaba
+  pese a que el tráfico viene de ahí. El enlace se escribió
+  directamente en el `settings_data.json` **vivo** por Admin API —
+  lectura, modificación de una sola clave y escritura — porque ese
+  archivo no se despliega desde el repo y el valor existía vacío, así
+  que un `default` en el schema no habría surtido efecto.
+
+### Verificado en producción tras desplegar
+
+Cero errores de Liquid en home, ficha y carrito. Combo sugerido
+renderizando con las cifras correctas («$999, ahorras $149, incluye
+envío gratis»), escaparate abriendo con combos, recomendados en 12
+tarjetas sin agotados, carrito vacío con el mensaje en positivo,
+Cuernavaca e Instagram presentes.
+
+### Lo que queda del lado del dueño
+
+- **Subir el tope de gasto** y reanudar (decisión suya: al final, con
+  todo pulido).
+- **Fotografía**: 2 imágenes en el combo de $999, 1 en la caña de $549.
+  Es el bloqueador dominante del recorrido de compra y no se puede
+  resolver por código.
+- **Reseñas de producto**: hay 8 a nivel tienda y 0 por producto. La
+  meta correcta es volumen creíble (30+, promedio real 4.5-4.8), no
+  defender el 5.00 actual.
+- **Decisión de fondo abierta**: la mediana del catálogo es $149 y el
+  umbral de envío gratis es $799. Bajarlo a $599 con $99 fijo alinearía
+  la promesa con lo que la tienda vende de verdad. Es una decisión de
+  margen, y con cero compras reales todavía no hay evidencia de dónde
+  está la demanda.
