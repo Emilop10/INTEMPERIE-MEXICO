@@ -180,8 +180,8 @@
     "semantic_hash": ""
   },
   "config/settings_schema.json": {
-    "mtime": 1787607602.7742436,
-    "ast_hash": "7ee554289782c8d711225dfb1f5aaa29",
+    "mtime": 1787672775.505639,
+    "ast_hash": "41a0807e1ba2ed726bed6010b3feb388",
     "semantic_hash": ""
   },
   "locales/bg.json": {
@@ -440,8 +440,8 @@
     "semantic_hash": ""
   },
   "sections/footer-group.json": {
-    "mtime": 1786065940.499332,
-    "ast_hash": "89c37c3e13010686f3cd8b15feb4c771",
+    "mtime": 1787672591.208045,
+    "ast_hash": "93e9cebf3570fa606d0b6e4cd74936a5",
     "semantic_hash": ""
   },
   "sections/header-group.json": {
