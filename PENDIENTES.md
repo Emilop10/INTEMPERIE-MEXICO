@@ -16,11 +16,12 @@ tope de gasto), y 41 (auditoría de conversión del sitio):
 | | |
 |---|---|
 | Campaña | `IMX \| Ventas \| Pesca y Óptica \| Catálogo dinámico \| Ago26` |
-| Estado | **Activa**, entregando |
-| Conjunto vigente | optimiza a `CONTENT_VIEW` (no a Compra — con este presupuesto, optimizar a Compra nunca sale de aprendizaje), $55/día |
+| Estado | **En pausa** desde la Ola 8 (25 ago), a la espera de subir el tope de gasto — ver el recuadro rojo abajo |
+| Conjunto vigente | `...AddToCart \| Hombres 45+ \| >=$500 \| Ago26 v3`, $55/día. Optimiza a **`ADD_TO_CART`** (no a Compra — con este presupuesto nunca sale de aprendizaje; y no a `CONTENT_VIEW`, que compró tráfico basura: sección 48) |
+| Segmentación | México, **hombres 45-65**, solo Facebook feed y Marketplace (Instagram feed se cortó: 15% del gasto para 2% del resultado) |
 | Conjunto de productos | **38 productos** ≥$500, en stock, sin accesorios de arma (no 324) — piso subido de $300 a $500 el 24 de agosto (sección 45), y +3 al publicar los combos nuevos de $999-$1,499 (sección 47) |
-| Tope de gasto | a nivel de **cuenta**, se ajusta cada semana — ver sección 40 del manual |
-| Resultado a la fecha | 0 compras, 1 carrito real en 6 días — la sección 41 documenta la auditoría completa de por qué |
+| Tope de gasto | a nivel de **cuenta**. ⚠️ **Se agota y apaga la entrega en silencio** — campaña y anuncios siguen diciendo "activo" y Meta no lo marca como incidencia. Ya costó 4 días de apagón (21-25 ago). Conviene ponerlo mensual, no semanal — secciones 40 y 48 |
+| Resultado a la fecha | 0 compras. **Pero ese dato mide la tienda vieja**: los anuncios pararon el 21 de agosto y todas las mejoras se desplegaron del 22 al 25, así que ningún visitante de pago ha visto la tienda mejorada (sección 48) |
 
 Seguimiento: `python3 scripts/meta-ads.py reporte --dias 7` (usa
 `time_range` explícito, no `date_preset` — ver sección 34/35 del
@@ -66,6 +67,13 @@ Falta: **subir el tope y activar el conjunto v3**.
 - **Umbral de envío**: la mediana del catálogo es $149 y el envío gratis
   arranca en $799. Bajarlo a $599/$99 alinearía la promesa con lo que la
   tienda vende. Decisión de margen, sin evidencia de demanda todavía.
+- **Filtros por tipo en las colecciones grandes**: `/collections/todo-pesca`
+  tiene 306 productos en 20 páginas y solo dos filtros (disponibilidad y
+  precio). Quien busca una caña no puede filtrar cañas — el recorrido de
+  comprador simulado lo marcó como el punto donde casi abandona.
+  **No se puede hacer por código**: en OS 2.0 los filtros salen de la app
+  **Search & Discovery** en el admin de Shopify, no del tema. Detalle en
+  la sección 48 del manual.
 
 **Abiertos ahora mismo:** cerrar los productos de
 [`PRODUCTOS-PENDIENTES.md`](./PRODUCTOS-PENDIENTES.md) y TikTok cuando

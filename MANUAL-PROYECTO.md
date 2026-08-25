@@ -892,6 +892,11 @@ pudo instalar en este entorno. Corrido sobre `tema-shopify/`, generó:
   la razón esperada: `assets/imx-cross-sell.js` es el primer
   componente de JS propio que se agrega desde entonces (los snippets
   de Liquid nuevos no cuentan como nodos por sí solos)
+- **La Ola 8 (25 ago) la dejó igual**: 461/705/41. Sus cambios fueron
+  Liquid (`combo-sugerido.liquid`), CSS y JSON de configuración —
+  ninguno genera nodos. Confirma la regla que ya se veía en las Olas
+  1-5g: en este tema **solo los componentes de JavaScript mueven el
+  grafo**
 - **Segundo grafo, `scripts/`: 87 nodos, 144 aristas, 9 comunidades**
   (24 de agosto, tras sumar `cargar-fichas-tecnicas.py` y
   `crear-combos.py`). El repo lleva **dos** grafos independientes —
@@ -4503,8 +4508,10 @@ pulido, en vez de ir corrigiendo en vivo.
   mintiendo** si cambia un precio.
 - **Escaparate del inicio con piso de precio.** Abría con un plomo de
   **$1.95**: el filtro de la Ola 6 solo miraba disponibilidad, y el
-  plomo está disponible. Ahora hay un mínimo configurable (default
-  $300) y el escaparate de Pesca abre con los tres combos.
+  plomo está disponible. Ahora hay un mínimo configurable —setting
+  **`destacados_precio_minimo_centavos`**, default `30000` ($300), en
+  el grupo "Envíos" del personalizador— y el escaparate de Pesca abre
+  con los tres combos.
 - **Recomendados recortados**: de **54 tarjetas a 12**, saltando
   agotados. La ficha bajó de **481 KB a 301 KB** (−37%) y los 8
   «Agotado» visibles desaparecieron.
@@ -4529,10 +4536,29 @@ envío gratis»), escaparate abriendo con combos, recomendados en 12
 tarjetas sin agotados, carrito vacío con el mensaje en positivo,
 Cuernavaca e Instagram presentes.
 
+### Una recomendación que quedó fuera de alcance a propósito
+
+La auditoría pedía **filtros por tipo de producto en las colecciones
+grandes**: `/collections/todo-pesca` tiene 306 productos en 20 páginas y
+solo dos filtros (disponibilidad y precio), ninguno por tipo. El agente
+lo señaló como el punto exacto donde el comprador simulado casi
+abandona, buscando "cañas" sin encontrar cómo filtrarlas.
+
+**No se implementó, y no por olvido:** en OS 2.0 los filtros de
+colección **no se configuran en el tema**, salen de la app **Search &
+Discovery** en el admin de Shopify. No hay forma de agregarlos por
+código desde aquí. Verificado tras el despliegue que siguen siendo dos.
+
+Queda anotado en `PENDIENTES.md` como tarea del dueño. Se deja escrito
+aquí porque es el tipo de recomendación que se evapora entre una ola y
+la siguiente: no aparecía en ningún lado hasta esta revisión.
+
 ### Lo que queda del lado del dueño
 
 - **Subir el tope de gasto** y reanudar (decisión suya: al final, con
   todo pulido).
+- **Filtros por tipo en las colecciones grandes** (app Search &
+  Discovery) — ver arriba.
 - **Fotografía**: 2 imágenes en el combo de $999, 1 en la caña de $549.
   Es el bloqueador dominante del recorrido de compra y no se puede
   resolver por código.
