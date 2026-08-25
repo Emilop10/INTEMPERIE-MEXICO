@@ -149,8 +149,11 @@ Contacto) se reescribieron por completo y ya están **en vivo** (a diferencia de
 resto del rediseño, las políticas legales no viven en el tema de copia — son
 configuración a nivel tienda). Sin RFC ni ciudad expuestos, sin requisito de
 mayoría de edad (por decisión explícita), con cláusulas de uso responsable para
-productos de aire comprimido. Ver `INSTRUCTIVO-APP-SHOPIFY.md` si se necesita
-volver a tocar permisos de la app para editarlas de nuevo.
+productos de aire comprimido. Si se necesita volver a tocar permisos de la
+app para editarlas de nuevo, ver
+[`INSTRUCTIVO-CREDENCIALES-SHOPIFY.md`](./INSTRUCTIVO-CREDENCIALES-SHOPIFY.md)
+— ahí vive la **lista vigente de scopes** (la de `INSTRUCTIVO-APP-SHOPIFY.md`
+quedó desactualizada y reautorizar con ella degrada el token).
 
 ---
 
@@ -234,8 +237,12 @@ Desde ahora, cualquier push que toque `tema-shopify/` se despliega solo,
 sin pasos manuales.
 
 > Si el token deja de servir en el futuro (expira o cambian los scopes de
-> la app), regenerarlo toma 5 minutos con `INSTRUCTIVO-APP-SHOPIFY.md`, y
-> solo hay que actualizar este mismo secret.
+> la app), el procedimiento completo está en
+> [`INSTRUCTIVO-CREDENCIALES-SHOPIFY.md`](./INSTRUCTIVO-CREDENCIALES-SHOPIFY.md):
+> **empieza por su diagnóstico de 4 pasos** — más de una vez el token
+> resultó estar vivo y el problema era otro. Regenerarlo toma 5 minutos,
+> y después hay que actualizar este mismo secret o el deploy automático
+> deja de funcionar **en silencio**.
 
 ---
 
