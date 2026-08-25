@@ -879,16 +879,23 @@ consultable (análisis AST local, sin mandar código a ningún servidor).
 A diferencia de Browser Harness, no depende de WebSocket, así que sí se
 pudo instalar en este entorno. Corrido sobre `tema-shopify/`, generó:
 
-- **460 nodos, 705 conexiones, 40 comunidades** de código relacionado
-  (cifra al 13 de agosto de 2026; era 452/697/37 en la primera corrida,
-  459/705/39 al 7 de agosto; sigue igual al 23 de agosto tras toda la
-  auditoría de conversión y la integración de Judge.me — `graphify
-  update` reportó "sin cambios de topología" porque las Olas 1-5g
-  fueron marcado, estilos y bloques de app sobre secciones ya
-  existentes, no componentes de JS nuevos). Los cambios de la franja
-  de confianza del 13 de agosto tampoco agregaron nodos nuevos por el
-  mismo motivo — marcado y estilos sobre una sección ya existente, no
-  componentes nuevos
+- **461 nodos, 705 conexiones, 41 comunidades** de código relacionado
+  (cifra al 24 de agosto de 2026, Ola 7). Historia: 452/697/37 en la
+  primera corrida, 459/705/39 al 7 de agosto, 460/705/40 al 13 de
+  agosto. Se mantuvo en 460/705/40 durante toda la auditoría de
+  conversión y la integración de Judge.me (Olas 1-5g) porque fueron
+  marcado, estilos y bloques de app sobre secciones ya existentes, no
+  componentes de JS nuevos — `graphify update` reportaba "sin cambios
+  de topología". Lo mismo pasó con la franja de confianza del 13 de
+  agosto. **La Ola 7 sí movió la cifra (+1 nodo, +1 comunidad)**, y por
+  la razón esperada: `assets/imx-cross-sell.js` es el primer
+  componente de JS propio que se agrega desde entonces (los snippets
+  de Liquid nuevos no cuentan como nodos por sí solos)
+- **Segundo grafo, `scripts/`: 87 nodos, 144 aristas, 9 comunidades**
+  (24 de agosto, tras sumar `cargar-fichas-tecnicas.py` y
+  `crear-combos.py`). El repo lleva **dos** grafos independientes —
+  `graphify update .` se corre por separado dentro de `tema-shopify/`
+  y dentro de `scripts/`, no desde la raíz
 - Los "god nodes" (componentes más centrales de la arquitectura del
   tema): `PredictiveSearch`, `FacetFiltersForm`, `SlideshowComponent`,
   `CartItems`, `CartDrawer`, `MenuDrawer`, entre otros
@@ -4266,15 +4273,55 @@ Shopify no descuenta componentes al vender un combo, publicarlos con
 la caña también a la venta por separado crea riesgo de sobreventa real.
 Documentado como aviso en `COMBOS-NUEVOS-PENDIENTES.md`.
 
+### Cierre de la credencial (24 ago, noche)
+
+Con el token regenerado quedaron tres tareas de higiene, de las cuales
+dos se cerraron y una se descartó con conocimiento de causa:
+
+- ✅ **Secret de GitHub verificado funcionando.** En vez de asumirlo, se
+  disparó el workflow a mano (`workflow_dispatch`) y terminó en
+  `success`. Se confirmó leyendo `deploy-shopify.py` que **autentica
+  antes** de revisar qué archivos cambiaron (`resolve_theme` llama a
+  `GET /themes.json`), así que el `success` no es un falso positivo por
+  "no había nada que subir" — el token del secret sí autentica. Lo que
+  ese test **no** puede distinguir es si el secret tiene el token nuevo
+  o el viejo sigue siendo válido; para el deploy da igual, pero conviene
+  no afirmar de más.
+- ✅ **Secreto de la app rotado** por el dueño, ya que pasó por el chat.
+  No invalida el token de acceso ya generado.
+- ❌ **La variable de entorno en claude.ai/code no se configuró** — el
+  dueño no encontró dónde. Se decidió no insistir: **la consecuencia
+  real es que la próxima sesión no va a tener el token** y habrá que
+  repetir el flujo OAuth (~5 min, documentado). Es un fallback válido,
+  no un bloqueo.
+
+> ⚠️ Se corrigió aquí una idea equivocada que conviene dejar por
+> escrito: **el token no está en el instructivo.** Ahí vive el
+> *procedimiento* para regenerarlo, nunca el valor — por la política de
+> la sección 34. Si se quiere acceso instantáneo en la siguiente
+> sesión, el token tiene que estar guardado fuera del repo (gestor de
+> contraseñas del dueño o variable de entorno), no "sacarse del
+> instructivo".
+
 ### Cierre de la Ola 7
 
-Bloques 1-3 desplegados y verificados en vivo con `curl` (cache-busting
-confirmado, cero errores de Liquid, comportamiento correcto en los
-casos límite de cada uno). `graphify update .` corrido tras el cierre:
-461 nodos, 705 aristas, 41 comunidades (sube de 460/705/40 por los 2
-snippets nuevos). Bloque 4 entregado como documento, pendiente de alta
-por el dueño o Claude en Chrome — igual que la captura de datos del
-bloque 3.
+Los 4 bloques quedaron ejecutados. Bloques 1-3 desplegados y
+verificados en vivo con `curl` (cache-busting confirmado, cero errores
+de Liquid, casos límite correctos). Bloques 3 y 4 ejecutados por API
+tras recuperar el acceso, con verificación por relectura en cada
+escritura.
+
+`graphify update .` corrido en los dos grafos del repo:
+- `tema-shopify/`: **461 nodos, 705 aristas, 41 comunidades** (sube de
+  460/705/40 por los 2 snippets nuevos de las Olas 7).
+- `scripts/`: **87 nodos, 144 aristas, 9 comunidades**, tras sumar
+  `cargar-fichas-tecnicas.py` y `crear-combos.py`.
+- Mapa 3D regenerado con `scripts/rebuild-mapa-3d.py` (460 → 461 nodos).
+
+**Lo único que queda abierto son dos decisiones de negocio del dueño**,
+ambas sobre los combos y ambas anotadas en `PENDIENTES.md`: el stock
+real (1 pieza por combo) y cómo manejar el riesgo de sobreventa antes
+de publicarlos. No hay nada de código pendiente.
 
 Con esto, los 4 pendientes diferidos de la Ola 6 quedan cerrados o
 con su siguiente paso ya resuelto y documentado. No queda ningún

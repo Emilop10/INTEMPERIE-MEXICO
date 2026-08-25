@@ -1,16 +1,16 @@
-# Graph Report - scripts  (2026-08-18)
+# Graph Report - scripts  (2026-08-25)
 
 ## Corpus Check
-- 7 files · ~7,355 words
+- 9 files · ~9,059 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 75 nodes · 126 edges · 10 communities (9 shown, 1 thin omitted)
-- Extraction: 94% EXTRACTED · 6% INFERRED · 0% AMBIGUOUS · INFERRED: 7 edges (avg confidence: 0.5)
+- 87 nodes · 144 edges · 9 communities (8 shown, 1 thin omitted)
+- Extraction: 95% EXTRACTED · 5% INFERRED · 0% AMBIGUOUS · INFERRED: 7 edges (avg confidence: 0.5)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `ec9b9993`
+- Built from commit: `6a1d52c3`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -18,12 +18,11 @@
 - conciliar-inventario.py
 - deploy-shopify.py
 - Deploy del tema a Shopify
-- main
+- meta-ads.py
 - sincronizar-canal-meta.py
 - vincular-codigo-b1.py
-- api_request
-- meta-ads.py
-- _resolve_business_assets
+- cargar-fichas-tecnicas.py
+- crear-combos.py
 - rebuild-mapa-3d.py
 
 ## God Nodes (most connected - your core abstractions)
@@ -33,27 +32,18 @@
 4. `main()` - 7 edges
 5. `Deploy del tema a Shopify` - 7 edges
 6. `cmd_activar()` - 6 edges
-7. `keys_from_git()` - 5 edges
-8. `cmd_reporte()` - 5 edges
-9. `cmd_pausar()` - 5 edges
-10. `_resolve_business_assets()` - 5 edges
+7. `main()` - 5 edges
+8. `keys_from_git()` - 5 edges
+9. `cmd_reporte()` - 5 edges
+10. `cmd_pausar()` - 5 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `main()` --indirect_call--> `cmd_listar()`  [INFERRED]
-  meta-ads.py → meta-ads.py  _Bridges community 6 → community 3_
-- `main()` --indirect_call--> `cmd_reporte()`  [INFERRED]
-  meta-ads.py → meta-ads.py  _Bridges community 7 → community 3_
-- `main()` --indirect_call--> `cmd_activos()`  [INFERRED]
-  meta-ads.py → meta-ads.py  _Bridges community 8 → community 3_
-- `cmd_reporte()` --calls--> `api_request()`  [EXTRACTED]
-  meta-ads.py → meta-ads.py  _Bridges community 6 → community 7_
-- `_resolve_business_assets()` --calls--> `api_request()`  [EXTRACTED]
-  meta-ads.py → meta-ads.py  _Bridges community 6 → community 8_
+- None detected - all connections are within the same source files.
 
 ## Import Cycles
 - None detected.
 
-## Communities (10 total, 1 thin omitted)
+## Communities (9 total, 1 thin omitted)
 
 ### Community 0 - "conciliar-inventario.py"
 Cohesion: 0.23
@@ -67,9 +57,9 @@ Nodes (13): all_theme_keys(), api_request(), git(), keys_from_git(), main(), Cla
 Cohesion: 0.25
 Nodes (7): Automatico en cada push, Deploy del tema a Shopify, Detalles que costaron tiempo (no repetirlos), Por que existe esto, Que NO sube (a proposito), Renovar el token, Uso rapido
 
-### Community 3 - "main"
-Cohesion: 0.38
-Nodes (7): cmd_crear_campania(), cmd_pausar(), cmd_presupuesto(), main(), Pausar la campaña basta para detener la entrega y el gasto. No hace falta tocar…, _require(), require_env()
+### Community 3 - "meta-ads.py"
+Cohesion: 0.23
+Nodes (19): api_request(), cmd_activar(), cmd_activos(), cmd_crear_campania(), cmd_listar(), cmd_pausar(), cmd_presupuesto(), cmd_reporte() (+11 more)
 
 ### Community 4 - "sincronizar-canal-meta.py"
 Cohesion: 0.50
@@ -79,17 +69,13 @@ Nodes (7): aplicar(), es_prohibido(), gql(), main(), Prohibido por coleccion O p
 Cohesion: 0.52
 Nodes (6): actualizar_barcode(), api_request(), fetch_all_products(), leer_conteo(), main(), next_page_url()
 
-### Community 6 - "api_request"
-Cohesion: 0.40
-Nodes (6): api_request(), cmd_activar(), cmd_listar(), _hijos_de_campania(), Devuelve (conjuntos, anuncios) de una campaña., Activa la campaña Y sus conjuntos y anuncios. Activar solo la campaña no…
+### Community 6 - "cargar-fichas-tecnicas.py"
+Cohesion: 0.43
+Nodes (7): api(), catalogo_por_handle(), leer_metafield(), main(), parsear_documento(), Devuelve [(handle, titulo, [lineas]), ...] desde el .md., {handle: product_id} de todo el catalogo, paginado.
 
-### Community 7 - "meta-ads.py"
-Cohesion: 0.83
-Nodes (3): cmd_reporte(), _hace_dias(), _hoy()
-
-### Community 8 - "_resolve_business_assets"
-Cohesion: 0.67
-Nodes (3): cmd_activos(), Descubre página, cuenta de Instagram, catálogo y pixel del negocio. Solo…, _resolve_business_assets()
+### Community 7 - "crear-combos.py"
+Cohesion: 1.00
+Nodes (3): api(), buscar(), main()
 
 ## Knowledge Gaps
 - **6 isolated node(s):** `Por que existe esto`, `Uso rapido`, `Automatico en cada push`, `Que NO sube (a proposito)`, `Detalles que costaron tiempo (no repetirlos)` (+1 more)
@@ -99,10 +85,6 @@ Nodes (3): cmd_activos(), Descubre página, cuenta de Instagram, catálogo y pix
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `api_request()` connect `api_request` to `_resolve_business_assets`, `main`, `meta-ads.py`?**
-  _High betweenness centrality (0.008) - this node is a cross-community bridge._
-- **Why does `cmd_activar()` connect `api_request` to `main`, `meta-ads.py`?**
-  _High betweenness centrality (0.008) - this node is a cross-community bridge._
 - **Are the 7 inferred relationships involving `main()` (e.g. with `cmd_activar()` and `cmd_activos()`) actually correct?**
   _`main()` has 7 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `Por que existe esto`, `Uso rapido`, `Automatico en cada push` to the rest of the system?**

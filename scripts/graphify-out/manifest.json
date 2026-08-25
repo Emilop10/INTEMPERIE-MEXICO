@@ -33,5 +33,15 @@
     "mtime": 1786149599.6400886,
     "ast_hash": "133535efb5dd3cb8e54f23ba592737f8",
     "semantic_hash": ""
+  },
+  "cargar-fichas-tecnicas.py": {
+    "mtime": 1787633549.6322227,
+    "ast_hash": "ba3202ea01617ee52b973095b066eaab",
+    "semantic_hash": ""
+  },
+  "crear-combos.py": {
+    "mtime": 1787633758.6762352,
+    "ast_hash": "239d87634d391711b0e6a4180c727dc3",
+    "semantic_hash": ""
   }
 }

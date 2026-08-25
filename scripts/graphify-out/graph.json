@@ -4,6 +4,99 @@
   "graph": {},
   "nodes": [
     {
+      "label": "cargar-fichas-tecnicas.py",
+      "file_type": "code",
+      "source_file": "cargar-fichas-tecnicas.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "cargar_fichas_tecnicas",
+      "community": 6,
+      "community_name": "cargar-fichas-tecnicas.py",
+      "norm_label": "cargar-fichas-tecnicas.py"
+    },
+    {
+      "label": "api()",
+      "file_type": "code",
+      "source_file": "cargar-fichas-tecnicas.py",
+      "source_location": "L42",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "cargar_fichas_tecnicas_api",
+      "community": 6,
+      "community_name": "cargar-fichas-tecnicas.py",
+      "norm_label": "api()"
+    },
+    {
+      "label": "parsear_documento()",
+      "file_type": "code",
+      "source_file": "cargar-fichas-tecnicas.py",
+      "source_location": "L62",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "cargar_fichas_tecnicas_parsear_documento",
+      "community": 6,
+      "community_name": "cargar-fichas-tecnicas.py",
+      "norm_label": "parsear_documento()"
+    },
+    {
+      "label": "catalogo_por_handle()",
+      "file_type": "code",
+      "source_file": "cargar-fichas-tecnicas.py",
+      "source_location": "L84",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "cargar_fichas_tecnicas_catalogo_por_handle",
+      "community": 6,
+      "community_name": "cargar-fichas-tecnicas.py",
+      "norm_label": "catalogo_por_handle()"
+    },
+    {
+      "label": "leer_metafield()",
+      "file_type": "code",
+      "source_file": "cargar-fichas-tecnicas.py",
+      "source_location": "L102",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "cargar_fichas_tecnicas_leer_metafield",
+      "community": 6,
+      "community_name": "cargar-fichas-tecnicas.py",
+      "norm_label": "leer_metafield()"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "cargar-fichas-tecnicas.py",
+      "source_location": "L110",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "cargar_fichas_tecnicas_main",
+      "community": 6,
+      "community_name": "cargar-fichas-tecnicas.py",
+      "norm_label": "main()"
+    },
+    {
+      "label": "Devuelve [(handle, titulo, [lineas]), ...] desde el .md.",
+      "file_type": "rationale",
+      "source_file": "cargar-fichas-tecnicas.py",
+      "source_location": "L63",
+      "_origin": "ast",
+      "id": "cargar_fichas_tecnicas_rationale_63",
+      "community": 6,
+      "community_name": "cargar-fichas-tecnicas.py",
+      "norm_label": "devuelve [(handle, titulo, [lineas]), ...] desde el .md."
+    },
+    {
+      "label": "{handle: product_id} de todo el catalogo, paginado.",
+      "file_type": "rationale",
+      "source_file": "cargar-fichas-tecnicas.py",
+      "source_location": "L85",
+      "_origin": "ast",
+      "id": "cargar_fichas_tecnicas_rationale_85",
+      "community": 6,
+      "community_name": "cargar-fichas-tecnicas.py",
+      "norm_label": "{handle: product_id} de todo el catalogo, paginado."
+    },
+    {
       "label": "conciliar-inventario.py",
       "file_type": "code",
       "source_file": "conciliar-inventario.py",
@@ -179,6 +272,53 @@
       "norm_label": "busca una descripcion del conteo fisico contra los titulos de shopify. devuelve..."
     },
     {
+      "label": "crear-combos.py",
+      "file_type": "code",
+      "source_file": "crear-combos.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "crear_combos",
+      "community": 7,
+      "community_name": "crear-combos.py",
+      "norm_label": "crear-combos.py"
+    },
+    {
+      "label": "api()",
+      "file_type": "code",
+      "source_file": "crear-combos.py",
+      "source_location": "L129",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "crear_combos_api",
+      "community": 7,
+      "community_name": "crear-combos.py",
+      "norm_label": "api()"
+    },
+    {
+      "label": "buscar()",
+      "file_type": "code",
+      "source_file": "crear-combos.py",
+      "source_location": "L147",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "crear_combos_buscar",
+      "community": 7,
+      "community_name": "crear-combos.py",
+      "norm_label": "buscar()"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "crear-combos.py",
+      "source_location": "L153",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "crear_combos_main",
+      "community": 7,
+      "community_name": "crear-combos.py",
+      "norm_label": "main()"
+    },
+    {
       "label": "deploy-shopify.py",
       "file_type": "code",
       "source_file": "deploy-shopify.py",
@@ -348,7 +488,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "meta_ads",
-      "community": 7,
+      "community": 3,
       "community_name": "meta-ads.py",
       "norm_label": "meta-ads.py"
     },
@@ -360,8 +500,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "meta_ads_api_request",
-      "community": 6,
-      "community_name": "api_request",
+      "community": 3,
+      "community_name": "meta-ads.py",
       "norm_label": "api_request()"
     },
     {
@@ -373,7 +513,7 @@
       "_origin": "ast",
       "id": "meta_ads_require_env",
       "community": 3,
-      "community_name": "main",
+      "community_name": "meta-ads.py",
       "norm_label": "require_env()"
     },
     {
@@ -384,8 +524,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "meta_ads_cmd_listar",
-      "community": 6,
-      "community_name": "api_request",
+      "community": 3,
+      "community_name": "meta-ads.py",
       "norm_label": "cmd_listar()"
     },
     {
@@ -396,7 +536,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "meta_ads_cmd_reporte",
-      "community": 7,
+      "community": 3,
       "community_name": "meta-ads.py",
       "norm_label": "cmd_reporte()"
     },
@@ -408,7 +548,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "meta_ads_hoy",
-      "community": 7,
+      "community": 3,
       "community_name": "meta-ads.py",
       "norm_label": "_hoy()"
     },
@@ -420,7 +560,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "meta_ads_hace_dias",
-      "community": 7,
+      "community": 3,
       "community_name": "meta-ads.py",
       "norm_label": "_hace_dias()"
     },
@@ -433,7 +573,7 @@
       "_origin": "ast",
       "id": "meta_ads_cmd_pausar",
       "community": 3,
-      "community_name": "main",
+      "community_name": "meta-ads.py",
       "norm_label": "cmd_pausar()"
     },
     {
@@ -444,8 +584,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "meta_ads_hijos_de_campania",
-      "community": 6,
-      "community_name": "api_request",
+      "community": 3,
+      "community_name": "meta-ads.py",
       "norm_label": "_hijos_de_campania()"
     },
     {
@@ -456,8 +596,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "meta_ads_cmd_activar",
-      "community": 6,
-      "community_name": "api_request",
+      "community": 3,
+      "community_name": "meta-ads.py",
       "norm_label": "cmd_activar()"
     },
     {
@@ -469,7 +609,7 @@
       "_origin": "ast",
       "id": "meta_ads_cmd_presupuesto",
       "community": 3,
-      "community_name": "main",
+      "community_name": "meta-ads.py",
       "norm_label": "cmd_presupuesto()"
     },
     {
@@ -480,8 +620,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "meta_ads_resolve_business_assets",
-      "community": 8,
-      "community_name": "_resolve_business_assets",
+      "community": 3,
+      "community_name": "meta-ads.py",
       "norm_label": "_resolve_business_assets()"
     },
     {
@@ -492,8 +632,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "meta_ads_cmd_activos",
-      "community": 8,
-      "community_name": "_resolve_business_assets",
+      "community": 3,
+      "community_name": "meta-ads.py",
       "norm_label": "cmd_activos()"
     },
     {
@@ -505,7 +645,7 @@
       "_origin": "ast",
       "id": "meta_ads_cmd_crear_campania",
       "community": 3,
-      "community_name": "main",
+      "community_name": "meta-ads.py",
       "norm_label": "cmd_crear_campania()"
     },
     {
@@ -517,7 +657,7 @@
       "_origin": "ast",
       "id": "meta_ads_require",
       "community": 3,
-      "community_name": "main",
+      "community_name": "meta-ads.py",
       "norm_label": "_require()"
     },
     {
@@ -529,7 +669,7 @@
       "_origin": "ast",
       "id": "meta_ads_main",
       "community": 3,
-      "community_name": "main",
+      "community_name": "meta-ads.py",
       "norm_label": "main()"
     },
     {
@@ -540,7 +680,7 @@
       "_origin": "ast",
       "id": "meta_ads_rationale_127",
       "community": 3,
-      "community_name": "main",
+      "community_name": "meta-ads.py",
       "norm_label": "pausar la campana basta para detener la entrega y el gasto. no hace falta tocar..."
     },
     {
@@ -550,8 +690,8 @@
       "source_location": "L138",
       "_origin": "ast",
       "id": "meta_ads_rationale_138",
-      "community": 6,
-      "community_name": "api_request",
+      "community": 3,
+      "community_name": "meta-ads.py",
       "norm_label": "devuelve (conjuntos, anuncios) de una campana."
     },
     {
@@ -561,8 +701,8 @@
       "source_location": "L149",
       "_origin": "ast",
       "id": "meta_ads_rationale_149",
-      "community": 6,
-      "community_name": "api_request",
+      "community": 3,
+      "community_name": "meta-ads.py",
       "norm_label": "activa la campana y sus conjuntos y anuncios. activar solo la campana no..."
     },
     {
@@ -572,8 +712,8 @@
       "source_location": "L182",
       "_origin": "ast",
       "id": "meta_ads_rationale_182",
-      "community": 8,
-      "community_name": "_resolve_business_assets",
+      "community": 3,
+      "community_name": "meta-ads.py",
       "norm_label": "descubre pagina, cuenta de instagram, catalogo y pixel del negocio. solo..."
     },
     {
@@ -881,6 +1021,143 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "cargar-fichas-tecnicas.py",
+      "source_location": "L42",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "cargar_fichas_tecnicas",
+      "target": "cargar_fichas_tecnicas_api",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cargar-fichas-tecnicas.py",
+      "source_location": "L84",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "cargar_fichas_tecnicas",
+      "target": "cargar_fichas_tecnicas_catalogo_por_handle",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cargar-fichas-tecnicas.py",
+      "source_location": "L102",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "cargar_fichas_tecnicas",
+      "target": "cargar_fichas_tecnicas_leer_metafield",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cargar-fichas-tecnicas.py",
+      "source_location": "L110",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "cargar_fichas_tecnicas",
+      "target": "cargar_fichas_tecnicas_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cargar-fichas-tecnicas.py",
+      "source_location": "L62",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "cargar_fichas_tecnicas",
+      "target": "cargar_fichas_tecnicas_parsear_documento",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "cargar-fichas-tecnicas.py",
+      "source_location": "L103",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "cargar_fichas_tecnicas_leer_metafield",
+      "target": "cargar_fichas_tecnicas_api",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "cargar-fichas-tecnicas.py",
+      "source_location": "L158",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "cargar_fichas_tecnicas_main",
+      "target": "cargar_fichas_tecnicas_api",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "cargar-fichas-tecnicas.py",
+      "source_location": "L118",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "cargar_fichas_tecnicas_main",
+      "target": "cargar_fichas_tecnicas_parsear_documento",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "cargar-fichas-tecnicas.py",
+      "source_location": "L63",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "cargar_fichas_tecnicas_rationale_63",
+      "target": "cargar_fichas_tecnicas_parsear_documento",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "cargar-fichas-tecnicas.py",
+      "source_location": "L122",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "cargar_fichas_tecnicas_main",
+      "target": "cargar_fichas_tecnicas_catalogo_por_handle",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "cargar-fichas-tecnicas.py",
+      "source_location": "L85",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "cargar_fichas_tecnicas_rationale_85",
+      "target": "cargar_fichas_tecnicas_catalogo_por_handle",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "cargar-fichas-tecnicas.py",
+      "source_location": "L138",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "cargar_fichas_tecnicas_main",
+      "target": "cargar_fichas_tecnicas_leer_metafield",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "conciliar-inventario.py",
       "source_location": "L47",
       "weight": 1.0,
@@ -1150,6 +1427,75 @@
       "_origin": "ast",
       "source": "conciliar_inventario_main",
       "target": "conciliar_inventario_set_inventory",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crear-combos.py",
+      "source_location": "L129",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "crear_combos",
+      "target": "crear_combos_api",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crear-combos.py",
+      "source_location": "L147",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "crear_combos",
+      "target": "crear_combos_buscar",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crear-combos.py",
+      "source_location": "L153",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "crear_combos",
+      "target": "crear_combos_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "crear-combos.py",
+      "source_location": "L148",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "crear_combos_buscar",
+      "target": "crear_combos_api",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "crear-combos.py",
+      "source_location": "L160",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "crear_combos_main",
+      "target": "crear_combos_api",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "crear-combos.py",
+      "source_location": "L170",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "crear_combos_main",
+      "target": "crear_combos_buscar",
       "confidence_score": 1.0
     },
     {
@@ -2324,5 +2670,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "ec9b9993e7945c29a3588bb42cb8453965f84438"
+  "built_at_commit": "6a1d52c3dd1dbd7adea12858a0dd868aeb3289a1"
 }
