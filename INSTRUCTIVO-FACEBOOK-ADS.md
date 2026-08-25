@@ -17,11 +17,11 @@ que el token deje de servir.
 | Moneda | MXN |
 | Business Manager | ID `1324138699447721` — "Intemperie México" |
 | Pixel de Meta | `2011984246408291` — "Intemperie México Pixel" |
-| Catálogo de Meta | `1746844133017649` — 324 productos, el único (desde 15 ago 2026) |
+| Catálogo de Meta | `1746844133017649` — **327 productos**, el único (desde 15 ago 2026) |
 | Campaña vigente | `120249613902440175` — "IMX \| Ventas \| Pesca y Óptica...", **activa desde el 15 ago 2026** |
-| Conjunto vigente | `120249666491620175` — optimiza a `CONTENT_VIEW`, $95/día (el conjunto original quedó en pausa el 18 ago) |
-| Conjunto de productos | `1455189226500365` — 72 productos ≥$300, en stock, sin accesorios de arma |
-| Tope de gasto | **a nivel de CUENTA**, $285 restantes de los $700 de la semana |
+| Conjunto vigente | `120249759861080175` — "...AddToCart \| Hombres 45+ \| >=$500 \| Ago26 v3", optimiza a **`ADD_TO_CART`**, $55/día, **en PAUSA** desde su creación el 25 ago. Anuncio `120249759862720175`, creativo `1005168512560752`. Los conjuntos v1 y v2 quedaron en pausa, no borrados |
+| Conjunto de productos | `1455189226500365` — **38 productos ≥$500**, en stock, sin accesorios de arma (piso subido de $300 el 24 ago) |
+| Tope de gasto | **a nivel de CUENTA**, `$285` y **consumido al 100%** — la entrega está detenida desde el 21 ago. ⚠️ Ver §6-bis: se apaga en silencio |
 | App del System User | "Claude Integration" — ID `1038516402111748` |
 | Canal en Shopify | App oficial "Facebook & Instagram", instalada desde el 16 feb 2026 |
 
@@ -52,7 +52,7 @@ de agosto):**
 
 **Antes de crear cualquier campaña o conjunto de anuncios nuevo**,
 verificar que apunte al catálogo `1746844133017649` — el único que
-existe, ya filtrado desde Shopify, con solo los 324 productos
+existe, ya filtrado desde Shopify, con solo los 327 productos
 anunciables. (El catálogo viejo `1230530145855635`, que tenía 56
 huérfanos incluidas armas, se borró el 15 de agosto.)
 
@@ -354,6 +354,37 @@ Dos trampas de la API, ambas comprobadas el 18 de agosto de 2026:
 > ⚠️ Es un tope de **cuenta**: cualquier campaña o publicación promocionada
 > consume de la misma bolsa. Para continuar la semana siguiente hay que
 > **subir el tope**, no basta con reactivar la campaña.
+
+### 🔴 El tope apaga la entrega EN SILENCIO (comprobado el 25 ago 2026)
+
+Esta es la trampa más cara de la cuenta, y esta misma sección ya la
+advertía en una línea que no bastó. Cuando el tope se agota:
+
+- La campaña, el conjunto y el anuncio **siguen reportando `ACTIVE` y
+  `effective_status: ACTIVE`**.
+- El conjunto **no reporta ninguna incidencia** (`issues_info` vacío).
+- No llega ningún aviso.
+- Simplemente **dejan de existir impresiones**.
+
+El 21 de agosto la entrega se detuvo así y **nadie lo notó durante 4
+días**, mientras todo el tablero decía "activo". Peor: en esos mismos
+días se desplegaron todas las mejoras de conversión de las Olas 1-7, así
+que ningún visitante de pago llegó a verlas (sección 48 del manual).
+
+**Comprobar el tope es parte de leer cualquier métrica**, no un paso
+aparte. Antes de concluir nada sobre rendimiento:
+
+```bash
+curl -sS "https://graph.facebook.com/v21.0/act_1264279685553718?fields=spend_cap,amount_spent&access_token=$META_ACCESS_TOKEN"
+```
+
+Si `amount_spent` == `spend_cap`, no estás midiendo la campaña: estás
+midiendo un apagón. Y ojo con la trampa 2 de arriba — como cambiar el
+tope reinicia `amount_spent`, esos dos números **solo** se pueden
+comparar entre sí, nunca contra el gasto histórico real.
+
+**Recomendación:** ponerlo mensual (~$1,700 para $55/día), no semanal.
+Un tope que se agota cada 7 días es un apagón programado cada 7 días.
 
 **Para calcular gasto, nunca uses `amount_spent` ni `date_preset=maximum`.**
 El primero se actualiza con el ciclo de facturación (le faltaba el día en
