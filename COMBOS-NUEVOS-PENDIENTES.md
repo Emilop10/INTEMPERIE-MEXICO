@@ -1,10 +1,29 @@
 # Combos nuevos propuestos — Ola 7, bloque 4
 
-> ## ✅ YA CREADOS — falta revisarlos y publicarlos
+> ## ✅ CREADOS Y PUBLICADOS — a la venta desde el 24 de agosto de 2026
 >
-> Los tres se crearon por API el 24 de agosto de 2026 con
-> `scripts/crear-combos.py`, **en estado BORRADOR** (`draft`):
-> no son visibles para clientes (verificado: dan 404 en la tienda).
+> Creados por API con `scripts/crear-combos.py` y publicados el mismo
+> día en **Online Store, Point of Sale y Facebook & Instagram** (los
+> mismos canales que los combos que ya existían, verificado contra uno
+> de referencia en vez de elegirlos a ojo).
+>
+> Verificado en vivo: los 3 dan HTTP 200, la colección `combos` pasó
+> de 9 a 12, cada uno con su ficha técnica y el aviso de meses sin
+> intereses, cero errores de Liquid.
+>
+> **Trampa encontrada al publicar:** poner `status: active` **no basta**
+> — los productos creados por API no quedan publicados en ningún canal
+> de venta, y seguían dando 404 aunque el admin los mostrara activos.
+> Hay que publicarlos explícitamente con la mutación GraphQL
+> `publishablePublish` (misma que usa `scripts/sincronizar-canal-meta.py`).
+> Es el tipo de fallo que se ve como "el producto existe pero no
+> aparece en la tienda".
+>
+> ### 🔴 Tarea manual permanente
+>
+> **Cada vez que se venda un combo hay que bajar a mano el stock de sus
+> componentes.** Shopify no lo hace solo. Detalle y lista de
+> componentes en `PENDIENTES.md`.
 >
 > | Combo | Precio | Stock | Handle |
 > |---|---|---|---|

@@ -4318,10 +4318,42 @@ escritura.
   `cargar-fichas-tecnicas.py` y `crear-combos.py`.
 - Mapa 3D regenerado con `scripts/rebuild-mapa-3d.py` (460 → 461 nodos).
 
-**Lo único que queda abierto son dos decisiones de negocio del dueño**,
-ambas sobre los combos y ambas anotadas en `PENDIENTES.md`: el stock
-real (1 pieza por combo) y cómo manejar el riesgo de sobreventa antes
-de publicarlos. No hay nada de código pendiente.
+### Los combos, publicados (24 ago, cierre)
+
+El dueño resolvió las dos decisiones abiertas y los 3 combos salieron
+a la venta. Sobre el riesgo de sobreventa eligió **descontar los
+componentes a mano**, y la razón por la que se descartó la alternativa
+más segura es un dato que apareció al revisarlo: **los 7 componentes
+están dentro del conjunto de 35 productos que se anuncian en Meta**,
+así que despublicarlos habría encogido el catálogo anunciable un 20% —
+justo lo contrario del objetivo con el que se subió el piso de precio
+a $500. Con el volumen actual de pedidos el riesgo de colisión es
+bajo; queda anotado en `PENDIENTES.md` como tarea manual permanente, a
+revisar cuando suba el volumen.
+
+**Trampa técnica que costó una vuelta:** poner `status: "active"` por
+API **no publica** el producto. Los tres seguían dando 404 en la tienda
+y sin aparecer en la colección, aunque el admin los mostrara activos —
+porque un producto creado por API no queda publicado en ningún canal
+de venta. Hay que publicarlo explícitamente con la mutación GraphQL
+`publishablePublish`, la misma que ya usa
+`scripts/sincronizar-canal-meta.py`. Los canales no se eligieron a
+ojo: se consultó a cuáles estaba publicado un combo existente
+(Online Store, Point of Sale, Facebook & Instagram) y se replicó.
+
+Verificado en vivo tras publicar: los 3 dan HTTP 200, la colección
+`combos` pasó de 9 a 12, cada uno con ficha técnica y aviso de MSI,
+cero errores de Liquid. En Meta el conjunto pasó de 35 a 36 productos
+— el primer combo ya entró; los otros dos estaban en cola, que es el
+comportamiento diferido normal de la sincronización de Shopify hacia
+el catálogo (documentado en la sección 32).
+
+**No queda nada de código pendiente ni ninguna decisión bloqueante.**
+Los pendientes restantes del proyecto son los de siempre: los 12
+productos sin conciliar de `PRODUCTOS-PENDIENTES.md` (el dueño decidió
+dejarlos para después — son diábolos que no se anuncian y solo afectan
+la exactitud del inventario mostrado), TikTok cuando exista la cuenta,
+y la decisión de negocio sobre Shopify Payments (sección 30).
 
 Con esto, los 4 pendientes diferidos de la Ola 6 quedan cerrados o
 con su siguiente paso ya resuelto y documentado. No queda ningún

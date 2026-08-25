@@ -56,36 +56,51 @@ pendiente ya se completó — ver "Estado al 22 de agosto" en la sección
 
 ---
 
-## 🟡 Decisiones abiertas sobre los 3 combos nuevos (24 de agosto)
+## ⚠️ Los 3 combos nuevos ya están a la venta — hay una tarea manual asociada
 
-Los combos ya están creados **en borrador** (no visibles al público).
-Estas dos decisiones son del dueño y conviene resolverlas **antes de
-publicarlos**. Detalle en
-[`COMBOS-NUEVOS-PENDIENTES.md`](./COMBOS-NUEVOS-PENDIENTES.md).
+Publicados el 24 de agosto de 2026 en Online Store, Point of Sale y
+Facebook & Instagram (mismos canales que los combos que ya existían).
+Verificado en vivo: los 3 dan HTTP 200, la colección `combos` pasó de
+9 a 12 productos, cada uno con ficha técnica y sin errores de Liquid.
 
-### 1. Stock: solo alcanza para 1 pieza de cada combo
+| Combo | Precio | Stock |
+|---|---|---|
+| Okuma Revenger 8'0" | $999 | 1 |
+| Blue Fox Power Boat 6'4" | $1,049 | 1 |
+| Rapala Corux 240 | $1,499 | 1 |
 
-Los componentes están a **1 unidad cada uno** (caña Blue Fox, carrete
-Okuma Revenger, caja Rapala), así que cada combo se creó con stock 1.
-La propuesta original no tenía este dato — asumía que se podían armar
-varios. Si se quiere vender más de uno, hay que reabastecer los
-componentes.
-
-### 2. Riesgo de sobreventa: Shopify no descuenta los componentes
+### 🔴 Tarea manual permanente: descontar componentes al vender un combo
 
 **Shopify NO resta el stock de la caña ni del carrete cuando se vende
-un combo.** Hoy la misma caña está publicada suelta *y* dentro del
-combo, con 1 unidad real: si se venden las dos cosas, hay que cancelar
-un pedido — algo especialmente caro en una tienda que apenas registró
-su primera compra.
+un combo.** Los componentes están a 1 unidad cada uno y siguen
+publicados por separado, así que:
 
-Tres salidas posibles, en orden de esfuerzo:
-- **Descontar a mano** el stock de los componentes cada vez que se
-  venda un combo (gratis, pero hay que acordarse).
-- **Despublicar los componentes** mientras el combo esté activo
-  (simple y seguro, pero se pierde la venta suelta).
-- **Instalar una app de bundles** que maneje inventario compartido
-  (lo resuelve de raíz, cuesta dinero y hay que evaluar cuál).
+> **Cada vez que se venda un combo, hay que entrar a Shopify y bajar a
+> 0 el stock de sus componentes** (o restar la cantidad vendida).
+
+Si no se hace, se puede vender la misma caña dos veces y hay que
+cancelarle el pedido a un cliente — caro en una tienda que apenas
+registró su primera compra.
+
+Componentes de cada combo:
+- **Okuma Revenger** → `cana-de-pescar-okuma-revenger-spinning-80-2-40m` + `carrete-okuma-revenger-rv-80-spinning`
+- **Blue Fox** → `cana-de-pescar-blue-fox-power-boat-spinning-64-1-95m` + `carrete-blue-fox-ranco-3000sp-spinning`
+- **Rapala Corux** → `cana-de-pescar-rapala-corux-240-710` + `carrete-gimbel-jl4000-spinning` + `caja-rapala-utility-box-chica`
+
+**Por qué se eligió esta vía y no otra** (decisión del dueño, 24 ago):
+despublicar los componentes era más seguro pero **los 7 están dentro
+del conjunto de 35 productos que se anuncian en Meta** — quitarlos
+habría reducido el catálogo anunciable un 20%, justo lo contrario de
+lo que se buscaba. Una app de bundles lo resolvería de raíz pero
+cuesta mensualidad. Con el volumen actual de pedidos el riesgo de
+colisión es bajo, así que se optó por lo manual. **Revisar esta
+decisión cuando suba el volumen de pedidos.**
+
+### Stock: solo alcanza para 1 pieza de cada combo
+
+Dato que la propuesta original no tenía: los componentes están a 1
+unidad, así que cada combo se creó con stock 1. Para vender más hay
+que reabastecer los componentes.
 
 **Resuelto el 13-15 de agosto:** señales de confianza en la homepage
 ([3](#3-señales-de-confianza-ausentes--resuelto-13-agosto-2026)), el deploy
@@ -530,10 +545,11 @@ agosto (Ola 7, sección 47 del manual):**
   del conjunto de Meta (`scripts/cargar-fichas-tecnicas.py`), las 35
   verificadas por relectura y confirmadas en vivo con `curl`. Los
   productos sin datos siguen sin mostrar nada.
-- 🟡 **3 combos nuevos** — creados por API
-  (`scripts/crear-combos.py`) **en estado borrador**, con imágenes de
-  sus componentes, ficha técnica y stock 1. **Falta que el dueño los
-  revise y los publique** desde el admin (ver abajo).
+- ✅ **3 combos nuevos** — creados por API
+  (`scripts/crear-combos.py`) y **publicados** el 24 de agosto en los
+  3 canales, verificados en vivo. Llevan una **tarea manual asociada**
+  (descontar componentes al vender) — ver el recuadro al principio de
+  este archivo.
 
 **Los 3 puntos bloqueantes antes de la siguiente campaña, cerrados el
 24 de agosto (detalle en la sección 46 del manual):**
