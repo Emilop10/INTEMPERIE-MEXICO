@@ -4805,9 +4805,49 @@ llevan quitando, y la reintroduje yo sin querer: el combo de $999 nació
 como sustituto de uno agotado, y el original volvió.
 
 **No lo resolví por cuenta propia** — es decisión de catálogo y margen
-del dueño, no de código. Las opciones están planteadas en
-`PENDIENTES.md`. Lo que sí es seguro es que **no conviene encender el
-gasto con las dos fichas compitiendo en el aterrizaje**.
+del dueño, no de código. **Decisión tomada el mismo día: ocultar el de
+$999 de la colección** mientras haya stock del de $849.
+
+### Cómo se ocultó (y por qué así)
+
+La colección `combos` (`306265981005`) es **smart**, así que no admite
+excluir un producto a mano — solo reglas. Se le agregó una tercera:
+
+```
+type equals "Combos"  AND  variant_inventory > 0  AND  tag not_equals "oculto-en-combos"
+```
+
+y se etiquetó el combo de $999 con `oculto-en-combos`. **Para devolverlo
+a la vitrina basta con quitarle la etiqueta**, sin tocar reglas ni
+precios — que es justo lo que hará falta cuando se agoten las 3 unidades
+del de $849.
+
+Se eligió la etiqueta en vez de cambiarle el `product_type`, que también
+lo habría sacado de la colección: el `product_type` es "Combos" de
+verdad, y cambiarlo por conveniencia de vitrina rompería el conjunto de
+Meta, el escaparate del home y cualquier lógica futura que lea ese campo.
+La etiqueta describe una decisión de merchandising, que es lo que
+realmente es.
+
+**Cuidado con la latencia.** Shopify recalcula la membresía de una
+colección smart de forma **asíncrona**: al releer justo después del
+cambio seguía diciendo 8 productos. Tardó cerca de **12 segundos**. No
+es un fallo — hay que reconsultar, no repetir la escritura.
+
+**Verificado en vivo:** la colección quedó en **7 productos**, todos
+disponibles y todos por encima de $799. La ficha del combo de $999 sigue
+en **HTTP 200, activa y comprable** por enlace directo — se ocultó de la
+vitrina, no se despublicó.
+
+### Un detalle que se deja a propósito
+
+La ficha de la **Caña Okuma Revenger 8'0" ($549)** y la del **Carrete
+RV-80 ($599)** siguen promoviendo el combo de $999 por el metafield
+`custom.combo_sugerido`, y **eso está bien**: ese combo *es* exactamente
+esas dos piezas, que por separado cuestan $1,148. Para quien ya está
+viendo la caña, el de $999 sigue siendo la mejor oferta — el de $849
+lleva otro carrete. El problema era la comparación lado a lado en la
+cuadrícula de la colección, no el upsell.
 
 ### Los 103 grises
 

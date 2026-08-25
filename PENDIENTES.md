@@ -85,9 +85,15 @@ caro. Opciones, en orden de menos a más trabajo:
 3. **Bajarle el precio** al de $999. Es la que toca margen, y no hay
    evidencia de demanda todavía para justificarla.
 
-Mi recomendación es la 1: el de $849 es más barato, es de fábrica y tiene
-3 unidades contra 1. **No conviene encender el gasto con las dos fichas
-compitiendo.**
+**✅ Resuelto el 25 de agosto con la opción 1.** Se agregó una tercera
+regla a la colección smart (`tag not_equals "oculto-en-combos"`) y se
+etiquetó el combo de $999. La colección quedó en **7 productos**, todos
+disponibles y sobre $799; la ficha del $999 sigue activa y comprable por
+enlace directo.
+
+> 🔁 **Cuando se agoten las 3 unidades del combo de $849, quitarle la
+> etiqueta `oculto-en-combos` al de $999** para devolverlo a la vitrina.
+> Es un solo cambio, sin tocar reglas ni precios. Sección 50 del manual.
 
 **🔴 Antes de reanudar la campaña (Ola 8, 25 ago — sección 48 del manual):**
 La cuenta publicitaria tiene el **tope de gasto agotado** ($285 al 100%)
