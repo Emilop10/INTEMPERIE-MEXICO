@@ -4682,3 +4682,61 @@ concluir del resultado:
 > distinguir** si fallaron las ocho olas de trabajo o si lo mató la
 > evidencia visual. Se compra la medición con un confusor conocido
 > dentro.
+
+### Veredicto y protocolo de medición
+
+Con lo anterior corregido, **el veredicto cambió a "encender"** — y lo
+que lo cambió fue el dato de los checkouts abandonados, no un ajuste de
+criterio. El consejo previo ("no lances hasta tener fotos") se apoyaba
+en que había un problema grave sin explicar: siete personas en la
+pantalla de pago y cero compras. **Ese problema no existía.**
+
+Al no haber evidencia de falla en el checkout, lo que queda por medir es
+justo el escalón que las Olas 1-8 arreglaron y que nunca se probó con
+tráfico. Encender deja de ser un salto de fe y pasa a ser la medición
+que faltaba.
+
+**Qué se está comprando.** A $55/día no se compran ventas: se compra
+**un número**, la tasa de carrito de la tienda mejorada.
+
+- Ventas esperadas el mes 1: **entre 1 y 3**. Si la cadena es mediocre,
+  0 o 1. **Cero ventas en 30 días es compatible con una tienda que
+  funciona** a este presupuesto.
+- El conjunto **no va a salir de fase de aprendizaje** (Meta quiere ~50
+  eventos/semana; aquí saldrán 5-9 carritos). **La semana 1 no es
+  señal.**
+
+**Métrica de corte, a las ~500 vistas de producto** (~3 semanas,
+~$1,100). Tasa de carrito = `add_to_cart` / `view_content`, solo del
+conjunto v3, con `time_range` explícito (nunca `date_preset` ni
+`amount_spent` — sección 40):
+
+| Resultado | Lectura | Acción |
+|---|---|---|
+| **< 1.5%** | El trabajo de sitio no movió la parte alta | Alto. No iterar creativos: el problema es ficha y oferta |
+| **1.5% – 3%** | Ambiguo | Continuar solo con un cambio específico decidido de antemano |
+| **≥ 3.5%** | La parte alta funciona | Seguir y mover la atención al fondo del embudo |
+
+**Paro duro, independiente de lo anterior:** 6 o más `add_payment_info`
+con 0 compras → detener. Reproduciría el patrón 7→0 sobre la tienda
+mejorada, y esta vez **sí serían clientes reales** (con la regla de no
+probar el checkout con la campaña activa en pie). Más gasto no lo
+diagnostica.
+
+**Último paso, del dueño:** subir el tope de cuenta a **mensual**
+(~$1,200-1,700), no semanal — un tope que se agota cada 7 días es un
+apagón programado cada 7 días. Recordar que cambiarlo **reinicia
+`amount_spent` a cero**.
+
+### El informe visual de esta auditoría
+
+El informe completo, con el veredicto, la corrección del error de
+aterrizaje, la tabla de checkouts abandonados y el protocolo de
+medición, vive publicado en:
+
+> https://claude.ai/code/artifact/e7fed295-3b59-4bc3-bb59-f9036cc2055c
+
+Es privado por defecto; se comparte desde el menú de la propia página.
+**Se actualiza en el mismo URL** — republicar el archivo pasando esa
+dirección como `url`, nunca publicar de nuevo sin ella, o nace un
+informe aparte y el enlace que ya circula se queda viejo.

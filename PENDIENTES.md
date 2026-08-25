@@ -75,8 +75,16 @@ decisión del dueño de encender el gasto al final con todo pulido.
 Falta: **subir el tope y activar el conjunto v3**.
 
 **🟡 Del lado del dueño, no se puede resolver por código:**
-- **Fotografía**: 2 imágenes en el combo de $999, 1 en la caña de $549.
-  Es el bloqueador dominante del recorrido de compra.
+- **Fotografía** — **decisión tomada el 25 de agosto: se lanza sin
+  esto.** 34 de los 38 productos anunciables tienen una sola imagen, de
+  catálogo de proveedor; ninguno tiene 5 o más. El dueño solo dispone de
+  las fotos oficiales de sus proveedores y decidió lanzar así. Queda
+  registrado el costo de esa decisión, que no es un reproche sino lo que
+  determina qué se podrá concluir del resultado: **si la tasa de carrito
+  sale por debajo de 1.5%, no se podrá distinguir** si fallaron las ocho
+  olas de trabajo o si lo mató la evidencia visual. Sigue siendo el
+  bloqueador dominante del recorrido de compra; deja de ser un pendiente
+  abierto y pasa a ser un confusor conocido dentro de la medición.
 - **Reseñas de producto**: 8 a nivel tienda, 0 por producto. Meta: 30+
   con promedio real (4.5-4.8), no defender el 5.00 actual.
 - **Umbral de envío**: la mediana del catálogo es $149 y el envío gratis
@@ -89,6 +97,29 @@ Falta: **subir el tope y activar el conjunto v3**.
   **No se puede hacer por código**: en OS 2.0 los filtros salen de la app
   **Search & Discovery** en el admin de Shopify, no del tema. Detalle en
   la sección 48 del manual.
+
+**📏 Métrica de corte de la campaña (sección 49 del manual).** A $55/día
+no se compran ventas: se compra **un número** — la tasa de carrito de la
+tienda mejorada, que nunca se ha medido. **Entre 1 y 3 ventas el mes 1**
+es lo esperable, y **cero ventas en 30 días es compatible con una tienda
+que funciona** a este presupuesto: las ventas no son la métrica de corte
+del primer mes. El conjunto tampoco va a salir de fase de aprendizaje
+(Meta quiere ~50 eventos/semana, aquí saldrán 5-9 carritos), así que
+**la semana 1 no es señal**.
+
+Se juzga a las **~500 vistas de producto** (~3 semanas, ~$1,100), con
+`add_to_cart / view_content` **solo del conjunto v3** y `time_range`
+explícito (nunca `date_preset`):
+
+| Resultado | Lectura | Acción |
+|---|---|---|
+| **< 1.5%** | El trabajo de sitio no movió la parte alta | Alto. No iterar creativos: el problema es ficha y oferta |
+| **1.5% – 3%** | Ambiguo | Continuar solo con un cambio específico nombrado de antemano |
+| **≥ 3.5%** | La parte alta funciona | Seguir y mover la atención al fondo del embudo |
+
+**Paro duro:** 6 o más `add_payment_info` con 0 compras → detener. Esta
+vez sí serían clientes reales, siempre que se respete la regla de no
+probar el checkout con la campaña activa.
 
 **Abiertos ahora mismo:** cerrar los productos de
 [`PRODUCTOS-PENDIENTES.md`](./PRODUCTOS-PENDIENTES.md) y TikTok cuando
