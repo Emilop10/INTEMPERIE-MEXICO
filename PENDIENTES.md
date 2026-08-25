@@ -93,7 +93,7 @@ Componentes de cada combo:
 
 **Por qué se eligió esta vía y no otra** (decisión del dueño, 24 ago):
 despublicar los componentes era más seguro pero **los 7 están dentro
-del conjunto de 35 productos que se anuncian en Meta** — quitarlos
+del conjunto anunciable de Meta** — quitarlos
 habría reducido el catálogo anunciable un 20%, justo lo contrario de
 lo que se buscaba. Una app de bundles lo resolvería de raíz pero
 cuesta mensualidad. Con el volumen actual de pedidos el riesgo de

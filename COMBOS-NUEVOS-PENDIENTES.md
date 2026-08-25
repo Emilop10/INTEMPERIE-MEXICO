@@ -36,20 +36,25 @@
 > y stock fijado en **1**, que es el máximo real: los componentes están
 > a 1 unidad cada uno.
 >
-> **Lo que falta, y es decisión del dueño:**
-> 1. Revisar precio, título, descripción e imágenes.
-> 2. **Publicarlos** (admin → producto → estado "Activo"). Se quedaron
->    en borrador a propósito: un combo es un producto vendible con
->    precio, y eso no se publica sin que lo vea el dueño.
+> Los tres entraron además al **conjunto anunciable de Meta**, que
+> subió a 38 productos — que era justo el objetivo del bloque 4: sumar
+> ticket alto al catálogo de anuncios.
 >
-> ### ⚠️ Riesgo de sobreventa (leer antes de publicar)
+> ### 🔴 Riesgo de sobreventa — decisión tomada, con tarea manual
 >
 > **Shopify NO descuenta el stock de los componentes cuando se vende un
-> combo.** Hoy la misma caña está publicada suelta *y* dentro del
-> combo, con 1 unidad real. Si se venden las dos cosas, hay que
-> cancelar un pedido. Opciones: descontar a mano al vender, despublicar
-> el componente mientras el combo esté activo, o instalar una app de
-> bundles que maneje inventario compartido.
+> combo.** La misma caña está publicada suelta *y* dentro del combo,
+> con 1 unidad real: si se venden las dos cosas, hay que cancelarle el
+> pedido a un cliente.
+>
+> **Decisión del dueño (25 ago): descontar a mano.** Cada vez que se
+> venda un combo hay que bajar el stock de sus componentes en Shopify.
+>
+> Se descartó despublicar los componentes porque **los 7 están dentro
+> del conjunto anunciable de Meta** — quitarlos habría encogido ese
+> catálogo alrededor de un 20%, lo contrario del objetivo. Una app de
+> bundles lo resolvería de raíz, pero cuesta mensualidad; vale la pena
+> reconsiderarla cuando suba el volumen de pedidos.
 
 Detalle completo en `MANUAL-PROYECTO.md`, sección 47.
 
@@ -127,19 +132,29 @@ tienda.
 - Ninguno requiere comprar inventario nuevo — los tres se arman con
   stock ya disponible hoy.
 
-## Pasos para dar de alta (Claude en Chrome o el dueño)
+## Si en el futuro se quiere crear otro combo
 
-1. Crear el producto combo en Shopify Admin (título, precio del
-   combo, imágenes — se pueden reusar las de los componentes o tomar
-   una foto conjunta).
-2. Asignarlo a la colección "Combos" (`combos`) para que aparezca
-   junto a los demás.
-3. Decidir manejo de inventario: lo más simple es un producto
-   independiente con su propio stock (descontarlo a mano de los
-   componentes al vender), o usar `product bundles` si la tienda ya
-   tiene esa app instalada — no verificado en este documento, requiere
-   revisar el admin.
-4. Publicarlo también en el canal de Meta si el precio queda ≥$500
-   (el piso actual del conjunto anunciable) — se agregaría solo al
-   conjunto dinámico por regla si cumple el filtro de precio y
-   disponibilidad, sin tocar la campaña.
+El alta ya no se hace a mano: `scripts/crear-combos.py` la automatiza.
+Para sumar uno nuevo, agregar una entrada a la lista `COMBOS` de ese
+script (título, precio, vendor, tags, handles de los componentes,
+descripción y ficha técnica) y correrlo con `--dry-run` primero.
+
+El script se encarga solo de: tomar las imágenes de los componentes,
+fijar el stock al **mínimo** de ellos, cargar la ficha técnica, y
+poner `product_type: "Combos"` para que entre a la colección
+automática sin asignarla a mano.
+
+**Dos cosas que hay que hacer aparte, y son las que costaron una
+vuelta la primera vez:**
+
+1. **Publicarlo.** El script lo crea en borrador a propósito. Poner
+   `status: "active"` **no basta** — un producto creado por API no
+   queda publicado en ningún canal de venta y sigue dando 404. Hay que
+   usar la mutación GraphQL `publishablePublish` sobre los mismos
+   canales que los combos existentes (Online Store, Point of Sale,
+   Facebook & Instagram).
+2. **Entrar al conjunto de Meta es automático** si el precio queda
+   ≥$500 y hay stock — la regla del `product_set` lo recoge sin tocar
+   la campaña. Pero **la sincronización de Shopify hacia el catálogo
+   es diferida**: puede tardar minutos. Consultar el conjunto justo
+   después de publicar y no verlo ahí no significa que haya fallado.

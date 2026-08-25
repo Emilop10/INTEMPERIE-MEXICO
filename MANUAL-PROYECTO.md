@@ -4351,7 +4351,7 @@ El dueño resolvió las dos decisiones abiertas y los 3 combos salieron
 a la venta. Sobre el riesgo de sobreventa eligió **descontar los
 componentes a mano**, y la razón por la que se descartó la alternativa
 más segura es un dato que apareció al revisarlo: **los 7 componentes
-están dentro del conjunto de 35 productos que se anuncian en Meta**,
+están dentro del conjunto anunciable de Meta**,
 así que despublicarlos habría encogido el catálogo anunciable un 20% —
 justo lo contrario del objetivo con el que se subió el piso de precio
 a $500. Con el volumen actual de pedidos el riesgo de colisión es
