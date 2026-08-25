@@ -899,9 +899,18 @@ pudo instalar en este entorno. Corrido sobre `tema-shopify/`, generó:
   ninguno genera nodos. Confirma la regla que ya se veía en las Olas
   1-5g: en este tema **solo los componentes de JavaScript mueven el
   grafo**
+- **La Ola 10 (25 ago) también los dejó igual**, en los **dos** grafos:
+  461/705/41 y 87/144/9. Es el caso interesante, porque sí se tocó
+  Python: `conciliar-inventario.py` ganó el modo `--dry-run`, pero
+  dentro de `main()`, sin crear funciones nuevas. **Graphify mide
+  estructura, no líneas** — un cambio de comportamiento dentro de una
+  función existente no mueve el grafo, y eso es correcto, no un fallo
+  de detección. Lo único que cambió fue la etiqueta de una comunidad,
+  que Graphify renombró por su hub (`conciliar-inventario.py`)
 - **Segundo grafo, `scripts/`: 87 nodos, 144 aristas, 9 comunidades**
   (24 de agosto, tras sumar `cargar-fichas-tecnicas.py` y
-  `crear-combos.py`). El repo lleva **dos** grafos independientes —
+  `crear-combos.py`; confirmado sin cambios el 25). El repo lleva
+  **dos** grafos independientes —
   `graphify update .` se corre por separado dentro de `tema-shopify/`
   y dentro de `scripts/`, no desde la raíz
 - Los "god nodes" (componentes más centrales de la arquitectura del
