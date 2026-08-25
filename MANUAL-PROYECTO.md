@@ -927,7 +927,11 @@ Se construyó un segundo grafo con `cd scripts && graphify update .`. El
 propio Graphify dictaminó que valía la pena (*"corpus is large enough
 that graph structure adds value"*):
 
-- **74 nodos, 125 conexiones, 10 comunidades**
+- **74 nodos, 125 conexiones, 10 comunidades** — cifra de esa **primera
+  corrida**. Hoy es **87/144/9** tras sumar `cargar-fichas-tecnicas.py`
+  y `crear-combos.py` (ver arriba, en la lista de cifras vigentes); esta
+  se conserva como registro de cuándo se creó el grafo, no como estado
+  actual
 - God node principal: **`api_request()`** con 9 conexiones — es el patrón
   compartido entre casi todas las herramientas (petición HTTP con
   reintentos, backoff y manejo de errores contra Shopify o Meta). Que
