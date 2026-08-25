@@ -18,7 +18,7 @@ tope de gasto), y 41 (auditoría de conversión del sitio):
 | Campaña | `IMX \| Ventas \| Pesca y Óptica \| Catálogo dinámico \| Ago26` |
 | Estado | **Activa**, entregando |
 | Conjunto vigente | optimiza a `CONTENT_VIEW` (no a Compra — con este presupuesto, optimizar a Compra nunca sale de aprendizaje), $55/día |
-| Conjunto de productos | 35 productos ≥$500, en stock, sin accesorios de arma (no 324) — subido de $300 el 24 de agosto, ver sección 45 del manual |
+| Conjunto de productos | **38 productos** ≥$500, en stock, sin accesorios de arma (no 324) — piso subido de $300 a $500 el 24 de agosto (sección 45), y +3 al publicar los combos nuevos de $999-$1,499 (sección 47) |
 | Tope de gasto | a nivel de **cuenta**, se ajusta cada semana — ver sección 40 del manual |
 | Resultado a la fecha | 0 compras, 1 carrito real en 6 días — la sección 41 documenta la auditoría completa de por qué |
 

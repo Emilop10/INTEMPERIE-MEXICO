@@ -4343,10 +4343,19 @@ ojo: se consultó a cuáles estaba publicado un combo existente
 
 Verificado en vivo tras publicar: los 3 dan HTTP 200, la colección
 `combos` pasó de 9 a 12, cada uno con ficha técnica y aviso de MSI,
-cero errores de Liquid. En Meta el conjunto pasó de 35 a 36 productos
-— el primer combo ya entró; los otros dos estaban en cola, que es el
-comportamiento diferido normal de la sincronización de Shopify hacia
-el catálogo (documentado en la sección 32).
+cero errores de Liquid.
+
+**En Meta el conjunto anunciable pasó de 35 a 38 productos.** La
+sincronización no fue instantánea — en la primera consulta solo había
+entrado 1 de los 3 (35→36) y los otros dos aparecieron minutos
+después, que es el comportamiento diferido normal de Shopify hacia el
+catálogo (sección 32). Vale la pena anotarlo porque invita a un falso
+diagnóstico: consultar el conjunto justo después de publicar y
+concluir que la sincronización falló, cuando solo va con retraso.
+
+Este es además el resultado que perseguía el bloque 4: los tres combos
+son de ticket alto ($999-$1,499) y entran solos al conjunto por la
+regla de precio ≥$500, sin tocar la campaña.
 
 **No queda nada de código pendiente ni ninguna decisión bloqueante.**
 Los pendientes restantes del proyecto son los de siempre: los 12
