@@ -76,6 +76,7 @@ como respaldo
 46. [Cero compras en 6 meses: el hallazgo que nadie había medido](#46-cero-compras-en-6-meses-el-hallazgo-que-nadie-había-medido)
 47. [Ola 7: cerrar los 4 pendientes diferidos](#47-ola-7-cerrar-los-4-pendientes-diferidos-24-ago)
 48. [Ola 8: auditoría previa a campaña y sus correcciones](#48-ola-8-auditoría-previa-a-campaña-y-sus-correcciones-25-ago)
+49. [Los 7 que "llegaron a pagar" eran el dueño](#49-los-7-que-llegaron-a-pagar-eran-el-dueño-25-ago)
 
 ---
 
@@ -4020,6 +4021,14 @@ pago) — y cero acciones de tipo compra, en ningún nombre
 (`purchase`, `omni_purchase`, `offsite_conversion.fb_pixel_purchase`),
 en más de 6 meses.**
 
+> ⚠️ **Corregido el 25 de agosto (sección 49):** los "7 que llegaron a
+> `add_payment_info`" eran en su mayor parte **el propio dueño**. Los 4
+> checkouts abandonados de toda la historia de la tienda son suyos, más
+> el pedido #1005 — cinco sesiones propias. **Ningún cliente real llegó
+> nunca a la pantalla de pago**, así que la lectura de "algo pasa en el
+> checkout" que se desprende de este párrafo no tiene sustento. El
+> cuello de botella está arriba, en vista → carrito.
+
 Se le preguntó directamente al dueño si alguna vez ha habido un pedido
 real completado en la tienda (aunque fuera antes de esta campaña, en
 febrero-abril) — **la respuesta fue no, nunca.** Esto descarta la
@@ -4574,3 +4583,102 @@ la siguiente: no aparecía en ningún lado hasta esta revisión.
   la promesa con lo que la tienda vende de verdad. Es una decisión de
   margen, y con cero compras reales todavía no hay evidencia de dónde
   está la demanda.
+
+---
+
+## 49. Los 7 que "llegaron a pagar" eran el dueño (25 ago)
+
+Antes de encender la campaña, el dueño aportó la captura de sus
+**pedidos abandonados de Shopify** — el dato que yo no podía leer porque
+el token no tiene `read_orders`. Corrige una interpretación que el
+proyecto arrastraba desde la sección 46 y que yo mismo repetí en la
+auditoría de la sección 48.
+
+### El dato
+
+En toda la historia de la tienda hay **4 checkouts abandonados**, y los
+cuatro son de **Emiliano López Costa**, el dueño:
+
+| Fecha | Monto |
+|---|---|
+| 29 jul | $302 |
+| 14 ago | $499 |
+| 17 ago | **$738** |
+| 23 ago (sábado) | $257 |
+
+El de $738 del 17 de agosto **ya estaba identificado** como prueba suya
+en la sección 35 ("Error de lectura 3 — la conversión que era del propio
+dueño"). Lo nuevo es que **los cuatro lo son**.
+
+### Lo que corrige
+
+Cruzado con Meta: el pixel registra **7 `add_payment_info`**, y Shopify
+tiene **4 abandonos + el pedido #1005 = 5 sesiones del dueño** que
+llegaron a esa pantalla.
+
+**Ningún cliente real ha llegado nunca a la pantalla de pago**, o casi
+ninguno. La narrativa que veníamos repitiendo — *"7 personas llegaron a
+pagar y ninguna compró, algo pasa en el checkout"* — es en su mayor
+parte un artefacto de las pruebas del dueño.
+
+**No hay evidencia de que el checkout espante a nadie.** El cuello de
+botella está arriba, en vista → carrito, que es exactamente lo que
+atacan las Olas 1-8 y que nunca se ha medido con tráfico real.
+
+> Por qué costó tanto verlo: Shopify solo crea registro de checkout
+> abandonado cuando el visitante deja datos de contacto. Los ~19
+> `initiate_checkout` restantes que reporta Meta abandonaron antes de
+> escribir su correo, así que no dejaron rastro en el admin. Los únicos
+> que sí llegaron a dejar datos fueron las pruebas del dueño.
+
+### La regla operativa que sale de esto
+
+**No hacer compras ni checkouts de prueba con la campaña activa.** Si es
+imprescindible, anotar día, monto y pasarela en el momento. Seis meses
+de lectura del embudo quedaron contaminados por cinco sesiones propias,
+y eso nos hizo perseguir un problema de checkout que no existía.
+
+Con esa regla en pie, el paro duro sí es válido hacia adelante: **6 o
+más `add_payment_info` con 0 compras → detener**, porque esta vez sí
+serían clientes reales.
+
+### Segundo error corregido: el aterrizaje pagado estaba 42% muerto
+
+Al mover el destino del carrusel a `/collections/combos` (Ola 8) **no se
+reevaluó** la decisión de la sección 46 de dejar publicados los combos
+agotados. Esa decisión era correcta cuando nada apuntaba ahí; dejó de
+serlo al convertir esa colección en el aterrizaje de tráfico pagado:
+**5 de 12 combos estaban agotados, el 42% de la página de destino**.
+
+Corregido sumando una segunda regla a la colección *smart*
+(`306265981005`): `variant_inventory greater_than 0`, en modo AND con
+la de `type equals Combos`. Los agotados **siguen publicados y
+vendibles** por otras vías — solo dejan de ocupar la vitrina que paga el
+anuncio, que es lo que el dueño autorizó.
+
+Verificado en vivo: la colección quedó en **7 productos, 0 agotados**,
+todos entre $920 y $1,499 — es decir, **todos cruzan los $799**, así que
+la promesa de envío gratis del anuncio ahora sí se cumple para el 100%
+del aterrizaje.
+
+> Lección general: **una decisión correcta en un contexto puede volverse
+> incorrecta cuando cambia el contexto.** Al redirigir tráfico hacia
+> cualquier página, hay que releer qué decisiones se tomaron sobre esa
+> página cuando nadie la miraba.
+
+### Decisión del dueño sobre fotografía, y su costo
+
+34 de los 38 productos anunciables tienen **una sola imagen**, de
+catálogo de proveedor, algunas de 400×400. Ningún producto de la tienda
+tiene 5 o más. El agente adversarial lo señaló como el gate del
+lanzamiento.
+
+**El dueño decidió lanzar sin agregar fotos** — solo dispone de las
+oficiales de sus proveedores. Queda escrito el costo concreto de esa
+decisión, que no es un reproche sino lo que determina qué se podrá
+concluir del resultado:
+
+> Si la tasa de carrito sale por debajo de 1.5%, **no se va a poder
+> distinguir** si fallaron las ocho olas de trabajo o si lo mató la
+> evidencia visual. Se compra la medición con un confusor conocido
+> dentro.

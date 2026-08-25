@@ -51,6 +51,21 @@ Cuernavaca" en vez de "Intemperie México"), no un problema real.
 **Ningún bloqueante queda para la siguiente campaña.** Detalle
 completo en la sección 46 del manual.
 
+**✅ Corregido el 25 de agosto (sección 49):** los "7 que llegaron a la
+pantalla de pago sin comprar" eran **el propio dueño**. Los 4 checkouts
+abandonados de toda la historia son suyos, más el pedido #1005 — cinco
+sesiones propias. **Ningún cliente real ha llegado ahí**, así que no hay
+evidencia de problema en el checkout: el cuello de botella está arriba,
+en vista → carrito. **Regla nueva: no probar el checkout con la campaña
+activa**, o anotar día/monto/pasarela en el momento.
+
+**✅ Corregido el 25 de agosto:** el destino del anuncio
+(`/collections/combos`) tenía **5 de 12 combos agotados, el 42%**. Se
+agregó una regla de disponibilidad a la colección: quedó en 7 productos,
+todos disponibles y todos entre $920 y $1,499 (o sea, **todos cruzan los
+$799**, así que la promesa de envío gratis del anuncio se cumple al
+100%). Los agotados siguen publicados y vendibles por otras vías.
+
 **🔴 Antes de reanudar la campaña (Ola 8, 25 ago — sección 48 del manual):**
 La cuenta publicitaria tiene el **tope de gasto agotado** ($285 al 100%)
 y lleva sin entregar desde el 21 de agosto, aunque todo reporte "activo"

@@ -294,6 +294,38 @@ curl -X POST "https://graph.facebook.com/v21.0/<ad_id>" \
 
 ---
 
+## 5-bis. 🔴 No pruebes el checkout con la campaña activa
+
+Comprobado el 25 de agosto de 2026, y costó seis meses de diagnóstico
+equivocado.
+
+**Los 4 checkouts abandonados de toda la historia de la tienda son del
+propio dueño** ($302, $499, $738, $257), más el pedido de prueba #1005.
+El pixel los registró como `add_payment_info` igual que a cualquier
+visitante: **7 eventos, de los cuales ~5 eran pruebas propias.**
+
+Durante meses se leyó eso como *"7 personas llegaron a pagar y ninguna
+compró — algo pasa en el checkout"*, y se persiguió un problema que no
+existía. **Ningún cliente real había llegado nunca a esa pantalla.**
+
+**La regla:**
+
+1. **No hagas compras ni checkouts de prueba mientras la campaña
+   entregue.** Si la campaña está en pausa, adelante.
+2. **Si es imprescindible, anota en el momento**: día, hora, monto y
+   pasarela. Sin eso, el evento se vuelve indistinguible de un cliente.
+3. Al leer el embudo, **cruza siempre Meta contra Shopify Admin →
+   Pedidos → Pedidos abandonados**. Si los nombres son tuyos, el evento
+   es tuyo.
+
+> Shopify solo crea registro de checkout abandonado cuando el visitante
+> deja datos de contacto. Los `initiate_checkout` que abandonan antes de
+> escribir su correo **no dejan rastro en el admin** — por eso el cruce
+> Meta↔Shopify no cuadra en número, y por eso los únicos que aparecen
+> suelen ser las pruebas propias, que sí llegan lejos.
+
+---
+
 ## 6. Fricciones ya resueltas (para no perder tiempo si se repiten)
 
 Ver también sección 29 del `MANUAL-PROYECTO.md` para el relato completo.
