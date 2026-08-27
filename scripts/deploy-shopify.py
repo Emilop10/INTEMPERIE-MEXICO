@@ -158,6 +158,27 @@ def read_remote(key, token, store, theme_id):
     return None
 
 
+def orden_de_subida(item):
+    """Ordena la subida para que un *-group.json nunca llegue antes que la
+    seccion que referencia.
+
+    Shopify valida los grupos contra las secciones que YA existen en el
+    tema y rechaza con HTTP 422 ("Section type 'x' does not refer to an
+    existing section file") si el grupo llega primero. Con el orden
+    alfabetico simple eso pasa siempre que la seccion nueva va despues
+    del grupo en el abecedario: `sections/header-group.json` antes que
+    `sections/im-barra-promesas.liquid` (25 ago 2026, barra de promesas).
+
+    Es la misma familia del incidente de `meta-pixel` de la seccion 39
+    del manual —una referencia que llega antes que su destino— pero de
+    orden, no de omision: los dos archivos iban en el push, solo que en
+    la secuencia equivocada.
+    """
+    key = item[0]
+    es_grupo = key.startswith("sections/") and key.endswith("-group.json")
+    return (1 if es_grupo else 0, key)
+
+
 def main():
     argv = [a for a in sys.argv[1:]]
     dry_run = "--dry-run" in argv
@@ -213,7 +234,7 @@ def main():
 
     print(f"\nRevisando {len(candidates)} archivo(s) contra la tienda...")
     pending = []
-    for key, path in sorted(candidates.items()):
+    for key, path in sorted(candidates.items(), key=orden_de_subida):
         local, payload = read_local(key, path)
         remote = read_remote(key, token, store, theme_id)
         if remote == local:

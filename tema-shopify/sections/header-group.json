@@ -20,9 +20,16 @@
         "padding_top": 20,
         "padding_bottom": 20
       }
+    },
+    "im_promesas": {
+      "type": "im-barra-promesas",
+      "settings": {
+        "mostrar": true
+      }
     }
   },
   "order": [
+    "im_promesas",
     "header"
   ]
 }

@@ -1,0 +1,70 @@
+{%- comment -%}
+  Barra de promesas del anuncio, arriba del header, en todas las páginas.
+
+  POR QUÉ EXISTE (25 ago, verificación previa a reactivar el gasto):
+  el anuncio de Meta promete cuatro cosas —envío gratis desde $799,
+  entrega 2-7 días, meses sin intereses, y pago en efectivo en OXXO y
+  7-Eleven— y se comprobó con curl que en /collections/combos NO se ve
+  ninguna. Los únicos "$799" y "OXXO" del HTML de esa página viven
+  dentro de <cart-drawer class="drawer is-empty">, y
+  component-cart-drawer.css:118 oculta ese footer con el carrito vacío:
+  texto presente, invisible. La ficha de producto sí las muestra todas
+  (bloque de confianza + pagos-aceptados), así que esto cubre el resto
+  del sitio.
+
+  NO se reusó sections/announcement-bar.liquid, que ya existía y no está
+  en ningún grupo. Dos razones concretas: es `position:fixed` con
+  z-index 99999, así que taparía el header sticky (`on-scroll-up`); y su
+  fondo es #f0f9eb, verde muy claro pensado para tema claro — este sitio
+  es negro (scheme-1). Se deja intacta por si el dueño la activa algún
+  día desde el personalizador.
+
+  Esta va en el flujo normal del documento, antes del header, para no
+  pelearse con el sticky. Lee los mismos settings que el resto del tema
+  (Personalizar tema → Envíos), así que el umbral no se puede volver a
+  desincronizar — el problema que la Ola 2 vino a resolver.
+
+  El origen "Cuernavaca, Morelos" está aquí a propósito: hoy solo
+  aparece en el footer, y es la señal de confianza más fuerte que tiene
+  la tienda frente a un comprador local que teme la tienda fantasma.
+{%- endcomment -%}
+{%- liquid
+  assign umbral_pesos = settings.envio_umbral_centavos | default: 79900 | divided_by: 100
+  assign tiempo = settings.envio_tiempo | default: '2 a 7 días hábiles'
+-%}
+{%- if section.settings.mostrar -%}
+  <div class="im-promesas" role="complementary" aria-label="Condiciones de envío y pago">
+    <div class="im-promesas__inner">
+      <span class="im-promesas__item">
+        Envío <strong>gratis</strong> desde ${{ umbral_pesos }}
+      </span>
+      <span class="im-promesas__item">Entrega en {{ tiempo }}</span>
+      <span class="im-promesas__item">Meses sin intereses</span>
+      <span class="im-promesas__item">Efectivo en OXXO y 7-Eleven</span>
+      <span class="im-promesas__item im-promesas__item--origen">
+        Enviamos desde Cuernavaca, Morelos
+      </span>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Barra de promesas",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Franja fina arriba del header con las condiciones de envío y pago. El monto y el tiempo salen de Configuración del tema → Envíos, para que no se desincronicen con el carrito ni con la ficha de producto."
+    },
+    {
+      "type": "checkbox",
+      "id": "mostrar",
+      "label": "Mostrar la barra",
+      "default": true
+    }
+  ],
+  "enabled_on": {
+    "groups": ["header"]
+  }
+}
+{% endschema %}

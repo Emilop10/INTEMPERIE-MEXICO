@@ -911,3 +911,86 @@ variant-selects .select__select {
     grid-template-columns: minmax(96px, 42%) 1fr;
   }
 }
+
+
+/* ── Barra de promesas (sections/im-barra-promesas.liquid) ───────────
+   Repite arriba del header las cuatro promesas del anuncio de Meta.
+   Se comprobó que en /collections/combos ninguna era visible: las que
+   existían en el HTML estaban dentro del cajón del carrito vacío, que
+   component-cart-drawer.css:118 oculta.
+
+   En móvil NO se hace scroll horizontal ni carrusel: se apilan en dos
+   líneas centradas. Un carrusel automático obliga a esperar para leer
+   la condición que a uno le importa, y aquí las cuatro importan.       */
+.im-promesas {
+  background: var(--im-surface, rgba(255, 255, 255, 0.035));
+  border-bottom: 1px solid var(--im-divider, rgba(255, 255, 255, 0.24));
+  padding: 8px 16px;
+}
+
+.im-promesas__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 6px 18px;
+  max-width: var(--page-width, 120rem);
+  margin: 0 auto;
+  font-size: 1.2rem;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  color: rgb(var(--color-foreground));
+  opacity: 0.92;
+}
+
+.im-promesas__item {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+/* Separador entre condiciones. Se dibuja con ::before en vez de border
+   para que no aparezca uno suelto al principio de cada línea cuando
+   flex-wrap parte la fila. */
+.im-promesas__item + .im-promesas__item::before {
+  content: "";
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  margin-right: 18px;
+  background: currentColor;
+  opacity: 0.45;
+}
+
+.im-promesas__item strong {
+  font-weight: var(--font-body-weight-bold, 600);
+}
+
+/* El origen es la señal de confianza más fuerte para un comprador
+   local, así que se acentúa en vez de diluirse entre las demás.
+
+   El verde va FIJO, no `var(--brand-accent)`: ese token vale #234D3B
+   (verde muy oscuro) salvo dentro de `@media (prefers-color-scheme: dark)`,
+   donde pasa a #57B58A. Como esta franja está siempre sobre el fondo
+   negro del sitio, un visitante con el sistema en modo claro habría
+   visto verde oscuro sobre negro — ilegible. Es el mismo criterio que
+   ya siguen .im-combo__kicker y .im-trust-item svg en este archivo. */
+.im-promesas__item--origen {
+  color: #57b58a;
+  opacity: 1;
+}
+
+@media screen and (max-width: 749px) {
+  .im-promesas {
+    padding: 7px 12px;
+  }
+
+  .im-promesas__inner {
+    font-size: 1.1rem;
+    gap: 4px 12px;
+  }
+
+  .im-promesas__item + .im-promesas__item::before {
+    margin-right: 12px;
+  }
+}
