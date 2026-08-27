@@ -209,7 +209,26 @@ Uso recomendado: agua dulce y salada ligera
 
 ---
 
-## Combos (3 restantes — caña+carrete)
+## Combos (4 — caña+carrete)
+
+### Combo Okuma Revenger 8'0" (2.45m)
+`/products/combo-okuma-revenger-80-2-45m`
+
+> Agregado el 25 de agosto. Este combo estaba agotado cuando se armó el
+> borrador original, así que quedó fuera de los 35. La conciliación de
+> inventario de ese día lo devolvió a stock (3 unidades) y pasó a ser el
+> **combo más barato del aterrizaje pagado** — la primera tarjeta que ve
+> quien llega del anuncio. Era el único de los 7 sin ficha técnica.
+
+```
+Longitud: 2.45 m (8 pies)
+Material: fibra de vidrio
+Guías: cerámicas
+Resistencia de línea: 11-20 lb
+Carrete incluido: tamaño 40, relación 5.0:1
+Línea preinstalada: sí
+Secciones: 2
+```
 
 ### Combo Level Rapala Verde 6'6" + Accesorios
 `/products/combo-level-rapala-verde-66-accesorios`
@@ -404,10 +423,13 @@ Protección UV: sí
 |---|---|---|---|
 | Cañas / combos con caña | 13 | 13 | 0 |
 | Carretes | 4 | 4 | 0 |
-| Combos (accesorios) | 3 | 3 | 0 |
+| Combos (accesorios) | 4 | 4 | 0 |
 | Binoculares / monoculares | 13 | 12 | 1 (Kampak visión nocturna) |
 | Otros | 2 | 2 | 0 |
-| **Total** | **35** | **34** | **1** |
+| **Total** | **36** | **35** | **1** |
+
+> El total pasó de 35 a 36 el 25 de agosto, al sumar el Combo Okuma
+> Revenger 8'0" (2.45m) cuando volvió a estar disponible.
 
 Solo un producto (Binocular Kampak Visión Nocturna Digital) tiene datos
 incompletos en su descripción actual — el aumento óptico y el alcance de
