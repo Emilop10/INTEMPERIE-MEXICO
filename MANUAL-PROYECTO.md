@@ -5005,6 +5005,61 @@ verificación, es una hipótesis sobre la propia memoria.** Hay que partir
 del mecanismo —el snippet que lo emite, la clase que declara, lo que la
 herramienta cuenta de verdad— y de ahí derivar qué buscar.
 
+### La barra en movimiento, y el bug de CSS que se comió los espacios
+
+El dueño mandó captura de la barra ya en producción y pidió dos cosas:
+movimiento, y arreglar **"Envíogratisdesde $799"**, todo pegado.
+
+**La causa no era un espacio faltante en el Liquid.**
+`.im-promesas__item` estaba en `display: inline-flex`, y en un
+contenedor flex cada corrida de texto se envuelve en un *ítem flex
+anónimo*, de modo que **las secuencias de solo espacios entre ítems no
+se renderizan**. Ese texto lleva `<strong>gratis</strong>` adentro, así
+que quedaba partido en tres ítems y los espacios desaparecían.
+
+> **La prueba del diagnóstico estaba en la misma captura:** los otros
+> cuatro textos sí tenían sus espacios, y son justo los que **no**
+> llevan `<strong>` — una sola corrida de texto, un solo ítem anónimo,
+> nada que colapsar.
+
+**Regla general que sale de aquí, reutilizable en todo el tema:** nunca
+poner en `flex` (ni `inline-flex`) un elemento cuyo texto lleve
+etiquetas inline adentro. Si hace falta alinear, se alinea el
+contenedor, no el elemento que contiene la frase.
+
+**El movimiento: marquesina CSS pura, sin JavaScript.** El track lleva
+**dos grupos idénticos** y se anima hasta `translateX(-50%)`: al llegar
+ahí el fotograma es idéntico al inicial, así que el bucle no tiene
+costura. El segundo grupo va con `aria-hidden="true"` — es una copia
+visual, y un lector de pantalla debe leer las condiciones **una** vez.
+
+Dos detalles que hacen que funcione y que no son obvios:
+
+- **La viñeta pasó de `::before` en "todos menos el primero" a `::after`
+  en todos.** Es lo que hace invisible la costura: el ritmo
+  texto·viñeta·texto se mantiene igual también en la unión entre el
+  último ítem de un grupo y el primero del siguiente. Con la viñeta al
+  frente quedaría un hueco justo ahí, una vez por vuelta.
+- **`width: max-content` en el track.** Sin eso el track se encoge al
+  ancho del viewport y aplasta los ítems en vez de dejarlos salir.
+
+Pausa al pasar el cursor y con `:focus-within`, para poder leerla y
+para que quien navega con teclado no persiga un objetivo en
+movimiento. Respeta `prefers-reduced-motion` volviendo al layout
+estático centrado —ocultando el grupo duplicado, o las condiciones
+saldrían dos veces— con la misma convención de `imx-drift` e
+`imx-word-in` (`assets/base.css:3750,3776`).
+
+Se prefirió marquesina sobre un carrusel que rote mensajes porque el
+carrusel **obliga a esperar** a que aparezca la condición que a uno le
+importa, y aquí las cinco importan. Esto revierte a propósito una nota
+que este mismo proyecto había dejado escrita en el CSS ("en móvil no se
+hace scroll ni carrusel"): el dueño lo pidió viendo el resultado real,
+y su criterio sobre su tienda gana sobre una nota previa. **El
+comentario se actualizó en el mismo commit, en vez de dejarlo
+contradiciendo al código** — que es el defecto que la sección 21 lleva
+persiguiendo desde agosto.
+
 ### Pendiente para el dueño, de esta verificación
 
 **La foto del "Combo Okuma Elite Pro" ($920) es sospechosa.** Su única
@@ -5014,5 +5069,7 @@ distintas. Se revisaron las imágenes de los 7 combos y es **el único**
 caso dudoso; los demás cuadran (`ranco1` para el Blue Fox Ranco, el SKU
 `15CARRET117CH` para el Gimbel, `rapala-rubs-utility-box` para la caja).
 Es evidencia de nombre de archivo, no del píxel: hay que confirmarlo a
-ojo. Si no corresponde, es el miedo nº2 del comprador materializado en
-un producto de $920 dentro de la página que paga el anuncio.
+ojo. **Resuelto el mismo día: el dueño la revisó y la foto sí
+corresponde al producto.** Queda como registro de que el indicio se
+persiguió hasta cerrarlo, y de que un nombre de archivo heredado no es
+prueba de nada por sí solo.
