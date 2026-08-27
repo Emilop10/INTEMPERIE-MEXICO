@@ -919,23 +919,64 @@ variant-selects .select__select {
    existían en el HTML estaban dentro del cajón del carrito vacío, que
    component-cart-drawer.css:118 oculta.
 
-   En móvil NO se hace scroll horizontal ni carrusel: se apilan en dos
-   líneas centradas. Un carrusel automático obliga a esperar para leer
-   la condición que a uno le importa, y aquí las cuatro importan.       */
+   MOVIMIENTO (25 ago): marquesina continua, a pedido del dueño tras ver
+   la barra estática. Sustituye la nota anterior de este bloque, que
+   decía que en móvil no habría scroll ni carrusel — se revierte a
+   propósito, no por descuido: el dueño lo pidió viendo el resultado
+   real, y de paso resuelve que las cinco condiciones no caben en una
+   línea de móvil.                                                      */
 .im-promesas {
   background: var(--im-surface, rgba(255, 255, 255, 0.035));
   border-bottom: 1px solid var(--im-divider, rgba(255, 255, 255, 0.24));
-  padding: 8px 16px;
+  padding: 8px 0;
 }
 
-.im-promesas__inner {
+.im-promesas__viewport {
+  overflow: hidden;
+}
+
+/* Dos grupos idénticos: al desplazar el track exactamente -50%, el
+   fotograma final es idéntico al inicial y el bucle no tiene costura.
+   `width: max-content` impide que el track se encoja al ancho del
+   viewport, que aplastaría los ítems en vez de dejarlos salir.         */
+.im-promesas__track {
   display: flex;
-  flex-wrap: wrap;
+  width: max-content;
+  animation: imx-promesas-scroll 42s linear infinite;
+}
+
+.im-promesas__group {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 6px 18px;
-  max-width: var(--page-width, 120rem);
-  margin: 0 auto;
+  flex: 0 0 auto;
+}
+
+@keyframes imx-promesas-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* Pausa para poder leer, y con :focus-within para que quien navega con
+   teclado no persiga un objetivo en movimiento.                        */
+.im-promesas:hover .im-promesas__track,
+.im-promesas__track:focus-within {
+  animation-play-state: paused;
+}
+
+/* NO lleva `display: inline-flex`. Lo llevaba, y ahí estaba el bug que
+   el dueño vio en pantalla: en un contenedor flex cada corrida de texto
+   se envuelve en un ítem anónimo y las secuencias de SOLO espacios
+   entre ítems no se renderizan. Como este ítem trae marcado inline
+   (`Envío <strong>gratis</strong> desde $799`), quedaba partido en tres
+   y se leía "Envíogratisdesde $799". Los otros cuatro, sin <strong>,
+   no se rompieron: una sola corrida, nada que colapsar.
+
+   Con el contenido en flujo inline normal, los espacios cuentan otra
+   vez. Regla general para este tema: NUNCA poner en flex un elemento
+   cuyo texto lleve etiquetas inline adentro.                           */
+.im-promesas__item {
+  white-space: nowrap;
+  padding-left: 16px;
   font-size: 1.2rem;
   line-height: 1.35;
   letter-spacing: 0.01em;
@@ -943,21 +984,18 @@ variant-selects .select__select {
   opacity: 0.92;
 }
 
-.im-promesas__item {
-  display: inline-flex;
-  align-items: center;
-  white-space: nowrap;
-}
-
-/* Separador entre condiciones. Se dibuja con ::before en vez de border
-   para que no aparezca uno suelto al principio de cada línea cuando
-   flex-wrap parte la fila. */
-.im-promesas__item + .im-promesas__item::before {
+/* La viñeta va DETRÁS de cada ítem, incluido el último, en vez de
+   delante de "todos menos el primero". Es lo que hace invisible la
+   costura: el ritmo texto·viñeta·texto se mantiene igual también en la
+   unión entre el último ítem de un grupo y el primero del siguiente.   */
+.im-promesas__item::after {
   content: "";
+  display: inline-block;
+  vertical-align: middle;
   width: 3px;
   height: 3px;
+  margin-left: 16px;
   border-radius: 50%;
-  margin-right: 18px;
   background: currentColor;
   opacity: 0.45;
 }
@@ -982,15 +1020,43 @@ variant-selects .select__select {
 
 @media screen and (max-width: 749px) {
   .im-promesas {
-    padding: 7px 12px;
+    padding: 7px 0;
   }
 
-  .im-promesas__inner {
+  .im-promesas__item {
     font-size: 1.1rem;
-    gap: 4px 12px;
+    padding-left: 12px;
   }
 
-  .im-promesas__item + .im-promesas__item::before {
-    margin-right: 12px;
+  .im-promesas__item::after {
+    margin-left: 12px;
+  }
+}
+
+/* Sin movimiento: se vuelve al layout centrado que envuelve, se oculta
+   el grupo duplicado (si no, las condiciones salen dos veces) y se quita
+   la viñeta final, que en una línea que no cicla quedaría colgando.
+   Misma convención que imx-drift e imx-word-in en assets/base.css.     */
+@media (prefers-reduced-motion: reduce) {
+  .im-promesas__track {
+    animation: none;
+    width: auto;
+    justify-content: center;
+  }
+
+  .im-promesas__group:nth-child(2) {
+    display: none;
+  }
+
+  .im-promesas__group {
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: var(--page-width, 120rem);
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+
+  .im-promesas__item:last-child::after {
+    display: none;
   }
 }

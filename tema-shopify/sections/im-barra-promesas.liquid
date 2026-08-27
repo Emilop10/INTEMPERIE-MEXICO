@@ -27,14 +27,24 @@
   El origen "Cuernavaca, Morelos" está aquí a propósito: hoy solo
   aparece en el footer, y es la señal de confianza más fuerte que tiene
   la tienda frente a un comprador local que teme la tienda fantasma.
+
+  ── MARQUESINA (25 ago, a pedido del dueño tras ver el resultado) ──
+  El track lleva DOS grupos idénticos y se anima hasta translateX(-50%):
+  al llegar ahí el fotograma es idéntico al inicial, así que el bucle no
+  tiene costura. El segundo grupo va con aria-hidden porque es una copia
+  visual: un lector de pantalla debe leer las condiciones UNA vez.
+
+  Se prefirió marquesina sobre un carrusel que rote mensajes porque el
+  carrusel obliga a esperar a que aparezca la condición que a uno le
+  importa, y aquí las cinco importan. De paso resuelve que en móvil las
+  cinco no caben y se apilaban en dos líneas.
 {%- endcomment -%}
 {%- liquid
   assign umbral_pesos = settings.envio_umbral_centavos | default: 79900 | divided_by: 100
   assign tiempo = settings.envio_tiempo | default: '2 a 7 días hábiles'
 -%}
 {%- if section.settings.mostrar -%}
-  <div class="im-promesas" role="complementary" aria-label="Condiciones de envío y pago">
-    <div class="im-promesas__inner">
+  {%- capture promesas_items -%}
       <span class="im-promesas__item">
         Envío <strong>gratis</strong> desde ${{ umbral_pesos }}
       </span>
@@ -44,6 +54,13 @@
       <span class="im-promesas__item im-promesas__item--origen">
         Enviamos desde Cuernavaca, Morelos
       </span>
+  {%- endcapture -%}
+  <div class="im-promesas" role="complementary" aria-label="Condiciones de envío y pago">
+    <div class="im-promesas__viewport">
+      <div class="im-promesas__track">
+        <div class="im-promesas__group">{{ promesas_items }}</div>
+        <div class="im-promesas__group" aria-hidden="true">{{ promesas_items }}</div>
+      </div>
     </div>
   </div>
 {%- endif -%}
@@ -54,7 +71,7 @@
   "settings": [
     {
       "type": "paragraph",
-      "content": "Franja fina arriba del header con las condiciones de envío y pago. El monto y el tiempo salen de Configuración del tema → Envíos, para que no se desincronicen con el carrito ni con la ficha de producto."
+      "content": "Franja fina arriba del header con las condiciones de envío y pago, en movimiento continuo. El monto y el tiempo salen de Configuración del tema → Envíos, para que no se desincronicen con el carrito ni con la ficha de producto."
     },
     {
       "type": "checkbox",
