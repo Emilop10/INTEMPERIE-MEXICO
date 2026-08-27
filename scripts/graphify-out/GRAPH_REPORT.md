@@ -1,16 +1,16 @@
-# Graph Report - scripts  (2026-08-25)
+# Graph Report - scripts  (2026-08-27)
 
 ## Corpus Check
-- 9 files · ~9,210 words
+- 9 files · ~9,348 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 87 nodes · 144 edges · 9 communities (8 shown, 1 thin omitted)
-- Extraction: 95% EXTRACTED · 5% INFERRED · 0% AMBIGUOUS · INFERRED: 7 edges (avg confidence: 0.5)
+- 89 nodes · 147 edges · 9 communities (8 shown, 1 thin omitted)
+- Extraction: 95% EXTRACTED · 5% INFERRED · 0% AMBIGUOUS · INFERRED: 8 edges (avg confidence: 0.5)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `49143f12`
+- Built from commit: `0adf35a7`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -29,7 +29,7 @@
 1. `api_request()` - 9 edges
 2. `main()` - 9 edges
 3. `main()` - 8 edges
-4. `main()` - 7 edges
+4. `main()` - 8 edges
 5. `Deploy del tema a Shopify` - 7 edges
 6. `cmd_activar()` - 6 edges
 7. `main()` - 5 edges
@@ -50,8 +50,8 @@ Cohesion: 0.23
 Nodes (14): api_get(), build_barcode_map(), build_sku_map(), build_title_index(), fetch_all_products(), find_by_name(), main(), next_page_url() (+6 more)
 
 ### Community 1 - "deploy-shopify.py"
-Cohesion: 0.25
-Nodes (13): all_theme_keys(), api_request(), git(), keys_from_git(), main(), Claves de tema cambiadas segun git (commit indicado + working tree)., Texto -> (str, payload). Binario -> (bytes, payload con attachment)., Contenido actual en la tienda, o None si el archivo no existe alli. (+5 more)
+Cohesion: 0.22
+Nodes (15): all_theme_keys(), api_request(), git(), keys_from_git(), main(), orden_de_subida(), Claves de tema cambiadas segun git (commit indicado + working tree)., Texto -> (str, payload). Binario -> (bytes, payload con attachment). (+7 more)
 
 ### Community 2 - "Deploy del tema a Shopify"
 Cohesion: 0.25

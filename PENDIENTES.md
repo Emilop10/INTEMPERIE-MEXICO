@@ -95,6 +95,16 @@ enlace directo.
 > etiqueta `oculto-en-combos` al de $999** para devolverlo a la vitrina.
 > Es un solo cambio, sin tocar reglas ni precios. Sección 50 del manual.
 
+**🟡 Revisar a ojo una foto (2 minutos, sección 51 del manual).**
+El **Combo Okuma Elite Pro ($920)** usa la imagen
+`cana-saguaro-stimula-4-1-...webp`, de la misma serie que la Caña
+Shimano Stimula (`cana-saguaro-stimula-2-...`) — marcas distintas.
+Es evidencia de nombre de archivo, no del píxel:
+[abrir la ficha](https://intemperiemexico.com/products/combo-okuma-elite-pro-70-medium-heavy)
+y confirmar si la foto corresponde. Debe mostrar un combo Okuma Elite
+Pro de 7'0" con carrete tamaño 40. De los 7 combos del aterrizaje
+pagado es el único caso dudoso; los demás cuadran.
+
 **🔴 Antes de reanudar la campaña (Ola 8, 25 ago — sección 48 del manual):**
 La cuenta publicitaria tiene el **tope de gasto agotado** ($285 al 100%)
 y lleva sin entregar desde el 21 de agosto, aunque todo reporte "activo"

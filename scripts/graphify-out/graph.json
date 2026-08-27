@@ -426,10 +426,22 @@
       "norm_label": "read_remote()"
     },
     {
-      "label": "main()",
+      "label": "orden_de_subida()",
       "file_type": "code",
       "source_file": "deploy-shopify.py",
       "source_location": "L161",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "deploy_shopify_orden_de_subida",
+      "community": 1,
+      "community_name": "deploy-shopify.py",
+      "norm_label": "orden_de_subida()"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "deploy-shopify.py",
+      "source_location": "L182",
       "_callable": true,
       "_origin": "ast",
       "id": "deploy_shopify_main",
@@ -480,6 +492,17 @@
       "community": 1,
       "community_name": "deploy-shopify.py",
       "norm_label": "contenido actual en la tienda, o none si el archivo no existe alli."
+    },
+    {
+      "label": "Ordena la subida para que un *-group.json nunca llegue antes que la seccion que\u2026",
+      "file_type": "rationale",
+      "source_file": "deploy-shopify.py",
+      "source_location": "L162",
+      "_origin": "ast",
+      "id": "deploy_shopify_rationale_162",
+      "community": 1,
+      "community_name": "deploy-shopify.py",
+      "norm_label": "ordena la subida para que un *-group.json nunca llegue antes que la seccion que..."
     },
     {
       "label": "meta-ads.py",
@@ -1546,11 +1569,22 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "deploy-shopify.py",
-      "source_location": "L161",
+      "source_location": "L182",
       "weight": 1.0,
       "_origin": "ast",
       "source": "deploy_shopify",
       "target": "deploy_shopify_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "deploy-shopify.py",
+      "source_location": "L161",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "deploy_shopify",
+      "target": "deploy_shopify_orden_de_subida",
       "confidence_score": 1.0
     },
     {
@@ -1602,7 +1636,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "deploy-shopify.py",
-      "source_location": "L236",
+      "source_location": "L257",
       "weight": 1.0,
       "_origin": "ast",
       "source": "deploy_shopify_main",
@@ -1638,7 +1672,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "deploy-shopify.py",
-      "source_location": "L181",
+      "source_location": "L202",
       "weight": 1.0,
       "_origin": "ast",
       "source": "deploy_shopify_main",
@@ -1685,7 +1719,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "deploy-shopify.py",
-      "source_location": "L198",
+      "source_location": "L219",
       "weight": 1.0,
       "_origin": "ast",
       "source": "deploy_shopify_main",
@@ -1708,7 +1742,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "deploy-shopify.py",
-      "source_location": "L195",
+      "source_location": "L216",
       "weight": 1.0,
       "_origin": "ast",
       "source": "deploy_shopify_main",
@@ -1720,7 +1754,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "deploy-shopify.py",
-      "source_location": "L217",
+      "source_location": "L238",
       "weight": 1.0,
       "_origin": "ast",
       "source": "deploy_shopify_main",
@@ -1743,7 +1777,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "deploy-shopify.py",
-      "source_location": "L218",
+      "source_location": "L239",
       "weight": 1.0,
       "_origin": "ast",
       "source": "deploy_shopify_main",
@@ -1759,6 +1793,29 @@
       "_origin": "ast",
       "source": "deploy_shopify_rationale_146",
       "target": "deploy_shopify_read_remote",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "source_file": "deploy-shopify.py",
+      "source_location": "L237",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "deploy_shopify_main",
+      "target": "deploy_shopify_orden_de_subida",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "deploy-shopify.py",
+      "source_location": "L162",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "deploy_shopify_rationale_162",
+      "target": "deploy_shopify_orden_de_subida",
       "confidence_score": 1.0
     },
     {
@@ -2670,5 +2727,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "49143f12e39ce1e1a1d9cf9161be869d4e482cb3"
+  "built_at_commit": "0adf35a7d7db0624db71c3e90a95ebd32cb49321"
 }

@@ -78,6 +78,7 @@ como respaldo
 48. [Ola 8: auditoría previa a campaña y sus correcciones](#48-ola-8-auditoría-previa-a-campaña-y-sus-correcciones-25-ago)
 49. [Los 7 que "llegaron a pagar" eran el dueño](#49-los-7-que-llegaron-a-pagar-eran-el-dueño-25-ago)
 50. [Conciliación de inventario del 25 de agosto y el choque de los dos combos Revenger](#50-conciliación-de-inventario-del-25-de-agosto-y-el-choque-de-los-dos-combos-revenger)
+51. [Verificación final y la barra de promesas (25 ago)](#51-verificación-final-y-la-barra-de-promesas-25-ago)
 
 ---
 
@@ -899,7 +900,7 @@ pudo instalar en este entorno. Corrido sobre `tema-shopify/`, generó:
   ninguno genera nodos. Confirma la regla que ya se veía en las Olas
   1-5g: en este tema **solo los componentes de JavaScript mueven el
   grafo**
-- **La Ola 10 (25 ago) también los dejó igual**, en los **dos** grafos:
+- **La Ola 10 (25 ago) los dejó igual**, en los **dos** grafos:
   461/705/41 y 87/144/9. Es el caso interesante, porque sí se tocó
   Python: `conciliar-inventario.py` ganó el modo `--dry-run`, pero
   dentro de `main()`, sin crear funciones nuevas. **Graphify mide
@@ -907,10 +908,20 @@ pudo instalar en este entorno. Corrido sobre `tema-shopify/`, generó:
   función existente no mueve el grafo, y eso es correcto, no un fallo
   de detección. Lo único que cambió fue la etiqueta de una comunidad,
   que Graphify renombró por su hub (`conciliar-inventario.py`)
-- **Segundo grafo, `scripts/`: 87 nodos, 144 aristas, 9 comunidades**
-  (24 de agosto, tras sumar `cargar-fichas-tecnicas.py` y
-  `crear-combos.py`; confirmado sin cambios el 25). El repo lleva
-  **dos** grafos independientes —
+- **La verificación final (sección 51) sí movió el grafo de `scripts/`,
+  por primera vez desde el 24 de agosto: 87 → 89 nodos, 144 → 147
+  aristas**, 9 comunidades. Los dos nodos nuevos son
+  `deploy_shopify_orden_de_subida` (la función que corrige el orden de
+  subida) y `deploy_shopify_rationale_162` — este último **no es
+  código**: Graphify extrajo el *porqué* del docstring y lo guardó como
+  nodo aparte. Es la diferencia práctica con la Ola 10: allá el cambio
+  vivía dentro de una función existente, aquí nació una función nueva
+  **con su razón escrita**. El grafo de `tema-shopify/` no se movió
+  (Liquid, CSS y JSON de configuración), fiel a la regla de siempre
+- **Segundo grafo, `scripts/`: 89 nodos, 147 aristas, 9 comunidades**
+  (25 de agosto, tras sumar `orden_de_subida()` a `deploy-shopify.py`;
+  antes fue 87/144/9 desde el 24). El repo lleva **dos** grafos
+  independientes —
   `graphify update .` se corre por separado dentro de `tema-shopify/`
   y dentro de `scripts/`, no desde la raíz
 - Los "god nodes" (componentes más centrales de la arquitectura del
@@ -4869,3 +4880,139 @@ esas filas no se conciliarán solas — se corrige en el POS, no en Shopify.
 `Vinculados por código B1: 0` **no es un fallo**: significa que el cruce
 por SKU resolvió todo lo que existe en Shopify y la segunda llave no tuvo
 que rescatar nada.
+
+---
+
+## 51. Verificación final y la barra de promesas (25 ago)
+
+Antes de reactivar el gasto, el dueño pidió una verificación de cierre
+con agentes. Se lanzaron tres. **Uno entregó, dos se quedaron colgados**
+(23 minutos sin escribir, sin aviso de término) — y conviene que quede
+escrito, porque no dejó el trabajo a ciegas: esos dos cubrían el estado
+del sitio y el de la cuenta de Meta, que ya se habían verificado en vivo
+por cuenta propia. **Un agente que no responde no es una excusa para no
+tener el dato.**
+
+### Lo verificado en vivo (no contra el manual)
+
+- **Tema sincronizado**: los 8 archivos clave del repo son idénticos al
+  tema en vivo. El único que "difería" era `config/settings_schema.json`,
+  y la diferencia es que Shopify serializa `\/` en vez de `/` dentro del
+  JSON. **No es drift** — vale la pena recordarlo antes de perseguirlo
+  otra vez.
+- **Cero errores de Liquid** en home, colección, `/cart`, políticas y
+  fichas. **Velocidad 0.36-0.47 s**, muy por debajo del techo de 1.3 s.
+- **Carrito de punta a punta con cookie jar, en los dos lados del
+  umbral**: a $849 dice "Tu envío es GRATIS"; a $225 dice "Te faltan
+  $574 MXN" (resta exacta) más la línea de "$189 MXN" antes del
+  checkout. MSI aparece a $849 y **no** a $225 — la condición de
+  `msi_minimo_centavos` ($300) funciona.
+- **Los 7 combos del aterrizaje** están disponibles y todos sobre $799.
+  Se cargó la ficha técnica del de $849, que era el único sin ella
+  (estaba agotado cuando se armó el borrador, por eso quedó fuera de
+  los 35 originales; el documento pasó a 36).
+
+### El hallazgo del agente que sí valía, y la parte que no
+
+El agente de recorrido de comprador encontró algo real y verificable:
+**en `/collections/combos` no era visible ninguna de las cuatro promesas
+del anuncio.** Comprobado: los únicos `799` y `OXXO` del HTML viven
+dentro de `<cart-drawer class="drawer is-empty">`, y
+`component-cart-drawer.css:118` (`cart-drawer-items.is-empty +
+.drawer__footer{display:none}`) oculta ese bloque con el carrito vacío.
+Texto presente, invisible — el patrón de siempre.
+
+**Su recomendación principal, en cambio, partía de una premisa falsa.**
+Proponía "cambiar el destino del anuncio de la colección a la ficha"
+como el cambio de mayor impacto. Ya era así: el creativo lleva
+`product_set_id: 1455189226500365`, es catálogo dinámico, y cada tarjeta
+enlaza a su propio producto con UTMs. La colección es solo el enlace de
+la **tarjeta final** (`multi_share_end_card: true`). Verificado leyendo
+los `url` reales del conjunto en la API de Meta.
+
+Es exactamente el error que se cometió en este proyecto en agosto ("el
+tráfico pagado aterriza en /todo-pesca") y que ya está documentado.
+**Reaparece: un agente lo repitió sin conocerlo.** El hallazgo del
+aterrizaje sigue siendo válido, pero su alcance es una fracción del
+tráfico, no todo.
+
+### El cambio: `sections/im-barra-promesas.liquid`
+
+Franja fina arriba del header, en todas las páginas:
+
+> Envío **gratis** desde $799 · Entrega en 2 a 7 días hábiles · Meses sin
+> intereses · Efectivo en OXXO y 7-Eleven · **Enviamos desde Cuernavaca,
+> Morelos**
+
+Lee `settings.envio_umbral_centavos` y `settings.envio_tiempo`, así que
+el umbral no se puede volver a desincronizar — el problema que la Ola 2
+vino a resolver.
+
+**No se reusó `sections/announcement-bar.liquid`**, que ya existía sin
+estar en ningún grupo, por dos razones concretas: es `position:fixed`
+con `z-index 99999` (taparía el header `sticky on-scroll-up`) y su fondo
+es `#f0f9eb`, verde muy claro pensado para tema claro, mientras este
+sitio es negro. Se deja intacta.
+
+El origen "Cuernavaca, Morelos" se sube aquí a propósito: hasta hoy solo
+aparecía en el footer, y es la señal de confianza más fuerte que tiene
+la tienda frente a un comprador local que teme la tienda fantasma.
+
+### Dos defectos propios, corregidos antes de dar el despliegue por bueno
+
+**1. `deploy-shopify.py` subía en orden alfabético → HTTP 422.**
+`sections/header-group.json` llegaba **antes** que
+`sections/im-barra-promesas.liquid`, y Shopify rechaza un grupo que
+referencia una sección que todavía no existe:
+
+```
+{"errors":{"asset":["Section type 'im-barra-promesas' does not refer to
+an existing section file"]}}
+```
+
+Es la misma familia del incidente de `meta-pixel` (sección 39) —una
+referencia que llega antes que su destino— pero **de orden, no de
+omisión**: los dos archivos iban en el push, solo que en la secuencia
+equivocada. Se arregló en el script, no a mano: `orden_de_subida()`
+manda los `*-group.json` al final. **Regla ampliada:** si una ola agrega
+un `{% render %}` o una sección nueva, el archivo va en el mismo push
+**y antes** que quien lo referencia.
+
+**2. El acento del origen habría sido invisible para media audiencia.**
+Se usó `var(--brand-accent)`, que vale `#234D3B` (verde muy oscuro) y
+solo pasa a `#57B58A` dentro de `@media (prefers-color-scheme: dark)`.
+Como la franja está **siempre** sobre el fondo negro del sitio, un
+visitante con el sistema operativo en modo claro habría visto verde
+oscuro sobre negro. Fijado a `#57b58a`, que es lo que ya hacen
+`.im-combo__kicker` y `.im-trust-item svg`.
+
+> **Lección para cualquier CSS futuro de este tema:** los tokens que
+> cambian con `prefers-color-scheme` **no** sirven para elementos que
+> viven siempre sobre el fondo oscuro del sitio. El tema es oscuro por
+> diseño, no por preferencia del visitante.
+
+### Un cuarto falso negativo, este de método
+
+Al verificar que el CSS llegara a producción se contó con `grep -c
+im-promesas` y dio **1** — casi se concluyó que no se había desplegado.
+**Shopify minifica el CSS a una sola línea**, y `grep -c` cuenta líneas,
+no coincidencias. Con `grep -o | wc -l` salieron las 11 reglas.
+
+Van cuatro instancias de la misma familia (texto en HTML que no se ve,
+clase que no es la que uno recuerda, conteo que no mide lo que uno cree).
+La forma general: **una búsqueda contra lo que uno recuerda no es
+verificación, es una hipótesis sobre la propia memoria.** Hay que partir
+del mecanismo —el snippet que lo emite, la clase que declara, lo que la
+herramienta cuenta de verdad— y de ahí derivar qué buscar.
+
+### Pendiente para el dueño, de esta verificación
+
+**La foto del "Combo Okuma Elite Pro" ($920) es sospechosa.** Su única
+imagen es `cana-saguaro-stimula-4-1-...webp`, y la Caña Shimano Stimula
+usa `cana-saguaro-stimula-2-...webp` — misma serie de fotos, marcas
+distintas. Se revisaron las imágenes de los 7 combos y es **el único**
+caso dudoso; los demás cuadran (`ranco1` para el Blue Fox Ranco, el SKU
+`15CARRET117CH` para el Gimbel, `rapala-rubs-utility-box` para la caja).
+Es evidencia de nombre de archivo, no del píxel: hay que confirmarlo a
+ojo. Si no corresponde, es el miedo nº2 del comprador materializado en
+un producto de $920 dentro de la página que paga el anuncio.
