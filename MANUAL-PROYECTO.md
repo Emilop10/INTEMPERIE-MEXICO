@@ -5027,6 +5027,12 @@ poner en `flex` (ni `inline-flex`) un elemento cuyo texto lleve
 etiquetas inline adentro. Si hace falta alinear, se alinea el
 contenedor, no el elemento que contiene la frase.
 
+> Esta trampa y la del token de color quedaron también en
+> [`INSTRUCTIVO-CAMBIOS-QUE-NO-SE-VEN.md`](./INSTRUCTIVO-CAMBIOS-QUE-NO-SE-VEN.md),
+> que es el documento al que uno acude cuando "lo cambié y no se ve" —
+> junto con la tabla de las cuatro verificaciones que dieron negativo
+> con el código bien. Aquí queda el relato; allá, la regla operativa.
+
 **El movimiento: marquesina CSS pura, sin JavaScript.** El track lleva
 **dos grupos idénticos** y se anima hasta `translateX(-50%)`: al llegar
 ahí el fotograma es idéntico al inicial, así que el bucle no tiene
@@ -5043,12 +5049,13 @@ Dos detalles que hacen que funcione y que no son obvios:
 - **`width: max-content` en el track.** Sin eso el track se encoge al
   ancho del viewport y aplasta los ítems en vez de dejarlos salir.
 
-Pausa al pasar el cursor y con `:focus-within`, para poder leerla y
-para que quien navega con teclado no persiga un objetivo en
-movimiento. Respeta `prefers-reduced-motion` volviendo al layout
-estático centrado —ocultando el grupo duplicado, o las condiciones
-saldrían dos veces— con la misma convención de `imx-drift` e
-`imx-word-in` (`assets/base.css:3750,3776`).
+La animación se llama **`imx-promesas-scroll`** y vive en
+`assets/brand-tokens.css`. Pausa al pasar el cursor y con
+`:focus-within`, para poder leerla y para que quien navega con teclado
+no persiga un objetivo en movimiento. Respeta `prefers-reduced-motion`
+volviendo al layout estático centrado —ocultando el grupo duplicado, o
+las condiciones saldrían dos veces— con la misma convención de
+`imx-drift` e `imx-word-in` (`assets/base.css:3750,3776`).
 
 Se prefirió marquesina sobre un carrusel que rote mensajes porque el
 carrusel **obliga a esperar** a que aparezca la condición que a uno le

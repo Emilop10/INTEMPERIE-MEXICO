@@ -237,6 +237,60 @@ https://intemperiemexico.com/?preview_theme_id=147593723981&v=778899
 5. **Recomendar republicar el tema.** No invalida los renders ya cacheados.
    Se probó y no sirvió de nada.
 
+### El caso contrario: el código llegó y aun así se ve mal (25 ago 2026)
+
+Los cinco de arriba son "lo cambié y no llega". Existe el reverso, y es
+más traicionero porque el despliegue sale limpio: **el código llegó, el
+`?v=` cambió, y el resultado en pantalla sigue mal.** Ahí no hay nada
+que buscar en las capas de caché — el problema está en el CSS mismo.
+
+**Caso real: `flex` se come los espacios.** La barra de promesas mostraba
+**"Envíogratisdesde $799"**, todo pegado. No faltaba ningún espacio en el
+Liquid. El elemento estaba en `display: inline-flex`, y en un contenedor
+flex cada corrida de texto se envuelve en un *ítem anónimo*: **las
+secuencias de solo espacios entre ítems no se renderizan.** Como ese
+texto llevaba `<strong>gratis</strong>` adentro, quedaba partido en tres
+ítems y los espacios desaparecían.
+
+> **Regla:** nunca poner en `flex` ni `inline-flex` un elemento cuyo
+> texto lleve etiquetas inline adentro. Si hay que alinear, se alinea el
+> contenedor, no el elemento que contiene la frase.
+
+Lo que delató la causa fue **comparar con los hermanos**: los otros
+cuatro textos de la misma barra sí tenían sus espacios, y eran justo los
+que no llevaban `<strong>`. Cuando un elemento falla y sus hermanos no,
+la diferencia entre ellos **es** el diagnóstico.
+
+**Caso real: un token de color que no aplica en modo claro.** El acento
+usaba `var(--brand-accent)`, que en este tema vale `#234D3B` (verde muy
+oscuro) y solo pasa a `#57B58A` dentro de
+`@media (prefers-color-scheme: dark)`. Como el sitio es negro **siempre**,
+un visitante con el sistema operativo en modo claro habría visto verde
+oscuro sobre negro. Se detectó leyendo el CSS, no en pantalla — con la
+máquina en modo oscuro se ve perfecto.
+
+> **Regla:** los tokens que cambian con `prefers-color-scheme` no sirven
+> para elementos que viven siempre sobre el fondo oscuro del sitio. Este
+> tema es oscuro **por diseño**, no por preferencia del visitante.
+
+### Verificar mal es peor que no verificar
+
+Cuatro veces en este proyecto una verificación dio negativo y el código
+estaba bien. La causa siempre fue la misma clase de error:
+
+| Lo que se buscó | Por qué falló |
+|---|---|
+| `"Ver todos los detalles"` en el HTML | Existía, pero con `display:none` |
+| `"Agotado"` en la ficha | Existía 2 veces: un badge oculto por CSS y una cadena de JS |
+| `"envío gratis"` en `/cart` | El copy real es **"Tu envío es GRATIS"** |
+| `im-xsell` en el HTML | La clase real es **`imx-crosssell`** |
+| `grep -c im-promesas` en el CSS servido | Dio 1: **Shopify minifica a una sola línea** y `grep -c` cuenta líneas, no coincidencias. Usar `grep -o \| wc -l` |
+
+**La forma general:** buscar el texto o la clase que uno *recuerda* no es
+verificación — es poner a prueba la propia memoria. Hay que partir del
+mecanismo (el snippet que lo emite, la clase que declara, lo que la
+herramienta cuenta de verdad) y de ahí derivar qué buscar.
+
 ---
 
 ## Resumen ejecutable
