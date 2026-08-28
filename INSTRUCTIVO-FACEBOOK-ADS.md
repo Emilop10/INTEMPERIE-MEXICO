@@ -396,9 +396,9 @@ Dos trampas de la API, ambas comprobadas el 18 de agosto de 2026:
 > consume de la misma bolsa. Para continuar la semana siguiente hay que
 > **subir el tope**, no basta con reactivar la campaña.
 
-### Comparación avanzada del píxel — dónde está de verdad (28 ago 2026)
+### Comparación avanzada del píxel — dónde está de verdad (27 ago 2026, noche)
 
-Activada el 28 de agosto. Antes estaba **apagada**, y con ella el ~41% de
+Activada la noche del 27 de agosto. Antes estaba **apagada**, y con ella el ~41% de
 los eventos (los del navegador) se emparejaban solo por cookie — justo
 los que bloquea iOS, y el público de esta cuenta son hombres de 45-65.
 
@@ -430,7 +430,7 @@ agrupa ciudad/estado/CP en uno).
 
 ### 🟡 Ver una compra dos veces en el píxel es NORMAL
 
-Comprobado el 28 de agosto de 2026, tras una falsa alarma.
+Comprobado la noche del 27 de agosto de 2026, tras una falsa alarma.
 
 La tienda manda **cada evento dos veces a propósito**: navegador +
 Conversions API, con un `event_id` compartido para que Meta los una.

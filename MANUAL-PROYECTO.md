@@ -5204,10 +5204,27 @@ ejecuta la instrucción al pie de la letra ni se decide por el dueño.**
    imprescindible, anotar día, monto y pasarela en el momento.
 
 
-### Verificación de configuración y la falsa alarma de la doble compra (28 ago)
+### Verificación de configuración y la falsa alarma de la doble compra (27 ago, noche)
 
-Con la campaña ya entregando, el dueño pidió verificar que estuviera
-configurada para vender. Todo salió limpio, y de paso se levantó —y se
+Con la campaña ya encendida, el dueño pidió verificar que estuviera
+configurada para vender.
+
+> 🕐 **Nota de fechas, corregida — y la regla ya estaba escrita.** Esta
+> subsección se etiquetó primero como "28 ago" porque se fechó con el
+> reloj UTC del contenedor. **En la zona de la cuenta
+> (`America/Chihuahua`, UTC-6) todavía era el 27 por la noche.**
+>
+> Lo incómodo es que la sección 40 **ya documenta este escenario exacto**:
+> *"entre las 18:00 y la medianoche locales el contenedor ya cree que es
+> el día siguiente"*. Aquello se arregló **en el código** (`cmd_reporte`
+> calcula en `America/Chihuahua`), pero nunca se convirtió en costumbre
+> al **escribir** — y aquí eran las 20:00 locales.
+>
+> **La lección no es la zona horaria, es el alcance de un arreglo:**
+> corregir el código no corrige el hábito. Cuando una regla vale para
+> las dos cosas, hay que escribirla para las dos. Todo lo que se feche
+> en este proyecto —manual, instructivos, informes— va en **hora de la
+> cuenta**, igual que los datos. Todo salió limpio, y de paso se levantó —y se
 desmontó— una alarma que conviene dejar escrita.
 
 **El cruce que nadie había hecho: catálogo de Meta contra tienda real.**
