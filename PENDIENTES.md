@@ -102,13 +102,29 @@ Caña Shimano Stimula. El dueño la revisó a ojo y está bien: un nombre
 de archivo heredado no es prueba de nada. Los 7 combos del aterrizaje
 pagado quedan con su foto correcta.
 
-**🔴 Antes de reanudar la campaña (Ola 8, 25 ago — sección 48 del manual):**
-La cuenta publicitaria tiene el **tope de gasto agotado** ($285 al 100%)
-y lleva sin entregar desde el 21 de agosto, aunque todo reporte "activo"
-— Meta no lo marca como incidencia. Las correcciones de Meta y del sitio
-ya están hechas y **el conjunto v3 quedó en PAUSA a propósito**, por
-decisión del dueño de encender el gasto al final con todo pulido.
-Falta: **subir el tope y activar el conjunto v3**.
+**🟢 CAMPAÑA ENCENDIDA — 27 de agosto de 2026.**
+
+| | |
+|---|---|
+| Tope de cuenta | **$885.00** |
+| Ya gastado (no se reinicia) | $285.00 |
+| **Presupuesto disponible** | **$600.00** |
+| Presupuesto diario | $55 → **~11 días de entrega** |
+| Campaña / Conjunto v3 / Anuncio v3 | `ACTIVE` / `ACTIVE` / `ACTIVE` (en revisión de Meta) |
+
+Los conjuntos v1 y v2 siguen **en pausa** a propósito (regla: pausar,
+nunca borrar). Su historial no afecta a v3, que nunca había entregado.
+
+> ⚠️ **Los $600 no alcanzan para el corte de medición.** El corte está
+> fijado a las ~500 vistas de producto (~3 semanas, ~$1,100) y con este
+> saldo hay ~11 días. Hay que **recargar a mitad de camino** o bajar el
+> presupuesto diario para estirarlo. Decisión del dueño cuando llegue el
+> momento; no hace falta anticiparla.
+
+> ⚠️ **Vigilar el tope.** Como `amount_spent` **no** se reinicia solo
+> (ver la corrección en la sección 6-bis del manual), si Meta llegara a
+> reiniciarlo en algún ciclo de facturación, el tope de $885 dejaría
+> pasar hasta $885 en vez de $600. Revisar el margen en cada chequeo.
 
 **🟡 Del lado del dueño, no se puede resolver por código:**
 - **Fotografía** — **decisión tomada el 25 de agosto: se lanza sin

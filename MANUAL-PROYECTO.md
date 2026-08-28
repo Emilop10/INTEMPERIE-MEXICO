@@ -3300,9 +3300,29 @@ Dos comportamientos de la API que hay que conocer:
    `252344` guardó `$252,344.00`, no `$2,523.44`. Esto es al revés que
    `daily_budget`, que sí va en centavos. Verificar siempre lo que quedó
    guardado.
-2. **Cambiar el tope REINICIA el contador `amount_spent` a cero.** Es una
-   ventaja: el tope pasa a medir solo lo que se gaste de ahí en adelante,
-   sin tener que calcular el histórico.
+2. ~~**Cambiar el tope REINICIA el contador `amount_spent` a cero.**~~
+   **🔴 FALSO. Corregido el 27 de agosto de 2026, con dinero de por
+   medio.** Se subió el tope de $285 a $600 esperando ese reinicio;
+   `amount_spent` **se quedó en $285** y el margen real fue de $315, la
+   mitad del presupuesto que el dueño había autorizado. Verificado con
+   tres lecturas separadas 15 segundos, para descartar retraso de la API.
+
+   **La fórmula correcta es aditiva:**
+
+   ```
+   tope nuevo = amount_spent actual + presupuesto que se quiere liberar
+   ```
+
+   Para dar $600 nuevos sobre $285 gastados, el tope va en **$885**.
+   Leer siempre `amount_spent` **antes** de calcular, y releer el margen
+   después de escribir.
+
+   > Esta afirmación estuvo en el manual y en el instructivo desde el 18
+   > de agosto marcada como "comprobada", y nunca lo estuvo: aquella vez
+   > el tope se fijó cuando el contador ya venía en cero por otra razón,
+   > y se confundió coincidencia con causa. Es la lección más cara de
+   > esta familia: **una observación no es una regla hasta que se prueba
+   > el caso en que podría fallar.**
 
 Configuración vigente:
 

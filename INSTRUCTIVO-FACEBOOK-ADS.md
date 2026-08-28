@@ -380,8 +380,17 @@ Dos trampas de la API, ambas comprobadas el 18 de agosto de 2026:
 1. **`spend_cap` va en unidades de la moneda, no en centavos** — al revés
    que `daily_budget`. Enviar `252344` guarda `$252,344.00`. Verificar
    siempre lo que quedó guardado.
-2. **Cambiar el tope reinicia `amount_spent` a cero.** Eso es útil: el
-   tope pasa a medir solo el gasto futuro, sin calcular el histórico.
+2. 🔴 **Cambiar el tope NO reinicia `amount_spent`.** Esta línea decía lo
+   contrario y era falsa; se corrigió el 27 de agosto tras comprobarlo
+   con dinero real (se liberó la mitad del presupuesto autorizado). El
+   contador acumula, así que el cálculo es **aditivo**:
+
+   ```
+   tope nuevo = amount_spent actual + lo que se quiera liberar
+   ```
+
+   Leer `amount_spent` ANTES de calcular y releer el margen DESPUÉS de
+   escribir. Nunca suponer el punto de partida.
 
 > ⚠️ Es un tope de **cuenta**: cualquier campaña o publicación promocionada
 > consume de la misma bolsa. Para continuar la semana siguiente hay que
