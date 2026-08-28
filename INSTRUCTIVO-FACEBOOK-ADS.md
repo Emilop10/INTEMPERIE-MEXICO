@@ -396,6 +396,38 @@ Dos trampas de la API, ambas comprobadas el 18 de agosto de 2026:
 > consume de la misma bolsa. Para continuar la semana siguiente hay que
 > **subir el tope**, no basta con reactivar la campaña.
 
+### Comparación avanzada del píxel — dónde está de verdad (28 ago 2026)
+
+Activada el 28 de agosto. Antes estaba **apagada**, y con ella el ~41% de
+los eventos (los del navegador) se emparejaban solo por cookie — justo
+los que bloquea iOS, y el público de esta cuenta son hombres de 45-65.
+
+**Los nombres del menú no son los que uno espera.** En la interfaz en
+español de Meta:
+
+| Lo que uno busca | Cómo se llama de verdad |
+|---|---|
+| "Comparación automática avanzada" | **"Activar coincidencias avanzadas automáticas"** |
+| El interruptor | **"Coincidencias de sitio web automáticas"** |
+| Dónde vive | **"Configuración del sitio web"**, entre "Uso de cookies" y "API de conversiones" |
+
+No existe ningún bloque llamado "Configuración del conjunto de datos".
+Ruta directa:
+`https://business.facebook.com/events_manager2/list/dataset/<PIXEL_ID>/settings`
+(redirige a `eventsmanager.facebook.com`).
+
+**La pantalla guarda al instante, no hay botón de guardar.** Al encender
+el interruptor principal, Meta activa los ocho subcampos solo. Verificado
+por API después: `enable_automatic_matching: true` con 11 campos
+(`em, fn, ln, ge, ph, ct, st, zp, db, country, external_id` — la interfaz
+agrupa ciudad/estado/CP en uno).
+
+> Dos ajustes vecinos que **no** hay que tocar: "Incluye automáticamente
+> información más detallada de la página y los productos" va en **Sí**
+> (alimenta el catálogo dinámico) y **"Eventos automáticos" va en No** —
+> ese detecta clics y formularios por su cuenta y genera eventos basura
+> que ensucian la medición.
+
 ### 🟡 Ver una compra dos veces en el píxel es NORMAL
 
 Comprobado el 28 de agosto de 2026, tras una falsa alarma.
