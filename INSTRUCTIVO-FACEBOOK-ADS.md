@@ -396,6 +396,22 @@ Dos trampas de la API, ambas comprobadas el 18 de agosto de 2026:
 > consume de la misma bolsa. Para continuar la semana siguiente hay que
 > **subir el tope**, no basta con reactivar la campaña.
 
+### 🟡 Ver una compra dos veces en el píxel es NORMAL
+
+Comprobado el 28 de agosto de 2026, tras una falsa alarma.
+
+La tienda manda **cada evento dos veces a propósito**: navegador +
+Conversions API, con un `event_id` compartido para que Meta los una.
+Medido: `SERVER 1134` contra `BROWSER 808` en una semana.
+
+**`/<pixel_id>/stats` cuenta eventos RECIBIDOS, no deduplicados.** Dos
+`Purchase` ahí = una venta por dos rutas. Para ventas reales hay que
+mirar `insights` → `actions` del anuncio, o el Administrador de Eventos.
+
+Si de verdad fallara la deduplicación, **Meta lo avisaría** en
+`/<pixel_id>/da_checks`. Consultarlo antes de dar por buena una sospecha
+de doble conteo.
+
 ### 🔴 El tope apaga la entrega EN SILENCIO (comprobado el 25 ago 2026)
 
 Esta es la trampa más cara de la cuenta, y esta misma sección ya la

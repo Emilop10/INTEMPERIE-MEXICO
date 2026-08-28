@@ -5202,3 +5202,80 @@ ejecuta la instrucción al pie de la letra ni se decide por el dueño.**
    disponible es un problema que se diagnostica, no que se espera.
 4. **Sin compras de prueba mientras entregue** (sección 49). Si es
    imprescindible, anotar día, monto y pasarela en el momento.
+
+
+### Verificación de configuración y la falsa alarma de la doble compra (28 ago)
+
+Con la campaña ya entregando, el dueño pidió verificar que estuviera
+configurada para vender. Todo salió limpio, y de paso se levantó —y se
+desmontó— una alarma que conviene dejar escrita.
+
+**El cruce que nadie había hecho: catálogo de Meta contra tienda real.**
+Se compararon los 38 productos anunciables contra el `products.json`
+completo de la tienda, emparejando por `retailer_id` → id de variante:
+
+| Riesgo | Resultado |
+|---|---|
+| Anunciados que no existen o están despublicados | **0** |
+| Anunciados **agotados** (clic pagado a página muerta) | **0** |
+| Anunciados por debajo del piso de $500 | **0** |
+| **Armas o municiones** en lo anunciado (= baneo permanente) | **0** |
+
+Composición: 11 binoculares, 10 cañas, 8 combos, 5 carretes, 2
+monoculares, 1 caja, 1 hilo. De $520 a $3,450, mediana $999. **27 de 38
+cruzan los $799**; los otros 11 caen entre $520 y $798 y en sus fichas el
+envío cuesta $189 — consecuencia conocida de haber puesto el piso en
+$500 y no en $799 (sección 45), no un defecto.
+
+#### 🔴→🟢 La falsa alarma: "dos compras para un pedido"
+
+El píxel registraba **2 eventos `Purchase`** el 24 de agosto y el manual
+solo tenía **un** pedido (#1005, la compra de prueba). Se le preguntó al
+dueño, que confirmó una sola compra. Parecía doble conteo — que habría
+inflado al doble todas las ventas futuras y el retorno de la inversión.
+
+**Era falso, y el error fue de medición.** La tienda manda **cada evento
+dos veces a propósito**: navegador + Conversions API, con un `event_id`
+compartido que Meta usa para unirlos. Comprobado:
+
+```
+eventos por origen, 21-28 ago:  SERVER 1134  |  BROWSER 808   (ratio 1.40)
+```
+
+Ambos canales activos y en volumen similar. El servidor manda algo más
+porque no lo bloquean los bloqueadores de anuncios ni ITP, que es
+precisamente para lo que sirve.
+
+> **La causa del error:** el endpoint `/<pixel_id>/stats` cuenta eventos
+> **recibidos**, no **deduplicados**. Dos `Purchase` ahí no son dos
+> ventas: son una venta por dos rutas. Para ver ventas deduplicadas hay
+> que mirar el informe de anuncios (`insights` → `actions`) o el
+> Administrador de Eventos, nunca `/stats`.
+
+Confirmación independiente: **los diagnósticos del propio Meta
+(`/<pixel_id>/da_checks`) no reportan duplicación.** Meta avisa
+activamente cuando la deduplicación falla; aquí no aparece.
+
+**Es la quinta vez en este proyecto que el problema es medir la cosa
+equivocada** (las otras cuatro, en la sección 51 y en
+`INSTRUCTIVO-CAMBIOS-QUE-NO-SE-VEN.md`). La forma que toma aquí es
+nueva y vale la pena nombrarla: **no basta con leer el dato correcto de
+la fuente correcta — hay que saber qué está contando esa fuente.**
+
+#### El otro aviso de Meta, también benigno
+
+`da_checks` marca **"Pixel has low event source match rate"**: algunos
+`content_id` del píxel no casan con el catálogo. Tiene explicación y es
+por diseño — **el catálogo tiene 326 productos y la tienda 383
+variantes**, y la diferencia son los rifles y municiones excluidos a
+propósito (Meta prohíbe anunciarlos, sección 29). Quien navega un rifle
+dispara un `ViewContent` con un id que no está en el catálogo.
+
+Donde importa, el emparejamiento **sí funciona**: cientos de
+`content_id` de `ViewContent` casando por día (232, 205, 140, 47…), más
+`AddToCart` y `Purchase`. El otro diagnóstico, "Pixel Missing Parameter
+in DPA Events", sale en **verde**.
+
+> **Regla:** antes de reportar un `da_check` en rojo, comprobar si lo
+> explica una decisión deliberada del proyecto. Dos de los dos avisos
+> que ha dado esta cuenta lo estaban.
