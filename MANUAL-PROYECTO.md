@@ -4466,6 +4466,15 @@ para ejecutar del lado del dueño).
 
 ## 48. Ola 8: auditoría previa a campaña y sus correcciones (25 ago)
 
+> 🔗 **Las decisiones de segmentación de esta sección vienen de la
+> [sección 38](#38-la-reconstrucción-de-la-campaña-por-qué-no-vendía)**,
+> que es donde están los números que las justifican: escritorio ($8.19
+> gastados, cero vistas), Reels y Stories (18% del gasto para 6% de las
+> vistas), la edad 45-65 (CTR 6.49% en 55-64) e Instagram feed. Aquí se
+> aplicaron; allá se decidieron. Un agente de certificación tropezó
+> justo con esto —dio por injustificado el corte de escritorio buscando
+> solo en esta sección— y por eso queda el reenvío.
+
 El dueño pidió una auditoría con agentes especializados antes de invertir
 en la siguiente campaña. Se lanzaron dos en paralelo — **Persona
 Walkthrough** (recorrido cognitivo de un pescador de 48 años de
@@ -5296,3 +5305,72 @@ in DPA Events", sale en **verde**.
 > **Regla:** antes de reportar un `da_check` en rojo, comprobar si lo
 > explica una decisión deliberada del proyecto. Dos de los dos avisos
 > que ha dado esta cuenta lo estaban.
+
+
+### Certificación independiente y una trampa latente del filtro de precio
+
+Se lanzó un agente de certificación adversarial (default "no certificada",
+solo lectura) contra la campaña ya encendida. **Veredicto: certificada
+con reservas**, coincidiendo con el propio: configuración limpia, sin
+defectos que impidan vender, y **la entrega sin poder certificarse
+todavía** porque solo habían pasado 40 minutos.
+
+Confirmó de forma independiente los tres niveles en `ACTIVE`, el anuncio
+aprobado sin observaciones, `issues_info` y `recommendations` vacíos en
+los tres, margen de tope $600, comparación avanzada con 11 campos, 38
+productos sin agotados ni 404, y el aterrizaje con 7 combos sobre $799.
+También que el público estimado es de **12.0-14.1M** con
+`estimate_ready: true` — o sea que la segmentación no está asfixiada, que
+es la primera sospecha razonable si mañana no hay impresiones.
+
+#### 🔴 Trampa latente encontrada: el filtro de precio mira el precio de lista
+
+El `filter` del conjunto de productos usa **`price_amount >= 50000`**, y
+`price_amount` es el **precio de lista**, no el vigente. Desde la Ola 8
+tres combos llevan `compare_at_price` puesto a la suma real de las
+partes, así que en el feed viajan con dos precios:
+
+| Producto | `price` (lista) | `sale_price` (vigente) |
+|---|---|---|
+| Combo Rapala Corux 240 | $1,797 | **$1,499** |
+| Combo Okuma Revenger 8'0" (2.40m) | $1,148 | **$999** |
+| Combo Blue Fox Power Boat 6'4" | $1,098 | **$1,049** |
+
+**Hoy no afecta a nadie**: verificado, **0 productos con precio vigente
+por debajo de $500** (el más bajo es $1,049). Pero el riesgo es real y
+se activa solo: **el día que se ponga una oferta de verdad sobre un
+producto cercano al piso, el filtro lo dejará dentro mirando el precio
+de lista, mientras el cliente paga el precio rebajado** — por debajo del
+umbral que existe justamente porque el envío de $189 se come los
+productos baratos (§38).
+
+> **Comprobación obligatoria cada vez que se ponga una oferta:** pedir
+> `sale_price` además de `price` al listar el conjunto y confirmar que
+> ningún precio vigente cae bajo el piso.
+> `GET /<product_set_id>/products?fields=name,price,sale_price`
+
+#### El falso positivo del agente, y lo que revela
+
+Marcó como injustificado que la campaña excluya **escritorio**
+(`device_platforms: ["mobile"]`). **Está justificado**, en la sección 38:
+*"Escritorio: $8.19 gastados, cero vistas de página."* El agente buscó
+en la sección 48, donde está la justificación de cortar Instagram feed,
+y no encontró la de escritorio porque vive diez secciones antes.
+
+No es culpa del agente: **las decisiones de segmentación están repartidas
+entre la 38 (el diagnóstico que las originó) y la 48 (la ola que las
+aplicó)**, y nada en la 48 remite a la 38. Cualquiera que audite esto en
+el futuro va a tropezar igual.
+
+> **Regla de enrutamiento, tercera vez que aparece en este proyecto**
+> (antes con el instructivo de credenciales y con las trampas de CSS):
+> cuando una decisión se toma en una sección y se ejecuta en otra, la de
+> ejecución debe remitir a la de origen. Si no, la justificación existe
+> pero es inencontrable, que a efectos prácticos es igual que no existir.
+
+#### Nota menor sin acción
+
+`conversion_domain` no viene poblado en el anuncio. Puede afectar la
+atribución bajo Aggregated Event Measurement, pero **no bloquea la
+entrega** y no se toca con la campaña recién encendida: cualquier edición
+en las primeras 48-72 h reinicia la fase de aprendizaje.
