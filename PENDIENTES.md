@@ -110,7 +110,9 @@ pagado quedan con su foto correcta.
 | Ya gastado (no se reinicia) | $285.00 |
 | **Presupuesto disponible** | **$600.00** |
 | Presupuesto diario | $55 → **~11 días de entrega** |
-| Campaña / Conjunto v3 / Anuncio v3 | `ACTIVE` / `ACTIVE` / `ACTIVE` (en revisión de Meta) |
+| Campaña / Conjunto v3 / Anuncio v3 | `ACTIVE` / `ACTIVE` / `ACTIVE` (aprobado por Meta) |
+| Encendido | 27 ago 2026, 20:09 hora de Chihuahua |
+| Recarga o ajuste de diario | **~7 de septiembre** |
 
 Los conjuntos v1 y v2 siguen **en pausa** a propósito (regla: pausar,
 nunca borrar). Su historial no afecta a v3, que nunca había entregado.

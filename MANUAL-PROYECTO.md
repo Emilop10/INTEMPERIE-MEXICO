@@ -79,6 +79,7 @@ como respaldo
 49. [Los 7 que "llegaron a pagar" eran el dueño](#49-los-7-que-llegaron-a-pagar-eran-el-dueño-25-ago)
 50. [Conciliación de inventario del 25 de agosto y el choque de los dos combos Revenger](#50-conciliación-de-inventario-del-25-de-agosto-y-el-choque-de-los-dos-combos-revenger)
 51. [Verificación final y la barra de promesas (25 ago)](#51-verificación-final-y-la-barra-de-promesas-25-ago)
+52. [Encendido de la campaña y el tope que no se reinicia (27 ago)](#52-encendido-de-la-campaña-y-el-tope-que-no-se-reinicia-27-ago)
 
 ---
 
@@ -5100,3 +5101,104 @@ ojo. **Resuelto el mismo día: el dueño la revisó y la foto sí
 corresponde al producto.** Queda como registro de que el indicio se
 persiguió hasta cerrarlo, y de que un nombre de archivo heredado no es
 prueba de nada por sí solo.
+
+
+---
+
+## 52. Encendido de la campaña y el tope que no se reinicia (27 ago)
+
+**27 de agosto de 2026, 20:09 hora de Chihuahua** (zona de la cuenta).
+Después de diez olas de trabajo, la campaña vuelve a entregar.
+
+### Estado del encendido
+
+| | |
+|---|---|
+| Campaña `120249613902440175` | `ACTIVE` |
+| Conjunto v3 `120249759861080175` | `ACTIVE` · $55/día · optimiza a `ADD_TO_CART` |
+| Anuncio v3 `120249759862720175` | `ACTIVE` (pasó revisión de Meta) |
+| Tope de cuenta | $885.00 |
+| Gastado (histórico que no se reinicia) | $285.00 |
+| **Disponible** | **$600.00 ≈ 11 días** |
+| Conjuntos v1 y v2 | `PAUSED` — pausar, nunca borrar |
+
+Los **tres** niveles se verificaron leyendo `effective_status` por API,
+no asumiendo — la trampa documentada de que una campaña activa no
+implica un anuncio entregando. El anuncio salió primero como
+`IN_PROCESS` (revisión de Meta, normal) y pasó a `ACTIVE` en minutos.
+
+### Por qué se reusó la campaña en vez de crear una nueva
+
+El dueño preguntó si hacía falta una campaña nueva. **No**, y el dato es
+concluyente: **el conjunto v3 ya era nuevo** — creado el 25 de agosto,
+cero impresiones, cero gasto, sin historial de entrega. Nació limpio
+porque Meta no deja cambiar el evento de conversión en un conjunto ya
+publicado. La fase de aprendizaje vive en el **conjunto**, no en la
+campaña, que es solo un contenedor (objetivo, categorías especiales) y
+ni siquiera lleva el presupuesto.
+
+Crear una campaña nueva habría costado IDs nuevos —rompiendo todas las
+referencias de este manual y de `PENDIENTES.md`— y volver a asociar
+píxel y conjunto de productos, sin ganar nada.
+
+**Rendimiento histórico que además valida el planteamiento de v3**,
+medido con `time_range` explícito:
+
+| Conjunto | Optimiza a | Impresiones | Vistas | Carritos | Tasa |
+|---|---|---|---|---|---|
+| v1 | Compra | 3,820 | 60 | 1 | **1.67%** |
+| v2 | Vista de contenido | 41,724 | 665 | 2 | **0.30%** |
+
+v2 trajo **11× más tráfico** con una tasa de carrito **5× peor**. Es la
+prueba dura de que optimizar a vista de contenido compró a la gente más
+barata que abre una página. v3 optimiza a `ADD_TO_CART`, el punto medio.
+
+### 🔴 El error que casi cuesta la mitad del presupuesto
+
+El dueño autorizó **$600 de gasto nuevo**. Se subió el tope a $600
+confiando en lo que este manual afirmaba desde el 18 de agosto —que
+cambiar el tope reinicia `amount_spent` a cero— y **el contador se quedó
+en $285**: el margen real habría sido **$315, la mitad de lo autorizado.**
+
+Se detectó porque se relee el estado después de escribir, no porque se
+sospechara. Tres lecturas separadas 15 segundos descartaron un retraso
+de la API. Corregido subiendo el tope a **$885 = $285 + $600**.
+
+La corrección completa está en la sección 6-bis. Lo que importa aquí es
+**cómo se coló la afirmación falsa**: en agosto se fijó el tope cuando el
+contador ya venía en cero por otra razón, se observó "tope nuevo,
+contador en cero" y se escribió como regla, marcada *comprobada*. Nunca
+se probó el caso en que podía fallar — un tope nuevo con gasto previo
+acumulado.
+
+> **Una observación no es una regla hasta que se prueba el caso en que
+> podría fallar.** Y una nota marcada "comprobado" que resulta falsa es
+> peor que no tener nota: hace confiar sin verificar.
+
+### Aritmética del dueño, corregida antes de gastar
+
+El dueño pidió "súbelo a 1,300, que quede en 600 de saldo", partiendo de
+que el tope estaba en $700. **Estaba en $285.** El ~$700 de su memoria
+está en este manual y es otra cosa: *"$414.69 ya gastados + $285 de tope
+= $699.69"*, el presupuesto total de aquella semana.
+
+Con la premisa corregida, $1,300 habría liberado más del doble de lo que
+quería gastar. Se le presentaron las dos lecturas con sus consecuencias
+en pesos antes de tocar nada, y eligió los $600 que había dicho dos
+veces. **Cuando la instrucción y la intención no coinciden porque el
+dato de partida es falso, se corrige el dato y se pregunta — no se
+ejecuta la instrucción al pie de la letra ni se decide por el dueño.**
+
+### Lo que queda vigilado
+
+1. **Los $600 no alcanzan para el corte de medición.** El corte está a
+   las ~500 vistas de producto (~3 semanas, ~$1,100) y con este saldo hay
+   ~11 días, o sea hasta el **~7 de septiembre**. Habrá que recargar o
+   bajar el diario. Decisión del dueño cuando llegue.
+2. **El tope, en cada chequeo.** Como `amount_spent` no se reinicia solo,
+   si Meta lo reiniciara en algún ciclo de facturación el tope de $885
+   dejaría pasar hasta $885 en vez de $600.
+3. **A las 24 h**: impresiones > 0. Cero impresiones con margen
+   disponible es un problema que se diagnostica, no que se espera.
+4. **Sin compras de prueba mientras entregue** (sección 49). Si es
+   imprescindible, anotar día, monto y pasarela en el momento.
