@@ -468,9 +468,12 @@ curl -sS "https://graph.facebook.com/v21.0/act_1264279685553718?fields=spend_cap
 ```
 
 Si `amount_spent` == `spend_cap`, no estás midiendo la campaña: estás
-midiendo un apagón. Y ojo con la trampa 2 de arriba — como cambiar el
-tope reinicia `amount_spent`, esos dos números **solo** se pueden
-comparar entre sí, nunca contra el gasto histórico real.
+midiendo un apagón.
+
+> ⚠️ **Corregido el 29 de agosto.** Aquí decía que *"cambiar el tope
+> reinicia `amount_spent`"*. **No lo hace** — ver la trampa 2 de arriba.
+> El contador acumula, así que `amount_spent` **sí** se puede comparar
+> contra el gasto histórico, y el tope nuevo se calcula sumando.
 
 **Recomendación:** ponerlo mensual (~$1,700 para $55/día), no semanal.
 Un tope que se agota cada 7 días es un apagón programado cada 7 días.

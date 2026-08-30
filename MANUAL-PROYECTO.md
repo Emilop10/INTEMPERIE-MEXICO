@@ -4757,8 +4757,9 @@ que faltaba.
   eventos/semana; aquí saldrán 5-9 carritos). **La semana 1 no es
   señal.**
 
-**Métrica de corte, a las ~500 vistas de producto** (~3 semanas,
-~$1,100). Tasa de carrito = `add_to_cart` / `view_content`, solo del
+**Métrica de corte, a las ~500 vistas de producto** (~~3 semanas,
+~$1,100~~ → **medido: ~$370 y ~4 días**, ver la corrección abajo). Tasa
+de carrito = `add_to_cart` / `view_content`, solo del
 conjunto v3, con `time_range` explícito (nunca `date_preset` ni
 `amount_spent` — sección 40):
 
@@ -4768,6 +4769,31 @@ conjunto v3, con `time_range` explícito (nunca `date_preset` ni
 | **1.5% – 3%** | Ambiguo | Continuar solo con un cambio específico decidido de antemano |
 | **≥ 3.5%** | La parte alta funciona | Seguir y mover la atención al fondo del embudo |
 
+> 💰 **El costo del corte estaba sobreestimado 3×. Corregido el 29 de
+> agosto con datos reales.** El ~$1,100 salía de la economía de v1/v2,
+> donde la vista de producto costaba ~$2.20. **Medido sobre dos días
+> completos de v3: $0.72.** Las 500 vistas cuestan **~$370**, no $1,100,
+> y llegan en ~4 días, no en 3 semanas. Consecuencia práctica: **no hay
+> que recargar el presupuesto ni bajar el diario** para completar la
+> medición.
+
+> 📐 **Límite del propio protocolo, escrito antes de que salga el
+> número.** n=500 **no puede arbitrar la frontera de 1.5%**. Con la tasa
+> observada, el intervalo de confianza a 500 vistas es 0.22%-2.04%: pisa
+> la línea por los dos lados. Haría falta pasar de **1,000 vistas** para
+> separarla, más del doble del presupuesto total.
+>
+> | Vistas | Intervalo esperado | ¿Separa 1.5%? |
+> |---|---|---|
+> | 500 | 0.22% – 2.04% | No |
+> | 800 | 0.35% – 1.79% | No |
+> | 1,000 | 0.35% – 1.57% | Apenas |
+>
+> **El 500 se eligió por presupuesto disponible, no por poder
+> estadístico**, y eso no se dijo al fijarlo. Para lo que **sí** sirve
+> —y ya sirvió— es para matar la rama ≥3.5%. El número que salga hay que
+> leerlo con esa reserva.
+
 **Paro duro, independiente de lo anterior:** 6 o más `add_payment_info`
 con 0 compras → detener. Reproduciría el patrón 7→0 sobre la tienda
 mejorada, y esta vez **sí serían clientes reales** (con la regla de no
@@ -4776,8 +4802,12 @@ diagnostica.
 
 **Último paso, del dueño:** subir el tope de cuenta a **mensual**
 (~$1,200-1,700), no semanal — un tope que se agota cada 7 días es un
-apagón programado cada 7 días. Recordar que cambiarlo **reinicia
-`amount_spent` a cero**.
+apagón programado cada 7 días.
+
+> ⚠️ **Corregido el 29 de agosto.** Esta línea decía *"recordar que
+> cambiarlo reinicia `amount_spent` a cero"*. **Es falso** — ver la
+> corrección con evidencia en la sección 6-bis. El cálculo es
+> **aditivo**: `tope nuevo = amount_spent actual + lo que se libere`.
 
 ### El informe visual de esta auditoría
 
@@ -5200,10 +5230,12 @@ ejecuta la instrucción al pie de la letra ni se decide por el dueño.**
 
 ### Lo que queda vigilado
 
-1. **Los $600 no alcanzan para el corte de medición.** El corte está a
-   las ~500 vistas de producto (~3 semanas, ~$1,100) y con este saldo hay
-   ~11 días, o sea hasta el **~7 de septiembre**. Habrá que recargar o
-   bajar el diario. Decisión del dueño cuando llegue.
+1. ~~**Los $600 no alcanzan para el corte de medición.**~~ **🟢 FALSO,
+   corregido el 29 de agosto.** Se apoyaba en el ~$1,100 de §49, que
+   venía de la economía de las campañas viejas. **La vista de producto
+   cuesta $0.72, no $2.20**: el corte completo son **~$370**, de los que
+   ya van $185. Con $415 disponibles **sobran ~$230**. No hay que
+   recargar ni bajar el diario.
 2. **El tope, en cada chequeo.** Como `amount_spent` no se reinicia solo,
    si Meta lo reiniciara en algún ciclo de facturación el tope de $885
    dejaría pasar hasta $885 en vez de $600.
@@ -5374,3 +5406,104 @@ el futuro va a tropezar igual.
 atribución bajo Aggregated Event Measurement, pero **no bloquea la
 entrega** y no se toca con la campaña recién encendida: cualquier edición
 en las primeras 48-72 h reinicia la fase de aprendizaje.
+
+### Día 2 de campaña: la primera lectura real (29 ago)
+
+Dos días completos de entrega. **El anuncio funciona mejor que nunca; la
+ficha de producto sigue sin convertir.**
+
+| | |
+|---|---|
+| Impresiones / alcance / frecuencia | 4,302 · 2,949 · 1.46 |
+| Clics · **CTR** | 354 · **8.23%** (sostenido: 8.95% y 8.65%) |
+| **Vistas de producto** | **242** |
+| **Carritos** | **2 → 0.83%** |
+| Checkouts · Compras | **0 · 0** |
+| Gastado · disponible | $184.88 · $415.03 |
+
+Contra el histórico: v1 dio CTR 3.66%, v2 dio 2.90%. **8.23% es más del
+doble de lo mejor que había tenido esta cuenta.**
+
+#### Qué queda descartado, con la estadística hecha
+
+Intervalo de confianza exacto de 2/242: **[0.10%, 2.95%]**.
+
+| Hipótesis | P(ver ≤2 carritos) | Veredicto |
+|---|---|---|
+| 3.5% — "la parte alta funciona" | 0.84% | **DESCARTADA** |
+| 3.0% — techo del ambiguo | 2.24% | **DESCARTADA** |
+| 1.5% — frontera alto/ambiguo | **29.3%** | perfectamente viva |
+| 0.83% — la observada | 67.2% | viva |
+
+**La rama buena está muerta.** Para terminar en ≥3.5% harían falta 18
+carritos: 16 más en las 257 vistas que quedan, un 6.2% en el tramo
+restante. No es creíble.
+
+**Pero no se puede declarar "alto" todavía**: si la tasa real fuera
+exactamente 1.5%, este resultado aparecería el 29% de las veces. El
+resultado más probable a las 500 vistas es "alto" (~4% de llegar a los 8
+carritos de la banda ambigua), pero **probable no es medido**, y $185
+por cerrar la pregunta es barato.
+
+#### La verificación que valida el número bajo
+
+Antes de creerse una tasa tan baja había que descartar que fuera un
+problema de medición. Se cruzaron los carritos contra el píxel hora por
+hora: hay **3 eventos `AddToCart` reales** en la ventana — 27 ago 07:00
+(**anterior** al encendido de las 20:09, o sea orgánico), 28 ago 23:00 y
+29 ago 10:00. Los dos últimos coinciden hora por hora con los que
+reporta el conjunto. **No hay carritos escondidos por atribución: el
+0.83% es real.**
+
+#### El piso de $500 sí funcionó
+
+El fallo que originó toda la reconstrucción **no se repitió**:
+
+| | §38 (v1) | v3 hoy |
+|---|---|---|
+| Precio mediano ponderado por gasto | **$147** | **$812** |
+| Gasto en productos ≥$799 | 6% | **67.7%** |
+
+#### El cambio nombrado de antemano, como exige el protocolo
+
+Si el corte cae en la banda ambigua (1.5-3%), el cambio a aplicar es
+**subir el piso del conjunto de productos de $500 a $799**. Razón con
+evidencia: hoy el **32% del gasto** va a productos donde el cliente se
+topa con $189 de envío mientras el anuncio promete "gratis desde $799"
+— dos de los cuatro que más gastan son de $549. Dejaría el conjunto en
+27 productos. **Se nombra ahora, antes de ver el número**, que es lo que
+el protocolo exige para que no sea una racionalización posterior.
+
+#### Dos errores propios en esta lectura
+
+**1. La "caída de vistas por clic" del 29 no existió.** Se dividió entre
+`clicks` totales, que incluye reacciones y clics al perfil:
+
+| | 28 ago | 29 ago |
+|---|---|---|
+| `view_content` / `clicks` ← lo que se midió | 75.8% | 62.4% |
+| **`landing_page_view` / `link_click`** ← correcto | **83.8%** | **81.5%** |
+
+Plano. Es una instancia nueva de la familia *"medí la cosa equivocada"*,
+esta vez en forma de **denominador**: no basta con leer el dato correcto
+de la fuente correcta — hay que dividir entre lo que corresponde.
+
+**2. El desperdicio de madrugada se corrigió solo.** El día 1 la
+madrugada se llevó el 50% del gasto por el 21% de las vistas. Pero el
+anuncio **empezó a entregar a las 22:17**: el día 1 *solo existió de
+noche*. El 29 la madrugada fue **16% del gasto por 16% de las vistas**, y
+más barata que el día ($0.75 contra $0.79).
+
+> **No poner horarios (dayparting).** El problema ya no existe, y
+> programarlo en Meta obliga a pasar el conjunto a presupuesto de por
+> vida, lo que **reinicia el aprendizaje** y tira la medición ya pagada.
+
+#### Anotado sin actuar
+
+- **65+ es el mejor segmento**: CTR 12.10%, la vista más barata ($0.68) y
+  **los dos carritos**. Con n=2 no se puede actuar; se revisa a las 500.
+- **Concentración**: los 3 productos con más gasto se llevan el 54%. El
+  primero es un hilo de $812 con el segundo peor CTR (2.86%) y el clic
+  más caro. No se puede decir que convierta mal —`breakdowns=product_id`
+  devuelve las conversiones en 0— solo que es el tráfico más caro.
+- **El paro duro está lejos**: `add_payment_info` = 0, `purchase` = 0.

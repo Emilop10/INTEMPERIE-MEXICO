@@ -117,11 +117,11 @@ pagado quedan con su foto correcta.
 Los conjuntos v1 y v2 siguen **en pausa** a propósito (regla: pausar,
 nunca borrar). Su historial no afecta a v3, que nunca había entregado.
 
-> ⚠️ **Los $600 no alcanzan para el corte de medición.** El corte está
-> fijado a las ~500 vistas de producto (~3 semanas, ~$1,100) y con este
-> saldo hay ~11 días. Hay que **recargar a mitad de camino** o bajar el
-> presupuesto diario para estirarlo. Decisión del dueño cuando llegue el
-> momento; no hace falta anticiparla.
+> 🟢 **El presupuesto SÍ alcanza (corregido el 29 de agosto).** Se creía
+> que el corte costaba ~$1,100, cifra heredada de las campañas viejas.
+> **Medido con dos días reales: $0.72 por vista de producto**, así que
+> las 500 vistas son **~$370**. Van $185 gastados y quedan $415:
+> **sobran ~$230. No hay que recargar ni bajar el diario.**
 
 > ⚠️ **Vigilar el tope.** Como `amount_spent` **no** se reinicia solo
 > (ver la corrección en la sección 6-bis del manual), si Meta llegara a
@@ -161,7 +161,8 @@ del primer mes. El conjunto tampoco va a salir de fase de aprendizaje
 (Meta quiere ~50 eventos/semana, aquí saldrán 5-9 carritos), así que
 **la semana 1 no es señal**.
 
-Se juzga a las **~500 vistas de producto** (~3 semanas, ~$1,100), con
+Se juzga a las **~500 vistas de producto** (~4 días, ~$370 medidos —
+la estimación de ~$1,100 era de las campañas viejas), con
 `add_to_cart / view_content` **solo del conjunto v3** y `time_range`
 explícito (nunca `date_preset`):
 
