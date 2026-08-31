@@ -932,6 +932,30 @@ pudo instalar en este entorno. Corrido sobre `tema-shopify/`, generó:
   "B"`, `graphify query "pregunta"`) para entender rápido qué toca qué
   en el código, sin tener que releer todo el tema
 
+> ⚠️ **La comprobación de frescura que recomienda el propio Graphify da
+> falsos positivos.** `GRAPH_REPORT.md` dice *"Run `git rev-parse HEAD`
+> and compare to check if the graph is stale"*, pero **Graphify solo
+> reescribe sus salidas cuando cambia la topología**: tras un commit de
+> solo documentación, el `built_at_commit` se queda atrás y la
+> comparación grita "desactualizado" cuando no lo está.
+>
+> Pasó el 31 de agosto: HEAD en `b1a4eea`, los grafos en `055b92f6` y
+> `0adf35a7` — seis y cuatro días atrás. Parecían viejos y estaban al
+> día.
+>
+> **La comprobación que sí sirve** es preguntar si cambió algo que
+> genere nodos, no si cambió el commit:
+>
+> ```bash
+> git diff --name-only <built_at_commit> HEAD -- 'tema-shopify/assets/*.js'
+> git diff --name-only <built_at_commit> HEAD -- 'scripts/*.py'
+> ```
+>
+> Si las dos salen vacías, el grafo está al día por mucho que difieran
+> los commits. Es otra instancia de la familia **"la herramienta cuenta
+> algo distinto de lo que uno cree"**: aquí el indicador mide *cuándo se
+> escribió el archivo*, no *si el contenido sigue siendo válido*.
+
 Detalle completo de instalación y uso en
 [`SKILLS-USADAS.md`](./SKILLS-USADAS.md).
 
