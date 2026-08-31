@@ -102,6 +102,30 @@ Caña Shimano Stimula. El dueño la revisó a ojo y está bien: un nombre
 de archivo heredado no es prueba de nada. Los 7 combos del aterrizaje
 pagado quedan con su foto correcta.
 
+**📊 CORTE DE MEDICIÓN CUMPLIDO — 31 de agosto, 13:48 hora de Chihuahua.**
+
+491 vistas de producto · **7 carritos (1.43%)** · 4 checkouts · 0 compras.
+El resultado cayó **a un carrito** de la frontera de 1.5%, justo donde
+§49 había anticipado por escrito que 500 vistas no pueden decidir.
+
+**Novedad buena:** aparecieron los checkouts — **57% de los carritos
+llegan a iniciar el pago**, donde dos días antes había cero. El cuello
+está arriba (vista → carrito), no en el checkout.
+
+**Decisión del dueño, aplicada el 31 ago 14:01:** subir el piso del
+catálogo anunciable de $500 a **$799**. El conjunto pasó de 38 a **27
+productos** ($812-$3,450, 0 agotados) y ahora el 100% de los aterrizajes
+cumple la promesa de envío gratis del anuncio. No reinició el
+aprendizaje: se tocó el product set, no el conjunto de anuncios.
+
+> 📏 **Cómo se lee el tramo nuevo** (fijado antes del resultado, medido
+> solo desde el 31 ago 14:01): **≥3%** = el envío era el problema,
+> recargar y seguir · **≤1.5%** = el problema está en la ficha y más
+> gasto no lo arregla · en medio = este presupuesto no alcanza para
+> decidirlo. Quedan **$297** (~3.5 días, ~480 vistas).
+
+---
+
 **🟢 CAMPAÑA ENCENDIDA — 27 de agosto de 2026.**
 
 | | |

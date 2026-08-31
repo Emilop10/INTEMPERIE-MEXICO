@@ -5507,3 +5507,91 @@ más barata que el día ($0.75 contra $0.79).
   más caro. No se puede decir que convierta mal —`breakdowns=product_id`
   devuelve las conversiones en 0— solo que es el tráfico más caro.
 - **El paro duro está lejos**: `add_payment_info` = 0, `purchase` = 0.
+
+### El corte de medición y el cambio del piso a $799 (31 ago)
+
+**El corte se cumplió el 31 de agosto a las ~13:48 hora de Chihuahua**,
+con 491 vistas de producto — cuatro días y medio de entrega, $302.99.
+
+| Paso del embudo | Cantidad | Conversión |
+|---|---|---|
+| Vistas de producto | **491** | — |
+| Carritos | **7** | **1.43%** |
+| Checkouts iniciados | **4** | **57.1%** |
+| Datos de pago | 1 | 25.0% |
+| Compras | **0** | 0% |
+
+Costo por vista **$0.62**, por carrito **$43.28**. CTR **8.34%**
+sostenido cinco días — más del doble que cualquier campaña previa.
+
+#### El resultado cayó exactamente donde el protocolo no puede decidir
+
+**1.43% contra una frontera de 1.5%: un solo carrito de diferencia.** Con
+8 habría sido 1.63% (banda ambigua); con 6, 1.22% (alto). Intervalo de
+confianza exacto: **[0.58%, 2.92%]**, que pisa la frontera por los dos
+lados.
+
+> Esto es precisamente lo que §49 dejó escrito **antes** de ver el
+> número: *"n=500 no puede arbitrar la frontera de 1.5%"*. Haberlo
+> anotado por adelantado es lo único que impide interpretarlo ahora a
+> conveniencia. **Un protocolo solo sirve si sus límites se escriben
+> antes del resultado.**
+
+#### Lo que sí es información nueva: aparecieron los checkouts
+
+Dos días antes había **0 checkouts**. Ahora **4 de 7 carritos (57%)
+llegan a iniciar el pago**. El medio del embudo funciona; el cuello está
+arriba, en vista → carrito.
+
+Verificado contra el píxel hora por hora: los eventos están repartidos en
+ocho horas de cuatro días distintos — **no son ráfagas de prueba** como
+las del dueño el 22 de agosto (12 `AddPaymentInfo` en una hora). El
+1.43% es de gente real.
+
+#### La decisión del dueño y el cambio aplicado
+
+Con $297.05 restantes, eligió **aplicar el cambio que quedó nombrado de
+antemano**: subir el piso del product set `1455189226500365` de
+`price_amount >= 50000` a **`>= 79900`**.
+
+**Razón medida, no hipótesis:** el 32% del gasto iba a los 11 productos
+de $520-$649, donde el cliente aterrizaba y se topaba con $189 de envío
+mientras el anuncio prometía "gratis desde $799". Dos de los cuatro
+productos con más gasto eran de $549.
+
+**Resultado verificado:** el conjunto pasó de **38 a 27 productos**,
+rango **$812-$3,450**, 0 agotados. Ahora **el 100% de los aterrizajes
+cumple la promesa del anuncio**.
+
+> 🔄 **Esto revierte una decisión de §38**, que descartó el piso de $799
+> por dejar 23 productos y temer un catálogo demasiado delgado. Hoy son
+> **27**, y sobre todo cambió el contexto: entonces no había datos de
+> entrega, ahora sabemos que este presupuesto produce ~120 vistas/día.
+> Se deja escrito en vez de fingir que la decisión anterior no existió.
+
+**Por qué no reinicia el aprendizaje:** se modificó el **product set**,
+no el ad set. La fase de aprendizaje vive en el conjunto de anuncios y
+sus parámetros —presupuesto, puja, segmentación, evento— y ninguno se
+tocó. Verificado antes y después: `learning_stage_info` sin cambios,
+tres niveles en `ACTIVE`, `issues_info` vacío. **Era la razón de fondo
+para preferir este cambio: mueve la variable sospechosa sin tirar los
+$303 de medición ya pagados.**
+
+También se verificó con **`sale_price` y no solo `price`** — la trampa
+latente de §52, que dice que el filtro compara contra el precio de lista:
+**0 productos con precio vigente bajo $799.**
+
+#### Cómo se lee el tramo nuevo (fijado ANTES del resultado)
+
+La comparación **no** es contra el 1.43% acumulado, que incluye el tramo
+con productos baratos. Es la tasa de carrito **solo desde el 31 de agosto
+14:01 hora de Chihuahua**, con `time_range` explícito.
+
+Quedan ~$297 y ~480 vistas. **Tampoco esto va a separar 1.5% de 3.5% con
+significancia** — lo que puede mostrar es un movimiento grande:
+
+| Resultado del tramo nuevo | Lectura | Acción |
+|---|---|---|
+| **≥3%** (≥14 carritos) | El desajuste de envío era el problema | Recargar y seguir |
+| **≤1.5%** (≤7 carritos) | No era el envío | El problema está en la ficha: fotos, descripción, confianza. Más gasto no lo arregla |
+| Entre medias | Sigue sin resolverse | Conclusión honesta: este presupuesto no alcanza para arbitrarlo |
