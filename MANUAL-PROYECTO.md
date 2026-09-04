@@ -5725,3 +5725,66 @@ el trabajo de sitio sí movió la parte alta del embudo —el carrito subió y
 la gente llega hasta el pago—, pero **nadie completó una compra en 842
 vistas de producto**, y esa es justo la pregunta que este presupuesto no
 alcanzó a responder.
+
+
+### Conciliación de inventario del 4 de septiembre, con la campaña activa
+
+**4 de septiembre de 2026, 12:43 hora de Chihuahua.** 1,215 filas de
+conteo → **43 actualizaciones, 0 errores**. Clasificación: 299 verde,
+40 amarillo, 772 rojo (los que solo existen en piso de venta), 104 gris.
+
+Se hizo **con la campaña entregando**, a sabiendas: vender algo que no
+hay es peor que ensuciar un experimento. Por eso queda la hora exacta —
+igual que con el cambio de piso del 31 de agosto— para que la lectura
+final del tramo distinga qué se debe a qué.
+
+#### Lo que movió del lado del anuncio
+
+**Un solo producto tocó la campaña**, y era previsible que doliera:
+
+| Producto | Cambio | Efecto |
+|---|---|---|
+| **Combo Okuma Elite Pro 7'0"** ($920) | 1 → **0** | Sale del conjunto anunciable **y** del aterrizaje pagado |
+| Pistola Glock 19 CO2 ($4,340.95) | 1 → 0 | Sin efecto: las armas están excluidas de los anuncios (§29) |
+| Cucharilla Blue Fox Vibrax #1 ($99) | 1 → 0 | Sin efecto: por debajo del piso de $799 |
+
+Resultado verificado en vivo: conjunto anunciable **27 → 26**,
+aterrizaje `/collections/combos` **7 → 6, con 0 agotados**. La regla de
+disponibilidad de la §49 hizo su trabajo sola.
+
+> Es el mismo combo cuya foto el dueño revisó el 31 de agosto. Sale de
+> la vitrina por inventario, no por la foto.
+
+Entraron dos: **Carrete Shimano IX R 1000** ($549, 0 → 3) y Bullets
+Nakashi ($68, 0 → 10). Ninguno llega al piso de $799, así que no
+compensan la baja en el conjunto anunciable.
+
+Reabastecimientos grandes del conteo: **CO2 de 125 → 611** y Bullets
+0.20g de 0 → 10.
+
+#### Dos cosas del entorno que hay que saber
+
+**`openpyxl` también se había perdido** con el contenedor recreado, igual
+que Graphify el día anterior. Van dos dependencias en dos días; queda
+anotado en `SKILLS-USADAS.md` que **el entorno es efímero**.
+
+**Y una alarma propia que resultó falsa.** El Excel declaraba
+**1,044,691 filas** —solo 1,216 con datos— y se afirmó que el script *"se
+colgaría o agotaría la memoria, no es una hipótesis, es aritmética"*.
+**Era falso.** `openpyxl` descarta las filas sin celdas: reporta
+`max_row: 1216` y el código original las procesa en **0.01 s**. Se llegó
+a escribir un arreglo defensivo y **se revirtió** al comprobarlo.
+
+> **La lección, otra vuelta de la misma familia:** se midió el archivo
+> (correcto: sí trae un millón de filas con formato) y se **supuso** el
+> comportamiento de la herramienta que lo lee (incorrecto). Medir una
+> mitad del problema y deducir la otra no es medir. Y el resultado
+> concreto fue código innecesario defendiendo un problema inexistente.
+
+#### Pendiente que sigue abierto, y ya van dos corridas
+
+Los **16 grises por `No Parte` duplicado en el POS** siguen igual que el
+25 de agosto — mismos 7 códigos (`9291PS`, `IGT57`, `53003`, `MN094`,
+`10005701BZ00`, `P611004925557`, `15SENUEL012QI`). Mientras un mismo
+código apunte a productos distintos, esas filas **nunca** se van a
+conciliar solas. Se corrige en el POS, no en Shopify.

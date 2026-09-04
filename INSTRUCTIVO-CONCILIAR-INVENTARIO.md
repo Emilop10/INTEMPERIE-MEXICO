@@ -252,6 +252,7 @@ esos son los que viven en
 | 14 ago 2026 | 1,178 | 310 | 16 | 748 | 104 | 17 |
 | 15 ago 2026 | 1,178 | 301 | 22 | 751 | 104 | 25 |
 | 25 ago 2026 | 1,183 | 254 | 83 | 743 | 103 | 87 |
+| 4 sep 2026 | 1,215 | 299 | 40 | 772 | 104 | 43 |
 
 > **15 de agosto, más tarde:** se agregó el cruce por `Codigo B1` y se
 > poblaron 371 códigos de barras en Shopify (0 errores). La cobertura de
@@ -271,6 +272,17 @@ esos son los que viven en
 > rescatar nada. Es el resultado bueno: la segunda llave es una red de
 > seguridad, no un camino esperado.
 >
+> **4 de septiembre:** 43 cambios, 0 errores. Los grises se mantienen en
+> 104 (88 sin llave + 16 por código duplicado en el POS), o sea que **los
+> 7 códigos duplicados del 25 de agosto siguen sin corregirse en el
+> POS** — mientras sigan así, esas 16 filas nunca se conciliarán solas.
+>
+> **El Excel de esta corrida traía ~1,043,000 filas vacías con formato**
+> (1,216 con datos de 1,044,691 numeradas, 57 MB de XML). No hizo falta
+> tocar el script: **openpyxl descarta las filas sin celdas** y reporta
+> `max_row: 1216`. Lo único que se nota es la carga, ~14 segundos. Se
+> anota porque a simple vista el archivo parece roto y no lo está.
+
 > Los 103 grises se reparten en **87 sin ninguna llave** (artículos que
 > solo existen en piso de venta) y **16 por `No Parte` duplicado en el
 > POS**, concentrados en 7 códigos: `9291PS`, `IGT57` (3 filas cada uno),

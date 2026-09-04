@@ -98,7 +98,14 @@ graphify install               # registra la skill con el asistente
 
 `uv` vive en `/root/.local/bin/uv`. `pipx` no está en este entorno.
 
-> ⚠️ **El entorno es efímero: la herramienta desaparece.** El 4 de
+> ⚠️ **El entorno es efímero: las dependencias desaparecen.** Van dos
+> casos en dos días — el 4 de septiembre también faltaba **`openpyxl`**,
+> que necesita `scripts/conciliar-inventario.py` para leer el Excel del
+> conteo físico (`pip3 install openpyxl`), y **`playwright`**. `requests`
+> sobrevivió. Antes de correr cualquier script del repo en una sesión
+> nueva, conviene comprobar sus dependencias en vez de suponerlas.
+>
+> El 4 de
 > septiembre de 2026 `graphify` dejó de existir —`command not found`— sin
 > que nadie la desinstalara: el contenedor se recreó. También se había
 > borrado `/root/.claude/plans/`. **Lo único que persiste entre sesiones
