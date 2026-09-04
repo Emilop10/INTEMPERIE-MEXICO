@@ -884,10 +884,17 @@ consultable (análisis AST local, sin mandar código a ningún servidor).
 A diferencia de Browser Harness, no depende de WebSocket, así que sí se
 pudo instalar en este entorno. Corrido sobre `tema-shopify/`, generó:
 
-- **461 nodos, 705 conexiones, 41 comunidades** de código relacionado
-  (cifra al 24 de agosto de 2026, Ola 7). Historia: 452/697/37 en la
-  primera corrida, 459/705/39 al 7 de agosto, 460/705/40 al 13 de
-  agosto. Se mantuvo en 460/705/40 durante toda la auditoría de
+- **463 nodos, 696 conexiones, 50 comunidades** de código relacionado —
+  **cifra vigente**, al 4 de septiembre de 2026 con `graphify 0.9.53`.
+
+  > ⚠️ **La cifra va atada a la versión de la herramienta, no solo al
+  > código.** Ver la nota del final de esta sección: al reinstalar
+  > Graphify sobre código idéntico, el conteo cambió.
+
+  Historia, toda con la versión anterior de la herramienta: 452/697/37 en
+  la primera corrida, 459/705/39 al 7 de agosto, 460/705/40 al 13 de
+  agosto, y **461/705/41 desde el 24 de agosto (Ola 7)**, que fue la
+  última de esa versión. Se mantuvo en 460/705/40 durante toda la auditoría de
   conversión y la integración de Judge.me (Olas 1-5g) porque fueron
   marcado, estilos y bloques de app sobre secciones ya existentes, no
   componentes de JS nuevos — `graphify update` reportaba "sin cambios
@@ -932,10 +939,8 @@ pudo instalar en este entorno. Corrido sobre `tema-shopify/`, generó:
   "B"`, `graphify query "pregunta"`) para entender rápido qué toca qué
   en el código, sin tener que releer todo el tema
 
-> 🔄 **Cifras vigentes desde el 4 de septiembre de 2026: tema
-> `463/696/50`, scripts `89/147/9`.** Las anteriores (461/705/41) siguen
-> siendo correctas para su momento, pero **las produjo una versión más
-> vieja de la herramienta**.
+> 🔄 **Las cifras dependen de la versión de la herramienta** (hallazgo
+> del 4 de septiembre de 2026).
 >
 > Al reinstalar Graphify (0.9.53) sobre **exactamente el mismo código**
 > —0 archivos `.js` cambiados, los mismos 110 archivos— el grafo del tema
