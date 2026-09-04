@@ -102,6 +102,23 @@ Caña Shimano Stimula. El dueño la revisó a ojo y está bien: un nombre
 de archivo heredado no es prueba de nada. Los 7 combos del aterrizaje
 pagado quedan con su foto correcta.
 
+**📈 RESULTADO DEL TRAMO NUEVO — 4 de septiembre.** El piso de $799
+subió la tasa de carrito **de 1.32% a 2.24% (+70%)**, a la banda ambigua.
+Con 7 carritos **no es estadísticamente significativo** (p=0.31): apunta
+bien, no está probado.
+
+El embudo completo se activó: **14 carritos · 7 checkouts · 3 pantallas
+de pago · 0 compras** en 842 vistas.
+
+> ⚠️ **Vamos 3 de 6 en el paro duro** (6+ pantallas de pago sin compra →
+> detener). Si se llega a 6 sin venta, el problema está en el pago.
+
+> 💸 **Quedan $98.94, menos de 2 días.** El experimento se agota solo. La
+> decisión de qué sigue —fotos reales de producto o más presupuesto para
+> medir— se plantea con los números completos al cerrar.
+
+---
+
 **📊 CORTE DE MEDICIÓN CUMPLIDO — 31 de agosto, 13:48 hora de Chihuahua.**
 
 491 vistas de producto · **7 carritos (1.43%)** · 4 checkouts · 0 compras.

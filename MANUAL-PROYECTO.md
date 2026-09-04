@@ -5619,3 +5619,80 @@ significancia** — lo que puede mostrar es un movimiento grande:
 | **≥3%** (≥14 carritos) | El desajuste de envío era el problema | Recargar y seguir |
 | **≤1.5%** (≤7 carritos) | No era el envío | El problema está en la ficha: fotos, descripción, confianza. Más gasto no lo arregla |
 | Entre medias | Sigue sin resolverse | Conclusión honesta: este presupuesto no alcanza para arbitrarlo |
+
+### Resultado del tramo nuevo: el piso de $799 movió la aguja (4 sep)
+
+Cuatro días completos con el catálogo en 27 productos. **La tasa de
+carrito subió 70%** — aunque, como estaba anticipado, sin alcanzar
+significancia estadística.
+
+| | Vistas | Carritos | Tasa |
+|---|---|---|---|
+| Antes (piso $500, 27-31 ago) | 530 | 7 | **1.32%** |
+| **Después (piso $799, 1-4 sep)** | **312** | **7** | **2.24%** |
+
+- Intervalos: antes [0.53%, 2.70%], después [0.91%, 4.57%] — **se
+  solapan**. Prueba de diferencia de proporciones: **p = 0.31**.
+- El tramo nuevo cae en la **banda ambigua** (1.5-3%) de la tabla de §49,
+  no en la de alto.
+
+> **La lectura honesta:** apunta en la dirección correcta y **no está
+> probado**. Es exactamente el desenlace que §49 anticipó al documentar
+> que este presupuesto no podía arbitrar la frontera. Que el punto haya
+> subido de 1.32% a 2.24% es alentador; afirmar que el cambio "funcionó"
+> sería inventar precisión que no existe.
+
+**Nota de deriva de datos:** al medir el corte el 31 de agosto, el tramo
+previo daba 491 vistas / 7 carritos (1.43%). Con los datos ya madurados
+son **530 / 7 (1.32%)**. Meta sigue atribuyendo durante días; **las
+cifras de un corte leído en caliente se mueven después.** Conviene releer
+antes de citar un número como definitivo.
+
+#### El embudo entero se activó
+
+| | Acumulado | Tramo nuevo |
+|---|---|---|
+| Vistas | 842 | 312 |
+| Carritos | 14 | 7 |
+| Checkouts | 7 | 3 |
+| **Pantallas de pago** | **3** | 2 |
+| **Compras** | **0** | 0 |
+
+Ya no son eventos sueltos: 14 carritos, 7 checkouts y **3 personas que
+llegaron a capturar datos de pago**. Todo el embudo funciona **hasta el
+último paso**.
+
+> ⚠️ **Vamos a la mitad del paro duro de §49** (6+ `add_payment_info` con
+> 0 compras → detener). Con 3 de 6, si se llega a 6 sin una venta el
+> problema está en la pantalla de pago y más gasto no lo diagnostica.
+
+#### Tercera corrección propia de la semana: alarmas sobre datos parciales
+
+El 2 de septiembre se reportó que el CTR venía cayendo (8.95% → 6.11%) y
+se interpretó como desgaste del creativo. **Se recuperó**: 7.18% el día 3
+y 10.20% el 4. Era una racha de tres días, no una tendencia.
+
+Es la tercera vez en la misma semana que una lectura prematura produce
+una alarma falsa:
+
+| Alarma | Realidad |
+|---|---|
+| "Caída de vistas por clic el 29" | Artefacto del denominador (clics totales vs de enlace) |
+| "La entrega cayó a un tercio" | Día parcial leído al mediodía; el día cerró normal |
+| "El CTR se está desgastando" | Racha de 3 días que se revirtió |
+
+> **La regla que sale de las tres:** no llamar tendencia a nada con menos
+> de tres días **completos**, y nunca comparar un día en curso contra días
+> cerrados. Las tres alarmas venían de leer datos que aún se movían.
+
+#### Estado al cierre del experimento
+
+Quedan **$98.94** — menos de dos días al ritmo de ~$52/día. El
+experimento se agota solo. Los tres niveles siguen `ACTIVE` sin
+incidencias, frecuencia acumulada 2.40, CTR 7.85%.
+
+**La forma que va a tener la conclusión, adelantada para que no sorprenda:**
+el trabajo de sitio sí movió la parte alta del embudo —el carrito subió y
+la gente llega hasta el pago—, pero **nadie completó una compra en 842
+vistas de producto**, y esa es justo la pregunta que este presupuesto no
+alcanzó a responder.
