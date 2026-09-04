@@ -1,21 +1,21 @@
-# Graph Report - tema-shopify  (2026-08-24)
+# Graph Report - tema-shopify  (2026-09-04)
 
 ## Corpus Check
-- 110 files · ~240,503 words
+- 110 files · ~240,570 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 461 nodes · 705 edges · 41 communities (23 shown, 18 thin omitted)
-- Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 3 edges (avg confidence: 0.7)
+- 463 nodes · 696 edges · 50 communities (16 shown, 28 thin omitted)
+- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 4 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `055b92f6`
+- Built from commit: `44c2b880`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
-- global.js
+- MenuDrawer
 - product-info.js
 - CartItems
 - quick-order-list.js
@@ -41,6 +41,7 @@
 - PriceRange
 - animations.js
 - product-modal.js
+- intemperie-motion.js
 - pubsub.js
 - quantity-popover.js
 - imx-shuffle.js
@@ -49,18 +50,27 @@
 - constants.js
 - QuantityInput
 - imx-related-diversify.js
+- ModalDialog
+- global.js
+- VariantSelects
+- product-form.js
+- CartPerformance
+- ProductRecommendations
+- AccountIcon
+- SectionId
+- HTMLUpdateUtility
 
 ## God Nodes (most connected - your core abstractions)
 1. `PredictiveSearch` - 23 edges
 2. `FacetFiltersForm` - 20 edges
-3. `SlideshowComponent` - 16 edges
+3. `SlideshowComponent` - 17 edges
 4. `CartItems` - 15 edges
-5. `CartDrawer` - 11 edges
-6. `MenuDrawer` - 11 edges
+5. `MenuDrawer` - 12 edges
+6. `CartDrawer` - 11 edges
 7. `BulkAdd` - 10 edges
 8. `CartNotification` - 9 edges
 9. `CustomerAddresses` - 9 edges
-10. `handleUpdateProductInfo()` - 9 edges
+10. `SliderComponent` - 9 edges
 
 ## Surprising Connections (you probably didn't know these)
 - None detected - all connections are within the same source files.
@@ -68,19 +78,15 @@
 ## Import Cycles
 - None detected.
 
-## Communities (41 total, 18 thin omitted)
+## Communities (50 total, 28 thin omitted)
 
-### Community 0 - "global.js"
-Cohesion: 0.06
-Nodes (14): AccountIcon, BulkModal, DeferredMedia, getFocusableElements(), HeaderDrawer, MenuDrawer, ModalDialog, ModalOpener (+6 more)
+### Community 0 - "MenuDrawer"
+Cohesion: 0.17
+Nodes (6): getFocusableElements(), HeaderDrawer, MenuDrawer, addTrapFocus(), removeTrapFocus(), trapFocus()
 
 ### Community 1 - "product-info.js"
-Cohesion: 0.09
-Nodes (22): HTMLUpdateUtility, SectionId, buildRequestUrlWithParams(), connectedCallback(), fetchQuantityRules(), getSelectedVariant(), handleOptionValueChange(), handleSwapProduct() (+14 more)
-
-### Community 2 - "CartItems"
-Cohesion: 0.11
-Nodes (6): CartItems, CartRemoveButton, constructor(), CartPerformance, handleErrorMessage(), onSubmitHandler()
+Cohesion: 0.12
+Nodes (18): buildRequestUrlWithParams(), connectedCallback(), fetchQuantityRules(), getSelectedVariant(), handleOptionValueChange(), handleSwapProduct(), handleUpdateProductInfo(), initializeProductSwapUtility() (+10 more)
 
 ### Community 3 - "quick-order-list.js"
 Cohesion: 0.12
@@ -134,25 +140,25 @@ Nodes (4): initializeScrollAnimationTrigger(), initializeScrollZoomAnimationTrig
 Cohesion: 0.83
 Nodes (3): pickDiverse(), run(), shuffle()
 
+### Community 41 - "ModalDialog"
+Cohesion: 0.24
+Nodes (4): DeferredMedia, ModalDialog, ModalOpener, pauseAllMedia()
+
 ## Knowledge Gaps
 - **5 isolated node(s):** `PUB_SUB_EVENTS`, `selectors`, `attributes`, `trapFocusHandlers`, `subscribers`
-  These have ≤1 connection - possible missing edges or undocumented components.
-- **18 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 116 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **28 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `onKeyUpEscape()` connect `CartDrawer` to `global.js`, `FacetFiltersForm`?**
-  _High betweenness centrality (0.075) - this node is a cross-community bridge._
-- **Why does `CartPerformance` connect `CartItems` to `global.js`?**
-  _High betweenness centrality (0.051) - this node is a cross-community bridge._
+  _High betweenness centrality (0.049) - this node is a cross-community bridge._
+- **Why does `SlideshowComponent` connect `SlideshowComponent` to `global.js`?**
+  _High betweenness centrality (0.019) - this node is a cross-community bridge._
 - **What connects `PUB_SUB_EVENTS`, `selectors`, `attributes` to the rest of the system?**
   _5 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `global.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.05660377358490566 - nodes in this community are weakly interconnected._
 - **Should `product-info.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.09365079365079365 - nodes in this community are weakly interconnected._
-- **Should `CartItems` be split into smaller, more focused modules?**
-  _Cohesion score 0.11494252873563218 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.11576354679802955 - nodes in this community are weakly interconnected._
 - **Should `quick-order-list.js` be split into smaller, more focused modules?**
   _Cohesion score 0.12183908045977011 - nodes in this community are weakly interconnected._

@@ -1,46 +1,55 @@
 {
   "conciliar-inventario.py": {
-    "mtime": 1787688988.1466842,
+    "mtime": 1788544545.8014672,
+    "seen": 1788545184.5352979,
     "ast_hash": "337b0eafd857e8887500a70179c15652",
     "semantic_hash": ""
   },
   "deploy-shopify.py": {
-    "mtime": 1787795619.1383348,
+    "mtime": 1788544545.8014672,
+    "seen": 1788545184.5353003,
     "ast_hash": "1544dfb63e90162a75c98429b71dced3",
     "semantic_hash": ""
   },
   "meta-ads.py": {
-    "mtime": 1787086593.721052,
+    "mtime": 1788544545.8049407,
+    "seen": 1788545184.5353014,
     "ast_hash": "f54a987be1ba3112258a03a62025d87c",
     "semantic_hash": ""
   },
   "rebuild-mapa-3d.py": {
-    "mtime": 1786150212.8080916,
+    "mtime": 1788544545.8049407,
+    "seen": 1788545184.5353022,
     "ast_hash": "68db0c203c7b64e8b1b22780a848b321",
     "semantic_hash": ""
   },
   "sincronizar-canal-meta.py": {
-    "mtime": 1787086568.8801444,
+    "mtime": 1788544545.8089406,
+    "seen": 1788545184.5353034,
     "ast_hash": "ed022a94853438ff1e87dc286c610f37",
     "semantic_hash": ""
   },
   "vincular-codigo-b1.py": {
-    "mtime": 1786833858.4445243,
+    "mtime": 1788544545.8089406,
+    "seen": 1788545184.5353045,
     "ast_hash": "3fb51f8ff8ea8b5d788d6450952a2da5",
     "semantic_hash": ""
   },
   "README-deploy.md": {
-    "mtime": 1786149599.6400886,
+    "mtime": 1788544545.8009408,
+    "seen": 1788545184.5353055,
     "ast_hash": "133535efb5dd3cb8e54f23ba592737f8",
     "semantic_hash": ""
   },
   "cargar-fichas-tecnicas.py": {
-    "mtime": 1787633549.6322227,
+    "mtime": 1788544545.8014672,
+    "seen": 1788545184.5352948,
     "ast_hash": "ba3202ea01617ee52b973095b066eaab",
     "semantic_hash": ""
   },
   "crear-combos.py": {
-    "mtime": 1787633758.6762352,
+    "mtime": 1788544545.8014672,
+    "seen": 1788545184.535299,
     "ast_hash": "239d87634d391711b0e6a4180c727dc3",
     "semantic_hash": ""
   }

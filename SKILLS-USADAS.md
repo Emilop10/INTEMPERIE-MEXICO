@@ -76,6 +76,55 @@ consultable, usando análisis AST local (tree-sitter, sin enviar código a
 ningún servidor) — repo:
 [`Graphify-Labs/graphify`](https://github.com/Graphify-Labs/graphify).
 
+#### 🔴 Cómo reinstalarla (el nombre es una trampa)
+
+**El paquete NO se llama `graphify`.** Se llama **`graphifyy`**, con doble
+y — aunque el comando que instala sí sea `graphify`. Los dos nombres
+obvios llevan a software distinto:
+
+| Si instalas… | Lo que es en realidad |
+|---|---|
+| `npm install graphify` | **"RGG (Random Graph Generator)"** de `emeraldarrow` — una utilidad de jQuery. **Nada que ver**, y sería código de un tercero con los mismos permisos que Claude |
+| `pip install graphify` | **No existe** en PyPI |
+| **`uv tool install graphifyy`** | ✅ El correcto — `Graphify-Labs/graphify` |
+
+El README oficial lo advierte: *"Other `graphify*` packages on PyPI are
+not affiliated."*
+
+```bash
+uv tool install graphifyy      # instala el CLI (el comando queda como: graphify)
+graphify install               # registra la skill con el asistente
+```
+
+`uv` vive en `/root/.local/bin/uv`. `pipx` no está en este entorno.
+
+> ⚠️ **El entorno es efímero: la herramienta desaparece.** El 4 de
+> septiembre de 2026 `graphify` dejó de existir —`command not found`— sin
+> que nadie la desinstalara: el contenedor se recreó. También se había
+> borrado `/root/.claude/plans/`. **Lo único que persiste entre sesiones
+> es lo que está en el repositorio**, y por eso este comando tiene que
+> estar escrito aquí y no en la memoria de nadie.
+>
+> Los grafos en sí **no se pierden** (viven en `*/graphify-out/` dentro
+> del repo); lo que hay que reinstalar es el binario que los regenera.
+
+> ⚠️ **Las cifras del grafo dependen de la VERSIÓN de la herramienta, no
+> solo del código.** Al reinstalar (0.9.53) y correr sobre **exactamente
+> el mismo código** —0 archivos `.js` cambiados, los mismos 110
+> archivos— el grafo del tema pasó de **461/705/41 a 463/696/50**. El de
+> `scripts/` quedó idéntico (89/147/9): el extractor de Python no cambió,
+> el de JavaScript sí.
+>
+> Los 2 nodos nuevos son funciones **anidadas** que la versión vieja no
+> detectaba (`addTrapFocus` dentro de `onSummaryClick`, `update` dentro
+> de `initParallax`). Es una mejora del extractor, no una regresión — no
+> desapareció ningún nodo.
+>
+> **Consecuencia práctica:** un "sin cambios de topología" solo es
+> comparable **dentro de la misma versión**. Al actualizar la herramienta
+> hay que rebasar las cifras documentadas, no tratar la diferencia como
+> un cambio de código.
+
 **Para qué se usó:** el tema real de la tienda (secciones, snippets,
 templates, JS, CSS) vive en los servidores de Shopify, no en este
 repositorio de GitHub — se edita vía API hacia una carpeta temporal que

@@ -1,5 +1,5 @@
 {
-  "0": "global.js",
+  "0": "MenuDrawer",
   "1": "product-info.js",
   "2": "CartItems",
   "3": "quick-order-list.js",
@@ -39,5 +39,14 @@
   "37": "QuantityInput",
   "38": "imx-related-diversify.js",
   "39": "meta-pixel.js",
-  "40": "imx-cross-sell.js"
+  "40": "imx-cross-sell.js",
+  "41": "ModalDialog",
+  "42": "global.js",
+  "43": "VariantSelects",
+  "44": "product-form.js",
+  "45": "CartPerformance",
+  "46": "ProductRecommendations",
+  "47": "AccountIcon",
+  "48": "SectionId",
+  "49": "HTMLUpdateUtility"
 }

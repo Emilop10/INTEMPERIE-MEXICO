@@ -932,6 +932,30 @@ pudo instalar en este entorno. Corrido sobre `tema-shopify/`, generó:
   "B"`, `graphify query "pregunta"`) para entender rápido qué toca qué
   en el código, sin tener que releer todo el tema
 
+> 🔄 **Cifras vigentes desde el 4 de septiembre de 2026: tema
+> `463/696/50`, scripts `89/147/9`.** Las anteriores (461/705/41) siguen
+> siendo correctas para su momento, pero **las produjo una versión más
+> vieja de la herramienta**.
+>
+> Al reinstalar Graphify (0.9.53) sobre **exactamente el mismo código**
+> —0 archivos `.js` cambiados, los mismos 110 archivos— el grafo del tema
+> dio 463 nodos y 696 aristas en vez de 461 y 705. El de `scripts/` no se
+> movió: el extractor de Python es el mismo, el de JavaScript cambió.
+> Los 2 nodos nuevos son funciones **anidadas** que la versión vieja no
+> veía (`addTrapFocus` dentro de `onSummaryClick`, `update` dentro de
+> `initParallax`); no desapareció ninguno.
+>
+> **La lección corrige una suposición que este manual venía haciendo:**
+> las cifras del grafo son función de **código × versión de la
+> herramienta**, no solo del código. Todos los "sin cambios de
+> topología" de las últimas semanas daban por constante la herramienta —
+> y lo era, hasta que dejó de estarlo. Un "sin cambios" solo es
+> comparable dentro de la misma versión.
+>
+> Procedimiento de reinstalación (y por qué el nombre del paquete es una
+> trampa) en
+> [`SKILLS-USADAS.md`](./SKILLS-USADAS.md).
+
 > ⚠️ **La comprobación de frescura que recomienda el propio Graphify da
 > falsos positivos.** `GRAPH_REPORT.md` dice *"Run `git rev-parse HEAD`
 > and compare to check if the graph is stale"*, pero **Graphify solo

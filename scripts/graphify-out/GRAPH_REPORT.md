@@ -1,4 +1,4 @@
-# Graph Report - scripts  (2026-08-27)
+# Graph Report - scripts  (2026-09-04)
 
 ## Corpus Check
 - 9 files · ~9,348 words
@@ -6,11 +6,11 @@
 
 ## Summary
 - 89 nodes · 147 edges · 9 communities (8 shown, 1 thin omitted)
-- Extraction: 95% EXTRACTED · 5% INFERRED · 0% AMBIGUOUS · INFERRED: 8 edges (avg confidence: 0.5)
+- Extraction: 95% EXTRACTED · 5% INFERRED · 0% AMBIGUOUS · INFERRED: 8 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `0adf35a7`
+- Built from commit: `44c2b880`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -79,7 +79,7 @@ Nodes (3): api(), buscar(), main()
 
 ## Knowledge Gaps
 - **6 isolated node(s):** `Por que existe esto`, `Uso rapido`, `Automatico en cada push`, `Que NO sube (a proposito)`, `Detalles que costaron tiempo (no repetirlos)` (+1 more)
-  These have ≤1 connection - possible missing edges or undocumented components.
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 23 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **1 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
