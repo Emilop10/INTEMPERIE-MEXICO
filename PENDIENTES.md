@@ -143,48 +143,71 @@ aprendizaje: se tocó el product set, no el conjunto de anuncios.
 
 ---
 
-**🟢 CAMPAÑA ENCENDIDA — 27 de agosto de 2026.**
+**🔴 CAMPAÑA TERMINADA — 6 de septiembre de 2026.** No se pausó a mano:
+**se agotó el tope de cuenta** ($885 de $885) y la entrega se detuvo
+sola. Campaña, conjunto y anuncio siguen diciendo `ACTIVE` y Meta no lo
+marca como incidencia — el apagón silencioso de la sección 48,
+comportándose exactamente como está documentado.
+
+**Detalle completo en la [sección 53 del manual](./MANUAL-PROYECTO.md#53-cierre-de-la-campaña-qué-se-compró-con-885).**
+Resumen del conjunto v3, $600 en 10 días:
 
 | | |
 |---|---|
-| Tope de cuenta | **$885.00** |
-| Ya gastado (no se reinicia) | $285.00 |
-| **Presupuesto disponible** | **$600.00** |
-| Presupuesto diario | $55 → **~11 días de entrega** |
-| Campaña / Conjunto v3 / Anuncio v3 | `ACTIVE` / `ACTIVE` / `ACTIVE` (aprobado por Meta) |
-| Encendido | 27 ago 2026, 20:09 hora de Chihuahua |
-| Recarga o ajuste de diario | **~7 de septiembre** |
+| Impresiones · CTR | 16,547 · **7.52%** (contra 3.66% y 2.90% de v1 y v2) |
+| Vistas de producto | **1,004** |
+| **Carritos** | **16 → 1.59%** · costo por carrito **$30.46** |
+| Checkouts · pantallas de pago | 8 · 3 |
+| **Compras** | **0** |
+| Saldo pendiente de cobro | $281.87 |
 
-Los conjuntos v1 y v2 siguen **en pausa** a propósito (regla: pausar,
-nunca borrar). Su historial no afecta a v3, que nunca había entregado.
+**El corte de la sección 49 cayó en la banda ambigua** (1.59%, intervalo
+[0.91%, 2.58%]): ni "alto" ni "funciona". Es el desenlace que §49
+anticipó **por escrito, antes de ver el número**, al dejar dicho que 500
+vistas no podían arbitrar la frontera de 1.5%.
 
-> 🟢 **El presupuesto SÍ alcanza (corregido el 29 de agosto).** Se creía
-> que el corte costaba ~$1,100, cifra heredada de las campañas viejas.
-> **Medido con dos días reales: $0.72 por vista de producto**, así que
-> las 500 vistas son **~$370**. Van $185 gastados y quedan $415:
-> **sobran ~$230. No hay que recargar ni bajar el diario.**
+**El piso de $799 sí ayudó**: la tasa de carrito pasó de 1.32% a 1.90%
+(+44%) y cada carrito bajó de $46.55 a $30.46 (−35%). Con p = 0.47 no
+alcanza significancia, pero las dos métricas se movieron juntas y una es
+dinero directo. El CTR bajó de 8.28% a 6.76% — peor clic, mejor carrito:
+salió a cuenta.
 
-> ⚠️ **Vigilar el tope.** Como `amount_spent` **no** se reinicia solo
-> (ver la corrección en la sección 6-bis del manual), si Meta llegara a
-> reiniciarlo en algún ciclo de facturación, el tope de $885 dejaría
-> pasar hasta $885 en vez de $600. Revisar el margen en cada chequeo.
+**Del fondo del embudo no se puede concluir nada.** Con 0 compras de 16
+carritos, la tasa de cierre está entre 0% y 20.6%. Y **0 era un
+resultado probable incluso con una tienda que convierte bien**: 16
+carritos al 15% dan una esperanza de 2.4 ventas, y ver cero ocurre ~7%
+de las veces. Lo que falta no es diagnóstico, es volumen.
+
+**Los dos caminos, con precio:**
+
+1. **Fotos reales de los productos de ticket alto** — ataca la tasa de
+   carrito, que es donde está el cuello. **Recomendado.**
+2. **~$1,500 más de presupuesto** para llegar a ~50 carritos y poder
+   medir el cierre. A $30.46 por carrito, el negocio cierra a partir de
+   ~15% de conversión y no cierra por debajo de 10%.
+
+> ⚠️ **Reactivar sin subir el tope reproduce el apagón.** El tope está
+> en $885 y se gastaron $885: encender la campaña así no entrega nada y
+> los tres niveles seguirán diciendo `ACTIVE`.
+
+**Qué NO hacer:** no iterar creativos (el CTR de 7.52% no es el
+problema) ni tocar la segmentación (validada por dos campañas). Los
+conjuntos v1 y v2 siguen **en pausa** a propósito — regla de la casa:
+pausar, nunca borrar.
 
 **🟡 Del lado del dueño, no se puede resolver por código:**
-- **Fotografía** — **decisión tomada el 25 de agosto: se lanza sin
-  esto.** 34 de los 38 productos anunciables tienen una sola imagen, de
-  catálogo de proveedor; ninguno tiene 5 o más. El dueño solo dispone de
-  las fotos oficiales de sus proveedores y decidió lanzar así. Queda
-  registrado el costo de esa decisión, que no es un reproche sino lo que
-  determina qué se podrá concluir del resultado: **si la tasa de carrito
-  sale por debajo de 1.5%, no se podrá distinguir** si fallaron las ocho
-  olas de trabajo o si lo mató la evidencia visual. Sigue siendo el
-  bloqueador dominante del recorrido de compra; deja de ser un pendiente
-  abierto y pasa a ser un confusor conocido dentro de la medición.
+- **Fotografía** — **decisión tomada el 25 de agosto: se lanzó sin
+  esto**, y sigue abierta. 34 de los 38 productos anunciables tienen una
+  sola imagen, de catálogo de proveedor. Es el bloqueador dominante del
+  recorrido de compra y el confusor conocido de la medición: con la tasa
+  de carrito en 1.59% no se puede distinguir qué parte es el sitio y qué
+  parte es la evidencia visual.
 - **Reseñas de producto**: 8 a nivel tienda, 0 por producto. Meta: 30+
   con promedio real (4.5-4.8), no defender el 5.00 actual.
-- **Umbral de envío**: la mediana del catálogo es $149 y el envío gratis
-  arranca en $799. Bajarlo a $599/$99 alinearía la promesa con lo que la
-  tienda vende. Decisión de margen, sin evidencia de demanda todavía.
+- **Umbral de envío**: se subió el piso del catálogo anunciable a $799 y
+  funcionó; queda pendiente decidir si conviene bajar el umbral de envío
+  gratis a $599/$99 para el resto de la tienda, cuya mediana es $149.
+  Decisión de margen.
 - **Filtros por tipo en las colecciones grandes**: `/collections/todo-pesca`
   tiene 306 productos en 20 páginas y solo dos filtros (disponibilidad y
   precio). Quien busca una caña no puede filtrar cañas — el recorrido de
@@ -192,30 +215,6 @@ nunca borrar). Su historial no afecta a v3, que nunca había entregado.
   **No se puede hacer por código**: en OS 2.0 los filtros salen de la app
   **Search & Discovery** en el admin de Shopify, no del tema. Detalle en
   la sección 48 del manual.
-
-**📏 Métrica de corte de la campaña (sección 49 del manual).** A $55/día
-no se compran ventas: se compra **un número** — la tasa de carrito de la
-tienda mejorada, que nunca se ha medido. **Entre 1 y 3 ventas el mes 1**
-es lo esperable, y **cero ventas en 30 días es compatible con una tienda
-que funciona** a este presupuesto: las ventas no son la métrica de corte
-del primer mes. El conjunto tampoco va a salir de fase de aprendizaje
-(Meta quiere ~50 eventos/semana, aquí saldrán 5-9 carritos), así que
-**la semana 1 no es señal**.
-
-Se juzga a las **~500 vistas de producto** (~4 días, ~$370 medidos —
-la estimación de ~$1,100 era de las campañas viejas), con
-`add_to_cart / view_content` **solo del conjunto v3** y `time_range`
-explícito (nunca `date_preset`):
-
-| Resultado | Lectura | Acción |
-|---|---|---|
-| **< 1.5%** | El trabajo de sitio no movió la parte alta | Alto. No iterar creativos: el problema es ficha y oferta |
-| **1.5% – 3%** | Ambiguo | Continuar solo con un cambio específico nombrado de antemano |
-| **≥ 3.5%** | La parte alta funciona | Seguir y mover la atención al fondo del embudo |
-
-**Paro duro:** 6 o más `add_payment_info` con 0 compras → detener. Esta
-vez sí serían clientes reales, siempre que se respete la regla de no
-probar el checkout con la campaña activa.
 
 **Abiertos ahora mismo:** cerrar los productos de
 [`PRODUCTOS-PENDIENTES.md`](./PRODUCTOS-PENDIENTES.md) y TikTok cuando
@@ -551,7 +550,7 @@ tracking interno de origen de conversación de Zipchat.
 
 ---
 
-## 8. Meta Ads (Facebook/Instagram) — 🟡 activa, reconstruida (ver arriba)
+## 8. Meta Ads (Facebook/Instagram) — 🔴 terminada por tope agotado (ver arriba)
 
 > **Actualización 22 de agosto:** todo lo que sigue describe el arranque
 > del 15 de agosto (correcto en su momento). La campaña se reconstruyó

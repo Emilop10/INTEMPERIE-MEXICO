@@ -80,6 +80,7 @@ como respaldo
 50. [Conciliación de inventario del 25 de agosto y el choque de los dos combos Revenger](#50-conciliación-de-inventario-del-25-de-agosto-y-el-choque-de-los-dos-combos-revenger)
 51. [Verificación final y la barra de promesas (25 ago)](#51-verificación-final-y-la-barra-de-promesas-25-ago)
 52. [Encendido de la campaña y el tope que no se reinicia (27 ago)](#52-encendido-de-la-campaña-y-el-tope-que-no-se-reinicia-27-ago)
+53. [Cierre de la campaña: qué se compró con $885](#53-cierre-de-la-campaña-qué-se-compró-con-885)
 
 ---
 
@@ -5788,3 +5789,111 @@ Los **16 grises por `No Parte` duplicado en el POS** siguen igual que el
 `10005701BZ00`, `P611004925557`, `15SENUEL012QI`). Mientras un mismo
 código apunte a productos distintos, esas filas **nunca** se van a
 conciliar solas. Se corrige en el POS, no en Shopify.
+
+---
+
+## 53. Cierre de la campaña: qué se compró con $885
+
+**6 de septiembre de 2026.** El tope de cuenta se agotó —$885 de $885— y
+la entrega se detuvo. Los tres niveles siguen reportando `ACTIVE` y
+`issues_info` vacío: **el apagón silencioso de §48, funcionando
+exactamente como está documentado.** No es un fallo, es el mecanismo.
+
+### Los números finales del conjunto v3
+
+| | |
+|---|---|
+| Gasto | **$600.00** en 10 días (el resto del tope fue v1/v2 en agosto) |
+| Impresiones · CTR | 16,547 · **7.52%** |
+| **Vistas de producto** | **1,004** |
+| **Carritos** | **16 → 1.59%** |
+| Checkouts iniciados | 8 |
+| Pantallas de pago | 3 |
+| **Compras** | **0** |
+| Saldo pendiente de cobro | $281.87 |
+
+**El corte de §49 cae en la banda ambigua**: 1.59%, intervalo de
+confianza [0.91%, 2.58%]. Ni "alto" ni "funciona". Es el desenlace que
+§49 anticipó **por escrito, antes de ver el número**, al documentar que
+n=500 no podía arbitrar la frontera de 1.5%.
+
+### El piso de $799 sí ayudó, y no se puede probar
+
+| | Tasa de carrito | Costo por carrito | CTR |
+|---|---|---|---|
+| Piso $500 (27-31 ago) | 1.32% — IC [0.53%, 2.70%] | $46.55 | 8.28% |
+| **Piso $799 (1-6 sep)** | **1.90%** — IC [0.87%, 3.57%] | **$30.46** | 6.76% |
+
+**+44% de tasa y −35% de costo por carrito**, con p = 0.47: los
+intervalos se solapan y **no alcanza significancia**. Pero las dos
+métricas se movieron en la misma dirección y una es dinero directo.
+
+Hubo un intercambio que conviene anotar para futuras decisiones de
+catálogo: **el CTR bajó de 8.28% a 6.76%** — menos productos, menos
+variedad, más repetición. **Salió a cuenta**: peor clic, mejor carrito,
+un tercio más barato cada uno.
+
+### Lo que el presupuesto NO alcanzó a responder
+
+**Cero compras en 1,004 vistas de producto.** Los intervalos lo dicen sin
+adornos:
+
+- Tasa carrito → compra, con 0 de 16: entre **0% y 20.6%**.
+- Tasa pago → compra, con 0 de 3: entre **0% y 70.8%**.
+
+**No se puede concluir nada sobre el final del embudo.** Ni que el
+checkout espanta gente ni que no. El presupuesto compró la mitad de
+arriba y se acabó antes de la de abajo.
+
+> Es importante no leer "0 compras" como "la tienda no vende". A esta
+> escala, **0 era un resultado probable incluso con una tienda que
+> convierte bien**: 16 carritos con una tasa de cierre del 15% dan una
+> esperanza de 2.4 ventas, y ver 0 de eso ocurre ~7% de las veces.
+
+### La economía, para decidir con números
+
+Cada carrito costó **$30.46**. Lo que pase después decide si el negocio
+cierra:
+
+| Si compra… | Costo por venta | Sobre un combo de $999 |
+|---|---|---|
+| 10% de los carritos | $304.64 | 30% del precio |
+| **15%** | **$203.09** | **20%** |
+| 20% | $152.32 | 15% |
+| 30% | $101.55 | 10% |
+
+**A partir de ~15% de conversión el negocio cierra. Por debajo de 10%,
+no.** Ese es el número que la siguiente inversión tiene que averiguar.
+
+### Veredicto
+
+**El trabajo de sitio funcionó donde se pudo medir.** El anuncio rinde
+como nunca en esta cuenta (CTR 7.52% contra 3.66% y 2.90% de v1 y v2), el
+piso de $799 mejoró el carrito y abarató cada uno, y **el embudo entero
+se activó**: la gente agrega, avanza al checkout y llega a capturar datos
+de pago — cosas que en agosto no pasaban.
+
+**Lo que falta no es diagnóstico, es volumen.** $600 compran ~1,000
+vistas; a 1.6% de carrito eso son 16 carritos, demasiado pocos para medir
+el paso final. **No es un fallo del experimento: es su límite, y estaba
+escrito desde el principio.**
+
+### Los dos caminos, con precio
+
+1. **Fotos reales de los productos de ticket alto.** Es el bloqueador
+   identificado desde la primera auditoría y que el dueño aceptó dejar
+   fuera a sabiendas (§49). Ataca la tasa de carrito, que es donde está
+   el cuello.
+2. **~$1,500 más de presupuesto** para llegar a ~50 carritos y poder
+   medir el cierre.
+
+**Recomendación: las fotos primero.** Mejorar el 1.9% de carrito hace
+rendir más cada peso de la siguiente campaña; gastar sin cambiar nada
+solo compraría certeza sobre un embudo que ya sabemos estrecho arriba.
+
+### Qué NO hacer
+
+- **No iterar creativos.** El CTR de 7.52% no es el problema.
+- **No tocar la segmentación.** Está validada por dos campañas.
+- **No reactivar sin más presupuesto**: el tope está en $885 = gastado, y
+  reactivar sin subirlo reproduce el apagón silencioso.
