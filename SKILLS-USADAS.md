@@ -353,6 +353,40 @@ con `claude plugin uninstall the-architect@soyenriquerocha`.
 
 ---
 
+### Los otros nueve plugins (instalados el 7 de septiembre de 2026)
+
+| Plugin | Marketplace | Versión | Para qué sirve aquí |
+|---|---|---|---|
+| `ui-ux-pro-max` | `ui-ux-pro-max-skill` | 2.13.0 | Base de datos local de estilos, paletas, tipografías y guías de UX. Es la que se usó para el rediseño del tema y la barra de promesas |
+| `superpowers` | `claude-plugins-official` | 6.3.0 | Colección grande de skills de propósito general |
+| `frontend-design` | `claude-plugins-official` | — | Criterio de diseño de interfaz, complementa a `ui-ux-pro-max` |
+| `playwright` | `claude-plugins-official` | — | Navegador real: recorridos de compra simulados, capturas, verificación de lo que se ve de verdad |
+| `ralph-loop` | `claude-plugins-official` | 1.0.0 | Ejecutar una tarea en bucle hasta que se cumpla una condición |
+| `context7` | `claude-plugins-official` | — | Documentación de librerías al día, en vez de la de memoria |
+| `marketing-skills` | `marketingskills` | 2.11.1 | Copy, posicionamiento, correo, embudos |
+| `claude-seo-ai` | `claude-seo-ai` | 0.2.0 | SEO — el terreno de la sección de Search Console |
+| `claude-ads` | `tododeia-claude-ads` | 2.4.0 | Pauta pagada: es el terreno directo de la campaña de Meta |
+
+Los cuatro sin número de versión traen el hash del commit del
+marketplace (`85cce0381e78`) en vez de una versión propia: el
+marketplace oficial los versiona en bloque.
+
+> ⚠️ **`claude-seo-ai` avisa de 17 opciones de configuración sin poner.**
+> Se instaló igual y funciona; si se va a usar en serio, hay que correr
+> `/plugin configure claude-seo-ai@claude-seo-ai` primero.
+
+> ⚠️ **`ui-ux-pro-max` queda por duplicado.** La cuenta ya sirve esa
+> skill por su cuenta, y ahora existe además la copia del plugin. No
+> rompe nada, pero si aparece dos veces en el menú, ese es el motivo.
+
+> ⚠️ **Sigue aplicando lo dicho arriba sobre código de terceros:** estos
+> plugins corren con los mismos permisos que Claude, sobre un repositorio
+> conectado a una tienda con ventas reales y a una cuenta publicitaria
+> que gasta dinero. Conviene leer lo que proponen antes de dejarlos
+> actuar solos.
+
+---
+
 ## Agentes instalados: The Agency (`agency-agents`)
 
 | | |
@@ -360,7 +394,8 @@ con `claude plugin uninstall the-architect@soyenriquerocha`.
 | Repositorio | [`msitarzewski/agency-agents`](https://github.com/msitarzewski/agency-agents) |
 | Licencia | MIT |
 | Instalado | 18 de agosto de 2026 |
-| Cantidad | **270 agentes** en `/root/.claude/agents/` |
+| Cantidad | **273 agentes** en `/root/.claude/agents/` |
+| Reinstalado | 7 de septiembre de 2026 (el contenedor se los llevó) |
 
 ```bash
 git clone --depth 1 https://github.com/msitarzewski/agency-agents
@@ -374,17 +409,25 @@ que quedan son `.md` con instrucciones. El único código que corre es el
 propio `install.sh`, y lo que hace es copiar archivos — se revisó antes
 de ejecutarlo.
 
-Se instaló completo: **270 agentes en 17 divisiones**. El repositorio
-tiene 316 archivos `.md`, pero los 46 restantes no son agentes — son
-`README.md` de cada división, `CONTRIBUTING`, `SECURITY` y ejemplos de
-flujos de trabajo. No falta ninguno.
+Se instaló completo: **273 agentes en 18 divisiones**. Los archivos `.md`
+sobrantes del repositorio no son agentes — son `README.md` de cada
+división, `CONTRIBUTING`, `SECURITY` y ejemplos de flujos de trabajo. No
+falta ninguno.
+
+> 📈 **Eran 270 el 18 de agosto y son 273 el 7 de septiembre.** El
+> repositorio creció mientras tanto. Los tres nuevos, comparando el disco
+> contra el inventario: `engineering-knowledge-graph-engineer`,
+> `research-synthesist` y `specialized-master-plan-architect`. El
+> inventario de abajo describe los 270 originales y no incluye a estos
+> tres.
 
 Si la lista estorba, `install.sh` acepta `--division a,b` y
 `--agent slug` para instalar solo una parte.
 
 ### Inventario completo
 
-Los 270 están listados uno por uno, con su slug y qué hace cada uno, en
+Los 270 originales están listados uno por uno, con su slug y qué hace
+cada uno, en
 📄 **[`INVENTARIO-AGENTES.md`](./INVENTARIO-AGENTES.md)** — agrupados por
 división y con ⭐ en los 17 que tienen aplicación directa en esta tienda.
 
@@ -414,7 +457,7 @@ exactamente el terreno de las secciones 33 y 35 del manual:
 | `paid-media-creative-strategist` | Iteración de creativos y copy más allá de la v2 |
 | `paid-media-auditor` | Auditoría de cuenta cuando haya datos (día 7 en adelante) |
 
-**Lo que NO aplica también sirve saberlo.** Unos 100 de los 270 son de
+**Lo que NO aplica también sirve saberlo.** Unos 100 de los 273 son de
 videojuegos, GIS, cómputo espacial, salud y mercado chino. No estorban
 —solo se invocan si se piden— pero conviene no perder tiempo buscando
 ahí la respuesta a un problema de esta tienda.
@@ -438,6 +481,70 @@ ahí la respuesta a un problema de esta tienda.
 > `/root/.claude/agents/` vive en el entorno remoto, que es efímero. Si
 > en una sesión futura los agentes no aparecen, hay que volver a correr
 > el `install.sh` — no es un fallo, es dónde quedan los archivos.
+>
+> **Y pasó.** El 7 de septiembre el directorio no existía: ni agentes, ni
+> plugins, ni marketplaces. Por eso ahora hay un script que lo rearma
+> todo de una vez — ver la sección siguiente.
+
+---
+
+## 🔁 Rearmar el entorno en un contenedor nuevo
+
+📄 **[`scripts/instalar-entorno.sh`](./scripts/instalar-entorno.sh)**
+
+```bash
+bash scripts/instalar-entorno.sh
+```
+
+Deja el entorno completo: los 6 marketplaces, los 10 plugins, los 273
+agentes, Graphify con su skill, y `openpyxl` + `requests` + `scrapling`.
+
+**Es idempotente**: comprueba antes de instalar y omite lo que ya esté,
+así que correrlo dos veces no hace daño. La segunda corrida del 7 de
+septiembre reportó *21 omitidos, 0 fallos* — que es justamente la prueba
+de que funciona.
+
+**Por qué existe.** El contenedor es efímero y ya se llevó, en tres
+reciclados distintos, `openpyxl`, `playwright`, Graphify y —el 7 de
+septiembre— los 273 agentes con los 10 plugins y los 6 marketplaces
+enteros. **Lo único que sobrevive es lo que está en el repositorio**, así
+que la receta vive aquí. Sin el script, rearmar son veinte comandos a
+mano y dos trampas de nombre.
+
+### ⚠️ La trampa de los nombres de marketplace
+
+Para instalar un plugin se usa `nombre-del-plugin@nombre-del-marketplace`,
+y **el nombre del marketplace no es el del repositorio de GitHub**: lo
+declara el propio `marketplace.json`. Dos de los seis no coinciden, y
+adivinarlos falla:
+
+| Repositorio | Nombre real del marketplace |
+|---|---|
+| `Hainrixz/the-architect` | **`soyenriquerocha`** ⚠️ |
+| `Hainrixz/claude-ads` | **`tododeia-claude-ads`** ⚠️ |
+| `nextlevelbuilder/ui-ux-pro-max-skill` | `ui-ux-pro-max-skill` |
+| `anthropics/claude-plugins-official` | `claude-plugins-official` |
+| `coreyhaines31/marketingskills` | `marketingskills` |
+| `Hainrixz/claude-seo-ai` | `claude-seo-ai` |
+
+Se comprueba sin instalar nada, leyendo el manifiesto:
+
+```bash
+curl -s https://raw.githubusercontent.com/<owner>/<repo>/main/.claude-plugin/marketplace.json \
+  | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['name'], [p['name'] for p in d['plugins']])"
+```
+
+Es la misma familia de error que el `graphify` / `graphifyy` de más
+arriba: **el nombre que uno supone no es el nombre que la herramienta
+usa**, y se verifica en la fuente antes de escribir el comando.
+
+### Lo que el script NO hace
+
+- **No instala credenciales.** El token de Shopify se saca cada vez con
+  [`INSTRUCTIVO-CREDENCIALES-SHOPIFY.md`](./INSTRUCTIVO-CREDENCIALES-SHOPIFY.md)
+  y **nunca** se guarda en el repositorio.
+- **No carga los plugins en la sesión que ya está corriendo.** Después de
+  instalar hay que reiniciar la sesión para verlos en el menú.
 
 ---
 
