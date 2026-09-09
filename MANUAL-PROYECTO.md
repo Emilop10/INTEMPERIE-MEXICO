@@ -82,6 +82,7 @@ como respaldo
 52. [Encendido de la campaña y el tope que no se reinicia (27 ago)](#52-encendido-de-la-campaña-y-el-tope-que-no-se-reinicia-27-ago)
 53. [Cierre de la campaña: qué se compró con $885](#53-cierre-de-la-campaña-qué-se-compró-con-885)
 54. [Mercado Pago Tarjetas: quitar el redirect del checkout (9 sep)](#54-mercado-pago-tarjetas-quitar-el-redirect-del-checkout-9-sep)
+55. [El cajón del carrito no mostraba los productos (9 sep)](#55-el-cajón-del-carrito-no-mostraba-los-productos-9-sep)
 
 ---
 
@@ -6008,3 +6009,118 @@ Tarjetas, conviene probarlo ya.
    verdadero.
 3. **Que la barra de promesas siga siendo cierta**: promete meses sin
    intereses y efectivo en OXXO y 7-Eleven en todas las páginas.
+
+---
+
+## 55. El cajón del carrito no mostraba los productos (9 sep)
+
+**9 de septiembre de 2026.** El dueño reportó con captura que al abrir el
+carrito **no aparecían sus productos** y **no podía hacer scroll para
+llegar a pagar**. En la captura se veía la barra de envío, el bloque de
+sugerencias, y el total en **$590** — o sea que el carrito **sí** tenía
+productos. Solo que no se veían.
+
+### El HTML siempre estuvo bien
+
+Primer paso, antes de tocar nada: reproducirlo. Se armó una sesión real
+con `curl` —tres productos agregados por `/cart/add.js` con su cookie— y
+se pidió la portada. En el cajón que sirve la tienda estaban **los tres
+productos y el botón de pagar**.
+
+**No era un error de Liquid. Era geometría.** Los productos se
+renderizaban y quedaban con **cero píxeles de alto**.
+
+### El mecanismo exacto
+
+`.drawer__inner` es `display:flex; flex-direction:column; height:100%;`
+**`overflow:hidden`**. Sus hijos directos eran cinco:
+
+| Hijo | Altura |
+|---|---|
+| `.drawer__header` | fija |
+| `.free-shipping-bar` | fija (nuestra, una línea) |
+| **`.imx-crosssell`** | **fija, ~450px con tres productos** (nuestra) |
+| `cart-drawer-items` | `overflow:auto; flex:1` ← los productos |
+| `.drawer__footer` | fija, y alta (totales, sellos, pagos, botón) |
+
+La pieza clave está en la especificación de flexbox: **el tamaño mínimo
+automático (`min-height:auto`) no se aplica a un item flex cuyo
+`overflow` no es `visible`.** Como Dawn le puso `overflow:auto` a
+`cart-drawer-items` justo para que hiciera scroll, ese mismo atributo
+permite que se encoja **hasta cero**.
+
+Entonces: la suma de los cuatro hermanos de altura fija pasaba del 100%,
+y el algoritmo flex encogió al único que podía encogerse. Los productos
+quedaron en 0 de alto. Y como el contenedor es `overflow:hidden`, tampoco
+había scroll para rescatarlos ni para alcanzar el botón de pagar.
+
+> 🔮 **Predicción que confirma el diagnóstico.** Hay un
+> `@media (max-height: 650px)` que pone `cart-drawer-items{overflow:visible}`
+> y `.drawer__inner{overflow:scroll}`. Con `overflow:visible` el mínimo
+> automático **vuelve a aplicarse** — así que **en pantallas bajas el bug
+> desaparece**. Un bug que se arregla haciendo la ventana más chica.
+
+### El arreglo: devolverle a Dawn su geometría
+
+El cross-sell se movió **dentro** de `cart-drawer-items`, después del
+formulario. Ahora hace scroll junto con los productos, así que su altura
+ya no le quita espacio a nadie, y los hijos directos del cajón vuelven a
+ser los cuatro de Dawn.
+
+La barra de envío **se queda arriba**, fija: mide una línea y es un
+indicador de progreso que conviene tener siempre a la vista.
+
+De regalo, mejor orden: el cliente ve **primero lo que agregó** y las
+sugerencias después. Antes las sugerencias iban primero, que además de
+romper el layout era la jerarquía equivocada.
+
+No rompe la actualización al cambiar cantidades: `cart-drawer.js`
+reemplaza el `innerHTML` de `.drawer__inner` **completo**
+(`getSectionsToRender` → selector `.drawer__inner`), así que el bloque se
+sigue re-renderizando.
+
+### Por qué NO se arregló con un `min-height`
+
+Era la tentación obvia: `cart-drawer-items { min-height: 25vh }`. Se
+descartó. Ese piso **empuja el footer fuera** del contenedor
+`overflow:hidden` en pantallas medianas, y lo que queda cortado es
+**el botón de pagar**. Se habría cambiado un bug visible por uno peor y
+más difícil de ver. Cuando el problema es que un bloque está en el lugar
+equivocado, se mueve el bloque.
+
+### Lo que este defecto dice del proceso
+
+**El comentario del propio código ya había anticipado el riesgo.** En
+`brand-tokens.css`, desde la Ola 7:
+
+> *"el cajón mide ~400px y tres tarjetas verticales empujarían los ítems
+> del carrito fuera del viewport"*
+
+Se vio el peligro, se mitigó haciendo las tarjetas horizontales y
+compactas… y aun así el bloque terminó midiendo lo suficiente para
+disparar el mismo problema. **Mitigar la altura no era la solución: la
+solución era no ponerlo ahí.**
+
+Y hay algo más incómodo: este cajón se revisó en la auditoría previa a la
+campaña (§48) y en la verificación final (§51), y **el defecto pasó las
+dos**. Se verificó siempre con el **carrito vacío**, porque `curl` sin
+sesión no tiene carrito. Con el carrito vacío el cross-sell no se
+renderiza y el bug **no existe**.
+
+> 📌 **Regla nueva: el carrito se verifica CON productos dentro.** Una
+> sesión con `curl -b/-c` y dos o tres `POST /cart/add.js` cuesta treinta
+> segundos. Sin eso, la mitad del cajón —la mitad que importa— nunca se
+> mira.
+
+### Qué tan caro fue
+
+No se puede saber. La campaña entregó del 27 de agosto al 6 de
+septiembre, y el cross-sell existe desde el 24 de agosto: **todo el
+tráfico pagado vio este cajón**. De los 16 carritos, 8 llegaron a iniciar
+checkout — pero desde el cajón roto, la única salida visible era el botón
+de pagar del footer, cuando el footer alcanzaba a caber.
+
+**No es una explicación de las cero ventas** —§53 ya dejó claro que el
+embudo se cerró arriba, en vista → carrito— pero sí es un candidato real
+para parte de la caída de carrito → checkout, y quedará medido en la
+siguiente campaña.
