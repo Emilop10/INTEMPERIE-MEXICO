@@ -1060,3 +1060,149 @@ variant-selects .select__select {
     display: none;
   }
 }
+
+/* ── Renglón de producto del cajón del carrito ───────────────────────
+   (9 sep 2026, a pedido del dueño: "se ve muy grande, parece que no
+   cabe en la pantalla")
+
+   POR QUE HIZO FALTA: hasta el arreglo de hoy estos ítems se
+   renderizaban con CERO altura (ver seccion 55 del manual), asi que
+   NADIE los habia visto nunca. El defecto de maquetacion tapaba el
+   defecto de diseño.
+
+   QUE ESTABA MAL: Dawn maqueta el ítem del cajon como
+   `grid-template: repeat(2,auto) / repeat(4,1fr)` — CUATRO COLUMNAS
+   IGUALES. En un panel de 400px menos padding eso son ~85px por
+   columna, y el nombre del producto caia en una columna de 85px: se
+   partia en cuatro lineas dentro de una caja angosta mientras el
+   precio y la cantidad peleaban por el resto. No era que la letra
+   fuera enorme (1rem = 10px aqui, la escala esta bien): era la
+   PROPORCION.
+
+   QUE SE HACE: tres columnas con proporcion real —miniatura fija,
+   nombre elastico, precio del ancho que necesite— y la cantidad en su
+   propio renglon, donde tiene espacio para respirar.
+
+   El precio SIGUE en Geist Mono a proposito: el sistema de diseño del
+   proyecto (design-system/intemperie-mexico/MASTER.md) reserva la mono
+   para valores numericos. No es un accidente, es la marca.
+   ------------------------------------------------------------------ */
+.cart-drawer .cart-item {
+  grid-template: auto auto / 6.4rem minmax(0, 1fr) auto;
+  gap: 0.6rem 1.2rem;
+  align-items: start;
+  padding: 1.4rem 0;
+  margin-bottom: 0;
+  border-bottom: 1px solid var(--im-divider);
+}
+.cart-drawer .cart-items tbody tr:last-child .cart-item,
+.cart-drawer .cart-item:last-child {
+  border-bottom: 0;
+}
+
+.cart-drawer .cart-item__media {
+  grid-column: 1;
+  grid-row: 1 / 3;
+}
+.cart-drawer .cart-item__image {
+  width: 6.4rem;
+  height: 6.4rem;
+  max-width: 6.4rem;
+  object-fit: contain;
+  background: var(--im-surface);
+  border-radius: 10px;
+}
+
+.cart-drawer .cart-item__details {
+  grid-column: 2;
+  grid-row: 1;
+  min-width: 0; /* sin esto el nombre largo desborda la columna elastica */
+  font-size: 1.3rem;
+}
+.cart-drawer .cart-item__details > * + * {
+  margin-top: 0.2rem;
+}
+
+/* El nombre trae la clase .h4 de Dawn (1.5rem x escala de titulos, con
+   letter-spacing de titular). En un panel angosto eso es un titular, no
+   una etiqueta. Se baja a tamaño de cuerpo y se corta a dos lineas: el
+   nombre completo sigue disponible en el enlace y en el title. */
+.cart-drawer .cart-item__name {
+  font-family: var(--font-body-family);
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.cart-drawer .cart-item__unit-price,
+.cart-drawer .cart-item .product-option {
+  font-size: 1.2rem;
+  line-height: 1.4;
+  opacity: 0.6;
+}
+
+.cart-drawer .cart-item__totals {
+  grid-column: 3;
+  grid-row: 1;
+  text-align: right;
+}
+.cart-drawer .cart-item__totals .price {
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+/* La cantidad baja a su propio renglon, bajo el nombre. Antes competia
+   por una de las cuatro columnas y quedaba estrangulada. */
+.cart-drawer .cart-item__quantity {
+  grid-column: 2 / 4;
+  grid-row: 2;
+  padding-top: 0.2rem;
+}
+.cart-drawer .cart-item__quantity-wrapper {
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem; /* >=8px entre objetivos tactiles vecinos */
+}
+.cart-drawer .cart-item__quantity .quantity {
+  width: auto;
+  min-width: 10.4rem;
+  min-height: 3.6rem;
+  height: 3.6rem;
+}
+.cart-drawer .cart-item__quantity .quantity__button {
+  width: 3.2rem;
+  flex: 0 0 3.2rem;
+}
+.cart-drawer .cart-item__quantity .quantity__input {
+  width: 4rem;
+  font-size: 1.3rem;
+}
+.cart-drawer .cart-remove-button {
+  margin-top: 0;
+  padding: 0.6rem;
+}
+
+/* En movil los objetivos tactiles suben a 44px, que es la guia de iOS.
+   En escritorio 36px ya cumple el minimo de 24px de WCAG 2.2 AA con
+   holgura y mantiene el renglon compacto. */
+@media screen and (max-width: 749px) {
+  .cart-drawer .cart-item__quantity .quantity,
+  .cart-drawer .cart-item__quantity .quantity__button {
+    min-height: 4.4rem;
+    height: 4.4rem;
+  }
+}
+
+/* El panel pasa de 40rem a 42rem: 20px mas de aire, que en una columna
+   de nombre de ~230px es la diferencia entre dos lineas comodas y dos
+   lineas apretadas. Se queda con el max-width de Dawn
+   (calc(100vw - 3rem)), asi que en movil no cambia nada. */
+.cart-drawer .drawer__inner {
+  width: 42rem;
+}
