@@ -25,6 +25,54 @@ minuto de verificación al principio hubiera ahorrado todo eso.
 
 ---
 
+## Antes del árbol: ¿no se renderiza, o se renderiza con cero altura?
+
+Son **diagnósticos opuestos** y el primer `curl` los separa. Si el
+elemento **sí está** en el HTML servido pero no se ve, el problema no es
+Liquid ni caché: es geometría o especificidad, y todo el árbol de abajo
+sobra.
+
+Dos causas reales, las dos ya vividas en este proyecto:
+
+**1. Un hijo flex encogido a cero.** El tamaño mínimo automático
+(`min-height:auto`) **no se aplica** a un item flex cuyo `overflow` no es
+`visible`. Si un bloque desaparece dentro de un contenedor flex con
+`overflow:hidden`, ese es el primer sospechoso — le pasó al cajón del
+carrito el 9 de septiembre (sección 55 del manual).
+
+**2. Una regla inerte por orden de carga.** A **igualdad de
+especificidad** gana la hoja que se carga después. Un CSS correcto y
+servido puede no aplicar nunca. Comprobar el orden real en el HTML:
+
+```bash
+grep -o 'href="[^"]*\.css[^"]*"' pagina.html | nl | grep -E 'base|brand-tokens|component-'
+```
+
+### El carrito se verifica CON productos dentro
+
+`curl` sin sesión no tiene carrito, y con el carrito vacío **media
+interfaz no se renderiza**: ni los ítems, ni el cross-sell, ni el pie con
+el botón de pagar. Verificar así deja fuera justo la parte que importa —
+y por eso un defecto del cajón sobrevivió a dos auditorías.
+
+La sesión cuesta treinta segundos:
+
+```bash
+# 1. una variante disponible
+curl -s "https://intemperiemexico.com/products.json?limit=50" | python3 -c "..."
+
+# 2. agregarla, guardando cookies con -b/-c
+curl -s -b jar.txt -c jar.txt -X POST https://intemperiemexico.com/cart/add.js \
+     -H "Content-Type: application/json" -d '{"id":VARIANT_ID,"quantity":1}'
+
+# 3. pedir la página CON esa sesión
+curl -s -b jar.txt -c jar.txt https://intemperiemexico.com/ -o pagina.html
+```
+
+Sin `-b/-c` no hay carrito. Con ellos, el HTML trae el cajón completo.
+
+---
+
 ## El árbol de diagnóstico
 
 Sigue estos pasos **en orden**. Cada uno descarta una capa.

@@ -6124,3 +6124,62 @@ de pagar del footer, cuando el footer alcanzaba a caber.
 embudo se cerró arriba, en vista → carrito— pero sí es un candidato real
 para parte de la caída de carrito → checkout, y quedará medido en la
 siguiente campaña.
+
+### El defecto que el defecto tapaba: cómo se veían esos ítems (9 sep)
+
+Con los productos por fin visibles, el dueño reportó lo siguiente el
+mismo día: **"se ve muy grande, parece que no cabe en la pantalla"**.
+
+Tenía razón, y es una consecuencia directa: **esos ítems llevaban desde
+el 24 de agosto renderizándose en cero de alto, así que nadie los había
+visto nunca.** El defecto de maquetación tapaba un defecto de diseño.
+
+**No era la escala tipográfica.** Primer reflejo, y primer descarte: el
+tema declara `html { font-size: calc(var(--font-body-scale) * 62.5%) }`
+con la escala en 1.0, o sea **1rem = 10px**. La base estaba bien.
+
+**Era la proporción.** Dawn maqueta el ítem del cajón así:
+
+```css
+.cart-drawer .cart-item {
+  grid-template: repeat(2, auto) / repeat(4, 1fr);   /* CUATRO iguales */
+}
+```
+
+En un panel de 400px menos padding son **~85px por columna**. El nombre
+del producto caía en una caja de 85px y se partía en cuatro líneas,
+mientras el precio y el selector de cantidad se peleaban por el resto.
+
+El arreglo son tres columnas con proporción real —miniatura fija de
+64px, nombre elástico con `minmax(0, 1fr)`, precio del ancho que
+necesite— y la cantidad bajando a su propio renglón. El nombre pierde la
+clase de titular `h4` de Dawn, baja a 14px con peso 600 y se corta a dos
+líneas. El panel pasa de 40rem a 42rem.
+
+#### Dos decisiones que salieron de consultar, no de intuir
+
+1. **El precio sigue en Geist Mono.** Se veía "raro" —espaciado ancho, se
+   siente grande— y el impulso era quitarlo. Pero
+   [`design-system/intemperie-mexico/MASTER.md`](./design-system/intemperie-mexico/MASTER.md)
+   reserva explícitamente la mono para valores numéricos. **Ese espaciado
+   es la marca, no un accidente.** Se corrigió el tamaño, no la familia.
+   El sistema de diseño del proyecto le ganó a mi primera impresión.
+2. **Objetivos táctiles**: 36px en escritorio —holgado sobre el mínimo de
+   24×24px que pide WCAG 2.2 AA para puntero— y 44px en móvil, que es la
+   guía de iOS. Con 12px entre el botón de "+" y el bote de basura, por
+   encima del mínimo de 8px entre objetivos vecinos.
+
+#### El detalle que decide si el arreglo sirve o no
+
+La regla de Dawn y la nuestra tienen **la misma especificidad**
+(`.cart-drawer .cart-item`, 0-2-0). A igualdad de especificidad **gana la
+que se carga después**, así que el arreglo dependía por completo del
+orden de las hojas. Verificado en el HTML servido: `base.css` (30269) →
+`component-cart-items.css` (30436) → `component-cart-drawer.css` (30589)
+→ **`brand-tokens.css` (32127)**. La nuestra va al final.
+
+Sin esa comprobación, el CSS podría estar perfectamente escrito, servido
+y ser **completamente inerte** — que es exactamente la familia de error
+de [`INSTRUCTIVO-CAMBIOS-QUE-NO-SE-VEN.md`](./INSTRUCTIVO-CAMBIOS-QUE-NO-SE-VEN.md).
+
+Todo va acotado a `.cart-drawer`: la página `/cart` no cambia.
