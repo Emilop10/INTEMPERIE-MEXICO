@@ -7,5 +7,7 @@
   "5": "vincular-codigo-b1.py",
   "6": "cargar-fichas-tecnicas.py",
   "7": "crear-combos.py",
-  "9": "rebuild-mapa-3d.py"
+  "8": "instalar-entorno.sh",
+  "9": "rebuild-mapa-3d.py",
+  "10": "verificar-herramental.sh"
 }

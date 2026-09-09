@@ -52,5 +52,17 @@
     "seen": 1788545184.535299,
     "ast_hash": "239d87634d391711b0e6a4180c727dc3",
     "semantic_hash": ""
+  },
+  "instalar-entorno.sh": {
+    "mtime": 1788812378.8466578,
+    "seen": 1788970181.6490073,
+    "ast_hash": "f4418ca4c64128cefe8bfacf47cd9fb2",
+    "semantic_hash": ""
+  },
+  "verificar-herramental.sh": {
+    "mtime": 1788969379.614291,
+    "seen": 1788970181.6490207,
+    "ast_hash": "78024e4e4901ea817a6da895307229a0",
+    "semantic_hash": ""
   }
 }

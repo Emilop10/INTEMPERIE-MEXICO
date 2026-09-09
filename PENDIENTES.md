@@ -195,6 +195,37 @@ problema) ni tocar la segmentación (validada por dos campañas). Los
 conjuntos v1 y v2 siguen **en pausa** a propósito — regla de la casa:
 pausar, nunca borrar.
 
+**🔵 EN CURSO — activar Mercado Pago Tarjetas (9 sep).** Mercado Pago
+ofreció por correo y por teléfono el **checkout transparente**: cobrar con
+tarjeta **dentro de la tienda** en vez de mandar al cliente a otra
+pantalla. El dueño lo activa él mismo siguiendo un video. Detalle en la
+[sección 54 del manual](./MANUAL-PROYECTO.md#54-mercado-pago-tarjetas-quitar-el-redirect-del-checkout-9-sep).
+
+Quita una fricción que este repositorio tenía anotada desde que se
+desactivó Shopify Payments, y de paso permite mostrar los **meses sin
+intereses en el checkout propio** en vez de solo después del redirect.
+**No es el arreglo de las cero ventas**: el embudo se cerró arriba
+(1.59% de carrito), y abajo solo hubo 3 pantallas de pago — con ese
+número no se puede concluir nada del checkout.
+
+Tres condiciones, en este orden:
+
+1. ⚠️ **Confirmación por escrito de Mercado Pago de que el catálogo
+   califica.** Se venden rifles y pistolas de aire, que es exactamente lo
+   que hizo que Shopify Payments retuviera pagos. Por correo, no por
+   teléfono: una llamada no sirve de evidencia el día que haya dinero
+   retenido.
+2. ⚠️ **No desactivar PayPal ni Checkout Pro** hasta ver a Tarjetas
+   cobrando de verdad. La tienda nunca se queda sin forma de pago.
+3. ✅ **Hacer la compra de prueba de punta a punta ahora.** La regla es no
+   probar el checkout con la campaña entregando, y **la campaña está
+   apagada** por tope agotado. Es la ventana limpia, y no habrá otra tan
+   buena.
+
+Después de activarlo: revisar que el evento `Purchase` siga disparándose,
+y que el umbral inventado de MSI (`msi_minimo_centavos`, $300) se
+reemplace por el mínimo real, que con Tarjetas por fin se puede conocer.
+
 **🟡 Del lado del dueño, no se puede resolver por código:**
 - **Fotografía** — **decisión tomada el 25 de agosto: se lanzó sin
   esto**, y sigue abierta. 34 de los 38 productos anunciables tienen una

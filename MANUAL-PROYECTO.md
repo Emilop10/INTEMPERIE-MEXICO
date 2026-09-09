@@ -81,6 +81,7 @@ como respaldo
 51. [Verificación final y la barra de promesas (25 ago)](#51-verificación-final-y-la-barra-de-promesas-25-ago)
 52. [Encendido de la campaña y el tope que no se reinicia (27 ago)](#52-encendido-de-la-campaña-y-el-tope-que-no-se-reinicia-27-ago)
 53. [Cierre de la campaña: qué se compró con $885](#53-cierre-de-la-campaña-qué-se-compró-con-885)
+54. [Mercado Pago Tarjetas: quitar el redirect del checkout (9 sep)](#54-mercado-pago-tarjetas-quitar-el-redirect-del-checkout-9-sep)
 
 ---
 
@@ -927,9 +928,17 @@ pudo instalar en este entorno. Corrido sobre `tema-shopify/`, generó:
   vivía dentro de una función existente, aquí nació una función nueva
   **con su razón escrita**. El grafo de `tema-shopify/` no se movió
   (Liquid, CSS y JSON de configuración), fiel a la regla de siempre
-- **Segundo grafo, `scripts/`: 89 nodos, 147 aristas, 9 comunidades**
-  (25 de agosto, tras sumar `orden_de_subida()` a `deploy-shopify.py`;
-  antes fue 87/144/9 desde el 24). El repo lleva **dos** grafos
+- **Segundo grafo, `scripts/`: 101 nodos, 163 aristas, 11 comunidades**
+  (9 de septiembre, tras entrar `instalar-entorno.sh` y
+  `verificar-herramental.sh`; antes 89/147/9 desde el 25 de agosto, y
+  87/144/9 desde el 24). Los dos scripts nuevos son **shell, no Python**,
+  y aun así movieron el grafo: **Graphify extrae funciones de bash igual
+  que de Python** (`marketplace_de`, `instalar_de`, `paso`, `bien`,
+  `omite`, `falla`…). Los 12 nodos nuevos —8 + 4— cuadran exactamente con
+  los 89 anteriores, y cada script formó **su propia comunidad**, sin que
+  un solo nodo nuevo cayera en una comunidad vieja: el herramental quedó
+  aislado del código que toca la tienda, que es la lectura correcta.
+  Comprobado leyendo `graph.json`, no supuesto. El repo lleva **dos** grafos
   independientes —
   `graphify update .` se corre por separado dentro de `tema-shopify/`
   y dentro de `scripts/`, no desde la raíz
@@ -5897,3 +5906,105 @@ solo compraría certeza sobre un embudo que ya sabemos estrecho arriba.
 - **No tocar la segmentación.** Está validada por dos campañas.
 - **No reactivar sin más presupuesto**: el tope está en $885 = gastado, y
   reactivar sin subirlo reproduce el apagón silencioso.
+
+---
+
+## 54. Mercado Pago Tarjetas: quitar el redirect del checkout (9 sep)
+
+**9 de septiembre de 2026.** Llegó un correo de la ejecutiva de la cuenta
+de Mercado Pago (Magali Benitez, `ext_magalben@mercadolibre.com`)
+ofreciendo activar **Mercado Pago Tarjetas**: checkout transparente, es
+decir que el cliente pague con tarjeta **dentro de la tienda** en vez de
+ser mandado a otra pantalla. Después llamaron por teléfono. **El dueño
+decidió activarlo él mismo**, siguiendo un video.
+
+### Qué problema real ataca
+
+Uno que este manual ya tenía anotado y sin resolver. Cuando se desactivó
+Shopify Payments por el aviso de armas
+([§30](#30-aviso-de-shopify-trust--safety-retención-de-pagos-por-armas)),
+quedó escrito que el reemplazo tenía un costo:
+
+> Shopify Payments procesaba tarjeta sin salir de la página; PayPal y
+> Mercado Pago redirigen al cliente a otra pantalla ("Se te redirigirá a
+> Mercado Pago para que completes la compra"). Vale la pena revisar la
+> tasa de conversión las próximas semanas por si ese paso extra afecta
+> las ventas.
+
+Nunca se revisó, porque hasta septiembre no hubo tráfico suficiente para
+revisarlo. Tarjetas elimina ese paso.
+
+**Y arregla algo más, que es probablemente lo más valioso.** Los meses
+sin intereses hoy **solo se ven después del redirect**, dentro de la
+pantalla de Mercado Pago — o sea, después de que el cliente ya decidió.
+[§46](#46-cero-compras-en-6-meses-el-hallazgo-que-nadie-había-medido)
+dejó esto documentado al corregir una afirmación anterior mal sustentada:
+la única evidencia dura de qué acepta este gateway es el `paymentBrands`
+que declara él mismo,
+
+```
+["mercadopago","visa","master","american_express","oxxo","maestro","visaelectron","seveneleven"]
+```
+
+y los MSI se confirmaron aparte, por el dueño, no por el HTML. Con
+Tarjetas los MSI se configuran y se muestran en el checkout propio, que
+es donde sirven.
+
+### Lo que NO arregla — y hay que decirlo antes de esperar de más
+
+**La campaña no murió en el checkout.** Los números de
+[§53](#53-cierre-de-la-campaña-qué-se-compró-con-885):
+
+| Paso | Resultado |
+|---|---|
+| Vistas de producto → carritos | 1,004 → 16 (**1.59%**) ← aquí está el cuello |
+| Carritos → checkouts | 16 → 8 |
+| Checkouts → pantalla de pago | 8 → **3** |
+| Pantalla de pago → compra | 3 → **0** |
+
+Con **n=3** en la pantalla de pago no se puede probar ni que el redirect
+espantó gente ni que no. Quitarlo vale la pena porque **es fricción
+conocida y cuesta poco**, no porque haya evidencia de que era el
+problema. El cuello sigue estando arriba, en la ficha de producto y las
+fotos.
+
+### La verificación que sí importa, y que no se puede saltar
+
+**Que Mercado Pago confirme por escrito que el catálogo califica.** La
+tienda vende rifles y pistolas de aire, y eso es exactamente lo que hizo
+que Shopify Payments retuviera pagos (§30). Que Mercado Pago ya cobre hoy
+con Checkout Pro **baja** el riesgo, no lo borra: Tarjetas trae 3D Secure
+y Protección al Vendedor, que implican más revisión de la cuenta.
+
+Pedirlo por correo, no por teléfono. Una llamada no sirve de evidencia el
+día que haya dinero retenido.
+
+> ⚠️ **No desactivar PayPal ni Checkout Pro** hasta que Tarjetas esté
+> verificado cobrando de verdad. La tienda nunca se queda sin forma de
+> pago funcionando.
+
+### La ventana de prueba está abierta ahora, y no va a durar
+
+La regla de la casa desde [§49](#49-los-7-que-llegaron-a-pagar-eran-el-dueño-25-ago)
+es **no probar el checkout con la campaña entregando** — aquella vez, los
+7 que "llegaron a pagar" resultaron ser el dueño, y contaminaron la
+medición.
+
+**La campaña está detenida** por tope agotado (§53). Es decir: **este es
+el momento limpio para hacer una compra de prueba de punta a punta**, y
+no habrá otro tan bueno hasta que se vuelva a apagar. Si se activa
+Tarjetas, conviene probarlo ya.
+
+### Qué revisar después de activarlo
+
+1. **Que el evento `Purchase` siga disparándose.** Ya era un riesgo
+   conocido con el pago offsite, y cambiar la pasarela es justo el
+   momento en que se rompe ese tipo de cosa.
+2. **Que `snippets/pagos-aceptados.liquid` siga diciendo la verdad.** Hoy
+   promete MSI a partir de un umbral **propio y conservador**
+   (`msi_minimo_centavos`, $300), inventado precisamente porque no se
+   conocía el mínimo real de Mercado Pago (§47). Con Tarjetas ese mínimo
+   se vuelve visible, y el umbral inventado se puede reemplazar por el
+   verdadero.
+3. **Que la barra de promesas siga siendo cierta**: promete meses sin
+   intereses y efectivo en OXXO y 7-Eleven en todas las páginas.

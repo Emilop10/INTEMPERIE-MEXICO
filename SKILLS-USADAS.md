@@ -538,6 +538,43 @@ Es la misma familia de error que el `graphify` / `graphifyy` de más
 arriba: **el nombre que uno supone no es el nombre que la herramienta
 usa**, y se verifica en la fuente antes de escribir el comando.
 
+### El otro script: `verificar-herramental.sh`
+
+📄 **[`scripts/verificar-herramental.sh`](./scripts/verificar-herramental.sh)**
+
+```bash
+bash scripts/verificar-herramental.sh
+```
+
+**No se solapa con el anterior**: `instalar-entorno.sh` **arregla** lo que
+falte; este **solo mira** y no escribe nada. Sale con código 0 si está
+todo y 1 si falta algo, así que sirve como puerta antes de empezar a
+trabajar.
+
+La diferencia útil es que **revisa por nombre, no por conteo**: cuando
+falta algo dice *cuál* y **te imprime el comando exacto para instalarlo**,
+en vez de reportar "8 de 10" y dejarte adivinar. Es genérico —no lee
+ningún archivo del proyecto— así que se puede copiar tal cual a otro
+repositorio, y acepta `PLUGINS_ESPERADOS` y `AGENTES_MINIMOS` por
+variable de entorno para no tener que editarlo.
+
+Primera corrida (9 de septiembre): **10 de 10 plugins, 273 agentes,
+graphify y scrapling, salida 0.**
+
+> 📌 **El archivo llegó dos veces y por poco quedan las dos.** El dueño lo
+> subió por GitHub web como `scripts/verificarherramental.sh` —sin guion—
+> y lo pegó también por el chat como `verificar-herramental.sh`. Las dos
+> copias eran **idénticas byte a byte**. Se conservó la del guion porque
+> es la que aparece en el comando que se teclea; con la otra, ese comando
+> fallaba con *"No such file or directory"* aunque el archivo sí
+> estuviera en el repositorio.
+>
+> Hubo un segundo motivo para la confusión, y es una lección aparte: la
+> primera búsqueda no encontró el archivo porque **el commit estaba en
+> GitHub pero no en el clon local**. Antes de afirmar que algo no existe
+> en el repositorio hay que hacer `git fetch`; `ls` y `git log` solo
+> saben lo que ya se descargó.
+
 ### Lo que el script NO hace
 
 - **No instala credenciales.** El token de Shopify se saca cada vez con

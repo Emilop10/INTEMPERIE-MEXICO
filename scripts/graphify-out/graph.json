@@ -809,6 +809,66 @@
       "source_location": "L94"
     },
     {
+      "id": "verificar_herramental",
+      "label": "verificar-herramental.sh",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "verificar-herramental.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "norm_label": "verificar-herramental.sh",
+      "source_file": "verificar-herramental.sh",
+      "source_location": "L1"
+    },
+    {
+      "id": "verificar_herramental_instalar_de",
+      "label": "instalar_de()",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "verificar-herramental.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "norm_label": "instalar_de()",
+      "source_file": "verificar-herramental.sh",
+      "source_location": "L30"
+    },
+    {
+      "id": "verificar_herramental_marketplace_de",
+      "label": "marketplace_de()",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "verificar-herramental.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "norm_label": "marketplace_de()",
+      "source_file": "verificar-herramental.sh",
+      "source_location": "L20"
+    },
+    {
+      "id": "verificar_herramental_sh__entry",
+      "label": "verificar-herramental.sh script",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "verificar-herramental.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "norm_label": "verificar-herramental.sh script",
+      "source_file": "verificar-herramental.sh",
+      "source_location": "L1"
+    },
+    {
       "id": "readme_deploy",
       "label": "README-deploy.md",
       "_origin": "ast",
@@ -1034,6 +1094,126 @@
       "file_type": "code",
       "norm_label": "crear-combos.py",
       "source_file": "crear-combos.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "instalar_entorno",
+      "label": "instalar-entorno.sh",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "instalar-entorno.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "norm_label": "instalar-entorno.sh",
+      "source_file": "instalar-entorno.sh",
+      "source_location": "L1"
+    },
+    {
+      "id": "instalar_entorno_bien",
+      "label": "bien()",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "instalar-entorno.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "norm_label": "bien()",
+      "source_file": "instalar-entorno.sh",
+      "source_location": "L25"
+    },
+    {
+      "id": "instalar_entorno_falla",
+      "label": "falla()",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "instalar-entorno.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "norm_label": "falla()",
+      "source_file": "instalar-entorno.sh",
+      "source_location": "L27"
+    },
+    {
+      "id": "instalar_entorno_mercados",
+      "label": "MERCADOS",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "instalar-entorno.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "code"
+      },
+      "norm_label": "mercados",
+      "source_file": "instalar-entorno.sh",
+      "source_location": "L38"
+    },
+    {
+      "id": "instalar_entorno_omite",
+      "label": "omite()",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "instalar-entorno.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "norm_label": "omite()",
+      "source_file": "instalar-entorno.sh",
+      "source_location": "L26"
+    },
+    {
+      "id": "instalar_entorno_paso",
+      "label": "paso()",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "instalar-entorno.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "norm_label": "paso()",
+      "source_file": "instalar-entorno.sh",
+      "source_location": "L24"
+    },
+    {
+      "id": "instalar_entorno_plugins",
+      "label": "PLUGINS",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "instalar-entorno.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "code"
+      },
+      "norm_label": "plugins",
+      "source_file": "instalar-entorno.sh",
+      "source_location": "L62"
+    },
+    {
+      "id": "instalar_entorno_sh__entry",
+      "label": "instalar-entorno.sh script",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "instalar-entorno.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "norm_label": "instalar-entorno.sh script",
+      "source_file": "instalar-entorno.sh",
       "source_location": "L1"
     },
     {
@@ -1386,6 +1566,54 @@
       "weight": 1.0
     },
     {
+      "source": "instalar_entorno_sh__entry",
+      "target": "instalar_entorno_paso",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "instalar-entorno.sh",
+      "source_location": "L37",
+      "weight": 1.0
+    },
+    {
+      "source": "instalar_entorno_sh__entry",
+      "target": "instalar_entorno_omite",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "instalar-entorno.sh",
+      "source_location": "L50",
+      "weight": 1.0
+    },
+    {
+      "source": "instalar_entorno_sh__entry",
+      "target": "instalar_entorno_bien",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "instalar-entorno.sh",
+      "source_location": "L52",
+      "weight": 1.0
+    },
+    {
+      "source": "instalar_entorno_sh__entry",
+      "target": "instalar_entorno_falla",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "instalar-entorno.sh",
+      "source_location": "L54",
+      "weight": 1.0
+    },
+    {
       "source": "meta_ads_cmd_activar",
       "target": "meta_ads_require",
       "relation": "calls",
@@ -1695,6 +1923,30 @@
       "context": "call",
       "source_file": "sincronizar-canal-meta.py",
       "source_location": "L141",
+      "weight": 1.0
+    },
+    {
+      "source": "verificar_herramental_sh__entry",
+      "target": "verificar_herramental_instalar_de",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "verificar-herramental.sh",
+      "source_location": "L100",
+      "weight": 1.0
+    },
+    {
+      "source": "verificar_herramental_sh__entry",
+      "target": "verificar_herramental_marketplace_de",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "verificar-herramental.sh",
+      "source_location": "L89",
       "weight": 1.0
     },
     {
@@ -2066,6 +2318,17 @@
       "weight": 1.0
     },
     {
+      "source": "instalar_entorno",
+      "target": "instalar_entorno_sh__entry",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "instalar-entorno.sh",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
       "source": "meta_ads",
       "target": "meta_ads_hoy",
       "relation": "contains",
@@ -2396,6 +2659,17 @@
       "weight": 1.0
     },
     {
+      "source": "verificar_herramental",
+      "target": "verificar_herramental_sh__entry",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "verificar-herramental.sh",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
       "source": "vincular_codigo_b1",
       "target": "vincular_codigo_b1_actualizar_barcode",
       "relation": "contains",
@@ -2459,6 +2733,94 @@
       "confidence_score": 1.0,
       "source_file": "vincular-codigo-b1.py",
       "source_location": "L91",
+      "weight": 1.0
+    },
+    {
+      "source": "instalar_entorno",
+      "target": "instalar_entorno_paso",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "instalar-entorno.sh",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "instalar_entorno",
+      "target": "instalar_entorno_bien",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "instalar-entorno.sh",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "instalar_entorno",
+      "target": "instalar_entorno_omite",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "instalar-entorno.sh",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "instalar_entorno",
+      "target": "instalar_entorno_falla",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "instalar-entorno.sh",
+      "source_location": "L27",
+      "weight": 1.0
+    },
+    {
+      "source": "instalar_entorno",
+      "target": "instalar_entorno_mercados",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "instalar-entorno.sh",
+      "source_location": "L38",
+      "weight": 1.0
+    },
+    {
+      "source": "instalar_entorno",
+      "target": "instalar_entorno_plugins",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "instalar-entorno.sh",
+      "source_location": "L62",
+      "weight": 1.0
+    },
+    {
+      "source": "verificar_herramental",
+      "target": "verificar_herramental_marketplace_de",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "verificar-herramental.sh",
+      "source_location": "L20",
+      "weight": 1.0
+    },
+    {
+      "source": "verificar_herramental",
+      "target": "verificar_herramental_instalar_de",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "verificar-herramental.sh",
+      "source_location": "L30",
       "weight": 1.0
     },
     {
@@ -2735,5 +3097,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "44c2b880a4af4a4f04eeef2ebfb04a81b3476255"
+  "built_at_commit": "66d877731295d3ef894bc214771d9ebcff28f706"
 }
