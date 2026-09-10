@@ -1237,7 +1237,7 @@ variant-selects .select__select {
 }
 .imx-crosssell--tira .imx-crosssell__title {
   margin: 0 0 10px;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   color: #F5F5F7;
   opacity: 0.9;
@@ -1257,13 +1257,19 @@ variant-selects .select__select {
 /* 21rem: con 420px de panel entran dos fichas completas y asoma la
    tercera — el "hay mas, deslizame" que hace que valga la pena tocar.
    A 15.5rem el nombre y el precio no cabian y se partian solos. */
+/* 10 sep, tercera pasada: "un poco más grande, sin interferir con lo
+   demás". Hay presupuesto de sobra abajo -el piso de 8rem que protege a
+   la lista de productos no se toca-, así que se agranda solo la ficha:
+   miniatura 40->52px, texto 11.5/12->13px, botón 30->36px. Ancho de
+   ficha 21->23rem para que la miniatura más grande no le quite espacio
+   al nombre. */
 .imx-crosssell--tira .imx-crosssell__item {
-  flex: 0 0 21rem;
+  flex: 0 0 23rem;
   scroll-snap-align: start;
-  gap: 10px;
-  padding: 8px 10px 8px 8px;
+  gap: 12px;
+  padding: 10px 12px 10px 10px;
   border: 1px solid var(--im-divider);
-  border-radius: 12px;
+  border-radius: 13px;
   background: var(--im-surface);
   transition: border-color 0.18s ease, background 0.18s ease;
 }
@@ -1272,24 +1278,25 @@ variant-selects .select__select {
   background: rgba(87, 181, 138, 0.07);
 }
 .imx-crosssell--tira .imx-crosssell__media {
-  flex: 0 0 40px;
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
+  flex: 0 0 52px;
+  width: 52px;
+  height: 52px;
+  border-radius: 9px;
 }
 .imx-crosssell--tira .imx-crosssell__body {
   min-width: 0;
 }
 .imx-crosssell--tira .imx-crosssell__name {
-  font-size: 11.5px;
-  line-height: 1.3;
+  font-size: 13px;
+  line-height: 1.35;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 .imx-crosssell--tira .imx-crosssell__price {
-  font-size: 11.5px;
+  font-size: 13px;
+  opacity: 0.85;
 }
 /* El boton pasa de la palabra "Agregar" a un circulo con "+": libera
    ~50px de ancho por ficha, que es justo lo que le faltaba al nombre, y
@@ -1298,13 +1305,13 @@ variant-selects .select__select {
    de pantalla no perdio nada. 30px > 24px, el minimo de puntero de
    WCAG 2.2 AA. */
 .imx-crosssell--tira .imx-crosssell__add {
-  flex: 0 0 30px;
-  width: 30px;
-  height: 30px;
-  min-height: 30px;
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
+  min-height: 36px;
   padding: 0;
   border-radius: 50%;
-  font-size: 17px;
+  font-size: 19px;
   line-height: 1;
   font-weight: 500;
   display: inline-flex;
@@ -1325,14 +1332,6 @@ variant-selects .select__select {
   border: 1px solid var(--im-divider);
   color: inherit;
 }
-.imx-crosssell--tira .imx-crosssell__name {
-  -webkit-line-clamp: 2;
-}
-.imx-crosssell--tira .imx-crosssell__price {
-  font-size: 12px;
-  opacity: 0.85;
-}
-
 /* ── RESGUARDO: que la lista de productos nunca vuelva a quedar en 0 ──
    Lo de la seccion 55 pasó porque `cart-drawer-items` tiene
    `flex: 1` — o sea `flex-basis: 0` — asi que NO parte de su altura de
