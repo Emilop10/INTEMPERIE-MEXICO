@@ -143,14 +143,28 @@ aprendizaje: se tocó el product set, no el conjunto de anuncios.
 
 ---
 
-**🔴 CAMPAÑA TERMINADA — 6 de septiembre de 2026.** No se pausó a mano:
-**se agotó el tope de cuenta** ($885 de $885) y la entrega se detuvo
-sola. Campaña, conjunto y anuncio siguen diciendo `ACTIVE` y Meta no lo
-marca como incidencia — el apagón silencioso de la sección 48,
-comportándose exactamente como está documentado.
+**🟢 REACTIVADA — 9 de septiembre de 2026, 19:36 hora de Chihuahua.**
+Se había detenido el 6 de septiembre porque se agotó el tope de cuenta
+($885 de $885) — no fue una pausa a mano, fue el apagón silencioso de la
+sección 48. Se sube el tope a **$1,485** (**$600 disponibles**), tras dos
+arreglos de sitio que probablemente lastimaban el tramo carrito→pago
+durante toda la ventana de entrega anterior: el cajón del carrito que no
+mostraba productos (sección 55) y Mercado Pago Tarjetas, que quitó el
+redirect del checkout (sección 54, confirmado por el dueño). Detalle
+completo de la reactivación en la
+[sección 56 del manual](./MANUAL-PROYECTO.md#56-reactivación-de-la-campaña-tras-dos-arreglos-de-sitio-9-10-sep).
 
-**Detalle completo en la [sección 53 del manual](./MANUAL-PROYECTO.md#53-cierre-de-la-campaña-qué-se-compró-con-885).**
-Resumen del conjunto v3, $600 en 10 días:
+**Cómo se lee esta ronda: distinto a las anteriores.** Las rondas
+pasadas midieron vista→carrito, que ya se sabe que funciona (1.90% con
+el piso de $799). Esta es la primera oportunidad real de medir
+carrito→pago sin el bug del cajón de por medio — el dato viejo (3
+pantallas de pago, 0 compras) no sirve de línea base porque se generó
+con el checkout roto. **Corte:** 6 o más `add_payment_info` sin ninguna
+compra → detener. Una sola compra real antes de eso prueba la campaña
+viable a este nivel de gasto.
+
+**Resumen del tramo anterior (27 ago - 6 sep) que llevó a estos
+arreglos**, $600 en 10 días:
 
 | | |
 |---|---|
@@ -186,45 +200,47 @@ de las veces. Lo que falta no es diagnóstico, es volumen.
    medir el cierre. A $30.46 por carrito, el negocio cierra a partir de
    ~15% de conversión y no cierra por debajo de 10%.
 
-> ⚠️ **Reactivar sin subir el tope reproduce el apagón.** El tope está
-> en $885 y se gastaron $885: encender la campaña así no entrega nada y
-> los tres niveles seguirán diciendo `ACTIVE`.
+> ⚠️ **Trampa verificada al subir el tope: el `POST` de `spend_cap` no
+> usa la misma escala que el `GET`.** El campo se lee siempre en
+> centavos, pero se escribe en pesos — postear el monto en centavos deja
+> un tope 100 veces mayor al pedido. Ya pasó una vez (sección 56 del
+> manual) y se corrigió antes de gastar nada. **Siempre postear en pesos
+> y releer de inmediato para confirmar.**
 
 **Qué NO hacer:** no iterar creativos (el CTR de 7.52% no es el
 problema) ni tocar la segmentación (validada por dos campañas). Los
 conjuntos v1 y v2 siguen **en pausa** a propósito — regla de la casa:
 pausar, nunca borrar.
 
-**🔵 EN CURSO — activar Mercado Pago Tarjetas (9 sep).** Mercado Pago
-ofreció por correo y por teléfono el **checkout transparente**: cobrar con
-tarjeta **dentro de la tienda** en vez de mandar al cliente a otra
-pantalla. El dueño lo activa él mismo siguiendo un video. Detalle en la
+**✅ Mercado Pago Tarjetas — activado y confirmado (9 sep).** Mercado
+Pago ofreció el **checkout transparente**: cobrar con tarjeta **dentro
+de la tienda** en vez de mandar al cliente a otra pantalla. El dueño lo
+activó siguiendo un video. Detalle en la
 [sección 54 del manual](./MANUAL-PROYECTO.md#54-mercado-pago-tarjetas-quitar-el-redirect-del-checkout-9-sep).
 
-Quita una fricción que este repositorio tenía anotada desde que se
+Quitó una fricción que este repositorio tenía anotada desde que se
 desactivó Shopify Payments, y de paso permite mostrar los **meses sin
 intereses en el checkout propio** en vez de solo después del redirect.
-**No es el arreglo de las cero ventas**: el embudo se cerró arriba
+**No fue el arreglo de las cero ventas**: el embudo se cerró arriba
 (1.59% de carrito), y abajo solo hubo 3 pantallas de pago — con ese
 número no se puede concluir nada del checkout.
 
-Tres condiciones, en este orden:
+Las tres condiciones, cerradas:
 
-1. ⚠️ **Confirmación por escrito de Mercado Pago de que el catálogo
-   califica.** Se venden rifles y pistolas de aire, que es exactamente lo
-   que hizo que Shopify Payments retuviera pagos. Por correo, no por
-   teléfono: una llamada no sirve de evidencia el día que haya dinero
-   retenido.
-2. ⚠️ **No desactivar PayPal ni Checkout Pro** hasta ver a Tarjetas
-   cobrando de verdad. La tienda nunca se queda sin forma de pago.
-3. ✅ **Hacer la compra de prueba de punta a punta ahora.** La regla es no
-   probar el checkout con la campaña entregando, y **la campaña está
-   apagada** por tope agotado. Es la ventana limpia, y no habrá otra tan
-   buena.
+1. ✅ **Confirmación por escrito de Mercado Pago de que el catálogo
+   califica.** Confirmado por el dueño.
+2. ✅ **PayPal y Checkout Pro siguen activos.** La tienda nunca se quedó
+   sin forma de pago.
+3. ✅ **Compra de prueba de punta a punta, hecha.** El dueño confirma que
+   se cobró bien. **No se registró el número de pedido exacto** en esta
+   ronda de documentación — anotarlo si se recupera, para tener el rastro
+   completo como con el pedido #1005 de la prueba anterior.
 
-Después de activarlo: revisar que el evento `Purchase` siga disparándose,
-y que el umbral inventado de MSI (`msi_minimo_centavos`, $300) se
-reemplace por el mínimo real, que con Tarjetas por fin se puede conocer.
+**Pendiente, no bloqueante:** confirmar que el evento `Purchase` de Meta
+se disparó para esa compra de prueba, y reemplazar el umbral inventado de
+MSI (`msi_minimo_centavos`, sigue en $300) por el mínimo real si Mercado
+Pago llega a confirmarlo — no se confirmó todavía, se sigue con el valor
+conservador.
 
 **🟡 Del lado del dueño, no se puede resolver por código:**
 - **Fotografía** — **decisión tomada el 25 de agosto: se lanzó sin
@@ -581,7 +597,7 @@ tracking interno de origen de conversación de Zipchat.
 
 ---
 
-## 8. Meta Ads (Facebook/Instagram) — 🔴 terminada por tope agotado (ver arriba)
+## 8. Meta Ads (Facebook/Instagram) — 🟢 reactivada, tope en $1,485 (ver arriba)
 
 > **Actualización 22 de agosto:** todo lo que sigue describe el arranque
 > del 15 de agosto (correcto en su momento). La campaña se reconstruyó

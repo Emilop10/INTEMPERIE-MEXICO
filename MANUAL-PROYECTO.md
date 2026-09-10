@@ -83,6 +83,7 @@ como respaldo
 53. [Cierre de la campaña: qué se compró con $885](#53-cierre-de-la-campaña-qué-se-compró-con-885)
 54. [Mercado Pago Tarjetas: quitar el redirect del checkout (9 sep)](#54-mercado-pago-tarjetas-quitar-el-redirect-del-checkout-9-sep)
 55. [El cajón del carrito no mostraba los productos (9 sep)](#55-el-cajón-del-carrito-no-mostraba-los-productos-9-sep)
+56. [Reactivación de la campaña, tras dos arreglos de sitio (9-10 sep)](#56-reactivación-de-la-campaña-tras-dos-arreglos-de-sitio-9-10-sep)
 
 ---
 
@@ -6401,3 +6402,110 @@ presupuesto de espacio compartido (altura del cajón, márgenes de
 plantilla base), **cambiar una pieza obliga a revisar sus vecinas**, no
 solo la pieza misma.
 
+
+---
+
+## 56. Reactivación de la campaña, tras dos arreglos de sitio (9-10 sep)
+
+**9 de septiembre de 2026, 19:36 hora de Chihuahua.** Se sube el tope de
+cuenta de $885 (agotado) a **$1,485**, dando **$600 disponibles**. Es la
+misma cifra de incremento que se usó la vez pasada.
+
+### Por qué ahora, y por qué este monto
+
+La campaña se había detenido el 6 de septiembre no por decisión, sino
+por el apagón silencioso ya documentado (§48): tope agotado, entrega
+detenida, los tres niveles siguiendo `ACTIVE`. Desde entonces se
+corrigieron dos puntos que probablemente lastimaban el tramo
+carrito→pago **durante toda la ventana de entrega anterior** (27 ago-6
+sep):
+
+1. **El cajón del carrito no mostraba los productos** ni dejaba llegar
+   al botón de pagar en ciertas condiciones — vivió sin corregir desde
+   el 24 de agosto (§55). Cubrió el 100% del tráfico pagado de la
+   campaña anterior.
+2. **Mercado Pago Tarjetas** quitó el redirect del checkout a otra
+   pantalla (§54). El dueño confirma que ya tiene la confirmación por
+   escrito de Mercado Pago sobre el catálogo y ya hizo una compra de
+   prueba real que se cobró bien — no se registró el número de pedido
+   exacto en esta ronda; queda pendiente anotarlo si se recupera. El
+   umbral de meses sin intereses se queda en el valor conservador
+   propio, `msi_minimo_centavos` = $300, porque no se confirmó un
+   mínimo real distinto.
+
+**Decisión del dueño:** ni esperar a las fotos (ruta 1 de §53, el
+bloqueador dominante que sigue sin resolverse) ni saltar directo a los
+~$1,500 de la ruta 2 — reactivar con un monto moderado primero, para
+ver si estos dos arreglos mueven la aguja antes de comprometer más
+dinero.
+
+### Verificado en vivo antes de tocar nada
+
+| | |
+|---|---|
+| Tope de cuenta (antes) | `spend_cap` = `amount_spent` = $885.00 |
+| Cuenta | `account_status: 1` (activa) |
+| Conjunto v3 | `effective_status: ACTIVE` — nunca se pausó |
+| Conjuntos v1/v2 | `PAUSED`, como deben estar |
+| Conjunto de productos anunciable | 26 productos en vivo (era 27 el 31 ago; drift esperado de la conciliación del 4 sep, no requirió acción) |
+| `promoted_object` | Sigue optimizando a `ADD_TO_CART` |
+
+No hizo falta "activar" nada del lado de la campaña: el conjunto v3
+seguía `ACTIVE`, así que en cuanto subió el tope la entrega se reanudó
+sola — el mismo mecanismo de §48, en reversa.
+
+### 🔴 Trampa nueva: el POST de `spend_cap` no usa la misma escala que el GET
+
+**Casi cuesta un tope 100 veces mayor al pedido.** El `GET` de la cuenta
+siempre devuelve `spend_cap` en centavos —`88500` para $885.00, que es
+como se ha leído siempre en este proyecto—, así que el primer intento
+de subirlo fue `POST spend_cap=148500` esperando fijar $1,485.00 en
+centavos. Al releer:
+
+```
+spend_cap: "14850000"   ← $148,500.00, cien veces más de lo pedido
+```
+
+Se confirmó con una segunda lectura, sin tocar nada, que no era caché
+transitorio: el valor había quedado persistido así de verdad.
+
+**El `POST` de `spend_cap` espera el monto en la unidad normal de la
+moneda de la cuenta (pesos), no en su unidad mínima (centavos), aunque
+el `GET` del mismo campo siempre responda en centavos.** Es asimetría
+de lectura/escritura, no un error de cálculo: `POST spend_cap=1485`
+(pesos) produjo el `148500` (centavos) correcto en la siguiente
+lectura.
+
+Se corrigió de inmediato, antes de escribir nada más, con una segunda
+llamada `POST spend_cap=1485` — verificado que el tope final quedó en
+`148500` centavos = $1,485.00 exactos, y que `amount_spent` seguía en
+$885 sin reiniciarse (§6-bis).
+
+> ⚠️ **Para la próxima vez que se toque `spend_cap`:** postear el monto
+> en **pesos**, no en centavos, y **releer de inmediato** para
+> confirmar la cifra antes de dar por bueno el cambio — exactamente
+> como se hizo aquí. No asumir que un campo se escribe en la misma
+> unidad en la que se lee; es la misma familia de trampa que
+> `graphify`/`graphifyy` y los nombres de marketplace de plugins: lo
+> que uno supone no es lo que la herramienta usa, y se verifica antes
+> de confiar en ello.
+
+### Cómo se lee esta ronda — distinto a las anteriores
+
+Las rondas anteriores midieron **vista → carrito**, arriba del embudo,
+y ya se sabe que funciona (1.90% con el piso de $799). Esta ronda es
+la **primera oportunidad real de medir carrito → pago sin el bug del
+cajón de por medio** — el dato viejo (3 pantallas de pago, 0 compras)
+no sirve de línea base porque se generó con el checkout roto.
+
+**Corte de esta ronda:** el mismo paro duro de siempre — 6 o más
+`add_payment_info` sin ninguna compra → detener y concluir que el
+problema es más profundo que el redirect o el cajón. Si aparece **una
+sola compra real** antes de eso, la campaña queda probada viable a
+este nivel de gasto, y ese sería el primer dato de conversión real de
+todo el proyecto.
+
+**Lo que queda fuera de esta ronda a propósito:** las fotos (bloqueador
+dominante, sección 53) y el conjunto de productos / piso de $799, que
+ya están probados y funcionando. No se crea una campaña nueva —se
+reactiva la misma v3— para no perder el aprendizaje acumulado.
