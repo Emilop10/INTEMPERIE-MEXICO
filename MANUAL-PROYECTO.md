@@ -6244,3 +6244,57 @@ corrección de layout sin mirar la jerarquía comercial.
 El panel del carrito tiene **tres cosas que compiten por 900px**: lo que
 el cliente ya eligió, lo que le sugieres, y el botón de pagar. Un cambio
 que solo atiende a una las descuadra a las otras dos.
+
+### Cuarta versión: el resguardo que rompió lo que venía a proteger (10 sep)
+
+La red de seguridad de la versión anterior **causó un defecto peor que
+el que prevenía**: el producto del cliente se dibujaba **encima** de
+"Total estimado", texto sobre texto.
+
+**Y el error fue de una sola palabra.** La media query decía:
+
+```css
+@media screen and (max-height: 780px) {
+  .cart-drawer cart-drawer-items { overflow: visible; min-height: 0; }
+}
+```
+
+Dawn pone **solo** `overflow: visible`, y lo hace precisamente porque
+así **vuelve a aplicarse el tamaño mínimo automático** — que es lo que
+hace crecer la caja hasta su contenido. Escribir `min-height: 0`
+**anula justo eso**: la caja se queda en cero y, con `overflow:visible`,
+su contenido ya no se recorta — **se derrama por encima del pie**.
+
+Corregido a `min-height: auto`, que cancela el piso propio de `8rem` sin
+desactivar el mecanismo de Dawn.
+
+> 🔍 **Por qué no lo detectó la verificación.** El defecto **solo existe
+> por debajo de cierta altura de ventana** — la pantalla del dueño mide
+> ~650px en píxeles CSS, dentro del umbral de 780px. Verificar por HTML
+> servido, que es como se verifica todo en este proyecto, **no puede ver
+> un defecto que depende del tamaño del viewport**. El HTML era idéntico
+> en los dos casos.
+>
+> Es una limitación real del método, no un descuido puntual: **el
+> navegador está bloqueado en este entorno** (`ERR_CONNECTION_RESET`,
+> probado otra vez con Playwright el 9 de septiembre). Todo lo que
+> dependa de altura, ancho o `@media` se verifica leyendo el CSS
+> servido y razonando la cascada — o lo ve el dueño primero. Conviene
+> saberlo antes de prometer "verificado en vivo": lo verificado es el
+> CSS, no el render.
+
+#### Y de paso, la tira quedó legible
+
+Las fichas de 15.5rem eran demasiado angostas y el nombre y el precio se
+partían solos. Ahora miden 21rem —con 420px de panel entran dos completas
+y **asoma la tercera**, que es la señal de "hay más, deslízame"— y el
+botón pasó de la palabra "Agregar" a un **círculo con "+" en verde de
+marca**.
+
+Ese cambio hace tres cosas a la vez, que es lo que se buscaba:
+**libera ~50px por ficha** (justo lo que le faltaba al nombre), **es más
+minimalista**, y **es lo primero que ve el ojo** — que es el objetivo
+comercial: que la gente siga agregando. El `aria-label` conserva el
+nombre completo del producto, así que para un lector de pantalla no se
+perdió nada, y los 30px quedan sobre el mínimo de puntero de 24px de
+WCAG 2.2 AA.
