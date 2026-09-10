@@ -6043,16 +6043,21 @@ renderizaban y quedaban con **cero píxeles de alto**.
 | `cart-drawer-items` | `overflow:auto; flex:1` ← los productos |
 | `.drawer__footer` | fija, y alta (totales, sellos, pagos, botón) |
 
-La pieza clave está en la especificación de flexbox: **el tamaño mínimo
-automático (`min-height:auto`) no se aplica a un item flex cuyo
-`overflow` no es `visible`.** Como Dawn le puso `overflow:auto` a
-`cart-drawer-items` justo para que hiciera scroll, ese mismo atributo
-permite que se encoja **hasta cero**.
+El mecanismo tiene **dos piezas**, y hacen falta las dos:
 
-Entonces: la suma de los cuatro hermanos de altura fija pasaba del 100%,
-y el algoritmo flex encogió al único que podía encogerse. Los productos
-quedaron en 0 de alto. Y como el contenedor es `overflow:hidden`, tampoco
-había scroll para rescatarlos ni para alcanzar el botón de pagar.
+1. **`flex: 1` significa `flex-basis: 0`.** `cart-drawer-items` no parte
+   de la altura de su contenido: **parte de cero y solo CRECE hacia el
+   espacio que sobre.** Si los hermanos de altura fija ya se comieron el
+   100%, no sobra nada y se queda en cero. No es que "se encoja" — es que
+   nunca crece.
+2. **Nada lo levanta del suelo.** El tamaño mínimo automático
+   (`min-height:auto`) **no se aplica a un item flex cuyo `overflow` no
+   es `visible`**. Dawn le puso `overflow:auto` justo para que hiciera
+   scroll, y ese mismo atributo deja su mínimo en 0.
+
+Con las dos juntas: los productos quedaron en 0 de alto. Y como el
+contenedor es `overflow:hidden`, tampoco había scroll para rescatarlos ni
+para alcanzar el botón de pagar.
 
 > 🔮 **Predicción que confirma el diagnóstico.** Hay un
 > `@media (max-height: 650px)` que pone `cart-drawer-items{overflow:visible}`
@@ -6183,3 +6188,59 @@ y ser **completamente inerte** — que es exactamente la familia de error
 de [`INSTRUCTIVO-CAMBIOS-QUE-NO-SE-VEN.md`](./INSTRUCTIVO-CAMBIOS-QUE-NO-SE-VEN.md).
 
 Todo va acotado a `.cart-drawer`: la página `/cart` no cambia.
+
+### El arreglo creó un problema nuevo: la oferta quedó bajo el pliegue (10 sep)
+
+Mover el cross-sell dentro de la zona con scroll arregló la maquetación y
+**creó otro problema**. El dueño lo vio el mismo día:
+
+> *"forzosamente tengo que hacer scroll para que me ofrezca más productos
+> para llegar al envío gratis, y siento que eso hace que se pierda"*
+
+Tenía razón. Ese bloque **no es decoración**: es el mecanismo que sube el
+ticket hasta los $799, y la barra de envío gratis existe para empujarlo.
+Enterrado bajo los productos, no empuja nada.
+
+**Y no se podía simplemente devolver arriba**, porque como bloque vertical
+de tres productos medía ~450px — exactamente lo que causó el defecto.
+
+#### La salida: cambiar la forma, no el lugar
+
+Vuelve arriba **convertido en tira horizontal de ~76px**, pegada a la
+barra de envío. Ese es su contexto natural: **la barra dice cuánto falta,
+la tira dice con qué cerrarlo.** Carrusel con `scroll-snap`; en 420px
+caben ~2.2 fichas, que es la señal de "hay más, deslízame" sin gritarlo.
+
+El snippet toma ahora un parámetro `variante`, así que `/cart` conserva la
+lista vertical — ahí sí sobra espacio. Un solo snippet, dos formas.
+
+#### Esta vez el equilibrio queda con red
+
+Las dos primeras versiones dependieron de que nadie pusiera algo alto
+arriba. Eso no es un diseño, es una esperanza. Ahora hay dos redes:
+
+1. **Piso de `8rem` en `cart-drawer-items`**, para que siempre se vea al
+   menos un producto.
+2. **Abajo de 780px de alto, el cajón ENTERO hace scroll.** Dawn ya lo
+   hacía abajo de 650px; se sube el umbral porque ahora hay dos bloques
+   fijos arriba. Cuando el espacio no alcanza, no se aplasta nada ni se
+   corta el botón de pagar: se desliza todo.
+
+Y la regla quedó escrita **dentro del propio archivo**, donde la va a leer
+quien tenga la tentación de repetirlo:
+
+> **Lo que se fije arriba tiene que ser BAJO.** Cada píxel que ocupe se lo
+> quita a los productos del cliente, que es lo único que no puede faltar.
+> Si algo necesita altura, va adentro de `cart-drawer-items`.
+
+#### Lo que este ciclo enseña
+
+Tres versiones en dos días para un mismo panel: bloque alto arriba (roto),
+bloque dentro del scroll (invisible), tira baja arriba (bien). **Ninguna
+de las dos primeras era estúpida; las dos optimizaban una sola variable.**
+La primera, relevancia sin mirar el presupuesto de altura. La segunda,
+corrección de layout sin mirar la jerarquía comercial.
+
+El panel del carrito tiene **tres cosas que compiten por 900px**: lo que
+el cliente ya eligió, lo que le sugieres, y el botón de pagar. Un cambio
+que solo atiende a una las descuadra a las otras dos.
