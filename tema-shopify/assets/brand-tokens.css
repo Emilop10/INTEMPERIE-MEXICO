@@ -1230,14 +1230,23 @@ variant-selects .select__select {
    también al contenedor hacía "caja dentro de caja" — la razón real
    del ruido visual, más que el margen. El contenedor solo alinea el
    espacio; el marco lo llevan las fichas, que es donde está la acción. */
+/* ANULA explícitamente el borde/fondo/radio de la clase base .imx-crosssell
+   (arriba, usada también en /cart). El 10 sep se dijo "el contenedor
+   queda transparente" pero solo se sobrescribió margin/padding — el
+   borde y el fondo de la base seguían activos, así que apareció una
+   caja no pedida, y como el padding quedó en 0, el título se pegaba a
+   ese borde sin aire ("se sale del recuadro"). Ahora sí, sin marco. */
 .imx-crosssell--tira {
   margin: 0 24px 18px;
   padding: 0;
+  border: 0;
+  background: none;
+  border-radius: 0;
   flex: 0 0 auto;
 }
 .imx-crosssell--tira .imx-crosssell__title {
-  margin: 0 0 10px;
-  font-size: 13px;
+  margin: 0 0 12px;
+  font-size: 14px;
   font-weight: 600;
   color: #F5F5F7;
   opacity: 0.9;
@@ -1264,10 +1273,10 @@ variant-selects .select__select {
    ficha 21->23rem para que la miniatura más grande no le quite espacio
    al nombre. */
 .imx-crosssell--tira .imx-crosssell__item {
-  flex: 0 0 23rem;
+  flex: 0 0 25.5rem;
   scroll-snap-align: start;
-  gap: 12px;
-  padding: 10px 12px 10px 10px;
+  gap: 14px;
+  padding: 12px 14px 12px 12px;
   border: 1px solid var(--im-divider);
   border-radius: 13px;
   background: var(--im-surface);
@@ -1278,16 +1287,16 @@ variant-selects .select__select {
   background: rgba(87, 181, 138, 0.07);
 }
 .imx-crosssell--tira .imx-crosssell__media {
-  flex: 0 0 52px;
-  width: 52px;
-  height: 52px;
-  border-radius: 9px;
+  flex: 0 0 62px;
+  width: 62px;
+  height: 62px;
+  border-radius: 10px;
 }
 .imx-crosssell--tira .imx-crosssell__body {
   min-width: 0;
 }
 .imx-crosssell--tira .imx-crosssell__name {
-  font-size: 13px;
+  font-size: 14.5px;
   line-height: 1.35;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -1295,7 +1304,7 @@ variant-selects .select__select {
   overflow: hidden;
 }
 .imx-crosssell--tira .imx-crosssell__price {
-  font-size: 13px;
+  font-size: 14px;
   opacity: 0.85;
 }
 /* El boton pasa de la palabra "Agregar" a un circulo con "+": libera
@@ -1305,13 +1314,13 @@ variant-selects .select__select {
    de pantalla no perdio nada. 30px > 24px, el minimo de puntero de
    WCAG 2.2 AA. */
 .imx-crosssell--tira .imx-crosssell__add {
-  flex: 0 0 36px;
-  width: 36px;
-  height: 36px;
-  min-height: 36px;
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
+  min-height: 40px;
   padding: 0;
   border-radius: 50%;
-  font-size: 19px;
+  font-size: 21px;
   line-height: 1;
   font-weight: 500;
   display: inline-flex;
