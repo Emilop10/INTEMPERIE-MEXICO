@@ -1218,15 +1218,29 @@ variant-selects .select__select {
    scroll-snap. Con 420px de panel caben ~2.2 fichas, que es justo la
    señal de "hay más, deslízame" sin gritar.
    ------------------------------------------------------------------ */
+/* 10 sep, segunda pasada: el dueño reportó que todo se veía "encimado".
+   No había overlap real, era desalineación — .free-shipping-bar tiene
+   margin: 0 24px, y esta caja no tenía margen horizontal propio, solo
+   heredaba los 15px del panel. Una caja quedaba más ancha que la otra
+   apenas debajo, y encima sin margen inferior: cero aire antes de la
+   tabla de productos.
+
+   El contenedor NO lleva marco propio (ni borde ni fondo): cada ficha
+   de adentro ya tiene su propia tarjeta (borde + fondo). Ponerle marco
+   también al contenedor hacía "caja dentro de caja" — la razón real
+   del ruido visual, más que el margen. El contenedor solo alinea el
+   espacio; el marco lo llevan las fichas, que es donde está la acción. */
 .imx-crosssell--tira {
-  margin: 8px 0 0;
-  padding: 10px 12px;
+  margin: 0 24px 18px;
+  padding: 0;
   flex: 0 0 auto;
 }
 .imx-crosssell--tira .imx-crosssell__title {
-  margin: 0 0 8px;
+  margin: 0 0 10px;
   font-size: 12px;
-  opacity: 0.72;
+  font-weight: 600;
+  color: #F5F5F7;
+  opacity: 0.9;
 }
 .imx-crosssell--tira .imx-crosssell__list {
   flex-direction: row;
