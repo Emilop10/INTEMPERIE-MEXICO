@@ -1240,20 +1240,27 @@ variant-selects .select__select {
 .imx-crosssell--tira .imx-crosssell__list::-webkit-scrollbar {
   display: none;
 }
+/* 21rem: con 420px de panel entran dos fichas completas y asoma la
+   tercera — el "hay mas, deslizame" que hace que valga la pena tocar.
+   A 15.5rem el nombre y el precio no cabian y se partian solos. */
 .imx-crosssell--tira .imx-crosssell__item {
-  flex: 0 0 15.5rem;
+  flex: 0 0 21rem;
   scroll-snap-align: start;
-  gap: 8px;
-  padding: 6px;
+  gap: 10px;
+  padding: 8px 10px 8px 8px;
   border: 1px solid var(--im-divider);
   border-radius: 12px;
   background: var(--im-surface);
+  transition: border-color 0.18s ease, background 0.18s ease;
 }
-.imx-crosssell--tira .imx-crosssell__media,
-.imx-crosssell--tira .imx-crosssell__media img {
-  width: 34px;
-  height: 34px;
-  min-width: 34px;
+.imx-crosssell--tira .imx-crosssell__item:hover {
+  border-color: rgba(87, 181, 138, 0.5);
+  background: rgba(87, 181, 138, 0.07);
+}
+.imx-crosssell--tira .imx-crosssell__media {
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
   border-radius: 8px;
 }
 .imx-crosssell--tira .imx-crosssell__body {
@@ -1270,10 +1277,46 @@ variant-selects .select__select {
 .imx-crosssell--tira .imx-crosssell__price {
   font-size: 11.5px;
 }
+/* El boton pasa de la palabra "Agregar" a un circulo con "+": libera
+   ~50px de ancho por ficha, que es justo lo que le faltaba al nombre, y
+   en verde de marca es lo primero que ve el ojo. Sigue teniendo
+   aria-label con el nombre completo del producto, asi que para un lector
+   de pantalla no perdio nada. 30px > 24px, el minimo de puntero de
+   WCAG 2.2 AA. */
 .imx-crosssell--tira .imx-crosssell__add {
-  padding: 5px 9px;
+  flex: 0 0 30px;
+  width: 30px;
+  height: 30px;
+  min-height: 30px;
+  padding: 0;
+  border-radius: 50%;
+  font-size: 17px;
+  line-height: 1;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #57b58a;
+  color: #08130d;
+  border: 0;
+}
+.imx-crosssell--tira .imx-crosssell__add--link {
   font-size: 11px;
-  min-height: 26px; /* >=24px, minimo de puntero de WCAG 2.2 AA */
+  font-weight: 600;
+  width: auto;
+  flex: 0 0 auto;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid var(--im-divider);
+  color: inherit;
+}
+.imx-crosssell--tira .imx-crosssell__name {
+  -webkit-line-clamp: 2;
+}
+.imx-crosssell--tira .imx-crosssell__price {
+  font-size: 12px;
+  opacity: 0.85;
 }
 
 /* ── RESGUARDO: que la lista de productos nunca vuelva a quedar en 0 ──
@@ -1297,7 +1340,13 @@ variant-selects .select__select {
 @media screen and (max-height: 780px) {
   .cart-drawer cart-drawer-items {
     overflow: visible;
-    min-height: 0;
+    /* `auto`, NO `0`. Escribir `min-height: 0` aqui fue el error del 10 de
+       septiembre: `overflow: visible` sirve justamente para que vuelva a
+       aplicarse el tamaño minimo automatico, y un `0` explicito lo anula.
+       La caja se quedaba en cero y su contenido se DERRAMABA encima del
+       pie: el producto se encimaba con "Total estimado". Con `auto` la
+       caja crece hasta su contenido y el cajon entero se desliza. */
+    min-height: auto;
   }
   .cart-drawer .drawer__inner {
     overflow-y: auto;

@@ -141,7 +141,19 @@
                 <span class="imx-crosssell__price">{{ p.price | money }}</span>
               </div>
               {%- if p.variants.size == 1 and v.available -%}
-                <button type="button" class="imx-crosssell__add" data-imx-add="{{ v.id }}" aria-label="Agregar {{ p.title | escape }} al carrito">Agregar</button>
+                {%- comment -%}
+                  En la tira el boton dice "+" y no "Agregar": la palabra
+                  se comia ~50px del ancho de la ficha y el nombre del
+                  producto se partia. El aria-label no cambia, asi que
+                  quien use lector de pantalla sigue oyendo el nombre
+                  completo del producto.
+                {%- endcomment -%}
+                <button
+                  type="button"
+                  class="imx-crosssell__add"
+                  data-imx-add="{{ v.id }}"
+                  aria-label="Agregar {{ p.title | escape }} al carrito"
+                >{% if variante == 'tira' %}+{% else %}Agregar{% endif %}</button>
               {%- else -%}
                 <a class="imx-crosssell__add imx-crosssell__add--link" href="{{ p.url }}">Ver</a>
               {%- endif -%}
