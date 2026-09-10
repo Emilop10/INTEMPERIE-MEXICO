@@ -6298,3 +6298,106 @@ comercial: que la gente siga agregando. El `aria-label` conserva el
 nombre completo del producto, así que para un lector de pantalla no se
 perdió nada, y los 30px quedan sobre el mínimo de puntero de 24px de
 WCAG 2.2 AA.
+### Quinta pasada: "se ve encimado" sin que nada se pise (10 sep)
+
+El dueño reportó, con captura, que **todo se veía "sumamente encimado"**.
+Al medirlo con el HTML servido, **no había overlap literal** — ningún
+texto sobre otro texto.
+
+Lo que había era **desalineación**: `.free-shipping-bar` trae
+`margin: 0 24px 16px` (24px de aire lateral, más los 15px del panel), y
+la tira, recién movida arriba, no tenía margen horizontal propio — solo
+heredaba los 15px del panel. Resultado: la caja de la tira quedaba
+**más ancha** que la barra de envío justo encima, con los bordes
+desalineados, y sin margen inferior, sin aire antes de la tabla de
+productos.
+
+> 📌 **Lección reutilizable: "se ve mal" no siempre significa overlap.**
+> El ojo lee como desorden que dos cajas apiladas no compartan el mismo
+> borde izquierdo/derecho, aunque no haya un solo píxel de texto
+> encimado. Cuando alguien reporte "se ve apretado/encimado" sin poder
+> señalar qué se pisa exactamente, **medir los márgenes laterales de los
+> bloques contiguos antes que nada** — es más común que el overlap real.
+
+Arreglo: se igualó el margen de la tira al de la barra de envío
+(`margin: 0 24px 18px`), para que ambas compartan el mismo borde, y se
+le dio aire abajo antes de la tabla.
+
+**Primer intento revertido antes de subir:** darle a la tira su propio
+borde y fondo verde, para que se leyera como familia con la barra de
+envío. Se descartó porque cada ficha de producto **ya tiene su propia
+tarjeta** (borde + fondo) — ponerle marco también al contenedor
+hubiera sido "caja dentro de caja". El contenedor final quedó
+transparente: solo alinea el espacio, el marco lo llevan las fichas.
+
+### Sexta pasada: agrandar con presupuesto, no a ciegas (10 sep)
+
+El dueño pidió que la tira se viera "un poco más grande". Había margen
+para hacerlo sin tocar nada más: el piso de `8rem` que protege la lista
+de productos (sección de la cuarta pasada) seguía intacto, así que el
+crecimiento de la tira no le quita espacio a los productos del cliente.
+
+Se agrandó solo la ficha: miniatura de 40 a 52px, nombre y precio de
+11.5/12 a 13px, botón "+" de 30 a 36px, ficha de 21 a 23rem (para que
+la miniatura más grande no le robara espacio al nombre).
+
+De paso se limpiaron dos reglas que habían quedado **duplicadas** por
+los ajustes de pasadas anteriores: `.imx-crosssell--tira .imx-crosssell__name`
+y `.imx-crosssell--tira .imx-crosssell__price` estaban declaradas dos
+veces cada una, y la segunda ganaba por orden de cascada. Funcionaba,
+pero por accidente de cascada, no a propósito — quedaron consolidadas
+en una sola declaración cada una.
+
+### Séptima pasada: el borde que nadie pidió (10 sep)
+
+El dueño reportó que la leyenda "Súmale uno de estos y el envío te sale
+gratis" **parecía salirse del recuadro**, y pidió agrandar un escalón
+más.
+
+El recuadro que se veía **no debía existir**. `.imx-crosssell` —la
+clase base, compartida con `/cart`— trae su propio
+`border: 1px solid`, `background` y `border-radius: 14px`. La quinta
+pasada solo sobrescribió `margin`/`padding` de esa clase con el
+modificador `.imx-crosssell--tira`; nunca anuló el borde y el fondo de
+la base. Quedaba una caja no pedida, y como el padding de la tira ya
+era `0`, el título tocaba ese borde sin aire — de ahí la sensación de
+"se sale".
+
+> 📌 **Lección reutilizable: un modificador no cancela lo que no
+> sobrescribe.** `.imx-crosssell--tira` cambiaba margen y padding, pero
+> el borde/fondo/radio de `.imx-crosssell` seguían activos porque nadie
+> los tocó explícitamente. La corrección fue anular a propósito:
+> `border: 0; background: none; border-radius: 0`. Vale la pena
+> revisar esto en cualquier otro componente que comparta clase base
+> entre el cajón del carrito y `/cart` — son plantillas con necesidades
+> de marco distintas usando el mismo nombre.
+
+Corregido, y de paso otro escalón de tamaño: miniatura de 52 a 62px,
+texto de 13 a 14/14.5px, botón de 36 a 40px, ficha de 23 a 25.5rem. A
+este tamaño ya no entra una segunda ficha completa junto a la primera
+—entra una completa y un buen pedazo de la siguiente—, que sigue
+leyéndose "hay más, desliza" sin sacrificar legibilidad.
+
+Verificado en el CSS servido en vivo: `.imx-crosssell--tira` sin borde
+propio, tamaños finales de `__media` (62px) y `__add` (40px), y ninguna
+regla de `__name`/`__price` repetida.
+
+### Las siete versiones, en una tabla
+
+| # | Qué se probó | Por qué falló (si falló) |
+|---|---|---|
+| 1 | Bloque vertical de 3 productos, arriba del todo | Empujaba la lista de productos a 0 de alto — el bug original |
+| 2 | Mover el bloque adentro del scroll | Arregló el layout, pero enterró la oferta bajo el pliegue |
+| 3 | Tira horizontal de 76px, arriba, con resguardo `min-height:0` | El resguardo tenía un error de una palabra: `0` en vez de `auto`, causó overlap real |
+| 4 | `min-height:auto` — resguardo corregido | Funcionó, pero la tira no compartía margen con la barra de envío |
+| 5 | Igualar márgenes laterales | Funcionó — resolvió la "desalineación que se lee como encimado" |
+| 6 | Agrandar la ficha (primer escalón) | Funcionó, y de paso limpió reglas duplicadas |
+| 7 | Agrandar más + matar borde heredado no anulado | Funcionó — resultado final aprobado por el dueño |
+
+**Ninguna de las versiones 1-4 fue un error de negligencia**: cada una
+resolvía el problema que tenía enfrente y creaba, sin querer, el
+siguiente. El patrón que deja esta saga: en un componente con
+presupuesto de espacio compartido (altura del cajón, márgenes de
+plantilla base), **cambiar una pieza obliga a revisar sus vecinas**, no
+solo la pieza misma.
+
