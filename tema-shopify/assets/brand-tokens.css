@@ -1206,3 +1206,100 @@ variant-selects .select__select {
 .cart-drawer .drawer__inner {
   width: 42rem;
 }
+
+/* ── Tira de sugerencias del cajón (10 sep 2026) ─────────────────────
+   El bloque vertical de tres productos volvió arriba, pegado a la barra
+   de envío, pero convertido en fila horizontal: ~76px de alto en vez de
+   ~450px. Va aquí porque es su contexto — la barra dice cuánto falta,
+   la tira dice con qué cerrarlo — y porque abajo, dentro del scroll,
+   el dueño tenía que pasar de largo sus productos para encontrarla.
+
+   La lista deja de ser columna y pasa a carrusel horizontal con
+   scroll-snap. Con 420px de panel caben ~2.2 fichas, que es justo la
+   señal de "hay más, deslízame" sin gritar.
+   ------------------------------------------------------------------ */
+.imx-crosssell--tira {
+  margin: 8px 0 0;
+  padding: 10px 12px;
+  flex: 0 0 auto;
+}
+.imx-crosssell--tira .imx-crosssell__title {
+  margin: 0 0 8px;
+  font-size: 12px;
+  opacity: 0.72;
+}
+.imx-crosssell--tira .imx-crosssell__list {
+  flex-direction: row;
+  gap: 8px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  padding-bottom: 2px;
+}
+.imx-crosssell--tira .imx-crosssell__list::-webkit-scrollbar {
+  display: none;
+}
+.imx-crosssell--tira .imx-crosssell__item {
+  flex: 0 0 15.5rem;
+  scroll-snap-align: start;
+  gap: 8px;
+  padding: 6px;
+  border: 1px solid var(--im-divider);
+  border-radius: 12px;
+  background: var(--im-surface);
+}
+.imx-crosssell--tira .imx-crosssell__media,
+.imx-crosssell--tira .imx-crosssell__media img {
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
+  border-radius: 8px;
+}
+.imx-crosssell--tira .imx-crosssell__body {
+  min-width: 0;
+}
+.imx-crosssell--tira .imx-crosssell__name {
+  font-size: 11.5px;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.imx-crosssell--tira .imx-crosssell__price {
+  font-size: 11.5px;
+}
+.imx-crosssell--tira .imx-crosssell__add {
+  padding: 5px 9px;
+  font-size: 11px;
+  min-height: 26px; /* >=24px, minimo de puntero de WCAG 2.2 AA */
+}
+
+/* ── RESGUARDO: que la lista de productos nunca vuelva a quedar en 0 ──
+   Lo de la seccion 55 pasó porque `cart-drawer-items` tiene
+   `flex: 1` — o sea `flex-basis: 0` — asi que NO parte de su altura de
+   contenido: parte de cero y solo CRECE hacia el espacio sobrante. Si
+   los hermanos fijos ya se comieron el 100%, no sobra nada y se queda
+   en cero. Y con `overflow:auto` su altura minima automatica vale 0,
+   asi que nada lo levanta.
+
+   Dos redes, no una:
+   1. Un piso de 8rem, para que siempre se vea al menos un producto.
+   2. En pantallas bajas, el cajon ENTERO hace scroll. Dawn ya hacia
+      esto abajo de 650px; se sube el umbral a 780px porque ahora hay
+      dos bloques fijos arriba. Asi, cuando el espacio no alcanza, no
+      se aplasta nada ni se corta el boton de pagar: se desliza todo.
+   ------------------------------------------------------------------ */
+.cart-drawer cart-drawer-items {
+  min-height: 8rem;
+}
+@media screen and (max-height: 780px) {
+  .cart-drawer cart-drawer-items {
+    overflow: visible;
+    min-height: 0;
+  }
+  .cart-drawer .drawer__inner {
+    overflow-y: auto;
+  }
+}

@@ -159,15 +159,33 @@
       </div>
 
       {%- comment -%}
-        Solo la barra de envio vive aqui arriba, fija: es un indicador de
-        progreso, mide una linea y el cliente la quiere ver siempre.
+        BARRA DE ENVIO + TIRA DE SUGERENCIAS, fijas arriba.
 
-        El cross-sell NO. Se movio adentro de <cart-drawer-items> el 9 de
-        septiembre, despues de que el cajon dejara de mostrar los productos
-        (ver abajo).
+        Historia, porque el equilibrio aqui es delicado (seccion 55 del
+        manual):
+
+        1) El cross-sell vivia aqui como bloque VERTICAL de tres
+           productos, ~450px de alto fijo. Eso dejaba a
+           cart-drawer-items sin espacio: los productos del cliente
+           quedaban en 0 de alto y no habia scroll para llegar a pagar.
+        2) El 9 de septiembre se movio adentro de cart-drawer-items. Se
+           arreglo el layout, pero quedo DEBAJO DEL PLIEGUE: habia que
+           pasar de largo los productos para verlo. El dueño lo reporto
+           el mismo dia: "forzosamente tengo que hacer scroll... siento
+           que eso hace que se pierda".
+        3) Ahora vuelve arriba, pero como TIRA HORIZONTAL de ~76px, no
+           como bloque de 450px. Va pegada a la barra de envio porque
+           ese es su contexto: la barra dice cuanto falta, la tira dice
+           con que cerrarlo.
+
+        LA REGLA QUE SALE DE TODO ESTO: lo que se fije aqui arriba tiene
+        que ser BAJO. Cada pixel que ocupe se lo quita a los productos
+        del cliente, que es lo unico que no puede faltar. Si algo
+        necesita altura, va adentro de cart-drawer-items.
       {%- endcomment -%}
       {%- unless cart == empty -%}
         {%- render 'envio-gratis-barra' -%}
+        {%- render 'cross-sell-carrito', variante: 'tira' -%}
       {%- endunless -%}
 
       <cart-drawer-items
@@ -569,38 +587,8 @@
           </div>
           <div id="CartDrawer-CartErrors" role="alert"></div>
         </form>
-        {%- comment -%}
-          EL CROSS-SELL VA AQUI DENTRO, Y NO ARRIBA. POR QUE (9 sep 2026):
-
-          .drawer__inner es flex column con height:100% y overflow:hidden.
-          Sus hijos eran: header, barra de envio, cross-sell,
-          cart-drawer-items y footer. Y cart-drawer-items trae
-          `overflow:auto; flex:1` — sin min-height propio.
-
-          Por especificacion, el tamano minimo automatico (min-height:auto)
-          NO se aplica a un item flex cuyo overflow no es `visible`. O sea
-          que cart-drawer-items puede encogerse hasta CERO. Con el
-          cross-sell de tres productos ocupando ~450px de altura fija, la
-          suma de los hermanos pasaba del 100% y el algoritmo flex encogia
-          al unico que podia encogerse: la lista de productos quedaba en 0
-          de alto, invisible, y como el contenedor es overflow:hidden
-          tampoco habia scroll para llegar al boton de pagar.
-
-          El HTML siempre estuvo bien: los productos se renderizaban. Era
-          puramente geometria.
-
-          Aqui adentro el cross-sell hace scroll junto con los productos,
-          asi que su altura ya no le quita espacio a nadie. Y el cliente ve
-          primero lo que agrego, y las sugerencias despues.
-
-          cart-drawer.js reemplaza el innerHTML de .drawer__inner completo
-          (getSectionsToRender -> selector '.drawer__inner'), asi que el
-          bloque se sigue actualizando al cambiar cantidades.
-        {%- endcomment -%}
-        {%- unless cart == empty -%}
-          {%- render 'cross-sell-carrito' -%}
-        {%- endunless -%}
-      </cart-drawer-items>
+        
+              </cart-drawer-items>
       <div class="drawer__footer">
         {%- if settings.show_cart_note -%}
           <details id="Details-CartDrawer">

@@ -108,8 +108,23 @@
 
   {%- if elegidos.size > 0 -%}
     {%- assign brecha_pesos = brecha | divided_by: 100.0 | ceil -%}
-    <div class="imx-crosssell" data-imx-crosssell>
-      <p class="imx-crosssell__title">Agrega ${{ brecha_pesos }} más y tu envío es gratis</p>
+    {%- comment -%}
+      variante: 'tira' -> fila horizontal compacta, fijada bajo la barra
+      de envio en el cajon del carrito (10 sep). En /cart se sigue
+      llamando sin variante y se ve como lista vertical, que ahi si
+      tiene espacio de sobra.
+    {%- endcomment -%}
+    <div
+      class="imx-crosssell{% if variante == 'tira' %} imx-crosssell--tira{% endif %}"
+      data-imx-crosssell
+    >
+      <p class="imx-crosssell__title">
+        {%- if variante == 'tira' -%}
+          Súmale uno de estos y el envío te sale gratis
+        {%- else -%}
+          Agrega ${{ brecha_pesos }} más y tu envío es gratis
+        {%- endif -%}
+      </p>
       <ul class="imx-crosssell__list" role="list">
         {%- for handle in elegidos limit: 3 -%}
           {%- assign p = all_products[handle] -%}
