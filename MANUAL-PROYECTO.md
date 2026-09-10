@@ -84,6 +84,7 @@ como respaldo
 54. [Mercado Pago Tarjetas: quitar el redirect del checkout (9 sep)](#54-mercado-pago-tarjetas-quitar-el-redirect-del-checkout-9-sep)
 55. [El cajón del carrito no mostraba los productos (9 sep)](#55-el-cajón-del-carrito-no-mostraba-los-productos-9-sep)
 56. [Reactivación de la campaña, tras dos arreglos de sitio (9-10 sep)](#56-reactivación-de-la-campaña-tras-dos-arreglos-de-sitio-9-10-sep)
+57. [Conciliación del 10 de septiembre: los combos manuales pasan la prueba](#57-conciliación-del-10-de-septiembre-los-combos-manuales-pasan-la-prueba)
 
 ---
 
@@ -6509,3 +6510,80 @@ todo el proyecto.
 dominante, sección 53) y el conjunto de productos / piso de $799, que
 ya están probados y funcionando. No se crea una campaña nueva —se
 reactiva la misma v3— para no perder el aprendizaje acumulado.
+
+---
+
+## 57. Conciliación del 10 de septiembre: los combos manuales pasan la prueba
+
+**10 de septiembre de 2026, 13:37 hora de Chihuahua.** Se conciliaron
+33 variantes contra `inventario_10_septiembre.xlsx` (1,187 filas,
+verde 303 · amarillo 30 · rojo 750 · gris 103), 0 errores. El dueño
+pidió, además, verificar si los combos armados a mano seguían
+correspondiendo con el stock real de sus componentes — algo que nunca
+se había comprobado de forma sistemática después de una conciliación.
+
+### El método: `min()` de los componentes, no el endpoint que parece obvio
+
+**Primer intento, y trampa nueva:** `GET /admin/api/2024-10/variants.json?sku=XXX`
+—el endpoint REST documentado para buscar una variante por SKU—
+**no filtra de verdad**. Devuelve la primera página completa de
+variantes de la tienda sin importar el parámetro, y como el nombre del
+campo es plausible (`sku=`), el resultado se ve como una respuesta
+válida en vez de un error. Se detectó porque tres SKUs distintos
+devolvían exactamente la misma lista de 50 variantes.
+
+**Lo que sí funciona:** GraphQL con `query: "sku:XXX"` en
+`productVariants`, o `productByHandle` cuando se conoce el handle. Es
+la vía usada de aquí en adelante para localizar una variante por SKU
+suelto.
+
+Con eso, la verificación fue: para cada combo armado por
+`scripts/crear-combos.py` (los que tienen componentes reales, no los
+combos de fábrica de un solo SKU), comparar su stock contra el
+**mínimo** del stock de sus componentes — que es la regla con la que
+se crearon (ver comentario en `crear-combos.py`: *"la cantidad de cada
+combo se fija al mínimo de sus componentes"*).
+
+| Combo | Componentes y stock | Mínimo | Stock del combo | ¿Coincide? |
+|---|---|---|---|---|
+| Okuma Revenger $999 (oculto, §50) | Caña `RV-S-802M`=2, Carrete `RV-80`=1 | 1 | 1 | ✅ |
+| Blue Fox Power Boat $1,049 | Caña `BFPWBT195H`=1, Carrete `12BFRAN30`=2 | 1 | 1 | ✅ |
+| Rapala Corux $1,499 | Caña `11RACOR240MH`=1, Carrete `15CARRET117CH`=3, Caja `RUBS`=1 | 1 | 1 | ✅ |
+
+Los tres coinciden exacto. No hay sobreventa posible (ningún combo
+promete más de lo que sus piezas permiten armar) ni oportunidad perdida
+(no hay stock de componentes esperando a que se suba la cantidad del
+combo). Ninguno de los 7 SKUs de componentes apareció entre las 33
+variantes que esta conciliación cambió, así que el resultado es estable
+tras la corrida, no una coincidencia de un momento.
+
+> 📌 **Para la próxima conciliación:** repetir esta comparación es
+> barato (7 consultas GraphQL) y debería ser parte habitual de la
+> rutina, no una revisión especial — es la única forma de detectar a
+> tiempo que un combo quedó vendiendo algo que ya no existe.
+
+### Hallazgo aparte: 5 combos de fábrica en 0
+
+Sin relación con la pregunta del dueño, pero visto de paso al listar
+todos los productos `product_type:Combos`: **5 combos de un solo SKU
+—no armados por nosotros— están publicados con stock 0**: Cascade II,
+Elite Pro, Fin Chaser X 6'6" y 7'0", y Steeler XP. Siguen visibles en
+la tienda pero no son comprables hasta reabastecerlos. No requiere
+acción de código; queda como dato para el dueño.
+
+### Los 3 productos que quedaron en 0
+
+`Caña de Pescar Blue Fox Portada SP 11'0"` ($649), `Monturas p/Mira
+11mm Alta Nakashi` ($480), `Rifle Carabina Red Ryder Mod 4938 Daisy`
+($2,712). Verificado **antes** de escribir: ninguno es componente de
+combo, y ninguno formaba parte del conjunto anunciable de Meta — el
+conteo del product set (`1455189226500365`) siguió en **26** después de
+aplicar los cambios, sin moverse.
+
+### La campaña seguía entregando
+
+Al momento de la corrida, la cuenta llevaba **$954.76 de $1,485**
+gastados (reactivación del 9 de septiembre, §56). Se verificó primero
+que ningún cambio de esta conciliación tocara el conjunto anunciable
+antes de escribir nada en Shopify — misma disciplina que en la
+conciliación del 25 de agosto (§50), hecha también con campaña activa.

@@ -253,6 +253,7 @@ esos son los que viven en
 | 15 ago 2026 | 1,178 | 301 | 22 | 751 | 104 | 25 |
 | 25 ago 2026 | 1,183 | 254 | 83 | 743 | 103 | 87 |
 | 4 sep 2026 | 1,215 | 299 | 40 | 772 | 104 | 43 |
+| 10 sep 2026 | 1,187 | 303 | 30 | 750 | 103 | 33 |
 
 > **15 de agosto, más tarde:** se agregó el cruce por `Codigo B1` y se
 > poblaron 371 códigos de barras en Shopify (0 errores). La cobertura de
@@ -283,10 +284,30 @@ esos son los que viven en
 > `max_row: 1216`. Lo único que se nota es la carga, ~14 segundos. Se
 > anota porque a simple vista el archivo parece roto y no lo está.
 
-> Los 103 grises se reparten en **87 sin ninguna llave** (artículos que
+> **10 de septiembre:** el archivo llegó limpio — 1,187 filas, sin la
+> fila vacía masiva que trajo el del 4 de septiembre (~1M de filas con
+> formato pero sin datos). Confirma que aquel fue un caso aislado del
+> export, no un patrón nuevo del POS; no hizo falta ningún ajuste al
+> script. Los grises bajaron de 104 a 103 (una fila menos sin llave o
+> duplicada) — no se investigó a fondo, es una observación, no un
+> hallazgo que cambie nada.
+>
+> Esta corrida se acompañó, por primera vez, de una **verificación de
+> los combos armados a mano**: comparar el stock de cada combo contra
+> el mínimo de sus componentes. Ver la sección 57 del manual para el
+> método — incluye una trampa nueva del lado de la API de Shopify
+> (`variants.json?sku=` de REST no filtra de verdad).
+
+> **Desglose del 25 de agosto** (esta cifra no llevaba fecha explícita
+> y se agrega ahora para no confundirla con la corrida del 10 de
+> septiembre, que también dio 103 pero no se desglosó): los 103 grises
+> de entonces se repartían en **87 sin ninguna llave** (artículos que
 > solo existen en piso de venta) y **16 por `No Parte` duplicado en el
 > POS**, concentrados en 7 códigos: `9291PS`, `IGT57` (3 filas cada uno),
 > `53003`, `MN094`, `10005701BZ00`, `P611004925557`, `15SENUEL012QI`.
 > Esos 7 conviene corregirlos en el POS, no en Shopify — mientras el
 > mismo código apunte a productos distintos, esas filas nunca se van a
-> conciliar solas.
+> conciliar solas. **No se verificó si el 103 del 10 de septiembre tiene
+> la misma composición** — coincidir en el total no prueba que sean las
+> mismas filas; si alguien retoma esto, desglosarlo de nuevo en vez de
+> asumir que sigue igual.

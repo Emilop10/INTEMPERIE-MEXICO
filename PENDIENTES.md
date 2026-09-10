@@ -286,6 +286,15 @@ Verificado en vivo: los 3 dan HTTP 200, la colección `combos` pasó de
 | Blue Fox Power Boat 6'4" | $1,049 | 1 |
 | Rapala Corux 240 | $1,499 | 1 |
 
+> ✅ **Verificado el 10 de septiembre, tras conciliar inventario**: los
+> tres siguen exactos al mínimo de sus componentes — sin sobreventa, sin
+> stock de componente esperando a que se suba el combo. Detalle y
+> método en la [sección 57 del manual](./MANUAL-PROYECTO.md#57-conciliación-del-10-de-septiembre-los-combos-manuales-pasan-la-prueba).
+> De paso se encontraron **5 combos de fábrica** (de un solo SKU, no
+> armados por nosotros) publicados con **stock 0**: Cascade II, Elite
+> Pro, Fin Chaser X 6'6"/7'0", y Steeler XP — visibles pero no
+> comprables hasta reabastecerlos.
+
 ### 🔴 Tarea manual permanente: descontar componentes al vender un combo
 
 **Shopify NO resta el stock de la caña ni del carrete cuando se vende
