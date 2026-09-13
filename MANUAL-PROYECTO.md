@@ -85,6 +85,7 @@ como respaldo
 55. [El cajón del carrito no mostraba los productos (9 sep)](#55-el-cajón-del-carrito-no-mostraba-los-productos-9-sep)
 56. [Reactivación de la campaña, tras dos arreglos de sitio (9-10 sep)](#56-reactivación-de-la-campaña-tras-dos-arreglos-de-sitio-9-10-sep)
 57. [Conciliación del 10 de septiembre: los combos manuales pasan la prueba](#57-conciliación-del-10-de-septiembre-los-combos-manuales-pasan-la-prueba)
+58. [La primera venta real (12 sep)](#58-la-primera-venta-real-12-sep)
 
 ---
 
@@ -6587,3 +6588,109 @@ gastados (reactivación del 9 de septiembre, §56). Se verificó primero
 que ningún cambio de esta conciliación tocara el conjunto anunciable
 antes de escribir nada en Shopify — misma disciplina que en la
 conciliación del 25 de agosto (§50), hecha también con campaña activa.
+
+---
+
+## 58. La primera venta real (12 sep)
+
+**12 de septiembre de 2026.** Se registró **la primera compra real de
+todo el proyecto**. No la compra de prueba del dueño (§49, pedido
+#1005), no un evento fantasma: una venta a un cliente que llegó por el
+anuncio.
+
+Es exactamente el desenlace que §53 y §56 dejaron fijado **por escrito y
+antes de verlo**, como condición para declarar la campaña viable a este
+nivel de gasto: *"si aparece una sola compra real antes del paro duro,
+la campaña queda probada"*.
+
+### Verificado por dos caminos independientes
+
+No se dio por bueno con lo que reporta Meta. El píxel puede atribuir mal,
+duplicar o inventar; el inventario no.
+
+| Evidencia | Dato |
+|---|---|
+| Evento de Meta | `purchase` = 1, `action_value` = **$849**, el 12 de septiembre |
+| **Evidencia física** | El stock del **Combo Okuma Revenger 8'0" (2.45m)** (`RV-S-802M-40`) **bajó de 2 a 1** desde la conciliación del 10 de septiembre (§57) — mismo producto, mismo monto |
+
+**La segunda es la que da confianza.** El decremento de inventario es un
+hecho de Shopify que Meta no controla, y coincide en producto y en
+precio con lo que reporta el píxel. Dos sistemas independientes contando
+lo mismo.
+
+> 🔴 **Limitación encontrada: el token no tiene `read_orders`.** El
+> intento natural —confirmar contra el pedido real vía
+> `GET /admin/api/2024-10/orders.json`— devolvió
+> `403: This action requires merchant approval for read_orders scope`.
+> Ese scope nunca hizo falta en este proyecto y no está en la lista del
+> flujo OAuth. **Ya se agregó a
+> [`INSTRUCTIVO-CREDENCIALES-SHOPIFY.md`](./INSTRUCTIVO-CREDENCIALES-SHOPIFY.md)**
+> para que el próximo token lo traiga; no se regeneró el token solo por
+> esto, porque la evidencia de inventario ya resolvía la duda.
+
+### Las dos rondas, lado a lado
+
+| | Ronda anterior (27 ago-6 sep) | Esta ronda (9-12 sep) |
+|---|---|---|
+| Gasto | $600 (completo) | $276.25 de $600 |
+| Vistas de producto | 1,004 | 367 |
+| **Carritos** | 16 — **1.59%** | 12 — **3.27%** |
+| Checkouts | 8 | 9 |
+| Pantallas de pago | 3 | 3 |
+| **Compras** | **0** | **1 ($849)** |
+
+### La tasa de carrito se dobló — y todavía no alcanza para cantar victoria
+
+**1.59% → 3.27%.** Es el número más alto del proyecto y cruza el umbral
+de *"≥3% = la parte alta funciona"* que §49 fijó de antemano. Pero hay
+que decir lo incómodo junto con lo bueno:
+
+- **p = 0.052.** Roza el umbral convencional de significancia **y no lo
+  cruza**. Por poco, pero no lo cruza.
+- Los intervalos todavía se tocan: IC95 de la tasa nueva
+  **[1.88%, 5.63%]** contra **[0.98%, 2.57%]** de la anterior.
+
+O sea: **apunta muy bien, no está probado.** Es la misma disciplina que
+se aplicó cuando el piso de $799 subió la tasa un 44% con p=0.47 (§53) —
+la diferencia es que ahora el p-valor está diez veces más cerca de
+importar.
+
+**Y del cierre no se puede decir nada todavía.** Con 1 compra de 12
+carritos, el IC95 de carrito→compra es **[1.49%, 35.39%]**: contiene
+tanto "pésimo" como "excelente", y contiene el ~15% de equilibrio. Una
+venta prueba que **el embudo cierra**; no prueba a qué tasa.
+
+### La economía real, con el costo verdadero
+
+El propio Excel de inventario trae el costo (columna `ConstoN`):
+
+| | |
+|---|---|
+| Costo del combo | **$506.50** |
+| Precio de venta | **$849.00** |
+| **Margen bruto** | **$342.50** (40.3%) |
+| Gasto publicitario de la ronda | $276.25 |
+
+A primera vista la venta deja ~$66 de excedente. **Pero falta un costo
+que no conozco y que no voy a inventar:** el combo está por encima del
+piso de $799, así que **el envío es gratis para el cliente y lo absorbe
+la tienda**. El sitio cobra $189 de envío por debajo de ese piso, pero
+ese es *el precio al cliente*, no necesariamente lo que le cuesta la
+paquetería al negocio.
+
+> 🟡 **Pregunta abierta para el dueño, y no es menor: ¿cuánto cuesta
+> realmente enviar un paquete?** Si el costo real se acerca a los $189,
+> esta venta queda cerca de tablas o en negativo, y el piso de $799
+> estaría regalando margen en vez de comprarlo. Sin ese dato no se puede
+> saber si la campaña gana o pierde dinero, aunque venda.
+
+### Dónde queda el criterio de corte
+
+Se cumplió la condición de §56: **una venta real antes del paro duro.**
+Vamos **3 de 6** en pantallas de pago sin compra, y la campaña sigue
+corriendo con **~$324 disponibles** (~6 días a $55/día).
+
+No hay nada que cambiar en la campaña por ahora. La decisión de qué
+hacer con el saldo restante —y si vale la pena recargar cuando se
+agote— es del dueño, y ahora por primera vez se puede tomar con un dato
+de venta real encima de la mesa en vez de con proyecciones.

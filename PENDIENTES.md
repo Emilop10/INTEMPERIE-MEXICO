@@ -143,6 +143,41 @@ aprendizaje: se tocó el product set, no el conjunto de anuncios.
 
 ---
 
+**🎉 PRIMERA VENTA REAL — 12 de septiembre de 2026.** Un cliente que
+llegó por el anuncio compró el **Combo Okuma Revenger 8'0" (2.45m) por
+$849**. No es la compra de prueba del dueño: verificado por dos vías
+independientes — el evento `purchase` de Meta ($849) y, sobre todo, el
+**stock de ese combo bajó de 2 a 1** en Shopify, que es un hecho que
+Meta no controla. Detalle completo en la
+[sección 58 del manual](./MANUAL-PROYECTO.md#58-la-primera-venta-real-12-sep).
+
+Estado del embudo al 12 de septiembre, con $276.25 de $600 gastados:
+
+| | Ronda anterior | Esta ronda |
+|---|---|---|
+| Vistas de producto | 1,004 | 367 |
+| **Carritos** | 16 — 1.59% | **12 — 3.27%** |
+| Checkouts · pantallas de pago | 8 · 3 | 9 · 3 |
+| **Compras** | **0** | **1 ($849)** |
+
+> ⚖️ **La tasa de carrito se dobló, pero p = 0.052** — roza el umbral de
+> significancia y no lo cruza. Apunta muy bien, no está probado. Y del
+> cierre no se puede concluir nada con n=1: el intervalo de
+> carrito→compra va de 1.5% a 35%.
+
+> 🟡 **Pendiente del dueño, y decide si esto gana o pierde dinero:
+> ¿cuánto cuesta REALMENTE enviar un paquete?** El combo costó $506.50 y
+> se vendió en $849 → margen bruto $342.50. Pero al pasar el piso de
+> $799 el envío es gratis y lo absorbe la tienda. Si el costo real de
+> paquetería se acerca a los $189 que se cobran por debajo del piso,
+> esta venta queda cerca de tablas. Sin ese dato no se puede saber si la
+> campaña es rentable, aunque venda.
+
+**Corte actualizado: vamos 3 de 6** en pantallas de pago sin compra.
+Quedan **~$324** (~6 días a $55/día). No hay nada que cambiar por ahora.
+
+---
+
 **🟢 REACTIVADA — 9 de septiembre de 2026, 19:36 hora de Chihuahua.**
 Se había detenido el 6 de septiembre porque se agotó el tope de cuenta
 ($885 de $885) — no fue una pausa a mano, fue el apagón silencioso de la
@@ -249,6 +284,14 @@ conservador.
   recorrido de compra y el confusor conocido de la medición: con la tasa
   de carrito en 1.59% no se puede distinguir qué parte es el sitio y qué
   parte es la evidencia visual.
+- **🆕 ¿Cuánto cuesta realmente enviar un paquete?** Surgió con la
+  primera venta (12 sep, sección 58 del manual): el combo dejó $342.50
+  de margen bruto, pero al pasar el piso de $799 el envío va gratis y lo
+  absorbe la tienda. Se cobran $189 por debajo del piso, pero ese es el
+  precio al cliente, no el costo de la paquetería. **Con ese número se
+  puede saber por fin si la campaña gana o pierde dinero por venta, y si
+  el piso de $799 compra margen o lo regala.** Es el dato que más
+  cambiaría las decisiones ahora mismo.
 - **Reseñas de producto**: 8 a nivel tienda, 0 por producto. Meta: 30+
   con promedio real (4.5-4.8), no defender el 5.00 actual.
 - **Umbral de envío**: se subió el piso del catálogo anunciable a $799 y
@@ -606,7 +649,7 @@ tracking interno de origen de conversación de Zipchat.
 
 ---
 
-## 8. Meta Ads (Facebook/Instagram) — 🟢 reactivada, tope en $1,485 (ver arriba)
+## 8. Meta Ads (Facebook/Instagram) — 🎉 primera venta real el 12 sep (ver arriba)
 
 > **Actualización 22 de agosto:** todo lo que sigue describe el arranque
 > del 15 de agosto (correcto en su momento). La campaña se reconstruyó

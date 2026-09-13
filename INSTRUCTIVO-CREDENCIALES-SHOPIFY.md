@@ -138,6 +138,20 @@ Esta tabla es la fuente de verdad. **La lista que aparece en
 | `read_inventory`, `write_inventory` | `scripts/conciliar-inventario.py` | `POST /inventory_levels/set.json` |
 | `read_locations` | `conciliar-inventario.py` (robustez) | hoy toma `primary_location_id` de `/shop.json` |
 | `read_legal_policies`, `write_legal_policies` | políticas de la tienda | páginas de política |
+| `read_orders` | verificar pedidos reales contra eventos de Meta (agregado el 12 sep 2026) | `GET /orders.json` |
+
+> ⚠️ **`read_orders` es nuevo y los tokens viejos NO lo tienen.** Se
+> agregó el 12 de septiembre de 2026, cuando hizo falta confirmar la
+> primera venta real contra el pedido de Shopify y la API respondió
+> `403: This action requires merchant approval for read_orders scope`
+> (sección 58 del manual). **Un token emitido antes de esa fecha va a
+> seguir dando 403 en `/orders.json`** aunque todo lo demás funcione —
+> hay que rehacer el flujo OAuth con la URL de abajo, que ya lo incluye.
+>
+> Ojo con el nombre del error: dice *"merchant approval"*, lo que sugiere
+> que falta que alguien apruebe algo en el admin. En este caso no era
+> eso: **simplemente el scope no estaba pedido en la URL de
+> autorización.**
 | `read_online_store_navigation`, `write_online_store_navigation` | menús de navegación | — |
 
 ### ⚠️ La regla que evita el desastre
@@ -188,7 +202,7 @@ Con **la lista completa de scopes**. Esta es la URL vigente, lista para
 copiar:
 
 ```
-https://wfuxvx-yn.myshopify.com/admin/oauth/authorize?client_id=34956e1ca24e94b27c531d85cb898e99&scope=read_legal_policies,write_legal_policies,read_online_store_navigation,write_online_store_navigation,read_products,write_products,read_themes,write_themes,read_publications,write_publications,read_inventory,write_inventory,read_locations&redirect_uri=https%3A%2F%2Fexample.com&state=intemperie2026
+https://wfuxvx-yn.myshopify.com/admin/oauth/authorize?client_id=34956e1ca24e94b27c531d85cb898e99&scope=read_legal_policies,write_legal_policies,read_online_store_navigation,write_online_store_navigation,read_products,write_products,read_themes,write_themes,read_publications,write_publications,read_inventory,write_inventory,read_locations,read_orders&redirect_uri=https%3A%2F%2Fexample.com&state=intemperie2026
 ```
 
 ### Paso 3 — El dueño la abre y autoriza
