@@ -859,7 +859,13 @@ propósito **no menciona ninguna ubicación** — decisión del dueño.
 [`scripts/generar-carta-bienvenida.py`](./scripts/generar-carta-bienvenida.py)
 y volver a correr `python3 scripts/generar-carta-bienvenida.py` — no se
 edita el PDF a mano. No usa ningún token (ni Shopify ni Meta), es
-generación local pura.
+generación local pura. Instructivo completo, con cómo revisar que el PDF
+no se haya desbordado a una segunda página, en
+[`INSTRUCTIVO-CARTA-BIENVENIDA.md`](./INSTRUCTIVO-CARTA-BIENVENIDA.md).
+
+**Graphify:** al ser código nuevo de verdad (no documentación ni una
+llamada de API), el grafo de `scripts/` sí se movió esta vez —
+**101/163/11 → 111/178/12**, verificado contando en `graph.json`.
 
 ## Datos de contacto ya integrados
 
