@@ -86,6 +86,7 @@ como respaldo
 56. [Reactivación de la campaña, tras dos arreglos de sitio (9-10 sep)](#56-reactivación-de-la-campaña-tras-dos-arreglos-de-sitio-9-10-sep)
 57. [Conciliación del 10 de septiembre: los combos manuales pasan la prueba](#57-conciliación-del-10-de-septiembre-los-combos-manuales-pasan-la-prueba)
 58. [La primera venta real (12 sep)](#58-la-primera-venta-real-12-sep)
+59. [El costo real de envío: guía a Quintana Roo, $223 (14 sep)](#59-el-costo-real-de-envío-guía-a-quintana-roo-223-14-sep)
 
 ---
 
@@ -6694,3 +6695,72 @@ No hay nada que cambiar en la campaña por ahora. La decisión de qué
 hacer con el saldo restante —y si vale la pena recargar cuando se
 agote— es del dueño, y ahora por primera vez se puede tomar con un dato
 de venta real encima de la mesa en vez de con proyecciones.
+
+> 📦 **La pregunta del costo de envío ya tiene respuesta — ver
+> [sección 59](#59-el-costo-real-de-envío-guía-a-quintana-roo-223-14-sep).**
+> Margen neto real de esta venta: $70.67 (8.3%), no negativo, pero
+> delgado — y sensible a la distancia del envío.
+
+---
+
+## 59. El costo real de envío: guía a Quintana Roo, $223 (14 sep)
+
+Continuación directa de §58 — cierra la pregunta que quedó abierta ahí:
+*¿el combo de $849 deja ganancia real, contando el envío?*
+
+### Separar el gasto de una sola vez del costo que se repite
+
+El dueño reportó tres cifras juntas, y la primera lectura ("perdimos con
+este pedido") mezclaba dos cosas de naturaleza distinta:
+
+| Gasto | Naturaleza |
+|---|---|
+| $500 recarga a Skydropx | **De una sola vez.** Es saldo de cartera (mínimo de recarga la primera vez), no el costo de esta guía — queda saldo para las siguientes sin volver a recargar |
+| 6 cajas por $293 ($48.83 c/u) | **En su mayoría de una sola vez.** Este pedido usó 1; las otras 5 son inventario para envíos futuros de cañas |
+| **Guía real de Skydropx: $223** | **Esto sí se repite en cada envío** — es el costo marginal real de esta venta |
+
+**"Perdimos, entre comillas" era la lectura correcta del dueño**: cargarle
+el setup completo (recarga + las 6 cajas) a la primera venta da un número
+mucho peor del real. El costo que importa para decidir el margen de cada
+combo futuro es solo la guía + 1 caja.
+
+### El margen real
+
+| | |
+|---|---|
+| Venta | $849.00 |
+| Costo del combo | $506.50 |
+| Margen bruto | $342.50 |
+| Guía real (a Quintana Roo) | $223.00 |
+| 1 caja | $48.83 |
+| **Margen neto (producto + envío)** | **$70.67 — 8.3% del precio de venta** |
+
+**No hubo pérdida.** Pero el margen quedó muy delgado, y **el hallazgo
+que importa no es este número — es por qué salió así.**
+
+### El envío depende de la distancia, y eso cambia la lectura del piso de $799
+
+Esta guía costó **$223**, es decir **$34 más** que los **$189** que el
+sitio le cobra a un cliente por debajo del piso de $799
+(`snippets/pagos-aceptados.liquid`, umbral documentado en §41/§47). El
+piso de envío gratis se diseñó asumiendo que el costo real se absorbe
+dentro del margen — pero ese costo **no es fijo**: cambia según qué tan
+lejos esté el destino. Un pedido dentro de la misma región del centro del
+país probablemente cuesta bastante menos que uno a Quintana Roo.
+
+**$70.67 es el peor caso conocido hasta ahora, no el típico.** Un cliente
+cercano deja más margen; uno igual de lejos, en el límite, podría costar
+más de lo que se gana en el combo.
+
+> ⚠️ **Límite de esta conclusión: n=1 guía.** No se puede fijar todavía
+> un "costo de envío típico" ni decidir si el piso de $799 necesita
+> subir — hace falta ver el costo de guía de 3-5 envíos más, a distintas
+> distancias, para conocer el rango real. Es un pendiente de **muestra**,
+> no de **dato faltante**: ya se sabe cómo medirlo, falta repetirlo.
+
+### Qué NO se decide todavía
+
+No se toca el piso de $799 en esta ola. Con una sola guía, subirlo o
+bajarlo sería una decisión a ciegas — exactamente el tipo de cambio que
+este proyecto ha evitado hacer sin datos suficientes en cada ronda
+anterior.

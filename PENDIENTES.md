@@ -284,14 +284,18 @@ conservador.
   recorrido de compra y el confusor conocido de la medición: con la tasa
   de carrito en 1.59% no se puede distinguir qué parte es el sitio y qué
   parte es la evidencia visual.
-- **🆕 ¿Cuánto cuesta realmente enviar un paquete?** Surgió con la
-  primera venta (12 sep, sección 58 del manual): el combo dejó $342.50
-  de margen bruto, pero al pasar el piso de $799 el envío va gratis y lo
-  absorbe la tienda. Se cobran $189 por debajo del piso, pero ese es el
-  precio al cliente, no el costo de la paquetería. **Con ese número se
-  puede saber por fin si la campaña gana o pierde dinero por venta, y si
-  el piso de $799 compra margen o lo regala.** Es el dato que más
-  cambiaría las decisiones ahora mismo.
+- **✅ Costo real de envío, resuelto en parte (14 sep).** La guía real
+  del primer pedido (a Quintana Roo) costó **$223** — no los $189 que se
+  cobran por debajo del piso de $799, y no la recarga de $500 a Skydropx
+  (eso es saldo de cartera, no el costo del envío). Margen neto real de
+  esa venta: **$70.67 (8.3%)** — no hay pérdida, pero el margen es
+  delgado y **el envío sale más caro mientras más lejos esté el
+  cliente**. Detalle completo en la
+  [sección 59 del manual](./MANUAL-PROYECTO.md#59-el-costo-real-de-envío-guía-a-quintana-roo-223-14-sep).
+  - **🆕 Pendiente más preciso que antes**: reunir el costo de guía de
+    3-5 envíos más, a distintas distancias, para saber el rango real y
+    decidir si el piso de $799 necesita ajustarse. Ya no es "no sabemos
+    nada" — es "falta repetir la medición".
 - **Reseñas de producto**: 8 a nivel tienda, 0 por producto. Meta: 30+
   con promedio real (4.5-4.8), no defender el 5.00 actual.
 - **Umbral de envío**: se subió el piso del catálogo anunciable a $799 y
