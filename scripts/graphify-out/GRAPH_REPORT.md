@@ -1,16 +1,16 @@
-# Graph Report - scripts  (2026-09-09)
+# Graph Report - scripts  (2026-09-14)
 
 ## Corpus Check
-- 11 files · ~10,566 words
+- 12 files · ~33,781 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 101 nodes · 163 edges · 11 communities (10 shown, 1 thin omitted)
-- Extraction: 95% EXTRACTED · 5% INFERRED · 0% AMBIGUOUS · INFERRED: 8 edges (avg confidence: 0.85)
+- 111 nodes · 178 edges · 12 communities (11 shown, 1 thin omitted)
+- Extraction: 96% EXTRACTED · 4% INFERRED · 0% AMBIGUOUS · INFERRED: 8 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `66d87773`
+- Built from commit: `b191d579`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -26,6 +26,7 @@
 - instalar-entorno.sh
 - rebuild-mapa-3d.py
 - verificar-herramental.sh
+- generar-carta-bienvenida.py
 
 ## God Nodes (most connected - your core abstractions)
 1. `api_request()` - 9 edges
@@ -36,8 +37,8 @@
 6. `cmd_activar()` - 6 edges
 7. `main()` - 5 edges
 8. `keys_from_git()` - 5 edges
-9. `instalar-entorno.sh script` - 5 edges
-10. `cmd_reporte()` - 5 edges
+9. `construir_story()` - 5 edges
+10. `instalar-entorno.sh script` - 5 edges
 
 ## Surprising Connections (you probably didn't know these)
 - None detected - all connections are within the same source files.
@@ -45,7 +46,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (11 total, 1 thin omitted)
+## Communities (12 total, 1 thin omitted)
 
 ### Community 0 - "conciliar-inventario.py"
 Cohesion: 0.23
@@ -87,9 +88,13 @@ Nodes (7): bien(), falla(), MERCADOS, omite(), paso(), PLUGINS, instalar-entorno
 Cohesion: 0.83
 Nodes (3): instalar_de(), marketplace_de(), verificar-herramental.sh script
 
+### Community 11 - "generar-carta-bienvenida.py"
+Cohesion: 0.33
+Nodes (9): construir_story(), estilos(), generar_hoja_imprimible(), generar_tarjeta_unica(), main(), La lista de flowables de UNA carta. Se reutiliza tal cual para la tarjeta de…, La pieza de referencia: una sola tarjeta, media carta vertical., Carta horizontal (11x8.5) con DOS copias lado a lado -- imprimir y cortar por… (+1 more)
+
 ## Knowledge Gaps
 - **8 isolated node(s):** `MERCADOS`, `PLUGINS`, `Por que existe esto`, `Uso rapido`, `Automatico en cada push` (+3 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 25 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 28 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **1 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions

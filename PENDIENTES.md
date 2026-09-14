@@ -843,6 +843,24 @@ agosto (Ola 7, sección 47 del manual):**
 
 ---
 
+## Carta de bienvenida para cada envío — lista para imprimir (14 sep)
+
+📄 [`materiales-impresos/carta-bienvenida-imprimible.pdf`](./materiales-impresos/carta-bienvenida-imprimible.pdf)
+— dos cartas lado a lado en una hoja carta horizontal, imprimir y cortar
+por la mitad (línea de corte justo a los 5.5"). También está la pieza
+suelta en [`materiales-impresos/carta-bienvenida.pdf`](./materiales-impresos/carta-bienvenida.pdf).
+
+Bienvenida a la familia Intemperie México, pide una reseña con una razón
+concreta (no un genérico "califícanos 5 estrellas"), y va firmada
+"E.L.C., CEO Intemperie México" con el logo real de la tienda. A
+propósito **no menciona ninguna ubicación** — decisión del dueño.
+
+**Si el texto necesita cambiar**: editar `CONTENIDO` en
+[`scripts/generar-carta-bienvenida.py`](./scripts/generar-carta-bienvenida.py)
+y volver a correr `python3 scripts/generar-carta-bienvenida.py` — no se
+edita el PDF a mano. No usa ningún token (ni Shopify ni Meta), es
+generación local pura.
+
 ## Datos de contacto ya integrados
 
 Por si se necesitan para otros usos:

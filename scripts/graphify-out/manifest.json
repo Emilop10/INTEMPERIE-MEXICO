@@ -64,5 +64,23 @@
     "seen": 1788970181.6490207,
     "ast_hash": "78024e4e4901ea817a6da895307229a0",
     "semantic_hash": ""
+  },
+  "generar-carta-bienvenida.py": {
+    "mtime": 1789411356.6477573,
+    "seen": 1789411397.3290846,
+    "ast_hash": "e569b0f92ff7f6afddcfe1d565de533c",
+    "semantic_hash": ""
+  },
+  "assets/fonts/InstrumentSans-OFL.txt": {
+    "mtime": 1789411215.7961848,
+    "seen": 1789411397.329103,
+    "ast_hash": "030a9e886b4fe2e1720b5db020eca3ad",
+    "semantic_hash": ""
+  },
+  "assets/logo-intemperie.png": {
+    "mtime": 1789411193.0157557,
+    "seen": 1789411397.329105,
+    "ast_hash": "290ce58bf54a46dc7ff7fe533be3799b",
+    "semantic_hash": ""
   }
 }

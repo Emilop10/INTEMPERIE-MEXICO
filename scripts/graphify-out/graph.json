@@ -244,6 +244,78 @@
       "source_location": "L93"
     },
     {
+      "id": "generar_carta_bienvenida_construir_story",
+      "label": "construir_story()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "generar-carta-bienvenida.py",
+      "file_type": "code",
+      "norm_label": "construir_story()",
+      "source_file": "generar-carta-bienvenida.py",
+      "source_location": "L122"
+    },
+    {
+      "id": "generar_carta_bienvenida_estilos",
+      "label": "estilos()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "generar-carta-bienvenida.py",
+      "file_type": "code",
+      "norm_label": "estilos()",
+      "source_file": "generar-carta-bienvenida.py",
+      "source_location": "L97"
+    },
+    {
+      "id": "generar_carta_bienvenida_generar_hoja_imprimible",
+      "label": "generar_hoja_imprimible()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "generar-carta-bienvenida.py",
+      "file_type": "code",
+      "norm_label": "generar_hoja_imprimible()",
+      "source_file": "generar-carta-bienvenida.py",
+      "source_location": "L163"
+    },
+    {
+      "id": "generar_carta_bienvenida_generar_tarjeta_unica",
+      "label": "generar_tarjeta_unica()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "generar-carta-bienvenida.py",
+      "file_type": "code",
+      "norm_label": "generar_tarjeta_unica()",
+      "source_file": "generar-carta-bienvenida.py",
+      "source_location": "L146"
+    },
+    {
+      "id": "generar_carta_bienvenida_main",
+      "label": "main()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "generar-carta-bienvenida.py",
+      "file_type": "code",
+      "norm_label": "main()",
+      "source_file": "generar-carta-bienvenida.py",
+      "source_location": "L191"
+    },
+    {
+      "id": "generar_carta_bienvenida_registrar_fuentes",
+      "label": "registrar_fuentes()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "generar-carta-bienvenida.py",
+      "file_type": "code",
+      "norm_label": "registrar_fuentes()",
+      "source_file": "generar-carta-bienvenida.py",
+      "source_location": "L90"
+    },
+    {
       "id": "meta_ads_api_request",
       "label": "api_request()",
       "_callable": true,
@@ -867,6 +939,50 @@
       "norm_label": "verificar-herramental.sh script",
       "source_file": "verificar-herramental.sh",
       "source_location": "L1"
+    },
+    {
+      "id": "generar_carta_bienvenida",
+      "label": "generar-carta-bienvenida.py",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "generar-carta-bienvenida.py",
+      "file_type": "code",
+      "norm_label": "generar-carta-bienvenida.py",
+      "source_file": "generar-carta-bienvenida.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "generar_carta_bienvenida_rationale_123",
+      "label": "La lista de flowables de UNA carta. Se reutiliza tal cual para la tarjeta de\u2026",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "generar-carta-bienvenida.py",
+      "file_type": "rationale",
+      "norm_label": "la lista de flowables de una carta. se reutiliza tal cual para la tarjeta de...",
+      "source_file": "generar-carta-bienvenida.py",
+      "source_location": "L123"
+    },
+    {
+      "id": "generar_carta_bienvenida_rationale_147",
+      "label": "La pieza de referencia: una sola tarjeta, media carta vertical.",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "generar-carta-bienvenida.py",
+      "file_type": "rationale",
+      "norm_label": "la pieza de referencia: una sola tarjeta, media carta vertical.",
+      "source_file": "generar-carta-bienvenida.py",
+      "source_location": "L147"
+    },
+    {
+      "id": "generar_carta_bienvenida_rationale_164",
+      "label": "Carta horizontal (11x8.5) con DOS copias lado a lado -- imprimir y cortar por\u2026",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "generar-carta-bienvenida.py",
+      "file_type": "rationale",
+      "norm_label": "carta horizontal (11x8.5) con dos copias lado a lado -- imprimir y cortar por...",
+      "source_file": "generar-carta-bienvenida.py",
+      "source_location": "L164"
     },
     {
       "id": "readme_deploy",
@@ -1563,6 +1679,78 @@
       "context": "call",
       "source_file": "deploy-shopify.py",
       "source_location": "L80",
+      "weight": 1.0
+    },
+    {
+      "source": "generar_carta_bienvenida_construir_story",
+      "target": "generar_carta_bienvenida_estilos",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "generar-carta-bienvenida.py",
+      "source_location": "L125",
+      "weight": 1.0
+    },
+    {
+      "source": "generar_carta_bienvenida_generar_hoja_imprimible",
+      "target": "generar_carta_bienvenida_construir_story",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "generar-carta-bienvenida.py",
+      "source_location": "L186",
+      "weight": 1.0
+    },
+    {
+      "source": "generar_carta_bienvenida_generar_tarjeta_unica",
+      "target": "generar_carta_bienvenida_construir_story",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "generar-carta-bienvenida.py",
+      "source_location": "L159",
+      "weight": 1.0
+    },
+    {
+      "source": "generar_carta_bienvenida_main",
+      "target": "generar_carta_bienvenida_registrar_fuentes",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "generar-carta-bienvenida.py",
+      "source_location": "L193",
+      "weight": 1.0
+    },
+    {
+      "source": "generar_carta_bienvenida_main",
+      "target": "generar_carta_bienvenida_generar_tarjeta_unica",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "generar-carta-bienvenida.py",
+      "source_location": "L194",
+      "weight": 1.0
+    },
+    {
+      "source": "generar_carta_bienvenida_main",
+      "target": "generar_carta_bienvenida_generar_hoja_imprimible",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "generar-carta-bienvenida.py",
+      "source_location": "L195",
       "weight": 1.0
     },
     {
@@ -2318,6 +2506,72 @@
       "weight": 1.0
     },
     {
+      "source": "generar_carta_bienvenida",
+      "target": "generar_carta_bienvenida_construir_story",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "generar-carta-bienvenida.py",
+      "source_location": "L122",
+      "weight": 1.0
+    },
+    {
+      "source": "generar_carta_bienvenida",
+      "target": "generar_carta_bienvenida_generar_tarjeta_unica",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "generar-carta-bienvenida.py",
+      "source_location": "L146",
+      "weight": 1.0
+    },
+    {
+      "source": "generar_carta_bienvenida",
+      "target": "generar_carta_bienvenida_generar_hoja_imprimible",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "generar-carta-bienvenida.py",
+      "source_location": "L163",
+      "weight": 1.0
+    },
+    {
+      "source": "generar_carta_bienvenida",
+      "target": "generar_carta_bienvenida_main",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "generar-carta-bienvenida.py",
+      "source_location": "L191",
+      "weight": 1.0
+    },
+    {
+      "source": "generar_carta_bienvenida",
+      "target": "generar_carta_bienvenida_registrar_fuentes",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "generar-carta-bienvenida.py",
+      "source_location": "L90",
+      "weight": 1.0
+    },
+    {
+      "source": "generar_carta_bienvenida",
+      "target": "generar_carta_bienvenida_estilos",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "generar-carta-bienvenida.py",
+      "source_location": "L97",
+      "weight": 1.0
+    },
+    {
       "source": "instalar_entorno",
       "target": "instalar_entorno_sh__entry",
       "relation": "contains",
@@ -2945,6 +3199,39 @@
       "weight": 1.0
     },
     {
+      "source": "generar_carta_bienvenida_rationale_123",
+      "target": "generar_carta_bienvenida_construir_story",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "generar-carta-bienvenida.py",
+      "source_location": "L123",
+      "weight": 1.0
+    },
+    {
+      "source": "generar_carta_bienvenida_rationale_147",
+      "target": "generar_carta_bienvenida_generar_tarjeta_unica",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "generar-carta-bienvenida.py",
+      "source_location": "L147",
+      "weight": 1.0
+    },
+    {
+      "source": "generar_carta_bienvenida_rationale_164",
+      "target": "generar_carta_bienvenida_generar_hoja_imprimible",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "generar-carta-bienvenida.py",
+      "source_location": "L164",
+      "weight": 1.0
+    },
+    {
       "source": "meta_ads_rationale_127",
       "target": "meta_ads_cmd_pausar",
       "relation": "rationale_for",
@@ -3097,5 +3384,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "66d877731295d3ef894bc214771d9ebcff28f706"
+  "built_at_commit": "b191d579b6e92d797cafcd1ff48e030889ae5a4e"
 }

@@ -9,5 +9,6 @@
   "7": "crear-combos.py",
   "8": "instalar-entorno.sh",
   "9": "rebuild-mapa-3d.py",
-  "10": "verificar-herramental.sh"
+  "10": "verificar-herramental.sh",
+  "11": "generar-carta-bienvenida.py"
 }
