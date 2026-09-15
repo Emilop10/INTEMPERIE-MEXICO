@@ -10,5 +10,6 @@
   "8": "instalar-entorno.sh",
   "9": "rebuild-mapa-3d.py",
   "10": "verificar-herramental.sh",
-  "11": "generar-carta-bienvenida.py"
+  "11": "generar-carta-bienvenida.py",
+  "12": "prueba-tarjetas-coleccion.py"
 }

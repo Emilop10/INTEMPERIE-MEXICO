@@ -88,6 +88,7 @@ como respaldo
 58. [La primera venta real (12 sep)](#58-la-primera-venta-real-12-sep)
 59. [El costo real de envío: guía a Quintana Roo, $223 (14 sep)](#59-el-costo-real-de-envío-guía-a-quintana-roo-223-14-sep)
 60. [Meta optimiza por conversión, no por margen (15 sep)](#60-meta-optimiza-por-conversión-no-por-margen-15-sep)
+61. [Los títulos encimados de la cuadrícula: el síntoma estaba en el título, la causa en el precio (15 sep)](#61-los-títulos-encimados-de-la-cuadrícula-el-síntoma-estaba-en-el-título-la-causa-en-el-precio-15-sep)
 
 ---
 
@@ -7008,3 +7009,184 @@ asumirlo: **463 nodos / 696 aristas** (`tema-shopify/`) y **111 / 178**
 `PENDIENTES.md`, que no viven dentro del alcance de ninguno de los dos
 grafos. Verificado además con `git status` sobre `tema-shopify/` y
 `scripts/`: cero archivos fuente modificados.
+
+---
+
+## 61. Los títulos encimados de la cuadrícula: el síntoma estaba en el título, la causa en el precio (15 sep)
+
+El dueño abrió `/collections/combos` en el teléfono y mandó la captura:
+los títulos de dos tarjetas vecinas escritos uno encima del otro, y un
+precio saliéndose de la pantalla.
+
+### Lo que la captura decía, y que casi se pasa por alto
+
+Antes de tocar CSS se listaron las seis tarjetas de la captura y se anotó
+cuáles fallaban:
+
+| Tarjeta | Precio | ¿Se encima? |
+|---|---|---|
+| Combo Okuma Revenger | $849 | No |
+| Combo Rapala Corux 240 | ~~$1,797~~ **$1,499** | **Sí** |
+| Combo Blue Fox Power Boat | ~~$1,098~~ **$1,049** | **Sí** |
+| Combo Level Rapala Verde | $995 | No |
+| Combo Level Rapala Rojo | $1,095 | No |
+| Combo Okuma Boundary | $949 | No |
+
+**Fallan exactamente las dos que tienen precio rebajado, y ninguna más.**
+Esa correlación es la que convirtió un "se ve feo el título" en una
+hipótesis concreta, y es la razón por la que no se empezó a mover
+`.card__heading` —que es donde se ve el problema— sino `.price`.
+
+### La reproducción: medir en vez de opinar
+
+El navegador de este entorno no puede cargar el sitio en vivo (limitación
+ya documentada en §55), pero **sí puede cargar un archivo local**. Así
+que se armó una copia de la colección en disco, con el CSS real del tema,
+y se midió con Chromium de verdad a 430/390/360px.
+
+```
+=== viewport 390px, ANTES ===
+#  oferta  título                          col.der  info.der  h3.w
+0    .     Combo Okuma Revenger                193       192   176
+1    SI    Combo Rapala Corux 240              375     491.1  293.1  <-- SE SALE
+2    SI    Combo Blue Fox Power Boat           193     309.1  293.1  <-- SE SALE
+3    .     Combo Level Rapala Verde            375       374   176
+```
+
+El dato que resuelve el caso es **`h3.w`**: en las tarjetas normales el
+título mide 176px a 390px de ancho, 161px a 360px — sigue a su columna,
+como debe. En las dos rebajadas mide **293.1px en los tres viewports**,
+un número fijo que no depende del ancho de pantalla. Un ancho que ignora
+el contenedor es, por definición, un **ancho mínimo de contenido**.
+
+### La cadena causal completa
+
+En `brand-tokens.css` vivía esto, puesto en su momento por una razón
+legítima (que `"$ 3,300.00"` no se partiera después del `$`, porque el
+`money_format` de la tienda lleva un espacio ahí):
+
+```css
+.price,
+.price__container,     /* <- el problema está en estas dos líneas */
+.price-item,
+.product__sku,
+.product-single__sku {
+  font-family: var(--font-mono-family);
+  white-space: nowrap;
+}
+```
+
+`.price` y `.price__container` **no son el precio: son el contenedor del
+precio.** En un producto rebajado guardan *dos*:
+
+```html
+<div class="price price--on-sale"><div class="price__container">
+  <div class="price__sale">
+    <s class="price-item price-item--regular">$ 1,098.00 MXN</s>
+    <span class="price-item price-item--sale">$ 1,049.00 MXN</span>
+```
+
+Dawn deja exactamente un punto de quiebre entre esos dos precios —
+`.price--on-sale .price__sale { display: initial; flex-wrap: wrap }`, que
+los vuelve dos `inline-block` en flujo inline. **El `nowrap` sobre el
+contenedor borró ese punto de quiebre**, y la cadena
+`"$ 1,098.00 MXN $ 1,049.00 MXN"` quedó irrompible. De ahí en adelante:
+
+1. El ancho mínimo de contenido de `.card__information` pasa a ser esa
+   cadena: **293px**.
+2. `.card__information` es item de un grid (`.card__content`), así que
+   tiene `min-width: auto` — **no puede ser más angosto que su
+   min-content**.
+3. La columna mide 178px. La tarjeta se desborda 115px hacia la derecha.
+4. El `<h3>` hereda ese ancho de 293px y **envuelve a 293px en vez de a
+   178px**, invadiendo la columna vecina.
+
+Por eso el síntoma se ve en el título y la causa está en el precio, y por
+eso solo fallan las tarjetas con oferta: con un solo precio la cadena
+mide ~115px y cabe de sobra.
+
+> 🧠 **La lección, en una línea: `white-space: nowrap` va en las hojas,
+> nunca en los contenedores.** `.price-item` es una hoja —un precio
+> completo, la unidad que de verdad no debe partirse—. `.price` y
+> `.price__container` son ramas, y ponerles `nowrap` no protege un
+> precio: fusiona todos los que haya adentro en uno solo e indivisible.
+
+Es pariente de la trampa de §55 (`min-width: auto` en items de flex), pero
+al revés: allá el mínimo automático se había anulado de más y el contenido
+se derramaba; aquí el mínimo automático es correcto y enorme, y el que
+está mal es el contenido que lo infla.
+
+### El arreglo
+
+Una sola cosa: bajar el `nowrap` del contenedor a la hoja.
+
+```css
+.price, .price__container, .price-item,
+.product__sku, .product-single__sku {
+  font-family: var(--font-mono-family);
+  font-variant-numeric: tabular-nums;     /* el nowrap YA NO va aquí */
+}
+
+.price-item, .product__sku, .product-single__sku {
+  white-space: nowrap;                    /* solo en la pieza atómica */
+}
+```
+
+**El motivo original del `nowrap` sigue cubierto**, y se comprobó, no se
+supuso: un micro-test metió `"$ 3,300.00 MXN"` en una caja de 96px y
+midió que sigue ocupando **una sola línea**. Las otras tres reglas que
+protegen ese mismo caso quedaron intactas: `.cart-item__unit-price`,
+`.cart-item__old-price`, `.cart-item__final-price` y
+`.cart-drawer .cart-item__totals .price`.
+
+Efecto visible del arreglo: en móvil los dos precios de una oferta ahora
+se **apilan** en dos renglones. No es un compromiso, es la única salida
+geométrica — para que quepan lado a lado en una columna de 178px el tipo
+tendría que bajar a ~10px, ilegible.
+
+### La prueba de regresión
+
+Este arreglo dejó `scripts/prueba-tarjetas-coleccion.py`, que no opina:
+descarga la colección en vivo, **le sustituye `brand-tokens.css` por el
+del repositorio** —para poder validar un cambio *antes* de desplegarlo— y
+falla si el borde derecho de `.card__information` o de `.price` rebasa el
+de su `<li>`.
+
+```bash
+python3 scripts/prueba-tarjetas-coleccion.py
+python3 scripts/prueba-tarjetas-coleccion.py --coleccion binoculares
+```
+
+> ⚠️ **Una prueba que nunca falla no prueba nada.** Antes de darla por
+> buena se reintrodujo el bug a propósito y se confirmó que pasa a
+> **FALLA: 12 desbordes**; al restaurar el arreglo vuelve a **OK**. Sin
+> ese paso, un script que siempre imprime "OK" es indistinguible de uno
+> roto — la misma familia del falso negativo de §60.
+
+### Verificación
+
+| Qué | Resultado |
+|---|---|
+| Prueba con el CSS del repo | OK en 430/390/360px |
+| Colecciones cubiertas | combos, cañas, binoculares, todo-pesca, señuelos — todas OK |
+| La prueba detecta el bug | Sí: 12 desbordes al reintroducirlo |
+| Precio suelto en caja de 96px | 1 línea (no se partió) |
+| Deploy | run #50, `74b2024`, éxito |
+| **CSS en producción** | **`?v=7411839202853284501789499109`, sin `nowrap` en `.price`/`.price__container`** |
+| **Prueba contra el CSS de producción** | **OK — ninguna tarjeta se sale de su columna** |
+| Revisión visual de la captura arreglada | Sin encimados; títulos y precios dentro de su columna |
+
+> 🧰 **Trampa de entorno, para la próxima:** la primera comprobación del
+> CSS desplegado pidió
+> `…/assets/brand-tokens.css` **sin** el parámetro `?v=` y devolvió el
+> archivo viejo durante 5 minutos seguidos — parecía que el deploy había
+> fallado. No había fallado: esa URL la sirve el CDN desde caché. Lo que
+> confirma un despliegue es **que cambie el hash `?v=` dentro del HTML de
+> la página**, y pedir el CSS *con* ese hash nuevo.
+
+### Graphify de esta ola
+
+| Grafo | Antes | Después | Por qué |
+|---|---|---|---|
+| `tema-shopify/` | 463 / 696 | **463 / 696** | El cambio fueron declaraciones CSS, no topología: ni archivos ni imports nuevos. Graphify lo dijo explícitamente: *"No code-graph topology changes detected"* |
+| `scripts/` | 111 / 178 / 12 | **118 / 188 / 13** | Entra `prueba-tarjetas-coleccion.py`, que es código nuevo de verdad |

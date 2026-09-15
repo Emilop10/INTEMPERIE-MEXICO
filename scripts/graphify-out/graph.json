@@ -316,6 +316,66 @@
       "source_location": "L90"
     },
     {
+      "id": "prueba_tarjetas_coleccion_armar_repro",
+      "label": "armar_repro()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "prueba-tarjetas-coleccion.py",
+      "file_type": "code",
+      "norm_label": "armar_repro()",
+      "source_file": "prueba-tarjetas-coleccion.py",
+      "source_location": "L73"
+    },
+    {
+      "id": "prueba_tarjetas_coleccion_bajar",
+      "label": "bajar()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "prueba-tarjetas-coleccion.py",
+      "file_type": "code",
+      "norm_label": "bajar()",
+      "source_file": "prueba-tarjetas-coleccion.py",
+      "source_location": "L67"
+    },
+    {
+      "id": "prueba_tarjetas_coleccion_buscar_chrome",
+      "label": "buscar_chrome()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "prueba-tarjetas-coleccion.py",
+      "file_type": "code",
+      "norm_label": "buscar_chrome()",
+      "source_file": "prueba-tarjetas-coleccion.py",
+      "source_location": "L60"
+    },
+    {
+      "id": "prueba_tarjetas_coleccion_main",
+      "label": "main()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "prueba-tarjetas-coleccion.py",
+      "file_type": "code",
+      "norm_label": "main()",
+      "source_file": "prueba-tarjetas-coleccion.py",
+      "source_location": "L113"
+    },
+    {
+      "id": "prueba_tarjetas_coleccion_medir",
+      "label": "medir()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "prueba-tarjetas-coleccion.py",
+      "file_type": "code",
+      "norm_label": "medir()",
+      "source_file": "prueba-tarjetas-coleccion.py",
+      "source_location": "L99"
+    },
+    {
       "id": "meta_ads_api_request",
       "label": "api_request()",
       "_callable": true,
@@ -983,6 +1043,28 @@
       "norm_label": "carta horizontal (11x8.5) con dos copias lado a lado -- imprimir y cortar por...",
       "source_file": "generar-carta-bienvenida.py",
       "source_location": "L164"
+    },
+    {
+      "id": "prueba_tarjetas_coleccion",
+      "label": "prueba-tarjetas-coleccion.py",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "prueba-tarjetas-coleccion.py",
+      "file_type": "code",
+      "norm_label": "prueba-tarjetas-coleccion.py",
+      "source_file": "prueba-tarjetas-coleccion.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "prueba_tarjetas_coleccion_rationale_74",
+      "label": "Descarga la coleccion y sus CSS, y sustituye brand-tokens.css por el del repo.",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "prueba-tarjetas-coleccion.py",
+      "file_type": "rationale",
+      "norm_label": "descarga la coleccion y sus css, y sustituye brand-tokens.css por el del repo.",
+      "source_file": "prueba-tarjetas-coleccion.py",
+      "source_location": "L74"
     },
     {
       "id": "readme_deploy",
@@ -2018,6 +2100,54 @@
       "weight": 1.0
     },
     {
+      "source": "prueba_tarjetas_coleccion_armar_repro",
+      "target": "prueba_tarjetas_coleccion_bajar",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "prueba-tarjetas-coleccion.py",
+      "source_location": "L76",
+      "weight": 1.0
+    },
+    {
+      "source": "prueba_tarjetas_coleccion_main",
+      "target": "prueba_tarjetas_coleccion_buscar_chrome",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "prueba-tarjetas-coleccion.py",
+      "source_location": "L118",
+      "weight": 1.0
+    },
+    {
+      "source": "prueba_tarjetas_coleccion_main",
+      "target": "prueba_tarjetas_coleccion_armar_repro",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "prueba-tarjetas-coleccion.py",
+      "source_location": "L121",
+      "weight": 1.0
+    },
+    {
+      "source": "prueba_tarjetas_coleccion_main",
+      "target": "prueba_tarjetas_coleccion_medir",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "prueba-tarjetas-coleccion.py",
+      "source_location": "L124",
+      "weight": 1.0
+    },
+    {
       "source": "rebuild_mapa_3d_main",
       "target": "rebuild_mapa_3d_compact",
       "relation": "calls",
@@ -2748,6 +2878,61 @@
       "weight": 1.0
     },
     {
+      "source": "prueba_tarjetas_coleccion",
+      "target": "prueba_tarjetas_coleccion_main",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "prueba-tarjetas-coleccion.py",
+      "source_location": "L113",
+      "weight": 1.0
+    },
+    {
+      "source": "prueba_tarjetas_coleccion",
+      "target": "prueba_tarjetas_coleccion_buscar_chrome",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "prueba-tarjetas-coleccion.py",
+      "source_location": "L60",
+      "weight": 1.0
+    },
+    {
+      "source": "prueba_tarjetas_coleccion",
+      "target": "prueba_tarjetas_coleccion_bajar",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "prueba-tarjetas-coleccion.py",
+      "source_location": "L67",
+      "weight": 1.0
+    },
+    {
+      "source": "prueba_tarjetas_coleccion",
+      "target": "prueba_tarjetas_coleccion_armar_repro",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "prueba-tarjetas-coleccion.py",
+      "source_location": "L73",
+      "weight": 1.0
+    },
+    {
+      "source": "prueba_tarjetas_coleccion",
+      "target": "prueba_tarjetas_coleccion_medir",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "prueba-tarjetas-coleccion.py",
+      "source_location": "L99",
+      "weight": 1.0
+    },
+    {
       "source": "readme_deploy",
       "target": "readme_deploy_deploy_del_tema_a_shopify",
       "relation": "contains",
@@ -3276,6 +3461,17 @@
       "weight": 1.0
     },
     {
+      "source": "prueba_tarjetas_coleccion_rationale_74",
+      "target": "prueba_tarjetas_coleccion_armar_repro",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "prueba-tarjetas-coleccion.py",
+      "source_location": "L74",
+      "weight": 1.0
+    },
+    {
       "source": "sincronizar_canal_meta_rationale_161",
       "target": "sincronizar_canal_meta_es_prohibido",
       "relation": "rationale_for",
@@ -3384,5 +3580,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "b191d579b6e92d797cafcd1ff48e030889ae5a4e"
+  "built_at_commit": "74b2024d92212ec004196d47c7374626187482d1"
 }

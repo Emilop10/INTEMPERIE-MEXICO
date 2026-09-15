@@ -82,5 +82,11 @@
     "seen": 1789411397.329105,
     "ast_hash": "290ce58bf54a46dc7ff7fe533be3799b",
     "semantic_hash": ""
+  },
+  "prueba-tarjetas-coleccion.py": {
+    "mtime": 1789498974.3989756,
+    "seen": 1789499492.2156048,
+    "ast_hash": "192d9f2ea6fde5470c5e26ea013ad663",
+    "semantic_hash": ""
   }
 }

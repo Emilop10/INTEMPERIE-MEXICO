@@ -1,16 +1,16 @@
-# Graph Report - scripts  (2026-09-14)
+# Graph Report - scripts  (2026-09-15)
 
 ## Corpus Check
-- 12 files · ~33,781 words
+- 13 files · ~34,421 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 111 nodes · 178 edges · 12 communities (11 shown, 1 thin omitted)
+- 118 nodes · 188 edges · 13 communities (12 shown, 1 thin omitted)
 - Extraction: 96% EXTRACTED · 4% INFERRED · 0% AMBIGUOUS · INFERRED: 8 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `b191d579`
+- Built from commit: `74b2024d`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -27,6 +27,7 @@
 - rebuild-mapa-3d.py
 - verificar-herramental.sh
 - generar-carta-bienvenida.py
+- prueba-tarjetas-coleccion.py
 
 ## God Nodes (most connected - your core abstractions)
 1. `api_request()` - 9 edges
@@ -46,7 +47,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (12 total, 1 thin omitted)
+## Communities (13 total, 1 thin omitted)
 
 ### Community 0 - "conciliar-inventario.py"
 Cohesion: 0.23
@@ -92,9 +93,13 @@ Nodes (3): instalar_de(), marketplace_de(), verificar-herramental.sh script
 Cohesion: 0.33
 Nodes (9): construir_story(), estilos(), generar_hoja_imprimible(), generar_tarjeta_unica(), main(), La lista de flowables de UNA carta. Se reutiliza tal cual para la tarjeta de…, La pieza de referencia: una sola tarjeta, media carta vertical., Carta horizontal (11x8.5) con DOS copias lado a lado -- imprimir y cortar por… (+1 more)
 
+### Community 12 - "prueba-tarjetas-coleccion.py"
+Cohesion: 0.48
+Nodes (6): armar_repro(), bajar(), buscar_chrome(), main(), medir(), Descarga la coleccion y sus CSS, y sustituye brand-tokens.css por el del repo.
+
 ## Knowledge Gaps
 - **8 isolated node(s):** `MERCADOS`, `PLUGINS`, `Por que existe esto`, `Uso rapido`, `Automatico en cada push` (+3 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 28 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 29 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **1 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
