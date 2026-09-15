@@ -87,6 +87,7 @@ como respaldo
 57. [Conciliación del 10 de septiembre: los combos manuales pasan la prueba](#57-conciliación-del-10-de-septiembre-los-combos-manuales-pasan-la-prueba)
 58. [La primera venta real (12 sep)](#58-la-primera-venta-real-12-sep)
 59. [El costo real de envío: guía a Quintana Roo, $223 (14 sep)](#59-el-costo-real-de-envío-guía-a-quintana-roo-223-14-sep)
+60. [Meta optimiza por conversión, no por margen (15 sep)](#60-meta-optimiza-por-conversión-no-por-margen-15-sep)
 
 ---
 
@@ -6691,6 +6692,10 @@ Se cumplió la condición de §56: **una venta real antes del paro duro.**
 Vamos **3 de 6** en pantallas de pago sin compra, y la campaña sigue
 corriendo con **~$324 disponibles** (~6 días a $55/día).
 
+> 🔄 **Superado el 15 de septiembre:** al haber una compra de por medio,
+> el contador que aplica es el que corre *desde* esa compra, y ahí van
+> **0 de 6** — ver [sección 60](#60-meta-optimiza-por-conversión-no-por-margen-15-sep).
+
 No hay nada que cambiar en la campaña por ahora. La decisión de qué
 hacer con el saldo restante —y si vale la pena recargar cuando se
 agote— es del dueño, y ahora por primera vez se puede tomar con un dato
@@ -6764,3 +6769,242 @@ No se toca el piso de $799 en esta ola. Con una sola guía, subirlo o
 bajarlo sería una decisión a ciegas — exactamente el tipo de cambio que
 este proyecto ha evitado hacer sin datos suficientes en cada ronda
 anterior.
+
+> 📉 **La segunda mitad de esta cuenta llegó el 15 de septiembre: con el
+> costo de envío real ya se puede calcular el *ROAS de equilibrio*, y
+> resulta que este combo necesita 12x para no perder con publicidad
+> encima — ver [sección 60](#60-meta-optimiza-por-conversión-no-por-margen-15-sep).**
+
+---
+
+## 60. Meta optimiza por conversión, no por margen (15 sep)
+
+Revisión de campaña pedida por el dueño con la tienda ya arreglada y una
+venta real encima. La revisión encontró algo que ninguna de las rondas
+anteriores podía encontrar: **hasta que hubo un costo de envío real
+(§59) no se podía calcular el ROAS de equilibrio, y sin ese número el
+ROAS a secas no dice si la campaña gana o pierde dinero.**
+
+### Estado al 15 de septiembre
+
+Todo verificado en vivo contra la Marketing API con `time_range`
+explícito (nunca `date_preset`, §31) y zona `America/Chihuahua`.
+
+| | |
+|---|---|
+| `spend_cap` de la cuenta | $1,485.00 |
+| Gastado | $1,314.39 |
+| **Disponible** | **$170.61** |
+| Ritmo últimos 3 días | ~$43/día y bajando (Meta frena sola al acercarse al tope) |
+| **Vida restante** | **2-3 días** |
+
+Estructura sin cambios: un solo conjunto activo
+(`IMX | Pesca y Optica | AddToCart | Hombres 45+ | >=$500 | Ago26 v3`,
+id `120249759861080175`, $55/día). Los v1 y v2 siguen en PAUSED a
+propósito (§33: pausar, nunca borrar).
+
+### El arreglo del carrito se ve en los números
+
+Es la primera vez en el proyecto que un cambio de sitio se puede leer
+como un antes/contra-después limpio, porque la campaña estuvo corriendo
+a ambos lados del deploy de §55.
+
+| | 1-9 sep (carrito roto) | 10-15 sep (arreglado) |
+|---|---|---|
+| Gasto | $294.36 | $409.39 |
+| Ver producto → Agregar al carrito | 9 / 502 = **1.8%** | 13 / 568 = **2.3%** |
+| Agregar → Iniciar pago | 4 / 9 = **44%** | 10 / 13 = **77%** |
+| Iniciar pago → Compra | 0 / 4 | 1 / 10 |
+| Compras | **0** | **1** ($849) |
+
+El salto de 44% a 77% cae exactamente en el tramo que arregló §55 —
+agregar algo al carrito y poder llegar al botón de pagar. Es el
+movimiento esperado en el lugar esperado.
+
+> ⚠️ **No es prueba, es evidencia consistente.** Son 9 y 13 eventos.
+> Con n así, 44% contra 77% no sobrevive una prueba de proporciones
+> (§30). Lo que sí se puede afirmar es que el cambio no empeoró nada y
+> que se movió el tramo correcto.
+
+**Adquirir tráfico no es el problema, y hay que decirlo claro:** CTR
+6.63%, CPC $0.57, frecuencia 2.23 en 6 días. Es de lo mejor que ha
+tenido esta cuenta. Todo lo que sigue es un problema de qué pasa
+*después* del clic.
+
+### El paro duro se reinició solo
+
+La regla de §49 es: **6 o más `add_payment_info` con 0 compras →
+detener.** Con una compra de por medio, el contador que importa es el
+que corre *desde* esa compra:
+
+| Ventana | `add_payment_info` | Compras |
+|---|---|---|
+| 10-15 sep (desde la reactivación) | 3 | 1 |
+| 13-15 sep (desde la venta) | **0** | 0 |
+
+Vamos **0 de 6**, no 3 de 6. Nada que detener. Las entradas anteriores
+del manual y de `PENDIENTES.md` que decían "3 de 6" quedan superadas por
+esta.
+
+### El hallazgo: el gasto se fue al peor producto del catálogo
+
+Desglose por producto de los 6 días desde la reactivación
+(`breakdowns=product_id` a nivel anuncio):
+
+| Grupo | Gasto | % |
+|---|---|---|
+| **Combo Okuma Revenger $849** (un solo producto) | **$143.08** | **35%** |
+| Resto de pesca (cañas, carretes, hilo, otros combos) | $219.65 | 54% |
+| **Toda la óptica junta** (11 productos) | **$46.66** | **11%** |
+
+El Bushnell PowerView recibió **$0.32**. El Simmons Venture, **$0.70**.
+
+La explicación es mecánica y no es un error de Meta: el conjunto
+optimiza por `OFFSITE_CONVERSIONS`, el Revenger $849 fue lo único que
+convirtió, y el algoritmo duplicó ahí. **Meta no conoce nuestros
+márgenes** — no tiene forma de saberlo — así que reparte por tasa de
+conversión. Y por tasa de conversión, el peor producto del catálogo en
+términos de contribución es justamente el que gana.
+
+### ROAS de equilibrio por producto
+
+Costos reales leídos de `inventory_items` de Shopify (campo `cost`), no
+estimados. El envío se carga con el **peor caso conocido** de §59 para
+no inflar el argumento:
+
+| Producto | Precio | Costo | Margen | Envío | Contribución | **ROAS de equilibrio** |
+|---|---|---|---|---|---|---|
+| **Combo Okuma Revenger** | $849 | $506.50 | $342.50 (40%) | −$271.83 | **$70.67** | **12.01x** |
+| Binocular Simmons Venture 8x21 | $1,290 | $353.80 | $936.20 (73%) | −$223.00 | $713.20 | **1.81x** |
+| Binocular Bushnell PowerView 2 8x21 | $1,450 | $448.92 | $1,001.08 (69%) | −$223.00 | $778.08 | **1.86x** |
+| Binocular Gamo 8x40 AF | $1,970 | $941.92 | $1,028.08 (52%) | −$223.00 | $805.08 | **2.45x** |
+| Binocular Kampak Visión Nocturna | $2,900 | $1,566.00 | $1,334.00 (46%) | −$223.00 | $1,111.00 | **2.61x** |
+| Binocular Konus NewZoom 7-21x40 | $3,400 | $2,475.00 | $925.00 (27%) | −$223.00 | $702.00 | **4.84x** |
+| Binoculares Lobo 20x50 | $1,110 | $719.00 | $391.00 (35%) | −$223.00 | $168.00 | **6.61x** |
+
+**ROAS real de la campaña en la ventana 10-15 sep: 2.07x.**
+
+Ahí está todo el asunto. Con el combo de cañas la campaña necesita
+**12x** para no perder dinero y está en 2.07x — cada venta de combo
+pierde después de publicidad. Con el Simmons o el Bushnell necesita
+**1.81x-1.86x** y **ya está por encima**: serían rentables hoy, con esta
+misma campaña, sin tocar creativo ni segmentación.
+
+Dos aclaraciones que impiden sobre-leer la tabla:
+
+1. **El envío de $223 es un supuesto pesimista para óptica.** Ese número
+   es la guía de una caña a Quintana Roo, en caja especial de $48.83. Un
+   binocular es chico, ligero y no necesita esa caja. Su guía real casi
+   seguro es menor, lo que *mejora* la columna de contribución. **No está
+   verificado** — es exactamente el dato que cierra el pendiente de
+   muestra de §59.
+2. **No toda la óptica sirve.** La línea Lobo tiene 35% de margen y
+   equilibrio 6.61x; el Konus NewZoom, 27% y 4.84x. El criterio no es
+   "óptica sí, pesca no", es **contribución por unidad**, y hay que
+   mirarla producto por producto.
+
+### El conjunto de productos: el nombre miente
+
+Al revisar el `promoted_object` salió un detalle menor pero que confunde
+a quien lea el panel:
+
+```
+product_set_id 1455189226500365
+nombre : "IMX | Pesca y Optica | >=$500 en stock | sin accesorios de arma"
+filtro : price_amount >= 79900  (es decir, >= $799.00)
+         availability = in stock
+         retailer_id NOT IN [6 ids de accesorios de arma]
+26 productos
+```
+
+**El nombre dice `>=$500` y el filtro real es `>=$799`.** El filtro es el
+que manda; el nombre quedó del diseño original y nunca se actualizó
+cuando el piso de envío gratis se fijó en $799. No cambia nada del
+comportamiento, pero al leer el panel se saca la conclusión equivocada
+sobre qué productos están elegibles. Corregir el nombre cuando se toque
+el conjunto.
+
+### Qué NO se cambia ahora
+
+**Con $170.61 y 2-3 días de vida, la campaña se deja exactamente como
+está.** Tres razones, en orden de peso:
+
+1. Reestructurar el conjunto reinicia la fase de aprendizaje. El
+   remanente se iría en re-aprender en vez de en vender.
+2. Estrechar a óptica con $170 y **una** conversión de historial no
+   produce una muestra que decida nada. El resultado más probable es 0
+   ventas, que no distingue "la hipótesis es mala" de "no hubo
+   presupuesto" — y perdemos los $170 sin aprender.
+3. Es una cuenta publicitaria en vivo y una decisión de negocio, no
+   técnica. La decisión que importa no es qué hacer con los $170: es
+   **qué hacer al recargar**.
+
+### Qué sí cambiar al recargar
+
+En este orden, y con la razón por la que va en ese orden:
+
+1. **Separar óptica y pesca en dos conjuntos con presupuesto propio.**
+   Hoy la repartición del gasto la decide Meta por tasa de conversión;
+   debe decidirla el margen. Es configuración de conjunto y de
+   `product_set`, no creativo nuevo, y es la palanca más grande que
+   existe hoy en la cuenta. Va primero porque es lo único que ataca
+   directamente el hallazgo de esta sección.
+2. **Revisar el piso de $799.** Está puesto por debajo del costo real de
+   enviar una caña ($271.83 con caja, §59). Para óptica el piso funciona;
+   para cañas regala margen. Puede ser un piso distinto por tipo de
+   producto, o cobrar envío en las cañas. Va segundo porque necesita las
+   3-5 guías de muestra que §59 dejó pendientes.
+3. **Fotografía.** Con CTR de 6.63%, el anuncio vende mejor que la ficha
+   de producto: 568 vistas de producto → 13 al carrito (**2.3%**, contra
+   un 3-8% normal en e-commerce). Sigue siendo el cuello de botella
+   dominante del embudo y ahora por fin tiene número propio. Va tercero
+   solo porque depende del dueño y de tiempo de estudio, no porque pese
+   menos.
+
+### Dos trampas de método encontradas en esta revisión
+
+**1. Un 403 leído como un cero.** La primera consulta de pedidos a
+Shopify devolvió esto:
+
+```python
+d = json.load(sys.stdin)
+o = d.get('orders', [])      # <- sobre {"errors": "..."} esto da []
+print('pedidos desde 1-sep:', len(o))   # imprime 0
+```
+
+El token del scratchpad sigue **sin `read_orders`** y responde
+`403 {"errors":"[API] This action requires merchant approval for
+read_orders scope."}` (el mensaje engañoso ya documentado en
+`INSTRUCTIVO-CREDENCIALES-SHOPIFY.md`). El `.get('orders', [])` convirtió
+ese error en una lista vacía y el script reportó **"0 pedidos"** — que es
+justo lo que uno esperaría ver si de verdad no hubiera ventas. Casi se
+reporta al dueño como hallazgo.
+
+> **Regla:** en cualquier script contra una API, **revisar la clave
+> `errors` (o el código HTTP) antes de leer los datos**. Un `.get()` con
+> default convierte un fallo de autorización en un dato plausible y
+> falso. Es la misma familia de error que el grep contra un archivo
+> nunca guardado de §57: el resultado "vacío" se ve idéntico al
+> resultado "negativo".
+
+La corroboración se hizo por la otra vía, la que sí funciona con este
+token: **inventario**. El Combo Revenger $849 está en `stock=1` con
+`updated_at` = `2026-09-12`, la fecha de la venta, y sin movimiento
+desde entonces. Confirma 1 venta y ninguna después.
+
+**2. Un `GET` disfrazado de `POST`.** La consulta de GraphQL de Shopify
+(que es de solo lectura pero viaja por `POST`) la bloqueó el hook de
+`claude-seo-ai` como si fuera una escritura contra la Admin API. No es
+un falso positivo del hook: por el método HTTP no puede distinguirlas.
+**Para lecturas, usar REST con `GET`** (`/products.json`,
+`/inventory_items.json?ids=...`), que pasa sin fricción. GraphQL queda
+para lo que REST no puede hacer — como el filtro por SKU de §57.
+
+### Graphify de esta ola
+
+Sin movimiento, y se comprobó contando en `graph.json` en vez de
+asumirlo: **463 nodos / 696 aristas** (`tema-shopify/`) y **111 / 178**
+(`scripts/`). Es lo esperado — esta ola tocó solo `MANUAL-PROYECTO.md` y
+`PENDIENTES.md`, que no viven dentro del alcance de ninguno de los dos
+grafos. Verificado además con `git status` sobre `tema-shopify/` y
+`scripts/`: cero archivos fuente modificados.

@@ -173,8 +173,50 @@ Estado del embudo al 12 de septiembre, con $276.25 de $600 gastados:
 > esta venta queda cerca de tablas. Sin ese dato no se puede saber si la
 > campaña es rentable, aunque venda.
 
-**Corte actualizado: vamos 3 de 6** en pantallas de pago sin compra.
-Quedan **~$324** (~6 días a $55/día). No hay nada que cambiar por ahora.
+~~**Corte actualizado: vamos 3 de 6** en pantallas de pago sin compra.
+Quedan **~$324** (~6 días a $55/día). No hay nada que cambiar por ahora.~~
+
+---
+
+**📉 REVISIÓN DEL 15 DE SEPTIEMBRE — el gasto se está yendo al peor
+producto del catálogo.** Todo verificado en vivo contra la Marketing API
+y corroborado por inventario de Shopify. Detalle completo en
+[`MANUAL-PROYECTO.md` §60](./MANUAL-PROYECTO.md#60-meta-optimiza-por-conversión-no-por-margen-15-sep).
+
+- **Quedan $170.61** de los $1,485 del tope → **2-3 días** de vida.
+- **El paro duro se reinició solo:** desde la venta del 12-sep van
+  **0 de 6** pantallas de pago sin compra, no 3 de 6. Nada que detener.
+- **El arreglo del carrito se ve:** agregar → iniciar pago pasó de
+  **44% a 77%** entre el tramo roto (1-9 sep) y el arreglado (10-15 sep).
+  Con 9 y 13 eventos no es significativo, pero se movió el tramo correcto.
+- **Adquirir tráfico NO es el problema:** CTR 6.63%, CPC $0.57.
+- **El hallazgo:** el **35% del gasto** ($143.08 de $409.39) se fue a un
+  solo producto, el Combo Revenger $849 — el de **peor contribución del
+  catálogo**. Toda la óptica junta recibió $46.66 (11%). Meta optimiza
+  por tasa de conversión y **no conoce nuestros márgenes**.
+- **Con el costo de envío de §59 ya se puede calcular el ROAS de
+  equilibrio:** el combo de cañas necesita **12.01x** y la campaña está
+  en **2.07x** — cada venta de combo pierde después de publicidad. Dos
+  binoculares (Simmons $1,290 y Bushnell $1,450) necesitan **1.81x-1.86x**
+  y **ya serían rentables hoy** con esta misma campaña.
+
+> ✅ **Decisión tomada: no se cambia nada con $170 y 2-3 días.**
+> Reestructurar reinicia el aprendizaje y una muestra de $170 con una
+> sola conversión no decide nada. La decisión que importa es qué hacer
+> **al recargar**.
+
+> 🆕 **Pendiente del dueño — al recargar, en este orden:** (1) separar
+> óptica y pesca en dos conjuntos con presupuesto propio, para que el
+> gasto lo reparta el margen y no el algoritmo; (2) revisar el piso de
+> $799, que está por debajo del costo real de enviar una caña ($271.83
+> con caja) — necesita las 3-5 guías de muestra que dejó pendientes §59;
+> (3) fotografía, que sigue siendo el cuello de botella: 568 vistas de
+> producto → 13 al carrito (**2.3%**, contra 3-8% normal).
+
+> 🔧 **Arreglo menor pendiente:** el conjunto de productos se llama
+> `IMX | Pesca y Optica | >=$500 en stock...` pero su filtro real es
+> **`>= $799`**. El nombre quedó del diseño original y confunde al leer
+> el panel. Corregirlo cuando se toque el conjunto.
 
 ---
 
