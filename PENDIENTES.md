@@ -913,6 +913,36 @@ no se haya desbordado a una segunda página, en
 llamada de API), el grafo de `scripts/` sí se movió esta vez —
 **101/163/11 → 111/178/12**, verificado contando en `graph.json`.
 
+## ~~Títulos encimados en la cuadrícula de colección (móvil)~~ ✅ Resuelto (15 sep)
+
+El dueño lo vio en su teléfono en `/collections/combos`: los títulos de
+dos tarjetas vecinas escritos uno encima del otro y un precio saliéndose
+de la pantalla. Confirmado arreglado por él mismo el mismo día.
+
+**La causa no estaba donde se veía.** Fallaban exactamente las dos
+tarjetas con precio rebajado y ninguna de las otras cuatro: un
+`white-space: nowrap` estaba puesto sobre `.price` y `.price__container`
+—que son *contenedores*— y en un producto rebajado eso fusiona los dos
+precios en una cadena indivisible de 293px dentro de una columna de
+178px. El título heredaba ese ancho y envolvía mal. Detalle completo en
+[`MANUAL-PROYECTO.md` §61](./MANUAL-PROYECTO.md#61-los-títulos-encimados-de-la-cuadrícula-el-síntoma-estaba-en-el-título-la-causa-en-el-precio-15-sep).
+
+> 🧠 **Regla que queda para el tema:** `white-space: nowrap` va en las
+> hojas (`.price-item` = un precio), nunca en los contenedores. En una
+> rama no protege un precio — fusiona todos los que haya adentro.
+
+> 🧰 **Herramienta nueva que se puede correr cuando quieras**, sin token
+> y sin tocar nada:
+> ```bash
+> python3 scripts/prueba-tarjetas-coleccion.py
+> python3 scripts/prueba-tarjetas-coleccion.py --coleccion binoculares
+> ```
+> Mide con un navegador real y avisa si alguna tarjeta se sale de su
+> columna. Conviene correrla después de cualquier cambio de CSS que toque
+> tarjetas, precios o tipografía.
+
+---
+
 ## Datos de contacto ya integrados
 
 Por si se necesitan para otros usos:

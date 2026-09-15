@@ -7175,6 +7175,16 @@ python3 scripts/prueba-tarjetas-coleccion.py --coleccion binoculares
 | **CSS en producción** | **`?v=7411839202853284501789499109`, sin `nowrap` en `.price`/`.price__container`** |
 | **Prueba contra el CSS de producción** | **OK — ninguna tarjeta se sale de su columna** |
 | Revisión visual de la captura arreglada | Sin encimados; títulos y precios dentro de su columna |
+| **Confirmación del dueño, en su teléfono** | **"ya se ve bien" — 15 sep** |
+
+> ✅ **Esta última fila es la que cierra el caso, y no es una formalidad.**
+> Todo lo demás de esta tabla lo produjo Chromium headless midiendo una
+> copia local: prueba que la geometría es correcta, no que el sitio real
+> se vea bien en un teléfono real, con su fuente, su densidad de pantalla
+> y su navegador. Mientras el navegador de este entorno no pueda cargar
+> el sitio en vivo (§55), **el ojo del dueño sigue siendo el único
+> instrumento que mide eso**, y conviene pedirlo explícitamente en vez de
+> dar por cerrado un arreglo visual con números.
 
 > 🧰 **Trampa de entorno, para la próxima:** la primera comprobación del
 > CSS desplegado pidió
