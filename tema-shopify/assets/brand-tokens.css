@@ -84,10 +84,29 @@ h1, h2, h3,
 .product-single__sku {
   font-family: var(--font-mono-family);
   font-variant-numeric: tabular-nums;
-  /* El money_format de la tienda es "$ {{amount}}" (con espacio), y Geist
-     Mono es mas ancho que la fuente sans original de Dawn — en columnas
-     angostas (celda de precio del carrito en movil) el navegador partia
-     la linea justo en ese espacio: "$" arriba, "3,300.00" abajo. */
+}
+
+/* El money_format de la tienda es "$ {{amount}}" (con espacio), y Geist
+   Mono es mas ancho que la fuente sans original de Dawn — en columnas
+   angostas (celda de precio del carrito en movil) el navegador partia
+   la linea justo en ese espacio: "$" arriba, "3,300.00" abajo.
+
+   OJO, ESTO YA SE ROMPIO UNA VEZ (ver seccion 61 del manual): el nowrap
+   va SOLO en la pieza ATOMICA — .price-item es UN precio completo. Nunca
+   en .price ni en .price__container, que son CONTENEDORES: en un producto
+   rebajado guardan DOS precios ("$ 1,098.00 MXN" tachado + "$ 1,049.00
+   MXN"). Ponerles nowrap borra el unico punto de quiebre que Dawn dejo
+   entre ambos (.price--on-sale .price__sale {display:initial; flex-wrap:
+   wrap} son dos inline-block), la cadena entera se vuelve irrompible, y
+   el ancho minimo de contenido de .card__information —que es item de
+   grid, o sea min-width:auto— se dispara a ~293px. La tarjeta ya no cabe
+   en su columna de ~178px y el titulo se encima con el de la tarjeta
+   vecina. El sintoma se ve en el TITULO, pero la causa esta en el PRECIO.
+
+   Regla general: nowrap solo en hojas, jamas en contenedores. */
+.price-item,
+.product__sku,
+.product-single__sku {
   white-space: nowrap;
 }
 
