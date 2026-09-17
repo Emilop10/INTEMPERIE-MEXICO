@@ -942,6 +942,111 @@ no se haya desbordado a una segunda página, en
 llamada de API), el grafo de `scripts/` sí se movió esta vez —
 **101/163/11 → 111/178/12**, verificado contando en `graph.json`.
 
+## 🔴 Cambios de datos en vivo pendientes de visto bueno del dueño (17 sep)
+
+Los tres salieron de auditar las fotos. **Ninguno está aplicado**: tocan
+datos de producto en la tienda en vivo y esperan aprobación.
+
+| # | Qué | Productos | Propuesta |
+|---|---|---|---|
+| 1 | Se titulan **"Negro"** y son **grises** (medido: 7.4% y 6.7% de píxeles realmente negros) | Simmons Venture 8x21, Bushnell PowerView 2 8x21 | Quitar "Negro" o cambiarlo por "Gris Grafito" |
+| 2 | La foto anuncia un **calibre distinto** al que se vende (la del 0.70mm dice `0,25mm`) | **47 de 55** productos Hilo Araty | Una foto genérica sin etiqueta legible para toda la línea + calibre en la ficha técnica |
+| 3 | Etiqueta de **código de barras** pegada en el mango, visible en el héroe | Combo Okuma Revenger $849 | Retocar (quitar la etiqueta) o volver a fotografiar |
+
+El 1 y el 2 son los urgentes: **son los dos únicos que pueden provocar
+una devolución**, y el 1 cae justo sobre los dos productos de mejor
+contribución del catálogo.
+
+---
+
+## 📊 Productos más visitados en la campaña (16 ago – 17 sep)
+
+Pedido del dueño para decidir a cuáles hacerles énfasis. Fuente: desglose
+`breakdowns=product_id` de la Marketing API, acción `onsite_web_view_content`.
+**2,475 vistas totales**; los 22 de abajo concentran el 83%.
+
+| # | Producto | Vistas | % | ATC | Tasa | Contribución | Equilibrio | Stock |
+|---|---|---|---|---|---|---|---|---|
+| 1 | Combo Okuma Elite Pro 7'0" | **290** | 11.7% | 8 | 2.8% | $77.69 | 11.84x | **🔴 0** |
+| 2 | Combo Okuma Revenger 8'0" | **261** | 10.5% | **12** | 4.6% | $104.66 | 8.11x | 🟡 1 |
+| 3 | Combo Level Rapala Verde 6'6" | 129 | 5.2% | 2 | 1.6% | $150.58 | 6.61x | 3 |
+| 4 | Combo Okuma Boundary 7'0" | 128 | 5.2% | 3 | 2.3% | $154.67 | 6.14x | 2 |
+| 5 | Caña Shimano Stimula 6'0" | 122 | 4.9% | 1 | 0.8% | $167.24 | 5.08x | 🟡 1 |
+| 6 | Caña Okuma Tundra Pro SP 7'0" | 117 | 4.7% | 0 | 0% | $139.11 | 7.18x | 🟡 1 |
+| 7 | Combo Level Rapala Rojo 7'0" | 115 | 4.6% | 0 | 0% | $219.29 | 4.99x | 🟡 1 |
+| 8 | **Carrete Shimano Sienna FG 4000** | 110 | 4.4% | 3 | 2.7% | **$366.28** | **3.49x** | 🟡 1 |
+| 9 | **Hilo Araty 0.70mm 1000m** | 91 | 3.7% | 0 | 0% | **$342.86** | **2.37x** | 3 |
+| 10 | Caja Rapala Utility Box Chica | 80 | 3.2% | 0 | 0% | $84.86 | 6.47x | 🟡 1 |
+| 11 | **Binocular Kampak Visión Nocturna** | 72 | 2.9% | 0 | 0% | **$1,145.00** | **2.53x** | 2 |
+| 12 | **Caña Shimano Sellus 5'8"** | 68 | 2.7% | 0 | 0% | **$365.97** | **3.52x** | 🟡 1 |
+| 13 | Caña Blue Fox Power Boat 6'4" | 59 | 2.4% | 3 | **5.1%** | **−$23.72** | **pierde** | 🟡 1 |
+| 14 | Monocular Konus KonuSmall-3 | 54 | 2.2% | 0 | 0% | — | — | — |
+| 15 | Señuelo Rapala Floating Magnum 09 | 50 | 2.0% | 1 | 2.0% | — | — | — |
+| 16-22 | Corux, Blue Fox combo, Lobo 20x50, Araty 0.45… | 37-48 c/u | | | | | | |
+
+> ⚠️ **Una limitación de esta tabla:** la columna de compras del desglose
+> por producto marca 0 en todas las filas, aunque la campaña sí tuvo una
+> venta. La atribución de compra no baja al nivel de producto en esta
+> cuenta. **Las vistas y los ATC sí son fiables; las compras por producto
+> no.** Por eso se rankea por vistas y se mira el ATC como señal.
+
+### Tres cosas que salieron al cruzar las visitas con el inventario
+
+**🔴 1. El producto más visitado de toda la campaña está agotado.**
+El Combo Okuma Elite Pro se llevó **290 vistas, 384 clics y $201.73**, con
+**8 agregados al carrito** —el segundo mejor del catálogo—. Su inventario
+está en **0** desde el 4 de septiembre, con política `deny` (no vende sin
+existencia).
+
+> ✅ **La buena noticia, verificada:** el filtro `availability: in stock`
+> del conjunto de productos hizo su trabajo. Después del 4-sep solo se
+> gastaron **$12.79** antes de que dejara de mostrarse. No fue un desastre
+> de gasto — pero **la campaña perdió su mejor producto hace dos semanas y
+> siguió sin él.**
+>
+> **Reabastecerlo es probablemente la decisión de inventario con mejor
+> retorno que hay ahora mismo:** demanda ya demostrada con dinero real, sin
+> tener que adivinar.
+
+**🟡 2. Trece de los 22 más vistos están en la última pieza.**
+No se puede escalar una campaña sobre inventario de una unidad: se agota
+con la primera venta y se repite lo del Elite Pro. **Antes de recargar
+presupuesto hay que decidir de qué productos habrá fondo.**
+
+**🔴 3. Hay un producto que pierde dinero en cada venta, y convierte bien.**
+La **Caña Blue Fox Power Boat 6'4" de $549** deja **−$23.72** de
+contribución con guía de $189: el envío se come el margen completo. Y tuvo
+**5.1% de tasa de carrito, la mejor de la tabla.** Es el peor escenario
+posible: un producto que la gente sí quiere y que cuesta dinero vender.
+
+Lo mismo, en menor grado, con las cañas baratas: Rapala Corux 240 de $599
+deja **$9.30** y la Okuma Revenger 8'0" de $549 deja **$6.57**.
+
+> 💡 **El patrón, en una línea: por debajo de ~$800 una caña no puede
+> pagar su propio envío.** O suben de precio, o se les cobra el envío, o
+> no se anuncian.
+
+### A cuáles hacerles énfasis, entonces
+
+Cruzando demanda demostrada con contribución real:
+
+| Prioridad | Producto | Por qué |
+|---|---|---|
+| 1 | **Combo Okuma Elite Pro** | #1 en vistas y 8 ATC. **Primero reabastecer**, luego fotos |
+| 2 | **Carrete Shimano Sienna FG 4000** | #8 en vistas con **3.49x** — la mejor mezcla de demanda y margen |
+| 3 | **Hilo Araty 0.70mm** | #9 en vistas, **2.37x**, y consumible (recompra) |
+| 4 | **Caña Shimano Sellus 5'8"** | **3.52x**, y ya tiene 3 fotos |
+| 5 | **Binocular Kampak** | #11 en vistas pese a recibir casi nada de gasto; **$1,145** de contribución |
+| 6 | Combo Okuma Revenger | #2 en vistas y **12 ATC**, el mejor del catálogo. Margen delgado, pero demanda probada |
+
+Los tres primeros de **IMAGENES-CAMPANA-PENDIENTES.md** (Simmons, Bushnell,
+Gamo) **no aparecen en el top 22 de vistas** — pero es porque casi no
+recibieron gasto (§60: toda la óptica junta se llevó el 11%). No es falta
+de demanda, es falta de oportunidad. El Kampak, con $44 de gasto, alcanzó
+el puesto 11.
+
+---
+
 ## 🆕 Mejorar las fichas antes de la siguiente campaña — imágenes y video (17 sep)
 
 Idea del dueño, y va en la dirección correcta: **arreglar las fichas
