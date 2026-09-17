@@ -243,6 +243,42 @@ está y dímelo.
 > instrucción prefiere avisar. **Revisa siempre el resultado contra la foto
 > original antes de subirlo.**
 
+### Prompt para quitar la etiqueta de calibre (línea Araty)
+
+**Necesario en toda la línea Araty**, por el defecto 2: la foto de origen
+lleva pegada una etiqueta blanca de código de barras con un calibre que
+casi nunca corresponde al producto que se vende. Si esa etiqueta queda
+legible en la imagen generada, el problema se propaga a la foto nueva.
+
+Se le pide a ChatGPT sobre la imagen ya generada:
+
+```
+En esta imagen hay un carrete de hilo de pescar con una etiqueta blanca
+de código de barras pegada sobre la etiqueta verde de la marca.
+
+Quita SOLO esa etiqueta blanca de código de barras, y reconstruye debajo
+la etiqueta verde de la marca como continuaría naturalmente.
+
+NO toques nada más: ni la marca Araty, ni el logo Mazzaferro, ni el texto
+"100% POLIAMIDA", ni "Superflex", ni "COPOLYMER FISHING LINE", ni el
+color del hilo, ni el fondo, ni la luz.
+
+No inventes ningún texto nuevo, ningún número y ningún código de barras
+en su lugar: la zona debe quedar como etiqueta verde limpia.
+```
+
+> 💡 **Por qué así y no poniéndole el calibre correcto.** Una etiqueta
+> generada con "0,45mm" sería un texto inventado sobre un producto real —
+> exactamente lo que este documento prohíbe, y encima sobre el dato que
+> más le importa a quien pesca. **Etiqueta limpia + calibre en el título y
+> en la ficha técnica.** Así la misma foto sirve para varios calibres de la
+> línea, que es justo lo que hace falta con 47 productos compartiendo
+> imagen.
+
+> ✅ **Alternativa más simple:** encuadrar de modo que la etiqueta no
+> aparezca. Un macro del hilo enrollado resuelve el problema sin retoque
+> alguno — y es además una toma que hoy no existe en ninguna ficha.
+
 ---
 
 # GRUPO A — cinco tomas cada uno
