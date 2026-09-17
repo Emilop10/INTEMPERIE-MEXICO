@@ -89,6 +89,7 @@ como respaldo
 59. [El costo real de envío: guía a Quintana Roo, $223 (14 sep)](#59-el-costo-real-de-envío-guía-a-quintana-roo-223-14-sep)
 60. [Meta optimiza por conversión, no por margen (15 sep)](#60-meta-optimiza-por-conversión-no-por-margen-15-sep)
 61. [Los títulos encimados de la cuadrícula: el síntoma estaba en el título, la causa en el precio (15 sep)](#61-los-títulos-encimados-de-la-cuadrícula-el-síntoma-estaba-en-el-título-la-causa-en-el-precio-15-sep)
+62. [Cierre de la ronda: se pausa con $57 sin gastar (17 sep)](#62-cierre-de-la-ronda-se-pausa-con-57-sin-gastar-17-sep)
 
 ---
 
@@ -7200,3 +7201,113 @@ python3 scripts/prueba-tarjetas-coleccion.py --coleccion binoculares
 |---|---|---|---|
 | `tema-shopify/` | 463 / 696 | **463 / 696** | El cambio fueron declaraciones CSS, no topología: ni archivos ni imports nuevos. Graphify lo dijo explícitamente: *"No code-graph topology changes detected"* |
 | `scripts/` | 111 / 178 / 12 | **118 / 188 / 13** | Entra `prueba-tarjetas-coleccion.py`, que es código nuevo de verdad |
+
+---
+
+## 62. Cierre de la ronda: se pausa con $57 sin gastar (17 sep)
+
+Decisión del dueño, a propuesta de esta revisión: **pausar en vez de dejar
+que el tope se agote solo.**
+
+### Por qué se pausó teniendo saldo
+
+El argumento habitual para no pausar es que reiniciar pierde la fase de
+aprendizaje. **Aquí ese argumento no aplica**, y por eso se propuso
+pausar: la siguiente ronda va a separar óptica de pesca en dos conjuntos
+(§60), y eso reinicia el aprendizaje de todos modos. No había aprendizaje
+que preservar — solo $57 que se iban a gastar en la configuración que ya
+sabíamos que pierde dinero.
+
+Al ritmo de esos días, $57 compraban unas 75 vistas de producto y, a la
+tasa observada, cerca de **1 agregado al carrito**. Ni una venta ni un
+aprendizaje.
+
+### Los números de cierre
+
+| | Vida completa (16 ago – 17 sep) | Reactivación (10-17 sep) |
+|---|---|---|
+| Gasto | $1,826.87 | $522.87 |
+| Impresiones | 76,287 | 13,995 |
+| Clics · CTR | 3,542 · 4.64% | 904 · 6.46% |
+| CPC | $0.52 | $0.58 |
+| Alcance · frecuencia | 49,262 · 1.55 | 5,651 · 2.48 |
+| Embudo (VC→ATC→IC→pago→compra) | 2,475 → 37 → 18 → 7 → **1** | 722 → 18 → 10 → 3 → **1** |
+| Ingreso | $849 | $849 |
+| **ROAS** | **0.46x** | **1.62x** |
+
+> ⚠️ **Dos cifras de gasto que parecen contradecirse, y no se
+> contradicen:** el `amount_spent` de la cuenta marcaba $1,428.08 contra
+> un tope de $1,485, mientras que las métricas de vida completa dicen
+> $1,826.87. La primera cuenta solo contra el periodo del tope vigente;
+> la segunda cuenta todo desde que la campaña existe. Al leer el panel
+> hay que saber cuál se está mirando.
+
+**Contra el ROAS de equilibrio de §60 (12x con combos de caña), 1.62x en
+la mejor ventana deja la conclusión sin ambigüedad:** esta configuración
+pierde dinero en cada venta. Ese es el hallazgo que justifica la
+reestructura, no el número de ventas.
+
+### El bache final, y qué se descartó midiendo
+
+Del 13 al 17 de septiembre: $243.56 gastados, 328 vistas de producto,
+**0 ventas y 0 pantallas de pago.** El tramo que §55 había arreglado se
+cayó:
+
+| | 10-12 sep | 13-17 sep |
+|---|---|---|
+| Agregar → Iniciar pago | 10/13 = **77%** | 1/6 = **17%** |
+
+Prueba de dos proporciones: z=2.47, **p=0.013**.
+
+> ⚠️ **Ese p no vale lo que parece, y hay que decirlo.** El corte entre
+> las dos ventanas **se eligió después de ver la tabla diaria**, buscando
+> dónde se veía peor. Un p calculado sobre un corte escogido a ojo está
+> inflado: es la trampa de comparaciones múltiples, y con 6 eventos de un
+> lado no hay margen para ignorarla. Se trata como **señal a vigilar**,
+> no como hecho probado. La forma correcta de usarlo es fijar el corte
+> *antes* en la próxima ronda.
+
+Antes de teorizar se descartaron las tres explicaciones comprobables:
+
+| Hipótesis | Cómo se comprobó | Resultado |
+|---|---|---|
+| Se rompió el checkout | Sesión real de carrito con `curl`: `cart/add.js` → `cart.js` ($849) → `/checkout` cargó la pantalla de pago con tarjeta, Mercado Pago, envío y correo | **Funciona de punta a punta** |
+| Meta movió el gasto a productos bajo el piso de $799 y la gente se topó con el cobro de envío | Desglose `breakdowns=product_id` de las dos ventanas | **Mezcla casi idéntica**; el Revenger $849 incluso subió de 33% a 43% |
+| Lo rompió el cambio de CSS de §61 | El bache **empezó el 13**, dos días antes del deploy del 15. Además se verificó en vivo: la prueba de tarjetas pasa contra el CSS de producción y el cajón del carrito renderiza el producto con su botón de pagar | **Descartado por fecha y por medición** |
+
+Lo que queda como explicación más simple es **desgaste de creativo**: CTR
+bajando 6.95% → 6.60% → 5.33% → 5.72% → 5.40% con frecuencia 2.48, sobre
+**un solo anuncio corriendo desde el 25 de agosto**. Menos clics y de
+peor calidad explican el embudo entero sin necesidad de suponer nada roto.
+
+> 🔍 **La comprobación del checkout se hizo del lado del servidor, con
+> `curl` y sin JavaScript**, justamente para no disparar eventos del
+> pixel ni ensuciar los datos de la campaña. Es la forma de respetar la
+> regla de "no hacer compras de prueba con la campaña entregando" sin
+> renunciar a verificar que el checkout sirve.
+
+### Estado en que queda todo
+
+Verificado leyendo la API después de pausar, no por el mensaje de éxito
+del script:
+
+```
+campaña  status=PAUSED  effective_status=PAUSED
+  conjunto v3  ACTIVE -> efectivo CAMPAIGN_PAUSED
+  conjunto v2  PAUSED -> efectivo PAUSED
+  conjunto v1  PAUSED -> efectivo PAUSED
+saldo sin gastar reservado en el tope: $56.92
+```
+
+**Nada borrado** (§33). Los conjuntos conservan su propio `status`: el v3
+sigue en ACTIVE y volverá a entregar solo si se reactiva la campaña, que
+es justo lo que NO se quiere hacer sin antes separar óptica de pesca.
+
+### Lo que sigue
+
+Las tres tareas de §60, en ese orden: separar óptica y pesca en dos
+conjuntos con presupuesto propio, revisar el piso de $799 con las 3-5
+guías de muestra que pide §59, y fotografía —que con 722 vistas de
+producto → 18 al carrito (**2.5%**) sigue siendo el cuello de botella
+dominante—. A eso se suma ahora **creativo nuevo**: un solo anuncio
+durante 23 días es lo que produjo la caída de CTR de esta última semana.

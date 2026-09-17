@@ -220,6 +220,35 @@ y corroborado por inventario de Shopify. Detalle completo en
 
 ---
 
+**⏸️ PAUSADA — 17 de septiembre de 2026, 17:39 hora de Chihuahua.** A
+propuesta de la revisión y por decisión del dueño, se pausó **con $56.92
+sin gastar** en vez de dejar que el tope se agotara solo. Cierre completo
+en [`MANUAL-PROYECTO.md` §62](./MANUAL-PROYECTO.md#62-cierre-de-la-ronda-se-pausa-con-57-sin-gastar-17-sep).
+
+- **Por qué pausar teniendo saldo:** la próxima ronda separa óptica de
+  pesca, y eso reinicia la fase de aprendizaje de todos modos. No había
+  aprendizaje que preservar — solo $57 que se iban a gastar en la
+  configuración que ya sabemos que pierde dinero.
+- **Cierre:** vida completa $1,826.87 → 1 venta de $849 → **ROAS 0.46x**.
+  Mejor ventana (10-17 sep): $522.87 → **ROAS 1.62x**, contra un
+  equilibrio de **12x** con combos de caña.
+- **Del 13 al 17:** $243.56, 0 ventas, 0 pantallas de pago.
+- **Se descartó midiendo**, no opinando: el checkout funciona de punta a
+  punta (sesión real de carrito con `curl`, sin JS, para no ensuciar el
+  pixel); la mezcla de productos no cambió; y el cambio de CSS del 15 no
+  fue —el bache empezó el 13—. Queda como explicación más probable el
+  **desgaste de creativo**: un solo anuncio desde el 25 de agosto, con el
+  CTR cayendo de 6.95% a 5.40%.
+- **Nada borrado.** Los tres conjuntos siguen ahí; el v3 conserva su
+  `status` ACTIVE y volvería a entregar solo si se reactiva la campaña.
+
+> 🆕 **Se agrega una cuarta tarea a la lista del recargue: creativo
+> nuevo.** Las otras tres siguen igual (separar óptica/pesca, revisar el
+> piso de $799, fotografía). 23 días con un solo anuncio es lo que
+> produjo la caída de CTR de la última semana.
+
+---
+
 **🟢 REACTIVADA — 9 de septiembre de 2026, 19:36 hora de Chihuahua.**
 Se había detenido el 6 de septiembre porque se agotó el tope de cuenta
 ($885 de $885) — no fue una pausa a mano, fue el apagón silencioso de la
