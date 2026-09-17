@@ -1,16 +1,16 @@
-# Graph Report - scripts  (2026-09-15)
+# Graph Report - scripts  (2026-09-17)
 
 ## Corpus Check
-- 13 files · ~34,421 words
+- 14 files · ~35,247 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 118 nodes · 188 edges · 13 communities (12 shown, 1 thin omitted)
+- 127 nodes · 200 edges · 14 communities (13 shown, 1 thin omitted)
 - Extraction: 96% EXTRACTED · 4% INFERRED · 0% AMBIGUOUS · INFERRED: 8 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `74b2024d`
+- Built from commit: `4fff712a`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -28,6 +28,7 @@
 - verificar-herramental.sh
 - generar-carta-bienvenida.py
 - prueba-tarjetas-coleccion.py
+- cargar-imagenes-productos.py
 
 ## God Nodes (most connected - your core abstractions)
 1. `api_request()` - 9 edges
@@ -37,9 +38,9 @@
 5. `Deploy del tema a Shopify` - 7 edges
 6. `cmd_activar()` - 6 edges
 7. `main()` - 5 edges
-8. `keys_from_git()` - 5 edges
-9. `construir_story()` - 5 edges
-10. `instalar-entorno.sh script` - 5 edges
+8. `main()` - 5 edges
+9. `keys_from_git()` - 5 edges
+10. `construir_story()` - 5 edges
 
 ## Surprising Connections (you probably didn't know these)
 - None detected - all connections are within the same source files.
@@ -47,7 +48,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (13 total, 1 thin omitted)
+## Communities (14 total, 1 thin omitted)
 
 ### Community 0 - "conciliar-inventario.py"
 Cohesion: 0.23
@@ -97,9 +98,13 @@ Nodes (9): construir_story(), estilos(), generar_hoja_imprimible(), generar_tarj
 Cohesion: 0.48
 Nodes (6): armar_repro(), bajar(), buscar_chrome(), main(), medir(), Descarga la coleccion y sus CSS, y sustituye brand-tokens.css por el del repo.
 
+### Community 13 - "cargar-imagenes-productos.py"
+Cohesion: 0.33
+Nodes (8): api(), catalogo_por_handle(), dimensiones(), main(), parsear_documento(), Lado de la imagen sin depender de Pillow, para JPG y PNG., -> [(handle, titulo, [(archivo, tipo, alt), ...]), ...] en orden., Mapa handle -> id, paginando todo el catalogo.
+
 ## Knowledge Gaps
 - **8 isolated node(s):** `MERCADOS`, `PLUGINS`, `Por que existe esto`, `Uso rapido`, `Automatico en cada push` (+3 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 29 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 32 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **1 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions

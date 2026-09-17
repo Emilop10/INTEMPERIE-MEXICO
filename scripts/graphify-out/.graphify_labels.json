@@ -11,5 +11,6 @@
   "9": "rebuild-mapa-3d.py",
   "10": "verificar-herramental.sh",
   "11": "generar-carta-bienvenida.py",
-  "12": "prueba-tarjetas-coleccion.py"
+  "12": "prueba-tarjetas-coleccion.py",
+  "13": "cargar-imagenes-productos.py"
 }

@@ -1039,11 +1039,19 @@ del viejo.**
 las fotos reales de escala y detalle solo las puede tomar quien tiene las
 piezas en la mano.
 
-**De este lado:** la lista priorizada con especificaciones exactas
-(medidas, relación de aspecto, nombres de archivo), los prompts
-redactados, y el script que sube las imágenes terminadas a Shopify en
-lote y verifica que quedaron —hay patrón previo en
-`scripts/cargar-fichas-tecnicas.py`—.
+**De este lado: ✅ hecho el 17 de septiembre.** Ver
+[`IMAGENES-CAMPANA-PENDIENTES.md`](./IMAGENES-CAMPANA-PENDIENTES.md) —
+lista de 25 tomas para los 5 productos, con especificaciones exactas,
+prompts redactados y `scripts/cargar-imagenes-productos.py` para subirlas
+en lote. **Le toca al dueño generar las imágenes.**
+
+> 🔴 **Y salieron tres defectos al mirar las fotos actuales, que hay que
+> arreglar aunque no se genere ni una imagen nueva:** el Simmons y el
+> Bushnell se llaman **"Negro"** y son **grises** (medido: 7% de píxeles
+> realmente negros) —y son justo los dos de mejor contribución—; el héroe
+> del Combo Revenger tiene una **etiqueta de código de barras pegada en el
+> mango**; y el Kampak está a **640×640**, por debajo de lo que Shopify
+> necesita para el zoom.
 
 ---
 

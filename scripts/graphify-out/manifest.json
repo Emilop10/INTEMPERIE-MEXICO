@@ -88,5 +88,11 @@
     "seen": 1789499492.2156048,
     "ast_hash": "192d9f2ea6fde5470c5e26ea013ad663",
     "semantic_hash": ""
+  },
+  "cargar-imagenes-productos.py": {
+    "mtime": 1789679999.0121887,
+    "seen": 1789680036.1154764,
+    "ast_hash": "f4db895471141242dae37a7a48bd6cec",
+    "semantic_hash": ""
   }
 }

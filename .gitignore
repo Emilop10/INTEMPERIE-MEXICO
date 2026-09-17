@@ -19,3 +19,7 @@ scripts/graphify-out/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]/
 *token*.txt
 *token*.json
 shopify-token*
+
+# Imagenes de producto: pesadas, y la copia buena vive en Shopify
+imagenes-productos/*
+!imagenes-productos/README.md
