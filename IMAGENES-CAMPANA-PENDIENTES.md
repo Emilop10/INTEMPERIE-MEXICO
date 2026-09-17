@@ -47,12 +47,13 @@ verdadero techo de la campaña siguiente, y ninguna foto lo arregla.
 
 ## Grupo A — listos para escalar · fotografiar primero
 
-Buena economía **y** más de una pieza. Son los únicos cuatro.
+Buena economía **y** más de una pieza.
 
 | Producto | Precio | Contribución | Equilibrio | Stock | Vistas |
 |---|---|---|---|---|---|
-| Hilo Araty 0.45mm 1000m | $436 | $285.78 | **1.53x** | 2 | 37 |
-| Hilo Araty 0.70mm 1000m | $812 | $342.86 | **2.37x** | 3 | 91 |
+| Hilo Araty 0.45mm 1000m Multicolor | $436 | $285.78 | **1.53x** | 2 | 37 |
+| Hilo Araty 0.45mm 1000m **Verde** | $318 | $208.38 | **1.53x** | **3** | — |
+| Hilo Araty 0.70mm 1000m Natural | $812 | $342.86 | **2.37x** | 3 | 91 |
 | Binocular Kampak Visión Nocturna | $2,900 | $1,145.00 | **2.53x** | 2 | 72 |
 | Caña Okuma Revenger Spinning 8'0" | $549 | $195.57 | **2.81x** | 2 | 41 |
 
@@ -265,7 +266,29 @@ hilo-araty-0-45mm-1000m-multicolor-5-carrete.jpg | REAL | Hilo Araty multicolor 
 > etiqueta no se lea** — si se opta por lo segundo, sirve de foto genérica
 > para toda la línea Araty y resuelve los 47 productos de un golpe.
 
-## 2. Hilo Araty 0.70mm 1000m Natural — $812
+## 2. Hilo Araty 0.45mm 1000m Verde — $318
+
+- **handle:** `hilo-araty-0-45mm-1000m-verde`
+- **Equilibrio 1.53x** — empatado con el multicolor en lo más alto del
+  catálogo. **Stock 3**, el mejor surtido de los tres Araty. Consumible
+- Compacto y por debajo del piso: **el cliente paga el envío**, así que la
+  contribución es el margen completo ($208.38, 66%)
+- 🔴 Aplica el defecto 2: su foto actual puede anunciar otro calibre
+
+```imagenes
+hilo-araty-0-45mm-1000m-verde-1-hero.jpg | REAL | Carrete de hilo Araty 0.45mm 1000m verde sobre fondo blanco
+hilo-araty-0-45mm-1000m-verde-2-perfil.jpg | REAL | Carrete de hilo Araty verde de perfil, mostrando el hilo enrollado
+hilo-araty-0-45mm-1000m-verde-3-grosor.jpg | REAL | Detalle del hilo Araty 0.45mm verde entre los dedos para apreciar su grosor
+hilo-araty-0-45mm-1000m-verde-4-escala.jpg | REAL | Carrete de hilo Araty 1000m en una mano, para mostrar su tamaño
+hilo-araty-0-45mm-1000m-verde-5-carrete.jpg | REAL | Hilo Araty verde cargado en un carrete de pesca
+```
+
+> 💚 **Esta foto rinde más de lo que parece.** Hay **7 productos Araty en
+> verde** en el catálogo y comparten imagen entre sí (defecto 2). Un buen
+> juego de fotos del verde, con la etiqueta no legible, sirve para los
+> siete — no sólo para este.
+
+## 3. Hilo Araty 0.70mm 1000m Natural — $812
 
 - **handle:** `hilo-araty-0-70mm-1000m-natural`
 - **Equilibrio 2.37x.** Stock 3 — el mejor surtido del Grupo A. 91 vistas
@@ -280,7 +303,7 @@ hilo-araty-0-70mm-1000m-natural-4-escala.jpg | REAL | Carrete de hilo Araty 1000
 hilo-araty-0-70mm-1000m-natural-5-comparativa.jpg | REAL | Hilo Araty 0.70mm junto a un calibre más delgado, para comparar grosor
 ```
 
-## 3. Binocular Kampak Visión Nocturna Digital — $2,900
+## 4. Binocular Kampak Visión Nocturna Digital — $2,900
 
 - **handle:** `binocular-kampak-vision-nocturna-digital`
 - **Equilibrio 2.53x** y **$1,145 de contribución — la más alta del catálogo.**
@@ -302,7 +325,7 @@ binocular-kampak-vision-nocturna-digital-5-incluye.jpg | REAL | Contenido de la 
 > escena diurna generada se ve falso, y en una nocturna generada se
 > parecería a prometer un rendimiento que no se ha medido.
 
-## 4. Caña de Pescar Okuma Revenger Spinning 8'0" (2.40m) — $549
+## 5. Caña de Pescar Okuma Revenger Spinning 8'0" (2.40m) — $549
 
 - **handle:** `cana-de-pescar-okuma-revenger-spinning-80-2-40m`
 - **Equilibrio 2.81x.** Stock 2. Debajo del piso, así que **el cliente paga
@@ -327,7 +350,7 @@ cana-de-pescar-okuma-revenger-spinning-80-2-40m-5-orilla.jpg | COMPOSICION | Ca�
 
 Sólo hero, escala y detalle. **Reabastecer antes de anunciarlos.**
 
-## 5. Binocular Simmons Venture 8x21 — $1,290
+## 6. Binocular Simmons Venture 8x21 — $1,290
 
 - **handle:** `binocular-simmons-venture-8x21-negro`
 - **Equilibrio 1.73x — la mejor economía de todo el catálogo.** Stock 1
@@ -339,7 +362,7 @@ binocular-simmons-venture-8x21-negro-2-escala.jpg | REAL | Binocular Simmons Ven
 binocular-simmons-venture-8x21-negro-3-detalle.jpg | REAL | Detalle de la rueda de enfoque central y los oculares del Simmons Venture
 ```
 
-## 6. Binocular Bushnell PowerView 2 8x21 — $1,450
+## 7. Binocular Bushnell PowerView 2 8x21 — $1,450
 
 - **handle:** `binocular-bushnell-powerview-2-8x21-negro`
 - **Equilibrio 1.79x.** Stock 1. Su foto actual es la mejor del catálogo (2048)
@@ -351,7 +374,7 @@ binocular-bushnell-powerview-2-8x21-negro-2-escala.jpg | REAL | Binocular Bushne
 binocular-bushnell-powerview-2-8x21-negro-3-detalle.jpg | REAL | Detalle del panel plateado y la rueda de enfoque del Bushnell PowerView 2
 ```
 
-## 7. Caja Rapala Utility Box Chica — $549
+## 8. Caja Rapala Utility Box Chica — $549
 
 - **handle:** `caja-rapala-utility-box-chica`
 - **Equilibrio 2.00x** y **80 vistas** — de los más vistos del catálogo. Stock 1
@@ -363,7 +386,7 @@ caja-rapala-utility-box-chica-2-escala.jpg | REAL | Caja Rapala Utility Box sost
 caja-rapala-utility-box-chica-3-abierta.jpg | REAL | Caja Rapala Utility Box abierta y con señuelos dentro, mostrando sus divisiones
 ```
 
-## 8. Binocular Gamo 8x40 AF Autoenfoque — $1,970
+## 9. Binocular Gamo 8x40 AF Autoenfoque — $1,970
 
 - **handle:** `binocular-gamo-8x40-af-autoenfoque`
 - **Equilibrio 2.35x.** Stock 1. El más grande: la escala importa
@@ -375,7 +398,7 @@ binocular-gamo-8x40-af-autoenfoque-2-escala.jpg | REAL | Binocular Gamo 8x40 AF 
 binocular-gamo-8x40-af-autoenfoque-3-detalle.jpg | REAL | Detalle de los objetivos de 40 mm y el cuerpo texturizado del Gamo 8x40 AF
 ```
 
-## 9. Caña de Pescar Blue Fox Power Boat Spinning 6'4" — $549
+## 10. Caña de Pescar Blue Fox Power Boat Spinning 6'4" — $549
 
 - **handle:** `cana-de-pescar-blue-fox-power-boat-spinning-64-1-95m`
 - **Equilibrio 3.32x**, y **la mejor tasa de carrito de toda la campaña: 5.1%**
@@ -387,7 +410,7 @@ cana-de-pescar-blue-fox-power-boat-spinning-64-1-95m-2-escala.jpg | REAL | Caña
 cana-de-pescar-blue-fox-power-boat-spinning-64-1-95m-3-mango.jpg | REAL | Detalle del mango y el portacarrete de la caña Blue Fox Power Boat
 ```
 
-## 10. Carrete Shimano Sienna FG 4000 Spinning — $1,279
+## 11. Carrete Shimano Sienna FG 4000 Spinning — $1,279
 
 - **handle:** `carrete-shimano-sienna-fg-4000-spinning`
 - **Equilibrio 3.49x** y **110 vistas con 3 ATC.** Stock 1
@@ -403,7 +426,7 @@ carrete-shimano-sienna-fg-4000-spinning-3-montado.jpg | REAL | Carrete Shimano S
 > quien duda si le queda a su caña. **Montado se entiende solo**, y abre la
 > venta cruzada.
 
-## 11. Caña de Pescar Shimano Sellus Spinning 5'8" — $1,290
+## 12. Caña de Pescar Shimano Sellus Spinning 5'8" — $1,290
 
 - **handle:** `cana-shimano-sellus-spinning-5-8`
 - **Equilibrio 3.52x.** Stock 1. **Ya tiene 3 fotos** — de los 5 productos
@@ -421,15 +444,15 @@ cana-shimano-sellus-spinning-5-8-5-guias.jpg | REAL | Detalle de las guías y el
 
 | Grupo | Productos | Tomas |
 |---|---|---|
-| A — listos para escalar | 4 | 20 |
+| A — listos para escalar | 5 | 25 |
 | B — reabastecer antes de anunciar | 7 | 20 |
-| **Total** | **11** | **40** |
+| **Total** | **12** | **45** |
 
 Por tipo de trabajo:
 
 | Tipo | Tomas | Quién |
 |---|---|---|
-| 📷 **REAL** — foto con el teléfono | **32** | El dueño |
+| 📷 **REAL** — foto con el teléfono | **37** | El dueño |
 | 🩹 **RETOQUE** — limpiar la foto actual | **7** | ChatGPT (prompt arriba) |
 | 🎨 **COMPOSICION** — fondo generado | **1** | ChatGPT (prompt arriba) |
 

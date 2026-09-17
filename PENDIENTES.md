@@ -1187,17 +1187,18 @@ piezas en la mano.
 
 **De este lado: ✅ hecho el 17 de septiembre.** Ver
 [`IMAGENES-CAMPANA-PENDIENTES.md`](./IMAGENES-CAMPANA-PENDIENTES.md) —
-**versión definitiva: 11 productos, 40 tomas**, elegidos cruzando demanda
+**versión definitiva: 12 productos, 45 tomas**, elegidos cruzando demanda
 medida, contribución real (ya con el régimen correcto del piso de $799) y
 existencias. Trae especificaciones exactas, prompts redactados y
 `scripts/cargar-imagenes-productos.py` para subirlas en lote.
 **Le toca al dueño generar las imágenes.**
 
 > 📌 **El hallazgo que salió al armar la lista: de todo el catálogo, sólo
-> 4 productos combinan buena economía (equilibrio ≤ 3.5x) con más de una
-> pieza en existencia** — los dos Hilo Araty, el Binocular Kampak y la Caña
-> Okuma Revenger de $549. Ese es el techo real de la campaña siguiente, y
-> ninguna foto lo arregla: **hay que reabastecer.**
+> 5 productos combinan buena economía (equilibrio ≤ 3.5x) con más de una
+> pieza en existencia** — los tres Hilo Araty (0.45 multicolor, 0.45 verde
+> y 0.70 natural), el Binocular Kampak y la Caña Okuma Revenger de $549.
+> Ese es el techo real de la campaña siguiente, y ninguna foto lo arregla:
+> **hay que reabastecer.**
 
 > 🔴 **Y salieron cuatro defectos al mirar las fotos actuales, que hay que
 > arreglar aunque no se genere ni una imagen nueva:** el Simmons y el
