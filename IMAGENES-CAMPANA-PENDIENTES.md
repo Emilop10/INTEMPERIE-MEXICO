@@ -189,6 +189,48 @@ Requisitos:
 - Fotorrealista, como foto de catálogo de producto en exteriores.
 ```
 
+### Prompt base para RETOQUE
+
+Son 7 de las 40 tomas. Se sube la foto actual del producto a ChatGPT:
+
+```
+Adjunto la foto de catálogo de un producto que vendo. Quiero limpiarla,
+NO cambiarla.
+
+NO modifiques el producto: ni su forma, ni su color, ni sus logotipos, ni
+sus texturas, ni ninguna marca impresa del fabricante. Consérvalo pixel a
+pixel.
+
+Haz sólo esto:
+- <LIMPIEZA>
+- Fondo blanco puro y uniforme, sin sombras sucias ni bordes grises.
+- Sombra de contacto suave y realista bajo el producto.
+- Producto centrado, ocupando entre 80% y 88% del encuadre.
+- Entrega la imagen cuadrada a 2048x2048 px.
+
+Si algo del producto queda tapado o dudoso, NO lo inventes: déjalo como
+está y dímelo.
+```
+
+**Qué poner en `<LIMPIEZA>`, producto por producto:**
+
+| Toma | `<LIMPIEZA>` |
+|---|---|
+| Simmons Venture `-1-hero` | *Quitar cualquier marca de agua o texto sobrepuesto. Subir nitidez: el original está a 850px y se ve blando.* |
+| Bushnell PowerView `-1-hero` | *Sólo normalizar fondo y encuadre. El original ya está a 2048px y es el mejor del catálogo — no lo degrades.* |
+| Gamo 8x40 `-1-hero` | *Renfocar: el original está a 1600px pero se ve blando al acercar. No inventes detalle que no exista.* |
+| Caja Rapala `-1-hero` | *Sólo normalizar fondo, encuadre y nitidez.* |
+| Carrete Sienna `-1-hero` | *Sólo normalizar fondo, encuadre y nitidez.* |
+| Caña Okuma Revenger `-1-hero` | *Quitar las etiquetas de código de barras o precio pegadas sobre la caña. Dejar el blank y el mango limpios, como salen de fábrica.* |
+| Caña Blue Fox `-1-hero` | *Quitar las etiquetas de código de barras o precio pegadas sobre la caña.* |
+
+> ⚠️ **La última línea del prompt —"si algo queda dudoso, no lo inventes"—
+> es la que más importa.** Al quitar una etiqueta, el modelo tiene que
+> reconstruir lo que había debajo; si se le da permiso de inventar, puede
+> "reconstruir" una guía de más o un logotipo que no existe. Con esa
+> instrucción prefiere avisar. **Revisa siempre el resultado contra la foto
+> original antes de subirlo.**
+
 ---
 
 # GRUPO A — cinco tomas cada uno
@@ -372,9 +414,17 @@ cana-shimano-sellus-spinning-5-8-5-guias.jpg | REAL | Detalle de las guías y el
 | B — reabastecer antes de anunciar | 7 | 20 |
 | **Total** | **11** | **40** |
 
-De las 40, **38 son fotos con el teléfono** y sólo **2 son composiciones
-con IA**. Las que más le faltan a la ficha —escala, detalle, qué trae la
-caja— son justamente las que ninguna IA puede inventar.
+Por tipo de trabajo:
+
+| Tipo | Tomas | Quién |
+|---|---|---|
+| 📷 **REAL** — foto con el teléfono | **32** | El dueño |
+| 🩹 **RETOQUE** — limpiar la foto actual | **7** | ChatGPT (prompt arriba) |
+| 🎨 **COMPOSICION** — fondo generado | **1** | ChatGPT (prompt arriba) |
+
+**El 80% del encargo son fotos con el teléfono, no IA.** Escala, detalle y
+qué trae la caja son justamente lo que ninguna IA puede inventar, y es lo
+que más le falta a las fichas.
 
 ## Cómo subirlas
 
