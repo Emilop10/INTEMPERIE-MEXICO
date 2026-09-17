@@ -1045,13 +1045,26 @@ lista de 25 tomas para los 5 productos, con especificaciones exactas,
 prompts redactados y `scripts/cargar-imagenes-productos.py` para subirlas
 en lote. **Le toca al dueño generar las imágenes.**
 
-> 🔴 **Y salieron tres defectos al mirar las fotos actuales, que hay que
+> 🔴 **Y salieron cuatro defectos al mirar las fotos actuales, que hay que
 > arreglar aunque no se genere ni una imagen nueva:** el Simmons y el
 > Bushnell se llaman **"Negro"** y son **grises** (medido: 7% de píxeles
 > realmente negros) —y son justo los dos de mejor contribución—; el héroe
 > del Combo Revenger tiene una **etiqueta de código de barras pegada en el
-> mango**; y el Kampak está a **640×640**, por debajo de lo que Shopify
-> necesita para el zoom.
+> mango**; el Kampak está a **640×640**, por debajo de lo que Shopify
+> necesita para el zoom; y la foto del **Hilo Araty 0.70mm muestra una
+> etiqueta que dice `0,25mm`** — con **47 de 55 productos Araty
+> compartiendo foto**, casi toda la línea anuncia un calibre que no es el
+> suyo, y el calibre es *la* especificación de un hilo.
+
+> 📌 **Ampliado el 17 de septiembre a 8 productos (38 tomas), por decisión
+> del dueño: sostener las cañas mientras se escala.** Al rehacer las
+> cuentas con guía típica de $189 en vez de los $223 de Quintana Roo salió
+> algo que la tabla anterior escondía: **el problema no era "cañas contra
+> óptica", era el ticket.** La Caña Shimano Sellus ($1,290) llega a
+> **3.52x** pagando su caja, y el Carrete Sienna a **3.49x**, contra 8.11x
+> del Combo Revenger. Entra pesca de ticket alto —Sellus, Sienna e Hilo
+> Araty 0.70mm (2.37x, y además consumible)—, no la que recibió el gasto
+> de la campaña pasada.
 
 ---
 
