@@ -979,7 +979,7 @@ Pedido del dueño para decidir a cuáles hacerles énfasis. Fuente: desglose
 | 10 | Caja Rapala Utility Box Chica | 80 | 3.2% | 0 | 0% | $84.86 | 6.47x | 🟡 1 |
 | 11 | **Binocular Kampak Visión Nocturna** | 72 | 2.9% | 0 | 0% | **$1,145.00** | **2.53x** | 2 |
 | 12 | **Caña Shimano Sellus 5'8"** | 68 | 2.7% | 0 | 0% | **$365.97** | **3.52x** | 🟡 1 |
-| 13 | Caña Blue Fox Power Boat 6'4" | 59 | 2.4% | 3 | **5.1%** | **−$23.72** | **pierde** | 🟡 1 |
+| 13 | Caña Blue Fox Power Boat 6'4" | 59 | 2.4% | 3 | **5.1%** | $165.28 | 3.32x | 🟡 1 |
 | 14 | Monocular Konus KonuSmall-3 | 54 | 2.2% | 0 | 0% | — | — | — |
 | 15 | Señuelo Rapala Floating Magnum 09 | 50 | 2.0% | 1 | 2.0% | — | — | — |
 | 16-22 | Corux, Blue Fox combo, Lobo 20x50, Araty 0.45… | 37-48 c/u | | | | | | |
@@ -1013,18 +1013,59 @@ No se puede escalar una campaña sobre inventario de una unidad: se agota
 con la primera venta y se repite lo del Elite Pro. **Antes de recargar
 presupuesto hay que decidir de qué productos habrá fondo.**
 
-**🔴 3. Hay un producto que pierde dinero en cada venta, y convierte bien.**
-La **Caña Blue Fox Power Boat 6'4" de $549** deja **−$23.72** de
-contribución con guía de $189: el envío se come el margen completo. Y tuvo
-**5.1% de tasa de carrito, la mejor de la tabla.** Es el peor escenario
-posible: un producto que la gente sí quiere y que cuesta dinero vender.
+**🔴 3. La zona muerta de precios que crea el piso de $799.**
 
-Lo mismo, en menor grado, con las cañas baratas: Rapala Corux 240 de $599
-deja **$9.30** y la Okuma Revenger 8'0" de $549 deja **$6.57**.
+> ❌ **Corrección de un error propio, 17 sep.** La primera versión de esta
+> sección decía que la Caña Blue Fox de $549 *"pierde $23.72 en cada
+> venta"* y que *"por debajo de ~$800 una caña no puede pagar su propio
+> envío"*. **Las dos afirmaciones eran falsas, y por la misma causa:** se
+> le cargó el costo de envío a productos que están **por debajo** del piso
+> de $799, donde el envío **lo paga el cliente**, no la tienda. Lo detectó
+> el dueño.
+>
+> Verificado contra la tienda en vivo (`/cart/shipping_rates.json` con un
+> carrito de $549): **$189 fijos a Quintana Roo, Morelos y Nuevo León por
+> igual**, y $0 arriba de $799.
 
-> 💡 **El patrón, en una línea: por debajo de ~$800 una caña no puede
-> pagar su propio envío.** O suben de precio, o se les cobra el envío, o
-> no se anuncian.
+El modelo correcto:
+
+| Régimen | Qué pasa | Costo neto de envío para la tienda |
+|---|---|---|
+| Precio **≥ $799** | envío gratis | **−$189** (−$237.83 si es voluminoso, por la caja) |
+| Precio **< $799** | el cliente paga $189 | **$0** (−$48.83 si es voluminoso) |
+
+Con eso, la Blue Fox de $549 deja **+$165.28** y equilibrio **3.32x** —
+mejor que casi todos los combos. **Las cañas baratas no eran el problema:
+eran de lo mejor de la tabla.**
+
+**Lo que sí es un problema es el otro lado del piso.** Cruzar los $799
+cuesta exactamente **$189 de contribución**, así que un producto sólo
+conviene arriba del piso si vale **$799 + $189 = $988 o más**. Entre
+**$799 y $987 hay una zona muerta**: ahí un producto gana *menos* que si
+costara $798.
+
+Cuatro productos con existencia están hoy en esa zona:
+
+| Producto | Precio | Contribución hoy | Si costara $798 | Diferencia |
+|---|---|---|---|---|
+| **Hilo Araty 0.70mm 1000m** | $812 | $342.86 | **$517.86** | **+$175.00** |
+| **Caña Shimano Stimula 6'0"** | $849 | $167.24 | **$305.24** | **+$138.00** |
+| **Combo Okuma Revenger 8'0"** | $849 | $104.66 | **$242.66** | **+$138.00** |
+| Combo Okuma Boundary 7'0" | $949 | $154.67 | $192.67 | +$38.00 |
+
+El Hilo Araty está **$13 arriba del piso** y eso le cuesta $175 por unidad.
+
+> ⚠️ **No es una recomendación de bajar precios sin más.** A $798 el
+> cliente paga $987 en total ($798 + $189 de envío), más que los $812 de
+> hoy — así que la conversión podría caer y eso no está medido. Lo que sí
+> está medido es que **el piso de $799 está mal colocado respecto a estos
+> precios**, y hay tres salidas: subir esos productos por encima de $988,
+> bajarlos por debajo de $799, o mover el piso. **Decisión del dueño.**
+
+> ✅ **Esto no cambia el análisis de §60.** Ahí todos los productos
+> comparados (Simmons $1,290, Bushnell $1,450, Gamo $1,970, Kampak $2,900
+> y el Revenger $849) están **arriba** del piso, donde la tienda sí
+> absorbe el envío. Ese cálculo siempre fue correcto.
 
 ### A cuáles hacerles énfasis, entonces
 
