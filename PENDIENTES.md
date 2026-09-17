@@ -942,6 +942,111 @@ no se haya desbordado a una segunda página, en
 llamada de API), el grafo de `scripts/` sí se movió esta vez —
 **101/163/11 → 111/178/12**, verificado contando en `graph.json`.
 
+## 🆕 Mejorar las fichas antes de la siguiente campaña — imágenes y video (17 sep)
+
+Idea del dueño, y va en la dirección correcta: **arreglar las fichas
+antes de volver a pagar tráfico.** Seguir mandando gente a páginas que no
+convencen es exactamente lo que se hizo las dos rondas anteriores. Plan
+propuesto: generar imágenes con ChatGPT partiendo de las que ya están en
+la página, y si quedan bien, animarlas con Higgsfield para la ficha y
+eventualmente para los anuncios.
+
+### El dato que hay que tener en la cabeza antes de empezar
+
+Se auditó el catálogo completo el 17 de septiembre:
+
+| Imágenes por producto | Productos |
+|---|---|
+| **1** | **245** |
+| 2 | 3 |
+| 3 | 2 |
+
+**245 de 250 productos tienen exactamente una imagen.** El problema
+principal no es que la foto sea fea — es que hay *una sola*, de catálogo,
+sobre fondo blanco. Un comprador que llega a la ficha no tiene con qué
+decidir: no ve la escala, ni el detalle, ni qué trae la caja, ni el
+producto en uso.
+
+**Ir de 1 a 4-5 imágenes en los productos prioritarios pesa más que
+hacer más bonita esa única imagen.** La resolución, de hecho, casi
+siempre alcanza (1024-2048px); las excepciones a corregir son el
+Binocular Kampak (640×640) y el Simmons Venture (850×850).
+
+### ⚠️ Qué NO hacer, y por qué
+
+**No regenerar el producto con IA.** Son productos de marca —Okuma,
+Shimano, Rapala, Bushnell, Simmons, Gamo, Konus— y la IA se equivoca en
+los detalles: número de guías de una caña, la perilla del freno de un
+carrete, los logotipos, las marcas de modelo. El público es hombres de
+45-65 que pescan: **esa gente nota esos detalles.** Además:
+
+- **Riesgo legal y comercial:** una imagen que no corresponde a lo que se
+  envía es publicidad engañosa (PROFECO) y causal de rechazo de anuncios
+  en Meta. Con márgenes tan delgados (§59), una tanda de devoluciones se
+  come el año.
+- **Riesgo de marca:** la carta que va en cada envío dice *"revisamos
+  cada pieza con nuestras propias manos"* (§ carta de bienvenida). Fotos
+  inventadas contradicen justo eso.
+
+### ✅ La versión segura de la misma idea
+
+1. **IA para la escena, no para el producto.** Recortar el producto
+   **real** y componerlo sobre un fondo generado: el río, la lancha, el
+   campo. Los píxeles del producto son los verdaderos; lo generado es el
+   entorno. Esto es estándar y no engaña a nadie.
+2. **IA para normalizar.** Fondo, luz y encuadre consistentes en los 250
+   productos, que hoy se ven disparejos entre sí.
+3. **Fotos reales para lo que la IA no puede inventar:** escala (el
+   producto en la mano), detalle de cerca, y qué trae la caja. El dueño
+   tiene 1-3 piezas de cada cosa — con un teléfono y luz de ventana
+   alcanza.
+4. **Antes que todo lo anterior: las bibliotecas de los fabricantes.**
+   Okuma, Shimano, Rapala y Bushnell dan imágenes oficiales a sus
+   distribuidores. Son gratis, son exactas y están permitidas. Es el
+   primer lugar donde buscar, no el último.
+
+### Video (Higgsfield)
+
+Razonable, **después de las fotos y empezando por los 4-6 productos que
+van a cargar la campaña**. Movimiento sutil sobre una foto real es de
+bajo riesgo. Dos advertencias: en la ficha hay que cuidar el peso de
+página (afecta Core Web Vitals) y en Meta el video suele rendir mejor que
+el estático, así que ahí es donde más conviene probarlo.
+
+### 🔴 Qué productos priorizar — ojo aquí
+
+La tentación es partir de *"los que estamos recomendando en las campañas
+de Facebook"*. **Cuidado: esos son justo los que hay que dejar de
+empujar.** El gasto de la ronda que acaba de cerrar se fue a combos de
+caña, y §60 mostró que esos necesitan un ROAS de equilibrio de 12x
+mientras que la óptica de buen margen necesita 1.81x-1.86x.
+
+Si se fotografía según la campaña pasada, se invierte el esfuerzo en los
+productos de peor contribución. **La lista debe salir del plan nuevo, no
+del viejo.**
+
+| Prioridad | Producto | Imgs hoy | Por qué |
+|---|---|---|---|
+| 1 | Binocular Simmons Venture 8x21 ($1,290) | 1 (850px) | Equilibrio 1.81x, el mejor del catálogo |
+| 2 | Binocular Bushnell PowerView 2 8x21 ($1,450) | 1 (2048px) | Equilibrio 1.86x |
+| 3 | Binocular Gamo 8x40 AF ($1,970) | 1 (1600px) | Equilibrio 2.45x |
+| 4 | Binocular Kampak Visión Nocturna ($2,900) | 1 (640px) | Equilibrio 2.61x; **resolución a corregir** |
+| 5 | Combo Okuma Revenger $849 | 1 (1024px) | Único con venta real comprobada — vale la pena aunque su margen sea delgado |
+
+### Qué puedo hacer yo y qué toca al dueño
+
+**Del dueño:** ChatGPT y Higgsfield no los alcanzo desde este entorno, y
+las fotos reales de escala y detalle solo las puede tomar quien tiene las
+piezas en la mano.
+
+**De este lado:** la lista priorizada con especificaciones exactas
+(medidas, relación de aspecto, nombres de archivo), los prompts
+redactados, y el script que sube las imágenes terminadas a Shopify en
+lote y verifica que quedaron —hay patrón previo en
+`scripts/cargar-fichas-tecnicas.py`—.
+
+---
+
 ## ~~Títulos encimados en la cuadrícula de colección (móvil)~~ ✅ Resuelto (15 sep)
 
 El dueño lo vio en su teléfono en `/collections/combos`: los títulos de
