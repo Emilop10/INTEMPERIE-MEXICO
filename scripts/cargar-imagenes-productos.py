@@ -3,8 +3,10 @@
 Sube a Shopify las imagenes listadas en IMAGENES-CAMPANA-PENDIENTES.md.
 
 Uso:
+    python3 scripts/cargar-imagenes-productos.py --crear-carpetas
     python3 scripts/cargar-imagenes-productos.py --dry-run
     SHOPIFY_ADMIN_TOKEN=shpat_... python3 scripts/cargar-imagenes-productos.py
+    SHOPIFY_ADMIN_TOKEN=shpat_... python3 scripts/cargar-imagenes-productos.py --incluir-extras
 
 Variables de entorno:
     SHOPIFY_ADMIN_TOKEN  (obligatoria salvo en --dry-run) token con write_products
@@ -20,6 +22,25 @@ un renglon por foto:
 
 Se parsea de ahi a proposito, igual que cargar-fichas-tecnicas.py: asi el
 documento que revisa el dueno y lo que se sube no se pueden desincronizar.
+
+Las imagenes viven en una subcarpeta por producto, nombrada con su handle:
+
+    imagenes-productos/
+      binocular-kampak-vision-nocturna-digital/
+        LEEME.md                                  <- que tomas van aqui
+        binocular-kampak-...-1-hero.jpg
+        binocular-kampak-...-2-escala.jpg
+      hilo-araty-0-70mm-1000m-natural/
+        ...
+
+`--crear-carpetas` las genera a partir del documento, con su LEEME.md, asi
+que la estructura no se puede desincronizar del encargo. Por compatibilidad
+tambien se acepta el archivo suelto en la raiz de imagenes-productos/.
+
+Si hay archivos en la subcarpeta que el documento NO lista -- por ejemplo
+varias versiones generadas de la misma toma -- se reportan como "extras" y
+NO se suben, salvo que se pase --incluir-extras. Lo normal es quedarse con
+la mejor y renombrarla al nombre exacto que pide el documento.
 
 Idempotente: el nombre del archivo se guarda dentro del `alt` como sufijo
 `[archivo]`, y antes de subir se leen las imagenes que el producto ya tiene.
@@ -125,10 +146,51 @@ def dimensiones(ruta):
     return None
 
 
+EXTENSIONES = (".jpg", ".jpeg", ".png", ".webp")
+
+
+def ruta_de(handle, archivo):
+    """La subcarpeta del producto manda; se acepta la raiz por compatibilidad."""
+    en_carpeta = os.path.join(RAIZ, CARPETA, handle, archivo)
+    if os.path.exists(en_carpeta):
+        return en_carpeta
+    return os.path.join(RAIZ, CARPETA, archivo)
+
+
+def crear_carpetas(productos):
+    """Una subcarpeta por producto, con un LEEME.md que lista sus tomas."""
+    hechas = 0
+    for handle, titulo, fotos in productos:
+        d = os.path.join(RAIZ, CARPETA, handle)
+        nueva = not os.path.isdir(d)
+        os.makedirs(d, exist_ok=True)
+        lineas = [f"# {titulo}", "",
+                  f"`{handle}`", "",
+                  "Aqui van las imagenes de este producto, con **exactamente** estos",
+                  "nombres de archivo. Si generas varias versiones de una toma, dejalas",
+                  "aqui mientras decides y quedate con la mejor renombrada asi; las que",
+                  "no esten en esta lista se reportan como extras y no se suben.", "",
+                  "| # | Tipo | Nombre de archivo |", "|---|---|---|"]
+        for i, (archivo, tipo, _alt) in enumerate(fotos, 1):
+            lineas.append(f"| {i} | {tipo} | `{archivo}` |")
+        lineas += ["", "Todas: **2048 x 2048 px, cuadradas**, JPG calidad 85, menos de 1 MB.", "",
+                   "Detalle de cada toma y los prompts en",
+                   "[`IMAGENES-CAMPANA-PENDIENTES.md`](../../IMAGENES-CAMPANA-PENDIENTES.md).", ""]
+        open(os.path.join(d, "LEEME.md"), "w", encoding="utf-8").write("\n".join(lineas))
+        print(f"   {'creada ' if nueva else 'ok     '} {CARPETA}/{handle}/  ({len(fotos)} tomas)")
+        hechas += nueva
+    print(f"\n  {len(productos)} carpetas listas ({hechas} nuevas), cada una con su LEEME.md")
+    return 0
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true",
                     help="revisa los archivos y no sube nada")
+    ap.add_argument("--crear-carpetas", action="store_true",
+                    help="crea una subcarpeta por producto, con su LEEME.md, y termina")
+    ap.add_argument("--incluir-extras", action="store_true",
+                    help="sube tambien las imagenes de la subcarpeta que el documento no lista")
     args = ap.parse_args()
 
     doc = os.path.join(RAIZ, DOC)
@@ -138,6 +200,9 @@ def main():
     print(f"{DOC}: {len(productos)} productos, "
           f"{sum(len(f) for _, _, f in productos)} imagenes listadas\n")
 
+    if args.crear_carpetas:
+        return crear_carpetas(productos)
+
     token = os.environ.get("SHOPIFY_ADMIN_TOKEN")
     store = os.environ.get("SHOPIFY_STORE", "wfuxvx-yn.myshopify.com")
     if not token and not args.dry_run:
@@ -145,9 +210,16 @@ def main():
 
     mapa = catalogo_por_handle(token, store) if token else {}
 
-    listas = faltantes = ya_estaban = subidas = problemas = 0
+    listas = faltantes = ya_estaban = subidas = problemas = extras_tot = 0
     for handle, titulo, fotos in productos:
         print(f"── {titulo}")
+        carpeta = os.path.join(RAIZ, CARPETA, handle)
+        esperados = {a for a, _t, _al in fotos}
+        extras = []
+        if os.path.isdir(carpeta):
+            for f in sorted(os.listdir(carpeta)):
+                if f.lower().endswith(EXTENSIONES) and f not in esperados:
+                    extras.append(f)
         pid = mapa.get(handle)
         if token and not pid:
             print(f"   ⚠ handle no existe en la tienda: {handle}")
@@ -161,7 +233,7 @@ def main():
                     existentes.add(m.group(1))
 
         for archivo, tipo, alt in fotos:
-            ruta = os.path.join(RAIZ, CARPETA, archivo)
+            ruta = ruta_de(handle, archivo)
             if not os.path.exists(ruta):
                 print(f"   · falta      [{tipo:<11}] {archivo}")
                 faltantes += 1
@@ -200,11 +272,38 @@ def main():
             subidas += 1
             time.sleep(0.6)   # el limite de Shopify es 2 llamadas/segundo
 
+        for f in extras:
+            extras_tot += 1
+            if not args.incluir_extras:
+                print(f"   ? extra      {f}  (no esta en el documento, NO se sube)")
+                continue
+            if f in existentes:
+                print(f"   = ya estaba  {f}")
+                ya_estaban += 1
+                continue
+            if args.dry_run or not token:
+                print(f"   + subiria    [extra      ] {f}")
+                continue
+            ruta = os.path.join(carpeta, f)
+            cuerpo = {"image": {
+                "attachment": base64.b64encode(open(ruta, "rb").read()).decode(),
+                "filename": f,
+                "alt": f"{titulo} [{f}]",
+            }}
+            api("POST", f"/products/{pid}/images.json", token, store, cuerpo)
+            print(f"   ✓ subida     {f}  (extra)")
+            subidas += 1
+            time.sleep(0.6)
+
     print(f"\n{'='*58}")
     print(f"  listas en {CARPETA}/ : {listas}")
     print(f"  faltan por generar   : {faltantes}")
     print(f"  ya estaban en Shopify: {ya_estaban}")
     print(f"  subidas ahora        : {subidas}")
+    if extras_tot:
+        print(f"  extras encontrados   : {extras_tot}"
+              + ("" if args.incluir_extras else "  (usa --incluir-extras para subirlos,"
+                                                " o renombra el bueno al nombre del documento)"))
     if problemas:
         print(f"  PROBLEMAS            : {problemas}")
     if args.dry_run or not token:

@@ -385,7 +385,7 @@
       "file_type": "code",
       "norm_label": "api()",
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L48"
+      "source_location": "L69"
     },
     {
       "id": "cargar_imagenes_productos_catalogo_por_handle",
@@ -397,7 +397,19 @@
       "file_type": "code",
       "norm_label": "catalogo_por_handle()",
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L84"
+      "source_location": "L105"
+    },
+    {
+      "id": "cargar_imagenes_productos_crear_carpetas",
+      "label": "crear_carpetas()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "cargar-imagenes-productos.py",
+      "file_type": "code",
+      "norm_label": "crear_carpetas()",
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L160"
     },
     {
       "id": "cargar_imagenes_productos_dimensiones",
@@ -409,7 +421,7 @@
       "file_type": "code",
       "norm_label": "dimensiones()",
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L101"
+      "source_location": "L122"
     },
     {
       "id": "cargar_imagenes_productos_main",
@@ -421,7 +433,7 @@
       "file_type": "code",
       "norm_label": "main()",
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L128"
+      "source_location": "L186"
     },
     {
       "id": "cargar_imagenes_productos_parsear_documento",
@@ -433,7 +445,19 @@
       "file_type": "code",
       "norm_label": "parsear_documento()",
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L62"
+      "source_location": "L83"
+    },
+    {
+      "id": "cargar_imagenes_productos_ruta_de",
+      "label": "ruta_de()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "cargar-imagenes-productos.py",
+      "file_type": "code",
+      "norm_label": "ruta_de()",
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L152"
     },
     {
       "id": "meta_ads_api_request",
@@ -1138,29 +1162,7 @@
       "source_location": "L1"
     },
     {
-      "id": "cargar_imagenes_productos_rationale_102",
-      "label": "Lado de la imagen sin depender de Pillow, para JPG y PNG.",
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "cargar-imagenes-productos.py",
-      "file_type": "rationale",
-      "norm_label": "lado de la imagen sin depender de pillow, para jpg y png.",
-      "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L102"
-    },
-    {
-      "id": "cargar_imagenes_productos_rationale_63",
-      "label": "-> [(handle, titulo, [(archivo, tipo, alt), ...]), ...] en orden.",
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "cargar-imagenes-productos.py",
-      "file_type": "rationale",
-      "norm_label": "-> [(handle, titulo, [(archivo, tipo, alt), ...]), ...] en orden.",
-      "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L63"
-    },
-    {
-      "id": "cargar_imagenes_productos_rationale_85",
+      "id": "cargar_imagenes_productos_rationale_106",
       "label": "Mapa handle -> id, paginando todo el catalogo.",
       "_origin": "ast",
       "community": 13,
@@ -1168,7 +1170,51 @@
       "file_type": "rationale",
       "norm_label": "mapa handle -> id, paginando todo el catalogo.",
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L85"
+      "source_location": "L106"
+    },
+    {
+      "id": "cargar_imagenes_productos_rationale_123",
+      "label": "Lado de la imagen sin depender de Pillow, para JPG y PNG.",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "cargar-imagenes-productos.py",
+      "file_type": "rationale",
+      "norm_label": "lado de la imagen sin depender de pillow, para jpg y png.",
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L123"
+    },
+    {
+      "id": "cargar_imagenes_productos_rationale_153",
+      "label": "La subcarpeta del producto manda; se acepta la raiz por compatibilidad.",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "cargar-imagenes-productos.py",
+      "file_type": "rationale",
+      "norm_label": "la subcarpeta del producto manda; se acepta la raiz por compatibilidad.",
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L153"
+    },
+    {
+      "id": "cargar_imagenes_productos_rationale_161",
+      "label": "Una subcarpeta por producto, con un LEEME.md que lista sus tomas.",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "cargar-imagenes-productos.py",
+      "file_type": "rationale",
+      "norm_label": "una subcarpeta por producto, con un leeme.md que lista sus tomas.",
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L161"
+    },
+    {
+      "id": "cargar_imagenes_productos_rationale_84",
+      "label": "-> [(handle, titulo, [(archivo, tipo, alt), ...]), ...] en orden.",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "cargar-imagenes-productos.py",
+      "file_type": "rationale",
+      "norm_label": "-> [(handle, titulo, [(archivo, tipo, alt), ...]), ...] en orden.",
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L84"
     },
     {
       "id": "readme_deploy",
@@ -1600,7 +1646,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L137",
+      "source_location": "L199",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_imagenes_productos_main",
+      "target": "cargar_imagenes_productos_crear_carpetas",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L204",
       "weight": 1.0
     },
     {
@@ -1612,7 +1670,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L146",
+      "source_location": "L211",
       "weight": 1.0
     },
     {
@@ -1624,7 +1682,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L158",
+      "source_location": "L230",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_imagenes_productos_main",
+      "target": "cargar_imagenes_productos_ruta_de",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L236",
       "weight": 1.0
     },
     {
@@ -1636,7 +1706,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L171",
+      "source_location": "L243",
       "weight": 1.0
     },
     {
@@ -2536,13 +2606,46 @@
     },
     {
       "source": "cargar_imagenes_productos",
+      "target": "cargar_imagenes_productos_catalogo_por_handle",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L105",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_imagenes_productos",
       "target": "cargar_imagenes_productos_dimensiones",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L101",
+      "source_location": "L122",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_imagenes_productos",
+      "target": "cargar_imagenes_productos_ruta_de",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L152",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_imagenes_productos",
+      "target": "cargar_imagenes_productos_crear_carpetas",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L160",
       "weight": 1.0
     },
     {
@@ -2553,7 +2656,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L128",
+      "source_location": "L186",
       "weight": 1.0
     },
     {
@@ -2564,7 +2667,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L48",
+      "source_location": "L69",
       "weight": 1.0
     },
     {
@@ -2575,18 +2678,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L62",
-      "weight": 1.0
-    },
-    {
-      "source": "cargar_imagenes_productos",
-      "target": "cargar_imagenes_productos_catalogo_por_handle",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L84",
+      "source_location": "L83",
       "weight": 1.0
     },
     {
@@ -3492,36 +3584,58 @@
       "weight": 1.0
     },
     {
-      "source": "cargar_imagenes_productos_rationale_102",
-      "target": "cargar_imagenes_productos_dimensiones",
-      "relation": "rationale_for",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L102",
-      "weight": 1.0
-    },
-    {
-      "source": "cargar_imagenes_productos_rationale_63",
-      "target": "cargar_imagenes_productos_parsear_documento",
-      "relation": "rationale_for",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L63",
-      "weight": 1.0
-    },
-    {
-      "source": "cargar_imagenes_productos_rationale_85",
+      "source": "cargar_imagenes_productos_rationale_106",
       "target": "cargar_imagenes_productos_catalogo_por_handle",
       "relation": "rationale_for",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L85",
+      "source_location": "L106",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_imagenes_productos_rationale_123",
+      "target": "cargar_imagenes_productos_dimensiones",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L123",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_imagenes_productos_rationale_153",
+      "target": "cargar_imagenes_productos_ruta_de",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L153",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_imagenes_productos_rationale_161",
+      "target": "cargar_imagenes_productos_crear_carpetas",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L161",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_imagenes_productos_rationale_84",
+      "target": "cargar_imagenes_productos_parsear_documento",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L84",
       "weight": 1.0
     },
     {
@@ -3820,5 +3934,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "4fff712aaef1e265fe712d375f981ed2b429b716"
+  "built_at_commit": "a49beef7db6bfa21dbd823b21937b6a096810ac9"
 }

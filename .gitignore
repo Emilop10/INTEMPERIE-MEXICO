@@ -20,6 +20,10 @@ scripts/graphify-out/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]/
 *token*.json
 shopify-token*
 
-# Imagenes de producto: pesadas, y la copia buena vive en Shopify
-imagenes-productos/*
+# Imagenes de producto: pesadas, y la copia buena vive en Shopify una vez
+# subida. Se versiona solo la estructura: el README y el LEEME de cada
+# subcarpeta, que dicen que toma va en cada una.
+imagenes-productos/**
 !imagenes-productos/README.md
+!imagenes-productos/*/
+!imagenes-productos/*/LEEME.md

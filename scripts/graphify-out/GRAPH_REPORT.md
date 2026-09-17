@@ -1,16 +1,16 @@
 # Graph Report - scripts  (2026-09-17)
 
 ## Corpus Check
-- 14 files · ~35,247 words
+- 14 files · ~35,733 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 127 nodes · 200 edges · 14 communities (13 shown, 1 thin omitted)
+- 131 nodes · 206 edges · 14 communities (13 shown, 1 thin omitted)
 - Extraction: 96% EXTRACTED · 4% INFERRED · 0% AMBIGUOUS · INFERRED: 8 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `4fff712a`
+- Built from commit: `a49beef7`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -35,9 +35,9 @@
 2. `main()` - 9 edges
 3. `main()` - 8 edges
 4. `main()` - 8 edges
-5. `Deploy del tema a Shopify` - 7 edges
-6. `cmd_activar()` - 6 edges
-7. `main()` - 5 edges
+5. `main()` - 7 edges
+6. `Deploy del tema a Shopify` - 7 edges
+7. `cmd_activar()` - 6 edges
 8. `main()` - 5 edges
 9. `keys_from_git()` - 5 edges
 10. `construir_story()` - 5 edges
@@ -99,12 +99,12 @@ Cohesion: 0.48
 Nodes (6): armar_repro(), bajar(), buscar_chrome(), main(), medir(), Descarga la coleccion y sus CSS, y sustituye brand-tokens.css por el del repo.
 
 ### Community 13 - "cargar-imagenes-productos.py"
-Cohesion: 0.33
-Nodes (8): api(), catalogo_por_handle(), dimensiones(), main(), parsear_documento(), Lado de la imagen sin depender de Pillow, para JPG y PNG., -> [(handle, titulo, [(archivo, tipo, alt), ...]), ...] en orden., Mapa handle -> id, paginando todo el catalogo.
+Cohesion: 0.23
+Nodes (12): api(), catalogo_por_handle(), crear_carpetas(), dimensiones(), main(), parsear_documento(), Mapa handle -> id, paginando todo el catalogo., Lado de la imagen sin depender de Pillow, para JPG y PNG. (+4 more)
 
 ## Knowledge Gaps
 - **8 isolated node(s):** `MERCADOS`, `PLUGINS`, `Por que existe esto`, `Uso rapido`, `Automatico en cada push` (+3 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 32 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 34 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **1 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions

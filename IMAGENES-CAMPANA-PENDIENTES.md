@@ -148,7 +148,18 @@ Pegada en el mango, visible al acercarse. Quitarla es retoque legítimo.
 | **Peso** | menos de 1 MB |
 | **Fondo** | blanco o gris muy claro, **el mismo en todas** |
 | **Nombre** | `{handle}-{n}-{tipo}.jpg`, exactamente como dice cada bloque |
-| **Carpeta** | `imagenes-productos/` |
+| **Carpeta** | `imagenes-productos/{handle}/` — **una subcarpeta por producto** |
+
+Las subcarpetas se generan del propio documento, no se crean a mano:
+
+```bash
+python3 scripts/cargar-imagenes-productos.py --crear-carpetas
+```
+
+Cada una queda con un `LEEME.md` que lista sus tomas. **Si generas varias
+versiones de la misma toma**, déjalas ahí con el nombre que sea: el ensayo
+las reporta como *extras* y no las sube. Cuando decidas, renombra la buena
+al nombre exacto del documento.
 
 ### Los tres tipos de toma
 
@@ -429,7 +440,7 @@ que más le falta a las fichas.
 ## Cómo subirlas
 
 ```bash
-# archivos en imagenes-productos/ con el nombre EXACTO de este documento
+python3 scripts/cargar-imagenes-productos.py --crear-carpetas     # una carpeta por producto
 python3 scripts/cargar-imagenes-productos.py --dry-run            # revisa, no sube
 SHOPIFY_ADMIN_TOKEN=shpat_... python3 scripts/cargar-imagenes-productos.py
 ```
