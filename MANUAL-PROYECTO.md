@@ -90,6 +90,7 @@ como respaldo
 60. [Meta optimiza por conversión, no por margen (15 sep)](#60-meta-optimiza-por-conversión-no-por-margen-15-sep)
 61. [Los títulos encimados de la cuadrícula: el síntoma estaba en el título, la causa en el precio (15 sep)](#61-los-títulos-encimados-de-la-cuadrícula-el-síntoma-estaba-en-el-título-la-causa-en-el-precio-15-sep)
 62. [Cierre de la ronda: se pausa con $57 sin gastar (17 sep)](#62-cierre-de-la-ronda-se-pausa-con-57-sin-gastar-17-sep)
+63. [Verificación: la campaña no gasta desde el 17, y el total real es $1,847.97 (22 sep)](#63-verificación-la-campaña-no-gasta-desde-el-17-y-el-total-real-es-184797-22-sep)
 
 ---
 
@@ -950,6 +951,12 @@ pudo instalar en este entorno. Corrido sobre `tema-shopify/`, generó:
   independientes —
   `graphify update .` se corre por separado dentro de `tema-shopify/`
   y dentro de `scripts/`, no desde la raíz
+- **Cifra vigente de `scripts/`: 169 nodos, 305 aristas, 12
+  comunidades** (22 de septiembre, `graphify 0.9.66`; antes 131/206/14).
+  **El salto es de la herramienta, no del código**: los 38 nodos nuevos
+  son 11 docstrings de módulo guardados como nodos "rationale" y 27
+  módulos importados, que la versión anterior no registraba. No
+  desapareció ningún nodo. Detalle en §63
 - Los "god nodes" (componentes más centrales de la arquitectura del
   tema): `PredictiveSearch`, `FacetFiltersForm`, `SlideshowComponent`,
   `CartItems`, `CartDrawer`, `MenuDrawer`, entre otros
@@ -7311,3 +7318,120 @@ guías de muestra que pide §59, y fotografía —que con 722 vistas de
 producto → 18 al carrito (**2.5%**) sigue siendo el cuello de botella
 dominante—. A eso se suma ahora **creativo nuevo**: un solo anuncio
 durante 23 días es lo que produjo la caída de CTR de esta última semana.
+
+---
+
+## 63. Verificación: la campaña no gasta desde el 17, y el total real es $1,847.97 (22 sep)
+
+Petición del dueño: **confirmar que no se esté gastando nada** en la
+campaña pausada en §62, y saber **cuánto se gastó en total**. Todo se
+contestó leyendo la Marketing API de Meta directamente. No se modificó
+nada: ni campaña, ni conjuntos, ni anuncios, ni tope.
+
+### No hay gasto desde la pausa
+
+Gasto diario de la cuenta (zona `America/Chihuahua`):
+
+| Fecha | Gasto | Impresiones |
+|---|---|---|
+| 15 sep | $58.00 | 1,575 |
+| 16 sep | $60.96 | 1,681 |
+| 17 sep | $16.74 | 445 ← se pausó a las 17:39 |
+| 18 – 22 sep | **$0.00** | **0** (la API no devuelve filas) |
+
+Estado leído de la API, a nivel de cada objeto:
+
+```
+cuenta   Intemperie México Ads  account_status=1 (activa)  única campaña en la cuenta
+campaña  status=PAUSED  effective_status=PAUSED
+  conjunto v3  ACTIVE -> efectivo CAMPAIGN_PAUSED   ($55/día)
+  conjunto v2  PAUSED -> efectivo PAUSED
+  conjunto v1  PAUSED -> efectivo PAUSED
+  anuncio v3   ACTIVE -> efectivo CAMPAIGN_PAUSED
+  anuncio v2   ACTIVE -> efectivo ADSET_PAUSED
+  anuncio v1   ACTIVE -> efectivo ADSET_PAUSED
+```
+
+> ⚠️ **"Activo" en un conjunto o anuncio no significa que esté
+> entregando.** Lo que manda es `effective_status`. Pero el conjunto v3 y
+> los tres anuncios conservan su `status=ACTIVE`, así que **al reactivar la
+> campaña el v3 vuelve a gastar $55/día en el acto**. Es lo que se dejó
+> así a propósito en §62; quien reactive tiene que saberlo.
+
+> 💳 **El `balance` de la cuenta ($136.51) no es gasto nuevo.** Es gasto
+> de antes del 17 que Meta todavía no ha cobrado a la tarjeta. Puede
+> aparecer un cargo después de la pausa sin que la campaña haya entregado
+> nada.
+
+### El total: $1,847.97, no $1,826.87
+
+Vida completa de la campaña, de la API (`date_preset=maximum`):
+
+| Conjunto | Gasto |
+|---|---|
+| v1 — Catálogo dinámico (Conjunto original) | $242.17 |
+| v2 — ViewContent | $460.00 |
+| v3 — AddToCart, Hombres 45+ | $1,145.80 |
+| **Total** | **$1,847.97** |
+
+76,881 impresiones · 2,686 clics al enlace · 37 al carrito · 18 pagos
+iniciados · **1 venta de $849 → ROAS 0.46x** (igual que en §62; con
+$21 más de gasto sigue redondeando a lo mismo).
+
+§62 había cerrado en **$1,826.87**. La diferencia de **$21.10** se
+concilió al centavo, y no es gasto posterior a la pausa:
+
+| Parte | Monto | Por qué |
+|---|---|---|
+| 15 de agosto | $18.35 | La campaña se creó el **16 de agosto a las 00:59 UTC**, que en Chihuahua todavía es **el 15**. La cuenta usa horario de Chihuahua, así que su primer día de gasto es el 15. El rango de §62 empezaba el 16 y dejó fuera ese día |
+| Cierre del 17 de septiembre | $2.75 | Meta terminó de asentar el gasto del 17 después de la consulta de §62. El `amount_spent` de la cuenta subió lo mismo: $1,428.08 → $1,430.80 (+$2.72; la diferencia de centavos es de redondeo) |
+| **Total** | **$21.10** | |
+
+Comprobación: `16 ago – 17 sep` = $1,829.62, más `15 ago` = $18.35, da
+$1,847.97. El rango `18 – 22 sep` devuelve vacío.
+
+> 🔍 **Dos lecciones para las siguientes consultas.**
+> 1. **La fecha de inicio de una campaña se lee en la zona de la cuenta,
+>    no en UTC.** Para "vida completa" hay que usar
+>    `date_preset=maximum` y no armar el rango a mano desde
+>    `start_time`, que viene en UTC.
+> 2. **El gasto de un día no es definitivo hasta el día siguiente.** Una
+>    cifra de cierre tomada el mismo día de la pausa queda unos pesos
+>    corta. Para un cierre definitivo, volver a leer al día siguiente.
+
+Con eso, el saldo que queda bajo el tope es **$54.20** ($1,485 −
+$1,430.80), no los $56.92 que registró §62.
+
+### Grafo de `scripts/` (Graphify)
+
+La verificación se hizo con consultas de solo lectura a la API, sin tocar
+ningún script, así que **por sí misma no mueve el grafo**. Aun así se
+reinstaló Graphify (`uv tool install graphifyy`, que ahora trae la
+versión **0.9.66**) y se corrió `cd scripts && graphify update .` para
+dejar el grafo al día:
+
+- **131/206/14 → 169/305/12** (nodos/aristas/comunidades).
+- Se comparó `graph.json` contra el de antes, nodo por nodo. **Los 38
+  nodos nuevos vienen todos de la versión nueva de la herramienta, no de
+  cambios de código:**
+  - **11 nodos "rationale"**, uno por script. Ahora Graphify guarda el
+    docstring del módulo (el "qué hace y para qué") como nodo propio.
+  - **27 nodos de módulos importados** (`json`, `urllib_request`,
+    `argparse`, `openpyxl`, `reportlab_*`…). Antes no se registraban.
+  - **No desapareció ningún nodo.**
+- Las comunidades bajaron de 14 a 12 porque, con las aristas a las
+  bibliotecas compartidas, algunos scripts pequeños se agruparon. Graphify
+  renombró 9 comunidades por su hub. La etiqueta con LLM (`graphify label`)
+  no se corrió.
+- Es la misma lección de §21: **las cifras del grafo son función de
+  código × versión de la herramienta.** Este salto no se debe leer como
+  crecimiento del código.
+- El grafo de `tema-shopify/` no se tocó: esta verificación no involucró
+  al tema.
+
+### Estado en que queda todo
+
+Igual que al cierre de §62. Campaña en pausa, sin entrega desde el 17 de
+septiembre a las 17:39, **nada borrado ni modificado**. Lo que sigue
+tampoco cambia: separar óptica y pesca, revisar el piso de $799,
+fotografía y creativo nuevo antes de reactivar.
