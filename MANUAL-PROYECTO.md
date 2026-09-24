@@ -91,6 +91,7 @@ como respaldo
 61. [Los títulos encimados de la cuadrícula: el síntoma estaba en el título, la causa en el precio (15 sep)](#61-los-títulos-encimados-de-la-cuadrícula-el-síntoma-estaba-en-el-título-la-causa-en-el-precio-15-sep)
 62. [Cierre de la ronda: se pausa con $57 sin gastar (17 sep)](#62-cierre-de-la-ronda-se-pausa-con-57-sin-gastar-17-sep)
 63. [Verificación: la campaña no gasta desde el 17, y el total real es $1,847.97 (22 sep)](#63-verificación-la-campaña-no-gasta-desde-el-17-y-el-total-real-es-184797-22-sep)
+64. [Imágenes y videos con IA en 12 productos, y la resistencia de los hilos (17-24 sep)](#64-imágenes-y-videos-con-ia-en-12-productos-y-la-resistencia-de-los-hilos-17-24-sep)
 
 ---
 
@@ -7435,3 +7436,95 @@ Igual que al cierre de §62. Campaña en pausa, sin entrega desde el 17 de
 septiembre a las 17:39, **nada borrado ni modificado**. Lo que sigue
 tampoco cambia: separar óptica y pesca, revisar el piso de $799,
 fotografía y creativo nuevo antes de reactivar.
+
+---
+
+## 64. Imágenes y videos con IA en 12 productos, y la resistencia de los hilos (17-24 sep)
+
+El dueño generó con IA (Codex para imágenes, Higgsfield para video) **5
+imágenes y 1 video por producto** para los 12 productos de
+`IMAGENES-CAMPANA-PENDIENTES.md`, a partir de la foto real de cada uno.
+Su idea: que sirvan a la vez para la tienda, el catálogo y los anuncios.
+
+### La revisión antes de publicar
+
+Se compararon las 60 imágenes, una por una, contra la foto original de
+la tienda. **La IA respetó el producto en casi todo** —logos, colores,
+formas—, y en conjunto las imágenes comparten estilo: fondo oscuro, lago
+al amanecer, salpicaduras. Salieron cinco observaciones; el dueño decidió
+cada una:
+
+| Hallazgo | Decisión del dueño |
+|---|---|
+| La 2ª imagen de la **caña Okuma Revenger** muestra **"SHIMANO FX SALTWATER"**: la IA inventó otra marca sobre el producto | **Se borró** (`9955bfa`). Su video se revisó cuadro por cuadro y no muestra marca legible: se queda |
+| Los **hilos Araty** corregidos a 0.45 mm conservan la resistencia del 0.25 (**4,2 kg**) en la etiqueta | Se usan como referencia, **y la resistencia real se carga en la ficha técnica** (abajo) |
+| El binocular **"Gamo"** dice **"Firefield"** en el cuerpo | Así llega físicamente; la foto original ya lo decía. Se queda |
+| **Salpicaduras de agua** en casi todas, incluido el Kampak (electrónico) | Criterio de marketing del dueño. Queda la condición de que la **descripción** no prometa impermeabilidad si no la hay |
+| El Kampak sigue mostrando el **lémur** en pantalla | Es la imagen de referencia de siempre. Se queda |
+
+> 🧠 **Dónde se equivoca la IA:** en los **acercamientos**. En las tomas
+> generales conserva bien la rotulación que ve; cuando le toca "inventar"
+> el detalle de cerca, rellena con texto plausible, y el texto más
+> plausible sobre una caña es el de la marca más famosa. **Revisar
+> siempre los macros letra por letra, contra el original.**
+
+### La resistencia: una suposición que no se cumplía
+
+El dueño daba por hecho que las descripciones de los hilos traían la
+resistencia. **Se comprobó y ninguna la traía**: la única cifra visible
+habría sido el 4,2 kg de la imagen. Se buscó la tabla oficial de Araty
+Superflex. La página de Mazzaferro está detrás de Cloudflare, así que se
+contrastaron tres tiendas; **el 0.25 = 4.2 kg coincide con la etiqueta
+física del carrete**, lo que valida la fuente.
+
+| Producto | Resistencia publicada | Criterio |
+|---|---|---|
+| Araty 0.45 mm Verde | 11.6 kg (25.5 lb) | Coincide en las tres fuentes |
+| Araty 0.45 mm Multicolor | 11.6 kg (25.5 lb) | Coincide en las tres fuentes |
+| Araty 0.70 mm Natural | **25 kg** (55 lb) | Las fuentes dan 25.0 y 27.1; **se publica la baja**, por decisión del dueño |
+
+> 🧠 **Por qué la cifra baja:** si el hilo aguanta 27 y se prometió 25,
+> nadie se queja. Al revés, el cliente al que se le revienta con un pez de
+> 26 kg tiene la razón. Con una diferencia de 8%, prometer de menos es
+> gratis.
+
+Cargado con `cargar-fichas-tecnicas.py`: 1 ficha actualizada, 2 creadas,
+35 sin cambios. **Verificado en la página pública** de los tres
+productos: *"Resistencia 11.6 kg (25.5 lb)"* ×2 y *"Resistencia 25 kg
+(55 lb)"*. Se cargó **antes** que las imágenes, a propósito, para que la
+etiqueta de la foto nunca fuera la única resistencia visible.
+
+### La subida
+
+`cargar-imagenes-productos.py` se amplió para video. Shopify no acepta
+video por la API REST de imágenes; va por GraphQL:
+`stagedUploadsCreate` → POST multipart del archivo → `productCreateMedia`.
+El multipart se probó antes contra un servidor local: el video llegó
+idéntico byte por byte. Además, las imágenes nuevas se insertan **al
+frente** (campo `position`) y las originales se conservan detrás.
+
+**Verificado en la tienda pública** (`/products/{handle}.js`), no con la
+salida del script:
+
+| | Antes | Después |
+|---|---|---|
+| Imágenes (12 productos) | 14 | **73** (14 + 59) ✅ |
+| Videos | 0 | **12**, los 12 procesados ✅ |
+| Primera imagen | la original | **la hero nueva, en los 12** ✅ |
+
+Las imágenes pasan al catálogo de Meta por la sincronización del canal de
+Shopify, así que **la misma subida mejora la tienda y los anuncios de
+catálogo**. Los videos se usarán aparte, como anuncios de video.
+
+### Lo que sigue
+
+- **33 fotos de teléfono pendientes** (escala, detalle, qué trae la
+  caja). Las generadas hacen que el producto se vea atractivo; las de
+  teléfono hacen que el cliente entienda qué compra, y son las que atacan
+  el 2.5% de vistas → carrito.
+- **Medir vistas → carrito antes y después**, con el corte fijado *antes*
+  de mirar los datos (lección de §62).
+- El repositorio guarda **221 MB** de imágenes y video, porque las
+  subidas por la web de GitHub se saltan el `.gitignore`. No afecta la
+  tienda —el deploy sólo mira `tema-shopify/`—, pero conviene sacarlas del
+  repo en adelante.

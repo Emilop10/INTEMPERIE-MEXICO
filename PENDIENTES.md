@@ -942,6 +942,24 @@ no se haya desbordado a una segunda página, en
 llamada de API), el grafo de `scripts/` sí se movió esta vez —
 **101/163/11 → 111/178/12**, verificado contando en `graph.json`.
 
+## ✅ Imágenes y videos con IA publicados en 12 productos (24 sep)
+
+59 imágenes y 12 videos arriba en la tienda, con la imagen nueva como
+principal y las originales detrás. La resistencia de los tres hilos Araty
+se cargó en su ficha técnica **antes** de publicar sus imágenes.
+Verificado en la tienda pública. Detalle en
+[`MANUAL-PROYECTO.md` §64](./MANUAL-PROYECTO.md#64-imágenes-y-videos-con-ia-en-12-productos-y-la-resistencia-de-los-hilos-17-24-sep).
+
+**Queda pendiente:**
+- 📷 **33 fotos de teléfono** (escala, detalle, qué trae la caja) — listadas
+  en `IMAGENES-CAMPANA-PENDIENTES.md` y en el `LEEME.md` de cada carpeta.
+- 📊 **Medir vistas → carrito** antes y después, con el corte fijado antes
+  de mirar.
+- 🧵 La tabla de resistencia sirve para **las 55 referencias Araty**; hoy
+  sólo 3 la tienen publicada.
+
+---
+
 ## 🔴 Cambios de datos en vivo pendientes de visto bueno del dueño (17 sep)
 
 Los tres salieron de auditar las fotos. **Ninguno está aplicado**: tocan
