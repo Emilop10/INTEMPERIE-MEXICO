@@ -18,6 +18,7 @@ no esten en esta lista se reportan como extras y no se suben.
 | 7 | REAL | `hilo-araty-0-70mm-1000m-natural-7-grosor.jpg` |
 | 8 | REAL | `hilo-araty-0-70mm-1000m-natural-8-escala.jpg` |
 | 9 | REAL | `hilo-araty-0-70mm-1000m-natural-9-comparativa.jpg` |
+| video | VIDEO | `hilo-araty-0-70mm-1000m-natural-video.mp4` |
 
 Todas: **2048 x 2048 px, cuadradas**, JPG calidad 85, menos de 1 MB.
 

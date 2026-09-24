@@ -16,6 +16,7 @@ no esten en esta lista se reportan como extras y no se suben.
 | 5 | IA | `binocular-gamo-8x40-af-autoenfoque-5-agua.png` |
 | 6 | REAL | `binocular-gamo-8x40-af-autoenfoque-6-escala.jpg` |
 | 7 | REAL | `binocular-gamo-8x40-af-autoenfoque-7-detalle.jpg` |
+| video | VIDEO | `binocular-gamo-8x40-af-autoenfoque-video.mp4` |
 
 Todas: **2048 x 2048 px, cuadradas**, JPG calidad 85, menos de 1 MB.
 

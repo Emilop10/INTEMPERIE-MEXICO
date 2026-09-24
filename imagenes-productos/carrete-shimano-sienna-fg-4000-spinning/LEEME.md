@@ -16,6 +16,7 @@ no esten en esta lista se reportan como extras y no se suben.
 | 5 | IA | `carrete-shimano-sienna-fg-4000-spinning-5-agua.png` |
 | 6 | REAL | `carrete-shimano-sienna-fg-4000-spinning-6-escala.jpg` |
 | 7 | REAL | `carrete-shimano-sienna-fg-4000-spinning-7-montado.jpg` |
+| video | VIDEO | `carrete-shimano-sienna-fg-4000-spinning-video.mp4` |
 
 Todas: **2048 x 2048 px, cuadradas**, JPG calidad 85, menos de 1 MB.
 

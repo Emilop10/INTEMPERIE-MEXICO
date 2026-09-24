@@ -18,6 +18,7 @@ no esten en esta lista se reportan como extras y no se suben.
 | 7 | REAL | `binocular-kampak-vision-nocturna-digital-7-pantalla.jpg` |
 | 8 | REAL | `binocular-kampak-vision-nocturna-digital-8-controles.jpg` |
 | 9 | REAL | `binocular-kampak-vision-nocturna-digital-9-incluye.jpg` |
+| video | VIDEO | `binocular-kampak-vision-nocturna-digital-video.mp4` |
 
 Todas: **2048 x 2048 px, cuadradas**, JPG calidad 85, menos de 1 MB.
 

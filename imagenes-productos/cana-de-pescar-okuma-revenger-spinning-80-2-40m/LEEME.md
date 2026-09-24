@@ -16,6 +16,7 @@ no esten en esta lista se reportan como extras y no se suben.
 | 5 | REAL | `cana-de-pescar-okuma-revenger-spinning-80-2-40m-5-escala.jpg` |
 | 6 | REAL | `cana-de-pescar-okuma-revenger-spinning-80-2-40m-6-guias.jpg` |
 | 7 | REAL | `cana-de-pescar-okuma-revenger-spinning-80-2-40m-7-mango.jpg` |
+| video | VIDEO | `cana-de-pescar-okuma-revenger-spinning-80-2-40m-video.mp4` |
 
 Todas: **2048 x 2048 px, cuadradas**, JPG calidad 85, menos de 1 MB.
 

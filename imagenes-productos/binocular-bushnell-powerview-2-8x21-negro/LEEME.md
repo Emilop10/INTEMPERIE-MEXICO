@@ -16,6 +16,7 @@ no esten en esta lista se reportan como extras y no se suben.
 | 5 | IA | `binocular-bushnell-powerview-2-8x21-negro-5-agua.png` |
 | 6 | REAL | `binocular-bushnell-powerview-2-8x21-negro-6-escala.jpg` |
 | 7 | REAL | `binocular-bushnell-powerview-2-8x21-negro-7-detalle.jpg` |
+| video | VIDEO | `binocular-bushnell-powerview-2-8x21-negro-video.mp4` |
 
 Todas: **2048 x 2048 px, cuadradas**, JPG calidad 85, menos de 1 MB.
 

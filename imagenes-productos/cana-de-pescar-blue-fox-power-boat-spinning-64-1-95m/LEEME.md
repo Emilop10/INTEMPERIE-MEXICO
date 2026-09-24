@@ -16,6 +16,7 @@ no esten en esta lista se reportan como extras y no se suben.
 | 5 | IA | `cana-de-pescar-blue-fox-power-boat-spinning-64-1-95m-5-agua.png` |
 | 6 | REAL | `cana-de-pescar-blue-fox-power-boat-spinning-64-1-95m-6-escala.jpg` |
 | 7 | REAL | `cana-de-pescar-blue-fox-power-boat-spinning-64-1-95m-7-mango.jpg` |
+| video | VIDEO | `cana-de-pescar-blue-fox-power-boat-spinning-64-1-95m-video.mp4` |
 
 Todas: **2048 x 2048 px, cuadradas**, JPG calidad 85, menos de 1 MB.
 

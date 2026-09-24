@@ -18,6 +18,7 @@ no esten en esta lista se reportan como extras y no se suben.
 | 7 | REAL | `hilo-araty-0-45mm-1000m-multicolor-7-grosor.jpg` |
 | 8 | REAL | `hilo-araty-0-45mm-1000m-multicolor-8-escala.jpg` |
 | 9 | REAL | `hilo-araty-0-45mm-1000m-multicolor-9-carrete.jpg` |
+| video | VIDEO | `hilo-araty-0-45mm-1000m-multicolor-video.mp4` |
 
 Todas: **2048 x 2048 px, cuadradas**, JPG calidad 85, menos de 1 MB.
 

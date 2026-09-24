@@ -125,6 +125,34 @@ el calibre **es** la especificación.
 > afirma algo falso. **Y los dos Araty son Grupo A**, así que esto es
 > urgente.
 
+> 📋 **Tabla de resistencia Araty Superflex — 24 sep.** La página oficial
+> de Mazzaferro está detrás de Cloudflare y no se pudo leer; se contrastaron
+> tres tiendas independientes. **El 0.25 = 4.2 kg / 9.3 lb coincide con la
+> etiqueta física del carrete**, lo que valida la fuente.
+>
+> | Calibre | Resistencia | Acuerdo entre fuentes |
+> |---|---|---|
+> | 0.20 mm | 2.7 kg | ✅ las 3 |
+> | 0.25 mm | 4.2 kg | ✅ las 3 + etiqueta física |
+> | 0.30 mm | 5.3 – 5.7 kg | ⚠️ difieren |
+> | 0.35 mm | 6.8 – 7.6 kg | ⚠️ difieren |
+> | 0.40 mm | 9.1 – 9.4 kg | ⚠️ difieren |
+> | **0.45 mm** | **11.6 kg / 25.5 lb** | ✅ **las 3** |
+> | 0.50 mm | 15.0 – 15.2 kg | ⚠️ leve |
+> | 0.60 mm | 19.9 – 20.0 kg | ✅ |
+> | **0.70 mm** | **25.0 – 27.1 kg** | ⚠️ **difieren** |
+> | 0.80 mm | 31.4 – 31.9 kg | ⚠️ leve |
+> | 0.90 mm | 38.6 kg | ✅ |
+> | 1.00 mm | 45.0 – 48.7 kg | ⚠️ difieren |
+>
+> Circulan dos versiones de la tabla con diferencias de 3-10%, probablemente
+> de dos generaciones del producto. **Donde difieren, manda la etiqueta del
+> carrete que el dueño tiene en existencia.**
+>
+> Fuentes: [Life Pesca](https://www.lifepesca.com.br/linhas/monofilamento/linha-monofilamento-araty-superflex-varios-tamanhos-e-espessuras),
+> [Tsunami Fishing](https://www.tsunamifishing.com.br/linha-monofilamento-araty-superflex-fume-100m-varias-bitolas),
+> [Penn Raíba](https://www.lojapennraiba.com.br/linhas/linha-mazzaferro-araty-superflex-verde).
+
 ### 🟠 3. Etiqueta de código de barras en el héroe del Combo Revenger
 
 Pegada en el mango, visible al acercarse. Quitarla es retoque legítimo.
@@ -549,23 +577,20 @@ cana-shimano-sellus-spinning-5-8-7-guias.jpg | REAL | Detalle de las guías y el
 
 ## Resumen del encargo
 
-| Grupo | Productos | Tomas |
+**Estado al 24 de septiembre:** el dueño generó con IA **5 imágenes y 1
+video por producto** a partir de la foto real (la caña Okuma quedó con 4:
+se borró la que mostraba la marca Shimano). Lo que falta son las fotos de
+teléfono.
+
+| | Listas | Pendientes |
 |---|---|---|
-| A — listos para escalar | 5 | 25 |
-| B — reabastecer antes de anunciar | 7 | 20 |
-| **Total** | **12** | **45** |
+| 🤖 Imágenes generadas (IA) | **59** | — |
+| 🎬 Videos (10 s, 960×960) | **12** | — |
+| 📷 Fotos de teléfono: escala, detalle, qué trae la caja | — | **33** |
 
-Por tipo de trabajo:
-
-| Tipo | Tomas | Quién |
-|---|---|---|
-| 📷 **REAL** — foto con el teléfono | **37** | El dueño |
-| 🩹 **RETOQUE** — limpiar la foto actual | **7** | ChatGPT (prompt arriba) |
-| 🎨 **COMPOSICION** — fondo generado | **1** | ChatGPT (prompt arriba) |
-
-**El 80% del encargo son fotos con el teléfono, no IA.** Escala, detalle y
-qué trae la caja son justamente lo que ninguna IA puede inventar, y es lo
-que más le falta a las fichas.
+Las generadas hacen que el producto **se vea atractivo**; las de teléfono
+hacen que el cliente **entienda qué compra**. Son las que atacan el 2.5%
+de vistas → carrito.
 
 ## Cómo subirlas
 

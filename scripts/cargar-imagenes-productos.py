@@ -2,6 +2,11 @@
 """
 Sube a Shopify las imagenes listadas en IMAGENES-CAMPANA-PENDIENTES.md.
 
+Sube tambien un video por producto (linea "- **video:**" del documento) por
+GraphQL: stagedUploadsCreate -> POST del archivo -> productCreateMedia. Las
+imagenes nuevas se insertan AL FRENTE del producto (campo position) en el
+orden del documento; las fotos que ya tenia se conservan detras.
+
 Uso:
     python3 scripts/cargar-imagenes-productos.py --crear-carpetas
     python3 scripts/cargar-imagenes-productos.py --dry-run
@@ -92,13 +97,14 @@ def parsear_documento(ruta):
         mb = re.search(r"```imagenes\n(.*?)```", cuerpo, re.S)
         if not (mh and mb):
             continue
+        mv = re.search(r"\*\*video:\*\*\s*`([^`]+)`", cuerpo)
         fotos = []
         for linea in mb.group(1).strip().split("\n"):
             campos = [c.strip() for c in linea.split("|")]
             if len(campos) != 3:
                 raise SystemExit(f"Renglon mal formado en {titulo}:\n  {linea}")
             fotos.append(tuple(campos))
-        productos.append((mh.group(1), titulo, fotos))
+        productos.append((mh.group(1), titulo, fotos, mv.group(1) if mv else None))
     return productos
 
 
@@ -149,6 +155,70 @@ def dimensiones(ruta):
 EXTENSIONES = (".jpg", ".jpeg", ".png", ".webp")
 
 
+def graphql(query, variables, token, store):
+    cuerpo = api("POST", "/graphql.json", token, store, {"query": query, "variables": variables})
+    if cuerpo.get("errors"):
+        raise SystemExit(f"GraphQL: {json.dumps(cuerpo['errors'])[:400]}")
+    return cuerpo["data"]
+
+
+def multipart(campos, archivo, nombre, mime):
+    """Cuerpo multipart/form-data con la biblioteca estandar."""
+    limite = "----imx" + base64.b16encode(os.urandom(8)).decode()
+    partes = []
+    for k, v in campos:
+        partes.append(f"--{limite}\r\nContent-Disposition: form-data; name=\"{k}\"\r\n\r\n{v}\r\n".encode())
+    partes.append(f"--{limite}\r\nContent-Disposition: form-data; name=\"file\"; filename=\"{nombre}\"\r\n"
+                  f"Content-Type: {mime}\r\n\r\n".encode())
+    partes.append(open(archivo, "rb").read())
+    partes.append(f"\r\n--{limite}--\r\n".encode())
+    return b"".join(partes), f"multipart/form-data; boundary={limite}"
+
+
+def videos_existentes(pid, token, store):
+    """Nombres de archivo ya subidos como video, leidos del sufijo [archivo] del alt."""
+    q = """query($id: ID!) { product(id: $id) { media(first: 50) { nodes {
+             mediaContentType alt } } } }"""
+    d = graphql(q, {"id": f"gid://shopify/Product/{pid}"}, token, store)
+    nombres = set()
+    for m in (d.get("product") or {}).get("media", {}).get("nodes", []):
+        if m.get("mediaContentType") == "VIDEO":
+            mm = re.search(r"\[([^\]]+)\]\s*$", m.get("alt") or "")
+            if mm:
+                nombres.add(mm.group(1))
+    return nombres
+
+
+def subir_video(pid, ruta, nombre, alt, token, store):
+    """stagedUploadsCreate -> POST del archivo -> productCreateMedia."""
+    tam = os.path.getsize(ruta)
+    q1 = """mutation($input: [StagedUploadInput!]!) { stagedUploadsCreate(input: $input) {
+              stagedTargets { url resourceUrl parameters { name value } }
+              userErrors { field message } } }"""
+    d = graphql(q1, {"input": [{"filename": nombre, "mimeType": "video/mp4", "fileSize": str(tam),
+                                "resource": "VIDEO", "httpMethod": "POST"}]}, token, store)
+    r = d["stagedUploadsCreate"]
+    if r["userErrors"]:
+        raise SystemExit(f"stagedUploadsCreate: {r['userErrors']}")
+    t = r["stagedTargets"][0]
+    datos, ctype = multipart([(p["name"], p["value"]) for p in t["parameters"]], ruta, nombre, "video/mp4")
+    req = urllib.request.Request(t["url"], data=datos, method="POST")
+    req.add_header("Content-Type", ctype)
+    try:
+        urllib.request.urlopen(req).read()
+    except urllib.error.HTTPError as e:
+        raise SystemExit(f"subida del video {nombre}: HTTP {e.code} {e.read()[:300]!r}")
+    q2 = """mutation($pid: ID!, $media: [CreateMediaInput!]!) {
+              productCreateMedia(productId: $pid, media: $media) {
+                media { status } mediaUserErrors { field message } } }"""
+    d = graphql(q2, {"pid": f"gid://shopify/Product/{pid}",
+                     "media": [{"originalSource": t["resourceUrl"], "mediaContentType": "VIDEO",
+                                "alt": f"{alt} [{nombre}]"}]}, token, store)
+    err = d["productCreateMedia"]["mediaUserErrors"]
+    if err:
+        raise SystemExit(f"productCreateMedia: {err}")
+
+
 def ruta_de(handle, archivo):
     """La subcarpeta del producto manda; se acepta la raiz por compatibilidad."""
     en_carpeta = os.path.join(RAIZ, CARPETA, handle, archivo)
@@ -160,7 +230,7 @@ def ruta_de(handle, archivo):
 def crear_carpetas(productos):
     """Una subcarpeta por producto, con un LEEME.md que lista sus tomas."""
     hechas = 0
-    for handle, titulo, fotos in productos:
+    for handle, titulo, fotos, video in productos:
         d = os.path.join(RAIZ, CARPETA, handle)
         nueva = not os.path.isdir(d)
         os.makedirs(d, exist_ok=True)
@@ -173,6 +243,8 @@ def crear_carpetas(productos):
                   "| # | Tipo | Nombre de archivo |", "|---|---|---|"]
         for i, (archivo, tipo, _alt) in enumerate(fotos, 1):
             lineas.append(f"| {i} | {tipo} | `{archivo}` |")
+        if video:
+            lineas.append(f"| video | VIDEO | `{video}` |")
         lineas += ["", "Todas: **2048 x 2048 px, cuadradas**, JPG calidad 85, menos de 1 MB.", "",
                    "Detalle de cada toma y los prompts en",
                    "[`IMAGENES-CAMPANA-PENDIENTES.md`](../../IMAGENES-CAMPANA-PENDIENTES.md).", ""]
@@ -198,7 +270,7 @@ def main():
         raise SystemExit(f"No encuentro {DOC}")
     productos = parsear_documento(doc)
     print(f"{DOC}: {len(productos)} productos, "
-          f"{sum(len(f) for _, _, f in productos)} imagenes listadas\n")
+          f"{sum(len(p[2]) for p in productos)} imagenes listadas\n")
 
     if args.crear_carpetas:
         return crear_carpetas(productos)
@@ -211,7 +283,7 @@ def main():
     mapa = catalogo_por_handle(token, store) if token else {}
 
     listas = faltantes = ya_estaban = subidas = problemas = extras_tot = 0
-    for handle, titulo, fotos in productos:
+    for handle, titulo, fotos, video in productos:
         print(f"── {titulo}")
         carpeta = os.path.join(RAIZ, CARPETA, handle)
         esperados = {a for a, _t, _al in fotos}
@@ -232,7 +304,9 @@ def main():
                 if m:
                     existentes.add(m.group(1))
 
+        posicion = 0
         for archivo, tipo, alt in fotos:
+            posicion += 1
             ruta = ruta_de(handle, archivo)
             if not os.path.exists(ruta):
                 print(f"   · falta      [{tipo:<11}] {archivo}")
@@ -266,6 +340,7 @@ def main():
                 "attachment": base64.b64encode(open(ruta, "rb").read()).decode(),
                 "filename": archivo,
                 "alt": f"{alt} [{archivo}]",
+                "position": posicion,
             }}
             api("POST", f"/products/{pid}/images.json", token, store, cuerpo)
             print(f"   ✓ subida     {archivo}{marca}")
@@ -294,6 +369,26 @@ def main():
             print(f"   ✓ subida     {f}  (extra)")
             subidas += 1
             time.sleep(0.6)
+
+        if video:
+            ruta_v = os.path.join(carpeta, video)
+            if not os.path.exists(ruta_v):
+                print(f"   · falta      [VIDEO      ] {video}")
+                faltantes += 1
+            else:
+                listas += 1
+                mb_v = os.path.getsize(ruta_v) / 1024 / 1024
+                aviso = f"  ⚠ pesa {mb_v:.1f} MB" if mb_v > 1024 else ""
+                if pid and video in videos_existentes(pid, token, store):
+                    print(f"   = ya estaba  {video}")
+                    ya_estaban += 1
+                elif args.dry_run or not token:
+                    print(f"   + subiria    [VIDEO      ] {video}  ({mb_v:.1f} MB){aviso}")
+                else:
+                    subir_video(pid, ruta_v, video, f"Video de {titulo}", token, store)
+                    print(f"   ✓ subido     {video}  ({mb_v:.1f} MB)")
+                    subidas += 1
+                    time.sleep(1.0)
 
     print(f"\n{'='*58}")
     print(f"  listas en {CARPETA}/ : {listas}")
