@@ -290,12 +290,18 @@ en su lugar: la zona debe quedar como etiqueta verde limpia.
 - 🔴 Aplica el defecto 2: la foto actual puede anunciar otro calibre
 
 ```imagenes
-hilo-araty-0-45mm-1000m-multicolor-1-hero.jpg | REAL | Carrete de hilo Araty 0.45mm 1000m multicolor sobre fondo blanco
-hilo-araty-0-45mm-1000m-multicolor-2-perfil.jpg | REAL | Carrete de hilo Araty multicolor de perfil, mostrando el hilo enrollado
-hilo-araty-0-45mm-1000m-multicolor-3-grosor.jpg | REAL | Detalle del hilo Araty 0.45mm entre los dedos para apreciar su grosor
-hilo-araty-0-45mm-1000m-multicolor-4-escala.jpg | REAL | Carrete de hilo Araty 1000m en una mano, para mostrar su tamaño
-hilo-araty-0-45mm-1000m-multicolor-5-carrete.jpg | REAL | Hilo Araty multicolor cargado en un carrete de pesca
+hilo-araty-0-45mm-1000m-multicolor-1-hero.png | IA | Hilo Araty 0.45mm 1000m Multicolor, vista principal
+hilo-araty-0-45mm-1000m-multicolor-2-detalle.png | IA | Acercamiento de Hilo Araty 0.45mm 1000m Multicolor
+hilo-araty-0-45mm-1000m-multicolor-3-paisaje.png | IA | Hilo Araty 0.45mm 1000m Multicolor en exterior, junto a un lago al amanecer
+hilo-araty-0-45mm-1000m-multicolor-4-accion.png | IA | Hilo Araty 0.45mm 1000m Multicolor en toma de acción con salpicaduras de agua
+hilo-araty-0-45mm-1000m-multicolor-5-agua.png | IA | Hilo Araty 0.45mm 1000m Multicolor sobre una roca mojada junto al agua
+hilo-araty-0-45mm-1000m-multicolor-6-perfil.jpg | REAL | Carrete de hilo Araty multicolor de perfil, mostrando el hilo enrollado
+hilo-araty-0-45mm-1000m-multicolor-7-grosor.jpg | REAL | Detalle del hilo Araty 0.45mm entre los dedos para apreciar su grosor
+hilo-araty-0-45mm-1000m-multicolor-8-escala.jpg | REAL | Carrete de hilo Araty 1000m en una mano, para mostrar su tamaño
+hilo-araty-0-45mm-1000m-multicolor-9-carrete.jpg | REAL | Hilo Araty multicolor cargado en un carrete de pesca
 ```
+
+- **video:** `hilo-araty-0-45mm-1000m-multicolor-video.mp4`
 
 > Sin composición y sin IA: es justo el producto donde una imagen inventada
 > haría daño. **La #1 debe ser el carrete real, o un encuadre donde la
@@ -312,12 +318,18 @@ hilo-araty-0-45mm-1000m-multicolor-5-carrete.jpg | REAL | Hilo Araty multicolor 
 - 🔴 Aplica el defecto 2: su foto actual puede anunciar otro calibre
 
 ```imagenes
-hilo-araty-0-45mm-1000m-verde-1-hero.jpg | REAL | Carrete de hilo Araty 0.45mm 1000m verde sobre fondo blanco
-hilo-araty-0-45mm-1000m-verde-2-perfil.jpg | REAL | Carrete de hilo Araty verde de perfil, mostrando el hilo enrollado
-hilo-araty-0-45mm-1000m-verde-3-grosor.jpg | REAL | Detalle del hilo Araty 0.45mm verde entre los dedos para apreciar su grosor
-hilo-araty-0-45mm-1000m-verde-4-escala.jpg | REAL | Carrete de hilo Araty 1000m en una mano, para mostrar su tamaño
-hilo-araty-0-45mm-1000m-verde-5-carrete.jpg | REAL | Hilo Araty verde cargado en un carrete de pesca
+hilo-araty-0-45mm-1000m-verde-1-hero.png | IA | Hilo Araty 0.45mm 1000m Verde, vista principal
+hilo-araty-0-45mm-1000m-verde-2-detalle.png | IA | Acercamiento de Hilo Araty 0.45mm 1000m Verde
+hilo-araty-0-45mm-1000m-verde-3-paisaje.png | IA | Hilo Araty 0.45mm 1000m Verde en exterior, junto a un lago al amanecer
+hilo-araty-0-45mm-1000m-verde-4-accion.png | IA | Hilo Araty 0.45mm 1000m Verde en toma de acción con salpicaduras de agua
+hilo-araty-0-45mm-1000m-verde-5-agua.png | IA | Hilo Araty 0.45mm 1000m Verde sobre una roca mojada junto al agua
+hilo-araty-0-45mm-1000m-verde-6-perfil.jpg | REAL | Carrete de hilo Araty verde de perfil, mostrando el hilo enrollado
+hilo-araty-0-45mm-1000m-verde-7-grosor.jpg | REAL | Detalle del hilo Araty 0.45mm verde entre los dedos para apreciar su grosor
+hilo-araty-0-45mm-1000m-verde-8-escala.jpg | REAL | Carrete de hilo Araty 1000m en una mano, para mostrar su tamaño
+hilo-araty-0-45mm-1000m-verde-9-carrete.jpg | REAL | Hilo Araty verde cargado en un carrete de pesca
 ```
+
+- **video:** `hilo-araty-0-45mm-1000m-verde-video.mp4`
 
 > 💚 **Esta foto rinde más de lo que parece.** Hay **7 productos Araty en
 > verde** en el catálogo y comparten imagen entre sí (defecto 2). Un buen
@@ -332,12 +344,18 @@ hilo-araty-0-45mm-1000m-verde-5-carrete.jpg | REAL | Hilo Araty verde cargado en
 - ⚠️ Está en la zona muerta: $13 arriba del piso le cuestan $175 por unidad
 
 ```imagenes
-hilo-araty-0-70mm-1000m-natural-1-hero.jpg | REAL | Carrete de hilo Araty 0.70mm 1000m natural sobre fondo blanco
-hilo-araty-0-70mm-1000m-natural-2-perfil.jpg | REAL | Carrete de hilo Araty natural de perfil, mostrando el hilo enrollado
-hilo-araty-0-70mm-1000m-natural-3-grosor.jpg | REAL | Detalle del hilo Araty 0.70mm entre los dedos para apreciar su grosor
-hilo-araty-0-70mm-1000m-natural-4-escala.jpg | REAL | Carrete de hilo Araty 1000m en una mano, para mostrar su tamaño
-hilo-araty-0-70mm-1000m-natural-5-comparativa.jpg | REAL | Hilo Araty 0.70mm junto a un calibre más delgado, para comparar grosor
+hilo-araty-0-70mm-1000m-natural-1-hero.png | IA | Hilo Araty 0.70mm 1000m Natural, vista principal
+hilo-araty-0-70mm-1000m-natural-2-detalle.png | IA | Acercamiento de Hilo Araty 0.70mm 1000m Natural
+hilo-araty-0-70mm-1000m-natural-3-paisaje.png | IA | Hilo Araty 0.70mm 1000m Natural en exterior, junto a un lago al amanecer
+hilo-araty-0-70mm-1000m-natural-4-accion.png | IA | Hilo Araty 0.70mm 1000m Natural en toma de acción con salpicaduras de agua
+hilo-araty-0-70mm-1000m-natural-5-agua.png | IA | Hilo Araty 0.70mm 1000m Natural sobre una roca mojada junto al agua
+hilo-araty-0-70mm-1000m-natural-6-perfil.jpg | REAL | Carrete de hilo Araty natural de perfil, mostrando el hilo enrollado
+hilo-araty-0-70mm-1000m-natural-7-grosor.jpg | REAL | Detalle del hilo Araty 0.70mm entre los dedos para apreciar su grosor
+hilo-araty-0-70mm-1000m-natural-8-escala.jpg | REAL | Carrete de hilo Araty 1000m en una mano, para mostrar su tamaño
+hilo-araty-0-70mm-1000m-natural-9-comparativa.jpg | REAL | Hilo Araty 0.70mm junto a un calibre más delgado, para comparar grosor
 ```
+
+- **video:** `hilo-araty-0-70mm-1000m-natural-video.mp4`
 
 ## 4. Binocular Kampak Visión Nocturna Digital — $2,900
 
@@ -350,12 +368,18 @@ hilo-araty-0-70mm-1000m-natural-5-comparativa.jpg | REAL | Hilo Araty 0.70mm jun
   capturado con el aparato**, o quedar apagada
 
 ```imagenes
-binocular-kampak-vision-nocturna-digital-1-hero.jpg | REAL | Binocular Kampak de visión nocturna digital negro, vista frontal sobre fondo blanco
-binocular-kampak-vision-nocturna-digital-2-escala.jpg | REAL | Binocular Kampak de visión nocturna sostenido en las manos para mostrar su tamaño
-binocular-kampak-vision-nocturna-digital-3-pantalla.jpg | REAL | Pantalla del Kampak mostrando una captura real tomada con el aparato
-binocular-kampak-vision-nocturna-digital-4-controles.jpg | REAL | Detalle de los botones de control y el puerto de carga del Kampak
-binocular-kampak-vision-nocturna-digital-5-incluye.jpg | REAL | Contenido de la caja del Kampak: binocular, estuche, correa y cable
+binocular-kampak-vision-nocturna-digital-1-hero.png | IA | Binocular Kampak Visión Nocturna Digital, vista principal
+binocular-kampak-vision-nocturna-digital-2-detalle.png | IA | Acercamiento de Binocular Kampak Visión Nocturna Digital
+binocular-kampak-vision-nocturna-digital-3-paisaje.png | IA | Binocular Kampak Visión Nocturna Digital en exterior, junto a un lago al amanecer
+binocular-kampak-vision-nocturna-digital-4-accion.png | IA | Binocular Kampak Visión Nocturna Digital en toma de acción con salpicaduras de agua
+binocular-kampak-vision-nocturna-digital-5-agua.png | IA | Binocular Kampak Visión Nocturna Digital sobre una roca mojada junto al agua
+binocular-kampak-vision-nocturna-digital-6-escala.jpg | REAL | Binocular Kampak de visión nocturna sostenido en las manos para mostrar su tamaño
+binocular-kampak-vision-nocturna-digital-7-pantalla.jpg | REAL | Pantalla del Kampak mostrando una captura real tomada con el aparato
+binocular-kampak-vision-nocturna-digital-8-controles.jpg | REAL | Detalle de los botones de control y el puerto de carga del Kampak
+binocular-kampak-vision-nocturna-digital-9-incluye.jpg | REAL | Contenido de la caja del Kampak: binocular, estuche, correa y cable
 ```
+
+- **video:** `binocular-kampak-vision-nocturna-digital-video.mp4`
 
 > Único sin composición a propósito: un aparato de visión nocturna en una
 > escena diurna generada se ve falso, y en una nocturna generada se
@@ -369,12 +393,16 @@ binocular-kampak-vision-nocturna-digital-5-incluye.jpg | REAL | Contenido de la 
 - Mide 2.40 m: **la toma de escala es la más importante**
 
 ```imagenes
-cana-de-pescar-okuma-revenger-spinning-80-2-40m-1-hero.jpg | RETOQUE | Caña Okuma Revenger Spinning 8 pies sobre fondo blanco, sin etiquetas
-cana-de-pescar-okuma-revenger-spinning-80-2-40m-2-escala.jpg | REAL | Caña Okuma Revenger de 2.40 metros completa junto a una persona, para dar escala
-cana-de-pescar-okuma-revenger-spinning-80-2-40m-3-guias.jpg | REAL | Detalle de las guías y el puntero de la caña Okuma Revenger
-cana-de-pescar-okuma-revenger-spinning-80-2-40m-4-mango.jpg | REAL | Detalle del mango de EVA y el portacarrete de la caña Okuma Revenger
-cana-de-pescar-okuma-revenger-spinning-80-2-40m-5-orilla.jpg | COMPOSICION | Caña Okuma Revenger recargada en la orilla de una presa al atardecer
+cana-de-pescar-okuma-revenger-spinning-80-2-40m-1-hero.png | IA | Caña de Pescar Okuma Revenger Spinning 8'0" (2.40m), vista principal
+cana-de-pescar-okuma-revenger-spinning-80-2-40m-2-paisaje.png | IA | Caña de Pescar Okuma Revenger Spinning 8'0" (2.40m) en exterior, junto a un lago al amanecer
+cana-de-pescar-okuma-revenger-spinning-80-2-40m-3-accion.png | IA | Caña de Pescar Okuma Revenger Spinning 8'0" (2.40m) en toma de acción con salpicaduras de agua
+cana-de-pescar-okuma-revenger-spinning-80-2-40m-4-agua.png | IA | Caña de Pescar Okuma Revenger Spinning 8'0" (2.40m) sobre una roca mojada junto al agua
+cana-de-pescar-okuma-revenger-spinning-80-2-40m-5-escala.jpg | REAL | Caña Okuma Revenger de 2.40 metros completa junto a una persona, para dar escala
+cana-de-pescar-okuma-revenger-spinning-80-2-40m-6-guias.jpg | REAL | Detalle de las guías y el puntero de la caña Okuma Revenger
+cana-de-pescar-okuma-revenger-spinning-80-2-40m-7-mango.jpg | REAL | Detalle del mango de EVA y el portacarrete de la caña Okuma Revenger
 ```
+
+- **video:** `cana-de-pescar-okuma-revenger-spinning-80-2-40m-video.mp4`
 
 - **ESCENA (#5):** *la orilla de una presa mexicana al atardecer, con la
   caña recargada sobre una piedra y el agua en calma desenfocada al fondo*
@@ -393,10 +421,16 @@ Sólo hero, escala y detalle. **Reabastecer antes de anunciarlos.**
 - 🔴 Defecto 1: **corregir el título**, es gris. 🟡 Defecto 4: 850×850
 
 ```imagenes
-binocular-simmons-venture-8x21-negro-1-hero.jpg | RETOQUE | Binocular Simmons Venture 8x21 gris grafito, vista frontal sobre fondo blanco
-binocular-simmons-venture-8x21-negro-2-escala.jpg | REAL | Binocular Simmons Venture 8x21 sostenido en una mano para mostrar su tamaño compacto
-binocular-simmons-venture-8x21-negro-3-detalle.jpg | REAL | Detalle de la rueda de enfoque central y los oculares del Simmons Venture
+binocular-simmons-venture-8x21-negro-1-hero.png | IA | Binocular Simmons Venture 8x21, vista principal
+binocular-simmons-venture-8x21-negro-2-detalle.png | IA | Acercamiento de Binocular Simmons Venture 8x21
+binocular-simmons-venture-8x21-negro-3-paisaje.png | IA | Binocular Simmons Venture 8x21 en exterior, junto a un lago al amanecer
+binocular-simmons-venture-8x21-negro-4-accion.png | IA | Binocular Simmons Venture 8x21 en toma de acción con salpicaduras de agua
+binocular-simmons-venture-8x21-negro-5-agua.png | IA | Binocular Simmons Venture 8x21 sobre una roca mojada junto al agua
+binocular-simmons-venture-8x21-negro-6-escala.jpg | REAL | Binocular Simmons Venture 8x21 sostenido en una mano para mostrar su tamaño compacto
+binocular-simmons-venture-8x21-negro-7-detalle.jpg | REAL | Detalle de la rueda de enfoque central y los oculares del Simmons Venture
 ```
+
+- **video:** `binocular-simmons-venture-8x21-negro-video.mp4`
 
 ## 7. Binocular Bushnell PowerView 2 8x21 — $1,450
 
@@ -405,10 +439,16 @@ binocular-simmons-venture-8x21-negro-3-detalle.jpg | REAL | Detalle de la rueda 
 - 🔴 Defecto 1: **corregir el título**, es gris con panel plata
 
 ```imagenes
-binocular-bushnell-powerview-2-8x21-negro-1-hero.jpg | RETOQUE | Binocular Bushnell PowerView 2 8x21 gris y plata, vista frontal sobre fondo blanco
-binocular-bushnell-powerview-2-8x21-negro-2-escala.jpg | REAL | Binocular Bushnell PowerView 2 plegado en una mano para mostrar su tamaño de bolsillo
-binocular-bushnell-powerview-2-8x21-negro-3-detalle.jpg | REAL | Detalle del panel plateado y la rueda de enfoque del Bushnell PowerView 2
+binocular-bushnell-powerview-2-8x21-negro-1-hero.png | IA | Binocular Bushnell PowerView 2 8x21, vista principal
+binocular-bushnell-powerview-2-8x21-negro-2-detalle.png | IA | Acercamiento de Binocular Bushnell PowerView 2 8x21
+binocular-bushnell-powerview-2-8x21-negro-3-paisaje.png | IA | Binocular Bushnell PowerView 2 8x21 en exterior, junto a un lago al amanecer
+binocular-bushnell-powerview-2-8x21-negro-4-accion.png | IA | Binocular Bushnell PowerView 2 8x21 en toma de acción con salpicaduras de agua
+binocular-bushnell-powerview-2-8x21-negro-5-agua.png | IA | Binocular Bushnell PowerView 2 8x21 sobre una roca mojada junto al agua
+binocular-bushnell-powerview-2-8x21-negro-6-escala.jpg | REAL | Binocular Bushnell PowerView 2 plegado en una mano para mostrar su tamaño de bolsillo
+binocular-bushnell-powerview-2-8x21-negro-7-detalle.jpg | REAL | Detalle del panel plateado y la rueda de enfoque del Bushnell PowerView 2
 ```
+
+- **video:** `binocular-bushnell-powerview-2-8x21-negro-video.mp4`
 
 ## 8. Caja Rapala Utility Box Chica — $549
 
@@ -417,10 +457,16 @@ binocular-bushnell-powerview-2-8x21-negro-3-detalle.jpg | REAL | Detalle del pan
 - Una caja de aparejos se vende por lo que le cabe: **la #3 es la clave**
 
 ```imagenes
-caja-rapala-utility-box-chica-1-hero.jpg | RETOQUE | Caja Rapala Utility Box chica cerrada, sobre fondo blanco
-caja-rapala-utility-box-chica-2-escala.jpg | REAL | Caja Rapala Utility Box sostenida en una mano para mostrar su tamaño
-caja-rapala-utility-box-chica-3-abierta.jpg | REAL | Caja Rapala Utility Box abierta y con señuelos dentro, mostrando sus divisiones
+caja-rapala-utility-box-chica-1-hero.png | IA | Caja Rapala Utility Box Chica, vista principal
+caja-rapala-utility-box-chica-2-detalle.png | IA | Acercamiento de Caja Rapala Utility Box Chica
+caja-rapala-utility-box-chica-3-paisaje.png | IA | Caja Rapala Utility Box Chica en exterior, junto a un lago al amanecer
+caja-rapala-utility-box-chica-4-accion.png | IA | Caja Rapala Utility Box Chica en toma de acción con salpicaduras de agua
+caja-rapala-utility-box-chica-5-agua.png | IA | Caja Rapala Utility Box Chica sobre una roca mojada junto al agua
+caja-rapala-utility-box-chica-6-escala.jpg | REAL | Caja Rapala Utility Box sostenida en una mano para mostrar su tamaño
+caja-rapala-utility-box-chica-7-abierta.jpg | REAL | Caja Rapala Utility Box abierta y con señuelos dentro, mostrando sus divisiones
 ```
+
+- **video:** `caja-rapala-utility-box-chica-video.mp4`
 
 ## 9. Binocular Gamo 8x40 AF Autoenfoque — $1,970
 
@@ -429,10 +475,16 @@ caja-rapala-utility-box-chica-3-abierta.jpg | REAL | Caja Rapala Utility Box abi
 - 🟡 Defecto 4: 1600×1600 pero blanda al acercar
 
 ```imagenes
-binocular-gamo-8x40-af-autoenfoque-1-hero.jpg | RETOQUE | Binocular Gamo 8x40 AF verde olivo, vista frontal sobre fondo blanco
-binocular-gamo-8x40-af-autoenfoque-2-escala.jpg | REAL | Binocular Gamo 8x40 AF sostenido con las dos manos para mostrar su tamaño
-binocular-gamo-8x40-af-autoenfoque-3-detalle.jpg | REAL | Detalle de los objetivos de 40 mm y el cuerpo texturizado del Gamo 8x40 AF
+binocular-gamo-8x40-af-autoenfoque-1-hero.png | IA | Binocular Gamo 8x40 AF Autoenfoque, vista principal
+binocular-gamo-8x40-af-autoenfoque-2-detalle.png | IA | Acercamiento de Binocular Gamo 8x40 AF Autoenfoque
+binocular-gamo-8x40-af-autoenfoque-3-paisaje.png | IA | Binocular Gamo 8x40 AF Autoenfoque en exterior, junto a un lago al amanecer
+binocular-gamo-8x40-af-autoenfoque-4-accion.png | IA | Binocular Gamo 8x40 AF Autoenfoque en toma de acción con salpicaduras de agua
+binocular-gamo-8x40-af-autoenfoque-5-agua.png | IA | Binocular Gamo 8x40 AF Autoenfoque sobre una roca mojada junto al agua
+binocular-gamo-8x40-af-autoenfoque-6-escala.jpg | REAL | Binocular Gamo 8x40 AF sostenido con las dos manos para mostrar su tamaño
+binocular-gamo-8x40-af-autoenfoque-7-detalle.jpg | REAL | Detalle de los objetivos de 40 mm y el cuerpo texturizado del Gamo 8x40 AF
 ```
+
+- **video:** `binocular-gamo-8x40-af-autoenfoque-video.mp4`
 
 ## 10. Caña de Pescar Blue Fox Power Boat Spinning 6'4" — $549
 
@@ -441,10 +493,16 @@ binocular-gamo-8x40-af-autoenfoque-3-detalle.jpg | REAL | Detalle de los objetiv
   (3 de 59 vistas). Stock 1
 
 ```imagenes
-cana-de-pescar-blue-fox-power-boat-spinning-64-1-95m-1-hero.jpg | RETOQUE | Caña Blue Fox Power Boat 6'4" azul sobre fondo blanco, sin etiquetas
-cana-de-pescar-blue-fox-power-boat-spinning-64-1-95m-2-escala.jpg | REAL | Caña Blue Fox Power Boat de 1.95 metros junto a una persona, para dar escala
-cana-de-pescar-blue-fox-power-boat-spinning-64-1-95m-3-mango.jpg | REAL | Detalle del mango y el portacarrete de la caña Blue Fox Power Boat
+cana-de-pescar-blue-fox-power-boat-spinning-64-1-95m-1-hero.png | IA | Caña de Pescar Blue Fox Power Boat Spinning 6'4", vista principal
+cana-de-pescar-blue-fox-power-boat-spinning-64-1-95m-2-detalle.png | IA | Acercamiento de Caña de Pescar Blue Fox Power Boat Spinning 6'4"
+cana-de-pescar-blue-fox-power-boat-spinning-64-1-95m-3-paisaje.png | IA | Caña de Pescar Blue Fox Power Boat Spinning 6'4" en exterior, junto a un lago al amanecer
+cana-de-pescar-blue-fox-power-boat-spinning-64-1-95m-4-accion.png | IA | Caña de Pescar Blue Fox Power Boat Spinning 6'4" en toma de acción con salpicaduras de agua
+cana-de-pescar-blue-fox-power-boat-spinning-64-1-95m-5-agua.png | IA | Caña de Pescar Blue Fox Power Boat Spinning 6'4" sobre una roca mojada junto al agua
+cana-de-pescar-blue-fox-power-boat-spinning-64-1-95m-6-escala.jpg | REAL | Caña Blue Fox Power Boat de 1.95 metros junto a una persona, para dar escala
+cana-de-pescar-blue-fox-power-boat-spinning-64-1-95m-7-mango.jpg | REAL | Detalle del mango y el portacarrete de la caña Blue Fox Power Boat
 ```
+
+- **video:** `cana-de-pescar-blue-fox-power-boat-spinning-64-1-95m-video.mp4`
 
 ## 11. Carrete Shimano Sienna FG 4000 Spinning — $1,279
 
@@ -453,10 +511,16 @@ cana-de-pescar-blue-fox-power-boat-spinning-64-1-95m-3-mango.jpg | REAL | Detall
 - No necesita caja de caña: su envío se parece al de un binocular
 
 ```imagenes
-carrete-shimano-sienna-fg-4000-spinning-1-hero.jpg | RETOQUE | Carrete Shimano Sienna FG 4000 negro con bobina roja, sobre fondo blanco
-carrete-shimano-sienna-fg-4000-spinning-2-escala.jpg | REAL | Carrete Shimano Sienna FG 4000 sostenido en una mano para mostrar su tamaño
-carrete-shimano-sienna-fg-4000-spinning-3-montado.jpg | REAL | Carrete Shimano Sienna FG 4000 montado en una caña, listo para pescar
+carrete-shimano-sienna-fg-4000-spinning-1-hero.png | IA | Carrete Shimano Sienna FG 4000 Spinning, vista principal
+carrete-shimano-sienna-fg-4000-spinning-2-detalle.png | IA | Acercamiento de Carrete Shimano Sienna FG 4000 Spinning
+carrete-shimano-sienna-fg-4000-spinning-3-paisaje.png | IA | Carrete Shimano Sienna FG 4000 Spinning en exterior, junto a un lago al amanecer
+carrete-shimano-sienna-fg-4000-spinning-4-accion.png | IA | Carrete Shimano Sienna FG 4000 Spinning en toma de acción con salpicaduras de agua
+carrete-shimano-sienna-fg-4000-spinning-5-agua.png | IA | Carrete Shimano Sienna FG 4000 Spinning sobre una roca mojada junto al agua
+carrete-shimano-sienna-fg-4000-spinning-6-escala.jpg | REAL | Carrete Shimano Sienna FG 4000 sostenido en una mano para mostrar su tamaño
+carrete-shimano-sienna-fg-4000-spinning-7-montado.jpg | REAL | Carrete Shimano Sienna FG 4000 montado en una caña, listo para pescar
 ```
+
+- **video:** `carrete-shimano-sienna-fg-4000-spinning-video.mp4`
 
 > La #3 es la más útil: un carrete suelto sobre blanco no le dice nada a
 > quien duda si le queda a su caña. **Montado se entiende solo**, y abre la
@@ -470,9 +534,16 @@ carrete-shimano-sienna-fg-4000-spinning-3-montado.jpg | REAL | Carrete Shimano S
   en distintos ángulos. Por eso aquí sólo van dos tomas nuevas
 
 ```imagenes
-cana-shimano-sellus-spinning-5-8-4-escala.jpg | REAL | Caña Shimano Sellus 5'8" completa sostenida por una persona, para dar escala
-cana-shimano-sellus-spinning-5-8-5-guias.jpg | REAL | Detalle de las guías y el puntero de la caña Shimano Sellus
+cana-shimano-sellus-spinning-5-8-1-hero.png | IA | Caña de Pescar Shimano Sellus Spinning 5'8", vista principal
+cana-shimano-sellus-spinning-5-8-2-detalle.png | IA | Acercamiento de Caña de Pescar Shimano Sellus Spinning 5'8"
+cana-shimano-sellus-spinning-5-8-3-paisaje.png | IA | Caña de Pescar Shimano Sellus Spinning 5'8" en exterior, junto a un lago al amanecer
+cana-shimano-sellus-spinning-5-8-4-accion.png | IA | Caña de Pescar Shimano Sellus Spinning 5'8" en toma de acción con salpicaduras de agua
+cana-shimano-sellus-spinning-5-8-5-agua.png | IA | Caña de Pescar Shimano Sellus Spinning 5'8" sobre una roca mojada junto al agua
+cana-shimano-sellus-spinning-5-8-6-escala.jpg | REAL | Caña Shimano Sellus 5'8" completa sostenida por una persona, para dar escala
+cana-shimano-sellus-spinning-5-8-7-guias.jpg | REAL | Detalle de las guías y el puntero de la caña Shimano Sellus
 ```
+
+- **video:** `cana-shimano-sellus-spinning-5-8-video.mp4`
 
 ---
 

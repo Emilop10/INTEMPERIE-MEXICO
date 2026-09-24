@@ -9,8 +9,13 @@ no esten en esta lista se reportan como extras y no se suben.
 
 | # | Tipo | Nombre de archivo |
 |---|---|---|
-| 1 | REAL | `cana-shimano-sellus-spinning-5-8-4-escala.jpg` |
-| 2 | REAL | `cana-shimano-sellus-spinning-5-8-5-guias.jpg` |
+| 1 | IA | `cana-shimano-sellus-spinning-5-8-1-hero.png` |
+| 2 | IA | `cana-shimano-sellus-spinning-5-8-2-detalle.png` |
+| 3 | IA | `cana-shimano-sellus-spinning-5-8-3-paisaje.png` |
+| 4 | IA | `cana-shimano-sellus-spinning-5-8-4-accion.png` |
+| 5 | IA | `cana-shimano-sellus-spinning-5-8-5-agua.png` |
+| 6 | REAL | `cana-shimano-sellus-spinning-5-8-6-escala.jpg` |
+| 7 | REAL | `cana-shimano-sellus-spinning-5-8-7-guias.jpg` |
 
 Todas: **2048 x 2048 px, cuadradas**, JPG calidad 85, menos de 1 MB.
 

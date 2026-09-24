@@ -9,9 +9,13 @@ no esten en esta lista se reportan como extras y no se suben.
 
 | # | Tipo | Nombre de archivo |
 |---|---|---|
-| 1 | RETOQUE | `cana-de-pescar-blue-fox-power-boat-spinning-64-1-95m-1-hero.jpg` |
-| 2 | REAL | `cana-de-pescar-blue-fox-power-boat-spinning-64-1-95m-2-escala.jpg` |
-| 3 | REAL | `cana-de-pescar-blue-fox-power-boat-spinning-64-1-95m-3-mango.jpg` |
+| 1 | IA | `cana-de-pescar-blue-fox-power-boat-spinning-64-1-95m-1-hero.png` |
+| 2 | IA | `cana-de-pescar-blue-fox-power-boat-spinning-64-1-95m-2-detalle.png` |
+| 3 | IA | `cana-de-pescar-blue-fox-power-boat-spinning-64-1-95m-3-paisaje.png` |
+| 4 | IA | `cana-de-pescar-blue-fox-power-boat-spinning-64-1-95m-4-accion.png` |
+| 5 | IA | `cana-de-pescar-blue-fox-power-boat-spinning-64-1-95m-5-agua.png` |
+| 6 | REAL | `cana-de-pescar-blue-fox-power-boat-spinning-64-1-95m-6-escala.jpg` |
+| 7 | REAL | `cana-de-pescar-blue-fox-power-boat-spinning-64-1-95m-7-mango.jpg` |
 
 Todas: **2048 x 2048 px, cuadradas**, JPG calidad 85, menos de 1 MB.
 

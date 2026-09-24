@@ -9,9 +9,13 @@ no esten en esta lista se reportan como extras y no se suben.
 
 | # | Tipo | Nombre de archivo |
 |---|---|---|
-| 1 | RETOQUE | `binocular-bushnell-powerview-2-8x21-negro-1-hero.jpg` |
-| 2 | REAL | `binocular-bushnell-powerview-2-8x21-negro-2-escala.jpg` |
-| 3 | REAL | `binocular-bushnell-powerview-2-8x21-negro-3-detalle.jpg` |
+| 1 | IA | `binocular-bushnell-powerview-2-8x21-negro-1-hero.png` |
+| 2 | IA | `binocular-bushnell-powerview-2-8x21-negro-2-detalle.png` |
+| 3 | IA | `binocular-bushnell-powerview-2-8x21-negro-3-paisaje.png` |
+| 4 | IA | `binocular-bushnell-powerview-2-8x21-negro-4-accion.png` |
+| 5 | IA | `binocular-bushnell-powerview-2-8x21-negro-5-agua.png` |
+| 6 | REAL | `binocular-bushnell-powerview-2-8x21-negro-6-escala.jpg` |
+| 7 | REAL | `binocular-bushnell-powerview-2-8x21-negro-7-detalle.jpg` |
 
 Todas: **2048 x 2048 px, cuadradas**, JPG calidad 85, menos de 1 MB.
 

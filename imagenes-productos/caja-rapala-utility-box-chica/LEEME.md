@@ -9,9 +9,13 @@ no esten en esta lista se reportan como extras y no se suben.
 
 | # | Tipo | Nombre de archivo |
 |---|---|---|
-| 1 | RETOQUE | `caja-rapala-utility-box-chica-1-hero.jpg` |
-| 2 | REAL | `caja-rapala-utility-box-chica-2-escala.jpg` |
-| 3 | REAL | `caja-rapala-utility-box-chica-3-abierta.jpg` |
+| 1 | IA | `caja-rapala-utility-box-chica-1-hero.png` |
+| 2 | IA | `caja-rapala-utility-box-chica-2-detalle.png` |
+| 3 | IA | `caja-rapala-utility-box-chica-3-paisaje.png` |
+| 4 | IA | `caja-rapala-utility-box-chica-4-accion.png` |
+| 5 | IA | `caja-rapala-utility-box-chica-5-agua.png` |
+| 6 | REAL | `caja-rapala-utility-box-chica-6-escala.jpg` |
+| 7 | REAL | `caja-rapala-utility-box-chica-7-abierta.jpg` |
 
 Todas: **2048 x 2048 px, cuadradas**, JPG calidad 85, menos de 1 MB.
 

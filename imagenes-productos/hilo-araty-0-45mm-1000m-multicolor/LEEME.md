@@ -9,11 +9,15 @@ no esten en esta lista se reportan como extras y no se suben.
 
 | # | Tipo | Nombre de archivo |
 |---|---|---|
-| 1 | REAL | `hilo-araty-0-45mm-1000m-multicolor-1-hero.jpg` |
-| 2 | REAL | `hilo-araty-0-45mm-1000m-multicolor-2-perfil.jpg` |
-| 3 | REAL | `hilo-araty-0-45mm-1000m-multicolor-3-grosor.jpg` |
-| 4 | REAL | `hilo-araty-0-45mm-1000m-multicolor-4-escala.jpg` |
-| 5 | REAL | `hilo-araty-0-45mm-1000m-multicolor-5-carrete.jpg` |
+| 1 | IA | `hilo-araty-0-45mm-1000m-multicolor-1-hero.png` |
+| 2 | IA | `hilo-araty-0-45mm-1000m-multicolor-2-detalle.png` |
+| 3 | IA | `hilo-araty-0-45mm-1000m-multicolor-3-paisaje.png` |
+| 4 | IA | `hilo-araty-0-45mm-1000m-multicolor-4-accion.png` |
+| 5 | IA | `hilo-araty-0-45mm-1000m-multicolor-5-agua.png` |
+| 6 | REAL | `hilo-araty-0-45mm-1000m-multicolor-6-perfil.jpg` |
+| 7 | REAL | `hilo-araty-0-45mm-1000m-multicolor-7-grosor.jpg` |
+| 8 | REAL | `hilo-araty-0-45mm-1000m-multicolor-8-escala.jpg` |
+| 9 | REAL | `hilo-araty-0-45mm-1000m-multicolor-9-carrete.jpg` |
 
 Todas: **2048 x 2048 px, cuadradas**, JPG calidad 85, menos de 1 MB.
 
