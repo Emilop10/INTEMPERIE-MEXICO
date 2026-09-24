@@ -1,98 +1,98 @@
 {
   "conciliar-inventario.py": {
-    "mtime": 1790114166.2150798,
-    "seen": 1790114340.7167165,
+    "mtime": 1788547026.3209836,
+    "seen": 1790272766.3616867,
     "ast_hash": "337b0eafd857e8887500a70179c15652",
     "semantic_hash": ""
   },
   "deploy-shopify.py": {
-    "mtime": 1790114166.2150798,
-    "seen": 1790114340.7167196,
+    "mtime": 1788544545.8014672,
+    "seen": 1790272766.3616917,
     "ast_hash": "1544dfb63e90162a75c98429b71dced3",
     "semantic_hash": ""
   },
   "meta-ads.py": {
-    "mtime": 1790114166.220434,
-    "seen": 1790114340.7167234,
+    "mtime": 1788544545.8049407,
+    "seen": 1790272766.3616972,
     "ast_hash": "f54a987be1ba3112258a03a62025d87c",
     "semantic_hash": ""
   },
   "rebuild-mapa-3d.py": {
-    "mtime": 1790114166.220434,
-    "seen": 1790114340.7167263,
+    "mtime": 1788544545.8049407,
+    "seen": 1790272766.3617008,
     "ast_hash": "68db0c203c7b64e8b1b22780a848b321",
     "semantic_hash": ""
   },
   "sincronizar-canal-meta.py": {
-    "mtime": 1790114166.220434,
-    "seen": 1790114340.7167277,
+    "mtime": 1788544545.8089406,
+    "seen": 1790272766.3617027,
     "ast_hash": "ed022a94853438ff1e87dc286c610f37",
     "semantic_hash": ""
   },
   "vincular-codigo-b1.py": {
-    "mtime": 1790114166.220434,
-    "seen": 1790114340.7167306,
+    "mtime": 1788544545.8089406,
+    "seen": 1790272766.361706,
     "ast_hash": "3fb51f8ff8ea8b5d788d6450952a2da5",
     "semantic_hash": ""
   },
   "README-deploy.md": {
-    "mtime": 1790114166.2070796,
-    "seen": 1790114340.7167318,
+    "mtime": 1788544545.8009408,
+    "seen": 1790272766.3617084,
     "ast_hash": "133535efb5dd3cb8e54f23ba592737f8",
     "semantic_hash": ""
   },
   "cargar-fichas-tecnicas.py": {
-    "mtime": 1790114166.2150798,
-    "seen": 1790114340.716712,
+    "mtime": 1788544545.8014672,
+    "seen": 1790272766.3616784,
     "ast_hash": "ba3202ea01617ee52b973095b066eaab",
     "semantic_hash": ""
   },
   "crear-combos.py": {
-    "mtime": 1790114166.2150798,
-    "seen": 1790114340.7167182,
+    "mtime": 1788544545.8014672,
+    "seen": 1790272766.3616893,
     "ast_hash": "239d87634d391711b0e6a4180c727dc3",
     "semantic_hash": ""
   },
   "instalar-entorno.sh": {
-    "mtime": 1790114166.220434,
-    "seen": 1790114340.7167222,
+    "mtime": 1788812378.8466578,
+    "seen": 1790272766.3616953,
     "ast_hash": "f4418ca4c64128cefe8bfacf47cd9fb2",
     "semantic_hash": ""
   },
   "verificar-herramental.sh": {
-    "mtime": 1790114166.220434,
-    "seen": 1790114340.7167294,
+    "mtime": 1788969379.614291,
+    "seen": 1790272766.3617043,
     "ast_hash": "78024e4e4901ea817a6da895307229a0",
     "semantic_hash": ""
   },
   "generar-carta-bienvenida.py": {
-    "mtime": 1790114166.2150798,
-    "seen": 1790114340.7167208,
+    "mtime": 1789411356.6477573,
+    "seen": 1790272766.3616934,
     "ast_hash": "e569b0f92ff7f6afddcfe1d565de533c",
     "semantic_hash": ""
   },
   "assets/fonts/InstrumentSans-OFL.txt": {
-    "mtime": 1790114166.2123373,
-    "seen": 1790114340.7167332,
+    "mtime": 1789411215.7961848,
+    "seen": 1790272766.36171,
     "ast_hash": "030a9e886b4fe2e1720b5db020eca3ad",
     "semantic_hash": ""
   },
   "assets/logo-intemperie.png": {
-    "mtime": 1790114166.2150798,
-    "seen": 1790114340.7167342,
+    "mtime": 1789411193.0157557,
+    "seen": 1790272766.361712,
     "ast_hash": "290ce58bf54a46dc7ff7fe533be3799b",
     "semantic_hash": ""
   },
   "prueba-tarjetas-coleccion.py": {
-    "mtime": 1790114166.220434,
-    "seen": 1790114340.716725,
+    "mtime": 1789498974.3989756,
+    "seen": 1790272766.361699,
     "ast_hash": "192d9f2ea6fde5470c5e26ea013ad663",
     "semantic_hash": ""
   },
   "cargar-imagenes-productos.py": {
-    "mtime": 1790114166.2150798,
-    "seen": 1790114340.7167149,
-    "ast_hash": "768f8b44bc18b7ae8e9463ca2fb815fb",
+    "mtime": 1790272718.9300122,
+    "seen": 1790272766.3616827,
+    "ast_hash": "9015e4dff62e7853a1441cdc8b561533",
     "semantic_hash": ""
   }
 }

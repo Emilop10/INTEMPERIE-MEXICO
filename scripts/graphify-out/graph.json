@@ -321,7 +321,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 12,
-      "community_name": "prueba-tarjetas-coleccion.py",
+      "community_name": "vincular-codigo-b1.py",
       "file_type": "code",
       "norm_label": "armar_repro()",
       "source_file": "prueba-tarjetas-coleccion.py",
@@ -333,7 +333,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 12,
-      "community_name": "prueba-tarjetas-coleccion.py",
+      "community_name": "vincular-codigo-b1.py",
       "file_type": "code",
       "norm_label": "bajar()",
       "source_file": "prueba-tarjetas-coleccion.py",
@@ -345,7 +345,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 12,
-      "community_name": "prueba-tarjetas-coleccion.py",
+      "community_name": "vincular-codigo-b1.py",
       "file_type": "code",
       "norm_label": "buscar_chrome()",
       "source_file": "prueba-tarjetas-coleccion.py",
@@ -357,7 +357,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 12,
-      "community_name": "prueba-tarjetas-coleccion.py",
+      "community_name": "vincular-codigo-b1.py",
       "file_type": "code",
       "norm_label": "main()",
       "source_file": "prueba-tarjetas-coleccion.py",
@@ -369,11 +369,83 @@
       "_callable": true,
       "_origin": "ast",
       "community": 12,
-      "community_name": "prueba-tarjetas-coleccion.py",
+      "community_name": "vincular-codigo-b1.py",
       "file_type": "code",
       "norm_label": "medir()",
       "source_file": "prueba-tarjetas-coleccion.py",
       "source_location": "L99"
+    },
+    {
+      "id": "vincular_codigo_b1_actualizar_barcode",
+      "label": "actualizar_barcode()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "vincular-codigo-b1.py",
+      "file_type": "code",
+      "norm_label": "actualizar_barcode()",
+      "source_file": "vincular-codigo-b1.py",
+      "source_location": "L116"
+    },
+    {
+      "id": "vincular_codigo_b1_api_request",
+      "label": "api_request()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "vincular-codigo-b1.py",
+      "file_type": "code",
+      "norm_label": "api_request()",
+      "source_file": "vincular-codigo-b1.py",
+      "source_location": "L48"
+    },
+    {
+      "id": "vincular_codigo_b1_fetch_all_products",
+      "label": "fetch_all_products()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "vincular-codigo-b1.py",
+      "file_type": "code",
+      "norm_label": "fetch_all_products()",
+      "source_file": "vincular-codigo-b1.py",
+      "source_location": "L77"
+    },
+    {
+      "id": "vincular_codigo_b1_leer_conteo",
+      "label": "leer_conteo()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "vincular-codigo-b1.py",
+      "file_type": "code",
+      "norm_label": "leer_conteo()",
+      "source_file": "vincular-codigo-b1.py",
+      "source_location": "L91"
+    },
+    {
+      "id": "vincular_codigo_b1_main",
+      "label": "main()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "vincular-codigo-b1.py",
+      "file_type": "code",
+      "norm_label": "main()",
+      "source_file": "vincular-codigo-b1.py",
+      "source_location": "L122"
+    },
+    {
+      "id": "vincular_codigo_b1_next_page_url",
+      "label": "next_page_url()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "vincular-codigo-b1.py",
+      "file_type": "code",
+      "norm_label": "next_page_url()",
+      "source_file": "vincular-codigo-b1.py",
+      "source_location": "L70"
     },
     {
       "id": "cargar_imagenes_productos_api",
@@ -385,7 +457,7 @@
       "file_type": "code",
       "norm_label": "api()",
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L69"
+      "source_location": "L74"
     },
     {
       "id": "cargar_imagenes_productos_catalogo_por_handle",
@@ -397,7 +469,7 @@
       "file_type": "code",
       "norm_label": "catalogo_por_handle()",
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L105"
+      "source_location": "L111"
     },
     {
       "id": "cargar_imagenes_productos_crear_carpetas",
@@ -409,7 +481,7 @@
       "file_type": "code",
       "norm_label": "crear_carpetas()",
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L160"
+      "source_location": "L230"
     },
     {
       "id": "cargar_imagenes_productos_dimensiones",
@@ -421,7 +493,19 @@
       "file_type": "code",
       "norm_label": "dimensiones()",
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L122"
+      "source_location": "L128"
+    },
+    {
+      "id": "cargar_imagenes_productos_graphql",
+      "label": "graphql()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "cargar-imagenes-productos.py",
+      "file_type": "code",
+      "norm_label": "graphql()",
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L158"
     },
     {
       "id": "cargar_imagenes_productos_main",
@@ -433,7 +517,19 @@
       "file_type": "code",
       "norm_label": "main()",
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L186"
+      "source_location": "L258"
+    },
+    {
+      "id": "cargar_imagenes_productos_multipart",
+      "label": "multipart()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "cargar-imagenes-productos.py",
+      "file_type": "code",
+      "norm_label": "multipart()",
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L165"
     },
     {
       "id": "cargar_imagenes_productos_parsear_documento",
@@ -445,7 +541,7 @@
       "file_type": "code",
       "norm_label": "parsear_documento()",
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L83"
+      "source_location": "L88"
     },
     {
       "id": "cargar_imagenes_productos_ruta_de",
@@ -457,7 +553,31 @@
       "file_type": "code",
       "norm_label": "ruta_de()",
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L152"
+      "source_location": "L222"
+    },
+    {
+      "id": "cargar_imagenes_productos_subir_video",
+      "label": "subir_video()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "cargar-imagenes-productos.py",
+      "file_type": "code",
+      "norm_label": "subir_video()",
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L192"
+    },
+    {
+      "id": "cargar_imagenes_productos_videos_existentes",
+      "label": "videos_existentes()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "cargar-imagenes-productos.py",
+      "file_type": "code",
+      "norm_label": "videos_existentes()",
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L178"
     },
     {
       "id": "meta_ads_api_request",
@@ -640,6 +760,42 @@
       "source_location": "L181"
     },
     {
+      "id": "crear_combos_api",
+      "label": "api()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "sincronizar-canal-meta.py",
+      "file_type": "code",
+      "norm_label": "api()",
+      "source_file": "crear-combos.py",
+      "source_location": "L129"
+    },
+    {
+      "id": "crear_combos_buscar",
+      "label": "buscar()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "sincronizar-canal-meta.py",
+      "file_type": "code",
+      "norm_label": "buscar()",
+      "source_file": "crear-combos.py",
+      "source_location": "L147"
+    },
+    {
+      "id": "crear_combos_main",
+      "label": "main()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "sincronizar-canal-meta.py",
+      "file_type": "code",
+      "norm_label": "main()",
+      "source_file": "crear-combos.py",
+      "source_location": "L153"
+    },
+    {
       "id": "rebuild_mapa_3d_compact",
       "label": "compact()",
       "_callable": true,
@@ -736,78 +892,6 @@
       "source_location": "L126"
     },
     {
-      "id": "vincular_codigo_b1_actualizar_barcode",
-      "label": "actualizar_barcode()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "vincular-codigo-b1.py",
-      "file_type": "code",
-      "norm_label": "actualizar_barcode()",
-      "source_file": "vincular-codigo-b1.py",
-      "source_location": "L116"
-    },
-    {
-      "id": "vincular_codigo_b1_api_request",
-      "label": "api_request()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "vincular-codigo-b1.py",
-      "file_type": "code",
-      "norm_label": "api_request()",
-      "source_file": "vincular-codigo-b1.py",
-      "source_location": "L48"
-    },
-    {
-      "id": "vincular_codigo_b1_fetch_all_products",
-      "label": "fetch_all_products()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "vincular-codigo-b1.py",
-      "file_type": "code",
-      "norm_label": "fetch_all_products()",
-      "source_file": "vincular-codigo-b1.py",
-      "source_location": "L77"
-    },
-    {
-      "id": "vincular_codigo_b1_leer_conteo",
-      "label": "leer_conteo()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "vincular-codigo-b1.py",
-      "file_type": "code",
-      "norm_label": "leer_conteo()",
-      "source_file": "vincular-codigo-b1.py",
-      "source_location": "L91"
-    },
-    {
-      "id": "vincular_codigo_b1_main",
-      "label": "main()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "vincular-codigo-b1.py",
-      "file_type": "code",
-      "norm_label": "main()",
-      "source_file": "vincular-codigo-b1.py",
-      "source_location": "L122"
-    },
-    {
-      "id": "vincular_codigo_b1_next_page_url",
-      "label": "next_page_url()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "vincular-codigo-b1.py",
-      "file_type": "code",
-      "norm_label": "next_page_url()",
-      "source_file": "vincular-codigo-b1.py",
-      "source_location": "L70"
-    },
-    {
       "id": "cargar_fichas_tecnicas_api",
       "label": "api()",
       "_callable": true,
@@ -868,42 +952,6 @@
       "source_location": "L62"
     },
     {
-      "id": "crear_combos_api",
-      "label": "api()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "cargar-fichas-tecnicas.py",
-      "file_type": "code",
-      "norm_label": "api()",
-      "source_file": "crear-combos.py",
-      "source_location": "L129"
-    },
-    {
-      "id": "crear_combos_buscar",
-      "label": "buscar()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "cargar-fichas-tecnicas.py",
-      "file_type": "code",
-      "norm_label": "buscar()",
-      "source_file": "crear-combos.py",
-      "source_location": "L147"
-    },
-    {
-      "id": "crear_combos_main",
-      "label": "main()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "cargar-fichas-tecnicas.py",
-      "file_type": "code",
-      "norm_label": "main()",
-      "source_file": "crear-combos.py",
-      "source_location": "L153"
-    },
-    {
       "id": "conciliar_inventario",
       "label": "conciliar-inventario.py",
       "_origin": "ast",
@@ -959,17 +1007,6 @@
       "source_location": "L168"
     },
     {
-      "id": "conciliar_inventario_rationale_2",
-      "label": "Concilia un conteo f\u00edsico (Excel) contra el inventario real de Shopify. Ver\u2026",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "conciliar-inventario.py",
-      "file_type": "rationale",
-      "norm_label": "concilia un conteo fisico (excel) contra el inventario real de shopify. ver...",
-      "source_file": "conciliar-inventario.py",
-      "source_location": "L2"
-    },
-    {
       "id": "deploy_shopify",
       "label": "deploy-shopify.py",
       "_origin": "ast",
@@ -1023,17 +1060,6 @@
       "norm_label": "ordena la subida para que un *-group.json nunca llegue antes que la seccion que...",
       "source_file": "deploy-shopify.py",
       "source_location": "L162"
-    },
-    {
-      "id": "deploy_shopify_rationale_2",
-      "label": "Sube archivos del tema de `tema-shopify/` al tema publicado de la tienda.\u2026",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "deploy-shopify.py",
-      "file_type": "rationale",
-      "norm_label": "sube archivos del tema de `tema-shopify/` al tema publicado de la tienda....",
-      "source_file": "deploy-shopify.py",
-      "source_location": "L2"
     },
     {
       "id": "deploy_shopify_rationale_94",
@@ -1151,44 +1177,33 @@
       "source_location": "L164"
     },
     {
-      "id": "generar_carta_bienvenida_rationale_2",
-      "label": "Genera la carta de bienvenida que se incluye en cada env\u00edo. Uso: pip install\u2026",
-      "_origin": "ast",
-      "community": 11,
-      "community_name": "generar-carta-bienvenida.py",
-      "file_type": "rationale",
-      "norm_label": "genera la carta de bienvenida que se incluye en cada envio. uso: pip install...",
-      "source_file": "generar-carta-bienvenida.py",
-      "source_location": "L2"
-    },
-    {
       "id": "prueba_tarjetas_coleccion",
       "label": "prueba-tarjetas-coleccion.py",
       "_origin": "ast",
       "community": 12,
-      "community_name": "prueba-tarjetas-coleccion.py",
+      "community_name": "vincular-codigo-b1.py",
       "file_type": "code",
       "norm_label": "prueba-tarjetas-coleccion.py",
       "source_file": "prueba-tarjetas-coleccion.py",
       "source_location": "L1"
     },
     {
-      "id": "prueba_tarjetas_coleccion_rationale_2",
-      "label": "Prueba de regresion: ninguna tarjeta de producto debe salirse de su columna.\u2026",
+      "id": "vincular_codigo_b1",
+      "label": "vincular-codigo-b1.py",
       "_origin": "ast",
       "community": 12,
-      "community_name": "prueba-tarjetas-coleccion.py",
-      "file_type": "rationale",
-      "norm_label": "prueba de regresion: ninguna tarjeta de producto debe salirse de su columna....",
-      "source_file": "prueba-tarjetas-coleccion.py",
-      "source_location": "L2"
+      "community_name": "vincular-codigo-b1.py",
+      "file_type": "code",
+      "norm_label": "vincular-codigo-b1.py",
+      "source_file": "vincular-codigo-b1.py",
+      "source_location": "L1"
     },
     {
       "id": "prueba_tarjetas_coleccion_rationale_74",
       "label": "Descarga la coleccion y sus CSS, y sustituye brand-tokens.css por el del repo.",
       "_origin": "ast",
       "community": 12,
-      "community_name": "prueba-tarjetas-coleccion.py",
+      "community_name": "vincular-codigo-b1.py",
       "file_type": "rationale",
       "norm_label": "descarga la coleccion y sus css, y sustituye brand-tokens.css por el del repo.",
       "source_file": "prueba-tarjetas-coleccion.py",
@@ -1206,7 +1221,7 @@
       "source_location": "L1"
     },
     {
-      "id": "cargar_imagenes_productos_rationale_106",
+      "id": "cargar_imagenes_productos_rationale_112",
       "label": "Mapa handle -> id, paginando todo el catalogo.",
       "_origin": "ast",
       "community": 13,
@@ -1214,10 +1229,10 @@
       "file_type": "rationale",
       "norm_label": "mapa handle -> id, paginando todo el catalogo.",
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L106"
+      "source_location": "L112"
     },
     {
-      "id": "cargar_imagenes_productos_rationale_123",
+      "id": "cargar_imagenes_productos_rationale_129",
       "label": "Lado de la imagen sin depender de Pillow, para JPG y PNG.",
       "_origin": "ast",
       "community": 13,
@@ -1225,10 +1240,43 @@
       "file_type": "rationale",
       "norm_label": "lado de la imagen sin depender de pillow, para jpg y png.",
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L123"
+      "source_location": "L129"
     },
     {
-      "id": "cargar_imagenes_productos_rationale_153",
+      "id": "cargar_imagenes_productos_rationale_166",
+      "label": "Cuerpo multipart/form-data con la biblioteca estandar.",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "cargar-imagenes-productos.py",
+      "file_type": "rationale",
+      "norm_label": "cuerpo multipart/form-data con la biblioteca estandar.",
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L166"
+    },
+    {
+      "id": "cargar_imagenes_productos_rationale_179",
+      "label": "Nombres de archivo ya subidos como video, leidos del sufijo [archivo] del alt.",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "cargar-imagenes-productos.py",
+      "file_type": "rationale",
+      "norm_label": "nombres de archivo ya subidos como video, leidos del sufijo [archivo] del alt.",
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L179"
+    },
+    {
+      "id": "cargar_imagenes_productos_rationale_193",
+      "label": "stagedUploadsCreate -> POST del archivo -> productCreateMedia.",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "cargar-imagenes-productos.py",
+      "file_type": "rationale",
+      "norm_label": "stageduploadscreate -> post del archivo -> productcreatemedia.",
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L193"
+    },
+    {
+      "id": "cargar_imagenes_productos_rationale_223",
       "label": "La subcarpeta del producto manda; se acepta la raiz por compatibilidad.",
       "_origin": "ast",
       "community": 13,
@@ -1236,10 +1284,10 @@
       "file_type": "rationale",
       "norm_label": "la subcarpeta del producto manda; se acepta la raiz por compatibilidad.",
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L153"
+      "source_location": "L223"
     },
     {
-      "id": "cargar_imagenes_productos_rationale_161",
+      "id": "cargar_imagenes_productos_rationale_231",
       "label": "Una subcarpeta por producto, con un LEEME.md que lista sus tomas.",
       "_origin": "ast",
       "community": 13,
@@ -1247,21 +1295,10 @@
       "file_type": "rationale",
       "norm_label": "una subcarpeta por producto, con un leeme.md que lista sus tomas.",
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L161"
+      "source_location": "L231"
     },
     {
-      "id": "cargar_imagenes_productos_rationale_2",
-      "label": "Sube a Shopify las imagenes listadas en IMAGENES-CAMPANA-PENDIENTES.md. Uso:\u2026",
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "cargar-imagenes-productos.py",
-      "file_type": "rationale",
-      "norm_label": "sube a shopify las imagenes listadas en imagenes-campana-pendientes.md. uso:...",
-      "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L2"
-    },
-    {
-      "id": "cargar_imagenes_productos_rationale_84",
+      "id": "cargar_imagenes_productos_rationale_89",
       "label": "-> [(handle, titulo, [(archivo, tipo, alt), ...]), ...] en orden.",
       "_origin": "ast",
       "community": 13,
@@ -1269,7 +1306,7 @@
       "file_type": "rationale",
       "norm_label": "-> [(handle, titulo, [(archivo, tipo, alt), ...]), ...] en orden.",
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L84"
+      "source_location": "L89"
     },
     {
       "id": "readme_deploy",
@@ -1423,15 +1460,15 @@
       "source_location": "L182"
     },
     {
-      "id": "meta_ads_rationale_2",
-      "label": "Gestiona las campa\u00f1as de Meta Ads (Facebook/Instagram) de Intemperie M\u00e9xico.\u2026",
+      "id": "crear_combos",
+      "label": "crear-combos.py",
       "_origin": "ast",
-      "community": 3,
-      "community_name": "meta-ads.py",
-      "file_type": "rationale",
-      "norm_label": "gestiona las campanas de meta ads (facebook/instagram) de intemperie mexico....",
-      "source_file": "meta-ads.py",
-      "source_location": "L2"
+      "community": 4,
+      "community_name": "sincronizar-canal-meta.py",
+      "file_type": "code",
+      "norm_label": "crear-combos.py",
+      "source_file": "crear-combos.py",
+      "source_location": "L1"
     },
     {
       "id": "rebuild_mapa_3d",
@@ -1456,17 +1493,6 @@
       "source_location": "L1"
     },
     {
-      "id": "rebuild_mapa_3d_rationale_2",
-      "label": "Regenera los datos del mapa 3D del codigo a partir del grafo de Graphify. El\u2026",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "sincronizar-canal-meta.py",
-      "file_type": "rationale",
-      "norm_label": "regenera los datos del mapa 3d del codigo a partir del grafo de graphify. el...",
-      "source_file": "rebuild-mapa-3d.py",
-      "source_location": "L2"
-    },
-    {
       "id": "sincronizar_canal_meta_rationale_161",
       "label": "Prohibido por coleccion O por nombre. La red de colecciones sola NO alcanza, y\u2026",
       "_origin": "ast",
@@ -1478,39 +1504,6 @@
       "source_location": "L161"
     },
     {
-      "id": "sincronizar_canal_meta_rationale_2",
-      "label": "Deja el canal \"Facebook & Instagram\" de Shopify con los productos correctos.\u2026",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "sincronizar-canal-meta.py",
-      "file_type": "rationale",
-      "norm_label": "deja el canal \"facebook & instagram\" de shopify con los productos correctos....",
-      "source_file": "sincronizar-canal-meta.py",
-      "source_location": "L2"
-    },
-    {
-      "id": "vincular_codigo_b1",
-      "label": "vincular-codigo-b1.py",
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "vincular-codigo-b1.py",
-      "file_type": "code",
-      "norm_label": "vincular-codigo-b1.py",
-      "source_file": "vincular-codigo-b1.py",
-      "source_location": "L1"
-    },
-    {
-      "id": "vincular_codigo_b1_rationale_2",
-      "label": "Guarda el \"Codigo B1\" del POS en el campo `barcode` de cada producto de\u2026",
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "vincular-codigo-b1.py",
-      "file_type": "rationale",
-      "norm_label": "guarda el \"codigo b1\" del pos en el campo `barcode` de cada producto de...",
-      "source_file": "vincular-codigo-b1.py",
-      "source_location": "L2"
-    },
-    {
       "id": "cargar_fichas_tecnicas",
       "label": "cargar-fichas-tecnicas.py",
       "_origin": "ast",
@@ -1520,28 +1513,6 @@
       "norm_label": "cargar-fichas-tecnicas.py",
       "source_file": "cargar-fichas-tecnicas.py",
       "source_location": "L1"
-    },
-    {
-      "id": "crear_combos",
-      "label": "crear-combos.py",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "cargar-fichas-tecnicas.py",
-      "file_type": "code",
-      "norm_label": "crear-combos.py",
-      "source_file": "crear-combos.py",
-      "source_location": "L1"
-    },
-    {
-      "id": "cargar_fichas_tecnicas_rationale_2",
-      "label": "Carga el metafield `custom.especificaciones` (ficha tecnica) en los productos\u2026",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "cargar-fichas-tecnicas.py",
-      "file_type": "rationale",
-      "norm_label": "carga el metafield `custom.especificaciones` (ficha tecnica) en los productos...",
-      "source_file": "cargar-fichas-tecnicas.py",
-      "source_location": "L2"
     },
     {
       "id": "cargar_fichas_tecnicas_rationale_63",
@@ -1564,17 +1535,6 @@
       "norm_label": "{handle: product_id} de todo el catalogo, paginado.",
       "source_file": "cargar-fichas-tecnicas.py",
       "source_location": "L85"
-    },
-    {
-      "id": "crear_combos_rationale_2",
-      "label": "Crea los combos propuestos en COMBOS-NUEVOS-PENDIENTES.md. Uso:\u2026",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "cargar-fichas-tecnicas.py",
-      "file_type": "rationale",
-      "norm_label": "crea los combos propuestos en combos-nuevos-pendientes.md. uso:...",
-      "source_file": "crear-combos.py",
-      "source_location": "L2"
     },
     {
       "id": "instalar_entorno",
@@ -1699,6 +1659,7 @@
     {
       "id": "copy",
       "label": "copy",
+      "_origin": "semantic",
       "community": 0,
       "community_name": "conciliar-inventario.py",
       "external": true,
@@ -1710,6 +1671,7 @@
     {
       "id": "difflib",
       "label": "difflib",
+      "_origin": "semantic",
       "community": 0,
       "community_name": "conciliar-inventario.py",
       "external": true,
@@ -1721,6 +1683,7 @@
     {
       "id": "openpyxl_styles",
       "label": "openpyxl_styles",
+      "_origin": "semantic",
       "community": 0,
       "community_name": "conciliar-inventario.py",
       "external": true,
@@ -1730,8 +1693,21 @@
       "type": "external"
     },
     {
+      "id": "re",
+      "label": "re",
+      "_origin": "semantic",
+      "community": 0,
+      "community_name": "conciliar-inventario.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "re",
+      "source_file": "",
+      "type": "external"
+    },
+    {
       "id": "unicodedata",
       "label": "unicodedata",
+      "_origin": "semantic",
       "community": 0,
       "community_name": "conciliar-inventario.py",
       "external": true,
@@ -1743,6 +1719,7 @@
     {
       "id": "urllib_parse",
       "label": "urllib_parse",
+      "_origin": "semantic",
       "community": 0,
       "community_name": "conciliar-inventario.py",
       "external": true,
@@ -1752,8 +1729,21 @@
       "type": "external"
     },
     {
+      "id": "base64",
+      "label": "base64",
+      "_origin": "semantic",
+      "community": 1,
+      "community_name": "deploy-shopify.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "base64",
+      "source_file": "",
+      "type": "external"
+    },
+    {
       "id": "subprocess",
       "label": "subprocess",
+      "_origin": "semantic",
       "community": 1,
       "community_name": "deploy-shopify.py",
       "external": true,
@@ -1765,6 +1755,7 @@
     {
       "id": "reportlab_lib_colors",
       "label": "reportlab_lib_colors",
+      "_origin": "semantic",
       "community": 11,
       "community_name": "generar-carta-bienvenida.py",
       "external": true,
@@ -1776,6 +1767,7 @@
     {
       "id": "reportlab_lib_enums",
       "label": "reportlab_lib_enums",
+      "_origin": "semantic",
       "community": 11,
       "community_name": "generar-carta-bienvenida.py",
       "external": true,
@@ -1787,6 +1779,7 @@
     {
       "id": "reportlab_lib_pagesizes",
       "label": "reportlab_lib_pagesizes",
+      "_origin": "semantic",
       "community": 11,
       "community_name": "generar-carta-bienvenida.py",
       "external": true,
@@ -1798,6 +1791,7 @@
     {
       "id": "reportlab_lib_styles",
       "label": "reportlab_lib_styles",
+      "_origin": "semantic",
       "community": 11,
       "community_name": "generar-carta-bienvenida.py",
       "external": true,
@@ -1809,6 +1803,7 @@
     {
       "id": "reportlab_lib_units",
       "label": "reportlab_lib_units",
+      "_origin": "semantic",
       "community": 11,
       "community_name": "generar-carta-bienvenida.py",
       "external": true,
@@ -1820,6 +1815,7 @@
     {
       "id": "reportlab_pdfbase",
       "label": "reportlab_pdfbase",
+      "_origin": "semantic",
       "community": 11,
       "community_name": "generar-carta-bienvenida.py",
       "external": true,
@@ -1831,6 +1827,7 @@
     {
       "id": "reportlab_pdfbase_ttfonts",
       "label": "reportlab_pdfbase_ttfonts",
+      "_origin": "semantic",
       "community": 11,
       "community_name": "generar-carta-bienvenida.py",
       "external": true,
@@ -1842,6 +1839,7 @@
     {
       "id": "reportlab_platypus",
       "label": "reportlab_platypus",
+      "_origin": "semantic",
       "community": 11,
       "community_name": "generar-carta-bienvenida.py",
       "external": true,
@@ -1853,8 +1851,9 @@
     {
       "id": "argparse",
       "label": "argparse",
+      "_origin": "semantic",
       "community": 12,
-      "community_name": "prueba-tarjetas-coleccion.py",
+      "community_name": "vincular-codigo-b1.py",
       "external": true,
       "file_type": "concept",
       "norm_label": "argparse",
@@ -1862,10 +1861,23 @@
       "type": "external"
     },
     {
+      "id": "openpyxl",
+      "label": "openpyxl",
+      "_origin": "semantic",
+      "community": 12,
+      "community_name": "vincular-codigo-b1.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "openpyxl",
+      "source_file": "",
+      "type": "external"
+    },
+    {
       "id": "shutil",
       "label": "shutil",
+      "_origin": "semantic",
       "community": 12,
-      "community_name": "prueba-tarjetas-coleccion.py",
+      "community_name": "vincular-codigo-b1.py",
       "external": true,
       "file_type": "concept",
       "norm_label": "shutil",
@@ -1873,10 +1885,23 @@
       "type": "external"
     },
     {
+      "id": "sys",
+      "label": "sys",
+      "_origin": "semantic",
+      "community": 12,
+      "community_name": "vincular-codigo-b1.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "sys",
+      "source_file": "",
+      "type": "external"
+    },
+    {
       "id": "tempfile",
       "label": "tempfile",
+      "_origin": "semantic",
       "community": 12,
-      "community_name": "prueba-tarjetas-coleccion.py",
+      "community_name": "vincular-codigo-b1.py",
       "external": true,
       "file_type": "concept",
       "norm_label": "tempfile",
@@ -1886,8 +1911,9 @@
     {
       "id": "urllib_request",
       "label": "urllib_request",
+      "_origin": "semantic",
       "community": 12,
-      "community_name": "prueba-tarjetas-coleccion.py",
+      "community_name": "vincular-codigo-b1.py",
       "external": true,
       "file_type": "concept",
       "norm_label": "urllib_request",
@@ -1895,19 +1921,9 @@
       "type": "external"
     },
     {
-      "id": "base64",
-      "label": "base64",
-      "community": 13,
-      "community_name": "cargar-imagenes-productos.py",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "base64",
-      "source_file": "",
-      "type": "external"
-    },
-    {
       "id": "datetime",
       "label": "datetime",
+      "_origin": "semantic",
       "community": 3,
       "community_name": "meta-ads.py",
       "external": true,
@@ -1917,8 +1933,21 @@
       "type": "external"
     },
     {
+      "id": "json",
+      "label": "json",
+      "_origin": "semantic",
+      "community": 4,
+      "community_name": "sincronizar-canal-meta.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "json",
+      "source_file": "",
+      "type": "external"
+    },
+    {
       "id": "os",
       "label": "os",
+      "_origin": "semantic",
       "community": 4,
       "community_name": "sincronizar-canal-meta.py",
       "external": true,
@@ -1928,54 +1957,11 @@
       "type": "external"
     },
     {
-      "id": "re",
-      "label": "re",
-      "community": 4,
-      "community_name": "sincronizar-canal-meta.py",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "re",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "sys",
-      "label": "sys",
-      "community": 4,
-      "community_name": "sincronizar-canal-meta.py",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "sys",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "openpyxl",
-      "label": "openpyxl",
-      "community": 5,
-      "community_name": "vincular-codigo-b1.py",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "openpyxl",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "json",
-      "label": "json",
-      "community": 6,
-      "community_name": "cargar-fichas-tecnicas.py",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "json",
-      "source_file": "",
-      "type": "external"
-    },
-    {
       "id": "time",
       "label": "time",
-      "community": 6,
-      "community_name": "cargar-fichas-tecnicas.py",
+      "_origin": "semantic",
+      "community": 4,
+      "community_name": "sincronizar-canal-meta.py",
       "external": true,
       "file_type": "concept",
       "norm_label": "time",
@@ -1985,8 +1971,9 @@
     {
       "id": "urllib_error",
       "label": "urllib_error",
-      "community": 6,
-      "community_name": "cargar-fichas-tecnicas.py",
+      "_origin": "semantic",
+      "community": 4,
+      "community_name": "sincronizar-canal-meta.py",
       "external": true,
       "file_type": "concept",
       "norm_label": "urllib_error",
@@ -2056,6 +2043,18 @@
       "weight": 1.0
     },
     {
+      "source": "cargar_imagenes_productos_graphql",
+      "target": "cargar_imagenes_productos_api",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L159",
+      "weight": 1.0
+    },
+    {
       "source": "cargar_imagenes_productos_main",
       "target": "cargar_imagenes_productos_parsear_documento",
       "relation": "calls",
@@ -2064,7 +2063,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L199",
+      "source_location": "L271",
       "weight": 1.0
     },
     {
@@ -2076,7 +2075,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L204",
+      "source_location": "L276",
       "weight": 1.0
     },
     {
@@ -2088,7 +2087,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L211",
+      "source_location": "L283",
       "weight": 1.0
     },
     {
@@ -2100,7 +2099,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L230",
+      "source_location": "L302",
       "weight": 1.0
     },
     {
@@ -2112,7 +2111,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L236",
+      "source_location": "L310",
       "weight": 1.0
     },
     {
@@ -2124,7 +2123,67 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L243",
+      "source_location": "L317",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_imagenes_productos_main",
+      "target": "cargar_imagenes_productos_videos_existentes",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L382",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_imagenes_productos_main",
+      "target": "cargar_imagenes_productos_subir_video",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L388",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_imagenes_productos_subir_video",
+      "target": "cargar_imagenes_productos_graphql",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L198",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_imagenes_productos_subir_video",
+      "target": "cargar_imagenes_productos_multipart",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L204",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_imagenes_productos_videos_existentes",
+      "target": "cargar_imagenes_productos_graphql",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L182",
       "weight": 1.0
     },
     {
@@ -3060,7 +3119,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L50",
+      "source_location": "L55",
       "weight": 1.0
     },
     {
@@ -3072,7 +3131,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L51",
+      "source_location": "L56",
       "weight": 1.0
     },
     {
@@ -3084,7 +3143,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L52",
+      "source_location": "L57",
       "weight": 1.0
     },
     {
@@ -3096,7 +3155,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L53",
+      "source_location": "L58",
       "weight": 1.0
     },
     {
@@ -3108,7 +3167,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L54",
+      "source_location": "L59",
       "weight": 1.0
     },
     {
@@ -3120,7 +3179,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L55",
+      "source_location": "L60",
       "weight": 1.0
     },
     {
@@ -3132,7 +3191,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L56",
+      "source_location": "L61",
       "weight": 1.0
     },
     {
@@ -3144,7 +3203,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L57",
+      "source_location": "L62",
       "weight": 1.0
     },
     {
@@ -3156,7 +3215,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L58",
+      "source_location": "L63",
       "weight": 1.0
     },
     {
@@ -4086,7 +4145,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L105",
+      "source_location": "L111",
       "weight": 1.0
     },
     {
@@ -4097,7 +4156,51 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L122",
+      "source_location": "L128",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_imagenes_productos",
+      "target": "cargar_imagenes_productos_graphql",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L158",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_imagenes_productos",
+      "target": "cargar_imagenes_productos_multipart",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L165",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_imagenes_productos",
+      "target": "cargar_imagenes_productos_videos_existentes",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L178",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_imagenes_productos",
+      "target": "cargar_imagenes_productos_subir_video",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L192",
       "weight": 1.0
     },
     {
@@ -4108,7 +4211,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L152",
+      "source_location": "L222",
       "weight": 1.0
     },
     {
@@ -4119,7 +4222,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L160",
+      "source_location": "L230",
       "weight": 1.0
     },
     {
@@ -4130,7 +4233,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L186",
+      "source_location": "L258",
       "weight": 1.0
     },
     {
@@ -4141,7 +4244,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L69",
+      "source_location": "L74",
       "weight": 1.0
     },
     {
@@ -4152,7 +4255,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L83",
+      "source_location": "L88",
       "weight": 1.0
     },
     {
@@ -5036,17 +5139,6 @@
       "weight": 1.0
     },
     {
-      "source": "cargar_fichas_tecnicas_rationale_2",
-      "target": "cargar_fichas_tecnicas",
-      "relation": "rationale_for",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "cargar-fichas-tecnicas.py",
-      "source_location": "L2",
-      "weight": 1.0
-    },
-    {
       "source": "cargar_fichas_tecnicas_rationale_63",
       "target": "cargar_fichas_tecnicas_parsear_documento",
       "relation": "rationale_for",
@@ -5069,69 +5161,91 @@
       "weight": 1.0
     },
     {
-      "source": "cargar_imagenes_productos_rationale_106",
+      "source": "cargar_imagenes_productos_rationale_112",
       "target": "cargar_imagenes_productos_catalogo_por_handle",
       "relation": "rationale_for",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L106",
+      "source_location": "L112",
       "weight": 1.0
     },
     {
-      "source": "cargar_imagenes_productos_rationale_123",
+      "source": "cargar_imagenes_productos_rationale_129",
       "target": "cargar_imagenes_productos_dimensiones",
       "relation": "rationale_for",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L123",
+      "source_location": "L129",
       "weight": 1.0
     },
     {
-      "source": "cargar_imagenes_productos_rationale_153",
+      "source": "cargar_imagenes_productos_rationale_166",
+      "target": "cargar_imagenes_productos_multipart",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L166",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_imagenes_productos_rationale_179",
+      "target": "cargar_imagenes_productos_videos_existentes",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L179",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_imagenes_productos_rationale_193",
+      "target": "cargar_imagenes_productos_subir_video",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L193",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_imagenes_productos_rationale_223",
       "target": "cargar_imagenes_productos_ruta_de",
       "relation": "rationale_for",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L153",
+      "source_location": "L223",
       "weight": 1.0
     },
     {
-      "source": "cargar_imagenes_productos_rationale_161",
+      "source": "cargar_imagenes_productos_rationale_231",
       "target": "cargar_imagenes_productos_crear_carpetas",
       "relation": "rationale_for",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L161",
+      "source_location": "L231",
       "weight": 1.0
     },
     {
-      "source": "cargar_imagenes_productos_rationale_2",
-      "target": "cargar_imagenes_productos",
-      "relation": "rationale_for",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L2",
-      "weight": 1.0
-    },
-    {
-      "source": "cargar_imagenes_productos_rationale_84",
+      "source": "cargar_imagenes_productos_rationale_89",
       "target": "cargar_imagenes_productos_parsear_documento",
       "relation": "rationale_for",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "cargar-imagenes-productos.py",
-      "source_location": "L84",
+      "source_location": "L89",
       "weight": 1.0
     },
     {
@@ -5179,28 +5293,6 @@
       "weight": 1.0
     },
     {
-      "source": "conciliar_inventario_rationale_2",
-      "target": "conciliar_inventario",
-      "relation": "rationale_for",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "conciliar-inventario.py",
-      "source_location": "L2",
-      "weight": 1.0
-    },
-    {
-      "source": "crear_combos_rationale_2",
-      "target": "crear_combos",
-      "relation": "rationale_for",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "crear-combos.py",
-      "source_location": "L2",
-      "weight": 1.0
-    },
-    {
       "source": "deploy_shopify_rationale_103",
       "target": "deploy_shopify_keys_from_git",
       "relation": "rationale_for",
@@ -5242,17 +5334,6 @@
       "confidence_score": 1.0,
       "source_file": "deploy-shopify.py",
       "source_location": "L162",
-      "weight": 1.0
-    },
-    {
-      "source": "deploy_shopify_rationale_2",
-      "target": "deploy_shopify",
-      "relation": "rationale_for",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "deploy-shopify.py",
-      "source_location": "L2",
       "weight": 1.0
     },
     {
@@ -5300,17 +5381,6 @@
       "weight": 1.0
     },
     {
-      "source": "generar_carta_bienvenida_rationale_2",
-      "target": "generar_carta_bienvenida",
-      "relation": "rationale_for",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "generar-carta-bienvenida.py",
-      "source_location": "L2",
-      "weight": 1.0
-    },
-    {
       "source": "meta_ads_rationale_127",
       "target": "meta_ads_cmd_pausar",
       "relation": "rationale_for",
@@ -5355,28 +5425,6 @@
       "weight": 1.0
     },
     {
-      "source": "meta_ads_rationale_2",
-      "target": "meta_ads",
-      "relation": "rationale_for",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "meta-ads.py",
-      "source_location": "L2",
-      "weight": 1.0
-    },
-    {
-      "source": "prueba_tarjetas_coleccion_rationale_2",
-      "target": "prueba_tarjetas_coleccion",
-      "relation": "rationale_for",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "prueba-tarjetas-coleccion.py",
-      "source_location": "L2",
-      "weight": 1.0
-    },
-    {
       "source": "prueba_tarjetas_coleccion_rationale_74",
       "target": "prueba_tarjetas_coleccion_armar_repro",
       "relation": "rationale_for",
@@ -5388,17 +5436,6 @@
       "weight": 1.0
     },
     {
-      "source": "rebuild_mapa_3d_rationale_2",
-      "target": "rebuild_mapa_3d",
-      "relation": "rationale_for",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "rebuild-mapa-3d.py",
-      "source_location": "L2",
-      "weight": 1.0
-    },
-    {
       "source": "sincronizar_canal_meta_rationale_161",
       "target": "sincronizar_canal_meta_es_prohibido",
       "relation": "rationale_for",
@@ -5407,28 +5444,6 @@
       "confidence_score": 1.0,
       "source_file": "sincronizar-canal-meta.py",
       "source_location": "L161",
-      "weight": 1.0
-    },
-    {
-      "source": "sincronizar_canal_meta_rationale_2",
-      "target": "sincronizar_canal_meta",
-      "relation": "rationale_for",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "sincronizar-canal-meta.py",
-      "source_location": "L2",
-      "weight": 1.0
-    },
-    {
-      "source": "vincular_codigo_b1_rationale_2",
-      "target": "vincular_codigo_b1",
-      "relation": "rationale_for",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "vincular-codigo-b1.py",
-      "source_location": "L2",
       "weight": 1.0
     },
     {
@@ -5529,5 +5544,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "404fd6bf585e449dbe6a65f3f5ab670ddd06c97a"
+  "built_at_commit": "dc7a732c9e61535e64416765c5c6483dcdb86446"
 }
