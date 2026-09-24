@@ -409,11 +409,45 @@ Uso recomendado: señuelos, jigs, plásticos suaves
 `/products/hilo-araty-0-70mm-1000m-natural`
 ```
 Diámetro: 0.70 mm
+Resistencia: 25 kg (55 lb)
 Longitud: 1000 m
+Color: natural (transparente)
 Material: nylon monofilamento, 100% poliamida
 Uso recomendado: agua dulce y salada
 Protección UV: sí
 ```
+
+### Hilo Araty 0.45mm 1000m Verde
+`/products/hilo-araty-0-45mm-1000m-verde`
+```
+Diámetro: 0.45 mm
+Resistencia: 11.6 kg (25.5 lb)
+Longitud: 1000 m
+Color: verde
+Material: nylon monofilamento, 100% poliamida
+Uso recomendado: agua dulce y salada
+Protección UV: sí
+```
+
+### Hilo Araty 0.45mm 1000m Multicolor
+`/products/hilo-araty-0-45mm-1000m-multicolor`
+```
+Diámetro: 0.45 mm
+Resistencia: 11.6 kg (25.5 lb)
+Longitud: 1000 m
+Color: multicolor
+Material: nylon monofilamento, 100% poliamida
+Uso recomendado: agua dulce y salada
+Protección UV: sí
+```
+
+> 📋 **Resistencia — 24 sep.** Tabla Araty Superflex contrastada en tres
+> tiendas (la página oficial de Mazzaferro está detrás de Cloudflare); el
+> 0.25 = 4.2 kg coincide con la etiqueta física del carrete. El **0.45 =
+> 11.6 kg** coincide en las tres fuentes. Para el **0.70** las fuentes dan
+> 25.0 y 27.1 kg: por decisión del dueño se publica el **valor bajo, 25 kg**,
+> para no prometer más de lo que el hilo garantiza. Detalle en
+> `IMAGENES-CAMPANA-PENDIENTES.md`.
 
 ---
 
