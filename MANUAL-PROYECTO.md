@@ -93,6 +93,7 @@ como respaldo
 63. [Verificación: la campaña no gasta desde el 17, y el total real es $1,847.97 (22 sep)](#63-verificación-la-campaña-no-gasta-desde-el-17-y-el-total-real-es-184797-22-sep)
 64. [Imágenes y videos con IA en 12 productos, y la resistencia de los hilos (17-24 sep)](#64-imágenes-y-videos-con-ia-en-12-productos-y-la-resistencia-de-los-hilos-17-24-sep)
 65. [La campaña se prepara para las imágenes nuevas, sin encenderla (25 sep)](#65-la-campaña-se-prepara-para-las-imágenes-nuevas-sin-encenderla-25-sep)
+66. [Relanzamiento con imágenes y videos (25 sep)](#66-relanzamiento-con-imágenes-y-videos-25-sep)
 
 ---
 
@@ -7600,3 +7601,50 @@ una prueba de una cola al 5% con potencia de 80% contra la línea base de
 La decisión del monto queda con el dueño. Recordatorio de la trampa de
 §56: **`spend_cap` se escribe en pesos y se lee en centavos**; releer de
 inmediato tras escribirlo.
+
+
+---
+
+## 66. Relanzamiento con imágenes y videos (25 sep)
+
+Con el inventario del 25 conciliado, el dueño delegó el monto y pidió
+verificar que **los videos se vean en los anuncios**.
+
+### Los videos no llegaban al anuncio
+
+Se comprobó contra el catálogo: los 12 productos tenían sus imágenes
+nuevas (y los títulos "Gris" ya sincronizados) pero **`video` vacío**. La
+conexión Shopify → Meta sólo transmite imágenes. Dos cosas hacían falta:
+
+1. **Videos en el catálogo.** Se agregaron por `/{catálogo}/items_batch`
+   (UPDATE del campo `video` con la URL pública mp4 720p del CDN de
+   Shopify). Lote `finished`, 0 errores. El campo quedó en
+   `video_fetch_status = OUTDATED`: Meta registró las URLs y las descarga
+   de forma asíncrona.
+2. **Medios dinámicos en el creativo.** Los creativos v4 y v5 tenían **las
+   83 funciones automáticas de Meta en `OPT_OUT`**, incluida
+   `media_type_automation`, la que permite mostrar el video del producto
+   en vez de su imagen. Se hizo el **creativo v6** (`1612105447322579`),
+   copia del v5 con **sólo** esa función en `OPT_IN` —verificado: 1 de
+   83—, y el anuncio v4 pasó a usarlo.
+
+> 🧠 **Apagar todo el "Advantage+ creative" protege** —Meta no agrega
+> texto, no recorta ni genera variantes con IA—, **pero también apaga los
+> videos del catálogo.** Se prende sólo lo que se necesita, una función a
+> la vez, y se verifica leyendo el creativo.
+
+### Presupuesto y encendido
+
+- `spend_cap`: $1,485 → **$2,006** (escrito en pesos, releído en
+  centavos: coincide). **$575.20 disponibles**, ~10 días a $55.
+- Criterio de corte escrito en `PENDIENTES.md` **antes** de encender:
+  vistas → carrito contra 2.5%, cortes a $225 (≥5%) y a $575 (≥4%), paro
+  duro de 6 pantallas de pago sin compra.
+- Encendidos a las **11:53** (Chihuahua), en orden anuncio → conjunto →
+  campaña. Verificado: campaña y conjunto v4 `ACTIVE`; anuncio v4 en
+  revisión (`IN_PROCESS`) por el cambio de creativo. v1-v3 en pausa.
+
+### Pendiente de verificar
+
+Que Meta apruebe el anuncio, que procese los 12 videos, y que la
+sincronización de Shopify no los sobrescriba. Revisión programada.

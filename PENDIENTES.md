@@ -960,6 +960,23 @@ Los cortes se miden por **gasto acumulado desde el encendido**, no por días.
 
 ---
 
+## 🟢 RELANZADA — 25 de septiembre, 11:53 hora de Chihuahua
+
+- Tope subido a **$2,006** → **$575.20 disponibles** (releído: sin el error ×100).
+- Encendidos: campaña, conjunto de anuncios v4 y anuncio v4. v1, v2 y v3
+  siguen en pausa.
+- **Videos en los anuncios:** la conexión Shopify → Meta sólo pasa
+  imágenes. Se agregaron los 12 videos al catálogo por API
+  (`items_batch`, 0 errores; en cola de procesamiento) y se hizo el
+  creativo v6, que prende **sólo** `media_type_automation` (medios
+  dinámicos) y deja apagadas las otras 82 funciones automáticas. El
+  anuncio v4 usa el v6; al encender estaba en revisión por el cambio.
+- Criterio de corte fijado arriba, antes de encender.
+- ⚠️ Vigilar que la sincronización de Shopify no borre los videos del
+  catálogo.
+
+---
+
 ## ⏸️ Campaña lista para relanzar — falta decidir el presupuesto (25 sep)
 
 Todo armado y **en pausa**: conjunto de productos nuevo con los 12
