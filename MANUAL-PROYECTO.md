@@ -7644,6 +7644,19 @@ conexión Shopify → Meta sólo transmite imágenes. Dos cosas hacían falta:
   campaña. Verificado: campaña y conjunto v4 `ACTIVE`; anuncio v4 en
   revisión (`IN_PROCESS`) por el cambio de creativo. v1-v3 en pausa.
 
+### Recomendación de Meta rechazada: "Incluye otros productos pertinentes"
+
+Con el anuncio ya entregando, el Administrador de anuncios ofreció
+"+65 puntos" por activar **"Incluye otros productos pertinentes"**
+(`smart_pse_enabled`). **Se rechazó y debe seguir rechazada:** deja que
+Meta anuncie productos de **todo el catálogo**, y el catálogo contiene
+accesorios de arma que Meta prohíbe anunciar —se verificó: monturas para
+mira Nakashi 11/22mm, Picatinny y Bajas Mendoza, Montura Universal Konus y
+la Linterna táctica Konus, 5 de ellos en existencia—. Además deshace el
+conjunto curado y contamina la prueba. La "puntuación de recomendación"
+mide adopción de funciones de Meta, no ventas. Verificado:
+`smart_pse_enabled = false` en el conjunto v4.
+
 ### Pendiente de verificar
 
 Que Meta apruebe el anuncio, que procese los 12 videos, y que la
