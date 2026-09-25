@@ -942,6 +942,24 @@ no se haya desbordado a una segunda página, en
 llamada de API), el grafo de `scripts/` sí se movió esta vez —
 **101/163/11 → 111/178/12**, verificado contando en `graph.json`.
 
+## ⏸️ Campaña lista para relanzar — falta decidir el presupuesto (25 sep)
+
+Todo armado y **en pausa**: conjunto de productos nuevo con los 12
+productos de imágenes nuevas, creativo v5, conjunto de anuncios v4 y
+anuncio v4. El v3 quedó en pausa para que no corran los dos. Títulos
+"Negro" → "Gris" corregidos. Detalle e IDs en
+[`MANUAL-PROYECTO.md` §65](./MANUAL-PROYECTO.md#65-la-campaña-se-prepara-para-las-imágenes-nuevas-sin-encenderla-25-sep).
+
+**Falta, en este orden:**
+1. 💰 **Decisión del dueño: cuánto recargar.** Disponible hoy: $54.20.
+   $225 detecta si vistas → carrito se duplica; $573 detecta un salto a
+   4%; menos que eso no distingue una mejora chica del ruido.
+2. ✅ Confirmar que Meta aprobó el anuncio v4 (estaba en revisión).
+3. 📏 Fijar el criterio de corte **antes** de encender (§62).
+4. ▶️ Encender: campaña + conjunto v4 + anuncio v4.
+
+---
+
 ## ✅ Imágenes y videos con IA publicados en 12 productos (24 sep)
 
 59 imágenes y 12 videos arriba en la tienda, con la imagen nueva como

@@ -92,6 +92,7 @@ como respaldo
 62. [Cierre de la ronda: se pausa con $57 sin gastar (17 sep)](#62-cierre-de-la-ronda-se-pausa-con-57-sin-gastar-17-sep)
 63. [Verificación: la campaña no gasta desde el 17, y el total real es $1,847.97 (22 sep)](#63-verificación-la-campaña-no-gasta-desde-el-17-y-el-total-real-es-184797-22-sep)
 64. [Imágenes y videos con IA en 12 productos, y la resistencia de los hilos (17-24 sep)](#64-imágenes-y-videos-con-ia-en-12-productos-y-la-resistencia-de-los-hilos-17-24-sep)
+65. [La campaña se prepara para las imágenes nuevas, sin encenderla (25 sep)](#65-la-campaña-se-prepara-para-las-imágenes-nuevas-sin-encenderla-25-sep)
 
 ---
 
@@ -7528,3 +7529,59 @@ catálogo**. Los videos se usarán aparte, como anuncios de video.
   subidas por la web de GitHub se saltan el `.gitignore`. No afecta la
   tienda —el deploy sólo mira `tema-shopify/`—, pero conviene sacarlas del
   repo en adelante.
+
+---
+
+## 65. La campaña se prepara para las imágenes nuevas, sin encenderla (25 sep)
+
+Revisión previa al relanzamiento, pedida por el dueño. Todo lo técnico
+estaba listo: cuenta sana, $0 de gasto desde el 18, checkout funcionando
+de punta a punta, tarjetas sin encimados, y **las imágenes nuevas ya
+sincronizadas al catálogo de Meta**. Pero reanudar la campaña tal cual
+habría relanzado la ronda vieja con fotos nuevas encima.
+
+### Lo que habría salido mal
+
+- **El conjunto filtraba `precio ≥ $799`**, y eso dejaba fuera a 5 de los
+  12 productos recién fotografiados, entre ellos los tres con mejor
+  economía y más de una pieza (los dos Araty 0.45 a 1.53x y la caña Okuma
+  de $549 a 2.81x). El filtro venía de la creencia de que lo barato perdía
+  dinero por el envío, que §59-§60 corrigieron: debajo de $799 el envío lo
+  paga el cliente.
+- **19 de los 26 productos anunciados seguían con foto vieja**, incluido
+  el Combo Revenger de $849, que en la ronda pasada se llevó 35-43% del
+  gasto con la peor economía del catálogo.
+
+### Lo que se hizo (todo en pausa, sin gasto)
+
+| Qué | ID | Detalle |
+|---|---|---|
+| Conjunto de productos nuevo | `4521509521453705` | `IMX \| 12 con imagenes nuevas \| en stock \| Sep26`: `retailer_id` de los 12 **y** `availability = in stock`, para que un producto agotado salga solo. Verificado: **12 productos** |
+| Creativo v5 | `1029335653468739` | El v4 apuntado al conjunto nuevo. Cambio mínimo de texto: *"Cañas, carretes y combos probados en agua real"* → *"Equipo de pesca y óptica revisado pieza por pieza antes de enviarlo"*, porque el conjunto ya tiene binoculares e hilo. Liga a la home en vez de `/collections/combos`. Se conservan el gancho, el envío, los MSI y OXXO |
+| Conjunto de anuncios v4 | `120250261076430175` | Misma segmentación, optimización y atribución que el v3; sólo cambia el conjunto de productos. **PAUSED** |
+| Anuncio v4 | `120250261077450175` | **PAUSED**; en revisión de Meta (`IN_PROCESS`) al crearse |
+| Conjunto de anuncios v3 | `120249759861080175` | Pasado a **PAUSED**. Tenía su `status` en ACTIVE: al reanudar la campaña habrían corrido v3 y v4 a la vez |
+
+**Pausar, nunca borrar** (§33): v1, v2 y v3 siguen ahí.
+
+Además, los títulos **"Negro" → "Gris"** del Simmons Venture y el Bushnell
+PowerView 2 (defecto 1 de `IMAGENES-CAMPANA-PENDIENTES.md`). Verificado
+en la tienda pública, incluida la etiqueta `<title>`. **El handle se
+conservó** (`…-8x21-negro`) a propósito: cambiarlo rompe ligas y el
+catálogo, y el cliente no lo lee.
+
+### Cuánto presupuesto hace falta para que la prueba diga algo
+
+Con la tasa histórica (**1.38 vistas de producto por peso**, 10-17 sep) y
+una prueba de una cola al 5% con potencia de 80% contra la línea base de
+**2.5%** de vistas → carrito:
+
+| Si la tasa sube a | Vistas necesarias | Gasto aprox. | Días a $55 |
+|---|---|---|---|
+| 5.0% (se duplica) | 310 | **$225** | 4 |
+| 4.0% | 791 | **$573** | 10 |
+| 3.5% | 1,694 | **$1,227** | 22 |
+
+La decisión del monto queda con el dueño. Recordatorio de la trampa de
+§56: **`spend_cap` se escribe en pesos y se lee en centavos**; releer de
+inmediato tras escribirlo.
