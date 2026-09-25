@@ -254,6 +254,7 @@ esos son los que viven en
 | 25 ago 2026 | 1,183 | 254 | 83 | 743 | 103 | 87 |
 | 4 sep 2026 | 1,215 | 299 | 40 | 772 | 104 | 43 |
 | 10 sep 2026 | 1,187 | 303 | 30 | 750 | 103 | 33 |
+| 25 sep 2026 | 1,187 | 259 | 74 | 750 | 103 | 77 |
 
 > **15 de agosto, más tarde:** se agregó el cruce por `Codigo B1` y se
 > poblaron 371 códigos de barras en Shopify (0 errores). La cobertura de
@@ -297,6 +298,17 @@ esos son los que viven en
 > el mínimo de sus componentes. Ver la sección 57 del manual para el
 > método — incluye una trampa nueva del lado de la API de Shopify
 > (`variants.json?sku=` de REST no filtra de verdad).
+
+> **25 de septiembre:** llegaron dos archivos. El bueno, por indicación del
+> dueño, fue `inventario_25_setiembre_` (1,187 filas, formato de siempre);
+> el otro era una exportación distinta de 5,108 filas con precios y se
+> descartó. 77 variantes actualizadas, 0 errores; el re-ensayo posterior
+> dio **0 pendientes** (74 amarillos → verdes). Antes de aplicar se cruzó
+> el ensayo contra la campaña: **ningún cambio tocó los 12 productos del
+> conjunto anunciado ni el Combo Elite Pro** (sigue en 0). Los tres combos
+> armados a mano siguen cuadrando con el mínimo de sus componentes (1 cada
+> uno). Saltos a revisar en el POS: **Destorcedor Gimbel 5610N #9 de 17 a
+> 161** (×9.5) y Plomo Gimbel Pera 1/2 Oz de 20 a 84.
 
 > **Desglose del 25 de agosto** (esta cifra no llevaba fecha explícita
 > y se agrega ahora para no confundirla con la corrida del 10 de

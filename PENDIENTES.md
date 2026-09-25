@@ -951,6 +951,12 @@ anuncio v4. El v3 quedó en pausa para que no corran los dos. Títulos
 [`MANUAL-PROYECTO.md` §65](./MANUAL-PROYECTO.md#65-la-campaña-se-prepara-para-las-imágenes-nuevas-sin-encenderla-25-sep).
 
 **Falta, en este orden:**
+0. ✅ **Inventario del 25 sep conciliado** (77 cambios, 0 errores, re-ensayo
+   en 0). No tocó ningún producto del conjunto; los 12 siguen en existencia.
+   ⚠️ **Dos productos del anuncio comparten su única pieza con un combo:**
+   la Caña Blue Fox Power Boat (dentro del Combo Blue Fox) y la Caja Rapala
+   Utility Box (dentro del Combo Corux). Si se vende uno suelto, **poner el
+   combo en 0 de inmediato** — Shopify no descuenta componentes.
 1. 💰 **Decisión del dueño: cuánto recargar.** Disponible hoy: $54.20.
    $225 detecta si vistas → carrito se duplica; $573 detecta un salto a
    4%; menos que eso no distingue una mejora chica del ruido.
