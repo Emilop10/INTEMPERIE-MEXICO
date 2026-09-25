@@ -7564,6 +7564,21 @@ habría relanzado la ronda vieja con fotos nuevas encima.
 
 **Pausar, nunca borrar** (§33): v1, v2 y v3 siguen ahí.
 
+> 🔍 **Comparación campo por campo v3 → v4** (a pedido del dueño: ¿se
+> lanza con todo lo que consiguió la primera venta?). De 22 campos del
+> conjunto de anuncios, **20 son idénticos**: edad 45-65, hombres, México,
+> Facebook feed + Marketplace, sólo móvil, sin Advantage+, optimización a
+> `ADD_TO_CART` con el mismo pixel, puja de menor costo, $55/día,
+> atribución 7 días clic / 1 día vista, misma campaña. El formato
+> automático de carrusel/colección del creativo también se conserva.
+> Distintos: el **conjunto de productos** (es el cambio buscado) y
+> `location_types`: **Meta agrega sola `frequently_in`** a los conjuntos
+> nuevos. Se intentó quitarla copiando el targeting exacto del v3: la API
+> responde `success` y la vuelve a poner. El v3 no la tiene por haberse
+> creado en agosto. A nivel país el efecto es marginal (suma a quien
+> frecuenta México sin vivir aquí). La fase de aprendizaje del conjunto
+> arranca de cero; el historial del pixel se conserva.
+
 Además, los títulos **"Negro" → "Gris"** del Simmons Venture y el Bushnell
 PowerView 2 (defecto 1 de `IMAGENES-CAMPANA-PENDIENTES.md`). Verificado
 en la tienda pública, incluida la etiqueta `<title>`. **El handle se
