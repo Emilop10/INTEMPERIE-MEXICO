@@ -7657,7 +7657,18 @@ conjunto curado y contamina la prueba. La "puntuación de recomendación"
 mide adopción de funciones de Meta, no ventas. Verificado:
 `smart_pse_enabled = false` en el conjunto v4.
 
-### Pendiente de verificar
+### Revisión programada — 25 sep, 14:25 (Chihuahua)
 
-Que Meta apruebe el anuncio, que procese los 12 videos, y que la
-sincronización de Shopify no los sobrescriba. Revisión programada.
+Verificado contra la API, 2.5 h después del encendido:
+
+- **Anuncio v4 aprobado**: `ACTIVE / ACTIVE`, sin observaciones de revisión.
+- **Los 12 videos procesados**: `video_fetch_status = FETCHED` en los 12, y
+  `videos_metadata` presente en los 12. **La sincronización de Shopify no
+  los borró.** Desde aquí el anuncio puede mostrar video o imagen por
+  producto.
+- **Entrega arrancó**: $8.59, 136 impresiones, 110 personas, 12 clics, 6
+  vistas de producto el mismo día.
+
+> 🚫 **No se evalúa todavía.** Con 136 impresiones, el CTR de 8.82% no
+> significa nada. El criterio fijado dice que la primera lectura es a los
+> **$225 gastados**.
