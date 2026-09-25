@@ -942,6 +942,24 @@ no se haya desbordado a una segunda página, en
 llamada de API), el grafo de `scripts/` sí se movió esta vez —
 **101/163/11 → 111/178/12**, verificado contando en `graph.json`.
 
+## 📏 Criterio de corte de la ronda del 25 sep — FIJADO ANTES DE ENCENDER
+
+Escrito antes de ver un solo dato de esta ronda, para no elegir el corte
+después (la trampa de §62).
+
+| | |
+|---|---|
+| **Presupuesto** | $575.20 disponibles (tope $2,006.00), $55/día → ~10 días |
+| **Métrica principal** | Vistas de producto → agregar al carrito. **Línea base 2.5%** (722 → 18, 10-17 sep) |
+| **Corte 1 — al llegar a $225 gastados** | ¿La tasa llegó a **5%** o más? Si sí, se duplicó y hay evidencia. Si no, se sigue al corte 2 |
+| **Corte 2 — al llegar a $575 gastados** | ¿La tasa llegó a **4%** o más? Si sí, las imágenes mejoraron la ficha. Si no, no hay evidencia de mejora con este tamaño de muestra |
+| **Paro duro** | **6 pantallas de pago sin compra → detener**, igual que las rondas anteriores |
+| **Qué NO cuenta** | Mirar la tasa día a día y cortar "cuando se ve bien" o "cuando se ve mal" |
+
+Los cortes se miden por **gasto acumulado desde el encendido**, no por días.
+
+---
+
 ## ⏸️ Campaña lista para relanzar — falta decidir el presupuesto (25 sep)
 
 Todo armado y **en pausa**: conjunto de productos nuevo con los 12
