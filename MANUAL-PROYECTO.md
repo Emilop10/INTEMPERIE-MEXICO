@@ -7672,3 +7672,31 @@ Verificado contra la API, 2.5 h después del encendido:
 > 🚫 **No se evalúa todavía.** Con 136 impresiones, el CTR de 8.82% no
 > significa nada. El criterio fijado dice que la primera lectura es a los
 > **$225 gastados**.
+
+
+### Revisión del 26 sep: el cero de carritos no es un pixel roto
+
+A $56.41 del encendido: 1,169 impresiones, **CTR 11.98%** (6.46% en la
+ronda anterior), CPC $0.40 ($0.58 antes), 106 vistas de producto y **0
+agregados al carrito**. El pixel no registraba ningún `AddToCart` desde el
+16 sep ni `InitiateCheckout` desde el 15, de ninguna fuente — con 281
+vistas en 3 días, un cero por azar tiene <1% de probabilidad. Se sospechó
+rastreo roto y **se probó en vivo en vez de suponerlo**:
+
+- Chromium real contra la tienda en vivo (vía el proxy; hizo falta
+  importar el bundle de CAs del entorno al almacén NSS de Chromium con
+  `certutil` —se había quedado sin certificados—, **sin desactivar la
+  verificación TLS**).
+- Página de producto → `PageView`, `ViewContent`. Botón agregar →
+  `AddToCart`. `/checkout` → `PageView`, `InitiateCheckout`.
+
+**El rastreo funciona de punta a punta.** El cero es comportamiento real,
+todavía con muestra chica (con la tasa base de 2.5%, 0 de 106 ocurre ~7%
+de las veces), y **no se evalúa antes de los $225**, como quedó fijado.
+
+> Los eventos de la prueba (2 `AddToCart`, 1 `InitiateCheckout`) quedan en
+> las estadísticas del pixel, pero **no en las del anuncio**: no traen
+> clic de anuncio, así que no contaminan la métrica de la prueba.
+
+> 🧠 Queda descartado también releer el "bache" de §62 (13-17 sep) como
+> falla de rastreo: no hay evidencia de que el pixel estuviera roto.
