@@ -942,6 +942,22 @@ no se haya desbordado a una segunda página, en
 llamada de API), el grafo de `scripts/` sí se movió esta vez —
 **101/163/11 → 111/178/12**, verificado contando en `graph.json`.
 
+## ⏳ En espera del corte de $225 (decidido el 26 sep)
+
+- La campaña **no se toca** hasta llegar a $225 gastados desde el
+  encendido (al 26 sep: $56.41). Ahí se lee vistas → carrito contra el
+  criterio de abajo.
+- **Después del corte:** decidir si se arma un **anuncio propio de video**.
+  Hoy los videos sí salen, pero Meta los elige poco (6 reproducciones en
+  1,172 impresiones).
+- Verificado el 26 sep: pixel sano (carrito y pago probados en vivo),
+  enlaces sanos (86% de los clics carga la página; los 12 destinos
+  correctos).
+- 🧹 Sin prisa: sacar del catálogo de Meta las 5 monturas para mira y la
+  linterna táctica (accesorios de arma).
+
+---
+
 ## 📏 Criterio de corte de la ronda del 25 sep — FIJADO ANTES DE ENCENDER
 
 Escrito antes de ver un solo dato de esta ronda, para no elegir el corte

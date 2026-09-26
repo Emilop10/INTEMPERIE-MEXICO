@@ -7722,3 +7722,11 @@ Verificado:
   quiere que el video se vea seguro, hace falta un anuncio propio de
   video — decisión pendiente del dueño, de preferencia **después** del
   corte de $225 para no mezclarla con la prueba de las imágenes.
+
+
+### Decisión del dueño — 26 sep: se espera al corte de $225
+
+**No se toca la campaña hasta el corte de $225.** El anuncio propio de
+video queda como decisión para **después** de esa lectura, para no mezclar
+dos cambios en la misma prueba. Sin merge pendiente: la rama de trabajo es
+la principal del repositorio y la del PR #1 está integrada completa.
