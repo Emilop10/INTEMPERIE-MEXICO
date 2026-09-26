@@ -7700,3 +7700,25 @@ de las veces), y **no se evalúa antes de los $225**, como quedó fijado.
 
 > 🧠 Queda descartado también releer el "bache" de §62 (13-17 sep) como
 > falla de rastreo: no hay evidencia de que el pixel estuviera roto.
+
+
+### Revisión del 26 sep: enlaces y videos
+
+El dueño vio su propio anuncio en el teléfono y al darle clic "lo llevaba
+a una página rara de Facebook" (tenía mala señal en ese momento).
+Verificado:
+
+- **Los enlaces funcionan.** Del anuncio: 119 clics salientes → **102
+  `landing_page_view` (86%)**, rango sano. Los **12 destinos** del
+  catálogo responden 200 y abren la página correcta del producto en
+  0.4-0.6 s, probados con `fbclid` y user-agent del navegador interno de
+  Facebook en iPhone. El enlace "ver más" (`www.` → dominio) redirige una
+  vez y carga. No hubo aperturas de Instant Experience. La "página rara"
+  no se pudo reproducir; lo consistente con los datos es la conexión
+  lenta: el 14% que no llega a cargar es justo quien abandona antes.
+- **Los videos sí se muestran, pero poco:** 6 reproducciones en 1,172
+  impresiones (0.5%), 1 completa. Con medios dinámicos **Meta decide**
+  foto o video por producto, y hasta ahora elige casi siempre foto. Si se
+  quiere que el video se vea seguro, hace falta un anuncio propio de
+  video — decisión pendiente del dueño, de preferencia **después** del
+  corte de $225 para no mezclarla con la prueba de las imágenes.
