@@ -7758,3 +7758,23 @@ la principal del repositorio y la del PR #1 está integrada completa.
      Meta más empuja.
 - Se movió la revisión programada del 29 sep al **1 oct 10:00**
   (Chihuahua): al ritmo de ~$44/día el corte llega hacia el 30.
+
+### Revisión del 28 sep, 12:47 — $154.87, todavía antes del corte
+
+Meta **terminó de contar el 27**: en la mañana marcaba $44.46 y a medio
+día $61.51. Es normal que el día anterior se actualice durante horas —
+**no conviene sacar conclusiones del último día cerrado**.
+
+| | Acumulado |
+|---|---|
+| Gasto | **$154.87** (disponible $420.42) |
+| Impresiones · alcance · frecuencia | 3,379 · 1,794 · 1.88 |
+| CTR · CPC | 9.26% · $0.49 |
+| Vistas → carrito | **2/237 = 0.8%**, IC95 **0.2%-3.0%** (incluye la base de 2.5%) |
+| Pagos · ventas | 0 · 0 → paro duro en 0 de 6 |
+| Reproducciones de video | 23 |
+
+**No se evalúa.** Con el 27 corregido, el ritmo sube y el corte de $225 cae
+el **29 sep**: la revisión programada se adelanta al **30 sep, 10:00**
+(Chihuahua), para leer justo después de cruzarlo y no con dos días de
+datos de más.

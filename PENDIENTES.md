@@ -945,8 +945,11 @@ llamada de API), el grafo de `scripts/` sí se movió esta vez —
 ## ⏳ En espera del corte de $225 (decidido el 26 sep)
 
 - La campaña **no se toca** hasta llegar a $225 gastados desde el
-  encendido (al 26 sep: $56.41). Ahí se lee vistas → carrito contra el
-  criterio de abajo.
+  encendido (al 28 sep 12:47: **$154.87**; vistas → carrito 2/237). Ahí se
+  lee vistas → carrito contra el criterio de abajo.
+- 🗓️ **Revisión del corte programada: 30 sep, 10:00 (Chihuahua).** Llevar
+  además la hipótesis del envío: el 53% del gasto va a dos productos de
+  menos de $799 sin carritos, donde el cliente paga $189 de envío.
 - **Después del corte:** decidir si se arma un **anuncio propio de video**.
   Hoy los videos sí salen, pero Meta los elige poco (6 reproducciones en
   1,172 impresiones).
