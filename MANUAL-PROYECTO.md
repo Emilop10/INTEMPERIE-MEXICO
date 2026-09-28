@@ -7730,3 +7730,31 @@ Verificado:
 video queda como decisión para **después** de esa lectura, para no mezclar
 dos cambios en la misma prueba. Sin merge pendiente: la rama de trabajo es
 la principal del repositorio y la del PR #1 está integrada completa.
+
+
+### Revisión del 28 sep (a $127.59, antes del corte — no se evalúa)
+
+| | 25 | 26 | 27 | Acumulado |
+|---|---|---|---|---|
+| Gasto | $38.65 | $44.48 | $44.46 | **$127.59** |
+| CTR | 11.34% | 9.62% | 6.95% | 9.15% |
+| Vistas → carrito | 0/60 | 1/75 | 1/57 | **2/192 (1.0%)** |
+
+- **Aún no toca evaluar** (corte a $225). El 1.0% está por debajo de la
+  base de 2.5%, pero su intervalo al 95% es **0.3%-3.7%** e incluye la
+  base: con 192 vistas no se distingue de la ronda anterior.
+- Pantallas de pago: 0 → paro duro en 0 de 6. Ventas: 0; inventario de los
+  12 sin cambios desde el 25.
+- Videos: 15 reproducciones, 1 completa.
+- **Observaciones para la lectura del corte, no para actuar ahora:**
+  1. El **CTR baja día a día** (11.3 → 9.6 → 7.0) con frecuencia 1.76: el
+     efecto novedad de las imágenes se va gastando.
+  2. **El 53% del gasto se va a dos productos con 0 carritos**: Hilo Araty
+     0.45 Multicolor ($436) y Caja Rapala ($549), 76 vistas entre los
+     dos. Los 2 carritos llegaron de productos con poco gasto (caña Okuma
+     $549 y Bushnell $1,450). **Hipótesis a revisar en el corte:** debajo
+     de $799 el cliente paga $189 de envío, que en un hilo de $436 es un
+     43% extra; el costo del envío podría frenar justo a los productos que
+     Meta más empuja.
+- Se movió la revisión programada del 29 sep al **1 oct 10:00**
+  (Chihuahua): al ritmo de ~$44/día el corte llega hacia el 30.
