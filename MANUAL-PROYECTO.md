@@ -7778,3 +7778,15 @@ día $61.51. Es normal que el día anterior se actualice durante horas —
 el **29 sep**: la revisión programada se adelanta al **30 sep, 10:00**
 (Chihuahua), para leer justo después de cruzarlo y no con dos días de
 datos de más.
+
+
+### Revisión del 29 sep, 11:33 — $194.42, a $31 del corte
+
+El 28 cerró en $39.09, más lento de lo previsto: el corte de $225 cae
+hoy en la tarde o mañana temprano; la revisión programada del 30 a las
+10:00 sigue siendo el momento correcto. Vistas → carrito **2/285 (0.7%)**,
+IC95 **0.2%-2.5%**: el límite superior ya **toca** la base de 2.5%. La
+evidencia se inclina a que no hubo mejora en la ficha, pero **se lee
+formalmente en el corte**, como quedó fijado. Sin pagos ni ventas;
+frecuencia 2.08; CTR estable en 8-9%; 30 reproducciones de video (3
+completas).
