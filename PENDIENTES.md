@@ -945,8 +945,12 @@ llamada de API), el grafo de `scripts/` sí se movió esta vez —
 ## ⏳ En espera del corte de $225 (decidido el 26 sep)
 
 - La campaña **no se toca** hasta llegar a $225 gastados desde el
-  encendido (al 28 sep 12:47: **$154.87**; vistas → carrito 2/237). Ahí se
-  lee vistas → carrito contra el criterio de abajo.
+  encendido (al 29 sep 11:33: **$194.42**; vistas → carrito 2/285, IC95
+  0.2%-2.5%). Ahí se lee vistas → carrito contra el criterio de abajo.
+- 📌 **Lectura adelantada, no formal:** lo más probable es que el corte
+  concluya "las imágenes nuevas atraen más clics (CTR ~9% contra 6.5%)
+  pero no mejoraron la conversión de la ficha". Si se confirma, el freno
+  está **dentro de la página del producto**, no en el anuncio.
 - 🗓️ **Revisión del corte programada: 30 sep, 10:00 (Chihuahua).** Llevar
   además la hipótesis del envío: el 53% del gasto va a dos productos de
   menos de $799 sin carritos, donde el cliente paga $189 de envío.
