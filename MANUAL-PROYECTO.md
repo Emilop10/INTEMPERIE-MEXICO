@@ -97,6 +97,7 @@ como respaldo
 67. [Corte de $225: las imágenes subieron los clics, no los carritos (30 sep)](#67-corte-de-225-las-imágenes-subieron-los-clics-no-los-carritos-30-sep)
 68. [Análisis estratégico: los combos venden, los sueltos no (30 sep)](#68-análisis-estratégico-los-combos-venden-los-sueltos-no-30-sep)
 69. [Ejecución de las cuatro fases: ficha, kits, canales y Meta en pausa (30 sep)](#69-ejecución-de-las-cuatro-fases-ficha-kits-canales-y-meta-en-pausa-30-sep)
+70. [La guía por fases y la fase 1 en marcha (30 sep)](#70-la-guía-por-fases-y-la-fase-1-en-marcha-30-sep)
 
 ---
 
@@ -8036,4 +8037,39 @@ gastados; si no, se pausa.
   Graphify no extrae nodos de los archivos `.liquid` (en el tema solo
   indexa JS y JSON), así que los cambios de Liquid y CSS de la fase 0 no
   mueven el grafo. Es lo esperado, no una falla.
+
+## 70. La guía por fases y la fase 1 en marcha (30 sep)
+
+El dueño pidió avanzar **una fase a la vez**, con una guía. Quedó en
+[`GUIA-POR-FASES.md`](./GUIA-POR-FASES.md): cada fase trae sus pasos, quién
+hace cada uno y la condición para darla por terminada.
+
+> ⚠️ **La numeración cambió respecto a §68/§69.** Queda así: 0 = ficha
+> (hecha), **1 = kits a la venta**, 2 = canales gratis (Google, Mercado
+> Libre, carrito abandonado), **3 = reabasto y zona muerta (nueva)** y 4 =
+> Meta. **Manda la de `GUIA-POR-FASES.md`.**
+
+### Fase 1 — lo preparado
+
+- [`FOTOS-KITS.md`](./FOTOS-KITS.md): la **lista de piezas para apartar**
+  (cantidad por kit y total para los 2 de cada uno), el cómo de las
+  fotos (celular, luz de ventana, 1:1, fondo oscuro, sin flash) y las 4
+  tomas por kit.
+  - La principal es el kit completo extendido desde arriba, porque un
+    kit se vende por lo que trae y **la IA no puede fotografiarlo sin
+    inventar piezas**.
+  - Se generó a partir de `KITS` en `crear-kits.py`, así que no se
+    desincroniza.
+- `scripts/cargar-imagenes-productos.py` acepta ahora `--doc` y sirve
+  para cualquier documento con el mismo formato. Con
+  `--doc FOTOS-KITS.md --crear-carpetas` se crearon
+  `imagenes-productos/kit-…/` (4 carpetas, cada una con su LEEME.md).
+  El `--dry-run` encuentra los 4 kits aunque estén en borrador y reporta
+  las 16 tomas como pendientes.
+- **Regla de inventario de los kits:** la misma de los combos manuales
+  (§50). Si se vende un kit, se descuentan sus piezas; si se vende suelta
+  una pieza que está en un kit, se baja la existencia del kit. **La
+  conciliación (`conciliar-inventario.py`) no conoce ni combos ni kits.**
+  Se descartó Shopify Bundles por ahora, porque obliga a rehacer los kits
+  dentro de la app y con 8 unidades no compensa.
 

@@ -944,6 +944,10 @@ llamada de API), el grafo de `scripts/` sí se movió esta vez —
 
 ## 🧭 Plan del 30 sep — en ejecución (MANUAL §68 y §69)
 
+> 📍 **Se trabaja por fases con [`GUIA-POR-FASES.md`](./GUIA-POR-FASES.md).**
+> Fase en curso: **1 — Kits a la venta**: apartar piezas y tomar fotos
+> según [`FOTOS-KITS.md`](./FOTOS-KITS.md).
+
 **Hecho el 30 sep:**
 - ✅ Fase 0 en vivo: envío real junto al precio, barra fija de compra en
   celular, burbujas que no tapan, y marca Araty en los 55 hilos.

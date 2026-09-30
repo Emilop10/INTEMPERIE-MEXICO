@@ -12,6 +12,7 @@ Uso:
     python3 scripts/cargar-imagenes-productos.py --dry-run
     SHOPIFY_ADMIN_TOKEN=shpat_... python3 scripts/cargar-imagenes-productos.py
     SHOPIFY_ADMIN_TOKEN=shpat_... python3 scripts/cargar-imagenes-productos.py --incluir-extras
+    SHOPIFY_ADMIN_TOKEN=shpat_... python3 scripts/cargar-imagenes-productos.py --doc FOTOS-KITS.md
 
 Variables de entorno:
     SHOPIFY_ADMIN_TOKEN  (obligatoria salvo en --dry-run) token con write_products
@@ -263,13 +264,15 @@ def main():
                     help="crea una subcarpeta por producto, con su LEEME.md, y termina")
     ap.add_argument("--incluir-extras", action="store_true",
                     help="sube tambien las imagenes de la subcarpeta que el documento no lista")
+    ap.add_argument("--doc", default=DOC,
+                    help=f"documento fuente (default {DOC}); FOTOS-KITS.md para los kits")
     args = ap.parse_args()
 
-    doc = os.path.join(RAIZ, DOC)
+    doc = os.path.join(RAIZ, args.doc)
     if not os.path.exists(doc):
-        raise SystemExit(f"No encuentro {DOC}")
+        raise SystemExit(f"No encuentro {args.doc}")
     productos = parsear_documento(doc)
-    print(f"{DOC}: {len(productos)} productos, "
+    print(f"{args.doc}: {len(productos)} productos, "
           f"{sum(len(p[2]) for p in productos)} imagenes listadas\n")
 
     if args.crear_carpetas:
