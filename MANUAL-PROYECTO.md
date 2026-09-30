@@ -7847,3 +7847,18 @@ hipótesis del envío ni se confirma ni se descarta con esta muestra.
   lo que pasa después del clic.
 - Para la próxima ronda: cambiar **una sola cosa a la vez**.
 
+### Pausa (30 sep, 11:13 hora de Chihuahua)
+
+El dueño aprobó la recomendación. Se pausaron **campaña, conjunto v4 y
+anuncio v4** (pausa, no borrado), verificado releyendo: los tres en
+`PAUSED`. El anuncio muestra `IN_PROCESS` (revisión de Meta pendiente),
+pero con la campaña y el conjunto en pausa no entrega.
+
+| | Ronda del 25 sep, cerrada |
+|---|---|
+| Gasto total (25-30 sep) | **$248.85** · 5,413 impresiones · 476 clics |
+| Cuenta | tope $2,006.00, gastado $1,679.34 → **$326.66 disponibles** |
+
+Siguiente paso: trabajar la ficha del producto antes de volver a gastar,
+y en la próxima ronda cambiar una sola cosa a la vez.
+

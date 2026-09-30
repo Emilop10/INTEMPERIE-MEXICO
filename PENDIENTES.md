@@ -942,15 +942,18 @@ no se haya desbordado a una segunda página, en
 llamada de API), el grafo de `scripts/` sí se movió esta vez —
 **101/163/11 → 111/178/12**, verificado contando en `graph.json`.
 
-## 🔴 Corte de $225 leído (30 sep) — DECISIÓN DEL DUEÑO PENDIENTE
+## ⏸️ Campaña PAUSADA el 30 sep tras el corte de $225
 
 - **Resultado:** vistas → carrito **2/342 = 0.58%**, IC95 0.2%-2.1%. No se
   duplicó y queda **por debajo** de la base de 2.5%. CTR subió a 8.79%
   (antes 6.46%): las imágenes atraen clics, la ficha no convierte.
   Detalle en MANUAL-PROYECTO §67.
 - **Corte 2 inalcanzable** (31 carritos en ~474 vistas). Recomendación:
-  **pausar** y guardar ~$328.25 para trabajar la ficha del producto.
-  **No se ha pausado:** espera la decisión del dueño.
+  pausar y trabajar la ficha del producto. **Aprobada y ejecutada el
+  30 sep 11:13:** campaña, conjunto v4 y anuncio v4 en pausa. Ronda
+  cerrada en $248.85; quedan **$326.66** disponibles en la cuenta.
+- **Siguiente:** mejorar la ficha (envío visible, 33 fotos reales,
+  confianza) antes de volver a encender.
 - **Anuncio propio de video:** recomendación **no por ahora** (el freno
   está después del clic).
 - Hipótesis del envío (<$799 paga $189): 0.4% contra 0.8%, **no
