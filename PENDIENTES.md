@@ -942,6 +942,22 @@ no se haya desbordado a una segunda página, en
 llamada de API), el grafo de `scripts/` sí se movió esta vez —
 **101/163/11 → 111/178/12**, verificado contando en `graph.json`.
 
+## 🧭 Análisis estratégico del 30 sep — ESPERA DECISIÓN DEL DUEÑO
+
+Ver [`ANALISIS-ESTRATEGICO-30-SEP.md`](./ANALISIS-ESTRATEGICO-30-SEP.md)
+y MANUAL §68. En corto: **los combos convierten 3.6%, los sueltos 0.75%
+(p = 0.002)**. La mitad del catálogo deja ≤ $69 por venta. Plan: fase 0
+(arreglos de ficha), fase 1 (kits de $1,199 o más con contribución de
+$300 o más), fase 2 (Google y Mercado Libre), fase 3 (Meta solo con
+kits y óptica, 55+).
+
+Preguntas abiertas para el dueño:
+1. ¿El vendedor "intemperie.mx" de Mercado Libre es suyo?
+2. ¿Se pueden reabastecer los combos Okuma, a qué costo y en cuánto
+   tiempo?
+3. ¿Van los kits?
+4. ¿Arranco la fase 0?
+
 ## ⏸️ Campaña PAUSADA el 30 sep tras el corte de $225
 
 - **Resultado:** vistas → carrito **2/342 = 0.58%**, IC95 0.2%-2.1%. No se

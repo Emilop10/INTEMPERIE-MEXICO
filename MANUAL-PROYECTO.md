@@ -95,6 +95,7 @@ como respaldo
 65. [La campaña se prepara para las imágenes nuevas, sin encenderla (25 sep)](#65-la-campaña-se-prepara-para-las-imágenes-nuevas-sin-encenderla-25-sep)
 66. [Relanzamiento con imágenes y videos (25 sep)](#66-relanzamiento-con-imágenes-y-videos-25-sep)
 67. [Corte de $225: las imágenes subieron los clics, no los carritos (30 sep)](#67-corte-de-225-las-imágenes-subieron-los-clics-no-los-carritos-30-sep)
+68. [Análisis estratégico: los combos venden, los sueltos no (30 sep)](#68-análisis-estratégico-los-combos-venden-los-sueltos-no-30-sep)
 
 ---
 
@@ -7861,4 +7862,70 @@ pero con la campaña y el conjunto en pausa no entrega.
 
 Siguiente paso: trabajar la ficha del producto antes de volver a gastar,
 y en la próxima ronda cambiar una sola cosa a la vez.
+
+## 68. Análisis estratégico: los combos venden, los sueltos no (30 sep)
+
+Pedido del dueño con la campaña ya pausada: un análisis a fondo de qué
+hacer para que la tienda venda con ganancia. El documento completo está
+en [`ANALISIS-ESTRATEGICO-30-SEP.md`](./ANALISIS-ESTRATEGICO-30-SEP.md).
+Aquí va lo esencial.
+
+### Datos nuevos que se sacaron
+
+- Meta, conjuntos v3 (10-17 sep) y v4 (25-30 sep): desglose por
+  producto, edad, ubicación y dispositivo (`time_range` explícito).
+- Shopify: costo real (`inventory_items.cost`) y existencia de los 383
+  productos activos. Con eso se calculó la contribución de cada uno con
+  el régimen de envío vigente (≥$799: −$189, más −$48.83 si es
+  voluminoso; <$799: $0, o −$48.83 si es voluminoso).
+- Fichas en celular (Chromium con perfil de iPhone y el agente de
+  usuario del navegador de Facebook, **con el pixel bloqueado** para no
+  ensuciar datos).
+- Precios en Mercado Libre por búsqueda web. Mercado Libre bloquea las
+  consultas automáticas (403 / "Hubo un error"), así que la comparación
+  es parcial.
+
+### Hallazgos
+
+| # | Hallazgo | Evidencia |
+|---|---|---|
+| 1 | **Los combos convierten 5 veces más que los sueltos** | 15/422 (3.6%) contra 5/666 (0.75%), Fisher p = 0.002 |
+| 2 | **La caída del corte de $225 fue por la mezcla, no por las imágenes** | Sueltos: 3/300 (fotos viejas) contra 2/366 (nuevas), p = 0.66; el conjunto v4 no tenía combos |
+| 3 | La mitad de los 347 productos con existencia deja ≤ $69 | Solo 35 dejan ≥ $300, y la mayoría son armas de aire y miras (no anunciables en Meta) |
+| 4 | 45-54 casi no compra | 1/269 contra 19/819 de 55+, p = 0.04 (corte posterior al dato) |
+| 5 | Sueltos sin ventaja de precio contra Mercado Libre; hilo muy por encima al sumar el envío | Sienna, Simmons, Araty (parcial) |
+| 6 | Carrito → venta 1/39; pantalla de pago → venta 1/7 | El 99% llega desde el navegador interno de Facebook |
+| 7 | La ficha dice "gastos de envío se calculan en la pantalla de pago" junto al precio | `locales/es.json` → `shipping_policy_html` |
+| 8 | En móvil, el botón de compra queda fuera de pantalla (1,080–1,200px contra 844) | Medido en 4 fichas |
+| 9 | El héroe IA del Araty 0.45 multicolor dice "Araly"; la marca mostrada es "GIMBEL" | Captura en celular |
+| 10 | Hay un vendedor "intemperie.mx" en Mercado Libre | Por confirmar con el dueño |
+
+> ⚠️ **Los hallazgos 1, 2 y 4 son cortes hechos después de ver los
+> datos.** El 1 tiene p = 0.002 y es una división natural del catálogo,
+> así que es la conclusión más sólida del proyecto. Aun así, **la
+> próxima ronda debe fijar de antemano la comparación** (kits contra
+> 3.6%).
+
+### La regla económica que sale de aquí
+
+> **costo por venta = $0.70 por vista ÷ (vista→carrito × carrito→venta)**
+
+Con los datos actuales, un combo cuesta ~$750 por venta y un suelto
+~$3,600. **Solo conviene anunciar productos que dejen $300 o más**, y
+además hay que subir el carrito→venta a 10% o más.
+
+### Plan propuesto (pendiente de visto bueno)
+
+0. Arreglos de ficha sin gasto: envío junto al precio, botón de compra
+   fijo, burbujas, marca Araty e imagen "Araly".
+1. **Kits "listos para pescar" de $1,199 o más, con contribución de
+   $300 o más**, usando como relleno las 2,000+ piezas de baja rotación
+   (plomos, destorcedores, anzuelos, señuelos) y con 3 piezas o más de
+   cada kit.
+2. Canales gratuitos: listados gratis de Google Shopping y Mercado
+   Libre.
+3. Volver a Meta solo con kits y óptica de contribución ≥ $300, a 55+,
+   con retargeting chico y un criterio fijado antes.
+
+Nada de esto se ha ejecutado: se espera la decisión del dueño.
 
