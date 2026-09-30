@@ -94,6 +94,7 @@ como respaldo
 64. [Imágenes y videos con IA en 12 productos, y la resistencia de los hilos (17-24 sep)](#64-imágenes-y-videos-con-ia-en-12-productos-y-la-resistencia-de-los-hilos-17-24-sep)
 65. [La campaña se prepara para las imágenes nuevas, sin encenderla (25 sep)](#65-la-campaña-se-prepara-para-las-imágenes-nuevas-sin-encenderla-25-sep)
 66. [Relanzamiento con imágenes y videos (25 sep)](#66-relanzamiento-con-imágenes-y-videos-25-sep)
+67. [Corte de $225: las imágenes subieron los clics, no los carritos (30 sep)](#67-corte-de-225-las-imágenes-subieron-los-clics-no-los-carritos-30-sep)
 
 ---
 
@@ -7790,3 +7791,59 @@ evidencia se inclina a que no hubo mejora en la ficha, pero **se lee
 formalmente en el corte**, como quedó fijado. Sin pagos ni ventas;
 frecuencia 2.08; CTR estable en 8-9%; 30 reproducciones de video (3
 completas).
+
+## 67. Corte de $225: las imágenes subieron los clics, no los carritos (30 sep)
+
+El corte 1 se cruzó el **29 sep** con **$236.36** acumulados. Se leyó el
+30 sep con el criterio fijado antes de encender (ver
+[§66](#66-relanzamiento-con-imágenes-y-videos-25-sep) y `PENDIENTES.md`),
+sin cambiarlo.
+
+### Resultado formal
+
+| | En el corte (29 sep, $236.36) |
+|---|---|
+| Vistas → carrito | **2/342 = 0.58%**, IC95 (Wilson) **0.2%-2.1%** |
+| Meta del corte 1 | 5% (duplicar la base de 2.5%) → **no se alcanzó** |
+| Contra la base de 2.5% | El IC entero queda **por debajo**: la ficha convierte igual o peor que antes |
+| Paro duro | 0 de 6 pantallas de pago → no se activa |
+
+Totales al 30 sep 10:01: $247.14 gastados, 357 vistas, 2 carritos, 0
+pagos, 0 ventas. **CTR 8.79%** (ronda anterior 6.46%), frecuencia 2.18,
+37 reproducciones de video (4 completas). Disponible: **$328.25**.
+Inventario de los 12 productos sin cambios (sin ventas, ningún combo a 0).
+
+### Por rango de precio (la hipótesis del envío)
+
+| | Gasto | Vistas | Carritos | Tasa |
+|---|---|---|---|---|
+| < $799 (cliente paga $189 de envío) | 75% | 239 | 1 | 0.4% |
+| ≥ $799 (envío gratis) | 25% | 120 | 1 | 0.8% |
+
+Las dos tasas son malas y la diferencia **no es significativa**: la
+hipótesis del envío ni se confirma ni se descarta con esta muestra.
+
+### Lectura
+
+- **Las imágenes nuevas funcionan en el anuncio** (CTR +36%), **no en la
+  ficha**. Imágenes más llamativas traen clics más curiosos y de menor
+  intención: los carritos por cada 1,000 impresiones bajaron de ~1.29 a ~0.4.
+- **La ronda cambió dos cosas a la vez**: las imágenes y la mezcla de
+  productos (el conjunto nuevo empujó artículos más baratos, que pagan
+  envío). No se puede separar cuál de las dos explica la caída.
+- **El corte 2 es inalcanzable**: para llegar a 4% al gastar $575 harían
+  falta 31 carritos en ~474 vistas nuevas (6.6% sostenido, más del doble
+  de la mejor ronda). Seguir gastando ya no puede cambiar la conclusión.
+
+### Recomendación (pendiente de decisión del dueño, no ejecutada)
+
+- **Pausar** para guardar los ~$328 y trabajar la **ficha del producto**
+  (precio con envío visible, fotos reales del teléfono, confianza), que
+  es donde está el freno. La campaña **sigue encendida** hasta que el
+  dueño decida; el plan fijado decía "seguir al corte 2", pero ya no
+  tiene poder para cambiar el resultado.
+- **Anuncio propio de video: no por ahora.** El problema no es que el
+  anuncio no atraiga (el CTR es el mejor que ha tenido la tienda), sino
+  lo que pasa después del clic.
+- Para la próxima ronda: cambiar **una sola cosa a la vez**.
+

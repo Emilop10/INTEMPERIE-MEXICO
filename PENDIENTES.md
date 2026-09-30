@@ -942,24 +942,20 @@ no se haya desbordado a una segunda página, en
 llamada de API), el grafo de `scripts/` sí se movió esta vez —
 **101/163/11 → 111/178/12**, verificado contando en `graph.json`.
 
-## ⏳ En espera del corte de $225 (decidido el 26 sep)
+## 🔴 Corte de $225 leído (30 sep) — DECISIÓN DEL DUEÑO PENDIENTE
 
-- La campaña **no se toca** hasta llegar a $225 gastados desde el
-  encendido (al 29 sep 11:33: **$194.42**; vistas → carrito 2/285, IC95
-  0.2%-2.5%). Ahí se lee vistas → carrito contra el criterio de abajo.
-- 📌 **Lectura adelantada, no formal:** lo más probable es que el corte
-  concluya "las imágenes nuevas atraen más clics (CTR ~9% contra 6.5%)
-  pero no mejoraron la conversión de la ficha". Si se confirma, el freno
-  está **dentro de la página del producto**, no en el anuncio.
-- 🗓️ **Revisión del corte programada: 30 sep, 10:00 (Chihuahua).** Llevar
-  además la hipótesis del envío: el 53% del gasto va a dos productos de
-  menos de $799 sin carritos, donde el cliente paga $189 de envío.
-- **Después del corte:** decidir si se arma un **anuncio propio de video**.
-  Hoy los videos sí salen, pero Meta los elige poco (6 reproducciones en
-  1,172 impresiones).
-- Verificado el 26 sep: pixel sano (carrito y pago probados en vivo),
-  enlaces sanos (86% de los clics carga la página; los 12 destinos
-  correctos).
+- **Resultado:** vistas → carrito **2/342 = 0.58%**, IC95 0.2%-2.1%. No se
+  duplicó y queda **por debajo** de la base de 2.5%. CTR subió a 8.79%
+  (antes 6.46%): las imágenes atraen clics, la ficha no convierte.
+  Detalle en MANUAL-PROYECTO §67.
+- **Corte 2 inalcanzable** (31 carritos en ~474 vistas). Recomendación:
+  **pausar** y guardar ~$328.25 para trabajar la ficha del producto.
+  **No se ha pausado:** espera la decisión del dueño.
+- **Anuncio propio de video:** recomendación **no por ahora** (el freno
+  está después del clic).
+- Hipótesis del envío (<$799 paga $189): 0.4% contra 0.8%, **no
+  concluyente**. Próxima ronda: cambiar una sola cosa a la vez.
+- Verificado el 26 sep: pixel sano, enlaces sanos.
 - 🧹 Sin prisa: sacar del catálogo de Meta las 5 monturas para mira y la
   linterna táctica (accesorios de arma).
 
