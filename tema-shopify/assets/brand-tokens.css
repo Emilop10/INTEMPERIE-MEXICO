@@ -485,6 +485,20 @@ variant-selects .select__select {
   .im-trust-band-inner { opacity: 1 !important; transform: none !important; transition: none !important; }
 }
 
+/* Costo real de envío junto al precio (MANUAL §69). Reemplaza el texto de
+   Shopify "los gastos de envío se calculan en la pantalla de pago". */
+.im-envio-precio {
+  margin: 6px 0 0;
+  font-family: var(--font-body-family);
+  font-size: 14px;
+  line-height: 1.45;
+  color: #D9D9DE;
+}
+.im-envio-precio strong {
+  color: #57B58A;
+  font-weight: 600;
+}
+
 /* Nota de confianza en la ficha de producto (reemplaza un recuadro claro con
    estilos en línea que no seguía el sistema de diseño de la tienda) */
 .im-trust-note {

@@ -115,13 +115,38 @@
                     show_badges: true,
                     price_class: 'price--large'
                   -%}
+                  {%- comment -%}
+                    Costo real de envío junto al precio (30 sep, MANUAL §69).
+                    Antes aquí decía "los gastos de envío se calculan en la
+                    pantalla de pago" y el aviso claro estaba ~1,500px abajo:
+                    en un producto de $436 el cliente descubría hasta el
+                    checkout que pagaría $625. Va DENTRO de #price-… para que
+                    Dawn lo re-renderice al cambiar de variante.
+                  {%- endcomment -%}
+                  {%- liquid
+                    assign im_umbral = settings.envio_umbral_centavos | default: 79900
+                    assign im_costo = settings.envio_costo | default: '$189'
+                    assign im_tiempo = settings.envio_tiempo | default: '2 a 7 días hábiles'
+                    assign im_precio = product.selected_or_first_available_variant.price
+                  -%}
+                  <p class="im-envio-precio">
+                    {%- if im_precio >= im_umbral -%}
+                      <strong>Envío gratis</strong> a todo México · llega en {{ im_tiempo }}
+                    {%- else -%}
+                      + <strong>{{ im_costo }} de envío</strong> · gratis si tu pedido suma ${{ im_umbral | divided_by: 100 }}
+                    {%- endif -%}
+                  </p>
                 </div>
                 {%- if product.quantity_price_breaks_configured? -%}
                   <div class="volume-pricing-note" id="Volume-Note-{{ section.id }}">
                     <span>{{ 'products.product.volume_pricing.note' | t }}</span>
                   </div>
                 {%- endif -%}
-                {%- if cart.taxes_included or cart.duties_included or shop.shipping_policy.body != blank -%}
+                {%- comment -%}
+                  Sin shipping_policy_html: el costo de envío ya va arriba,
+                  en .im-envio-precio, con el monto real.
+                {%- endcomment -%}
+                {%- if cart.taxes_included or cart.duties_included -%}
                   <div class="product__tax caption rte">
                     {%- if cart.duties_included and cart.taxes_included -%}
                       {{ 'products.product.duties_and_taxes_included' | t }}
@@ -129,9 +154,6 @@
                       {{ 'products.product.taxes_included' | t }}
                     {%- elsif cart.duties_included -%}
                       {{ 'products.product.duties_included' | t }}
-                    {%- endif -%}
-                    {%- if shop.shipping_policy.body != blank -%}
-                      {{ 'products.product.shipping_policy_html' | t: link: shop.shipping_policy.url }}
                     {%- endif -%}
                   </div>
                 {%- endif -%}
@@ -811,6 +833,13 @@
     </script>
   </div>
 </product-info>
+
+{%- comment -%}
+  Fuera de <product-info> a propósito: la vista rápida de colección
+  (quick-add.js) copia solo ese elemento, y la barra no debe duplicarse
+  dentro del modal.
+{%- endcomment -%}
+{%- render 'im-barra-compra', product: product, section_id: section.id -%}
 
 {% schema %}
 {

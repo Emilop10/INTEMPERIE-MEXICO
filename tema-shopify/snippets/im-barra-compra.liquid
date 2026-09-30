@@ -1,0 +1,188 @@
+{%- comment -%}
+  Barra fija de compra en celular (30 sep, MANUAL §69).
+
+  Razón de existir: en un iPhone de 390×844, el botón "Agregar al carrito"
+  queda entre 1,080 y 1,200px de alto (medido en 4 fichas), o sea fuera
+  de la primera pantalla. El 99% del tráfico de la campaña llega desde el
+  navegador de Facebook en celular. Esta barra aparece solo cuando el
+  botón original sale de la pantalla, y se esconde cuando vuelve a verse.
+
+  No tiene lógica de carrito propia: el botón hace click() sobre el botón
+  real del formulario de Dawn (#ProductSubmitButton-…). Así el carrito
+  lateral, las variantes y el evento AddToCart del pixel siguen pasando
+  por el único camino que ya está probado (§55, §66).
+
+  Mientras la barra está visible, sube las burbujas de WhatsApp y de
+  Cartucho (Zipchat, que vive en un shadow DOM abierto) para que no la
+  tapen.
+
+  Parámetros: product, section_id
+{%- endcomment -%}
+
+{%- if product.available -%}
+  <div class="im-barra-compra" id="ImBarraCompra-{{ section_id }}" aria-hidden="true" hidden>
+    <div class="im-barra-compra__info">
+      <span class="im-barra-compra__titulo">{{ product.title | escape }}</span>
+      <span class="im-barra-compra__precio" data-im-precio>
+        {{- product.selected_or_first_available_variant.price | money -}}
+      </span>
+    </div>
+    <button type="button" class="im-barra-compra__boton" tabindex="-1">
+      Agregar al carrito
+    </button>
+  </div>
+
+  <style>
+    .im-barra-compra { display: none; }
+    @media screen and (max-width: 749px) {
+      .im-barra-compra {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 997; /* debajo de las burbujas (998/999) y del carrito (1000) */
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
+        background: rgba(10, 10, 12, 0.96);
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 -6px 18px rgba(0, 0, 0, 0.35);
+        transform: translateY(110%);
+        transition: transform 0.22s ease;
+      }
+      .im-barra-compra[hidden] { display: flex; visibility: hidden; }
+      .im-barra-compra.is-visible { transform: none; visibility: visible; }
+      .im-barra-compra__info {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        flex: 1;
+      }
+      .im-barra-compra__titulo {
+        font-size: 12.5px;
+        line-height: 1.3;
+        color: #B8B8BE;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .im-barra-compra__precio {
+        font-family: var(--font-mono-family);
+        font-size: 16px;
+        font-weight: 600;
+        color: #FFFFFF;
+      }
+      .im-barra-compra__boton {
+        flex: none;
+        min-height: 46px;
+        padding: 0 20px;
+        border: 0;
+        border-radius: 999px;
+        background: #57B58A;
+        color: #0A0A0C;
+        font-family: var(--font-body-family);
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .im-barra-compra__boton:disabled { opacity: 0.55; }
+
+      /* En la ficha, las burbujas se esconden mientras se ve la zona de
+         compra (foto, precio, envío, existencias: ahí tapaban el texto) y
+         reaparecen arriba de la barra en cuanto el botón queda atrás. */
+      body.im-ficha .im-wa {
+        transition: bottom 0.22s ease, opacity 0.2s ease;
+      }
+      body.im-ficha:not(.im-barra-activa) .im-wa {
+        opacity: 0;
+        pointer-events: none;
+      }
+      body.im-barra-activa .im-wa {
+        bottom: calc(84px + env(safe-area-inset-bottom, 0px));
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .im-barra-compra, body.im-barra-activa .im-wa { transition: none; }
+    }
+  </style>
+
+  <script>
+    (function () {
+      var barra = document.getElementById('ImBarraCompra-{{ section_id }}');
+      var original = document.getElementById('ProductSubmitButton-{{ section_id }}');
+      if (!barra || !original || !('IntersectionObserver' in window)) return;
+      var boton = barra.querySelector('.im-barra-compra__boton');
+      var precio = barra.querySelector('[data-im-precio]');
+      var precioFuente = document.getElementById('price-{{ section_id }}');
+      var movil = window.matchMedia('(max-width: 749px)');
+
+      // Cartucho (Zipchat) vive en un shadow DOM abierto: se le inyecta una
+      // regla que solo aplica cuando el host lleva la clase im-sube.
+      function prepararZipchat() {
+        var host = document.getElementById('zipchat-shadow-host');
+        if (!host || !host.shadowRoot || host.shadowRoot.getElementById('im-zipchat-sube')) return host;
+        var st = document.createElement('style');
+        st.id = 'im-zipchat-sube';
+        st.textContent = '#widget-chat-container{transition:bottom .22s ease,opacity .2s ease}'
+          + ':host(.im-sube) #widget-chat-container{bottom:88px !important}'
+          + ':host(.im-oculta) #widget-chat-container{opacity:0;pointer-events:none}';
+        host.shadowRoot.appendChild(st);
+        return host;
+      }
+
+      function mostrar(si) {
+        var ver = si && movil.matches;
+        barra.hidden = false;
+        barra.classList.toggle('is-visible', ver);
+        barra.setAttribute('aria-hidden', ver ? 'false' : 'true');
+        boton.tabIndex = ver ? 0 : -1;
+        document.body.classList.toggle('im-barra-activa', ver);
+        var host = prepararZipchat();
+        if (host) {
+          host.classList.toggle('im-sube', ver);
+          // Solo se esconde el lanzador cerrado (~64px): si el cliente ya
+          // abrió el chat, nunca se le oculta al subir por la página.
+          var cont = host.shadowRoot && host.shadowRoot.getElementById('widget-chat-container');
+          var cerrado = !cont || cont.getBoundingClientRect().height < 100;
+          host.classList.toggle('im-oculta', movil.matches && !ver && cerrado);
+        }
+      }
+      document.body.classList.add('im-ficha');
+      // Zipchat carga después que la página: se reintenta hasta que exista.
+      var intentos = 0;
+      var espera = setInterval(function () {
+        if (prepararZipchat() || ++intentos > 20) {
+          clearInterval(espera);
+          mostrar(barra.classList.contains('is-visible'));
+        }
+      }, 500);
+
+      // Visible solo cuando el botón real ya se pasó hacia arriba (no
+      // mientras todavía está abajo, antes de llegar a él).
+      new IntersectionObserver(function (entradas) {
+        var e = entradas[0];
+        mostrar(!e.isIntersecting && e.boundingClientRect.top < 0);
+      }).observe(original);
+
+      boton.addEventListener('click', function () {
+        if (original.disabled) return;
+        original.click();
+      });
+
+      // Precio y disponibilidad siguen a la variante elegida: Dawn
+      // re-renderiza #price-… y cambia el disabled del botón real.
+      function sincronizar() {
+        if (precioFuente) {
+          var ultimo = precioFuente.querySelector('.price-item--last');
+          if (ultimo && ultimo.textContent.trim()) precio.textContent = ultimo.textContent.trim();
+        }
+        boton.disabled = original.disabled;
+        boton.textContent = original.disabled ? 'Agotado' : 'Agregar al carrito';
+      }
+      if (precioFuente) new MutationObserver(sincronizar).observe(precioFuente, { childList: true, subtree: true, characterData: true });
+      new MutationObserver(sincronizar).observe(original, { attributes: true, attributeFilter: ['disabled'] });
+      sincronizar();
+    })();
+  </script>
+{%- endif -%}
