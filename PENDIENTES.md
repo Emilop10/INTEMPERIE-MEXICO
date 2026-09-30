@@ -942,21 +942,35 @@ no se haya desbordado a una segunda página, en
 llamada de API), el grafo de `scripts/` sí se movió esta vez —
 **101/163/11 → 111/178/12**, verificado contando en `graph.json`.
 
-## 🧭 Análisis estratégico del 30 sep — ESPERA DECISIÓN DEL DUEÑO
+## 🧭 Plan del 30 sep — en ejecución (MANUAL §68 y §69)
 
-Ver [`ANALISIS-ESTRATEGICO-30-SEP.md`](./ANALISIS-ESTRATEGICO-30-SEP.md)
-y MANUAL §68. En corto: **los combos convierten 3.6%, los sueltos 0.75%
-(p = 0.002)**. La mitad del catálogo deja ≤ $69 por venta. Plan: fase 0
-(arreglos de ficha), fase 1 (kits de $1,199 o más con contribución de
-$300 o más), fase 2 (Google y Mercado Libre), fase 3 (Meta solo con
-kits y óptica, 55+).
+**Hecho el 30 sep:**
+- ✅ Fase 0 en vivo: envío real junto al precio, barra fija de compra en
+  celular, burbujas que no tapan, y marca Araty en los 55 hilos.
+- ✅ Fase 1: 4 kits creados en **BORRADOR** ($1,199–$1,599, con
+  contribución de $306–$390 cada uno).
+- ✅ Fase 2: instructivo listo
+  ([`INSTRUCTIVO-GOOGLE-Y-MERCADO-LIBRE.md`](./INSTRUCTIVO-GOOGLE-Y-MERCADO-LIBRE.md)).
+- ✅ Fase 3: conjunto de productos, público, creativo v7, conjuntos v5
+  (55+) y v5-RT (retargeting), todo **en PAUSA**.
 
-Preguntas abiertas para el dueño:
-1. ¿El vendedor "intemperie.mx" de Mercado Libre es suyo?
-2. ¿Se pueden reabastecer los combos Okuma, a qué costo y en cuánto
-   tiempo?
-3. ¿Van los kits?
-4. ¿Arranco la fase 0?
+**Le toca al dueño (en este orden):**
+1. **Kits:** confirmar las piezas, tomar **una foto real de cada kit**
+   extendido sobre una mesa y publicarlos. Decidir si se instala Shopify
+   Bundles o si se descuentan los componentes a mano.
+2. **Google:** instalar "Google & YouTube" y crear Merchant Center
+   (30 min, ver el instructivo). Avisar para sacar del canal los 63
+   productos restringidos.
+3. **Mercado Libre:** ¿el vendedor "intemperie.mx" es tuyo?
+4. **Carrito abandonado:** revisar que esté activo en Configuración →
+   Notificaciones.
+5. **Reabastecer** los combos Okuma más vistos (Elite Pro, Revenger),
+   **para convertirlos en kits**, no para venderlos solos a $849–$920.
+6. Decidir los productos de la zona muerta de $799–$987 (Hilo Araty
+   0.70mm $812, Stimula $849, Revenger $849, Boundary $949).
+
+**Encender la campaña** solo con los kits publicados y el criterio de
+corte fijado de antemano.
 
 ## ⏸️ Campaña PAUSADA el 30 sep tras el corte de $225
 

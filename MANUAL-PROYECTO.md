@@ -96,6 +96,7 @@ como respaldo
 66. [Relanzamiento con imágenes y videos (25 sep)](#66-relanzamiento-con-imágenes-y-videos-25-sep)
 67. [Corte de $225: las imágenes subieron los clics, no los carritos (30 sep)](#67-corte-de-225-las-imágenes-subieron-los-clics-no-los-carritos-30-sep)
 68. [Análisis estratégico: los combos venden, los sueltos no (30 sep)](#68-análisis-estratégico-los-combos-venden-los-sueltos-no-30-sep)
+69. [Ejecución de las cuatro fases: ficha, kits, canales y Meta en pausa (30 sep)](#69-ejecución-de-las-cuatro-fases-ficha-kits-canales-y-meta-en-pausa-30-sep)
 
 ---
 
@@ -7897,7 +7898,7 @@ Aquí va lo esencial.
 | 6 | Carrito → venta 1/39; pantalla de pago → venta 1/7 | El 99% llega desde el navegador interno de Facebook |
 | 7 | La ficha dice "gastos de envío se calculan en la pantalla de pago" junto al precio | `locales/es.json` → `shipping_policy_html` |
 | 8 | En móvil, el botón de compra queda fuera de pantalla (1,080–1,200px contra 844) | Medido en 4 fichas |
-| 9 | El héroe IA del Araty 0.45 multicolor dice "Araly"; la marca mostrada es "GIMBEL" | Captura en celular |
+| 9 | La marca mostrada en los hilos Araty es "GIMBEL" (el distribuidor). *El "Araly" que se señaló al principio era el logo real, no un error: ver §69* | Captura en celular |
 | 10 | Hay un vendedor "intemperie.mx" en Mercado Libre | Por confirmar con el dueño |
 
 > ⚠️ **Los hallazgos 1, 2 y 4 son cortes hechos después de ver los
@@ -7917,7 +7918,7 @@ además hay que subir el carrito→venta a 10% o más.
 ### Plan propuesto (pendiente de visto bueno)
 
 0. Arreglos de ficha sin gasto: envío junto al precio, botón de compra
-   fijo, burbujas, marca Araty e imagen "Araly".
+   fijo, burbujas y marca Araty.
 1. **Kits "listos para pescar" de $1,199 o más, con contribución de
    $300 o más**, usando como relleno las 2,000+ piezas de baja rotación
    (plomos, destorcedores, anzuelos, señuelos) y con 3 piezas o más de
@@ -7928,4 +7929,111 @@ además hay que subir el carrito→venta a 10% o más.
    con retargeting chico y un criterio fijado antes.
 
 Nada de esto se ha ejecutado: se espera la decisión del dueño.
+
+## 69. Ejecución de las cuatro fases: ficha, kits, canales y Meta en pausa (30 sep)
+
+El dueño pidió arrancar todas las fases de §68 de inmediato. Esto es lo
+que quedó hecho, y cómo se verificó.
+
+### Fase 0 — Ficha de producto (en vivo)
+
+| Cambio | Archivo | Verificación en vivo |
+|---|---|---|
+| **Costo real de envío junto al precio.** Productos de menos de $799: "+ $189 de envío · gratis si tu pedido suma $799". De $799 en adelante: "Envío gratis a todo México · llega en 2 a 7 días hábiles". Sustituye el "se calculan en la pantalla de pago" de Shopify | `sections/main-product.liquid` (dentro de `#price-…`, para que cambie con la variante) y `assets/brand-tokens.css` (`.im-envio-precio`) | Hilo $436 y Sienna $1,279 muestran cada uno su texto correcto |
+| **Barra fija de compra en celular.** Aparece cuando el botón original sale de la pantalla por arriba y desaparece al volver. Su botón hace `click()` sobre el botón real de Dawn, así que el panel del carrito, las variantes y el evento AddToCart del pixel siguen por el mismo camino ya probado | `snippets/im-barra-compra.liquid`, que se renderiza **fuera** de `<product-info>` para que la vista rápida no lo duplique | Aparece al bajar, agrega al carrito, abre el panel y se esconde al subir; 0 errores de JS |
+| **Burbujas que no tapan.** En la ficha, WhatsApp y Cartucho se esconden mientras se ve la zona de compra y reaparecen **arriba** de la barra. A Zipchat se le inyecta una regla dentro de su shadow DOM abierto (`#widget-chat-container`). Si el cliente ya abrió el chat, nunca se oculta | mismo snippet | Arriba: burbujas con opacidad 0; al bajar: por encima de la barra (bottom 760/756 contra la barra en 777) |
+| **Marca "Gimbel" → "Araty"** en los 55 hilos Araty (Gimbel es el distribuidor). Ninguna colección filtra por marca | Admin API, `vendor` | 55/55 actualizados; quedan 0 "Gimbel" con "Araty" en el título |
+
+> ❌ **Corrección de un error propio.** §68 decía que el héroe IA del
+> hilo mostraba la marca mal escrita ("Araly"). **Era falso:** el logo
+> real de Araty Superflex tiene una "t" estilizada que parece "l", y la
+> foto original del fabricante se ve igual. Se comprobó comparando
+> contra las fotos originales antes de tocar nada. Las imágenes se
+> quedan como están.
+
+**Lección de verificación:** `mouse.wheel` en Playwright con emulación
+móvil **no desplaza la página**. La primera prueba "falló" por eso, no
+por la barra. Con `window.scrollTo` la barra funcionó a la primera.
+
+### Fase 1 — Kits "listos para pescar" (BORRADOR)
+
+`scripts/crear-kits.py` calcula, con costos y existencias leídos en vivo
+de Shopify, el costo, el precio por separado, la contribución y la
+existencia de cada kit. Resta las piezas ya comprometidas en los combos
+manuales y avisa si dos kits prometen la misma pieza. Con `--crear` los
+da de alta en **borrador**, y es idempotente.
+
+| Kit | Precio | Por separado | Contribución | Equilibrio | Existencia |
+|---|---|---|---|---|---|
+| Okuma Revenger 7'0" + Gimbel JL4000 — Todo Terreno | **$1,549** | $1,820 | **$320** | 4.84x | 2 |
+| Shimano Clarus 5'8" + IX R 1000 — Finesse | **$1,599** | $1,817 | **$390** | 4.10x | 2 |
+| Blue Fox Tolten 8'0" + Gimbel S500 — Mar y Costa | **$1,349** | $1,487 | **$306** | 4.41x | 2 |
+| Blue Fox Fresh 7'0" + Gimbel AFR230 — Agua Dulce | **$1,199** | $1,228 | **$312** | 3.84x | 2 |
+
+Contribución = precio − costo de las piezas − $189 de envío − $48.83 de
+caja de caña. Cada kit lleva 2 carretes de 100m de hilo Araty del
+calibre que corresponde a la capacidad del carrete, más plomos,
+destorcedores, anzuelos, flotadores o señuelos y, en dos kits, una caja
+Storm. Las parejas caña-carrete se eligieron por la ficha técnica: el
+JL4000 (0.40mm/200m) va con una caña medium de 7'; el IX R 1000 (freno de
+4.5 lb) con la Clarus finesse; el S500 (freno de 12 kg) con la Tolten de
+8' para mar.
+
+Para comparar: los combos actuales dejaban $78–$155 y necesitaban un
+ROAS de 8x a 12x para no perder.
+
+**Qué falta para publicarlos (dueño):**
+1. Confirmar las piezas físicamente.
+2. **Una foto real de cada kit extendido sobre una mesa.**
+3. Publicar.
+4. Decidir si se instala **Shopify Bundles** (gratis), que descuenta los
+   componentes solo. Si no se instala, aplica la tarea manual de §50:
+   descontar los componentes a mano al vender.
+
+### Fase 2 — Canales gratuitos
+
+[`INSTRUCTIVO-GOOGLE-Y-MERCADO-LIBRE.md`](./INSTRUCTIVO-GOOGLE-Y-MERCADO-LIBRE.md).
+
+- **Google:** el sitio ya cumple los requisitos (datos estructurados,
+  sitemap, imagen y descripción en 383/383, políticas). Falta que el
+  dueño instale "Google & YouTube" y cree Merchant Center.
+- **63 productos no deben ir a Google:** armas de aire, municiones, miras
+  y accesorios.
+- **El código de barras de Shopify es el código B1 del punto de venta**
+  (solo 18/383 tienen formato GTIN). No se toca, porque la conciliación
+  depende de él. Los avisos de "GTIN no válido" son esperados.
+- **Mercado Libre:** pendiente de saber si "intemperie.mx" es del dueño.
+
+### Fase 3 — Meta, todo en PAUSA
+
+| Objeto | ID | Configuración |
+|---|---|---|
+| Conjunto de productos | `2097987747472219` | 4 kits + Sienna, Sellus, Bushnell, Gamo, Kampak, Konus NewZoom, Simmons, KonuSmall-2 y KonuSmall-3; filtro "in stock". Hoy cuenta **9**: los kits entran solos en cuanto se publiquen. Se dejó fuera el binocular Mendoza de $520, porque paga envío y el anuncio dice "envío gratis" |
+| Público | `120250344355530175` | Vieron producto en 30 días (pixel, ViewContent) |
+| Creativo v7 | `2481800035642463` | Mensaje de kits y óptica; mismas 83 funciones automáticas que el v6 (solo `media_type_automation` activado) |
+| Conjunto v5, prospección | `120250344356190175` | **Hombres de 55+** (se quitó 45-54, §68), $55/día, AddToCart, **excluye** el público de retargeting |
+| Conjunto v5-RT, retargeting | `120250344361400175` | Hombres de 45+ que vieron producto, **$20/día**. Meta no acepta menos de $17.32 |
+| Anuncios | `120250344361830175`, `120250344362350175` | En pausa y ya en revisión, para que estén aprobados al encender |
+
+El conjunto v4 y su anuncio siguen en pausa, sin cambios. **La campaña
+sigue en PAUSA.** No se debe encender hasta que:
+
+1. los kits estén publicados y con foto;
+2. se haya fijado el criterio de corte **antes** de encender.
+
+Propuesta de criterio: vista→carrito ≥ 3% **y** 1 venta por cada $600
+gastados; si no, se pausa.
+
+> ℹ️ El público de retargeting hoy es chico (Meta lo reporta con cota
+> baja de 20). Con la campaña apagada no crece. Es normal: se llena en
+> cuanto vuelva a haber tráfico.
+
+### Graphify
+
+- `scripts/`: **165/307 → 169/319** (nodos/aristas), por el script nuevo
+  `crear-kits.py`. Verificado contando en `graph.json`.
+- `tema-shopify/`: **463/696 sin cambio**, aunque hay un snippet nuevo.
+  Graphify no extrae nodos de los archivos `.liquid` (en el tema solo
+  indexa JS y JSON), así que los cambios de Liquid y CSS de la fase 0 no
+  mueven el grafo. Es lo esperado, no una falla.
 

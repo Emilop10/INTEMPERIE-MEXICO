@@ -1,5 +1,10 @@
 # Análisis estratégico — qué hacer para que la tienda venda con ganancia
 
+> **Avance al 30 sep, en la tarde:** fases 0 a 3 ejecutadas en lo que
+> depende de este lado (MANUAL §69). La fase 0 está en vivo. Los 4 kits
+> están en borrador y esperan foto. Google y Mercado Libre esperan al
+> dueño. Meta está preparado y en pausa.
+
 **30 de septiembre de 2026**, con la campaña ya pausada. Revisé todo el
 historial (4 rondas, $2,096.82 en anuncios, 2,841 vistas de producto,
 39 carritos, 1 venta). Además saqué datos nuevos de Meta, desglosados
@@ -235,10 +240,15 @@ Facebook:
    abajo, que siga visible al bajar.
 3. **Las burbujas de WhatsApp y de Cartucho tapan** justo la línea de
    "Últimas existencias: quedan 1" y parte del texto.
-4. **Errores de confianza en el hilo Araty:** el héroe generado con IA
-   dice **"Araly"** en la etiqueta (la marca mal escrita), y arriba del
-   título aparece la marca **"GIMBEL"** en vez de Araty. Un pescador lo
-   nota. Hay que revisar a ojo todas las imágenes de IA que traen texto.
+4. **La marca de los hilos Araty aparecía como "GIMBEL"** (el
+   distribuidor) arriba del título. ✅ Corregido el 30 sep en los 55
+   productos Araty.
+
+   > ❌ **Corrección de un error propio:** en la primera versión de este
+   > análisis dije que el héroe IA del hilo decía "Araly", con la marca
+   > mal escrita. **Era falso:** el logo real de Araty Superflex tiene
+   > una "t" estilizada que parece "l", y la foto original del
+   > fabricante se ve igual. Las imágenes no tienen ese error.
 
 ---
 
@@ -262,11 +272,11 @@ Facebook:
 
 | # | Qué | Quién | Esfuerzo |
 |---|---|---|---|
-| 0.1 | Cambiar el texto junto al precio por el costo real: "+ $189 de envío · Gratis desde $799" (y "Envío gratis" cuando aplique) | Yo | 1 h |
-| 0.2 | Botón de compra fijo abajo en celular | Yo | 2-3 h |
-| 0.3 | Mover las burbujas de WhatsApp y Cartucho para que no tapen el contenido | Yo | 1 h |
-| 0.4 | Corregir la marca "GIMBEL" a "Araty" en la línea de hilos y quitar o reemplazar el héroe que dice "Araly" | Yo, con visto bueno del dueño | 1 h |
-| 0.5 | Revisar a ojo el texto de las 59 imágenes de IA | Dueño | 30 min |
+| 0.1 | Cambiar el texto junto al precio por el costo real: "+ $189 de envío · Gratis desde $799" (y "Envío gratis" cuando aplique) | Yo | ✅ 30 sep |
+| 0.2 | Botón de compra fijo abajo en celular | Yo | ✅ 30 sep |
+| 0.3 | Mover las burbujas de WhatsApp y Cartucho para que no tapen el contenido | Yo | ✅ 30 sep |
+| 0.4 | Corregir la marca "GIMBEL" a "Araty" en la línea de hilos | Yo | ✅ 30 sep |
+| 0.5 | Revisar a ojo el texto de las 59 imágenes de IA | — | ✅ ya revisadas con el dueño al subirlas (§64); el "Araly" era el logo real |
 | 0.6 | Confirmar que el correo de carrito abandonado está activo, y agregar un mensaje de WhatsApp | Dueño (admin) | 15 min |
 | 0.7 | Comparar en Mercado Libre el precio de los 12 productos de la campaña | Dueño | 30 min |
 
