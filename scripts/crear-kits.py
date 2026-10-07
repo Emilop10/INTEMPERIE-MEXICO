@@ -124,10 +124,30 @@ KITS = [
             ("flotador-gimbel-antena-4g-su7045", 2),
             ("flotador-gimbel-esfera-3-4-19mm-mod-1010", 2),
             ("anzuelo-mustad-2330dt-sea-kirby-9", 1),
-            ("plomo-gimbel-bola-6-0mm", 10),
+            ("plomo-gimbel-bola-6-0mm", 6),
             ("plomo-gimbel-con-ranura-6mm-1-2g", 8),
             ("destorcedor-gimbel-5610n-sin-seguro-9", 10),
             ("cucharilla-gimbel-rosa-4006070-2", 1),
+        ],
+    },
+    {
+        # Agregado con el inventario del 7 oct: Tundra Pro y Topaz Pro son
+        # de 1 pieza cada uno, así que este kit es de 1 unidad.
+        "handle": "kit-listo-para-pescar-okuma-tundra-pro-7-topaz-pro",
+        "titulo": "Kit Listo para Pescar Okuma Tundra Pro 7'0\" + Topaz Pro 40",
+        "precio": "1749.00",
+        "vendor": "Okuma",
+        "uso": "Equipo Okuma completo para río, presa y lancha: lobina, robalo y mojarra grande.",
+        "piezas": [
+            ("cana-de-pescar-okuma-tundra-pro-sp-70-2-10m", 1),
+            ("carrete-okuma-topaz-pro-40-spinning", 1),
+            ("hilo-araty-0-30mm-100m-natural", 2),
+            ("caja-organizadora-storm-doble-acceso-16stordfs08", 1),
+            ("senuelo-gimbel-4007040", 1),
+            ("cucharilla-blue-fox-whiptail-deep-runner-1-negro-rosa", 1),
+            ("anzuelo-mustad-2330dt-sea-kirby-12", 1),
+            ("plomo-gimbel-tipo-bala-10g", 5),
+            ("destorcedor-gimbel-5620n-con-seguro-5", 10),
         ],
     },
 ]
