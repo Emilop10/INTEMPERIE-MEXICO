@@ -18,6 +18,7 @@ Reglas de cada kit:
 Uso:
     SHOPIFY_ADMIN_TOKEN=shpat_... python3 scripts/crear-kits.py            # solo calcula
     SHOPIFY_ADMIN_TOKEN=shpat_... python3 scripts/crear-kits.py --crear    # crea BORRADORES
+    SHOPIFY_ADMIN_TOKEN=shpat_... python3 scripts/crear-kits.py --actualizar  # además pone al día los ya creados
 
 Los crea en BORRADOR (`draft`): no los ve ningún cliente hasta que el
 dueño confirme las piezas físicamente, tome la foto del kit y publique.
@@ -172,7 +173,7 @@ def main():
     tienda = os.environ.get("SHOPIFY_STORE", "wfuxvx-yn.myshopify.com")
     if not token:
         sys.exit("Falta SHOPIFY_ADMIN_TOKEN (ver INSTRUCTIVO-CREDENCIALES-SHOPIFY.md)")
-    crear = "--crear" in sys.argv
+    crear = "--crear" in sys.argv or "--actualizar" in sys.argv
 
     # Uso total de cada pieza sumando todos los kits, para no prometer
     # la misma pieza dos veces.
@@ -223,11 +224,40 @@ def main():
         print("\n(solo cálculo; usa --crear para crear los borradores)")
         return
 
-    for kit in KITS:
-        if producto(kit["handle"], token, tienda):
-            print(f"= ya existe {kit['handle']}, no se toca")
-            continue
+    actualizar = "--actualizar" in sys.argv
+    loc = api("GET", "locations.json", token, tienda)["locations"][0]["id"]
+
+    def cuerpo_html(kit):
         incluye = "".join(f"<li>{q} × {cache[h]['titulo']}</li>" for h, q in kit["piezas"])
+        return (
+            "<p><strong>Todo lo que necesitas para salir a pescar, en una sola compra.</strong> "
+            "Caña, carrete, hilo y los accesorios que se acaban primero, elegidos para trabajar juntos.</p>"
+            f"<p>{kit['uso']}</p>"
+            f"<p><strong>Incluye:</strong></p><ul>{incluye}</ul>"
+            f"<p>Por separado suma ${kit['separado']:,.2f}. <strong>Envío gratis a todo México.</strong></p>"
+        )
+
+    for kit in KITS:
+        existente = producto(kit["handle"], token, tienda)
+        if existente and not actualizar:
+            print(f"= ya existe {kit['handle']}, no se toca (usa --actualizar)")
+            continue
+        if existente:
+            # --actualizar: deja al día contenido, precio, costo y existencia
+            # de un kit ya creado, sin cambiar su estado (borrador/activo).
+            v = existente["variants"][0]
+            api("PUT", f"products/{existente['id']}.json", token, tienda, {"product": {
+                "id": existente["id"], "title": kit["titulo"], "body_html": cuerpo_html(kit)}})
+            api("PUT", f"variants/{v['id']}.json", token, tienda, {"variant": {
+                "id": v["id"], "price": kit["precio"], "compare_at_price": f"{kit['separado']:.2f}"}})
+            api("PUT", f"inventory_items/{v['inventory_item_id']}.json", token, tienda, {"inventory_item": {
+                "id": v["inventory_item_id"], "cost": f"{kit['costo']:.2f}"}})
+            api("POST", "inventory_levels/set.json", token, tienda, {
+                "location_id": loc, "inventory_item_id": v["inventory_item_id"],
+                "available": max(kit["existencia"], 0)})
+            print(f"~ actualizado: {kit['titulo']} (existencia {kit['existencia']})")
+            time.sleep(0.6)
+            continue
         cuerpo = {"product": {
             "title": kit["titulo"],
             "handle": kit["handle"],
@@ -235,13 +265,7 @@ def main():
             "vendor": kit["vendor"],
             "product_type": "Combos",
             "tags": "combos, kits, pesca, listo-para-pescar",
-            "body_html": (
-                "<p><strong>Todo lo que necesitas para salir a pescar, en una sola compra.</strong> "
-                "Caña, carrete, hilo y los accesorios que se acaban primero, elegidos para trabajar juntos.</p>"
-                f"<p>{kit['uso']}</p>"
-                f"<p><strong>Incluye:</strong></p><ul>{incluye}</ul>"
-                f"<p>Por separado suma ${kit['separado']:,.2f}. <strong>Envío gratis a todo México.</strong></p>"
-            ),
+            "body_html": cuerpo_html(kit),
             "variants": [{
                 "price": kit["precio"],
                 "compare_at_price": f"{kit['separado']:.2f}",
@@ -253,13 +277,11 @@ def main():
         }}
         p = api("POST", "products.json", token, tienda, cuerpo)["product"]
         v = p["variants"][0]
-        loc = api("GET", "locations.json", token, tienda)["locations"][0]["id"]
         api("POST", "inventory_levels/set.json", token, tienda, {
             "location_id": loc, "inventory_item_id": v["inventory_item_id"],
             "available": max(kit["existencia"], 0)})
         print(f"+ creado en BORRADOR: {p['title']} (id {p['id']}, existencia {kit['existencia']})")
         time.sleep(0.6)
-
 
 if __name__ == "__main__":
     main()

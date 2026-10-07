@@ -8,7 +8,7 @@ siguiente hasta cumplir la condición de "terminada".
 | Fase | Qué | Estado |
 |---|---|---|
 | 0 | Arreglos de la ficha de producto | ✅ En vivo (30 sep) |
-| **1** | **Kits a la venta** | 🟡 **EN CURSO**: esperando piezas y fotos |
+| **1** | **Kits a la venta** | 🟡 **EN CURSO**: esperando el visto bueno de los 5 kits |
 | 2 | Canales gratis: Google, Mercado Libre y carrito abandonado | ⏳ |
 | 3 | Reabasto y precios de la zona muerta | ⏳ |
 | 4 | Encender Meta con criterio fijado | ⏳ Estructura lista y en pausa |
@@ -34,14 +34,18 @@ Hecho y verificado en vivo el 30 sep:
 inventario bien contado. Son el producto que se va a anunciar. Hoy
 están en borrador, con precio y existencia de 2 cada uno.
 
-| # | Paso | Quién | Detalle |
+> **7 oct — cambio de plan del dueño:** no se toman fotos nuevas. Los
+> kits usan las fotos que ya tienen sus piezas, más una portada armada
+> con esas mismas fotos. Se cancelaron apartar piezas y la sesión de
+> fotos.
+
+| # | Paso | Quién | Estado |
 |---|---|---|---|
-| 1.1 | **Apartar las piezas** de los 8 kits (2 de cada uno) | 👤 | La lista exacta, con cantidades, está en [`FOTOS-KITS.md`](./FOTOS-KITS.md). Si falta alguna pieza, avísame y cambio el kit por otra que sí haya |
-| 1.2 | **Tomar 4 fotos por kit** (16 en total) | 👤 | Cómo y qué tomas, en [`FOTOS-KITS.md`](./FOTOS-KITS.md). Celular, luz de ventana, formato cuadrado, fondo oscuro |
-| 1.3 | **Subir las fotos a su carpeta** | 👤 | `imagenes-productos/<kit>/`, con el nombre exacto de cada toma. Por GitHub web, igual que las 59 imágenes |
-| 1.4 | Cargar las fotos a Shopify y revisarlas en celular | 🤖 | `scripts/cargar-imagenes-productos.py --doc FOTOS-KITS.md` |
-| 1.5 | **Revisar cada kit en borrador** y dar el visto bueno | 👤 | Admin → Productos → buscar "Kit Listo". Revisar título, descripción, precio y lo que incluye |
-| 1.6 | Publicar los 4 kits y verificar que entren al catálogo de Meta | 🤖 | Al publicarlos entran solos al conjunto de productos de la fase 4 |
+| 1.1 | Conciliar el inventario del 7 oct | 🤖 | ✅ 76 cambios, 0 errores |
+| 1.2 | Rehacer los kits con el inventario real | 🤖 | ✅ 5 kits (el quinto es nuevo, de 1 unidad) |
+| 1.3 | Portada y fotos de cada kit, con las fotos de sus piezas | 🤖 | ✅ de 9 a 12 imágenes por kit |
+| 1.4 | **Revisar los 5 kits en borrador y dar el visto bueno** | 👤 | ⏳ Admin → Productos → buscar "Kit Listo" |
+| 1.5 | Publicar, verificar en celular y en el catálogo de Meta | 🤖 | ⏳ con el visto bueno |
 
 **La regla de inventario de los kits.** Es la misma que ya aplica a los
 combos manuales (§50):
@@ -54,8 +58,8 @@ combos manuales (§50):
   obliga a rehacer los kits dentro de la app. Con 8 kits en total no
   vale la pena todavía.
 
-**✅ Terminada cuando:** los 4 kits están publicados, con sus 4 fotos
-reales, y aparecen en el conjunto de productos de Meta.
+**✅ Terminada cuando:** los 5 kits están publicados y aparecen en el
+conjunto de productos de Meta.
 
 ---
 

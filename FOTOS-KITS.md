@@ -1,3 +1,8 @@
+> ⚠️ **7 oct: las fotos de esta lista se cancelaron** (decisión del dueño). Los
+> kits usan las fotos de sus piezas y una portada armada por
+> `scripts/fotos-kits.py` (MANUAL §71). Lo que sigue vale como **lista de
+> armado** de los primeros 4 kits.
+
 # Fotos y armado de los 4 kits
 
 Fase 1 de [`GUIA-POR-FASES.md`](./GUIA-POR-FASES.md). Este documento

@@ -98,6 +98,7 @@ como respaldo
 68. [Análisis estratégico: los combos venden, los sueltos no (30 sep)](#68-análisis-estratégico-los-combos-venden-los-sueltos-no-30-sep)
 69. [Ejecución de las cuatro fases: ficha, kits, canales y Meta en pausa (30 sep)](#69-ejecución-de-las-cuatro-fases-ficha-kits-canales-y-meta-en-pausa-30-sep)
 70. [La guía por fases y la fase 1 en marcha (30 sep)](#70-la-guía-por-fases-y-la-fase-1-en-marcha-30-sep)
+71. [Kits con el inventario del 7 oct y fotos sin sesión de fotos (7 oct)](#71-kits-con-el-inventario-del-7-oct-y-fotos-sin-sesión-de-fotos-7-oct)
 
 ---
 
@@ -8072,4 +8073,93 @@ hace cada uno y la condición para darla por terminada.
   conciliación (`conciliar-inventario.py`) no conoce ni combos ni kits.**
   Se descartó Shopify Bundles por ahora, porque obliga a rehacer los kits
   dentro de la app y con 8 unidades no compensa.
+
+## 71. Kits con el inventario del 7 oct y fotos sin sesión de fotos (7 oct)
+
+**Decisión del dueño:** no se toman fotos nuevas. Cada kit usa las fotos
+que ya tienen sus piezas en la tienda. Los pasos 1.1 a 1.3 de la fase 1
+(apartar las piezas, tomar las fotos y subirlas) se cancelaron, y
+`FOTOS-KITS.md` queda solo como lista de armado. El dueño mandó el
+inventario del 7 oct para armar los kits con datos reales.
+
+### El token se perdió con el contenedor
+
+La sesión arrancó en un contenedor nuevo y el token de Shopify, que solo
+vivía en el scratchpad, ya no estaba. Se regeneró con el flujo OAuth de
+`INSTRUCTIVO-CREDENCIALES-SHOPIFY.md`. Scopes concedidos: los `write_*`
+de toda la tabla (incluyen lectura), más `read_locations` y
+`read_orders`.
+
+**El secreto de la app pasó por el chat: hay que rotarlo** (Dev
+Dashboard → Credenciales → Rotar). Si los deploys del tema empiezan a
+fallar, falta actualizar el secret `SHOPIFY_ADMIN_TOKEN` de GitHub.
+
+> 🔍 Mientras no había token, el cruce del Excel contra la tienda se
+> hizo con el **storefront público**: `/products.json` trae el `sku`, y
+> `/products/<handle>.js` trae el `barcode` (código B1). Así se cruzaron
+> 364 de 383 productos sin credenciales. Sirve para analizar, no para
+> escribir.
+
+### Conciliación del 7 oct
+
+1,191 filas, 76 cambios aplicados, 0 errores. Fila agregada al historial
+de `INSTRUCTIVO-CONCILIAR-INVENTARIO.md`. Desde el 30 sep se agotaron la
+**caña Shimano Sellus** y la **Stimula**.
+
+### Los kits, ajustados
+
+`crear-kits.py` tiene ahora `--actualizar`: pone al día título,
+descripción, precio, precio de comparación, costo y existencia de los
+kits ya creados, **sin cambiar su estado**.
+
+| Kit | Precio | Por separado | Contribución | Existencia |
+|---|---|---|---|---|
+| Okuma Revenger 7'0" Todo Terreno | $1,549 | $1,820 | $320 | 2 |
+| Shimano Clarus 5'8" + IX R 1000 Finesse | $1,599 | $1,817 | $390 | 2 |
+| Blue Fox Tolten 8'0" Mar y Costa | $1,349 | $1,487 | $306 | 2 |
+| Blue Fox Fresh 7'0" Agua Dulce | $1,199 | $1,220 | $316 | 2 |
+| **Okuma Tundra Pro 7'0" + Topaz Pro 40 (nuevo)** | **$1,749** | $1,971 | $342 | **1** |
+
+- **Agua Dulce:** baja de 10 a **6 plomos de bola de 6mm**, porque solo
+  quedan 12.
+- **Kit 5:** sale de la única caña Tundra Pro y el único carrete Topaz
+  Pro. A $1,599 dejaba $191, así que se subió a $1,749.
+- **Ahorro del kit Agua Dulce:** contra las piezas por separado es de
+  solo $21. Se dejó así para no bajar de $300 de contribución.
+
+### Las fotos: `scripts/fotos-kits.py`
+
+1. **La portada** se arma con PIL: fondo oscuro de la marca, el título
+   del kit con la tipografía del tema (Instrument Sans) y una tarjeta por
+   pieza con su foto real, su nombre y la cantidad ("×10"). Detalles del
+   armado:
+   - A las fotos se les recorta el margen blanco.
+   - **La caña se endereza:** se calcula el eje principal de sus pixeles
+     oscuros y se gira la foto a horizontal. En diagonal quedaba
+     diminuta dentro de una franja de 1,900 × 380.
+   - No hay IA: no se inventa ninguna pieza.
+2. **Detrás de la portada,** la foto principal de cada pieza. Se sube
+   por URL del CDN de Shopify, sin descargar y volver a subir.
+3. **Idempotente:** cada imagen lleva en su `alt` `[kit-portada]` o
+   `[pieza:<handle>]`. Una segunda corrida subió 0.
+
+Resultado verificado por API: 5 kits en borrador, con la portada de
+2048 px en la posición 1 y de 9 a 12 imágenes cada uno.
+
+### Siguiente
+
+El dueño revisa los 5 borradores en el admin. Con su visto bueno se
+publican, lo que los mete al conjunto de productos de Meta de §69, y se
+verifica la ficha en celular.
+
+### Graphify
+
+`scripts/` pasó de **169/319 a 201/459**. Hay dos causas, y no hay que
+leer el salto completo como código nuevo:
+
+- `fotos-kits.py` es nuevo y aporta 19 nodos (verificado contando en
+  `graph.json`).
+- El contenedor nuevo instaló **graphify 0.9.80** (antes 0.9.66), que
+  extrae más nodos y aristas del mismo código. Es la misma lección de
+  §63.
 

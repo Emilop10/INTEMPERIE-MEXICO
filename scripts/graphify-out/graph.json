@@ -1,7 +1,10 @@
 {
   "directed": false,
   "multigraph": false,
-  "graph": {},
+  "graph": {
+    "schema_version": 1,
+    "graphify_version": "0.9.80"
+  },
   "nodes": [
     {
       "id": "conciliar_inventario_api_get",
@@ -321,7 +324,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 12,
-      "community_name": "sincronizar-canal-meta.py",
+      "community_name": "prueba-tarjetas-coleccion.py",
       "file_type": "code",
       "norm_label": "armar_repro()",
       "source_file": "prueba-tarjetas-coleccion.py",
@@ -333,7 +336,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 12,
-      "community_name": "sincronizar-canal-meta.py",
+      "community_name": "prueba-tarjetas-coleccion.py",
       "file_type": "code",
       "norm_label": "bajar()",
       "source_file": "prueba-tarjetas-coleccion.py",
@@ -345,7 +348,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 12,
-      "community_name": "sincronizar-canal-meta.py",
+      "community_name": "prueba-tarjetas-coleccion.py",
       "file_type": "code",
       "norm_label": "buscar_chrome()",
       "source_file": "prueba-tarjetas-coleccion.py",
@@ -357,7 +360,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 12,
-      "community_name": "sincronizar-canal-meta.py",
+      "community_name": "prueba-tarjetas-coleccion.py",
       "file_type": "code",
       "norm_label": "main()",
       "source_file": "prueba-tarjetas-coleccion.py",
@@ -369,83 +372,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 12,
-      "community_name": "sincronizar-canal-meta.py",
+      "community_name": "prueba-tarjetas-coleccion.py",
       "file_type": "code",
       "norm_label": "medir()",
       "source_file": "prueba-tarjetas-coleccion.py",
       "source_location": "L99"
-    },
-    {
-      "id": "sincronizar_canal_meta_aplicar",
-      "label": "aplicar()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 12,
-      "community_name": "sincronizar-canal-meta.py",
-      "file_type": "code",
-      "norm_label": "aplicar()",
-      "source_file": "sincronizar-canal-meta.py",
-      "source_location": "L213"
-    },
-    {
-      "id": "sincronizar_canal_meta_es_prohibido",
-      "label": "es_prohibido()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 12,
-      "community_name": "sincronizar-canal-meta.py",
-      "file_type": "code",
-      "norm_label": "es_prohibido()",
-      "source_file": "sincronizar-canal-meta.py",
-      "source_location": "L160"
-    },
-    {
-      "id": "sincronizar_canal_meta_gql",
-      "label": "gql()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 12,
-      "community_name": "sincronizar-canal-meta.py",
-      "file_type": "code",
-      "norm_label": "gql()",
-      "source_file": "sincronizar-canal-meta.py",
-      "source_location": "L80"
-    },
-    {
-      "id": "sincronizar_canal_meta_main",
-      "label": "main()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 12,
-      "community_name": "sincronizar-canal-meta.py",
-      "file_type": "code",
-      "norm_label": "main()",
-      "source_file": "sincronizar-canal-meta.py",
-      "source_location": "L224"
-    },
-    {
-      "id": "sincronizar_canal_meta_resolver_canal",
-      "label": "resolver_canal()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 12,
-      "community_name": "sincronizar-canal-meta.py",
-      "file_type": "code",
-      "norm_label": "resolver_canal()",
-      "source_file": "sincronizar-canal-meta.py",
-      "source_location": "L112"
-    },
-    {
-      "id": "sincronizar_canal_meta_traer_productos",
-      "label": "traer_productos()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 12,
-      "community_name": "sincronizar-canal-meta.py",
-      "file_type": "code",
-      "norm_label": "traer_productos()",
-      "source_file": "sincronizar-canal-meta.py",
-      "source_location": "L126"
     },
     {
       "id": "cargar_imagenes_productos_api",
@@ -578,6 +509,30 @@
       "norm_label": "videos_existentes()",
       "source_file": "cargar-imagenes-productos.py",
       "source_location": "L179"
+    },
+    {
+      "id": "rebuild_mapa_3d_compact",
+      "label": "compact()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "cargar-imagenes-productos.py",
+      "file_type": "code",
+      "norm_label": "compact()",
+      "source_file": "rebuild-mapa-3d.py",
+      "source_location": "L32"
+    },
+    {
+      "id": "rebuild_mapa_3d_main",
+      "label": "main()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "cargar-imagenes-productos.py",
+      "file_type": "code",
+      "norm_label": "main()",
+      "source_file": "rebuild-mapa-3d.py",
+      "source_location": "L40"
     },
     {
       "id": "meta_ads_api_request",
@@ -760,12 +715,72 @@
       "source_location": "L181"
     },
     {
+      "id": "cargar_fichas_tecnicas_api",
+      "label": "api()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "json",
+      "file_type": "code",
+      "norm_label": "api()",
+      "source_file": "cargar-fichas-tecnicas.py",
+      "source_location": "L42"
+    },
+    {
+      "id": "cargar_fichas_tecnicas_catalogo_por_handle",
+      "label": "catalogo_por_handle()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "json",
+      "file_type": "code",
+      "norm_label": "catalogo_por_handle()",
+      "source_file": "cargar-fichas-tecnicas.py",
+      "source_location": "L84"
+    },
+    {
+      "id": "cargar_fichas_tecnicas_leer_metafield",
+      "label": "leer_metafield()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "json",
+      "file_type": "code",
+      "norm_label": "leer_metafield()",
+      "source_file": "cargar-fichas-tecnicas.py",
+      "source_location": "L102"
+    },
+    {
+      "id": "cargar_fichas_tecnicas_main",
+      "label": "main()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "json",
+      "file_type": "code",
+      "norm_label": "main()",
+      "source_file": "cargar-fichas-tecnicas.py",
+      "source_location": "L110"
+    },
+    {
+      "id": "cargar_fichas_tecnicas_parsear_documento",
+      "label": "parsear_documento()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "json",
+      "file_type": "code",
+      "norm_label": "parsear_documento()",
+      "source_file": "cargar-fichas-tecnicas.py",
+      "source_location": "L62"
+    },
+    {
       "id": "crear_combos_api",
       "label": "api()",
       "_callable": true,
       "_origin": "ast",
       "community": 4,
-      "community_name": "vincular-codigo-b1.py",
+      "community_name": "json",
       "file_type": "code",
       "norm_label": "api()",
       "source_file": "crear-combos.py",
@@ -777,7 +792,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 4,
-      "community_name": "vincular-codigo-b1.py",
+      "community_name": "json",
       "file_type": "code",
       "norm_label": "buscar()",
       "source_file": "crear-combos.py",
@@ -789,7 +804,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 4,
-      "community_name": "vincular-codigo-b1.py",
+      "community_name": "json",
       "file_type": "code",
       "norm_label": "main()",
       "source_file": "crear-combos.py",
@@ -801,11 +816,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 4,
-      "community_name": "vincular-codigo-b1.py",
+      "community_name": "json",
       "file_type": "code",
       "norm_label": "api()",
       "source_file": "crear-kits.py",
-      "source_location": "L136"
+      "source_location": "L157"
     },
     {
       "id": "crear_kits_main",
@@ -813,11 +828,23 @@
       "_callable": true,
       "_origin": "ast",
       "community": 4,
-      "community_name": "vincular-codigo-b1.py",
+      "community_name": "json",
       "file_type": "code",
       "norm_label": "main()",
       "source_file": "crear-kits.py",
-      "source_location": "L150"
+      "source_location": "L171"
+    },
+    {
+      "id": "crear_kits_main_cuerpo_html",
+      "label": "cuerpo_html()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "json",
+      "file_type": "code",
+      "norm_label": "cuerpo_html()",
+      "source_file": "crear-kits.py",
+      "source_location": "L230"
     },
     {
       "id": "crear_kits_producto",
@@ -825,35 +852,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 4,
-      "community_name": "vincular-codigo-b1.py",
+      "community_name": "json",
       "file_type": "code",
       "norm_label": "producto()",
       "source_file": "crear-kits.py",
-      "source_location": "L145"
-    },
-    {
-      "id": "rebuild_mapa_3d_compact",
-      "label": "compact()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "vincular-codigo-b1.py",
-      "file_type": "code",
-      "norm_label": "compact()",
-      "source_file": "rebuild-mapa-3d.py",
-      "source_location": "L32"
-    },
-    {
-      "id": "rebuild_mapa_3d_main",
-      "label": "main()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "vincular-codigo-b1.py",
-      "file_type": "code",
-      "norm_label": "main()",
-      "source_file": "rebuild-mapa-3d.py",
-      "source_location": "L40"
+      "source_location": "L166"
     },
     {
       "id": "vincular_codigo_b1_actualizar_barcode",
@@ -861,7 +864,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 4,
-      "community_name": "vincular-codigo-b1.py",
+      "community_name": "json",
       "file_type": "code",
       "norm_label": "actualizar_barcode()",
       "source_file": "vincular-codigo-b1.py",
@@ -873,7 +876,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 4,
-      "community_name": "vincular-codigo-b1.py",
+      "community_name": "json",
       "file_type": "code",
       "norm_label": "api_request()",
       "source_file": "vincular-codigo-b1.py",
@@ -885,7 +888,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 4,
-      "community_name": "vincular-codigo-b1.py",
+      "community_name": "json",
       "file_type": "code",
       "norm_label": "fetch_all_products()",
       "source_file": "vincular-codigo-b1.py",
@@ -897,7 +900,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 4,
-      "community_name": "vincular-codigo-b1.py",
+      "community_name": "json",
       "file_type": "code",
       "norm_label": "leer_conteo()",
       "source_file": "vincular-codigo-b1.py",
@@ -909,7 +912,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 4,
-      "community_name": "vincular-codigo-b1.py",
+      "community_name": "json",
       "file_type": "code",
       "norm_label": "main()",
       "source_file": "vincular-codigo-b1.py",
@@ -921,71 +924,215 @@
       "_callable": true,
       "_origin": "ast",
       "community": 4,
-      "community_name": "vincular-codigo-b1.py",
+      "community_name": "json",
       "file_type": "code",
       "norm_label": "next_page_url()",
       "source_file": "vincular-codigo-b1.py",
       "source_location": "L70"
     },
     {
-      "id": "cargar_fichas_tecnicas_api",
+      "id": "fotos_kits_api",
       "label": "api()",
       "_callable": true,
       "_origin": "ast",
-      "community": 6,
-      "community_name": "cargar-fichas-tecnicas.py",
+      "community": 5,
+      "community_name": "fotos-kits.py",
       "file_type": "code",
       "norm_label": "api()",
-      "source_file": "cargar-fichas-tecnicas.py",
-      "source_location": "L42"
+      "source_file": "fotos-kits.py",
+      "source_location": "L178"
     },
     {
-      "id": "cargar_fichas_tecnicas_catalogo_por_handle",
-      "label": "catalogo_por_handle()",
+      "id": "fotos_kits_bajar",
+      "label": "bajar()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "fotos-kits.py",
+      "file_type": "code",
+      "norm_label": "bajar()",
+      "source_file": "fotos-kits.py",
+      "source_location": "L58"
+    },
+    {
+      "id": "fotos_kits_corto",
+      "label": "corto()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "fotos-kits.py",
+      "file_type": "code",
+      "norm_label": "corto()",
+      "source_file": "fotos-kits.py",
+      "source_location": "L71"
+    },
+    {
+      "id": "fotos_kits_datos_pieza",
+      "label": "datos_pieza()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "fotos-kits.py",
+      "file_type": "code",
+      "norm_label": "datos_pieza()",
+      "source_file": "fotos-kits.py",
+      "source_location": "L65"
+    },
+    {
+      "id": "fotos_kits_enderezar",
+      "label": "enderezar()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "fotos-kits.py",
+      "file_type": "code",
+      "norm_label": "enderezar()",
+      "source_file": "fotos-kits.py",
+      "source_location": "L108"
+    },
+    {
+      "id": "fotos_kits_envolver",
+      "label": "envolver()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "fotos-kits.py",
+      "file_type": "code",
+      "norm_label": "envolver()",
+      "source_file": "fotos-kits.py",
+      "source_location": "L78"
+    },
+    {
+      "id": "fotos_kits_fuente",
+      "label": "fuente()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "fotos-kits.py",
+      "file_type": "code",
+      "norm_label": "fuente()",
+      "source_file": "fotos-kits.py",
+      "source_location": "L54"
+    },
+    {
+      "id": "fotos_kits_main",
+      "label": "main()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "fotos-kits.py",
+      "file_type": "code",
+      "norm_label": "main()",
+      "source_file": "fotos-kits.py",
+      "source_location": "L187"
+    },
+    {
+      "id": "fotos_kits_portada",
+      "label": "portada()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "fotos-kits.py",
+      "file_type": "code",
+      "norm_label": "portada()",
+      "source_file": "fotos-kits.py",
+      "source_location": "L151"
+    },
+    {
+      "id": "fotos_kits_recortar_blanco",
+      "label": "recortar_blanco()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "fotos-kits.py",
+      "file_type": "code",
+      "norm_label": "recortar_blanco()",
+      "source_file": "fotos-kits.py",
+      "source_location": "L96"
+    },
+    {
+      "id": "fotos_kits_tarjeta",
+      "label": "tarjeta()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "fotos-kits.py",
+      "file_type": "code",
+      "norm_label": "tarjeta()",
+      "source_file": "fotos-kits.py",
+      "source_location": "L126"
+    },
+    {
+      "id": "sincronizar_canal_meta_aplicar",
+      "label": "aplicar()",
       "_callable": true,
       "_origin": "ast",
       "community": 6,
-      "community_name": "cargar-fichas-tecnicas.py",
+      "community_name": "sys",
       "file_type": "code",
-      "norm_label": "catalogo_por_handle()",
-      "source_file": "cargar-fichas-tecnicas.py",
-      "source_location": "L84"
+      "norm_label": "aplicar()",
+      "source_file": "sincronizar-canal-meta.py",
+      "source_location": "L213"
     },
     {
-      "id": "cargar_fichas_tecnicas_leer_metafield",
-      "label": "leer_metafield()",
+      "id": "sincronizar_canal_meta_es_prohibido",
+      "label": "es_prohibido()",
       "_callable": true,
       "_origin": "ast",
       "community": 6,
-      "community_name": "cargar-fichas-tecnicas.py",
+      "community_name": "sys",
       "file_type": "code",
-      "norm_label": "leer_metafield()",
-      "source_file": "cargar-fichas-tecnicas.py",
-      "source_location": "L102"
+      "norm_label": "es_prohibido()",
+      "source_file": "sincronizar-canal-meta.py",
+      "source_location": "L160"
     },
     {
-      "id": "cargar_fichas_tecnicas_main",
+      "id": "sincronizar_canal_meta_gql",
+      "label": "gql()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "sys",
+      "file_type": "code",
+      "norm_label": "gql()",
+      "source_file": "sincronizar-canal-meta.py",
+      "source_location": "L80"
+    },
+    {
+      "id": "sincronizar_canal_meta_main",
       "label": "main()",
       "_callable": true,
       "_origin": "ast",
       "community": 6,
-      "community_name": "cargar-fichas-tecnicas.py",
+      "community_name": "sys",
       "file_type": "code",
       "norm_label": "main()",
-      "source_file": "cargar-fichas-tecnicas.py",
-      "source_location": "L110"
+      "source_file": "sincronizar-canal-meta.py",
+      "source_location": "L224"
     },
     {
-      "id": "cargar_fichas_tecnicas_parsear_documento",
-      "label": "parsear_documento()",
+      "id": "sincronizar_canal_meta_resolver_canal",
+      "label": "resolver_canal()",
       "_callable": true,
       "_origin": "ast",
       "community": 6,
-      "community_name": "cargar-fichas-tecnicas.py",
+      "community_name": "sys",
       "file_type": "code",
-      "norm_label": "parsear_documento()",
-      "source_file": "cargar-fichas-tecnicas.py",
-      "source_location": "L62"
+      "norm_label": "resolver_canal()",
+      "source_file": "sincronizar-canal-meta.py",
+      "source_location": "L112"
+    },
+    {
+      "id": "sincronizar_canal_meta_traer_productos",
+      "label": "traer_productos()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "sys",
+      "file_type": "code",
+      "norm_label": "traer_productos()",
+      "source_file": "sincronizar-canal-meta.py",
+      "source_location": "L126"
     },
     {
       "id": "conciliar_inventario",
@@ -1043,6 +1190,17 @@
       "source_location": "L168"
     },
     {
+      "id": "conciliar_inventario_rationale_2",
+      "label": "Concilia un conteo f\u00edsico (Excel) contra el inventario real de Shopify. Ver\u2026",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "conciliar-inventario.py",
+      "file_type": "rationale",
+      "norm_label": "concilia un conteo fisico (excel) contra el inventario real de shopify. ver...",
+      "source_file": "conciliar-inventario.py",
+      "source_location": "L2"
+    },
+    {
       "id": "deploy_shopify",
       "label": "deploy-shopify.py",
       "_origin": "ast",
@@ -1096,6 +1254,17 @@
       "norm_label": "ordena la subida para que un *-group.json nunca llegue antes que la seccion que...",
       "source_file": "deploy-shopify.py",
       "source_location": "L162"
+    },
+    {
+      "id": "deploy_shopify_rationale_2",
+      "label": "Sube archivos del tema de `tema-shopify/` al tema publicado de la tienda.\u2026",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "deploy-shopify.py",
+      "file_type": "rationale",
+      "norm_label": "sube archivos del tema de `tema-shopify/` al tema publicado de la tienda....",
+      "source_file": "deploy-shopify.py",
+      "source_location": "L2"
     },
     {
       "id": "deploy_shopify_rationale_94",
@@ -1213,48 +1382,48 @@
       "source_location": "L164"
     },
     {
+      "id": "generar_carta_bienvenida_rationale_2",
+      "label": "Genera la carta de bienvenida que se incluye en cada env\u00edo. Uso: pip install\u2026",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "generar-carta-bienvenida.py",
+      "file_type": "rationale",
+      "norm_label": "genera la carta de bienvenida que se incluye en cada envio. uso: pip install...",
+      "source_file": "generar-carta-bienvenida.py",
+      "source_location": "L2"
+    },
+    {
       "id": "prueba_tarjetas_coleccion",
       "label": "prueba-tarjetas-coleccion.py",
       "_origin": "ast",
       "community": 12,
-      "community_name": "sincronizar-canal-meta.py",
+      "community_name": "prueba-tarjetas-coleccion.py",
       "file_type": "code",
       "norm_label": "prueba-tarjetas-coleccion.py",
       "source_file": "prueba-tarjetas-coleccion.py",
       "source_location": "L1"
     },
     {
-      "id": "sincronizar_canal_meta",
-      "label": "sincronizar-canal-meta.py",
+      "id": "prueba_tarjetas_coleccion_rationale_2",
+      "label": "Prueba de regresion: ninguna tarjeta de producto debe salirse de su columna.\u2026",
       "_origin": "ast",
       "community": 12,
-      "community_name": "sincronizar-canal-meta.py",
-      "file_type": "code",
-      "norm_label": "sincronizar-canal-meta.py",
-      "source_file": "sincronizar-canal-meta.py",
-      "source_location": "L1"
+      "community_name": "prueba-tarjetas-coleccion.py",
+      "file_type": "rationale",
+      "norm_label": "prueba de regresion: ninguna tarjeta de producto debe salirse de su columna....",
+      "source_file": "prueba-tarjetas-coleccion.py",
+      "source_location": "L2"
     },
     {
       "id": "prueba_tarjetas_coleccion_rationale_74",
       "label": "Descarga la coleccion y sus CSS, y sustituye brand-tokens.css por el del repo.",
       "_origin": "ast",
       "community": 12,
-      "community_name": "sincronizar-canal-meta.py",
+      "community_name": "prueba-tarjetas-coleccion.py",
       "file_type": "rationale",
       "norm_label": "descarga la coleccion y sus css, y sustituye brand-tokens.css por el del repo.",
       "source_file": "prueba-tarjetas-coleccion.py",
       "source_location": "L74"
-    },
-    {
-      "id": "sincronizar_canal_meta_rationale_161",
-      "label": "Prohibido por coleccion O por nombre. La red de colecciones sola NO alcanza, y\u2026",
-      "_origin": "ast",
-      "community": 12,
-      "community_name": "sincronizar-canal-meta.py",
-      "file_type": "rationale",
-      "norm_label": "prohibido por coleccion o por nombre. la red de colecciones sola no alcanza, y...",
-      "source_file": "sincronizar-canal-meta.py",
-      "source_location": "L161"
     },
     {
       "id": "cargar_imagenes_productos",
@@ -1265,6 +1434,17 @@
       "file_type": "code",
       "norm_label": "cargar-imagenes-productos.py",
       "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "rebuild_mapa_3d",
+      "label": "rebuild-mapa-3d.py",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "cargar-imagenes-productos.py",
+      "file_type": "code",
+      "norm_label": "rebuild-mapa-3d.py",
+      "source_file": "rebuild-mapa-3d.py",
       "source_location": "L1"
     },
     {
@@ -1323,6 +1503,17 @@
       "source_location": "L194"
     },
     {
+      "id": "cargar_imagenes_productos_rationale_2",
+      "label": "Sube a Shopify las imagenes listadas en IMAGENES-CAMPANA-PENDIENTES.md. Sube\u2026",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "cargar-imagenes-productos.py",
+      "file_type": "rationale",
+      "norm_label": "sube a shopify las imagenes listadas en imagenes-campana-pendientes.md. sube...",
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L2"
+    },
+    {
       "id": "cargar_imagenes_productos_rationale_224",
       "label": "La subcarpeta del producto manda; se acepta la raiz por compatibilidad.",
       "_origin": "ast",
@@ -1354,6 +1545,17 @@
       "norm_label": "-> [(handle, titulo, [(archivo, tipo, alt), ...]), ...] en orden.",
       "source_file": "cargar-imagenes-productos.py",
       "source_location": "L90"
+    },
+    {
+      "id": "rebuild_mapa_3d_rationale_2",
+      "label": "Regenera los datos del mapa 3D del codigo a partir del grafo de Graphify. El\u2026",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "cargar-imagenes-productos.py",
+      "file_type": "rationale",
+      "norm_label": "regenera los datos del mapa 3d del codigo a partir del grafo de graphify. el...",
+      "source_file": "rebuild-mapa-3d.py",
+      "source_location": "L2"
     },
     {
       "id": "readme_deploy",
@@ -1507,11 +1709,33 @@
       "source_location": "L182"
     },
     {
+      "id": "meta_ads_rationale_2",
+      "label": "Gestiona las campa\u00f1as de Meta Ads (Facebook/Instagram) de Intemperie M\u00e9xico.\u2026",
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "meta-ads.py",
+      "file_type": "rationale",
+      "norm_label": "gestiona las campanas de meta ads (facebook/instagram) de intemperie mexico....",
+      "source_file": "meta-ads.py",
+      "source_location": "L2"
+    },
+    {
+      "id": "cargar_fichas_tecnicas",
+      "label": "cargar-fichas-tecnicas.py",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "json",
+      "file_type": "code",
+      "norm_label": "cargar-fichas-tecnicas.py",
+      "source_file": "cargar-fichas-tecnicas.py",
+      "source_location": "L1"
+    },
+    {
       "id": "crear_combos",
       "label": "crear-combos.py",
       "_origin": "ast",
       "community": 4,
-      "community_name": "vincular-codigo-b1.py",
+      "community_name": "json",
       "file_type": "code",
       "norm_label": "crear-combos.py",
       "source_file": "crear-combos.py",
@@ -1522,21 +1746,10 @@
       "label": "crear-kits.py",
       "_origin": "ast",
       "community": 4,
-      "community_name": "vincular-codigo-b1.py",
+      "community_name": "json",
       "file_type": "code",
       "norm_label": "crear-kits.py",
       "source_file": "crear-kits.py",
-      "source_location": "L1"
-    },
-    {
-      "id": "rebuild_mapa_3d",
-      "label": "rebuild-mapa-3d.py",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "vincular-codigo-b1.py",
-      "file_type": "code",
-      "norm_label": "rebuild-mapa-3d.py",
-      "source_file": "rebuild-mapa-3d.py",
       "source_location": "L1"
     },
     {
@@ -1544,29 +1757,29 @@
       "label": "vincular-codigo-b1.py",
       "_origin": "ast",
       "community": 4,
-      "community_name": "vincular-codigo-b1.py",
+      "community_name": "json",
       "file_type": "code",
       "norm_label": "vincular-codigo-b1.py",
       "source_file": "vincular-codigo-b1.py",
       "source_location": "L1"
     },
     {
-      "id": "cargar_fichas_tecnicas",
-      "label": "cargar-fichas-tecnicas.py",
+      "id": "cargar_fichas_tecnicas_rationale_2",
+      "label": "Carga el metafield `custom.especificaciones` (ficha tecnica) en los productos\u2026",
       "_origin": "ast",
-      "community": 6,
-      "community_name": "cargar-fichas-tecnicas.py",
-      "file_type": "code",
-      "norm_label": "cargar-fichas-tecnicas.py",
+      "community": 4,
+      "community_name": "json",
+      "file_type": "rationale",
+      "norm_label": "carga el metafield `custom.especificaciones` (ficha tecnica) en los productos...",
       "source_file": "cargar-fichas-tecnicas.py",
-      "source_location": "L1"
+      "source_location": "L2"
     },
     {
       "id": "cargar_fichas_tecnicas_rationale_63",
       "label": "Devuelve [(handle, titulo, [lineas]), ...] desde el .md.",
       "_origin": "ast",
-      "community": 6,
-      "community_name": "cargar-fichas-tecnicas.py",
+      "community": 4,
+      "community_name": "json",
       "file_type": "rationale",
       "norm_label": "devuelve [(handle, titulo, [lineas]), ...] desde el .md.",
       "source_file": "cargar-fichas-tecnicas.py",
@@ -1576,12 +1789,133 @@
       "id": "cargar_fichas_tecnicas_rationale_85",
       "label": "{handle: product_id} de todo el catalogo, paginado.",
       "_origin": "ast",
-      "community": 6,
-      "community_name": "cargar-fichas-tecnicas.py",
+      "community": 4,
+      "community_name": "json",
       "file_type": "rationale",
       "norm_label": "{handle: product_id} de todo el catalogo, paginado.",
       "source_file": "cargar-fichas-tecnicas.py",
       "source_location": "L85"
+    },
+    {
+      "id": "crear_combos_rationale_2",
+      "label": "Crea los combos propuestos en COMBOS-NUEVOS-PENDIENTES.md. Uso:\u2026",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "json",
+      "file_type": "rationale",
+      "norm_label": "crea los combos propuestos en combos-nuevos-pendientes.md. uso:...",
+      "source_file": "crear-combos.py",
+      "source_location": "L2"
+    },
+    {
+      "id": "crear_kits_rationale_2",
+      "label": "Kits \"listos para pescar\" (MANUAL \u00a769, ANALISIS-ESTRATEGICO-30-SEP.md). Por qu\u00e9\u2026",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "json",
+      "file_type": "rationale",
+      "norm_label": "kits \"listos para pescar\" (manual \u00a769, analisis-estrategico-30-sep.md). por que...",
+      "source_file": "crear-kits.py",
+      "source_location": "L2"
+    },
+    {
+      "id": "vincular_codigo_b1_rationale_2",
+      "label": "Guarda el \"Codigo B1\" del POS en el campo `barcode` de cada producto de\u2026",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "json",
+      "file_type": "rationale",
+      "norm_label": "guarda el \"codigo b1\" del pos en el campo `barcode` de cada producto de...",
+      "source_file": "vincular-codigo-b1.py",
+      "source_location": "L2"
+    },
+    {
+      "id": "fotos_kits",
+      "label": "fotos-kits.py",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "fotos-kits.py",
+      "file_type": "code",
+      "norm_label": "fotos-kits.py",
+      "source_file": "fotos-kits.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "fotos_kits_rationale_109",
+      "label": "Las ca\u00f1as vienen fotografiadas en diagonal: dentro de una franja ancha quedaban\u2026",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "fotos-kits.py",
+      "file_type": "rationale",
+      "norm_label": "las canas vienen fotografiadas en diagonal: dentro de una franja ancha quedaban...",
+      "source_file": "fotos-kits.py",
+      "source_location": "L109"
+    },
+    {
+      "id": "fotos_kits_rationale_127",
+      "label": "Foto de la pieza sobre una tarjeta clara, con cantidad y nombre.",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "fotos-kits.py",
+      "file_type": "rationale",
+      "norm_label": "foto de la pieza sobre una tarjeta clara, con cantidad y nombre.",
+      "source_file": "fotos-kits.py",
+      "source_location": "L127"
+    },
+    {
+      "id": "fotos_kits_rationale_2",
+      "label": "Fotos de los kits a partir de las fotos que ya tienen sus piezas (MANUAL \u00a771).\u2026",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "fotos-kits.py",
+      "file_type": "rationale",
+      "norm_label": "fotos de los kits a partir de las fotos que ya tienen sus piezas (manual \u00a771)....",
+      "source_file": "fotos-kits.py",
+      "source_location": "L2"
+    },
+    {
+      "id": "fotos_kits_rationale_97",
+      "label": "Quita el margen blanco de la foto de cat\u00e1logo, para que la pieza ocupe la\u2026",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "fotos-kits.py",
+      "file_type": "rationale",
+      "norm_label": "quita el margen blanco de la foto de catalogo, para que la pieza ocupe la...",
+      "source_file": "fotos-kits.py",
+      "source_location": "L97"
+    },
+    {
+      "id": "sincronizar_canal_meta",
+      "label": "sincronizar-canal-meta.py",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "sys",
+      "file_type": "code",
+      "norm_label": "sincronizar-canal-meta.py",
+      "source_file": "sincronizar-canal-meta.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "sincronizar_canal_meta_rationale_161",
+      "label": "Prohibido por coleccion O por nombre. La red de colecciones sola NO alcanza, y\u2026",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "sys",
+      "file_type": "rationale",
+      "norm_label": "prohibido por coleccion o por nombre. la red de colecciones sola no alcanza, y...",
+      "source_file": "sincronizar-canal-meta.py",
+      "source_location": "L161"
+    },
+    {
+      "id": "sincronizar_canal_meta_rationale_2",
+      "label": "Deja el canal \"Facebook & Instagram\" de Shopify con los productos correctos.\u2026",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "sys",
+      "file_type": "rationale",
+      "norm_label": "deja el canal \"facebook & instagram\" de shopify con los productos correctos....",
+      "source_file": "sincronizar-canal-meta.py",
+      "source_location": "L2"
     },
     {
       "id": "instalar_entorno",
@@ -1706,7 +2040,6 @@
     {
       "id": "copy",
       "label": "copy",
-      "_origin": "semantic",
       "community": 0,
       "community_name": "conciliar-inventario.py",
       "external": true,
@@ -1718,7 +2051,6 @@
     {
       "id": "difflib",
       "label": "difflib",
-      "_origin": "semantic",
       "community": 0,
       "community_name": "conciliar-inventario.py",
       "external": true,
@@ -1728,21 +2060,8 @@
       "type": "external"
     },
     {
-      "id": "openpyxl",
-      "label": "openpyxl",
-      "_origin": "semantic",
-      "community": 0,
-      "community_name": "conciliar-inventario.py",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "openpyxl",
-      "source_file": "",
-      "type": "external"
-    },
-    {
       "id": "openpyxl_styles",
       "label": "openpyxl_styles",
-      "_origin": "semantic",
       "community": 0,
       "community_name": "conciliar-inventario.py",
       "external": true,
@@ -1754,7 +2073,6 @@
     {
       "id": "unicodedata",
       "label": "unicodedata",
-      "_origin": "semantic",
       "community": 0,
       "community_name": "conciliar-inventario.py",
       "external": true,
@@ -1766,7 +2084,6 @@
     {
       "id": "urllib_parse",
       "label": "urllib_parse",
-      "_origin": "semantic",
       "community": 0,
       "community_name": "conciliar-inventario.py",
       "external": true,
@@ -1776,21 +2093,8 @@
       "type": "external"
     },
     {
-      "id": "base64",
-      "label": "base64",
-      "_origin": "semantic",
-      "community": 1,
-      "community_name": "deploy-shopify.py",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "base64",
-      "source_file": "",
-      "type": "external"
-    },
-    {
       "id": "subprocess",
       "label": "subprocess",
-      "_origin": "semantic",
       "community": 1,
       "community_name": "deploy-shopify.py",
       "external": true,
@@ -1800,21 +2104,8 @@
       "type": "external"
     },
     {
-      "id": "os",
-      "label": "os",
-      "_origin": "semantic",
-      "community": 11,
-      "community_name": "generar-carta-bienvenida.py",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "os",
-      "source_file": "",
-      "type": "external"
-    },
-    {
       "id": "reportlab_lib_colors",
       "label": "reportlab_lib_colors",
-      "_origin": "semantic",
       "community": 11,
       "community_name": "generar-carta-bienvenida.py",
       "external": true,
@@ -1826,7 +2117,6 @@
     {
       "id": "reportlab_lib_enums",
       "label": "reportlab_lib_enums",
-      "_origin": "semantic",
       "community": 11,
       "community_name": "generar-carta-bienvenida.py",
       "external": true,
@@ -1838,7 +2128,6 @@
     {
       "id": "reportlab_lib_pagesizes",
       "label": "reportlab_lib_pagesizes",
-      "_origin": "semantic",
       "community": 11,
       "community_name": "generar-carta-bienvenida.py",
       "external": true,
@@ -1850,7 +2139,6 @@
     {
       "id": "reportlab_lib_styles",
       "label": "reportlab_lib_styles",
-      "_origin": "semantic",
       "community": 11,
       "community_name": "generar-carta-bienvenida.py",
       "external": true,
@@ -1862,7 +2150,6 @@
     {
       "id": "reportlab_lib_units",
       "label": "reportlab_lib_units",
-      "_origin": "semantic",
       "community": 11,
       "community_name": "generar-carta-bienvenida.py",
       "external": true,
@@ -1874,7 +2161,6 @@
     {
       "id": "reportlab_pdfbase",
       "label": "reportlab_pdfbase",
-      "_origin": "semantic",
       "community": 11,
       "community_name": "generar-carta-bienvenida.py",
       "external": true,
@@ -1886,7 +2172,6 @@
     {
       "id": "reportlab_pdfbase_ttfonts",
       "label": "reportlab_pdfbase_ttfonts",
-      "_origin": "semantic",
       "community": 11,
       "community_name": "generar-carta-bienvenida.py",
       "external": true,
@@ -1898,7 +2183,6 @@
     {
       "id": "reportlab_platypus",
       "label": "reportlab_platypus",
-      "_origin": "semantic",
       "community": 11,
       "community_name": "generar-carta-bienvenida.py",
       "external": true,
@@ -1910,9 +2194,8 @@
     {
       "id": "argparse",
       "label": "argparse",
-      "_origin": "semantic",
       "community": 12,
-      "community_name": "sincronizar-canal-meta.py",
+      "community_name": "prueba-tarjetas-coleccion.py",
       "external": true,
       "file_type": "concept",
       "norm_label": "argparse",
@@ -1920,23 +2203,10 @@
       "type": "external"
     },
     {
-      "id": "re",
-      "label": "re",
-      "_origin": "semantic",
-      "community": 12,
-      "community_name": "sincronizar-canal-meta.py",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "re",
-      "source_file": "",
-      "type": "external"
-    },
-    {
       "id": "shutil",
       "label": "shutil",
-      "_origin": "semantic",
       "community": 12,
-      "community_name": "sincronizar-canal-meta.py",
+      "community_name": "prueba-tarjetas-coleccion.py",
       "external": true,
       "file_type": "concept",
       "norm_label": "shutil",
@@ -1946,9 +2216,8 @@
     {
       "id": "tempfile",
       "label": "tempfile",
-      "_origin": "semantic",
       "community": 12,
-      "community_name": "sincronizar-canal-meta.py",
+      "community_name": "prueba-tarjetas-coleccion.py",
       "external": true,
       "file_type": "concept",
       "norm_label": "tempfile",
@@ -1956,21 +2225,41 @@
       "type": "external"
     },
     {
-      "id": "urllib_request",
-      "label": "urllib_request",
-      "_origin": "semantic",
-      "community": 12,
-      "community_name": "sincronizar-canal-meta.py",
+      "id": "base64",
+      "label": "base64",
+      "community": 13,
+      "community_name": "cargar-imagenes-productos.py",
       "external": true,
       "file_type": "concept",
-      "norm_label": "urllib_request",
+      "norm_label": "base64",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "os",
+      "label": "os",
+      "community": 13,
+      "community_name": "cargar-imagenes-productos.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "os",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "re",
+      "label": "re",
+      "community": 13,
+      "community_name": "cargar-imagenes-productos.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "re",
       "source_file": "",
       "type": "external"
     },
     {
       "id": "datetime",
       "label": "datetime",
-      "_origin": "semantic",
       "community": 3,
       "community_name": "meta-ads.py",
       "external": true,
@@ -1982,9 +2271,8 @@
     {
       "id": "json",
       "label": "json",
-      "_origin": "semantic",
       "community": 4,
-      "community_name": "vincular-codigo-b1.py",
+      "community_name": "json",
       "external": true,
       "file_type": "concept",
       "norm_label": "json",
@@ -1992,23 +2280,21 @@
       "type": "external"
     },
     {
-      "id": "sys",
-      "label": "sys",
-      "_origin": "semantic",
+      "id": "openpyxl",
+      "label": "openpyxl",
       "community": 4,
-      "community_name": "vincular-codigo-b1.py",
+      "community_name": "json",
       "external": true,
       "file_type": "concept",
-      "norm_label": "sys",
+      "norm_label": "openpyxl",
       "source_file": "",
       "type": "external"
     },
     {
       "id": "time",
       "label": "time",
-      "_origin": "semantic",
       "community": 4,
-      "community_name": "vincular-codigo-b1.py",
+      "community_name": "json",
       "external": true,
       "file_type": "concept",
       "norm_label": "time",
@@ -2018,17 +2304,119 @@
     {
       "id": "urllib_error",
       "label": "urllib_error",
-      "_origin": "semantic",
       "community": 4,
-      "community_name": "vincular-codigo-b1.py",
+      "community_name": "json",
       "external": true,
       "file_type": "concept",
       "norm_label": "urllib_error",
       "source_file": "",
       "type": "external"
+    },
+    {
+      "id": "urllib_request",
+      "label": "urllib_request",
+      "community": 4,
+      "community_name": "json",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "urllib_request",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "importlib_util",
+      "label": "importlib_util",
+      "community": 5,
+      "community_name": "fotos-kits.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "importlib_util",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "io",
+      "label": "io",
+      "community": 5,
+      "community_name": "fotos-kits.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "io",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "pil",
+      "label": "pil",
+      "community": 5,
+      "community_name": "fotos-kits.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "pil",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "sys",
+      "label": "sys",
+      "community": 6,
+      "community_name": "sys",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "sys",
+      "source_file": "",
+      "type": "external"
     }
   ],
   "links": [
+    {
+      "source": "cargar_fichas_tecnicas_api",
+      "target": "json",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "cargar-fichas-tecnicas.py",
+      "source_location": "L44",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_fichas_tecnicas_api",
+      "target": "time",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "cargar-fichas-tecnicas.py",
+      "source_location": "L56",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_fichas_tecnicas_catalogo_por_handle",
+      "target": "json",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "cargar-fichas-tecnicas.py",
+      "source_location": "L93",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_fichas_tecnicas_catalogo_por_handle",
+      "target": "re",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "cargar-fichas-tecnicas.py",
+      "source_location": "L97",
+      "weight": 1.0
+    },
     {
       "source": "cargar_fichas_tecnicas_leer_metafield",
       "target": "cargar_fichas_tecnicas_api",
@@ -2039,6 +2427,18 @@
       "context": "call",
       "source_file": "cargar-fichas-tecnicas.py",
       "source_location": "L103",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_fichas_tecnicas_main",
+      "target": "sys",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "cargar-fichas-tecnicas.py",
+      "source_location": "L114",
       "weight": 1.0
     },
     {
@@ -2079,6 +2479,18 @@
     },
     {
       "source": "cargar_fichas_tecnicas_main",
+      "target": "json",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "cargar-fichas-tecnicas.py",
+      "source_location": "L139",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_fichas_tecnicas_main",
       "target": "cargar_fichas_tecnicas_api",
       "relation": "calls",
       "_origin": "ast",
@@ -2087,6 +2499,78 @@
       "context": "call",
       "source_file": "cargar-fichas-tecnicas.py",
       "source_location": "L158",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_fichas_tecnicas_main",
+      "target": "time",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "cargar-fichas-tecnicas.py",
+      "source_location": "L177",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_fichas_tecnicas_parsear_documento",
+      "target": "re",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "cargar-fichas-tecnicas.py",
+      "source_location": "L66",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_imagenes_productos_api",
+      "target": "json",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L77",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_imagenes_productos_catalogo_por_handle",
+      "target": "json",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L120",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_imagenes_productos_catalogo_por_handle",
+      "target": "re",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L124",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_imagenes_productos_crear_carpetas",
+      "target": "os",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L237",
       "weight": 1.0
     },
     {
@@ -2099,6 +2583,30 @@
       "context": "call",
       "source_file": "cargar-imagenes-productos.py",
       "source_location": "L160",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_imagenes_productos_graphql",
+      "target": "json",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L162",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_imagenes_productos_main",
+      "target": "argparse",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L260",
       "weight": 1.0
     },
     {
@@ -2139,6 +2647,18 @@
     },
     {
       "source": "cargar_imagenes_productos_main",
+      "target": "os",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L295",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_imagenes_productos_main",
       "target": "cargar_imagenes_productos_api",
       "relation": "calls",
       "_origin": "ast",
@@ -2147,6 +2667,18 @@
       "context": "call",
       "source_file": "cargar-imagenes-productos.py",
       "source_location": "L305",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_imagenes_productos_main",
+      "target": "re",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L306",
       "weight": 1.0
     },
     {
@@ -2175,6 +2707,30 @@
     },
     {
       "source": "cargar_imagenes_productos_main",
+      "target": "base64",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L343",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_imagenes_productos_main",
+      "target": "time",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L351",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_imagenes_productos_main",
       "target": "cargar_imagenes_productos_videos_existentes",
       "relation": "calls",
       "_origin": "ast",
@@ -2195,6 +2751,42 @@
       "context": "call",
       "source_file": "cargar-imagenes-productos.py",
       "source_location": "L391",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_imagenes_productos_multipart",
+      "target": "base64",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L168",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_imagenes_productos_multipart",
+      "target": "os",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L168",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_imagenes_productos_parsear_documento",
+      "target": "re",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L94",
       "weight": 1.0
     },
     {
@@ -2234,6 +2826,30 @@
       "weight": 1.0
     },
     {
+      "source": "cargar_imagenes_productos_videos_existentes",
+      "target": "re",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L187",
+      "weight": 1.0
+    },
+    {
+      "source": "conciliar_inventario_api_get",
+      "target": "json",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "conciliar-inventario.py",
+      "source_location": "L60",
+      "weight": 1.0
+    },
+    {
       "source": "conciliar_inventario_build_title_index",
       "target": "conciliar_inventario_normalize_name",
       "relation": "calls",
@@ -2243,6 +2859,18 @@
       "context": "call",
       "source_file": "conciliar-inventario.py",
       "source_location": "L153",
+      "weight": 1.0
+    },
+    {
+      "source": "conciliar_inventario_fetch_all_products",
+      "target": "json",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "conciliar-inventario.py",
+      "source_location": "L79",
       "weight": 1.0
     },
     {
@@ -2258,6 +2886,18 @@
       "weight": 1.0
     },
     {
+      "source": "conciliar_inventario_fetch_all_products",
+      "target": "time",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "conciliar-inventario.py",
+      "source_location": "L82",
+      "weight": 1.0
+    },
+    {
       "source": "conciliar_inventario_find_by_name",
       "target": "conciliar_inventario_normalize_name",
       "relation": "calls",
@@ -2267,6 +2907,30 @@
       "context": "call",
       "source_file": "conciliar-inventario.py",
       "source_location": "L174",
+      "weight": 1.0
+    },
+    {
+      "source": "conciliar_inventario_find_by_name",
+      "target": "difflib",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "conciliar-inventario.py",
+      "source_location": "L185",
+      "weight": 1.0
+    },
+    {
+      "source": "conciliar_inventario_main",
+      "target": "sys",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "conciliar-inventario.py",
+      "source_location": "L219",
       "weight": 1.0
     },
     {
@@ -2331,6 +2995,18 @@
     },
     {
       "source": "conciliar_inventario_main",
+      "target": "openpyxl",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "conciliar-inventario.py",
+      "source_location": "L243",
+      "weight": 1.0
+    },
+    {
+      "source": "conciliar_inventario_main",
       "target": "conciliar_inventario_find_by_name",
       "relation": "calls",
       "_origin": "ast",
@@ -2354,6 +3030,78 @@
       "weight": 1.0
     },
     {
+      "source": "conciliar_inventario_main",
+      "target": "time",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "conciliar-inventario.py",
+      "source_location": "L361",
+      "weight": 1.0
+    },
+    {
+      "source": "conciliar_inventario_normalize_name",
+      "target": "unicodedata",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "conciliar-inventario.py",
+      "source_location": "L135",
+      "weight": 1.0
+    },
+    {
+      "source": "conciliar_inventario_normalize_name",
+      "target": "re",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "conciliar-inventario.py",
+      "source_location": "L138",
+      "weight": 1.0
+    },
+    {
+      "source": "conciliar_inventario_set_inventory",
+      "target": "json",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "conciliar-inventario.py",
+      "source_location": "L198",
+      "weight": 1.0
+    },
+    {
+      "source": "crear_combos_api",
+      "target": "json",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "crear-combos.py",
+      "source_location": "L131",
+      "weight": 1.0
+    },
+    {
+      "source": "crear_combos_api",
+      "target": "time",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "crear-combos.py",
+      "source_location": "L141",
+      "weight": 1.0
+    },
+    {
       "source": "crear_combos_buscar",
       "target": "crear_combos_api",
       "relation": "calls",
@@ -2363,6 +3111,18 @@
       "context": "call",
       "source_file": "crear-combos.py",
       "source_location": "L148",
+      "weight": 1.0
+    },
+    {
+      "source": "crear_combos_main",
+      "target": "sys",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "crear-combos.py",
+      "source_location": "L157",
       "weight": 1.0
     },
     {
@@ -2390,6 +3150,54 @@
       "weight": 1.0
     },
     {
+      "source": "crear_combos_main",
+      "target": "json",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "crear-combos.py",
+      "source_location": "L240",
+      "weight": 1.0
+    },
+    {
+      "source": "crear_combos_main",
+      "target": "time",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "crear-combos.py",
+      "source_location": "L246",
+      "weight": 1.0
+    },
+    {
+      "source": "crear_kits_api",
+      "target": "json",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "crear-kits.py",
+      "source_location": "L159",
+      "weight": 1.0
+    },
+    {
+      "source": "crear_kits_main",
+      "target": "sys",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "crear-kits.py",
+      "source_location": "L175",
+      "weight": 1.0
+    },
+    {
       "source": "crear_kits_main",
       "target": "crear_kits_producto",
       "relation": "calls",
@@ -2398,7 +3206,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "crear-kits.py",
-      "source_location": "L163",
+      "source_location": "L184",
       "weight": 1.0
     },
     {
@@ -2410,7 +3218,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "crear-kits.py",
-      "source_location": "L167",
+      "source_location": "L188",
+      "weight": 1.0
+    },
+    {
+      "source": "crear_kits_main",
+      "target": "time",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "crear-kits.py",
+      "source_location": "L192",
       "weight": 1.0
     },
     {
@@ -2422,7 +3242,55 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "crear-kits.py",
-      "source_location": "L146",
+      "source_location": "L167",
+      "weight": 1.0
+    },
+    {
+      "source": "deploy_shopify_all_theme_keys",
+      "target": "os",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "deploy-shopify.py",
+      "source_location": "L126",
+      "weight": 1.0
+    },
+    {
+      "source": "deploy_shopify_api_request",
+      "target": "json",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "deploy-shopify.py",
+      "source_location": "L58",
+      "weight": 1.0
+    },
+    {
+      "source": "deploy_shopify_api_request",
+      "target": "time",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "deploy-shopify.py",
+      "source_location": "L73",
+      "weight": 1.0
+    },
+    {
+      "source": "deploy_shopify_git",
+      "target": "subprocess",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "deploy-shopify.py",
+      "source_location": "L87",
       "weight": 1.0
     },
     {
@@ -2447,6 +3315,18 @@
       "context": "call",
       "source_file": "deploy-shopify.py",
       "source_location": "L112",
+      "weight": 1.0
+    },
+    {
+      "source": "deploy_shopify_main",
+      "target": "sys",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "deploy-shopify.py",
+      "source_location": "L196",
       "weight": 1.0
     },
     {
@@ -2511,6 +3391,18 @@
     },
     {
       "source": "deploy_shopify_main",
+      "target": "time",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "deploy-shopify.py",
+      "source_location": "L245",
+      "weight": 1.0
+    },
+    {
+      "source": "deploy_shopify_main",
       "target": "deploy_shopify_api_request",
       "relation": "calls",
       "_origin": "ast",
@@ -2519,6 +3411,18 @@
       "context": "call",
       "source_file": "deploy-shopify.py",
       "source_location": "L257",
+      "weight": 1.0
+    },
+    {
+      "source": "deploy_shopify_read_local",
+      "target": "base64",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "deploy-shopify.py",
+      "source_location": "L142",
       "weight": 1.0
     },
     {
@@ -2534,6 +3438,18 @@
       "weight": 1.0
     },
     {
+      "source": "deploy_shopify_read_remote",
+      "target": "base64",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "deploy-shopify.py",
+      "source_location": "L157",
+      "weight": 1.0
+    },
+    {
       "source": "deploy_shopify_resolve_theme",
       "target": "deploy_shopify_api_request",
       "relation": "calls",
@@ -2543,6 +3459,246 @@
       "context": "call",
       "source_file": "deploy-shopify.py",
       "source_location": "L80",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits_api",
+      "target": "json",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "fotos-kits.py",
+      "source_location": "L181",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits_datos_pieza",
+      "target": "json",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "fotos-kits.py",
+      "source_location": "L67",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits_main",
+      "target": "os",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "fotos-kits.py",
+      "source_location": "L191",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits_main",
+      "target": "sys",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "fotos-kits.py",
+      "source_location": "L195",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits_main",
+      "target": "fotos_kits_datos_pieza",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "fotos-kits.py",
+      "source_location": "L200",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits_main",
+      "target": "fotos_kits_bajar",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "fotos-kits.py",
+      "source_location": "L206",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits_main",
+      "target": "time",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "fotos-kits.py",
+      "source_location": "L207",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits_main",
+      "target": "fotos_kits_portada",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "fotos-kits.py",
+      "source_location": "L208",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits_main",
+      "target": "io",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "fotos-kits.py",
+      "source_location": "L209",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits_main",
+      "target": "fotos_kits_api",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "fotos-kits.py",
+      "source_location": "L217",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits_main",
+      "target": "base64",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "fotos-kits.py",
+      "source_location": "L225",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits_portada",
+      "target": "fotos_kits_fuente",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "fotos-kits.py",
+      "source_location": "L155",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits_portada",
+      "target": "fotos_kits_envolver",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "fotos-kits.py",
+      "source_location": "L158",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits_portada",
+      "target": "fotos_kits_corto",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "fotos-kits.py",
+      "source_location": "L165",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits_portada",
+      "target": "fotos_kits_tarjeta",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "fotos-kits.py",
+      "source_location": "L165",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits_tarjeta",
+      "target": "io",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "fotos-kits.py",
+      "source_location": "L132",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits_tarjeta",
+      "target": "fotos_kits_enderezar",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "fotos-kits.py",
+      "source_location": "L134",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits_tarjeta",
+      "target": "fotos_kits_recortar_blanco",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "fotos-kits.py",
+      "source_location": "L134",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits_tarjeta",
+      "target": "fotos_kits_fuente",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "fotos-kits.py",
+      "source_location": "L140",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits_tarjeta",
+      "target": "fotos_kits_envolver",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "fotos-kits.py",
+      "source_location": "L146",
       "weight": 1.0
     },
     {
@@ -2579,6 +3735,18 @@
       "context": "call",
       "source_file": "generar-carta-bienvenida.py",
       "source_location": "L159",
+      "weight": 1.0
+    },
+    {
+      "source": "generar_carta_bienvenida_main",
+      "target": "os",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "generar-carta-bienvenida.py",
+      "source_location": "L192",
       "weight": 1.0
     },
     {
@@ -2666,6 +3834,30 @@
       "weight": 1.0
     },
     {
+      "source": "meta_ads_api_request",
+      "target": "json",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "meta-ads.py",
+      "source_location": "L60",
+      "weight": 1.0
+    },
+    {
+      "source": "meta_ads_api_request",
+      "target": "sys",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "meta-ads.py",
+      "source_location": "L64",
+      "weight": 1.0
+    },
+    {
       "source": "meta_ads_cmd_activar",
       "target": "meta_ads_require",
       "relation": "calls",
@@ -2750,6 +3942,30 @@
       "weight": 1.0
     },
     {
+      "source": "meta_ads_cmd_crear_campania",
+      "target": "json",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "meta-ads.py",
+      "source_location": "L254",
+      "weight": 1.0
+    },
+    {
+      "source": "meta_ads_cmd_crear_campania",
+      "target": "sys",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "meta-ads.py",
+      "source_location": "L261",
+      "weight": 1.0
+    },
+    {
       "source": "meta_ads_cmd_listar",
       "target": "meta_ads_api_request",
       "relation": "calls",
@@ -2811,6 +4027,18 @@
     },
     {
       "source": "meta_ads_cmd_reporte",
+      "target": "json",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "meta-ads.py",
+      "source_location": "L90",
+      "weight": 1.0
+    },
+    {
+      "source": "meta_ads_cmd_reporte",
       "target": "meta_ads_hace_dias",
       "relation": "calls",
       "_origin": "ast",
@@ -2846,6 +4074,18 @@
       "weight": 1.0
     },
     {
+      "source": "meta_ads_hace_dias",
+      "target": "datetime",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "meta-ads.py",
+      "source_location": "L123",
+      "weight": 1.0
+    },
+    {
       "source": "meta_ads_hijos_de_campania",
       "target": "meta_ads_api_request",
       "relation": "calls",
@@ -2855,6 +4095,18 @@
       "context": "call",
       "source_file": "meta-ads.py",
       "source_location": "L139",
+      "weight": 1.0
+    },
+    {
+      "source": "meta_ads_main",
+      "target": "argparse",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "meta-ads.py",
+      "source_location": "L416",
       "weight": 1.0
     },
     {
@@ -2870,6 +4122,30 @@
       "weight": 1.0
     },
     {
+      "source": "meta_ads_require",
+      "target": "sys",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "meta-ads.py",
+      "source_location": "L412",
+      "weight": 1.0
+    },
+    {
+      "source": "meta_ads_require_env",
+      "target": "sys",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "meta-ads.py",
+      "source_location": "L71",
+      "weight": 1.0
+    },
+    {
       "source": "meta_ads_resolve_business_assets",
       "target": "meta_ads_api_request",
       "relation": "calls",
@@ -2879,6 +4155,18 @@
       "context": "call",
       "source_file": "meta-ads.py",
       "source_location": "L188",
+      "weight": 1.0
+    },
+    {
+      "source": "meta_ads_resolve_business_assets",
+      "target": "sys",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "meta-ads.py",
+      "source_location": "L191",
       "weight": 1.0
     },
     {
@@ -2894,6 +4182,42 @@
       "weight": 1.0
     },
     {
+      "source": "prueba_tarjetas_coleccion_armar_repro",
+      "target": "re",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "prueba-tarjetas-coleccion.py",
+      "source_location": "L79",
+      "weight": 1.0
+    },
+    {
+      "source": "prueba_tarjetas_coleccion_armar_repro",
+      "target": "shutil",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "prueba-tarjetas-coleccion.py",
+      "source_location": "L87",
+      "weight": 1.0
+    },
+    {
+      "source": "prueba_tarjetas_coleccion_main",
+      "target": "argparse",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "prueba-tarjetas-coleccion.py",
+      "source_location": "L114",
+      "weight": 1.0
+    },
+    {
       "source": "prueba_tarjetas_coleccion_main",
       "target": "prueba_tarjetas_coleccion_buscar_chrome",
       "relation": "calls",
@@ -2903,6 +4227,18 @@
       "context": "call",
       "source_file": "prueba-tarjetas-coleccion.py",
       "source_location": "L118",
+      "weight": 1.0
+    },
+    {
+      "source": "prueba_tarjetas_coleccion_main",
+      "target": "tempfile",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "prueba-tarjetas-coleccion.py",
+      "source_location": "L119",
       "weight": 1.0
     },
     {
@@ -2930,6 +4266,42 @@
       "weight": 1.0
     },
     {
+      "source": "prueba_tarjetas_coleccion_main",
+      "target": "shutil",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "prueba-tarjetas-coleccion.py",
+      "source_location": "L147",
+      "weight": 1.0
+    },
+    {
+      "source": "rebuild_mapa_3d_main",
+      "target": "sys",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "rebuild-mapa-3d.py",
+      "source_location": "L43",
+      "weight": 1.0
+    },
+    {
+      "source": "rebuild_mapa_3d_main",
+      "target": "json",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "rebuild-mapa-3d.py",
+      "source_location": "L45",
+      "weight": 1.0
+    },
+    {
       "source": "rebuild_mapa_3d_main",
       "target": "rebuild_mapa_3d_compact",
       "relation": "calls",
@@ -2942,6 +4314,18 @@
       "weight": 1.0
     },
     {
+      "source": "rebuild_mapa_3d_main",
+      "target": "re",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "rebuild-mapa-3d.py",
+      "source_location": "L52",
+      "weight": 1.0
+    },
+    {
       "source": "sincronizar_canal_meta_aplicar",
       "target": "sincronizar_canal_meta_gql",
       "relation": "calls",
@@ -2951,6 +4335,66 @@
       "context": "call",
       "source_file": "sincronizar-canal-meta.py",
       "source_location": "L216",
+      "weight": 1.0
+    },
+    {
+      "source": "sincronizar_canal_meta_gql",
+      "target": "json",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "sincronizar-canal-meta.py",
+      "source_location": "L82",
+      "weight": 1.0
+    },
+    {
+      "source": "sincronizar_canal_meta_gql",
+      "target": "sys",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "sincronizar-canal-meta.py",
+      "source_location": "L92",
+      "weight": 1.0
+    },
+    {
+      "source": "sincronizar_canal_meta_gql",
+      "target": "time",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "sincronizar-canal-meta.py",
+      "source_location": "L96",
+      "weight": 1.0
+    },
+    {
+      "source": "sincronizar_canal_meta_main",
+      "target": "argparse",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "sincronizar-canal-meta.py",
+      "source_location": "L225",
+      "weight": 1.0
+    },
+    {
+      "source": "sincronizar_canal_meta_main",
+      "target": "sys",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "sincronizar-canal-meta.py",
+      "source_location": "L249",
       "weight": 1.0
     },
     {
@@ -3002,6 +4446,18 @@
       "weight": 1.0
     },
     {
+      "source": "sincronizar_canal_meta_main",
+      "target": "time",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "sincronizar-canal-meta.py",
+      "source_location": "L297",
+      "weight": 1.0
+    },
+    {
       "source": "sincronizar_canal_meta_resolver_canal",
       "target": "sincronizar_canal_meta_gql",
       "relation": "calls",
@@ -3011,6 +4467,18 @@
       "context": "call",
       "source_file": "sincronizar-canal-meta.py",
       "source_location": "L113",
+      "weight": 1.0
+    },
+    {
+      "source": "sincronizar_canal_meta_resolver_canal",
+      "target": "sys",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "sincronizar-canal-meta.py",
+      "source_location": "L123",
       "weight": 1.0
     },
     {
@@ -3062,6 +4530,42 @@
       "weight": 1.0
     },
     {
+      "source": "vincular_codigo_b1_api_request",
+      "target": "json",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "vincular-codigo-b1.py",
+      "source_location": "L50",
+      "weight": 1.0
+    },
+    {
+      "source": "vincular_codigo_b1_api_request",
+      "target": "time",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "vincular-codigo-b1.py",
+      "source_location": "L61",
+      "weight": 1.0
+    },
+    {
+      "source": "vincular_codigo_b1_fetch_all_products",
+      "target": "json",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "vincular-codigo-b1.py",
+      "source_location": "L84",
+      "weight": 1.0
+    },
+    {
       "source": "vincular_codigo_b1_fetch_all_products",
       "target": "vincular_codigo_b1_next_page_url",
       "relation": "calls",
@@ -3071,6 +4575,66 @@
       "context": "call",
       "source_file": "vincular-codigo-b1.py",
       "source_location": "L86",
+      "weight": 1.0
+    },
+    {
+      "source": "vincular_codigo_b1_fetch_all_products",
+      "target": "time",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "vincular-codigo-b1.py",
+      "source_location": "L87",
+      "weight": 1.0
+    },
+    {
+      "source": "vincular_codigo_b1_leer_conteo",
+      "target": "openpyxl",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "vincular-codigo-b1.py",
+      "source_location": "L92",
+      "weight": 1.0
+    },
+    {
+      "source": "vincular_codigo_b1_leer_conteo",
+      "target": "sys",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "vincular-codigo-b1.py",
+      "source_location": "L99",
+      "weight": 1.0
+    },
+    {
+      "source": "vincular_codigo_b1_main",
+      "target": "argparse",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "vincular-codigo-b1.py",
+      "source_location": "L123",
+      "weight": 1.0
+    },
+    {
+      "source": "vincular_codigo_b1_main",
+      "target": "sys",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "vincular-codigo-b1.py",
+      "source_location": "L135",
       "weight": 1.0
     },
     {
@@ -3107,6 +4671,30 @@
       "context": "call",
       "source_file": "vincular-codigo-b1.py",
       "source_location": "L178",
+      "weight": 1.0
+    },
+    {
+      "source": "vincular_codigo_b1_main",
+      "target": "time",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "vincular-codigo-b1.py",
+      "source_location": "L182",
+      "weight": 1.0
+    },
+    {
+      "source": "crear_kits_main",
+      "target": "crear_kits_main_cuerpo_html",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "crear-kits.py",
+      "source_location": "L230",
       "weight": 1.0
     },
     {
@@ -3526,7 +5114,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "crear-kits.py",
-      "source_location": "L32",
+      "source_location": "L33",
       "weight": 1.0
     },
     {
@@ -3538,7 +5126,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "crear-kits.py",
-      "source_location": "L33",
+      "source_location": "L34",
       "weight": 1.0
     },
     {
@@ -3550,7 +5138,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "crear-kits.py",
-      "source_location": "L34",
+      "source_location": "L35",
       "weight": 1.0
     },
     {
@@ -3562,7 +5150,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "crear-kits.py",
-      "source_location": "L35",
+      "source_location": "L36",
       "weight": 1.0
     },
     {
@@ -3574,7 +5162,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "crear-kits.py",
-      "source_location": "L36",
+      "source_location": "L37",
       "weight": 1.0
     },
     {
@@ -3586,7 +5174,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "crear-kits.py",
-      "source_location": "L37",
+      "source_location": "L38",
       "weight": 1.0
     },
     {
@@ -3695,6 +5283,102 @@
       "context": "import",
       "source_file": "deploy-shopify.py",
       "source_location": "L37",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits",
+      "target": "base64",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "fotos-kits.py",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits",
+      "target": "importlib_util",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "fotos-kits.py",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits",
+      "target": "io",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "fotos-kits.py",
+      "source_location": "L27",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits",
+      "target": "json",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "fotos-kits.py",
+      "source_location": "L28",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits",
+      "target": "os",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "fotos-kits.py",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits",
+      "target": "sys",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "fotos-kits.py",
+      "source_location": "L30",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits",
+      "target": "time",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "fotos-kits.py",
+      "source_location": "L31",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits",
+      "target": "urllib_request",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "fotos-kits.py",
+      "source_location": "L32",
       "weight": 1.0
     },
     {
@@ -4142,6 +5826,18 @@
       "weight": 1.0
     },
     {
+      "source": "fotos_kits",
+      "target": "pil",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "fotos-kits.py",
+      "source_location": "L34",
+      "weight": 1.0
+    },
+    {
       "source": "generar_carta_bienvenida",
       "target": "reportlab_lib_pagesizes",
       "relation": "imports_from",
@@ -4564,7 +6260,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "crear-kits.py",
-      "source_location": "L136",
+      "source_location": "L157",
       "weight": 1.0
     },
     {
@@ -4575,7 +6271,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "crear-kits.py",
-      "source_location": "L145",
+      "source_location": "L166",
       "weight": 1.0
     },
     {
@@ -4586,7 +6282,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "crear-kits.py",
-      "source_location": "L150",
+      "source_location": "L171",
       "weight": 1.0
     },
     {
@@ -4697,6 +6393,127 @@
       "confidence_score": 1.0,
       "source_file": "deploy-shopify.py",
       "source_location": "L93",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits",
+      "target": "fotos_kits_enderezar",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "fotos-kits.py",
+      "source_location": "L108",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits",
+      "target": "fotos_kits_tarjeta",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "fotos-kits.py",
+      "source_location": "L126",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits",
+      "target": "fotos_kits_portada",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "fotos-kits.py",
+      "source_location": "L151",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits",
+      "target": "fotos_kits_api",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "fotos-kits.py",
+      "source_location": "L178",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits",
+      "target": "fotos_kits_main",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "fotos-kits.py",
+      "source_location": "L187",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits",
+      "target": "fotos_kits_fuente",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "fotos-kits.py",
+      "source_location": "L54",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits",
+      "target": "fotos_kits_bajar",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "fotos-kits.py",
+      "source_location": "L58",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits",
+      "target": "fotos_kits_datos_pieza",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "fotos-kits.py",
+      "source_location": "L65",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits",
+      "target": "fotos_kits_corto",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "fotos-kits.py",
+      "source_location": "L71",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits",
+      "target": "fotos_kits_envolver",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "fotos-kits.py",
+      "source_location": "L78",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits",
+      "target": "fotos_kits_recortar_blanco",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "fotos-kits.py",
+      "source_location": "L96",
       "weight": 1.0
     },
     {
@@ -5327,6 +7144,17 @@
       "weight": 1.0
     },
     {
+      "source": "cargar_fichas_tecnicas_rationale_2",
+      "target": "cargar_fichas_tecnicas",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "cargar-fichas-tecnicas.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
       "source": "cargar_fichas_tecnicas_rationale_63",
       "target": "cargar_fichas_tecnicas_parsear_documento",
       "relation": "rationale_for",
@@ -5401,6 +7229,17 @@
       "confidence_score": 1.0,
       "source_file": "cargar-imagenes-productos.py",
       "source_location": "L194",
+      "weight": 1.0
+    },
+    {
+      "source": "cargar_imagenes_productos_rationale_2",
+      "target": "cargar_imagenes_productos",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "cargar-imagenes-productos.py",
+      "source_location": "L2",
       "weight": 1.0
     },
     {
@@ -5481,6 +7320,39 @@
       "weight": 1.0
     },
     {
+      "source": "conciliar_inventario_rationale_2",
+      "target": "conciliar_inventario",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "conciliar-inventario.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "crear_combos_rationale_2",
+      "target": "crear_combos",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "crear-combos.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "crear_kits_rationale_2",
+      "target": "crear_kits",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "crear-kits.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
       "source": "deploy_shopify_rationale_103",
       "target": "deploy_shopify_keys_from_git",
       "relation": "rationale_for",
@@ -5525,6 +7397,17 @@
       "weight": 1.0
     },
     {
+      "source": "deploy_shopify_rationale_2",
+      "target": "deploy_shopify",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "deploy-shopify.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
       "source": "deploy_shopify_rationale_94",
       "target": "deploy_shopify_theme_key",
       "relation": "rationale_for",
@@ -5533,6 +7416,50 @@
       "confidence_score": 1.0,
       "source_file": "deploy-shopify.py",
       "source_location": "L94",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits_rationale_109",
+      "target": "fotos_kits_enderezar",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "fotos-kits.py",
+      "source_location": "L109",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits_rationale_127",
+      "target": "fotos_kits_tarjeta",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "fotos-kits.py",
+      "source_location": "L127",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits_rationale_2",
+      "target": "fotos_kits",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "fotos-kits.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "fotos_kits_rationale_97",
+      "target": "fotos_kits_recortar_blanco",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "fotos-kits.py",
+      "source_location": "L97",
       "weight": 1.0
     },
     {
@@ -5566,6 +7493,17 @@
       "confidence_score": 1.0,
       "source_file": "generar-carta-bienvenida.py",
       "source_location": "L164",
+      "weight": 1.0
+    },
+    {
+      "source": "generar_carta_bienvenida_rationale_2",
+      "target": "generar_carta_bienvenida",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "generar-carta-bienvenida.py",
+      "source_location": "L2",
       "weight": 1.0
     },
     {
@@ -5613,6 +7551,28 @@
       "weight": 1.0
     },
     {
+      "source": "meta_ads_rationale_2",
+      "target": "meta_ads",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "meta-ads.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "prueba_tarjetas_coleccion_rationale_2",
+      "target": "prueba_tarjetas_coleccion",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "prueba-tarjetas-coleccion.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
       "source": "prueba_tarjetas_coleccion_rationale_74",
       "target": "prueba_tarjetas_coleccion_armar_repro",
       "relation": "rationale_for",
@@ -5624,6 +7584,17 @@
       "weight": 1.0
     },
     {
+      "source": "rebuild_mapa_3d_rationale_2",
+      "target": "rebuild_mapa_3d",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "rebuild-mapa-3d.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
       "source": "sincronizar_canal_meta_rationale_161",
       "target": "sincronizar_canal_meta_es_prohibido",
       "relation": "rationale_for",
@@ -5632,6 +7603,28 @@
       "confidence_score": 1.0,
       "source_file": "sincronizar-canal-meta.py",
       "source_location": "L161",
+      "weight": 1.0
+    },
+    {
+      "source": "sincronizar_canal_meta_rationale_2",
+      "target": "sincronizar_canal_meta",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "sincronizar-canal-meta.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "vincular_codigo_b1_rationale_2",
+      "target": "vincular_codigo_b1",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "vincular-codigo-b1.py",
+      "source_location": "L2",
       "weight": 1.0
     },
     {
@@ -5732,5 +7725,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "16d151b11e8d755da9eaf3b7419512aa78611f3c"
+  "built_at_commit": "5e0d0510fe3dbe1e3b22cefe4302111c76c6c536"
 }

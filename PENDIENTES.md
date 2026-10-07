@@ -945,8 +945,9 @@ llamada de API), el grafo de `scripts/` sí se movió esta vez —
 ## 🧭 Plan del 30 sep — en ejecución (MANUAL §68 y §69)
 
 > 📍 **Se trabaja por fases con [`GUIA-POR-FASES.md`](./GUIA-POR-FASES.md).**
-> Fase en curso: **1 — Kits a la venta**: apartar piezas y tomar fotos
-> según [`FOTOS-KITS.md`](./FOTOS-KITS.md).
+> Fase en curso: **1 — Kits a la venta**. Los 5 kits están en borrador,
+> con fotos y el inventario del 7 oct: **falta el visto bueno del dueño**.
+> 🔐 Rotar el secreto de la app de Shopify (pasó por el chat el 7 oct).
 
 **Hecho el 30 sep:**
 - ✅ Fase 0 en vivo: envío real junto al precio, barra fija de compra en

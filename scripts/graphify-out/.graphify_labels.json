@@ -3,11 +3,12 @@
   "1": "deploy-shopify.py",
   "2": "Deploy del tema a Shopify",
   "3": "meta-ads.py",
-  "4": "vincular-codigo-b1.py",
-  "6": "cargar-fichas-tecnicas.py",
+  "4": "json",
+  "5": "fotos-kits.py",
+  "6": "sys",
   "8": "instalar-entorno.sh",
   "10": "verificar-herramental.sh",
   "11": "generar-carta-bienvenida.py",
-  "12": "sincronizar-canal-meta.py",
+  "12": "prueba-tarjetas-coleccion.py",
   "13": "cargar-imagenes-productos.py"
 }
