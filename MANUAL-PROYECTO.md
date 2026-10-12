@@ -8490,3 +8490,18 @@ ventas@ y facturacion@intemperiemexico.com, botón de WhatsApp
 (wa.me/527773277340), enlaces a Facebook e Instagram y `/pages/contact`
 (HTTP 200). Se confirmó sin agregar el domicilio personal.
 
+### Merchant Center vinculado (11 oct, 22:33 Chihuahua)
+
+- El dueño creó la cuenta. La app muestra **Google Merchant Center en
+  "Advertencia"**, con 0 productos en todos los estados. Es normal en
+  una cuenta recién creada: la sincronización tarda de 1 a 3 días.
+- **Dos avisos:**
+  - **"No Google Ads account linked":** se ignora a propósito, no se
+    usan anuncios de pago en esta fase.
+  - **"Invalid business name":** casi seguro tomó el nombre de la tienda
+    en Shopify, **"INTEMPERIE MÉXICO"**, todo en mayúsculas, y Google lo
+    rechaza por su política de nombres. Se corrige en Merchant Center →
+    Información de la empresa a **"Intemperie México"**.
+- Instrucción a Claude in Chrome: corregir el nombre, con "sí" del dueño
+  antes de guardar, y seguir con B3–B6 hasta el PC2.
+
