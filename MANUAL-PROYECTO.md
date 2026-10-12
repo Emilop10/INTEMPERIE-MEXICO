@@ -8560,4 +8560,17 @@ ventas@ y facturacion@intemperiemexico.com, botón de WhatsApp
   - El formulario no distingue defectuosos ni errores de la tienda (que
     paga la tienda) ni cuenta los días "desde la recepción". Eso queda
     cubierto por la política enlazada.
+- **Pantalla de revisión de devoluciones:** Google pide marcar "I confirm
+  the information I entered matches the return policy on my website". Su
+  equipo revisa en un máximo de 10 días.
+  - Se comparó punto por punto contra la política leída del sitio en
+    vivo: devoluciones de defectuosos y no defectuosos; 7 días (Google
+    cuenta desde la entrega); solo productos nuevos; por paquetería; guía
+    a cargo del cliente; sin cargo de reposición; reembolso en **10 días**
+    (el campo solo acepta un número, y es el máximo del rango "5 a 10
+    días hábiles"); sin cambios.
+  - **Coincide, y el dueño aprobó marcar la casilla y guardar.**
+  - Lección: el campo de días de reembolso **se borró** al pasar de
+    pantalla y hubo que volver a capturarlo. En los formularios de Google
+    de varios pasos, se repasa la pantalla de revisión antes de confirmar.
 
