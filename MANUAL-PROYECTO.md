@@ -8534,4 +8534,14 @@ ventas@ y facturacion@intemperiemexico.com, botón de WhatsApp
 - **Acceso confirmado:** un solo usuario, **admin@intemperiemexico.com**,
   con roles Admin, Standard y Performance and insights ("Managed by
   intemperiemexico.com", verificado). La cuenta es del negocio.
+- **Envío (B3), aprobado tal como lo armó Claude in Chrome:** política
+  "Envío estándar" para México y todo el catálogo:
+  - hora de corte 2:00 PM (Ciudad de México);
+  - manejo de 1 día y tránsito de 1 a 6 días, de lunes a viernes, que
+    Google resume como **"2-7 business days"**;
+  - MXN, **gratis desde $799** y **$189 fijo** por debajo.
+
+  Claude in Chrome cambió por su cuenta "lunes a sábado" a "lunes a
+  viernes", por coherencia con "días hábiles", y dejó la hora de corte
+  por defecto. Las dos cosas se aceptaron.
 
