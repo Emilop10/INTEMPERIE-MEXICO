@@ -130,6 +130,10 @@ OAuth manual — son los mismos 7 pasos de siempre, 5 minutos.
 5. Sube los cambios a Shopify vía API (verde y gris no generan ningún
    cambio; solo amarillo y el rojo-que-tenía-existencia-previa).
 6. Te regresa el mismo Excel con:
+   - **Una pestaña "Cambios" al frente** (desde el 12 oct 2026): solo los
+     productos que cambiaron, con existencia antes, conteo de ahora y la
+     diferencia. **Entradas (+) en verde, salidas (−) en rojo**, de mayor
+     a menor.
    - Cada fila coloreada.
    - Tres columnas nuevas: `Existencia Shopify (antes)`, `Estatus`, `Nota`
      (la nota dice con qué llave se vinculó cada fila cuando no fue por

@@ -8264,4 +8264,10 @@ los 5 kits coinciden. No hubo nada que corregir.
   - el anzuelo Mustad 94151-NI #1/0 del kit Tolten bajó de 4 a 3, y los
     2 kits Tolten necesitan 2;
   - el Sea Kirby #13 del kit Clarus subió de 6 a 25.
+- **El Excel de resultado lleva ahora una pestaña "Cambios" al frente**
+  (pedido del dueño): solo lo que cambió, con antes, ahora y la
+  diferencia; entradas (+) en verde y salidas (−) en rojo. El del 10 oct
+  se armó a mano y se entregó. Desde ahí **`conciliar-inventario.py` la
+  genera solo** (`hoja_cambios()`), también en `--dry-run`, con el título
+  "PENDIENTES". Se probó en seco sin escribir en la tienda.
 

@@ -39,7 +39,7 @@ import urllib.parse
 import urllib.request
 
 import openpyxl
-from openpyxl.styles import PatternFill
+from openpyxl.styles import Alignment, Font, PatternFill
 
 API_VERSION = "2024-01"
 
@@ -208,6 +208,41 @@ def set_inventory(token, store, location_id, inventory_item_id, available):
         return {"error": e.read().decode()}
 
 
+def hoja_cambios(wb, detalle, col, dry_run):
+    """Pestaña "Cambios" al frente del Excel (pedido del dueño, 12 oct 2026):
+    solo los productos que cambiaron, con antes, ahora y la diferencia;
+    entradas (+) en verde y salidas (−) en rojo, de mayor a menor."""
+    ws = wb.create_sheet("Cambios", 0)
+    verde, rojo = PatternFill("solid", fgColor="C6EFCE"), PatternFill("solid", fgColor="FFC7CE")
+    filas = []
+    for row, antes, nuevo in detalle:
+        val = lambda k: row[col[k]].value if k in col else None
+        filas.append((val("Codigo B1"), val("No Parte"), val("Descripción"), int(antes), int(nuevo), int(nuevo) - int(antes)))
+    filas.sort(key=lambda f: (0 if f[5] > 0 else 1, -abs(f[5])))
+    entradas = sum(1 for f in filas if f[5] > 0)
+    ws["A1"] = "Cambios " + ("PENDIENTES (modo seco, no se escribió nada)" if dry_run else "aplicados en Shopify")
+    ws["A1"].font = Font(bold=True, size=13)
+    ws["A2"] = (f"{len(filas)} productos: {entradas} con entrada (+, verde) y "
+                f"{len(filas) - entradas} con salida (−, rojo).")
+    encabezado = ["Código B1", "No Parte", "Descripción", "Shopify antes", "Conteo (ahora)", "Diferencia", "Movimiento"]
+    for j, h in enumerate(encabezado, 1):
+        c = ws.cell(row=4, column=j, value=h)
+        c.font = Font(bold=True)
+        c.fill = PatternFill("solid", fgColor="D9D9D9")
+    for i, f in enumerate(filas, 5):
+        sube = f[5] > 0
+        valores = list(f[:5]) + [f"+{f[5]}" if sube else f"−{abs(f[5])}", "Entrada" if sube else "Salida"]
+        for j, v in enumerate(valores, 1):
+            c = ws.cell(row=i, column=j, value=v)
+            c.fill = verde if sube else rojo
+            if j >= 4:
+                c.alignment = Alignment(horizontal="center")
+        ws.cell(row=i, column=6).font = Font(bold=True, color="006100" if sube else "9C0006")
+    for j, w in enumerate([11, 18, 58, 14, 15, 12, 12], 1):
+        ws.column_dimensions[chr(64 + j)].width = w
+    ws.freeze_panes = "A5"
+
+
 def main():
     args = [a for a in sys.argv[1:] if a != "--dry-run"]
     dry_run = "--dry-run" in sys.argv
@@ -268,6 +303,7 @@ def main():
     vinculados_por_nombre = 0
     vinculados_por_b1 = 0
     updates = []
+    detalle = []
 
     for row in rows:
         raw_sku = row[col["No Parte"]].value
@@ -317,11 +353,13 @@ def main():
                 fill = COLOR_RED
                 if antes != 0:
                     updates.append((id_log, info, 0))
+                    detalle.append((row, antes, 0))
             elif existencia == 0:
                 estatus, fill = "rojo", COLOR_RED
                 nota = "Agotado"
                 if antes != 0:
                     updates.append((id_log, info, 0))
+                    detalle.append((row, antes, 0))
                 else:
                     nota = "Agotado (ya estaba en 0)"
             elif existencia == antes:
@@ -331,6 +369,7 @@ def main():
                 nota = f"Actualizado de {antes} a {existencia}"
                 fill = COLOR_YELLOW
                 updates.append((id_log, info, existencia))
+                detalle.append((row, antes, existencia))
 
             if nota_vinculo:
                 nota = f"{nota_vinculo} — {nota}"
@@ -361,6 +400,8 @@ def main():
             time.sleep(0.5)
             if (i + 1) % 20 == 0:
                 print(f"  {i + 1}/{len(updates)}")
+
+    hoja_cambios(wb, detalle, col, dry_run)
 
     summary_ws = wb.create_sheet("Resumen")
     summary_ws.append(["Estatus", "Cantidad"])
