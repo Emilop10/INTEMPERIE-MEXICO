@@ -8674,4 +8674,25 @@ ventas@ y facturacion@intemperiemexico.com, botón de WhatsApp
 
   **La #5 se queda en borrador**, para que no haya doble recordatorio, y
   las otras tres también se quedan como están: se revisan después.
+- **Shopify Flow instalada (12 oct).** Se instaló directo, sin ventana de
+  permisos: Claude in Chrome lo reconoció. Es oficial y gratuita y se
+  deja instalada.
+- **El flujo "Recupera el pedido abandonado"** (guardado el 23 mar 2026):
+  - abandono de pago en la tienda en línea, con total mayor que $0;
+  - **espera de 1 h**;
+  - condición de que no compró ni abandonó otro pago;
+  - condición de que hay productos con existencia;
+  - "Send marketing email", con el correo en borrador.
+- **Decisión: se deja en 1 h, no en 10 h.** El flujo ya filtra a quien
+  compró, y un recordatorio temprano suele recuperar más. Las 10 h eran
+  el valor anterior de Shopify. El flujo no se toca.
+- **Limitación de Shopify:** "Send marketing email" **solo llega a
+  suscritos a marketing**. Ya no existe el correo de pago abandonado para
+  todos. Opción futura, decisión del dueño por el tema de consentimiento:
+  dejar premarcada la casilla de marketing en la pantalla de pago.
+- **El correo conectado cambió de nombre:** "Tu pedido está guardado — y
+  con envío gratis si llegas a $799 MXN", con última edición **12 oct,
+  13:33**. Ni esta sesión ni Claude in Chrome lo editaron; se le preguntó
+  al dueño quién. Se pidió la vista previa completa, con el logo
+  agregado, antes de publicarlo.
 
