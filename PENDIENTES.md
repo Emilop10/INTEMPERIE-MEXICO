@@ -953,7 +953,8 @@ llamada de API), el grafo de `scripts/` sí se movió esta vez —
 > "intemperie.mx" en Mercado Libre = cuenta del papá, inactiva (resuelto).
 > ✅ 12 oct: Merchant Center 5872999371 configurado, listados gratuitos activos (MANUAL §76).
 > 🗓️ ~15 oct: repetir el diagnóstico de Merchant Center (revisión inicial, 4 imágenes, GTIN).
-> 🛒 Carrito abandonado: no existía. Recomendado instalar Shopify Messaging (pendiente del dueño).
+> ✅ 12 oct: correo de pago abandonado ACTIVO (Messaging + Flow, 1 h, suscritos a marketing).
+> Fase 2 cerrada (MANUAL §77). Siguiente: **fase 3 — reabasto y precios de la zona muerta**.
 > Canal "Shop": "Acción necesaria", revisar después.
 > 🔁 Producto nuevo publicado = correr `sincronizar-canal-meta.py` para Meta **y**
 > con `--canal "Google & YouTube"`.

@@ -104,6 +104,7 @@ como respaldo
 74. [¿Se están anunciando los kits? Todavía no (12 oct)](#74-se-están-anunciando-los-kits-todavía-no-12-oct)
 75. [Fase 2: el canal de Google estaba instalado y vacío (12 oct)](#75-fase-2-el-canal-de-google-estaba-instalado-y-vacío-12-oct)
 76. [Claude in Chrome para Merchant Center y el carrito abandonado; Mercado Libre resuelto (12 oct)](#76-claude-in-chrome-para-merchant-center-y-el-carrito-abandonado-mercado-libre-resuelto-12-oct)
+77. [Fase 2 cerrada: Google y el correo de pago abandonado funcionando (12 oct)](#77-fase-2-cerrada-google-y-el-correo-de-pago-abandonado-funcionando-12-oct)
 
 ---
 
@@ -8723,4 +8724,46 @@ ventas@ y facturacion@intemperiemexico.com, botón de WhatsApp
 
   Con el visto bueno, se activa **solo** este correo y se confirma en
   Flow que la acción ya no marca el error de borrador.
+
+## 77. Fase 2 cerrada: Google y el correo de pago abandonado funcionando (12 oct)
+
+Resumen de lo que quedó tras los cuatro puntos de control de §76.
+
+| Frente | Antes del 12 oct | Ahora |
+|---|---|---|
+| Canal Google & YouTube | Instalado, sin permiso de Google y **sin Merchant Center**; 0 productos | Reverificado; **Merchant Center 5872999371** ("Intemperie México", admin@ como único administrador, sitio verificado y reclamado) |
+| Productos en Google | 0 | **325** enviados, los 63 prohibidos nunca llegaron. En revisión inicial: se muestran con alcance limitado hasta ~3 días hábiles |
+| Envío y devoluciones en Google | — | $189, gratis desde $799, 2-7 días hábiles; devoluciones en 7 días, sin cambios, reembolso en 10 días. Google revisa la declaración de devoluciones en un máximo de 10 días |
+| Listados gratuitos | — | **Activos**. Shopping Ads y Google Ads **sin tocar** |
+| Correo de pago abandonado | **No existía**: 5 automatizaciones de una instalación anterior, todas en borrador. El 4 oct, un abandono **no recibió nada** | **Activo:** "Recupera el pedido abandonado" (Messaging + Flow), con espera de 1 h, solo si no compró y si hay existencias, con logo y WhatsApp. Llega **solo a suscritos a marketing** (límite de Shopify) |
+| Mercado Libre | "intemperie.mx" sin identificar | Es del papá del dueño y está inactiva. Abrir cuenta propia: decisión abierta |
+
+**Apps nuevas:** Shopify Messaging (gratis hasta 10,000 correos al mes)
+y Shopify Flow (gratuita), las dos oficiales.
+
+**Sin tocar a propósito:** las otras 4 automatizaciones de Messaging
+siguen en borrador (agradecimiento, bienvenida, navegación abandonada y
+carrito abandonado). La de carrito abandonado se queda así para evitar
+doble recordatorio. El "Recordatorio de carrito" de Shop sigue activo.
+
+### Seguimiento
+
+- **~15 oct:** repetir el bloque C (diagnóstico de Merchant Center).
+  Revisar si terminó la revisión inicial, si se reprocesaron las 4
+  imágenes y si aparece "GTIN no válido" (esperado).
+- **Decisiones del dueño, sin prisa:**
+  - si se premarca la casilla de marketing en la pantalla de pago, para
+    que el correo de recuperación llegue a más gente (tema de
+    consentimiento);
+  - si se activan las otras automatizaciones (bienvenida y
+    agradecimiento);
+  - Mercado Libre propio.
+- **Canal "Shop" con "Acción necesaria":** sin revisar todavía.
+
+**Lección de método:** el circuito de tres funcionó (Claude in Chrome
+trabaja, el dueño supervisa y Claude Code revisa cada reporte). Detectó
+tres cosas que la API no veía: la app sin permiso, la falta de Merchant
+Center y el correo en borrador desde una instalación anterior. Y frenó a
+tiempo dos decisiones equivocadas propias: suponer que existía Merchant
+Center y fijar la espera en 10 h.
 

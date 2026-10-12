@@ -9,8 +9,8 @@ siguiente hasta cumplir la condición de "terminada".
 |---|---|---|
 | 0 | Arreglos de la ficha de producto | ✅ En vivo (30 sep) |
 | 1 | Kits a la venta | ✅ 5 kits publicados (12 oct) |
-| **2** | **Canales gratis: Google, Mercado Libre y carrito abandonado** | 🟡 **EN CURSO** |
-| 3 | Reabasto y precios de la zona muerta | ⏳ |
+| 2 | Canales gratis: Google, Mercado Libre y carrito abandonado | ✅ 12 oct (seguimiento: diagnóstico de Google ~15 oct; Mercado Libre por decidir) |
+| **3** | **Reabasto y precios de la zona muerta** | 🟡 **SIGUIENTE** |
 | 4 | Encender Meta con criterio fijado | ⏳ Estructura lista y en pausa |
 
 Leyenda: 👤 = lo hace el dueño · 🤖 = lo hago yo.
@@ -63,7 +63,7 @@ conjunto de productos de Meta.
 
 ---
 
-## Fase 2 — Canales gratis 🟡
+## Fase 2 — Canales gratis ✅
 
 **Objetivo:** vender sin pagar por clic, en los lugares donde la gente
 ya busca.
@@ -72,10 +72,10 @@ ya busca.
 |---|---|---|---|
 | 2.1 | ✅ 12 oct — Merchant Center 5872999371 creado y configurado (envío, devoluciones, listados gratuitos activos). **Revisar dentro de la app "Google & YouTube"** (con Claude in Chrome, bloques A-C de [`PROMPT-CLAUDE-CHROME-GOOGLE-Y-CARRITO.md`](./PROMPT-CLAUDE-CHROME-GOOGLE-Y-CARRITO.md)) que esté completa: Merchant Center conectado, envío ($189 / gratis desde $799, 2-7 días), impuestos incluidos, listados gratuitos activos | 👤 | La app **ya estaba instalada** (12 oct). Pasos en [`INSTRUCTIVO-GOOGLE-Y-MERCADO-LIBRE.md`](./INSTRUCTIVO-GOOGLE-Y-MERCADO-LIBRE.md) |
 | 2.2 | Publicar en el canal de Google los productos permitidos y dejar fuera los 63 restringidos | 🤖 | ✅ 12 oct: 325 publicados, 63 fuera, 0 errores |
-| 2.3 | Revisar el diagnóstico de Merchant Center a la semana | 🤖 + 👤 | Los avisos de "GTIN no válido" son esperados; los rechazos no |
+| 2.3 | Revisar el diagnóstico de Merchant Center **hacia el 15 oct** (Claude in Chrome, bloque C) | 🤖 + 👤 | ⏳ 12 oct: 262 limitados por "revisión inicial", 4 "imagen no procesada" (Google reintenta), 0 por armas |
 | 2.4 | ¿El vendedor "intemperie.mx" de Mercado Libre es tuyo? | 👤 | ✅ 12 oct: es del papá del dueño y ya no opera. Sin riesgo de canibalizar ventas |
-| 2.5 | Si se va a Mercado Libre: archivo de carga y precio mínimo por producto | 🤖 | |
-| 2.6 | **Confirmar que el correo de carrito abandonado está activo** | 👤 + Claude in Chrome | Bloque D de [`PROMPT-CLAUDE-CHROME-GOOGLE-Y-CARRITO.md`](./PROMPT-CLAUDE-CHROME-GOOGLE-Y-CARRITO.md) |
+| 2.5 | ¿Abrir cuenta propia en Mercado Libre? Si sí: archivo de carga y precio mínimo por producto | 👤 decide, 🤖 arma | ⏳ decisión abierta, no bloquea la fase 3 |
+| 2.6 | Correo de carrito abandonado | 👤 + Claude in Chrome | ✅ 12 oct: Messaging + Flow instaladas; "Recupera el pedido abandonado" activo (1 h, suscritos a marketing, con logo) |
 
 **✅ Terminada cuando:** los productos aparecen en Google Shopping, está
 decidido qué pasa con Mercado Libre y el correo de carrito abandonado
