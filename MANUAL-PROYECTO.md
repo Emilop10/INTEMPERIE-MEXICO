@@ -8462,3 +8462,25 @@ dueño lo supervisa y Claude Code revisa cada reporte.
     rendimiento (Performance Max) no se toca;
   - seguir con B3 (envío) mostrando el resumen antes de guardar.
 
+### Crear el Merchant Center lo hace el dueño (12 oct)
+
+Claude in Chrome abrió el asistente "Configurar Merchant Center" (2 de 5
+tareas). El **selector de cuentas existentes salió vacío y desactivado**,
+lo que confirma que no hay ninguna cuenta previa que duplicar.
+
+Al intentar **"Crear nuevo"**, la propia herramienta lo bloqueó: crear
+cuentas está fuera de lo que Claude in Chrome puede hacer, aun con
+autorización. **Lo hace el dueño:**
+
+- datos: Intemperie México, México, español, MXN, el sitio;
+- los términos de Merchant Center los acepta él;
+- solo listados gratuitos y "Omitir" en todo lo que sea Ads;
+- reclamar el sitio con el método automático de Shopify.
+
+Después, "continúa".
+
+Anticipado para el paso de requisitos: si Google pide **datos de
+contacto**, se resuelve con el WhatsApp de la tienda y
+soporte@intemperiemexico.com, **nunca con el domicilio personal** que se
+quitó en §31.
+
