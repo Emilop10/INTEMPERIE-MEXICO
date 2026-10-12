@@ -103,6 +103,7 @@ como respaldo
 73. [Regla de inventario de kits y combos, automatizada (12 oct)](#73-regla-de-inventario-de-kits-y-combos-automatizada-12-oct)
 74. [¿Se están anunciando los kits? Todavía no (12 oct)](#74-se-están-anunciando-los-kits-todavía-no-12-oct)
 75. [Fase 2: el canal de Google estaba instalado y vacío (12 oct)](#75-fase-2-el-canal-de-google-estaba-instalado-y-vacío-12-oct)
+76. [Claude in Chrome para Merchant Center y el carrito abandonado; Mercado Libre resuelto (12 oct)](#76-claude-in-chrome-para-merchant-center-y-el-carrito-abandonado-mercado-libre-resuelto-12-oct)
 
 ---
 
@@ -8373,3 +8374,49 @@ B1 del punto de venta (ver `INSTRUCTIVO-GOOGLE-Y-MERCADO-LIBRE.md`).
 
 **Graphify:** `scripts/` sigue en **205/469**. El parámetro nuevo no
 agrega funciones, así que no mueve el grafo; se verificó contando.
+
+## 76. Claude in Chrome para Merchant Center y el carrito abandonado; Mercado Libre resuelto (12 oct)
+
+**Mercado Libre:** el vendedor "intemperie.mx" que salió en §68 es la
+cuenta **del papá del dueño y ya no opera**. Se descarta que esté
+llevándose ventas que el pixel no ve. Queda abierto si conviene abrir
+una cuenta propia en Mercado Libre; es decisión del dueño.
+
+**Google y carrito abandonado:** las dos cosas viven en pantallas que la
+Admin API no expone: la configuración interna de la app Google & YouTube,
+Merchant Center y las notificaciones o automatizaciones de Shopify. Se
+hacen con **Claude in Chrome** sobre la sesión del dueño.
+
+El prompt quedó en
+[`PROMPT-CLAUDE-CHROME-GOOGLE-Y-CARRITO.md`](./PROMPT-CLAUDE-CHROME-GOOGLE-Y-CARRITO.md).
+Está pensado como un circuito de tres: Claude in Chrome trabaja, el
+dueño lo supervisa y Claude Code revisa cada reporte.
+
+- **4 bloques con punto de control:**
+  - **A:** revisar la app (solo mirar);
+  - **B:** completar la configuración (envío, devoluciones, impuestos y
+    listados gratuitos, cada guardado con "sí" del dueño);
+  - **C:** diagnóstico de Merchant Center (solo mirar);
+  - **D:** carrito abandonado.
+- En cada control entrega un **reporte con formato fijo** ("REPORTE PARA
+  CLAUDE CODE — PCn") que el dueño reenvía aquí.
+- **Reglas duras:**
+  - nunca escribe contraseñas, códigos ni tarjetas;
+  - **ninguna campaña pagada** (Performance Max y similares);
+  - no toca precios, productos, inventario ni el tema;
+  - nada se guarda sin "sí" del dueño.
+- **Los datos van en el prompt para que no invente:**
+  - envío de $189, gratis desde $799, con 1 día de manejo + 1 a 6 de
+    tránsito = 2 a 7 días hábiles;
+  - devoluciones según la política publicada, que se leyó del sitio en
+    vivo antes de escribir el prompt: 7 días naturales; si es cambio de
+    opinión el cliente paga el regreso; si es defecto o error de la
+    tienda, lo paga la tienda.
+- **Carrito abandonado:** Shopify lo movió de *Configuración →
+  Notificaciones* a *Marketing → Automatizaciones*. El prompt revisa los
+  dos lugares y exige que **quede uno solo activo**, para que el cliente
+  no reciba dos correos. Propone 10 horas (lo que recomienda Shopify) y
+  que se envíe a todos los que abandonaron.
+- El documento trae también la tabla de **qué revisa Claude Code en cada
+  reporte** y cuáles son las señales de alto.
+

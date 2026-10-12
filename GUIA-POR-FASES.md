@@ -70,12 +70,12 @@ ya busca.
 
 | # | Paso | Quién | Detalle |
 |---|---|---|---|
-| 2.1 | **Revisar dentro de la app "Google & YouTube"** que esté completa: Merchant Center conectado, envío ($189 / gratis desde $799, 2-7 días), impuestos incluidos, listados gratuitos activos | 👤 | La app **ya estaba instalada** (12 oct). Pasos en [`INSTRUCTIVO-GOOGLE-Y-MERCADO-LIBRE.md`](./INSTRUCTIVO-GOOGLE-Y-MERCADO-LIBRE.md) |
+| 2.1 | **Revisar dentro de la app "Google & YouTube"** (con Claude in Chrome, bloques A-C de [`PROMPT-CLAUDE-CHROME-GOOGLE-Y-CARRITO.md`](./PROMPT-CLAUDE-CHROME-GOOGLE-Y-CARRITO.md)) que esté completa: Merchant Center conectado, envío ($189 / gratis desde $799, 2-7 días), impuestos incluidos, listados gratuitos activos | 👤 | La app **ya estaba instalada** (12 oct). Pasos en [`INSTRUCTIVO-GOOGLE-Y-MERCADO-LIBRE.md`](./INSTRUCTIVO-GOOGLE-Y-MERCADO-LIBRE.md) |
 | 2.2 | Publicar en el canal de Google los productos permitidos y dejar fuera los 63 restringidos | 🤖 | ✅ 12 oct: 325 publicados, 63 fuera, 0 errores |
 | 2.3 | Revisar el diagnóstico de Merchant Center a la semana | 🤖 + 👤 | Los avisos de "GTIN no válido" son esperados; los rechazos no |
-| 2.4 | **¿El vendedor "intemperie.mx" de Mercado Libre es tuyo?** | 👤 | Define todo lo que sigue con Mercado Libre |
+| 2.4 | ¿El vendedor "intemperie.mx" de Mercado Libre es tuyo? | 👤 | ✅ 12 oct: es del papá del dueño y ya no opera. Sin riesgo de canibalizar ventas |
 | 2.5 | Si se va a Mercado Libre: archivo de carga y precio mínimo por producto | 🤖 | |
-| 2.6 | **Confirmar que el correo de carrito abandonado está activo** | 👤 | Admin → Configuración → Notificaciones → "Pago abandonado" |
+| 2.6 | **Confirmar que el correo de carrito abandonado está activo** | 👤 + Claude in Chrome | Bloque D de [`PROMPT-CLAUDE-CHROME-GOOGLE-Y-CARRITO.md`](./PROMPT-CLAUDE-CHROME-GOOGLE-Y-CARRITO.md) |
 
 **✅ Terminada cuando:** los productos aparecen en Google Shopping, está
 decidido qué pasa con Mercado Libre y el correo de carrito abandonado

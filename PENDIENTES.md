@@ -948,8 +948,9 @@ llamada de API), el grafo de `scripts/` sí se movió esta vez —
 > ✅ Fase 1 terminada el 12 oct: 5 kits publicados (MANUAL §72).
 > Fase en curso: **2 — Canales gratis**. ✅ 12 oct: 325 productos publicados en el
 > canal de Google (63 prohibidos fuera, MANUAL §75). Falta del dueño: revisar la
-> configuración de la app Google & YouTube, confirmar si "intemperie.mx" (Mercado
-> Libre) es suyo y el correo de carrito abandonado.
+> configuración de la app Google & YouTube y el correo de carrito abandonado, con
+> Claude in Chrome ([`PROMPT-CLAUDE-CHROME-GOOGLE-Y-CARRITO.md`](./PROMPT-CLAUDE-CHROME-GOOGLE-Y-CARRITO.md)).
+> "intemperie.mx" en Mercado Libre = cuenta del papá, inactiva (resuelto).
 > 🔁 Producto nuevo publicado = correr `sincronizar-canal-meta.py` para Meta **y**
 > con `--canal "Google & YouTube"`.
 > 📦 Regla de kits y combos: si se vende uno, descontar sus piezas. En **cada**

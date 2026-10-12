@@ -87,6 +87,11 @@ falta**.
 
 ## 2. Mercado Libre
 
+> ✅ **12 oct — resuelto:** "intemperie.mx" es la cuenta de Mercado Libre
+> del papá del dueño y **ya no opera**. No compite con la tienda ni se
+> lleva sus ventas. Queda abierto si conviene abrir una cuenta propia
+> (decisión del dueño).
+
 **Primero, una pregunta:** en las búsquedas del 30 sep apareció un
 vendedor **"intemperie.mx"** en Mercado Libre, con el Binocular Simmons
 Venture 8x21 a $1,319.54, envío gratis y meses sin intereses.
