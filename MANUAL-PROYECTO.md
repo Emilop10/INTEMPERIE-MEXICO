@@ -8544,4 +8544,20 @@ ventas@ y facturacion@intemperiemexico.com, botón de WhatsApp
   Claude in Chrome cambió por su cuenta "lunes a sábado" a "lunes a
   viernes", por coherencia con "días hábiles", y dejó la hora de corte
   por defecto. Las dos cosas se aceptaron.
+- **Envío guardado:** "Envío estándar · Mexico · 2-7 business days ·
+  Flat rate, Free shipping over MX$799.00".
+- **Devoluciones (B4), aprobadas con dos ajustes:**
+  - URL de la política; acepta productos defectuosos y no defectuosos;
+  - solo productos nuevos; 7 días; solo por paquetería;
+  - guía de regreso a cargo del cliente (Claude in Chrome cambió por su
+    cuenta "incluida en el paquete" para que coincida con la política);
+  - sin cargo de reposición.
+  - **Ajuste 1, cambios = "No":** la política publicada no ofrece cambios
+    por otro producto, solo reposición de defectuosos, y Google compara
+    lo declarado contra la política.
+  - **Ajuste 2, reembolso de 5 a 10 días** (o 10 si el campo solo acepta
+    un número), igual que la política.
+  - El formulario no distingue defectuosos ni errores de la tienda (que
+    paga la tienda) ni cuenta los días "desde la recepción". Eso queda
+    cubierto por la política enlazada.
 
