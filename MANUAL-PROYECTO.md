@@ -99,6 +99,7 @@ como respaldo
 69. [Ejecución de las cuatro fases: ficha, kits, canales y Meta en pausa (30 sep)](#69-ejecución-de-las-cuatro-fases-ficha-kits-canales-y-meta-en-pausa-30-sep)
 70. [La guía por fases y la fase 1 en marcha (30 sep)](#70-la-guía-por-fases-y-la-fase-1-en-marcha-30-sep)
 71. [Kits con el inventario del 7 oct y fotos sin sesión de fotos (7 oct)](#71-kits-con-el-inventario-del-7-oct-y-fotos-sin-sesión-de-fotos-7-oct)
+72. [Fase 1 cerrada: los 5 kits publicados (12 oct)](#72-fase-1-cerrada-los-5-kits-publicados-12-oct)
 
 ---
 
@@ -8162,4 +8163,54 @@ leer el salto completo como código nuevo:
 - El contenedor nuevo instaló **graphify 0.9.80** (antes 0.9.66), que
   extrae más nodos y aristas del mismo código. Es la misma lección de
   §63.
+
+## 72. Fase 1 cerrada: los 5 kits publicados (12 oct)
+
+El dueño revisó los 5 borradores y pidió publicarlos.
+
+### Antes de publicar
+
+Habían pasado 5 días desde el inventario del 7 oct, así que se volvió a
+correr `crear-kits.py` (solo cálculo) para confirmar que ninguna pieza se
+hubiera vendido. Las existencias seguían en 2/2/2/2/1.
+
+> El contenedor volvió a reciclarse, pero **esta vez el token sí estaba**
+> en el scratchpad. Playwright y la base NSS sí se perdieron y se
+> rearmaron: `pip install playwright==1.56.0`, `apt-get install
+> libnss3-tools` y la importación de los 155 certificados de
+> `/root/.ccr/ca-bundle.crt` con `certutil`. TLS nunca se desactivó.
+
+### Publicación
+
+| Paso | Resultado |
+|---|---|
+| `status: active` + `published: true` (tienda en línea) | 5/5 |
+| `sincronizar-canal-meta.py` | **+5 publicados** al canal Facebook & Instagram. De paso salieron **−6**: las 5 monturas y la linterna táctica, que era el pendiente de §37/§66. El canal queda en 0 pendientes |
+| Catálogo de Meta | los 5 kits, "in stock". La imagen principal en Meta es la portada |
+| Conjunto de productos `2097987747472219` | el kit Tundra Pro **no entraba**: se creó después del filtro y su `retailer_id` (`67585134493773`) no estaba en la lista. Se agregó al filtro y el conjunto quedó en **13** |
+
+### Verificación en celular (en vivo)
+
+Los 5 dan HTTP 200 y muestran la portada como foto 1 de 9 a 12, el precio
+tachado contra el de las piezas por separado, "Envío gratis a todo
+México" y el botón de compra. En el kit Revenger, además, la barra fija
+aparece al pasar el botón y agrega al carrito. `shipping_rates` con un
+carrito de $1,549 da **$0.00**.
+
+### Corrección: la galería recortaba la portada
+
+En vivo se vio que **la galería del tema recorta alrededor del 5% de las
+orillas** y que el botón de zoom tapa la esquina superior izquierda. En
+una foto de producto no importa; en la portada se cortaba el título y la
+última columna. Se arregló con un margen de seguridad en
+`fotos-kits.py`: 190 px a los lados y 250 px arriba, sobre 2048. Se
+agregó `--reemplazar-portada`, que borra **solo** la imagen con la marca
+`[kit-portada]` y sube la nueva; las fotos de las piezas no se tocan. Se
+aplicó a los 5 kits y se verificó de nuevo en celular.
+
+### Lo que sigue
+
+**Fase 2** de `GUIA-POR-FASES.md`: Google & YouTube (dueño), Mercado
+Libre (falta saber si "intemperie.mx" es suyo) y el correo de carrito
+abandonado.
 

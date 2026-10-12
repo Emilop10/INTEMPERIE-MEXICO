@@ -14,6 +14,7 @@ Cada kit recibe:
 Uso:
     python3 scripts/fotos-kits.py --solo-portadas DIR       # arma las portadas en DIR, no sube nada
     SHOPIFY_ADMIN_TOKEN=shpat_... python3 scripts/fotos-kits.py   # arma y sube
+    SHOPIFY_ADMIN_TOKEN=shpat_... python3 scripts/fotos-kits.py --reemplazar-portada  # rehace solo la portada
 
 Las fotos de las piezas se leen del storefront público
 (/products/<handle>.js), así que armar las portadas no necesita token.
@@ -151,23 +152,27 @@ def tarjeta(img_bytes, ancho, alto, cantidad, etiqueta, girar=False):
 def portada(kit, piezas):
     lienzo = Image.new("RGB", (LADO, LADO), FONDO)
     d = ImageDraw.Draw(lienzo)
-    m = 72
-    d.text((m, 60), "TODO LO QUE INCLUYE", font=fuente("InstrumentSans-Bold.ttf", 44), fill=VERDE)
+    # Margen de seguridad: la galería del tema recorta ~5% de las orillas
+    # y el botón de zoom ocupa la esquina superior izquierda (~12%).
+    # Verificado en vivo el 12 oct: con 72px se cortaba texto.
+    m = 190
+    arriba = 250
+    d.text((m, arriba), "TODO LO QUE INCLUYE", font=fuente("InstrumentSans-Bold.ttf", 44), fill=VERDE)
     titulo = kit["titulo"].replace("Kit Listo para Pescar ", "Kit ")
     ft = fuente("InstrumentSans-Bold.ttf", 86)
     for i, linea in enumerate(envolver(d, titulo, ft, LADO - 2 * m)):
-        d.text((m, 122 + i * 98), linea, font=ft, fill=BLANCO)
-    y = 360
+        d.text((m, arriba + 62 + i * 98), linea, font=ft, fill=BLANCO)
+    y = arriba + 62 + 98 * len(envolver(d, titulo, ft, LADO - 2 * m)) + 40
     sep = 28
     # La caña (primera pieza) ocupa todo el ancho: es larga y se perdería en una celda.
     cana, resto = piezas[0], piezas[1:]
-    alto_cana = 380
+    alto_cana = 300
     lienzo.paste(tarjeta(cana["bytes"], LADO - 2 * m, alto_cana, cana["q"], corto(cana["titulo"]), girar=True), (m, y))
     y += alto_cana + sep
     cols = 3 if len(resto) <= 6 else 4
     filas = -(-len(resto) // cols)
     ancho = (LADO - 2 * m - (cols - 1) * sep) // cols
-    alto = min(ancho + 60, (LADO - y - 60 - (filas - 1) * sep) // filas)
+    alto = min(ancho + 60, (LADO - y - 170 - (filas - 1) * sep) // filas)
     for i, p in enumerate(resto):
         x = m + (i % cols) * (ancho + sep)
         yy = y + (i // cols) * (alto + sep)
@@ -219,6 +224,13 @@ def main():
             print(f"⚠ el kit {kit['handle']} no existe en la tienda; corre crear-kits.py --crear")
             continue
         pid, alts = p[0]["id"], " ".join((im.get("alt") or "") for im in p[0]["images"])
+        if "--reemplazar-portada" in sys.argv:
+            # Solo borra la portada que subió este script (marca [kit-portada]);
+            # las fotos de las piezas y cualquier otra imagen se quedan.
+            for im in p[0]["images"]:
+                if "[kit-portada]" in (im.get("alt") or ""):
+                    api("DELETE", f"products/{pid}/images/{im['id']}.json", token, tienda)
+            alts = alts.replace("[kit-portada]", "")
         subidas = 0
         if "[kit-portada]" not in alts:
             api("POST", f"products/{pid}/images.json", token, tienda, {"image": {

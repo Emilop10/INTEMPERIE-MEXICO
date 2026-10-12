@@ -8,8 +8,8 @@ siguiente hasta cumplir la condición de "terminada".
 | Fase | Qué | Estado |
 |---|---|---|
 | 0 | Arreglos de la ficha de producto | ✅ En vivo (30 sep) |
-| **1** | **Kits a la venta** | 🟡 **EN CURSO**: esperando el visto bueno de los 5 kits |
-| 2 | Canales gratis: Google, Mercado Libre y carrito abandonado | ⏳ |
+| 1 | Kits a la venta | ✅ 5 kits publicados (12 oct) |
+| **2** | **Canales gratis: Google, Mercado Libre y carrito abandonado** | 🟡 **SIGUIENTE** |
 | 3 | Reabasto y precios de la zona muerta | ⏳ |
 | 4 | Encender Meta con criterio fijado | ⏳ Estructura lista y en pausa |
 
@@ -28,7 +28,7 @@ Hecho y verificado en vivo el 30 sep:
 
 ---
 
-## Fase 1 — Kits a la venta 🟡
+## Fase 1 — Kits a la venta ✅
 
 **Objetivo:** que los 4 kits estén publicados, con fotos reales y el
 inventario bien contado. Son el producto que se va a anunciar. Hoy
@@ -44,8 +44,8 @@ están en borrador, con precio y existencia de 2 cada uno.
 | 1.1 | Conciliar el inventario del 7 oct | 🤖 | ✅ 76 cambios, 0 errores |
 | 1.2 | Rehacer los kits con el inventario real | 🤖 | ✅ 5 kits (el quinto es nuevo, de 1 unidad) |
 | 1.3 | Portada y fotos de cada kit, con las fotos de sus piezas | 🤖 | ✅ de 9 a 12 imágenes por kit |
-| 1.4 | **Revisar los 5 kits en borrador y dar el visto bueno** | 👤 | ⏳ Admin → Productos → buscar "Kit Listo" |
-| 1.5 | Publicar, verificar en celular y en el catálogo de Meta | 🤖 | ⏳ con el visto bueno |
+| 1.4 | Revisar los 5 kits en borrador y dar el visto bueno | 👤 | ✅ 12 oct |
+| 1.5 | Publicar, verificar en celular y en el catálogo de Meta | 🤖 | ✅ 12 oct: publicados, 5/5 en el catálogo y en el conjunto de productos |
 
 **La regla de inventario de los kits.** Es la misma que ya aplica a los
 combos manuales (§50):

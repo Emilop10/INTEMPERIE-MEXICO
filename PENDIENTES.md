@@ -945,8 +945,10 @@ llamada de API), el grafo de `scripts/` sí se movió esta vez —
 ## 🧭 Plan del 30 sep — en ejecución (MANUAL §68 y §69)
 
 > 📍 **Se trabaja por fases con [`GUIA-POR-FASES.md`](./GUIA-POR-FASES.md).**
-> Fase en curso: **1 — Kits a la venta**. Los 5 kits están en borrador,
-> con fotos y el inventario del 7 oct: **falta el visto bueno del dueño**.
+> ✅ Fase 1 terminada el 12 oct: 5 kits publicados (MANUAL §72).
+> Fase siguiente: **2 — Canales gratis** (Google, Mercado Libre, carrito abandonado).
+> 📦 Regla nueva: si se vende un kit, descontar sus piezas; si se vende suelta
+> una pieza de un kit, bajar la existencia del kit.
 > 🔐 Rotar el secreto de la app de Shopify (pasó por el chat el 7 oct).
 
 **Hecho el 30 sep:**
@@ -994,8 +996,7 @@ corte fijado de antemano.
 - Hipótesis del envío (<$799 paga $189): 0.4% contra 0.8%, **no
   concluyente**. Próxima ronda: cambiar una sola cosa a la vez.
 - Verificado el 26 sep: pixel sano, enlaces sanos.
-- 🧹 Sin prisa: sacar del catálogo de Meta las 5 monturas para mira y la
-  linterna táctica (accesorios de arma).
+- ✅ 12 oct: las 5 monturas y la linterna táctica salieron del canal de Meta (`sincronizar-canal-meta.py`).
 
 ---
 

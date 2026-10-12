@@ -940,7 +940,7 @@
       "file_type": "code",
       "norm_label": "api()",
       "source_file": "fotos-kits.py",
-      "source_location": "L178"
+      "source_location": "L183"
     },
     {
       "id": "fotos_kits_bajar",
@@ -952,7 +952,7 @@
       "file_type": "code",
       "norm_label": "bajar()",
       "source_file": "fotos-kits.py",
-      "source_location": "L58"
+      "source_location": "L59"
     },
     {
       "id": "fotos_kits_corto",
@@ -964,7 +964,7 @@
       "file_type": "code",
       "norm_label": "corto()",
       "source_file": "fotos-kits.py",
-      "source_location": "L71"
+      "source_location": "L72"
     },
     {
       "id": "fotos_kits_datos_pieza",
@@ -976,7 +976,7 @@
       "file_type": "code",
       "norm_label": "datos_pieza()",
       "source_file": "fotos-kits.py",
-      "source_location": "L65"
+      "source_location": "L66"
     },
     {
       "id": "fotos_kits_enderezar",
@@ -988,7 +988,7 @@
       "file_type": "code",
       "norm_label": "enderezar()",
       "source_file": "fotos-kits.py",
-      "source_location": "L108"
+      "source_location": "L109"
     },
     {
       "id": "fotos_kits_envolver",
@@ -1000,7 +1000,7 @@
       "file_type": "code",
       "norm_label": "envolver()",
       "source_file": "fotos-kits.py",
-      "source_location": "L78"
+      "source_location": "L79"
     },
     {
       "id": "fotos_kits_fuente",
@@ -1012,7 +1012,7 @@
       "file_type": "code",
       "norm_label": "fuente()",
       "source_file": "fotos-kits.py",
-      "source_location": "L54"
+      "source_location": "L55"
     },
     {
       "id": "fotos_kits_main",
@@ -1024,7 +1024,7 @@
       "file_type": "code",
       "norm_label": "main()",
       "source_file": "fotos-kits.py",
-      "source_location": "L187"
+      "source_location": "L192"
     },
     {
       "id": "fotos_kits_portada",
@@ -1036,7 +1036,7 @@
       "file_type": "code",
       "norm_label": "portada()",
       "source_file": "fotos-kits.py",
-      "source_location": "L151"
+      "source_location": "L152"
     },
     {
       "id": "fotos_kits_recortar_blanco",
@@ -1048,7 +1048,7 @@
       "file_type": "code",
       "norm_label": "recortar_blanco()",
       "source_file": "fotos-kits.py",
-      "source_location": "L96"
+      "source_location": "L97"
     },
     {
       "id": "fotos_kits_tarjeta",
@@ -1060,7 +1060,7 @@
       "file_type": "code",
       "norm_label": "tarjeta()",
       "source_file": "fotos-kits.py",
-      "source_location": "L126"
+      "source_location": "L127"
     },
     {
       "id": "sincronizar_canal_meta_aplicar",
@@ -1841,7 +1841,7 @@
       "source_location": "L1"
     },
     {
-      "id": "fotos_kits_rationale_109",
+      "id": "fotos_kits_rationale_110",
       "label": "Las ca\u00f1as vienen fotografiadas en diagonal: dentro de una franja ancha quedaban\u2026",
       "_origin": "ast",
       "community": 5,
@@ -1849,10 +1849,10 @@
       "file_type": "rationale",
       "norm_label": "las canas vienen fotografiadas en diagonal: dentro de una franja ancha quedaban...",
       "source_file": "fotos-kits.py",
-      "source_location": "L109"
+      "source_location": "L110"
     },
     {
-      "id": "fotos_kits_rationale_127",
+      "id": "fotos_kits_rationale_128",
       "label": "Foto de la pieza sobre una tarjeta clara, con cantidad y nombre.",
       "_origin": "ast",
       "community": 5,
@@ -1860,7 +1860,7 @@
       "file_type": "rationale",
       "norm_label": "foto de la pieza sobre una tarjeta clara, con cantidad y nombre.",
       "source_file": "fotos-kits.py",
-      "source_location": "L127"
+      "source_location": "L128"
     },
     {
       "id": "fotos_kits_rationale_2",
@@ -1874,7 +1874,7 @@
       "source_location": "L2"
     },
     {
-      "id": "fotos_kits_rationale_97",
+      "id": "fotos_kits_rationale_98",
       "label": "Quita el margen blanco de la foto de cat\u00e1logo, para que la pieza ocupe la\u2026",
       "_origin": "ast",
       "community": 5,
@@ -1882,7 +1882,7 @@
       "file_type": "rationale",
       "norm_label": "quita el margen blanco de la foto de catalogo, para que la pieza ocupe la...",
       "source_file": "fotos-kits.py",
-      "source_location": "L97"
+      "source_location": "L98"
     },
     {
       "id": "sincronizar_canal_meta",
@@ -3470,7 +3470,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "fotos-kits.py",
-      "source_location": "L181",
+      "source_location": "L186",
       "weight": 1.0
     },
     {
@@ -3482,7 +3482,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "fotos-kits.py",
-      "source_location": "L67",
+      "source_location": "L68",
       "weight": 1.0
     },
     {
@@ -3494,7 +3494,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "fotos-kits.py",
-      "source_location": "L191",
+      "source_location": "L196",
       "weight": 1.0
     },
     {
@@ -3506,7 +3506,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "fotos-kits.py",
-      "source_location": "L195",
+      "source_location": "L200",
       "weight": 1.0
     },
     {
@@ -3518,7 +3518,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "fotos-kits.py",
-      "source_location": "L200",
+      "source_location": "L205",
       "weight": 1.0
     },
     {
@@ -3530,7 +3530,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "fotos-kits.py",
-      "source_location": "L206",
+      "source_location": "L211",
       "weight": 1.0
     },
     {
@@ -3542,7 +3542,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "fotos-kits.py",
-      "source_location": "L207",
+      "source_location": "L212",
       "weight": 1.0
     },
     {
@@ -3554,7 +3554,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "fotos-kits.py",
-      "source_location": "L208",
+      "source_location": "L213",
       "weight": 1.0
     },
     {
@@ -3566,7 +3566,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "fotos-kits.py",
-      "source_location": "L209",
+      "source_location": "L214",
       "weight": 1.0
     },
     {
@@ -3578,7 +3578,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "fotos-kits.py",
-      "source_location": "L217",
+      "source_location": "L222",
       "weight": 1.0
     },
     {
@@ -3590,7 +3590,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "fotos-kits.py",
-      "source_location": "L225",
+      "source_location": "L237",
       "weight": 1.0
     },
     {
@@ -3602,7 +3602,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "fotos-kits.py",
-      "source_location": "L155",
+      "source_location": "L160",
       "weight": 1.0
     },
     {
@@ -3614,7 +3614,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "fotos-kits.py",
-      "source_location": "L158",
+      "source_location": "L163",
       "weight": 1.0
     },
     {
@@ -3626,7 +3626,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "fotos-kits.py",
-      "source_location": "L165",
+      "source_location": "L170",
       "weight": 1.0
     },
     {
@@ -3638,7 +3638,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "fotos-kits.py",
-      "source_location": "L165",
+      "source_location": "L170",
       "weight": 1.0
     },
     {
@@ -3650,7 +3650,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "fotos-kits.py",
-      "source_location": "L132",
+      "source_location": "L133",
       "weight": 1.0
     },
     {
@@ -3662,7 +3662,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "fotos-kits.py",
-      "source_location": "L134",
+      "source_location": "L135",
       "weight": 1.0
     },
     {
@@ -3674,7 +3674,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "fotos-kits.py",
-      "source_location": "L134",
+      "source_location": "L135",
       "weight": 1.0
     },
     {
@@ -3686,7 +3686,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "fotos-kits.py",
-      "source_location": "L140",
+      "source_location": "L141",
       "weight": 1.0
     },
     {
@@ -3698,7 +3698,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "fotos-kits.py",
-      "source_location": "L146",
+      "source_location": "L147",
       "weight": 1.0
     },
     {
@@ -5294,7 +5294,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "fotos-kits.py",
-      "source_location": "L25",
+      "source_location": "L26",
       "weight": 1.0
     },
     {
@@ -5306,7 +5306,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "fotos-kits.py",
-      "source_location": "L26",
+      "source_location": "L27",
       "weight": 1.0
     },
     {
@@ -5318,7 +5318,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "fotos-kits.py",
-      "source_location": "L27",
+      "source_location": "L28",
       "weight": 1.0
     },
     {
@@ -5330,7 +5330,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "fotos-kits.py",
-      "source_location": "L28",
+      "source_location": "L29",
       "weight": 1.0
     },
     {
@@ -5342,7 +5342,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "fotos-kits.py",
-      "source_location": "L29",
+      "source_location": "L30",
       "weight": 1.0
     },
     {
@@ -5354,7 +5354,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "fotos-kits.py",
-      "source_location": "L30",
+      "source_location": "L31",
       "weight": 1.0
     },
     {
@@ -5366,7 +5366,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "fotos-kits.py",
-      "source_location": "L31",
+      "source_location": "L32",
       "weight": 1.0
     },
     {
@@ -5378,7 +5378,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "fotos-kits.py",
-      "source_location": "L32",
+      "source_location": "L33",
       "weight": 1.0
     },
     {
@@ -5834,7 +5834,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "fotos-kits.py",
-      "source_location": "L34",
+      "source_location": "L35",
       "weight": 1.0
     },
     {
@@ -6403,7 +6403,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "fotos-kits.py",
-      "source_location": "L108",
+      "source_location": "L109",
       "weight": 1.0
     },
     {
@@ -6414,7 +6414,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "fotos-kits.py",
-      "source_location": "L126",
+      "source_location": "L127",
       "weight": 1.0
     },
     {
@@ -6425,7 +6425,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "fotos-kits.py",
-      "source_location": "L151",
+      "source_location": "L152",
       "weight": 1.0
     },
     {
@@ -6436,7 +6436,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "fotos-kits.py",
-      "source_location": "L178",
+      "source_location": "L183",
       "weight": 1.0
     },
     {
@@ -6447,7 +6447,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "fotos-kits.py",
-      "source_location": "L187",
+      "source_location": "L192",
       "weight": 1.0
     },
     {
@@ -6458,7 +6458,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "fotos-kits.py",
-      "source_location": "L54",
+      "source_location": "L55",
       "weight": 1.0
     },
     {
@@ -6469,7 +6469,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "fotos-kits.py",
-      "source_location": "L58",
+      "source_location": "L59",
       "weight": 1.0
     },
     {
@@ -6480,7 +6480,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "fotos-kits.py",
-      "source_location": "L65",
+      "source_location": "L66",
       "weight": 1.0
     },
     {
@@ -6491,7 +6491,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "fotos-kits.py",
-      "source_location": "L71",
+      "source_location": "L72",
       "weight": 1.0
     },
     {
@@ -6502,7 +6502,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "fotos-kits.py",
-      "source_location": "L78",
+      "source_location": "L79",
       "weight": 1.0
     },
     {
@@ -6513,7 +6513,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "fotos-kits.py",
-      "source_location": "L96",
+      "source_location": "L97",
       "weight": 1.0
     },
     {
@@ -7419,25 +7419,25 @@
       "weight": 1.0
     },
     {
-      "source": "fotos_kits_rationale_109",
+      "source": "fotos_kits_rationale_110",
       "target": "fotos_kits_enderezar",
       "relation": "rationale_for",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "fotos-kits.py",
-      "source_location": "L109",
+      "source_location": "L110",
       "weight": 1.0
     },
     {
-      "source": "fotos_kits_rationale_127",
+      "source": "fotos_kits_rationale_128",
       "target": "fotos_kits_tarjeta",
       "relation": "rationale_for",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "fotos-kits.py",
-      "source_location": "L127",
+      "source_location": "L128",
       "weight": 1.0
     },
     {
@@ -7452,14 +7452,14 @@
       "weight": 1.0
     },
     {
-      "source": "fotos_kits_rationale_97",
+      "source": "fotos_kits_rationale_98",
       "target": "fotos_kits_recortar_blanco",
       "relation": "rationale_for",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "fotos-kits.py",
-      "source_location": "L97",
+      "source_location": "L98",
       "weight": 1.0
     },
     {
@@ -7725,5 +7725,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "5e0d0510fe3dbe1e3b22cefe4302111c76c6c536"
+  "built_at_commit": "47cf938730148bf91f67e9e20036648915aaafd7"
 }
