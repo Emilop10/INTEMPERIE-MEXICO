@@ -8525,4 +8525,13 @@ ventas@ y facturacion@intemperiemexico.com, botón de WhatsApp
   Google con acceso". Se pidió confirmar que
   **admin@intemperiemexico.com sea Administrador**, para que la cuenta no
   dependa de un Gmail personal.
+- **Hecho (12 oct):**
+  - nombre "Intemperie México" guardado (el campo conservaba el texto
+    viejo pegado y Claude in Chrome lo limpió antes de guardar);
+  - **México agregado** como país de venta, en estado "Incompleto · 2
+    acciones" (envío y devoluciones);
+  - zona horaria cambiada a Central Standard Time (Mexico City).
+- **Acceso confirmado:** un solo usuario, **admin@intemperiemexico.com**,
+  con roles Admin, Standard y Performance and insights ("Managed by
+  intemperiemexico.com", verificado). La cuenta es del negocio.
 
