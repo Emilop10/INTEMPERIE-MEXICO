@@ -136,9 +136,62 @@ OAuth manual — son los mismos 7 pasos de siempre, 5 minutos.
      SKU, y con qué producto).
    - Una pestaña **Resumen** con los totales, incluido cuántas filas se
      vincularon por código B1 y cuántas por nombre.
+7. **Revisa que todos los kits y combos armados estén completos.** Este
+   paso es obligatorio y se hace siempre, inmediatamente después del 6.
+   Ver la [regla de kits y combos](#regla-de-kits-y-combos-obligatoria-en-cada-inventario)
+   abajo.
+
+## Regla de kits y combos (obligatoria en cada inventario)
+
+**Desde el 12 de octubre de 2026, a pedido del dueño.** Los kits "listos
+para pescar" y los combos armados a mano (Corux, Revenger 2.40m, Blue
+Fox Power Boat) **no existen como pieza física en el conteo.** Se arman
+con piezas que también se venden sueltas: la caña, el carrete, el hilo,
+los plomos. Shopify no los conecta entre sí, así que la regla es esta:
+
+### Cuando se vende un kit o un combo
+
+**Descontar sus piezas** en el punto de venta (y, si no hay inventario
+de por medio, también en Shopify). La lista exacta de piezas de cada kit
+está en su descripción ("Incluye:") y en `scripts/crear-kits.py`.
+
+### Cada vez que el dueño manda un inventario
+
+Se vende una pieza suelta (por ejemplo, la caña Clarus) y nadie se
+acuerda de que esa caña iba en un kit. **El kit queda publicado con una
+existencia que ya no se puede armar.** Para que eso no dependa de la
+memoria, en cada conciliación Claude corre:
+
+```bash
+python3 scripts/crear-kits.py --revisar-existencias            # revisa
+python3 scripts/crear-kits.py --revisar-existencias --aplicar  # corrige
+```
+
+Qué hace:
+
+1. Lee las existencias **ya conciliadas** de cada pieza.
+2. Reparte las piezas sin prometer la misma dos veces: **primero los
+   combos manuales y después los kits**, en el orden de `crear-kits.py`.
+3. Para cada combo y kit dice cuántos se pueden armar, qué pieza lo
+   limita y si su existencia en Shopify coincide (✓) o no (✗).
+4. Con `--aplicar` **corrige la existencia** de los que no coinciden:
+   - **la baja** si se vendió una pieza (si llega a 0, el kit deja de
+     venderse solo y sale de los anuncios por el filtro "in stock");
+   - **la sube** si se reabastecieron las piezas.
+
+**Claude le reporta al dueño** qué kit o combo cambió y por qué pieza.
+Si un kit queda en 0 por una pieza que **se puede sustituir** por otra
+equivalente en existencia, Claude lo propone; no lo cambia sin permiso.
+
+> Por qué en este orden: los combos manuales ya estaban publicados antes
+> que los kits, y sus piezas se reservaron primero desde el principio
+> (`COMBOS_MANUALES` en `crear-kits.py`).
 
 ## Qué revisar tú al final
 
+- **El reporte de kits y combos:** cuál quedó incompleto y por qué
+  pieza. Si quieres seguir vendiendo un kit que quedó en 0, dime si se
+  reabastece la pieza o con cuál se sustituye.
 - Las filas **grises** — son las únicas que Claude no pudo resolver solo.
   La nota de cada una dice el motivo exacto: sin ninguna de las dos llaves
   y sin coincidencia de nombre confiable, nombre parecido a **más de un**
@@ -166,6 +219,7 @@ OAuth manual — son los mismos 7 pasos de siempre, 5 minutos.
 ```bash
 export SHOPIFY_ADMIN_TOKEN=shpat_...
 python3 scripts/conciliar-inventario.py conteo-de-hoy.xlsx resultado.xlsx
+python3 scripts/crear-kits.py --revisar-existencias --aplicar   # SIEMPRE después
 ```
 
 Lee el Excel, cruza por SKU → código B1 → nombre (ver arriba), sube los

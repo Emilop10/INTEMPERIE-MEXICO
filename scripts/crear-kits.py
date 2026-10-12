@@ -16,6 +16,8 @@ Reglas de cada kit:
     los combos manuales que ya usan esas piezas
 
 Uso:
+    SHOPIFY_ADMIN_TOKEN=shpat_... python3 scripts/crear-kits.py --revisar-existencias           # ¿alcanzan las piezas?
+    SHOPIFY_ADMIN_TOKEN=shpat_... python3 scripts/crear-kits.py --revisar-existencias --aplicar # y corrige existencias
     SHOPIFY_ADMIN_TOKEN=shpat_... python3 scripts/crear-kits.py            # solo calcula
     SHOPIFY_ADMIN_TOKEN=shpat_... python3 scripts/crear-kits.py --crear    # crea BORRADORES
     SHOPIFY_ADMIN_TOKEN=shpat_... python3 scripts/crear-kits.py --actualizar  # además pone al día los ya creados
@@ -28,6 +30,13 @@ otra vez.
 ⚠️ Igual que los combos manuales (crear-combos.py): Shopify NO descuenta
 los componentes al vender un kit. Hay que descontarlos a mano, o instalar
 la app gratuita "Shopify Bundles", que sí los sincroniza.
+
+--revisar-existencias (MANUAL §73): se corre SIEMPRE después de conciliar
+un inventario (INSTRUCTIVO-CONCILIAR-INVENTARIO.md). Con las existencias
+ya conciliadas, reparte las piezas: primero los combos manuales, luego
+los kits en el orden de KITS, sin prometer la misma pieza dos veces. Dice
+cuántos de cada uno se pueden armar, qué pieza lo limita y si su
+existencia en Shopify está bien. Con --aplicar la corrige (sube o baja).
 """
 
 import json
@@ -42,18 +51,29 @@ ENVIO = 189.00
 CAJA_CANA = 48.83
 CONTRIBUCION_MINIMA = 300.00
 
-# Piezas que ya están comprometidas en combos manuales publicados
-# (PENDIENTES.md, "Componentes de cada combo"). No se cuentan como
-# disponibles para los kits.
-RESERVADO = {
-    "carrete-gimbel-jl4000-spinning": 1,          # Combo Rapala Corux
-    "caja-rapala-utility-box-chica": 1,           # Combo Rapala Corux
-    "cana-de-pescar-okuma-revenger-spinning-80-2-40m": 1,
-    "carrete-okuma-revenger-rv-80-spinning": 1,
-    "cana-de-pescar-blue-fox-power-boat-spinning-64-1-95m": 1,
-    "carrete-blue-fox-ranco-3000sp-spinning": 1,
-    "cana-de-pescar-rapala-corux-240-710": 1,
-}
+# Combos armados a mano con piezas que también se venden sueltas
+# (crear-combos.py, PENDIENTES.md "Componentes de cada combo"). Sus piezas
+# se apartan PRIMERO; los kits usan lo que sobra.
+COMBOS_MANUALES = [
+    {"handle": "combo-rapala-corux-240-710-cana-carrete-caja", "piezas": [
+        ("cana-de-pescar-rapala-corux-240-710", 1),
+        ("carrete-gimbel-jl4000-spinning", 1),
+        ("caja-rapala-utility-box-chica", 1)]},
+    {"handle": "combo-okuma-revenger-80-2-40m-cana-carrete", "piezas": [
+        ("cana-de-pescar-okuma-revenger-spinning-80-2-40m", 1),
+        ("carrete-okuma-revenger-rv-80-spinning", 1)]},
+    {"handle": "combo-blue-fox-power-boat-64-1-95m-cana-carrete", "piezas": [
+        ("cana-de-pescar-blue-fox-power-boat-spinning-64-1-95m", 1),
+        ("carrete-blue-fox-ranco-3000sp-spinning", 1)]},
+]
+
+# Para el cálculo al crear kits: una unidad de cada pieza de combo queda
+# reservada. La revisión de existencias (--revisar-existencias) no usa
+# esto: reparte las piezas reales, combo por combo y kit por kit.
+RESERVADO = {}
+for _c in COMBOS_MANUALES:
+    for _h, _q in _c["piezas"]:
+        RESERVADO[_h] = RESERVADO.get(_h, 0) + _q
 
 KITS = [
     {
@@ -168,11 +188,60 @@ def producto(handle, token, tienda):
     return d["products"][0] if d["products"] else None
 
 
+def revisar_existencias(token, tienda, aplicar):
+    """Reparte las piezas reales entre combos y kits; corrige con --aplicar."""
+    armables = [("combo", c) for c in COMBOS_MANUALES] + [("kit", k) for k in KITS]
+    stock, titulos = {}, {}
+    for _, a in armables:
+        for h, _q in a["piezas"]:
+            if h not in stock:
+                p = producto(h, token, tienda)
+                if not p:
+                    sys.exit(f"❌ No existe la pieza {h}")
+                stock[h] = max(p["variants"][0]["inventory_quantity"], 0)
+                titulos[h] = p["title"]
+                time.sleep(0.25)
+    restante = dict(stock)
+    loc = api("GET", "locations.json", token, tienda)["locations"][0]["id"]
+    cambios = 0
+    print(f"{'':2}{'Producto':58} {'Shopify':>7} {'Armables':>8}  Limita")
+    for tipo, a in armables:
+        p = producto(a["handle"], token, tienda)
+        if not p:
+            print(f"  ⚠ {a['handle']} no existe en la tienda; se omite")
+            continue
+        v = p["variants"][0]
+        actual = max(v["inventory_quantity"], 0)
+        puede = min(restante[h] // q for h, q in a["piezas"])
+        limita = min(a["piezas"], key=lambda hq: restante[hq[0]] // hq[1])[0]
+        for h, q in a["piezas"]:
+            restante[h] -= q * puede
+        marca = "✓" if puede == actual else "✗"
+        nota = titulos[limita][:38] + (f" (quedan {stock[limita]})" if puede < actual else "")
+        print(f"{marca} {p['title'][:58]:58} {actual:>7} {puede:>8}  {nota}")
+        if puede != actual:
+            cambios += 1
+            if aplicar:
+                api("POST", "inventory_levels/set.json", token, tienda, {
+                    "location_id": loc, "inventory_item_id": v["inventory_item_id"],
+                    "available": puede})
+        time.sleep(0.25)
+    if not cambios:
+        print("\nTodos los combos y kits están completos: no hay nada que corregir.")
+    elif aplicar:
+        print(f"\n{cambios} existencia(s) corregida(s) en Shopify.")
+    else:
+        print(f"\n{cambios} existencia(s) por corregir. Repite con --aplicar.")
+
+
 def main():
     token = os.environ.get("SHOPIFY_ADMIN_TOKEN")
     tienda = os.environ.get("SHOPIFY_STORE", "wfuxvx-yn.myshopify.com")
     if not token:
         sys.exit("Falta SHOPIFY_ADMIN_TOKEN (ver INSTRUCTIVO-CREDENCIALES-SHOPIFY.md)")
+    if "--revisar-existencias" in sys.argv:
+        revisar_existencias(token, tienda, "--aplicar" in sys.argv)
+        return
     crear = "--crear" in sys.argv or "--actualizar" in sys.argv
 
     # Uso total de cada pieza sumando todos los kits, para no prometer

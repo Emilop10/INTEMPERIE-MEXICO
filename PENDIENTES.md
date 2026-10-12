@@ -947,8 +947,9 @@ llamada de API), el grafo de `scripts/` sí se movió esta vez —
 > 📍 **Se trabaja por fases con [`GUIA-POR-FASES.md`](./GUIA-POR-FASES.md).**
 > ✅ Fase 1 terminada el 12 oct: 5 kits publicados (MANUAL §72).
 > Fase siguiente: **2 — Canales gratis** (Google, Mercado Libre, carrito abandonado).
-> 📦 Regla nueva: si se vende un kit, descontar sus piezas; si se vende suelta
-> una pieza de un kit, bajar la existencia del kit.
+> 📦 Regla de kits y combos: si se vende uno, descontar sus piezas. En **cada**
+> inventario, después de conciliar: `crear-kits.py --revisar-existencias --aplicar`
+> (INSTRUCTIVO-CONCILIAR-INVENTARIO.md, paso 7).
 > 🔐 Rotar el secreto de la app de Shopify (pasó por el chat el 7 oct).
 
 **Hecho el 30 sep:**

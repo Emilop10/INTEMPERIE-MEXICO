@@ -100,6 +100,7 @@ como respaldo
 70. [La guía por fases y la fase 1 en marcha (30 sep)](#70-la-guía-por-fases-y-la-fase-1-en-marcha-30-sep)
 71. [Kits con el inventario del 7 oct y fotos sin sesión de fotos (7 oct)](#71-kits-con-el-inventario-del-7-oct-y-fotos-sin-sesión-de-fotos-7-oct)
 72. [Fase 1 cerrada: los 5 kits publicados (12 oct)](#72-fase-1-cerrada-los-5-kits-publicados-12-oct)
+73. [Regla de inventario de kits y combos, automatizada (12 oct)](#73-regla-de-inventario-de-kits-y-combos-automatizada-12-oct)
 
 ---
 
@@ -8213,4 +8214,40 @@ aplicó a los 5 kits y se verificó de nuevo en celular.
 **Fase 2** de `GUIA-POR-FASES.md`: Google & YouTube (dueño), Mercado
 Libre (falta saber si "intemperie.mx" es suyo) y el correo de carrito
 abandonado.
+
+## 73. Regla de inventario de kits y combos, automatizada (12 oct)
+
+**Pedido del dueño:** además de "si se vende un kit, se descuentan sus
+piezas", **cada vez que mande un inventario hay que revisar que todos los
+kits estén completos**, porque puede venderse suelta una pieza que iba en
+un kit.
+
+**Se automatizó en vez de dejarlo a la memoria:**
+`crear-kits.py --revisar-existencias [--aplicar]`.
+
+- Lee las existencias ya conciliadas de cada pieza.
+- Reparte las piezas sin prometer la misma dos veces: primero los 3
+  combos manuales (nueva lista `COMBOS_MANUALES`; de ahí sale ahora
+  `RESERVADO`) y luego los 5 kits.
+- Dice cuántos de cada uno se pueden armar y qué pieza los limita.
+- Con `--aplicar`, corrige la existencia en Shopify, tanto si hay que
+  bajarla como subirla.
+
+Que un kit quede en 0 lo saca solo de los anuncios, por el filtro "in
+stock" del conjunto de productos.
+
+**La regla quedó escrita en `INSTRUCTIVO-CONCILIAR-INVENTARIO.md`** como
+paso 7 obligatorio de cada conciliación, en una sección propia, y en el
+bloque de comandos.
+
+**Graphify:** `scripts/` 201/459 → **203/466** por la función nueva.
+
+**Primera corrida (12 oct, antes del inventario nuevo):** los 3 combos y
+los 5 kits coinciden. No hubo nada que corregir.
+
+> **Límite conocido:** el reparto es en orden fijo (combos, después los
+> kits en el orden de `KITS`). Si una pieza escasea, se queda sin ella el
+> último kit de la lista. Es deliberado: es predecible y el reporte dice
+> qué pieza falta. Si conviene otra prioridad, se cambia el orden de
+> `KITS`.
 
