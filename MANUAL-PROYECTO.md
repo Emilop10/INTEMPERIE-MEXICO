@@ -8714,4 +8714,13 @@ ventas@ y facturacion@intemperiemexico.com, botón de WhatsApp
   - mandar un correo de prueba a ventas@ y mostrar la vista previa
     final;
   - activar solo con "sí, activa".
+- **Listo para activar (12 oct):**
+  - logo `Logo_Sin_Fondo.png` elegido de los archivos de la tienda, ~170
+    px y centrado;
+  - botón de WhatsApp verificado (`https://wa.me/527773277340`);
+  - prueba enviada a ventas@ (sin confirmación visible en pantalla: el
+    dueño la revisa en su bandeja).
+
+  Con el visto bueno, se activa **solo** este correo y se confirma en
+  Flow que la acción ya no marca el error de borrador.
 
