@@ -70,7 +70,7 @@ ya busca.
 
 | # | Paso | Quién | Detalle |
 |---|---|---|---|
-| 2.1 | **Revisar dentro de la app "Google & YouTube"** (con Claude in Chrome, bloques A-C de [`PROMPT-CLAUDE-CHROME-GOOGLE-Y-CARRITO.md`](./PROMPT-CLAUDE-CHROME-GOOGLE-Y-CARRITO.md)) que esté completa: Merchant Center conectado, envío ($189 / gratis desde $799, 2-7 días), impuestos incluidos, listados gratuitos activos | 👤 | La app **ya estaba instalada** (12 oct). Pasos en [`INSTRUCTIVO-GOOGLE-Y-MERCADO-LIBRE.md`](./INSTRUCTIVO-GOOGLE-Y-MERCADO-LIBRE.md) |
+| 2.1 | ✅ 12 oct — Merchant Center 5872999371 creado y configurado (envío, devoluciones, listados gratuitos activos). **Revisar dentro de la app "Google & YouTube"** (con Claude in Chrome, bloques A-C de [`PROMPT-CLAUDE-CHROME-GOOGLE-Y-CARRITO.md`](./PROMPT-CLAUDE-CHROME-GOOGLE-Y-CARRITO.md)) que esté completa: Merchant Center conectado, envío ($189 / gratis desde $799, 2-7 días), impuestos incluidos, listados gratuitos activos | 👤 | La app **ya estaba instalada** (12 oct). Pasos en [`INSTRUCTIVO-GOOGLE-Y-MERCADO-LIBRE.md`](./INSTRUCTIVO-GOOGLE-Y-MERCADO-LIBRE.md) |
 | 2.2 | Publicar en el canal de Google los productos permitidos y dejar fuera los 63 restringidos | 🤖 | ✅ 12 oct: 325 publicados, 63 fuera, 0 errores |
 | 2.3 | Revisar el diagnóstico de Merchant Center a la semana | 🤖 + 👤 | Los avisos de "GTIN no válido" son esperados; los rechazos no |
 | 2.4 | ¿El vendedor "intemperie.mx" de Mercado Libre es tuyo? | 👤 | ✅ 12 oct: es del papá del dueño y ya no opera. Sin riesgo de canibalizar ventas |

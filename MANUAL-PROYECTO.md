@@ -8574,3 +8574,23 @@ ventas@ y facturacion@intemperiemexico.com, botón de WhatsApp
     pantalla y hubo que volver a capturarlo. En los formularios de Google
     de varios pasos, se repasa la pantalla de revisión antes de confirmar.
 
+### Punto de control 2 (12 oct): configuración completa
+
+- Merchant Center **5872999371** "Intemperie México", con
+  admin@intemperiemexico.com como administrador; sitio verificado y
+  reclamado.
+- Envío, devoluciones y país de venta (México, **"Complete"**)
+  guardados. Impuestos: sin pendientes, Merchant Center no los pide para
+  esta cuenta.
+- **Listados gratuitos activos** ("Free listings enabled: On"). "Shopping
+  ads" (de pago) se dejó en "Setup required", sin tocar.
+- Avisos de la app de Shopify: desapareció "Invalid business name"; "No
+  Google Ads account linked" sigue, como se esperaba.
+- **Productos:**
+  - Merchant Center reporta **"258 of 325 (79.4%)"** listos. **325 es
+    exactamente lo publicado en el canal** (§75), lo que confirma que los
+    63 prohibidos no llegaron a Google.
+  - La app de Shopify muestra 223 "En proceso de revisión". La
+    sincronización va a medias.
+  - **67 productos con algún problema**: se diagnostican en el bloque C.
+
