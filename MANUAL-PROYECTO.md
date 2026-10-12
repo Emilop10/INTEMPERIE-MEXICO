@@ -8648,4 +8648,30 @@ ventas@ y facturacion@intemperiemexico.com, botón de WhatsApp
   - Instrucción: configurar solo "Recuperar pago abandonado" (10 h,
     todos los que dejaron su correo, español), con vista previa antes de
     activarlo. Ninguna otra automatización ni plan de pago.
+- **Hallazgo al instalar Messaging (12 oct): ya había 5 automatizaciones
+  de una instalación anterior.** Todas están "Activo", pero con el correo
+  **en borrador**, así que no se envía nada:
+  1. agradecimiento después de la compra;
+  2. "Bienvenida INTEMPERIE";
+  3. navegación de producto abandonada;
+  4. **"Recupera el pedido abandonado"** (pago abandonado);
+  5. "Recupera el carrito abandonado".
+
+  La #4 tiene "última ejecución el 4 oct, 16:13": alguien abandonó un
+  pago, el flujo se disparó y **no le llegó nada**, porque el correo
+  estaba en borrador (0 enviados). Ese correo ya está redactado con el
+  lenguaje de la tienda: asunto "Solo falta un paso para tener tu equipo
+  🎯", botón "Continuar con el pago", pago seguro, garantía y WhatsApp.
+  Tiene "INTEMPERIE MÉXICO" en texto, sin logo.
+- **Para ver la espera y la audiencia del flujo hace falta Shopify
+  Flow.** Se recomendó **A + C**:
+  - instalar Flow, también oficial y gratuita;
+  - dejar la #4 con espera de 10 h, verificación de que no compró y
+    envío a todos los que dejaron su correo, para que no le llegue solo
+    a los suscritos;
+  - agregar el logo;
+  - publicar **solo** el correo de la #4.
+
+  **La #5 se queda en borrador**, para que no haya doble recordatorio, y
+  las otras tres también se quedan como están: se revisan después.
 
