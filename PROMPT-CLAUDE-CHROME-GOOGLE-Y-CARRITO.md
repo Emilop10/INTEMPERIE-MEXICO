@@ -46,7 +46,8 @@ REGLAS (NO NEGOCIABLES)
 =====================================================================
 BLOQUE A — Revisar la app "Google & YouTube" (solo mirar, no cambiar nada)
 =====================================================================
-A1. Entra a https://admin.shopify.com/store/wfuxvx-yn/apps y abre "Google & YouTube".
+A1. Abre "Google & YouTube" desde Configuración → Canales de ventas
+    (https://admin.shopify.com/store/wfuxvx-yn/settings/apps no la lista: es un canal, no una app).
 A2. Revisa y anota:
     - ¿Hay una cuenta de Google conectada? ¿Cuál correo? (solo el correo, nada más)
     - ¿Hay una cuenta de Merchant Center conectada? ¿Cuál es su número (ID)?

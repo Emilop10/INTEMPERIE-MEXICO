@@ -8420,3 +8420,23 @@ dueño lo supervisa y Claude Code revisa cada reporte.
 - El documento trae también la tabla de **qué revisa Claude Code en cada
   reporte** y cuáles son las señales de alto.
 
+### Punto de control 1 (12 oct): la app perdió el permiso de Google
+
+- **"Google & YouTube" no está en Apps sino en Configuración → Canales
+  de ventas.** El prompt quedó corregido.
+- **La app está bloqueada.** La cuenta conectada es
+  `admin@intemperiemexico.com`, pero "ha perdido el acceso a la
+  aplicación" y hay que **volver a verificarla**. Mientras tanto no se
+  ven Merchant Center, productos ni listados gratuitos, y Google advierte
+  que puede **suspender Merchant Center** o dejar de sincronizar. Esto
+  explica también por qué el canal tenía 0 productos (§75).
+- **Merchant Center ya existe.** El aviso habla de "tu cuenta de Google
+  Merchant Center", así que no hay que crear una nueva: basta con
+  reconectar.
+- **Instrucción al dueño:** clic en **"Verificar"**, iniciar sesión con
+  `admin@intemperiemexico.com` y aceptar todos los permisos. **Nunca
+  "Desconectar"**, que corta Merchant Center, Ads y YouTube. Después,
+  "continúa" para repetir el bloque A.
+- **Aparte:** el canal **"Shop"** muestra "Acción necesaria". No es de
+  Google; se revisa después de esta fase.
+

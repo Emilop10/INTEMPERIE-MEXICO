@@ -951,6 +951,8 @@ llamada de API), el grafo de `scripts/` sí se movió esta vez —
 > configuración de la app Google & YouTube y el correo de carrito abandonado, con
 > Claude in Chrome ([`PROMPT-CLAUDE-CHROME-GOOGLE-Y-CARRITO.md`](./PROMPT-CLAUDE-CHROME-GOOGLE-Y-CARRITO.md)).
 > "intemperie.mx" en Mercado Libre = cuenta del papá, inactiva (resuelto).
+> ⚠️ 12 oct: la app de Google perdió el permiso de `admin@intemperiemexico.com` →
+> el dueño debe dar "Verificar" (nunca "Desconectar"). Canal "Shop": "Acción necesaria", revisar después.
 > 🔁 Producto nuevo publicado = correr `sincronizar-canal-meta.py` para Meta **y**
 > con `--canal "Google & YouTube"`.
 > 📦 Regla de kits y combos: si se vende uno, descontar sus piezas. En **cada**
