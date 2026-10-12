@@ -109,13 +109,13 @@ def gql(query, token, store, variables=None):
     sys.exit(1)
 
 
-def resolver_canal(token, store):
+def resolver_canal(token, store, canal=CANAL_META):
     data = gql("{ publications(first: 30) { edges { node { id name } } } }", token, store)
     for edge in data["publications"]["edges"]:
-        if edge["node"]["name"] == CANAL_META:
+        if edge["node"]["name"] == canal:
             return edge["node"]["id"]
     print(
-        f'No existe el canal "{CANAL_META}" en esta tienda.\n'
+        f'No existe el canal "{canal}" en esta tienda.\n'
         "Si se desinstalo la app de Facebook & Instagram, hay que reinstalarla\n"
         "antes de correr este script (ver INSTRUCTIVO-FACEBOOK-ADS.md).",
         file=sys.stderr,
@@ -241,6 +241,16 @@ def main():
             "desde antes. Este ciclo genera los eventos que faltan."
         ),
     )
+    parser.add_argument(
+        "--canal",
+        default=CANAL_META,
+        help=(
+            'Canal de Shopify a sincronizar (default "Facebook & Instagram"). '
+            'Con "Google & YouTube" aplica las mismas reglas: Google tampoco '
+            "acepta armas (incluidas las de aire), municiones ni accesorios "
+            "para armas en Shopping (MANUAL §75)."
+        ),
+    )
     args = parser.parse_args()
 
     token = os.environ.get("SHOPIFY_ADMIN_TOKEN")
@@ -250,8 +260,8 @@ def main():
     store = os.environ.get("SHOPIFY_STORE", "wfuxvx-yn.myshopify.com")
 
     print(f"Tienda : {store}")
-    canal_id = resolver_canal(token, store)
-    print(f"Canal  : {CANAL_META} ({canal_id.split('/')[-1]})")
+    canal_id = resolver_canal(token, store, args.canal)
+    print(f"Canal  : {args.canal} ({canal_id.split('/')[-1]})")
 
     productos = traer_productos(token, store, canal_id)
     prohibidos = [p for p in productos if es_prohibido(p)]

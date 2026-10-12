@@ -9,7 +9,7 @@ siguiente hasta cumplir la condición de "terminada".
 |---|---|---|
 | 0 | Arreglos de la ficha de producto | ✅ En vivo (30 sep) |
 | 1 | Kits a la venta | ✅ 5 kits publicados (12 oct) |
-| **2** | **Canales gratis: Google, Mercado Libre y carrito abandonado** | 🟡 **SIGUIENTE** |
+| **2** | **Canales gratis: Google, Mercado Libre y carrito abandonado** | 🟡 **EN CURSO** |
 | 3 | Reabasto y precios de la zona muerta | ⏳ |
 | 4 | Encender Meta con criterio fijado | ⏳ Estructura lista y en pausa |
 
@@ -63,15 +63,15 @@ conjunto de productos de Meta.
 
 ---
 
-## Fase 2 — Canales gratis ⏳
+## Fase 2 — Canales gratis 🟡
 
 **Objetivo:** vender sin pagar por clic, en los lugares donde la gente
 ya busca.
 
 | # | Paso | Quién | Detalle |
 |---|---|---|---|
-| 2.1 | **Instalar "Google & YouTube"** y crear Merchant Center | 👤 | 30 min. Pasos en [`INSTRUCTIVO-GOOGLE-Y-MERCADO-LIBRE.md`](./INSTRUCTIVO-GOOGLE-Y-MERCADO-LIBRE.md) |
-| 2.2 | Sacar del canal de Google los 63 productos restringidos (armas de aire, municiones, miras, accesorios) | 🤖 | Necesita el permiso `write_publications` en el token |
+| 2.1 | **Revisar dentro de la app "Google & YouTube"** que esté completa: Merchant Center conectado, envío ($189 / gratis desde $799, 2-7 días), impuestos incluidos, listados gratuitos activos | 👤 | La app **ya estaba instalada** (12 oct). Pasos en [`INSTRUCTIVO-GOOGLE-Y-MERCADO-LIBRE.md`](./INSTRUCTIVO-GOOGLE-Y-MERCADO-LIBRE.md) |
+| 2.2 | Publicar en el canal de Google los productos permitidos y dejar fuera los 63 restringidos | 🤖 | ✅ 12 oct: 325 publicados, 63 fuera, 0 errores |
 | 2.3 | Revisar el diagnóstico de Merchant Center a la semana | 🤖 + 👤 | Los avisos de "GTIN no válido" son esperados; los rechazos no |
 | 2.4 | **¿El vendedor "intemperie.mx" de Mercado Libre es tuyo?** | 👤 | Define todo lo que sigue con Mercado Libre |
 | 2.5 | Si se va a Mercado Libre: archivo de carga y precio mínimo por producto | 🤖 | |

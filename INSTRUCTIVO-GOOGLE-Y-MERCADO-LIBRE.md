@@ -24,6 +24,16 @@ en los resultados, con foto y precio, **sin pagar por clic**.
 | Marca (`vendor`) en cada producto | ✅ (los 55 hilos Araty corregidos de "Gimbel" a "Araty" el 30 sep) |
 | Políticas de envío, devoluciones y privacidad publicadas | ✅ (§10, §11) |
 
+> ✅ **Actualización 12 oct:** la app **"Google & YouTube" ya estaba
+> instalada** (canal `163248078925`, del mismo periodo que el de
+> Facebook), pero **con 0 productos publicados**. Por eso nada salía en
+> Google. Se publicaron los **325 productos permitidos** con
+> `sincronizar-canal-meta.py --canal "Google & YouTube"`; los 63
+> prohibidos quedaron fuera (MANUAL §75). **Lo que falta del lado del
+> dueño es revisar dentro de la app que la configuración esté completa**
+> (pasos 2 a 6 de abajo): cuenta de Merchant Center conectada, envío,
+> impuestos y listados gratuitos activados.
+
 ### Pasos (los hace el dueño en el admin de Shopify)
 
 1. **Shopify admin → Configuración → Apps y canales de venta → Shopify
@@ -50,12 +60,14 @@ Rifles de Aire (8), Pistolas de Aire (10), Diábolos y Municiones (31),
 Miras Telescópicas (8) y Accesorios (6: monturas y linterna táctica).
 
 Si se mandan, Merchant Center los rechaza y, si son muchos, **puede
-suspender la cuenta entera**. Cuando la app esté instalada, **yo los saco
-del canal de Google** por API. Eso necesita el permiso
-`write_publications` en el token (ver
-[`INSTRUCTIVO-CREDENCIALES-SHOPIFY.md`](./INSTRUCTIVO-CREDENCIALES-SHOPIFY.md)).
-También se puede hacer a mano: en cada producto, "Canales de venta" →
-quitar "Google & YouTube".
+suspender la cuenta entera**. ✅ **Ya están fuera** (12 oct): el canal de
+Google se sincroniza con las mismas reglas que el de Meta (por colección
+y por nombre o descripción). Al dar de alta productos nuevos, correr:
+
+```bash
+python3 scripts/sincronizar-canal-meta.py --canal "Google & YouTube" --dry-run
+python3 scripts/sincronizar-canal-meta.py --canal "Google & YouTube"
+```
 
 ### ⚠️ El aviso de "GTIN no válido" es esperado, no es un error
 

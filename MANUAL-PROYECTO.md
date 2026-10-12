@@ -102,6 +102,7 @@ como respaldo
 72. [Fase 1 cerrada: los 5 kits publicados (12 oct)](#72-fase-1-cerrada-los-5-kits-publicados-12-oct)
 73. [Regla de inventario de kits y combos, automatizada (12 oct)](#73-regla-de-inventario-de-kits-y-combos-automatizada-12-oct)
 74. [¿Se están anunciando los kits? Todavía no (12 oct)](#74-se-están-anunciando-los-kits-todavía-no-12-oct)
+75. [Fase 2: el canal de Google estaba instalado y vacío (12 oct)](#75-fase-2-el-canal-de-google-estaba-instalado-y-vacío-12-oct)
 
 ---
 
@@ -8319,3 +8320,56 @@ precios).
     aristas menos, **sin cambios de código en el tema**. Es el cambio de
     versión de la herramienta (0.9.66 → 0.9.80), igual que en §63 y §71.
 
+## 75. Fase 2: el canal de Google estaba instalado y vacío (12 oct)
+
+Al arrancar la fase 2 se listaron los canales de venta de la tienda
+(`publications` por GraphQL). Salieron cinco: Online Store, Shop, Point
+of Sale, **Google & YouTube** (`163248078925`) y Facebook & Instagram
+(`163249258573`).
+
+**La app de Google ya estaba instalada.** Por los IDs consecutivos, se
+instaló en el mismo periodo que la de Facebook, en agosto. Pero tenía
+**0 productos publicados**: ninguno salía en Google Shopping. El paso 2.1
+de la guía ("instalar la app") cambia a "revisar que la configuración
+esté completa".
+
+### Qué se hizo
+
+- `sincronizar-canal-meta.py` acepta ahora **`--canal`** (por defecto
+  "Facebook & Instagram"). Con `--canal "Google & YouTube"` usa
+  **exactamente las mismas reglas** de `es_prohibido()`: colecciones de
+  armas de aire, municiones y miras, más la segunda red por nombre y
+  descripción para monturas y linternas tácticas. Google Shopping
+  tampoco acepta armas (incluidas las de aire), municiones ni accesorios
+  para armas.
+- Ensayo: 388 productos → **325 permitidos, 63 prohibidos**; 0
+  prohibidos en el canal y 325 por publicar.
+- Corrida real: **325 publicados, 0 errores**. Una segunda revisión da 0
+  pendientes en ambos sentidos.
+
+### Lo que falta (dueño)
+
+Publicar en el canal **no basta** para salir en Google. La app tiene que
+tener completa su configuración:
+
+- Merchant Center conectado;
+- envío de $189, gratis desde $799, entrega en 2 a 7 días hábiles;
+- impuestos incluidos;
+- listados gratuitos activos.
+
+Eso no se puede leer ni escribir por la Admin API. Si la configuración
+ya estaba completa desde agosto, los productos empiezan a aparecer en
+Merchant Center en las próximas 24–72 h.
+
+Después vendrá el diagnóstico de Merchant Center (paso 2.3). Los avisos
+de **"GTIN no válido"** son esperados: el código de barras es el código
+B1 del punto de venta (ver `INSTRUCTIVO-GOOGLE-Y-MERCADO-LIBRE.md`).
+
+### Sigue pendiente de la fase 2
+
+- **Mercado Libre:** ¿el vendedor "intemperie.mx" es del dueño?
+- **Correo de carrito abandonado:** confirmar en Configuración →
+  Notificaciones.
+
+**Graphify:** `scripts/` sigue en **205/469**. El parámetro nuevo no
+agrega funciones, así que no mueve el grafo; se verificó contando.
