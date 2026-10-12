@@ -8440,3 +8440,25 @@ dueño lo supervisa y Claude Code revisa cada reporte.
 - **Aparte:** el canal **"Shop"** muestra "Acción necesaria". No es de
   Google; se revisa después de esta fase.
 
+### Punto de control 1, segunda vuelta (12 oct): no había Merchant Center
+
+- La verificación funcionó y la app abre sin avisos.
+- **No hay Merchant Center conectado.** El único servicio de Google
+  enlazado es **Google Analytics `G-3HRQY04HS5`**, con la medición de
+  conversiones activada. Está bien y no se toca.
+- > ❌ **Corrección de §76 (primera vuelta):** el aviso rojo decía "tu
+  > cuenta de Google Merchant Center", y de ahí se dedujo que ya existía.
+  > **Era un texto genérico de Google, no la prueba de una cuenta.** La
+  > causa real de los 0 productos del canal es que **nunca hubo Merchant
+  > Center enlazado**.
+- **Respuesta a Claude in Chrome:** "sí, empieza", con estas condiciones:
+  - si el asistente muestra una cuenta existente de intemperiemexico.com
+    o de admin@, elegir esa, para no duplicar;
+  - si no hay ninguna, crearla con México, español, MXN, "Intemperie
+    México" y el sitio;
+  - reclamar el sitio con el método automático de Shopify, y detenerse
+    si dice que el sitio ya está reclamado por otra cuenta;
+  - "Omitir" en todo lo que sea Google Ads; la oferta de Máximo
+    rendimiento (Performance Max) no se toca;
+  - seguir con B3 (envío) mostrando el resumen antes de guardar.
+
