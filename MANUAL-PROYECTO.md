@@ -8594,3 +8594,48 @@ ventas@ y facturacion@intemperiemexico.com, botón de WhatsApp
     sincronización va a medias.
   - **67 productos con algún problema**: se diagnostican en el bloque C.
 
+### Punto de control 3 (12 oct): diagnóstico de Merchant Center
+
+- **325 artículos** (Merchant Center cuenta variantes, y en esta tienda
+  son 1:1 con los productos): 0 aprobados, 262 limitados, 59 en revisión
+  y 4 no aprobados.
+- **"Pending initial review"** (advertencia, afecta a ~262): se muestran
+  con alcance limitado mientras Google revisa, en un máximo de 3 días
+  hábiles. Es normal en una cuenta nueva.
+- **"Image not processed"** (error, 4 productos): Rapala Skitter V 10
+  Gold, Tasco Essentials Porro 8-24x25, Blue Fox Vibrax SD1 Plata e Hilo
+  Araty 0.50mm 1000m.
+  - **Se revisaron las imágenes del storefront: JPEG válidos de 940 a
+    2,382 px.** Es una falla de descarga del lado de Google, que reintenta
+    sola en 3 días ("No action needed").
+- **0 problemas por armas o productos peligrosos.** El único aviso de
+  cuenta es "No Google Ads account linked", que es intencional.
+- **El "GTIN no válido" todavía no aparece.** Hay que **repetir el
+  diagnóstico en 2–3 días**, cuando Google termine de revisar.
+
+### Punto de control 4 (12 oct): no había correo de carrito abandonado
+
+- **Configuración → Notificaciones:** ya no existe "Pago abandonado" para
+  la tienda en línea; solo "Pago abandonado en POS".
+- **Marketing → Automatizaciones:** "Recuperar pago abandonado" redirige
+  a la app **Shopify Messaging**, que no está instalada. Shopify movió
+  ahí el correo de recuperación.
+- **Activo hoy:** solo el remarketing de **Shop** (Recordatorio de
+  carrito, Nuevamente en existencias, Bajada de precio, Abandono de
+  navegación). Llega por correo o push únicamente a usuarios de la app
+  Shop.
+- **Conclusión:** **a nadie que abandona el pago le llega un correo de
+  recuperación.** Encaja con el embudo histórico: 7 pantallas de pago y
+  1 compra.
+- **Recomendación al dueño:**
+  - instalar **Shopify Messaging** (oficial y gratuita a este volumen),
+    con "sí" sobre los permisos;
+  - activar "Recuperar pago abandonado" a las 10 h, para todos los que
+    dejaron su correo y en español, con vista previa antes de activarlo;
+  - **dejar el Recordatorio de carrito de Shop**: es otro disparador
+    (carrito, no pago) y otra audiencia (solo usuarios de Shop), así que
+    casi no hay doble envío.
+
+  La regla "uno solo activo" del prompt se pensó para dos correos
+  iguales; estos no lo son.
+

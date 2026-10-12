@@ -951,8 +951,10 @@ llamada de API), el grafo de `scripts/` sí se movió esta vez —
 > configuración de la app Google & YouTube y el correo de carrito abandonado, con
 > Claude in Chrome ([`PROMPT-CLAUDE-CHROME-GOOGLE-Y-CARRITO.md`](./PROMPT-CLAUDE-CHROME-GOOGLE-Y-CARRITO.md)).
 > "intemperie.mx" en Mercado Libre = cuenta del papá, inactiva (resuelto).
-> ⚠️ 12 oct: la app de Google perdió el permiso de `admin@intemperiemexico.com` →
-> el dueño debe dar "Verificar" (nunca "Desconectar"). Canal "Shop": "Acción necesaria", revisar después.
+> ✅ 12 oct: Merchant Center 5872999371 configurado, listados gratuitos activos (MANUAL §76).
+> 🗓️ ~15 oct: repetir el diagnóstico de Merchant Center (revisión inicial, 4 imágenes, GTIN).
+> 🛒 Carrito abandonado: no existía. Recomendado instalar Shopify Messaging (pendiente del dueño).
+> Canal "Shop": "Acción necesaria", revisar después.
 > 🔁 Producto nuevo publicado = correr `sincronizar-canal-meta.py` para Meta **y**
 > con `--canal "Google & YouTube"`.
 > 📦 Regla de kits y combos: si se vende uno, descontar sus piezas. En **cada**
