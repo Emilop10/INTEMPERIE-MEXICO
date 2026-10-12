@@ -8505,3 +8505,24 @@ ventas@ y facturacion@intemperiemexico.com, botón de WhatsApp
 - Instrucción a Claude in Chrome: corregir el nombre, con "sí" del dueño
   antes de guardar, y seguir con B3–B6 hasta el PC2.
 
+### Merchant Center `5872999371`: estado inicial y decisiones (12 oct)
+
+- **Sitio:** intemperiemexico.com, **verificado y reclamado** desde que
+  se creó la cuenta.
+- **Nombre:** "INTEMPERIE MÉXICO" → se aprueba cambiarlo a **"Intemperie
+  México"**. Es la causa del aviso "Invalid business name".
+- **Países de venta:** la lista estaba **vacía**, y sin país no se puede
+  configurar envío ni devoluciones. Se aprueba agregar **México**.
+- **Zona horaria:** "(GMT-04:00) Atlantic Standard Time" → se aprueba
+  **Ciudad de México**. El idioma de la cuenta (inglés) se deja como
+  está, porque no afecta los listados.
+- **Dirección:** "S/N, Cuernavaca Morelos 62120". **No se toca:** no
+  lleva calle ni número y no se muestra en los listados. No se agrega el
+  domicilio personal (§31).
+- **Correo de atención:** ventas@intemperiemexico.com. Coincide con el
+  sitio y no se cambia.
+- **Acceso:** al abrir Merchant Center, Google cambió a "otra cuenta de
+  Google con acceso". Se pidió confirmar que
+  **admin@intemperiemexico.com sea Administrador**, para que la cuenta no
+  dependa de un Gmail personal.
+
