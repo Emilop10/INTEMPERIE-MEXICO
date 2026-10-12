@@ -8484,3 +8484,9 @@ contacto**, se resuelve con el WhatsApp de la tienda y
 soporte@intemperiemexico.com, **nunca con el domicilio personal** que se
 quitó en §31.
 
+**Requisito de "información de contacto" (12 oct):** antes de que el
+dueño confirmara, se revisó el sitio en vivo. Cumple: correos
+ventas@ y facturacion@intemperiemexico.com, botón de WhatsApp
+(wa.me/527773277340), enlaces a Facebook e Instagram y `/pages/contact`
+(HTTP 200). Se confirmó sin agregar el domicilio personal.
+
