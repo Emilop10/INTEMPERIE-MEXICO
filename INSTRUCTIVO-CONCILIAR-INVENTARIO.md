@@ -310,6 +310,7 @@ esos son los que viven en
 | 10 sep 2026 | 1,187 | 303 | 30 | 750 | 103 | 33 |
 | 25 sep 2026 | 1,187 | 259 | 74 | 750 | 103 | 77 |
 | 7 oct 2026 | 1,191 | 261 | 72 | 755 | 103 | 76 |
+| 10 oct 2026 | 1,191 | 316 | 17 | 755 | 103 | 17 |
 
 > **15 de agosto, más tarde:** se agregó el cruce por `Codigo B1` y se
 > poblaron 371 códigos de barras en Shopify (0 errores). La cobertura de

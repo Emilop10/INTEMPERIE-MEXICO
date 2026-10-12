@@ -8251,3 +8251,17 @@ los 5 kits coinciden. No hubo nada que corregir.
 > qué pieza falta. Si conviene otra prioridad, se cambia el orden de
 > `KITS`.
 
+### Primera corrida con inventario: cierre del 10 oct (conciliado el 12 oct)
+
+- **Conciliación:** 1,191 filas y **17 cambios**, 0 errores; ninguno
+  dejó un producto en 0. Los movimientos:
+  - **Reabasto de anzuelos Mustad** 2330DT (#10, #13–#18) y 92661-NI
+    (#4, #6), por ejemplo #15 de 5 a 40;
+  - ventas sueltas: un Hilo Araty 0.50mm, una mira Gamo 4x32 y
+    munición/diábolos/CO2 Mendoza.
+- **Revisión de kits y combos (paso 7): los 8 completos, nada que
+  corregir.** Dos piezas de kits se movieron:
+  - el anzuelo Mustad 94151-NI #1/0 del kit Tolten bajó de 4 a 3, y los
+    2 kits Tolten necesitan 2;
+  - el Sea Kirby #13 del kit Clarus subió de 6 a 25.
+
