@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 10 de agosto de 2026
+**Última actualización:** 12 de octubre de 2026 (sección 74)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -101,6 +101,7 @@ como respaldo
 71. [Kits con el inventario del 7 oct y fotos sin sesión de fotos (7 oct)](#71-kits-con-el-inventario-del-7-oct-y-fotos-sin-sesión-de-fotos-7-oct)
 72. [Fase 1 cerrada: los 5 kits publicados (12 oct)](#72-fase-1-cerrada-los-5-kits-publicados-12-oct)
 73. [Regla de inventario de kits y combos, automatizada (12 oct)](#73-regla-de-inventario-de-kits-y-combos-automatizada-12-oct)
+74. [¿Se están anunciando los kits? Todavía no (12 oct)](#74-se-están-anunciando-los-kits-todavía-no-12-oct)
 
 ---
 
@@ -8270,4 +8271,51 @@ los 5 kits coinciden. No hubo nada que corregir.
   se armó a mano y se entregó. Desde ahí **`conciliar-inventario.py` la
   genera solo** (`hoja_cambios()`), también en `--dry-run`, con el título
   "PENDIENTES". Se probó en seco sin escribir en la tienda.
+
+## 74. ¿Se están anunciando los kits? Todavía no (12 oct)
+
+**Pregunta del dueño:** los kits ya aparecen en la página de Facebook de
+Intemperie México; ¿ya se están promocionando?
+
+**No.** Lo que se ve en la página es la **tienda de Facebook**: el
+catálogo que Shopify sincroniza con Meta (§29, §32). Ahí entra todo
+producto publicado al canal "Facebook & Instagram", y los kits entraron
+el 12 oct (§72). Es una vitrina **orgánica**: aparece para quien visita
+la página o la pestaña de tienda, **sin pagar y sin que nadie la empuje
+al feed de nadie**.
+
+Promocionar es otra cosa: anuncios pagados que reparten el catálogo en
+el feed de gente que no conoce la tienda. Eso está **apagado**, y se
+verificó leyendo la Marketing API:
+
+| Nivel | Estado |
+|---|---|
+| Campaña `120249613902440175` | `PAUSED` |
+| Conjuntos v5 (55+, $55/día) y v5-RT (retargeting, $20/día) | `PAUSED`; ya contienen los kits (conjunto de productos `2097987747472219`, 13 productos) |
+| Conjuntos v1–v4 | `PAUSED` |
+| Anuncios v5 | `PAUSED`, ya revisados por Meta (salieron de `PENDING_REVIEW`/`IN_PROCESS`) |
+| Gasto diario desde el 30 sep | **solo el 30 sep ($14.90, antes de la pausa de las 11:13)**; del 1 al 12 oct, $0 y 0 impresiones |
+| Cuenta | tope $2,006.00, gastado $1,682.45 → **$323.55 disponibles** |
+
+> El "gastado" pasó de $1,679.34 (§67, leído el 30 sep a las 11:13) a
+> $1,682.45. Son los $3.11 que Meta terminó de asentar del 30 sep después
+> de la lectura, la misma lección de §63. **No es gasto nuevo.**
+
+**Para que los kits se anuncien** falta la fase 4 de
+`GUIA-POR-FASES.md`: fijar por escrito el criterio de corte, decidir el
+presupuesto y encender los conjuntos v5. El dueño decidió seguir el
+orden de la guía: primero la fase 2 (canales gratis) y la 3 (reabasto y
+precios).
+
+### Mantenimiento del repositorio (12 oct)
+
+- **No hizo falta merge.** `claude/intemperie-mexico-audit-n3yxbs` es la
+  rama por defecto del repositorio, y la única otra rama
+  (`claude/peaceful-ptolemy-old8fo`) se fusionó el 22 sep (PR #1) y no
+  tiene commits pendientes.
+- **Graphify** (0.9.80):
+  - `scripts/`: **205/469**.
+  - `tema-shopify/`: **463/665**. Antes era 463/696: mismos nodos y 31
+    aristas menos, **sin cambios de código en el tema**. Es el cambio de
+    versión de la herramienta (0.9.66 → 0.9.80), igual que en §63 y §71.
 
