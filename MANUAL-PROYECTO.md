@@ -8638,4 +8638,14 @@ ventas@ y facturacion@intemperiemexico.com, botón de WhatsApp
 
   La regla "uno solo activo" del prompt se pensó para dos correos
   iguales; estos no lo son.
+- **Instalación de Shopify Messaging aprobada (12 oct).**
+  - Permisos: ver datos de clientes y del personal; ver y editar
+    clientes, productos, pedidos, descuentos, marketing, informes y
+    tienda en línea. Son amplios, pero la app es **de Shopify (primera
+    parte)** y los necesita para armar el correo de recuperación.
+  - Costo: **10,000 correos al mes gratis**; después, desde 1 USD por
+    cada 1,000, con aprobación aparte. Al volumen de esta tienda, $0.
+  - Instrucción: configurar solo "Recuperar pago abandonado" (10 h,
+    todos los que dejaron su correo, español), con vista previa antes de
+    activarlo. Ninguna otra automatización ni plan de pago.
 
