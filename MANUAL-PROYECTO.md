@@ -8695,4 +8695,23 @@ ventas@ y facturacion@intemperiemexico.com, botón de WhatsApp
   13:33**. Ni esta sesión ni Claude in Chrome lo editaron; se le preguntó
   al dueño quién. Se pidió la vista previa completa, con el logo
   agregado, antes de publicarlo.
+- **Vista previa del correo de pago abandonado (12 oct):**
+  - asunto "Solo falta un paso para tener tu equipo 🎯"; texto de vista
+    previa "Tu pedido está guardado — y con envío gratis si llegas a $799
+    MXN" (lo editado a las 13:33 fue esto, no el asunto);
+  - remitente INTEMPERIE MÉXICO - ventas@;
+  - productos del carrito, botón "Continuar con el pago", pago seguro,
+    garantía, botón de WhatsApp y pie con baja.
+
+  El contenido se aprobó.
+- **Logo:** "Marca" de Shopify no tiene logo cargado, pero el tema usa
+  **`shopify://shop_images/Logo_Sin_Fondo.png`**
+  (`config/settings_data.json`). Se pidió elegirlo en "Seleccionar"
+  entre los archivos existentes, sin subir nada ni usar imágenes
+  gratuitas.
+- **Antes de activar:**
+  - verificar que el botón de WhatsApp apunte a wa.me/527773277340;
+  - mandar un correo de prueba a ventas@ y mostrar la vista previa
+    final;
+  - activar solo con "sí, activa".
 
