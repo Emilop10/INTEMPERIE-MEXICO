@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 12 de octubre de 2026 (sección 74)
+**Última actualización:** 13 de octubre de 2026 (sección 78)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -105,6 +105,7 @@ como respaldo
 75. [Fase 2: el canal de Google estaba instalado y vacío (12 oct)](#75-fase-2-el-canal-de-google-estaba-instalado-y-vacío-12-oct)
 76. [Claude in Chrome para Merchant Center y el carrito abandonado; Mercado Libre resuelto (12 oct)](#76-claude-in-chrome-para-merchant-center-y-el-carrito-abandonado-mercado-libre-resuelto-12-oct)
 77. [Fase 2 cerrada: Google y el correo de pago abandonado funcionando (12 oct)](#77-fase-2-cerrada-google-y-el-correo-de-pago-abandonado-funcionando-12-oct)
+78. [Corte antes de la fase 3: qué queda pendiente (13 oct)](#78-corte-antes-de-la-fase-3-qué-queda-pendiente-13-oct)
 
 ---
 
@@ -8766,4 +8767,65 @@ tres cosas que la API no veía: la app sin permiso, la falta de Merchant
 Center y el correo en borrador desde una instalación anterior. Y frenó a
 tiempo dos decisiones equivocadas propias: suponer que existía Merchant
 Center y fijar la espera en 10 h.
+
+## 78. Corte antes de la fase 3: qué queda pendiente (13 oct)
+
+El dueño pidió documentar todo y saber qué queda abierto antes de pasar
+a la fase 3 (reabasto y precios).
+
+### Estado del repositorio
+
+- **Merge: no hace falta.** `claude/intemperie-mexico-audit-n3yxbs` es la
+  rama por defecto, no hay PR abiertos y `claude/peaceful-ptolemy-old8fo`
+  no tiene commits pendientes (se fusionó en el PR #1).
+- **Graphify sin cambios:** `scripts/` 205/469 y `tema-shopify/` 463/665.
+  La fase 2 fue configuración en Google y Shopify más documentación, sin
+  código nuevo.
+- **El deploy automático del tema sigue sano.** La última corrida (12
+  oct, `1c51d1f`) terminó en `success` con el secret de GitHub de antes:
+  regenerar el token por OAuth el 7 oct **no invalidó el anterior**, así
+  que no hace falta actualizar ese secret.
+
+### El "Pedidos 1" del admin no es una venta nueva
+
+Se leyeron los pedidos con `read_orders`. Hay solo dos en la historia:
+
+- **#1006**, la venta real del 12 sep ($849, Combo Revenger 2.45m),
+  pagada y enviada;
+- **#1005**, la compra de prueba del dueño del 24 ago ($190.95, §46),
+  pagada y **sin preparar**: por eso el contador marca 1.
+
+Archivarlo es cosmético y lo hace el dueño, porque el token no tiene
+`write_orders`.
+
+### Pendientes, por tipo
+
+**Nada bloquea la fase 3.**
+
+| Tipo | Pendiente | Quién |
+|---|---|---|
+| Con fecha | **~15 oct:** repetir el diagnóstico de Merchant Center (bloque C del prompt de Claude in Chrome) | dueño + Claude in Chrome, reporte a Claude Code |
+| Tarea corta | **Rotar el secreto de la app de Shopify**, que pasó por el chat el 7 oct (Dev Dashboard → Credenciales → Rotar). No rompe el token vigente | dueño |
+| Tarea corta | Archivar el pedido de prueba **#1005** | dueño |
+| Tarea corta | Revisar el canal **"Shop" con "Acción necesaria"** | dueño + Claude in Chrome |
+| Recomendado | Guardar `SHOPIFY_ADMIN_TOKEN` como variable del entorno de claude.ai/code, para que un contenedor nuevo no obligue a repetir el OAuth (pasó el 7 oct) | dueño |
+| Decisión, sin prisa | Premarcar la casilla de marketing en la pantalla de pago (alcance del correo de recuperación contra consentimiento) | dueño |
+| Decisión, sin prisa | Activar las automatizaciones de bienvenida y agradecimiento, que ya están redactadas en borrador | dueño |
+| Decisión, sin prisa | Abrir cuenta propia en Mercado Libre | dueño |
+| Arrastrado | **12 productos sin código B1** (`PRODUCTOS-PENDIENTES.md`): su inventario no se concilia solo | dueño (códigos) + Claude |
+| Arrastrado, **insumo de la fase 3** | **Costo real de 3 a 5 guías** a distintas distancias (§59): sin eso, el precio de la zona muerta se decide con un solo dato ($223 a Quintana Roo) | dueño |
+| Arrastrado | ¿Sigue la etiqueta de código de barras en la foto principal del Combo Revenger 2.45m (defecto del 17 sep)? | por confirmar |
+| Arrastrado | TikTok: mandar el enlace cuando se abra la cuenta | dueño |
+| Limpieza | ~221 MB de imágenes en el repositorio | sin prisa |
+
+### Lo que necesita la fase 3 para arrancar
+
+1. **Cotización del proveedor** de los combos Okuma más vistos (Elite
+   Pro, Revenger) y de las cañas y carretes de los kits, para llegar a 3
+   o más piezas por kit.
+2. **El costo real de las guías** que se hayan pagado desde el 12 sep.
+   Si no hay más envíos, se decide con el supuesto pesimista de $223.
+3. La decisión de precio de los 4 productos de la zona muerta: Hilo
+   Araty 0.70mm $812, Stimula $849 (hoy agotada), Combo Revenger 2.45m
+   $849 y Boundary $949. Claude propone y el dueño decide.
 
