@@ -955,7 +955,9 @@ llamada de API), el grafo de `scripts/` sí se movió esta vez —
 > 🗓️ ~15 oct: repetir el diagnóstico de Merchant Center (revisión inicial, 4 imágenes, GTIN).
 > ✅ 12 oct: correo de pago abandonado ACTIVO (Messaging + Flow, 1 h, suscritos a marketing).
 > Fase 2 cerrada (MANUAL §77). Siguiente: **fase 3 — reabasto y precios de la zona muerta**.
-> 📋 **Lista consolidada de pendientes al 13 oct: MANUAL §78.** Nada bloquea la fase 3.
+> 📋 **Lista consolidada de pendientes al 13 oct: MANUAL §78; avance en §79.** Nada bloquea la fase 3.
+> ✅ 13 oct: 12 códigos B1 vinculados (Rifle Gamo Black 1000 corregido de 1 a 0) · foto del Revenger 2.45 sin etiqueta (falta borrar la original) · recordatorio de Google programado para el 15 oct.
+> 👉 Del dueño: [`PROMPT-CLAUDE-CHROME-PENDIENTES.md`](./PROMPT-CLAUDE-CHROME-PENDIENTES.md) (5 bloques) · rotar el secreto de la app · token como variable del entorno.
 > Cortos del dueño: rotar el secreto de la app de Shopify · archivar el pedido de prueba #1005 ·
 > revisar el canal "Shop" · ~15 oct, diagnóstico de Google con Claude in Chrome.
 > Insumos de la fase 3: cotización del proveedor (Okuma y piezas de kits) · costo real de guías recientes.

@@ -106,6 +106,7 @@ como respaldo
 76. [Claude in Chrome para Merchant Center y el carrito abandonado; Mercado Libre resuelto (12 oct)](#76-claude-in-chrome-para-merchant-center-y-el-carrito-abandonado-mercado-libre-resuelto-12-oct)
 77. [Fase 2 cerrada: Google y el correo de pago abandonado funcionando (12 oct)](#77-fase-2-cerrada-google-y-el-correo-de-pago-abandonado-funcionando-12-oct)
 78. [Corte antes de la fase 3: qué queda pendiente (13 oct)](#78-corte-antes-de-la-fase-3-qué-queda-pendiente-13-oct)
+79. [Cerrando los pendientes antes de la fase 3 (13 oct)](#79-cerrando-los-pendientes-antes-de-la-fase-3-13-oct)
 
 ---
 
@@ -8828,4 +8829,92 @@ Archivarlo es cosmético y lo hace el dueño, porque el token no tiene
 3. La decisión de precio de los 4 productos de la zona muerta: Hilo
    Araty 0.70mm $812, Stimula $849 (hoy agotada), Combo Revenger 2.45m
    $849 y Boundary $949. Claude propone y el dueño decide.
+
+## 79. Cerrando los pendientes antes de la fase 3 (13 oct)
+
+El dueño pidió cerrar **todos** los pendientes de §78 antes de la fase 3.
+
+### Resueltos por Claude Code
+
+**1. Los 12 productos sin código B1: cerrados.**
+- Con el inventario del 10 oct, las descripciones del punto de venta ya
+  traen calibre y número de piezas. Cada uno de los 12 tuvo una fila
+  inequívoca, incluidos los 4 "dudosos" del grupo B:
+  - ProMatch 5.5 **125** → 793676051574;
+  - ProMatch Competition 5.5 **250** → 793676003924 ("PROMATCH 5.5 250");
+  - Rocket 4.5 → 793676015729 (única fila "ROCKET 4.5");
+  - Daisy Mod-257 → 5628 ("PUNTA PLANA CAL 4.5 C/250 PZAS MOD-257 DAISY").
+- Antes de escribir se revisó que **ningún código lo usara otro
+  producto**. Se escribieron 12/12 en `barcode` por API.
+- La conciliación siguiente ya los cruzó por B1 (12 de 12) y **corrigió
+  7 existencias**. La crítica: **el Rifle Gamo Black 1000 Winter
+  ($8,278) pasó de 1 a 0**. La tienda lo vendía con una pieza que el
+  punto de venta no tiene.
+- Revisión de kits después: todo completo.
+- `PRODUCTOS-PENDIENTES.md` quedó cerrado. **Todos los productos sueltos
+  se concilian solos**; solo quedan fuera, a propósito, los combos
+  manuales y los kits.
+
+**2. La etiqueta del Combo Revenger 2.45m: retocada.**
+- La foto principal (y única) seguía con la etiqueta blanca de código
+  de barras en el mango.
+- **Método:** se giró la zona −45° para dejar el mango horizontal. Ahí
+  el tubo tiene la misma sección a lo largo, así que se reconstruyeron
+  las filas tapadas interpolando, columna por columna, entre el perfil
+  limpio de la izquierda y el de la derecha. El tubo queda con su línea
+  de brillo intacta. Después se volvió a girar y se compuso solo dentro
+  de la máscara, con borde suavizado. No se usó IA ni se tocó el
+  producto.
+- **Se subió como foto 1** (alt con `[sin-etiqueta]`). Al intentar
+  **borrar la original, el clasificador de seguridad lo bloqueó**:
+  borrar un recurso del dueño pide su permiso. **La original quedó como
+  foto 2** y se borra en el bloque 3 del prompt nuevo. Hay una copia
+  local en el scratchpad.
+
+**3. Recordatorio del diagnóstico de Google:** programado para el **15
+oct, 10:00 Chihuahua** (`send_later`, trigger `trig_01NqrwwEpJThG9ybLFYefgnb`).
+
+**4. ~221 MB de imágenes en el repositorio: se deja así, y queda
+cerrado.**
+- Sacarlas del historial exige reescribir git: un force-push a la rama
+  por defecto, destructivo, con riesgo para el deploy y para cualquier
+  copia del repositorio.
+- No afecta a la tienda ni al deploy (el workflow solo sube
+  `tema-shopify/`), y GitHub lo admite holgadamente.
+- Las imágenes nuevas ya se versionan solo como LEEME
+  (`.gitignore`), así que no crece más por esa vía.
+
+### Para el dueño, con Claude in Chrome
+
+[`PROMPT-CLAUDE-CHROME-PENDIENTES.md`](./PROMPT-CLAUDE-CHROME-PENDIENTES.md):
+5 bloques con punto de control.
+
+1. **Archivar** el #1005 (archivar, no cancelar ni reembolsar).
+2. Canal **Shop**, "Acción necesaria": solo mirar y reportar.
+3. Borrar la **foto vieja del Revenger**, la que tiene etiqueta.
+4. **Casilla de marketing** en la pantalla de pago: ver su estado;
+   premarcarla solo con el "sí" del dueño.
+5. Correos de **agradecimiento y bienvenida**: vista previa, logo y
+   activación solo con el "sí". Navegación abandonada y carrito
+   abandonado se quedan en borrador.
+
+### Para el dueño, directo
+
+- **Rotar el secreto de la app** (Dev Dashboard → Claude Integration →
+  Configuración → Credenciales → Rotar). No rompe el token vigente.
+- **Token como variable del entorno.** Se dejó el valor en un archivo
+  del scratchpad, nunca en el repositorio, para que el dueño lo copie a
+  la configuración del entorno de claude.ai/code como
+  `SHOPIFY_ADMIN_TOKEN` y luego lo borre.
+- **Decisiones con recomendación:**
+  - **Casilla premarcada: sí, recomendado.** Hay aviso de privacidad
+    publicado y el correo trae baja. Decide el dueño.
+  - **Agradecimiento y bienvenida: sí,** después de ver la vista previa.
+  - **Mercado Libre: no por ahora.** Retomarlo cuando haya resultados de
+    la fase 4.
+  - **TikTok:** ¿ya hay cuenta?
+- **Costo de guías recientes:** insumo de la fase 3.
+
+**Graphify:** sin cambios. No hubo código nuevo; el retoque se hizo con
+un script de una sola vez en el scratchpad.
 

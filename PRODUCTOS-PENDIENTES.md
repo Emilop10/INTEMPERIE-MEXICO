@@ -1,5 +1,38 @@
 # Productos pendientes de vincular
 
+> ✅ **13 oct 2026 — lista cerrada: los 12 quedaron vinculados.** Con el
+> inventario del 10 oct las descripciones del punto de venta traen
+> calibre y piezas completos, y cada producto tuvo una fila inequívoca.
+> Se verificó que ningún código lo usara otro producto, se escribieron
+> por API (12/12) y la conciliación siguiente ya los cruzó por código B1.
+> Corrigió 7 existencias; la más importante, **el Rifle Gamo Black 1000
+> Winter ($8,278), que figuraba con 1 pieza y en el punto de venta hay
+> 0**. Detalle en MANUAL §79.
+>
+> | Producto | Código B1 |
+> |---|---|
+> | Diábolo Gamo Expander 5.5mm 250 | 793676021461 |
+> | Diábolo Gamo Hollow Point 10X 5.5mm 250 | 5089 |
+> | Diábolo Gamo Hunter Metal Impact 6.35mm 200 | 5666 |
+> | Diábolo Gamo Magnum Energy 5.5mm 250 | 4529 |
+> | Diábolo Gamo ProHunter 5.5mm 250 | 793676003979 |
+> | Diábolo Gamo ProMatch 4.5mm 500 | 793676003917 |
+> | Diábolo Gamo TS-22 Target 5.5mm 200 | 793676025438 |
+> | Rifle Gamo Black 1000 Winter 5.5 con Mira 4x32 | 4033 |
+> | Diábolo Gamo ProMatch 5.5mm **125** | 793676051574 ("PROMATCH 5.5 125 PIEZAS") |
+> | Diábolo Gamo ProMatch Competition 5.5mm **250** | 793676003924 ("PROMATCH 5.5 250 PZAS") |
+> | Diábolo Gamo Rocket 4.5mm 150 | 793676015729 (única fila "ROCKET 4.5" del punto de venta) |
+> | Diábolo Punta Plana Daisy Mod-257 4.5mm 250 | 5628 ("PUNTA PLANA CAL 4.5 C/250 PZAS MOD-257 DAISY") |
+>
+> **Cobertura de la conciliación automática:** todos los productos
+> sueltos. Solo quedan fuera, a propósito, los 3 combos manuales y los 5
+> kits, que no existen como pieza en el punto de venta y se revisan con
+> `crear-kits.py --revisar-existencias`.
+>
+> Lo de abajo se conserva como historial.
+
+---
+
 Lista viva de productos de Shopify que **no se concilian automáticamente**
 contra el conteo físico, y qué hace falta para cerrarlos.
 
