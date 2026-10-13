@@ -8945,4 +8945,10 @@ un script de una sola vez en el scratchpad.
   - Recomendación: correo en **"Pago e inicio de sesión"**, más
     preselección si la opción aparece; SMS y WhatsApp sin cambio. Se
     guarda solo con el "sí" del dueño.
+- **P4, resuelto:** correo en **"Pago e inicio de sesión"**, con la
+  casilla "Enviarme novedades y ofertas por correo electrónico". La
+  preselección es **automática de Shopify y hoy solo aplica a Estados
+  Unidos**; no hay control para México. Así, en México la casilla sale
+  visible y **sin marcar**: el cliente decide y no hay duda de
+  consentimiento. Se aprobó guardar.
 
