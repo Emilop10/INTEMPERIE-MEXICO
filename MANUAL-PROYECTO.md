@@ -8933,4 +8933,16 @@ un script de una sola vez en el scratchpad.
   - Ventas por Shop en 30 días: $0. El canal se deja instalado, porque
     no estorba.
   - **El aviso se ignora y no se vuelve a reportar como pendiente.**
+- **P3:** se quitó del producto la foto vieja del Revenger 2.45m (la que
+  tenía la etiqueta); el archivo sigue en la biblioteca. La foto
+  retocada quedó como única, y su `alt` se limpió por API a "Combo
+  Okuma Revenger 8'0" (2.45m) — caña y carrete Okuma Revenger".
+- **P4, el hallazgo que importa:** en Configuración → Pago, "Suscripción
+  a marketing", el correo estaba en **"No mostrar"**. **Ningún cliente
+  podía suscribirse al pagar**, y el correo de pago abandonado solo
+  llega a suscritos: activado así, casi no habría salido nunca. SMS y
+  WhatsApp, también en "No mostrar".
+  - Recomendación: correo en **"Pago e inicio de sesión"**, más
+    preselección si la opción aparece; SMS y WhatsApp sin cambio. Se
+    guarda solo con el "sí" del dueño.
 
