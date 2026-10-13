@@ -8951,4 +8951,23 @@ un script de una sola vez en el scratchpad.
   Unidos**; no hay control para México. Así, en México la casilla sale
   visible y **sin marcar**: el cliente decide y no hay duda de
   consentimiento. Se aprobó guardar.
+- **P5, automatizaciones de agradecimiento y bienvenida (13 oct):**
+  - **(a) Agradecimiento** ("Order created", espera de 3 h, solo
+    suscritos; correo A1 para el primer pedido y A2 para el segundo).
+    Bien redactado y con el logo dentro del cuerpo. **Se aprobó
+    activarlo.**
+    - ⚠️ **El A2 lleva escritos a mano dos kits con su precio**
+      (Tundra Pro $1,749 y Blue Fox Fresh $1,199). Si cambian de precio
+      o se agotan, hay que editarlo.
+  - **(b) Bienvenida** ("Customer subscribed", sin espera; excluye a
+    quien se suscribe en el pago, que ya recibe el agradecimiento). Se
+    agregó el logo en el encabezado. Antes de activarla se corrigen
+    cuatro cosas:
+    - asunto todo en mayúsculas → "Gracias por unirte a la familia
+      Intemperie México";
+    - texto de vista previa vacío → uno con la propuesta de la tienda;
+    - en "Más vendidos" aparecía el **Plomo de $1.95**, por el pedido
+      de prueba → se cambia por el Kit Revenger 7', si el bloque permite
+      elegir;
+    - no había botón "Visitar la tienda" → se agrega.
 
