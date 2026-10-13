@@ -961,7 +961,7 @@ llamada de API), el grafo de `scripts/` sí se movió esta vez —
 > Cortos del dueño: rotar el secreto de la app de Shopify · archivar el pedido de prueba #1005 ·
 > revisar el canal "Shop" · ~15 oct, diagnóstico de Google con Claude in Chrome.
 > Insumos de la fase 3: cotización del proveedor (Okuma y piezas de kits) · costo real de guías recientes.
-> Canal "Shop": "Acción necesaria", revisar después.
+> Canal "Shop" ("Acción necesaria"): NO APLICA. Exige Shopify Payments, desactivado para siempre (§30). Se ignora.
 > 🔁 Producto nuevo publicado = correr `sincronizar-canal-meta.py` para Meta **y**
 > con `--canal "Google & YouTube"`.
 > 📦 Regla de kits y combos: si se vende uno, descontar sus piezas. En **cada**

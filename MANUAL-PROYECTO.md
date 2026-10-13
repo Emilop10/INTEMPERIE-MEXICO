@@ -8918,3 +8918,19 @@ cerrado.**
 **Graphify:** sin cambios. No hubo código nuevo; el retoque se hizo con
 un script de una sola vez en el scratchpad.
 
+### Avance del prompt de pendientes (13 oct)
+
+- **P1:** el pedido de prueba **#1005 quedó archivado** (no se canceló ni
+  se reembolsó; el pago sigue cobrado). No hay otros pedidos abiertos:
+  el #1006 ya se entregó, y los #1001–#1004 son de febrero, en $0 y
+  reembolsados.
+- **P2, canal Shop, "Acción necesaria":** "La tienda no es elegible para
+  vender en Shop". Cumple 6 de 7 requisitos, y el que falta es **"cuenta
+  activa de Shopify Payments"**. **No aplica, de forma permanente:**
+  Shopify Payments está desactivado desde el 14 ago por el aviso de
+  Trust & Safety sobre los rifles de aire, y el checkout se quedó en
+  Mercado Pago Tarjetas y PayPal (§30, §54; decisión cerrada el 25 ago).
+  - Ventas por Shop en 30 días: $0. El canal se deja instalado, porque
+    no estorba.
+  - **El aviso se ignora y no se vuelve a reportar como pendiente.**
+
