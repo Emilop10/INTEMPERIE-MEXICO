@@ -8974,4 +8974,26 @@ un script de una sola vez en el scratchpad.
     respondió a los primeros clics en "Activar", y al reintentar, el
     sistema de permisos de Claude in Chrome lo bloqueó ("External
     System Writes"). **Ese clic lo da el dueño.**
+- **P5 final (14 oct):**
+  - **(a) Agradecimiento: activo**, con sus dos correos. El A1 lo activó
+    Claude in Chrome y el A2 el dueño.
+  - **(b) Bienvenida: en borrador**, con el logo ya puesto. La tabla de
+    Messaging dejó de responder a Claude in Chrome, así que **las
+    cuatro correcciones las hace el dueño a mano**:
+    - asunto "Gracias por unirte a la familia Intemperie México";
+    - vista previa "Equipo de pesca y óptica revisado pieza por pieza,
+      con envío gratis desde $799";
+    - "Más vendidos" en **manual**, con Kit Revenger 7', Kit Clarus, Kit
+      Tolten y Binocular Kampak. Son los de mejor contribución con al
+      menos 2 piezas; se descartaron el Plomo de $1.95 y el Combo
+      Revenger $849 (1 pieza, zona muerta);
+    - botón "Visitar la tienda".
+
+    Recomendación: activarla después de ver la vista previa.
+  - "Navegación abandonada" y "Carrito abandonado" siguen en borrador, a
+    propósito.
+- **Fin de los 5 bloques del prompt de pendientes.** Lo único que queda
+  del corte de §78 es directo del dueño: rotar el secreto de la app,
+  guardar el token como variable del entorno y responder sobre TikTok y
+  Mercado Libre.
 
