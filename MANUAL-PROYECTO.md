@@ -8970,4 +8970,8 @@ un script de una sola vez en el scratchpad.
       de prueba → se cambia por el Kit Revenger 7', si el bloque permite
       elegir;
     - no había botón "Visitar la tienda" → se agrega.
+  - (a), avance: el A1 ("Muchas Gracias!!!") **quedó activo**. El A2 no
+    respondió a los primeros clics en "Activar", y al reintentar, el
+    sistema de permisos de Claude in Chrome lo bloqueó ("External
+    System Writes"). **Ese clic lo da el dueño.**
 
