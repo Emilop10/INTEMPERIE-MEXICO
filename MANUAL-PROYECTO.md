@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 13 de octubre de 2026 (sección 78)
+**Última actualización:** 15 de octubre de 2026 (sección 80)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -107,6 +107,7 @@ como respaldo
 77. [Fase 2 cerrada: Google y el correo de pago abandonado funcionando (12 oct)](#77-fase-2-cerrada-google-y-el-correo-de-pago-abandonado-funcionando-12-oct)
 78. [Corte antes de la fase 3: qué queda pendiente (13 oct)](#78-corte-antes-de-la-fase-3-qué-queda-pendiente-13-oct)
 79. [Cerrando los pendientes antes de la fase 3 (13 oct)](#79-cerrando-los-pendientes-antes-de-la-fase-3-13-oct)
+80. [Pendientes cerrados: listos para la fase 3 (15 oct)](#80-pendientes-cerrados-listos-para-la-fase-3-15-oct)
 
 ---
 
@@ -9032,4 +9033,33 @@ un script de una sola vez en el scratchpad.
   una captura de pantalla** enviada al chat, la del cuadro de variables
   de entorno. Conviene regenerarlo en Meta y reemplazarlo en ese cuadro.
   No es urgente: solo quedó en esta conversación.
+
+## 80. Pendientes cerrados: listos para la fase 3 (15 oct)
+
+Respuestas del dueño: **todavía no tiene TikTok**, y **Mercado Libre se
+deja para después**, para retomarlo con resultados de la fase 4. Con eso
+se cierra la lista de §78.
+
+| Pendiente de §78 | Cierre |
+|---|---|
+| 12 productos sin código B1 | ✅ Vinculados; el Rifle Gamo Black corregido de 1 a 0 (§79) |
+| Etiqueta en la foto del Revenger 2.45m | ✅ Retocada; la foto vieja quitada del producto |
+| Pedido de prueba #1005 | ✅ Archivado |
+| Canal Shop, "Acción necesaria" | ✅ No aplica: exige Shopify Payments, desactivado para siempre |
+| Casilla de marketing en el pago | ✅ Visible ("Pago e inicio de sesión"); sin preselección en México |
+| Agradecimiento y bienvenida | ✅ Activos (bienvenida corregida: 2×2, fondo blanco, botón a la tienda) |
+| Rotar el secreto de la app | ✅ Rotado; el token sigue vivo |
+| Token como variable del entorno | ✅ Guardado; **confirmar en la próxima sesión nueva** |
+| Diagnóstico de Google | ⏳ El recordatorio llegó el 15 oct; el dueño corre el bloque C cuando pueda |
+| TikTok | ⏸️ Sin cuenta todavía |
+| Mercado Libre | ⏸️ Después de la fase 4 |
+| ~221 MB de imágenes | ✅ Se dejan así (§79) |
+
+**Pendientes vivos, ninguno bloquea la fase 3:**
+- el diagnóstico de Merchant Center (bloque C);
+- regenerar el token de Meta, que se vio en una captura;
+- confirmar `SHOPIFY_ADMIN_TOKEN` en la próxima sesión nueva.
+
+**Siguiente:** fase 3 de `GUIA-POR-FASES.md`, reabasto y precios de la
+zona muerta.
 

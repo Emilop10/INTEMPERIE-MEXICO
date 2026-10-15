@@ -10,7 +10,7 @@ siguiente hasta cumplir la condición de "terminada".
 | 0 | Arreglos de la ficha de producto | ✅ En vivo (30 sep) |
 | 1 | Kits a la venta | ✅ 5 kits publicados (12 oct) |
 | 2 | Canales gratis: Google, Mercado Libre y carrito abandonado | ✅ 12 oct (seguimiento: diagnóstico de Google ~15 oct; Mercado Libre por decidir) |
-| **3** | **Reabasto y precios de la zona muerta** | 🟡 **SIGUIENTE** |
+| **3** | **Reabasto y precios de la zona muerta** | 🟡 **EN CURSO** (15 oct) |
 | 4 | Encender Meta con criterio fijado | ⏳ Estructura lista y en pausa |
 
 Leyenda: 👤 = lo hace el dueño · 🤖 = lo hago yo.
@@ -74,7 +74,7 @@ ya busca.
 | 2.2 | Publicar en el canal de Google los productos permitidos y dejar fuera los 63 restringidos | 🤖 | ✅ 12 oct: 325 publicados, 63 fuera, 0 errores |
 | 2.3 | Revisar el diagnóstico de Merchant Center **hacia el 15 oct** (Claude in Chrome, bloque C) | 🤖 + 👤 | ⏳ 12 oct: 262 limitados por "revisión inicial", 4 "imagen no procesada" (Google reintenta), 0 por armas |
 | 2.4 | ¿El vendedor "intemperie.mx" de Mercado Libre es tuyo? | 👤 | ✅ 12 oct: es del papá del dueño y ya no opera. Sin riesgo de canibalizar ventas |
-| 2.5 | ¿Abrir cuenta propia en Mercado Libre? Si sí: archivo de carga y precio mínimo por producto | 👤 decide, 🤖 arma | ⏳ decisión abierta, no bloquea la fase 3 |
+| 2.5 | ¿Abrir cuenta propia en Mercado Libre? | 👤 decide, 🤖 arma | ⏸️ 15 oct: decidido dejarlo para después de la fase 4 |
 | 2.6 | Correo de carrito abandonado | 👤 + Claude in Chrome | ✅ 12 oct: Messaging + Flow instaladas; "Recupera el pedido abandonado" activo (1 h, suscritos a marketing, con logo) |
 
 **✅ Terminada cuando:** los productos aparecen en Google Shopping, está

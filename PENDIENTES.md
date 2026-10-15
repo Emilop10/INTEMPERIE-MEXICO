@@ -959,7 +959,9 @@ llamada de API), el grafo de `scripts/` sí se movió esta vez —
 > ✅ 13 oct: 12 códigos B1 vinculados (Rifle Gamo Black 1000 corregido de 1 a 0) · foto del Revenger 2.45 sin etiqueta (falta borrar la original) · recordatorio de Google programado para el 15 oct.
 > ✅ 14 oct: los 5 bloques de Claude in Chrome están hechos (#1005 archivado, Shop no aplica, foto vieja quitada, casilla de marketing visible, agradecimiento activo).
 > ✅ 15 oct: bienvenida activa · secreto de la app rotado · SHOPIFY_ADMIN_TOKEN en variables de entorno (confirmar en la próxima sesión nueva).
-> 👉 Del dueño: TikTok y Mercado Libre. 🔐 Regenerar el token de Meta (se vio en una captura).
+> ✅ 15 oct: pendientes de §78 cerrados (MANUAL §80). TikTok: sin cuenta todavía. Mercado Libre: después de la fase 4.
+> Vivos (no bloquean): diagnóstico de Google (bloque C) · 🔐 regenerar el token de Meta · confirmar SHOPIFY_ADMIN_TOKEN en la próxima sesión.
+> ▶️ **Fase en curso: 3 — reabasto y precios.**
 > Cortos del dueño: rotar el secreto de la app de Shopify · archivar el pedido de prueba #1005 ·
 > revisar el canal "Shop" · ~15 oct, diagnóstico de Google con Claude in Chrome.
 > Insumos de la fase 3: cotización del proveedor (Okuma y piezas de kits) · costo real de guías recientes.
