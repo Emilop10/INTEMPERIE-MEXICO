@@ -9082,3 +9082,30 @@ zona muerta.
     quitar fotos y necesita permiso del dueño.
   - **Recordatorio programado para el 22 oct** (`send_later`).
 
+### Cambio del token de Meta (15 oct)
+
+- **Motivo:** el token completo se vio en una captura de pantalla del
+  cuadro de variables de entorno.
+- **El token actual,** según `debug_token`: tipo SYSTEM_USER, app
+  "Claude Integration", user `122095625937444379`, no caduca. Trae
+  scopes de **Instagram y Threads** (publicar, comentarios, mensajes)
+  que este proyecto nunca usó. Se le preguntó al dueño si lo usa otro
+  proyecto: **dice que no**. En este repositorio solo lo lee
+  `scripts/meta-ads.py`; `deploy-shopify.yml` no lo usa.
+- **Plan** ([`PROMPT-CLAUDE-CHROME-TOKEN-META.md`](./PROMPT-CLAUDE-CHROME-TOKEN-META.md)):
+  1. revisar el usuario del sistema;
+  2. **revocar** con "sí" del dueño;
+  3. preparar el token nuevo con **mínimo privilegio**:
+     `ads_management`, `ads_read`, `business_management`,
+     `catalog_management`, `pages_show_list`, `pages_read_engagement`,
+     `pages_manage_ads` e `instagram_basic` (este por la cuenta de
+     Instagram que llevan los creativos).
+
+  **El clic de "Generar" y la copia los hace el dueño.** Claude in
+  Chrome tiene prohibido leer o transcribir el token. El dueño lo pega
+  directo en las variables de entorno.
+- **Consecuencia aceptada:** al revocar, esta sesión pierde acceso a
+  Meta, porque cargó el token viejo al iniciar. Se verifica en la
+  próxima sesión nueva, junto con `SHOPIFY_ADMIN_TOKEN`. La campaña está
+  en pausa y la fase 3 no depende de Meta.
+
