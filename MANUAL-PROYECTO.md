@@ -8996,4 +8996,17 @@ un script de una sola vez en el scratchpad.
   del corte de §78 es directo del dueño: rotar el secreto de la app,
   guardar el token como variable del entorno y responder sobre TikTok y
   Mercado Libre.
+- **Bienvenida, terminada (15 oct).**
+  - El dueño puso el asunto, la vista previa y los productos en
+    "Estático" (Kit Revenger 7', Kit Clarus, Kit Tolten y Binocular
+    Kampak).
+  - Claude in Chrome verificó todo y, con "sí" del dueño, dejó los
+    productos en 2 columnas (2×2), ocultó la descripción (quitaba los
+    huecos negros) y agregó el botón "Visitar la tienda" →
+    intemperiemexico.com, debajo del texto de bienvenida. Quedó un solo
+    botón: el primero se había insertado al final y se borró.
+  - El formato de precio "1.549,00 $" es propio de Messaging y se
+    acepta.
+  - Pendiente del dueño: enviarse una prueba, verla en el celular y
+    **activarla**.
 
