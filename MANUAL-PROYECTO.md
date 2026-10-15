@@ -9009,4 +9009,13 @@ un script de una sola vez en el scratchpad.
     acepta.
   - Pendiente del dueño: enviarse una prueba, verla en el celular y
     **activarla**.
+- **Ajuste de color (15 oct, a pedido del dueño):** a la sección "Más
+  vendidos" no le gustaba el fondo negro.
+  - Claude in Chrome dejó el título "Más vendidos" y el bloque de
+    productos con **fondo blanco y texto negro**; los botones "Comprar
+    ahora" ya eran negros con letra blanca. El pie sigue negro.
+  - Con el fondo blanco **aparecieron los precios tachados** (antes iban
+    negro sobre negro). **Se dejan:** son el precio de las piezas por
+    separado (`compare_at_price` de los kits), comunican el ahorro de
+    $218 a $271 y coinciden con la tienda.
 
