@@ -9063,3 +9063,22 @@ se cierra la lista de §78.
 **Siguiente:** fase 3 de `GUIA-POR-FASES.md`, reabasto y precios de la
 zona muerta.
 
+### Diagnóstico de Merchant Center, 15 oct (bloque C, segunda vuelta)
+
+- **325 artículos: 287 aprobados**, 0 limitados, 34 en revisión y 4 no
+  aprobados. La revisión inicial terminó para casi todo el catálogo.
+- **0 problemas por armas o productos peligrosos.** Tampoco apareció
+  "GTIN no válido" (se esperaba por los códigos B1); no hay advertencias.
+- **Envío "Complete" y devoluciones "Verified":** Google validó la
+  declaración contra el sitio. El único aviso de cuenta es "No Google
+  Ads account linked", que es intencional.
+- **Las 4 "Image not processed" siguen igual** después de 3 días.
+  - Se compararon contra 40 imágenes aprobadas: **el mismo formato**
+    (JPEG RGB progresivo con ICC y EXIF, que es como sirve el CDN de
+    Shopify). El archivo no tiene nada distinto; es una falla de
+    descarga de Google con esas URL.
+  - Afectan a 4 productos de bajo valor (1.2%). Se decidió **esperar una
+    semana más** antes de resubirlas con otro nombre, porque eso implica
+    quitar fotos y necesita permiso del dueño.
+  - **Recordatorio programado para el 22 oct** (`send_later`).
+
