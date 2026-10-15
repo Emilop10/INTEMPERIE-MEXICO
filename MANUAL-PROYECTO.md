@@ -9018,4 +9018,18 @@ un script de una sola vez en el scratchpad.
     negro sobre negro). **Se dejan:** son el precio de las piezas por
     separado (`compare_at_price` de los kits), comunican el ahorro de
     $218 a $271 y coinciden con la tienda.
+- **Bienvenida activada por el dueño (15 oct).** Quedan activos tres
+  flujos: pago abandonado, agradecimiento (A1 y A2) y bienvenida.
+- **Secreto de la app rotado (15 oct).** El token vigente sigue
+  funcionando: `shop.json` respondió 200 después de la rotación.
+- **`SHOPIFY_ADMIN_TOKEN` guardado en "Variables de entorno"** del
+  entorno de claude.ai/code, junto a las de Meta. Se eligió esa sección
+  y no "Secretos" porque los scripts leen variables de entorno y así ya
+  funciona con Meta. No se puede verificar en esta sesión: se carga al
+  abrir una sesión nueva. **La primera sesión nueva debe confirmar con
+  `env | grep SHOPIFY`.** Se borró el archivo temporal con el valor.
+- ⚠️ **Pendiente de seguridad:** el **token de Meta se vio completo en
+  una captura de pantalla** enviada al chat, la del cuadro de variables
+  de entorno. Conviene regenerarlo en Meta y reemplazarlo en ese cuadro.
+  No es urgente: solo quedó en esta conversación.
 
