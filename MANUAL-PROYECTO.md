@@ -9649,8 +9649,9 @@ quedaba debajo de la barra de direcciones y no se podía tocar bien.
 | Facebook (in-app) | no | 10 px (igual que antes) | 67 px | 84 px |
 
 - **Limitación:** aquí no hay WebKit ni un iPhone real. La simulación
-  confirma la lógica y las medidas, pero **falta que el dueño lo
-  confirme en su iPhone**.
+  confirma la lógica y las medidas.
+- ✅ **Confirmado por el dueño en su iPhone 17 Pro Max** (16 oct): "ya
+  quedó". El botón se puede tocar sin que lo tape la barra de Safari.
 - Si la píldora quedara un poco más alta en otros modelos, basta con
   subir el valor de `--im-bajo`.
 - **Si Safari tiene la barra arriba** (ajuste "Superior"), la barra de
