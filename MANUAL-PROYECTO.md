@@ -9813,7 +9813,8 @@ para gusano (3), y las dos cabezas de jig EagleClaw.
 - Una salió `nsfw` (el redondo sobre "un rollo de cuerda"); se reformuló.
 - **Con 1 sola imagen:** Tuna Circle y Triple VMC 8540BN.
 - **Créditos:** 66. Quedan **435.5**.
-- **Subida:** 90 imágenes en 46 productos.
+- **Subida:** 90 subidas, 129 ya estaban, 0 errores.
+- **Verificado por API:** 46 de 46 anzuelos con portada de IA.
 
 **Ojo:** la foto real del Trokar TK110 trae la marca de agua de otra
 tienda ("curricanes.com"), igual que la Axeon (§90). Conviene cambiarla.
