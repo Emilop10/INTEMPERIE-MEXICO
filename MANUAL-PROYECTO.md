@@ -9208,3 +9208,13 @@ zona muerta.
 
 **Siguiente: fase 4.** Fijar por escrito el criterio de corte antes de
 encender y decidir el presupuesto (GUIA-POR-FASES.md, pasos 4.1 y 4.2).
+
+### Estado del repositorio (16 oct, antes de la fase 4)
+
+- **Merge: no hace falta.** `claude/intemperie-mexico-audit-n3yxbs` es la
+  rama por defecto, hay 0 PR abiertos y `claude/peaceful-ptolemy-old8fo`
+  ya está contenida en ella.
+- **Graphify sin cambios:** `scripts/` 205/469 y `tema-shopify/` 463/665.
+  Desde el último grafo (12 oct) no ha cambiado código: el token de Meta
+  y los precios fueron configuración y documentación. El script de
+  precios vive en el scratchpad, fuera del repositorio.
