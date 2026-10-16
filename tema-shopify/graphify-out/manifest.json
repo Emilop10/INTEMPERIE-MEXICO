@@ -564,9 +564,9 @@
     "semantic_hash": ""
   },
   "templates/collection.json": {
-    "mtime": 1791399907.6589687,
-    "seen": 1791776268.0269513,
-    "ast_hash": "16e7ea5e5bf916b24650426e831445ac",
+    "mtime": 1792166712.2325,
+    "seen": 1792167635.2116697,
+    "ast_hash": "37f7e407ec5f3fc2eba972cec0ffad1f",
     "semantic_hash": ""
   },
   "templates/customers/account.json": {

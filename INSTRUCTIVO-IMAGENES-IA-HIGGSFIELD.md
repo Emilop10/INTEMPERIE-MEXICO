@@ -24,8 +24,8 @@ de buenas y **fieles al producto real**.
    ambiente. No lo rediseña. Se pierde la imagen si cambia la marca, el
    color, la forma, el modelo de carrete o el número de piezas.
 2. **No mostrar lo que no se vende.**
-   - Una **caña sola va sin carrete**. Si el cliente ve un carrete,
-     cree que viene incluido.
+   - Una **caña sola va sin carrete**, y un **carrete solo va sin caña**.
+     Si el cliente ve la otra pieza, cree que viene incluida.
    - En un "todo lo que incluye" va **exactamente** lo que trae el kit.
      Ni un carrete de hilo de más.
 3. **Nada de armas ni sus accesorios** (diábolos, miras, monturas,
@@ -82,6 +82,10 @@ de buenas y **fieles al producto real**.
   la cantidad exacta y "nothing else" (ver §6).
 - **Cañas solas:** la A es la caña entera, sin carrete. La B es un
   close-up del mango, el portacarrete vacío y las guías.
+- **Carretes solos:** la A es el carrete grande, sobre una roca, un
+  muelle, una cubierta o la arena. La B, en manos de un señor (cargando
+  hilo, revisando el freno) o junto a una lobina o trucha. Nunca montado
+  en una caña.
 - **Óptica:** la A es un bodegón en un paisaje. La B, un señor usándolo
   (ballenas, flamencos, venados, un velero frente a un faro).
 - **Lugares mexicanos reales:** presas, Chapala, Mar de Cortés, Pacífico,
@@ -132,6 +136,7 @@ se sube "porque casi".
 | Logo de la caja Storm al revés | No pedir logos de cajas, o pedir la escena sin caja |
 | El carrete se "rediseña" en close-ups | Encuadres donde el combo se vea completo |
 | Color del blank cambiado (Clarus negro salió plateado) | Repetir el color en el prompt: "matte BLACK … not silver or grey" |
+| Close-up que inventa gráficos (Maupiti) o cambia la manivela (AFR230 con doble perilla) | Si la foto real tiene poco detalle, no pedir close-up: pedir el producto entero. Nombrar los rasgos ("ONE handle knob only") |
 | Monocular genérico, sin sus anillos verdes | Describir los rasgos distintivos en el prompt. Si sigue saliendo mal, dejar el producto con 1 imagen |
 | `429 rate_limit_reached` | Máximo **8 trabajos a la vez** por modelo. Mandar tandas de 8 y esperar con `jobs_wait` antes de la siguiente. Los rechazados por límite no cobran |
 | Marcado como `nsfw` sin razón | Reformular la escena con otras palabras y repetir |
@@ -141,8 +146,9 @@ se sube "porque casi".
 
 ## 7. Flujo completo, paso a paso
 
-1. **Elegir la categoría** y listar sus productos activos **con
-   existencia** desde la API de Shopify (lo agotado no se trabaja).
+1. **Elegir la categoría** y listar **todos** sus productos activos
+   desde la API de Shopify, incluidos los agotados. Así no queda ninguno
+   sin imágenes cuando vuelvan a tener existencia.
 2. **Ver las fotos reales:** bajar la foto 1 de cada uno y armar una hoja
    de contacto para describirlos bien.
 3. **Referencias:** `media_import_url`, o collage con `media_upload`
@@ -180,7 +186,8 @@ se sube "porque casi".
 | 16 oct | Prueba (Revenger 2.45) | 1 | 2 de 4 | 12.5 | §82 |
 | 16 oct | Combos, kits y óptica | 20 | 39 de 44 | 84 | §83-§84 |
 | 16 oct | Cañas (con existencia) | 10 | 20 de 21 | 42 | §86 |
+| 16 oct | Cañas agotadas + Carretes | 7 + 8 | 29 de 32 | 64 | §87 |
 
-Siguientes categorías sugeridas, en orden de venta: **carretes →
-binoculares que faltan → cajas → señuelos**. Hilos y anzuelos van al
+Siguientes categorías sugeridas, en orden de venta: **binoculares y
+óptica que faltan → cajas → señuelos y cucharillas**. Hilos y anzuelos van al
 final: sus fotos de catálogo ya son claras y son de bajo precio.

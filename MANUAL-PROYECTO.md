@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 16 de octubre de 2026 (sección 86)
+**Última actualización:** 16 de octubre de 2026 (sección 87)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -114,6 +114,7 @@ como respaldo
 84. [Imágenes de IA subidas a Shopify como portada (16 oct)](#84-imágenes-de-ia-subidas-a-shopify-como-portada-16-oct)
 85. [Fase 4: campaña de Facebook encendida con regla de corte (16 oct)](#85-fase-4-campaña-de-facebook-encendida-con-regla-de-corte-16-oct)
 86. [Instructivo de imágenes con IA y categoría Cañas (16 oct)](#86-instructivo-de-imágenes-con-ia-y-categoría-cañas-16-oct)
+87. [Agotados al final, cañas completas y carretes con IA (16 oct)](#87-agotados-al-final-cañas-completas-y-carretes-con-ia-16-oct)
 
 ---
 
@@ -9527,3 +9528,63 @@ Solo se revisó que la campaña entregue; no se juzgan resultados.
 - **Tope:** sigue en $2,283. Gasto acumulado de la cuenta: $1,700.10, o
   sea $17.65 desde que se encendió. Quedan unos $583 para el corte.
 - Siguiente revisión: el corte del 24 oct (`trig_017pQPsVwrXo54x3ifh5W27s`).
+
+## 87. Agotados al final, cañas completas y carretes con IA (16 oct)
+
+El dueño pidió tres cosas:
+- Mandar los agotados al final de las colecciones.
+- Seguir con los carretes.
+- Verificar que a ninguna caña le falten imágenes.
+
+### 1. Agotados al final (tema)
+
+- **Problema:** en "Cañas", Solara y Stimula (agotadas) eran lo primero
+  que veía el cliente.
+- **Cambio en el tema:**
+  - En `sections/main-collection-product-grid.liquid`, la cuadrícula se
+    recorre en **dos pasadas**: primero los disponibles y después los
+    agotados. Dentro de cada grupo se respeta el orden elegido. Se usa
+    un contador propio (`im_n`) para la carga diferida y la animación.
+  - En `templates/collection.json`, `products_per_page` pasó de 16 a
+    **36**. Así 22 de las 26 colecciones caben en una sola página y el
+    orden queda bien en toda la colección.
+  - En las colecciones grandes (anzuelos 46, hilos 69, señuelos 82,
+    todo-pesca 311), el orden aplica dentro de cada página.
+- Se eligió hacerlo en el tema, y no con orden manual por API, porque
+  **se corrige solo cuando cambia la existencia**.
+- **Antes de subir** se comparó el `collection.json` en vivo contra el
+  local. La única diferencia era el cambio nuevo, así que no se pisó
+  nada hecho desde el editor del tema.
+- Se desplegó con `deploy-shopify.py` (2 archivos).
+- **Verificado en vivo** con Playwright: agotados al final en canas (7
+  agotados de 17, todo en una página), carretes (1 de 9), combos,
+  binoculares e hilos (36).
+
+### 2. Las 7 cañas agotadas y los 8 carretes
+
+- **Cambio de criterio:** el dueño quiere que **ningún** producto de la
+  categoría quede sin imágenes, incluidos los agotados. El instructivo
+  se actualizó: se trabajan todos los activos.
+- **Regla nueva:** un **carrete solo va sin caña**. Es la misma lógica
+  que la caña sin carrete.
+- **Escenas de carretes:** la A, el carrete grande sobre una roca, un
+  muelle, una cubierta o la arena. La B, en manos de un señor (cargando
+  hilo, revisando el freno) o junto a una lobina o trucha.
+- **Resultado:** se generaron 32 imágenes y se aprobaron **29**.
+  - #461 Maupiti 15', close-up: inventó gráficos que la caña no tiene.
+    Se rehízo como caña entera, pero salió pequeña y de color dudoso.
+    La Maupiti 15' se quedó con 1 imagen.
+  - #481 AFR230: salió con manivela de doble perilla. Se rehízo con "ONE
+    handle knob only" y quedó bien.
+- **Créditos:** 64. Quedan **591.5**.
+- **Subida:** 29 subidas, 59 ya estaban, 0 errores.
+
+### 3. Verificación final
+
+- **Cañas: 17 de 17** activas con portada de IA.
+- **Carretes: 9 de 9** activos con portada de IA. El Sienna ya la tenía
+  desde §84.
+- **En vivo:** la colección de carretes muestra las portadas nuevas, y
+  los agotados siguen al final en cañas y carretes.
+- **Graphify:** sin cambios (`tema-shopify/` 463/665). Graphify no extrae
+  nodos de Liquid (§71).
