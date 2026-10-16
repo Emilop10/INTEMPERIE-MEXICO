@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 16 de octubre de 2026 (sección 84)
+**Última actualización:** 16 de octubre de 2026 (sección 85)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -112,6 +112,7 @@ como respaldo
 82. [Higgsfield conectado: prueba de imágenes con IA (16 oct)](#82-higgsfield-conectado-prueba-de-imágenes-con-ia-16-oct)
 83. [Imágenes con IA para combos, kits y óptica (16 oct)](#83-imágenes-con-ia-para-combos-kits-y-óptica-16-oct)
 84. [Imágenes de IA subidas a Shopify como portada (16 oct)](#84-imágenes-de-ia-subidas-a-shopify-como-portada-16-oct)
+85. [Fase 4: campaña de Facebook encendida con regla de corte (16 oct)](#85-fase-4-campaña-de-facebook-encendida-con-regla-de-corte-16-oct)
 
 ---
 
@@ -9374,3 +9375,57 @@ que los anuncios de catálogo de la fase 4 ya usarán estas portadas.
 
 **Graphify:** `scripts/` pasó de 205/469 a **209/483** (13 comunidades)
 por el script nuevo.
+
+## 85. Fase 4: campaña de Facebook encendida con regla de corte (16 oct)
+
+**Token de Meta verificado** con `debug_token`:
+- App **Claude Integration**, tipo `SYSTEM_USER`, `is_valid`.
+- `expires_at: 0` y `data_access_expires_at: 0`: nunca caduca.
+- Emitido el 15 oct. Tiene los 17 scopes que fija la app.
+- Esta sesión ya lo tenía cargado.
+
+**Regla de corte, aprobada por el dueño ("sí a la regla de corte"):**
+- Se leen resultados **una sola vez**, al llegar a **$600 gastados**
+  desde que se encendió la campaña.
+- **Sigue** solo si hay **al menos 1 compra Y la tasa de vista de
+  producto → carrito es de 3% o más**.
+- Si no se cumplen las dos, **se pausa** (pausar, nunca borrar).
+
+**Presupuesto:** el dueño dijo que ya había recargado $300, pero la
+cuenta mostraba otra cosa:
+- `spend_cap` de $2,006 y `amount_spent` de $1,682.45, o sea $323.55
+  disponibles. `balance` en 0.
+- La cuenta es **pospago con tarjeta** (Amex *8065,
+  `is_prepay_account: false`). Meta cobra a la tarjeta conforme se
+  gasta; aquí "recargar" significa **subir el tope**.
+- Se subió el tope con `POST spend_cap=2283` (en pesos). Releído:
+  $2,283.00, con **$600.55 disponibles**.
+- Así el tope es también el **freno automático del corte**: la campaña
+  se detiene sola al gastar los $600.
+- Si el dueño hizo un pago manual, ese dinero quedó como abono a la
+  cuenta. No cambia el tope.
+
+**Lo que se encendió** (~04:55 UTC):
+
+| Objeto | ID | Estado |
+|---|---|---|
+| Campaña "IMX \| Ventas \| Pesca y Óptica \| Catálogo dinámico \| Ago26" | `120249613902440175` | ACTIVE |
+| Conjunto v5, hombres 55+, $55/día | `120250344356190175` | ACTIVE |
+| Conjunto v5-RT, retargeting 30 días, $20/día | `120250344361400175` | ACTIVE |
+| Anuncio v5 prospección | `120250344361830175` | ACTIVE, `IN_PROCESS` (revisión de Meta) |
+| Anuncio v5 retargeting | `120250344362350175` | ACTIVE, `IN_PROCESS` |
+
+- Los conjuntos viejos (v2, v3, v4 y el original) siguen en PAUSED.
+- Conjunto de productos `2097987747472219`: 13 productos (5 kits y
+  óptica). Desde §84 ya llevan las portadas de IA.
+- Creativo v7 (medios dinámicos), con "Envío gratis a todo México":
+  correcto, porque los 13 productos cuestan $799 o más.
+
+**Seguimiento:**
+- **Check-in de salud a las 3 h** (`trig_01JMDneZKiwjyDZkcR9XUiPF`):
+  solo revisa que los anuncios pasen la revisión y gasten; no juzga
+  resultados.
+- **Corte el 24 oct** (`trig_017pQPsVwrXo54x3ifh5W27s`): aplica la regla
+  con `time_range` explícito desde el 2026-10-16.
+- Mientras la campaña entregue: nada de compras de prueba, y no se mira
+  el resultado día a día.

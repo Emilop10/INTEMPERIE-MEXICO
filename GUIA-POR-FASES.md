@@ -11,7 +11,7 @@ siguiente hasta cumplir la condición de "terminada".
 | 1 | Kits a la venta | ✅ 5 kits publicados (12 oct) |
 | 2 | Canales gratis: Google, Mercado Libre y carrito abandonado | ✅ 12 oct (seguimiento: diagnóstico de Google ~15 oct; Mercado Libre por decidir) |
 | 3 | Reabasto y precios de la zona muerta | ✅ 16 oct: precios aplicados; reabasto en pausa por decisión del dueño |
-| **4** | **Encender Meta con criterio fijado** | 🔴 **PENDIENTE URGENTE** (16 oct): lo siguiente al terminar el encargo nuevo del dueño |
+| **4** | **Encender Meta con criterio fijado** | 🟢 **CAMPAÑA ENCENDIDA** (16 oct): corte al llegar a $600 (~24 oct) |
 
 Leyenda: 👤 = lo hace el dueño · 🤖 = lo hago yo.
 
@@ -126,9 +126,9 @@ anunciar, y ningún producto anunciado está en la zona muerta.
 
 | # | Paso | Quién | Detalle |
 |---|---|---|---|
-| 4.1 | **Fijar por escrito el criterio de corte**, antes de encender | 🤖 propongo, 👤 aprueba | Propuesta: vista→carrito ≥ 3% **y** 1 venta por cada $600 gastados; si no, pausar |
-| 4.2 | Decidir el presupuesto (recarga del tope de la cuenta) | 👤 | Hoy quedan $326.66 disponibles |
-| 4.3 | Encender los conjuntos v5 y v5-RT | 🤖 | Con autorización explícita |
+| 4.1 | **Fijar por escrito el criterio de corte**, antes de encender | 🤖 propongo, 👤 aprueba | ✅ 16 oct, aprobado: se lee **una sola vez**, al llegar a **$600 gastados**. Sigue solo si hay **≥1 compra y ≥3% de vista de producto → carrito**; si no, se pausa |
+| 4.2 | Decidir el presupuesto (recarga del tope de la cuenta) | 👤 | ✅ 16 oct: tope de cuenta de $2,006 a **$2,283** (= gastado $1,682.45 + $600). La campaña se detiene sola en el corte |
+| 4.3 | Encender los conjuntos v5 y v5-RT | 🤖 | ✅ 16 oct ~04:55 UTC: campaña, conjuntos v5 ($55/día) y v5-RT ($20/día) y sus 2 anuncios en ACTIVE |
 | 4.4 | Leer los resultados **solo en los cortes fijados** | 🤖 | Nada de mirar día a día y cortar "cuando se ve bien" |
 
 **✅ Terminada cuando:** la campaña llega a su corte y se decide con el

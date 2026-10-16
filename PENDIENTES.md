@@ -10,8 +10,8 @@ El dueño abre una sesión nueva para que carguen el conector de
 2. `bash scripts/verificar-herramental.sh`. Si faltan plugins o agentes:
    `bash scripts/instalar-entorno.sh` (el contenedor nuevo llega vacío;
    los plugins instalados a mitad de sesión cargan hasta la siguiente).
-3. Verificar `SHOPIFY_ADMIN_TOKEN` y el token de Meta con `debug_token`
-   (app Claude Integration, `expires_at` 0).
+3. ✅ 16 oct: `SHOPIFY_ADMIN_TOKEN` y token de Meta verificados (Claude
+   Integration, `expires_at` 0).
 4. Confirmar que las herramientas de Higgsfield aparecen.
 5. **Higgsfield, reglas acordadas:** la foto real queda como foto 1; la
    IA solo crea ambiente (escenas con el combo real como referencia),
@@ -20,26 +20,22 @@ El dueño abre una sesión nueva para que carguen el conector de
    prueba de un solo combo para ver calidad y créditos.
 6. Luego, el pendiente urgente de abajo (fase 4).
 
-## 🔴 PENDIENTE URGENTE (16 oct): encender Facebook — fase 4
+## 🟢 Fase 4 en marcha (16 oct): campaña de Facebook ENCENDIDA
 
-**Es lo siguiente en cuanto se termine el encargo que el dueño está por
-dar.** Está en pausa a propósito, no olvidado. Faltan solo dos respuestas
-del dueño y una revisión técnica:
-
-1. 👤 **Regla de corte** (propuesta, sin aprobar): se revisa una sola
-   vez, al llegar a **$600 gastados** (~8 días). Sigue solo si hay
-   **≥1 venta** y **≥3% de vista a carrito**; si no, se pausa.
-2. 👤 **Presupuesto:** el tope de la cuenta tiene **$326.66** (~4 días a
-   $75/día). Para llegar al corte hay que recargar **~$300**.
-3. 🤖 En una **sesión nueva**: verificar el token de Meta nuevo con
-   `debug_token` (app Claude Integration, nunca caduca) y que cargue
-   `SHOPIFY_ADMIN_TOKEN`.
-4. 🤖 Con el "sí" del dueño: encender los conjuntos v5 ($55/día, hombres
-   55+) y v5-RT ($20/día, retargeting). Detalle en GUIA-POR-FASES.md,
-   fase 4, y MANUAL §81.
-
-Temas abiertos de la tienda. Casi todos requieren una decisión o datos tuyos;
-el resto de la auditoría ya quedó implementado y en vivo.
+- Regla aprobada por el dueño: se lee **una sola vez**, al llegar a
+  **$600 gastados**. Sigue solo si hay **≥1 compra y ≥3% de vista de
+  producto → carrito**; si no, se pausa.
+- Tope de la cuenta en **$2,283** (= $1,682.45 ya gastados + $600): la
+  campaña se detiene sola en el corte.
+- Encendidos ~04:55 UTC: campaña, conjunto v5 (hombres 55+, $55/día),
+  v5-RT (retargeting, $20/día) y sus 2 anuncios (en revisión de Meta
+  al encender).
+- 🗓️ Check-in de salud a las 3 h (`trig_01JMDneZKiwjyDZkcR9XUiPF`).
+  Corte programado para el **24 oct** (`trig_017pQPsVwrXo54x3ifh5W27s`).
+- ⛔ No hacer compras de prueba mientras la campaña entrega. No juzgar
+  resultados antes del corte.
+- Token de Meta nuevo verificado: app Claude Integration, usuario del
+  sistema, nunca caduca.
 
 ## ⚠️ Este archivo llevaba desde el 15 de agosto sin actualizar
 
@@ -1003,7 +999,7 @@ llamada de API), el grafo de `scripts/` sí se movió esta vez —
 > Vivo: confirmar SHOPIFY_ADMIN_TOKEN y el nuevo META_ACCESS_TOKEN en la próxima sesión.
 > ✅ 16 oct: fase 3 cerrada. Revenger 2.45 y Boundary a $999; Araty 0.70 y Stimula sin cambio; sin reabasto hasta que se muevan los combos (MANUAL §81).
 > ✅ 16 oct: Higgsfield conectado; 39 imágenes de IA subidas como portada de 20 productos (kits, combos, óptica). Revisar Google el 22 oct (MANUAL §84).
-> 🔴 **Fase 4 — encender Facebook: PENDIENTE URGENTE** (ver el recuadro al inicio del archivo). En espera mientras se atiende el encargo nuevo del dueño.
+> 🟢 **Fase 4: campaña encendida el 16 oct**, corte a los $600 (~24 oct). Ver recuadro al inicio.
 > Cortos del dueño: rotar el secreto de la app de Shopify · archivar el pedido de prueba #1005 ·
 > revisar el canal "Shop" · ~15 oct, diagnóstico de Google con Claude in Chrome.
 > Canal "Shop" ("Acción necesaria"): NO APLICA. Exige Shopify Payments, desactivado para siempre (§30). Se ignora.
