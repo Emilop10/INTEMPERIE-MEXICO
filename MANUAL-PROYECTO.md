@@ -9226,3 +9226,17 @@ encargo, y marcarlo como **el pendiente urgente**: es lo siguiente en
 cuanto ese encargo termine. Quedó al inicio de PENDIENTES.md con lo que
 falta (regla de corte, recarga de ~$300, verificar el token en una
 sesión nueva, encender v5 y v5-RT).
+
+### Herramental reinstalado (16 oct)
+
+`verificar-herramental.sh` encontró el contenedor reciclado: 0 de 10
+plugins, 0 agentes y sin scrapling (graphify sí estaba). Se corrió
+`instalar-entorno.sh`: **19 instalados, 3 omitidos, 0 fallos**. Segunda
+verificación: **10 de 10 plugins, 282 agentes, graphify y scrapling,
+salida 0.**
+
+- **282 agentes, no 273:** el repositorio `agency-agents` agregó 9
+  agentes nuevos desde septiembre. El mínimo del script (273) se sigue
+  cumpliendo, así que no hubo que cambiarlo.
+- Los plugins nuevos se cargan hasta la **siguiente sesión**. Coincide
+  con la sesión nueva que ya hacía falta para el token de Meta.
