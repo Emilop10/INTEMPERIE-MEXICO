@@ -1000,6 +1000,7 @@ llamada de API), el grafo de `scripts/` sí se movió esta vez —
 > ✅ 16 oct: fase 3 cerrada. Revenger 2.45 y Boundary a $999; Araty 0.70 y Stimula sin cambio; sin reabasto hasta que se muevan los combos (MANUAL §81).
 > ✅ 16 oct: Higgsfield conectado; 39 imágenes de IA subidas como portada de 20 productos (kits, combos, óptica). Revisar Google el 22 oct (MANUAL §84).
 > ✅ 16 oct: cañas con imágenes de IA (10 cañas, 20 imágenes; MANUAL §86). Receta en INSTRUCTIVO-IMAGENES-IA-HIGGSFIELD.md. Completado el 16 oct: 17/17 cañas y 9/9 carretes con portada de IA; los agotados van al final de cada colección (§87). Siguiente categoría sugerida: óptica que falta.
+> ✅ 16 oct: barra de compra, WhatsApp y Cartucho ya no quedan debajo de la barra de Safari en iOS 26 (MANUAL §88). Falta que el dueño lo confirme en su iPhone.
 > 🟢 **Fase 4: campaña encendida el 16 oct**, corte a los $600 (~24 oct). Ver recuadro al inicio.
 > Cortos del dueño: rotar el secreto de la app de Shopify · archivar el pedido de prueba #1005 ·
 > revisar el canal "Shop" · ~15 oct, diagnóstico de Google con Claude in Chrome.

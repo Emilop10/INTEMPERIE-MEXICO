@@ -44,8 +44,11 @@
         display: flex;
         align-items: center;
         gap: 12px;
-        padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
-        background: rgba(10, 10, 12, 0.96);
+        /* --im-bajo (theme.liquid): en Safari de iOS 26 el fondo de la barra
+           llega hasta abajo, pero el botón queda por encima de la barra
+           flotante de Safari (MANUAL §88). */
+        padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px) + var(--im-bajo, 0px));
+        background: #0A0A0C; /* sólido: con la barra más alta (iOS 26) se transparentaba lo de atrás */
         border-top: 1px solid rgba(255, 255, 255, 0.12);
         box-shadow: 0 -6px 18px rgba(0, 0, 0, 0.35);
         transform: translateY(110%);
@@ -99,7 +102,7 @@
         pointer-events: none;
       }
       body.im-barra-activa .im-wa {
-        bottom: calc(84px + env(safe-area-inset-bottom, 0px));
+        bottom: calc(84px + env(safe-area-inset-bottom, 0px) + var(--im-bajo, 0px));
       }
     }
     @media (prefers-reduced-motion: reduce) {

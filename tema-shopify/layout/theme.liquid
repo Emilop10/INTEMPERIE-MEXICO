@@ -5,6 +5,25 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    {%- comment -%}
+      Intemperie (MANUAL §88): en Safari de iOS 26+ la barra de direcciones
+      flota ENCIMA de la página y tapaba la barra fija de compra, WhatsApp y
+      Cartucho. Solo ahí (no en el navegador de Facebook/Instagram ni en
+      Chrome) se marca <html class="im-ios26"> y --im-bajo sube esos
+      elementos por arriba de la barra de Safari.
+    {%- endcomment -%}
+    <script>
+      (function () {
+        var u = navigator.userAgent, m = u.match(/Version\/(\d+)[\d.]* Mobile\/\S+ Safari\//);
+        if (/iPhone|iPod/.test(u) && m && +m[1] >= 26 && !/CriOS|FxiOS|EdgiOS|FBAN|FBAV|Instagram|GSA\/|Line\//.test(u)) {
+          document.documentElement.classList.add('im-ios26');
+        }
+      })();
+    </script>
+    <style>
+      :root { --im-bajo: 0px; }
+      :root.im-ios26 { --im-bajo: 78px; }
+    </style>
     <meta name="theme-color" content="">
     <link rel="canonical" href="{{ canonical_url }}">
 
@@ -388,6 +407,26 @@
     <script src="{{ 'intemperie-motion.js' | asset_url }}" defer></script>
 
     {%- render 'whatsapp-button' -%}
+    <script>
+      // MANUAL §88: en Safari de iOS 26 el lanzador de Cartucho (Zipchat,
+      // shadow DOM abierto) queda debajo del botón de pestañas de Safari.
+      // Se sube 78px solo mientras está CERRADO (el chat abierto no se mueve).
+      (function () {
+        if (!document.documentElement.classList.contains('im-ios26')) return;
+        var n = 0, t = setInterval(function () {
+          var host = document.getElementById('zipchat-shadow-host');
+          var cont = host && host.shadowRoot && host.shadowRoot.getElementById('widget-chat-container');
+          if (!cont) { if (++n > 40) clearInterval(t); return; }
+          clearInterval(t);
+          var st = document.createElement('style');
+          st.textContent = ':host(.im-ios26-bajo) #widget-chat-container{margin-bottom:78px}';
+          host.shadowRoot.appendChild(st);
+          function revisar() { host.classList.toggle('im-ios26-bajo', cont.getBoundingClientRect().height < 100); }
+          revisar();
+          if ('ResizeObserver' in window) new ResizeObserver(revisar).observe(cont);
+        }, 500);
+      })();
+    </script>
 
   </body>
 </html>

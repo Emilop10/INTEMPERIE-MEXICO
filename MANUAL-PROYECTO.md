@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 16 de octubre de 2026 (sección 87)
+**Última actualización:** 16 de octubre de 2026 (sección 88)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -115,6 +115,7 @@ como respaldo
 85. [Fase 4: campaña de Facebook encendida con regla de corte (16 oct)](#85-fase-4-campaña-de-facebook-encendida-con-regla-de-corte-16-oct)
 86. [Instructivo de imágenes con IA y categoría Cañas (16 oct)](#86-instructivo-de-imágenes-con-ia-y-categoría-cañas-16-oct)
 87. [Agotados al final, cañas completas y carretes con IA (16 oct)](#87-agotados-al-final-cañas-completas-y-carretes-con-ia-16-oct)
+88. [Safari de iOS 26 tapaba la barra de compra (16 oct)](#88-safari-de-ios-26-tapaba-la-barra-de-compra-16-oct)
 
 ---
 
@@ -9588,3 +9589,71 @@ El dueño pidió tres cosas:
   los agotados siguen al final en cañas y carretes.
 - **Graphify:** sin cambios (`tema-shopify/` 463/665). Graphify no extrae
   nodos de Liquid (§71).
+
+## 88. Safari de iOS 26 tapaba la barra de compra (16 oct)
+
+**Reporte del dueño** (iPhone 17 Pro Max, Safari, captura en la ficha de
+la Blue Fox Portada): el botón "Agregar al carrito" de la barra fija
+quedaba debajo de la barra de direcciones y no se podía tocar bien.
+
+**Causa:**
+- En **iOS 26**, Safari dejó de reservar espacio abajo para su barra de
+  direcciones. Ahora es una píldora flotante, con botones redondos a los
+  lados, que se dibuja **encima de la página**.
+- Todo lo que el tema fijaba con `bottom: 0` quedaba debajo:
+  - la barra de compra (§69);
+  - la burbuja de WhatsApp, junto al botón "atrás" de Safari;
+  - el lanzador de Cartucho, junto al botón de pestañas.
+- Además, el `<meta viewport>` no tiene `viewport-fit=cover`, así que
+  `env(safe-area-inset-bottom)` siempre valía 0 en Safari.
+- Medido en la captura del dueño (440×956 pt): la píldora ocupa de **35 a
+  81 px** sobre el borde inferior.
+
+**Arreglo**, solo para Safari de iOS 26 o más nuevo:
+- **Detección** (`layout/theme.liquid`): un script mínimo en el `<head>`
+  marca `<html class="im-ios26">` si el navegador es iPhone, tiene
+  `Version/26` o mayor y es Safari. Quedan fuera Chrome (CriOS), Firefox,
+  Edge, la app de Google y los navegadores internos de Facebook e
+  Instagram, que no tienen esa barra flotante.
+  - Es importante para la campaña: el tráfico de Meta llega por el
+    navegador de Facebook y no cambia.
+- **Variable** `--im-bajo`: 0 en general, **78px** con `im-ios26`.
+- **Barra de compra** (`snippets/im-barra-compra.liquid`):
+  - Se suma `--im-bajo` al `padding-bottom`. El fondo sigue llegando
+    hasta abajo (Safari lo ve detrás de su barra de vidrio) y el botón
+    queda arriba de la píldora.
+  - El fondo pasó de `rgba(…,0.96)` a **sólido** `#0A0A0C`: con la barra
+    más alta se transparentaba el testimonio blanco de atrás.
+- **WhatsApp** (`snippets/whatsapp-button.liquid`, y en la ficha cuando
+  la barra está activa): se suma `--im-bajo`.
+- **Cartucho** (`theme.liquid`): se inyecta en su shadow DOM un
+  `margin-bottom: 78px` que se aplica **solo mientras está cerrado**. Un
+  `ResizeObserver` revisa la altura, para que el chat abierto no se
+  mueva.
+- **No se agregó `viewport-fit=cover`**, para no mover nada más del tema
+  (por ejemplo, el horizontal con muesca).
+
+**Despliegue:**
+- Antes de subir se comparó cada archivo en vivo contra el repositorio:
+  los 3 eran iguales, así que no se pisó nada.
+- Se subieron con `deploy-shopify.py`: `theme.liquid`, `im-barra-compra`
+  y `whatsapp-button`, y luego otra vez `im-barra-compra` por el fondo
+  sólido.
+
+**Verificado con Playwright** (Chromium a 440×956 con 3 user agents):
+
+| Navegador | `im-ios26` | Botón sobre el borde | Alto de la barra | WhatsApp sobre el borde |
+|---|---|---|---|---|
+| Safari iOS 26 | sí | **88 px** (la píldora llega a 81) | 145 px | 162 px |
+| Safari iOS 18 | no | 10 px (igual que antes) | 67 px | 84 px |
+| Facebook (in-app) | no | 10 px (igual que antes) | 67 px | 84 px |
+
+- **Limitación:** aquí no hay WebKit ni un iPhone real. La simulación
+  confirma la lógica y las medidas, pero **falta que el dueño lo
+  confirme en su iPhone**.
+- Si la píldora quedara un poco más alta en otros modelos, basta con
+  subir el valor de `--im-bajo`.
+- **Si Safari tiene la barra arriba** (ajuste "Superior"), la barra de
+  compra queda 78 px más alta de lo necesario. Se ve bien y no tapa nada.
+
+**Graphify:** sin cambios (`tema-shopify/` 463/665; no extrae Liquid).

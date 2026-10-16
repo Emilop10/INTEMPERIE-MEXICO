@@ -46,7 +46,7 @@
       left: 16px;
       /* env(safe-area-inset-bottom) evita que quede debajo de la barra de
          gestos del iPhone, donde no se puede tocar. */
-      bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+      bottom: calc(16px + env(safe-area-inset-bottom, 0px) + var(--im-bajo, 0px));
       z-index: 998; /* debajo del drawer del carrito, encima del contenido */
       display: inline-flex;
       align-items: center;
