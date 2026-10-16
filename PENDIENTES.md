@@ -1,5 +1,25 @@
 # Pendientes — Intemperie México
 
+## ▶️ Arranque de la próxima sesión (dejado el 16 oct)
+
+El dueño abre una sesión nueva para que carguen el conector de
+**Higgsfield** (agregado en claude.ai/customize/connectors con
+`https://mcp.higgsfield.ai/mcp`) y el token nuevo de Meta. Al empezar:
+
+1. Leer este archivo y MANUAL §81 (lo último que se hizo).
+2. `bash scripts/verificar-herramental.sh`. Si faltan plugins o agentes:
+   `bash scripts/instalar-entorno.sh` (el contenedor nuevo llega vacío;
+   los plugins instalados a mitad de sesión cargan hasta la siguiente).
+3. Verificar `SHOPIFY_ADMIN_TOKEN` y el token de Meta con `debug_token`
+   (app Claude Integration, `expires_at` 0).
+4. Confirmar que las herramientas de Higgsfield aparecen.
+5. **Higgsfield, reglas acordadas:** la foto real queda como foto 1; la
+   IA solo crea ambiente (escenas con el combo real como referencia),
+   para fotos 2+ y creativos de Facebook; Claude revisa cada imagen
+   (marca, color, piezas) antes de subirla; primero 2-3 imágenes de
+   prueba de un solo combo para ver calidad y créditos.
+6. Luego, el pendiente urgente de abajo (fase 4).
+
 ## 🔴 PENDIENTE URGENTE (16 oct): encender Facebook — fase 4
 
 **Es lo siguiente en cuanto se termine el encargo que el dueño está por
