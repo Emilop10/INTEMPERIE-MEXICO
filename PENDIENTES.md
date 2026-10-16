@@ -1002,6 +1002,7 @@ llamada de API), el grafo de `scripts/` sí se movió esta vez —
 > 🔐 Token de Meta: el viejo REVOCADO; 2FA con app de autenticación; nuevo token GENERADO (16 oct) y pegado por el dueño en `META_ACCESS_TOKEN`. Verificar con `debug_token` en la próxima sesión nueva (app Claude Integration, nunca caduca).
 > Vivo: confirmar SHOPIFY_ADMIN_TOKEN y el nuevo META_ACCESS_TOKEN en la próxima sesión.
 > ✅ 16 oct: fase 3 cerrada. Revenger 2.45 y Boundary a $999; Araty 0.70 y Stimula sin cambio; sin reabasto hasta que se muevan los combos (MANUAL §81).
+> ✅ 16 oct: Higgsfield conectado; 39 imágenes de IA subidas como portada de 20 productos (kits, combos, óptica). Revisar Google el 22 oct (MANUAL §84).
 > 🔴 **Fase 4 — encender Facebook: PENDIENTE URGENTE** (ver el recuadro al inicio del archivo). En espera mientras se atiende el encargo nuevo del dueño.
 > Cortos del dueño: rotar el secreto de la app de Shopify · archivar el pedido de prueba #1005 ·
 > revisar el canal "Shop" · ~15 oct, diagnóstico de Google con Claude in Chrome.

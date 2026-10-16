@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 16 de octubre de 2026 (sección 83)
+**Última actualización:** 16 de octubre de 2026 (sección 84)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -111,6 +111,7 @@ como respaldo
 81. [Fase 3 cerrada: precios de la zona muerta (16 oct)](#81-fase-3-cerrada-precios-de-la-zona-muerta-16-oct)
 82. [Higgsfield conectado: prueba de imágenes con IA (16 oct)](#82-higgsfield-conectado-prueba-de-imágenes-con-ia-16-oct)
 83. [Imágenes con IA para combos, kits y óptica (16 oct)](#83-imágenes-con-ia-para-combos-kits-y-óptica-16-oct)
+84. [Imágenes de IA subidas a Shopify como portada (16 oct)](#84-imágenes-de-ia-subidas-a-shopify-como-portada-16-oct)
 
 ---
 
@@ -9325,6 +9326,51 @@ para los combos y los productos que se van a promocionar.
 - Higgsfield acepta máximo **8 trabajos a la vez** por modelo.
   Conviene mandar tandas de 8.
 
-**Estado:** ninguna imagen se ha subido a Shopify. Falta el visto bueno
-del dueño. La regla sigue igual: la foto real es la 1 y las de IA van
-de la 2 en adelante.
+**Estado:** subidas el mismo día con el visto bueno del dueño (§84).
+
+## 84. Imágenes de IA subidas a Shopify como portada (16 oct)
+
+El dueño pidió subir las imágenes a los productos de Shopify, no solo
+usarlas en campañas. Dio libertad para elegir cuál queda como portada:
+"que llame la atención y, ya dentro, vean las demás".
+
+**Qué se hizo:**
+- Script nuevo:
+  [`scripts/subir-imagenes-ia.py`](./scripts/subir-imagenes-ia.py).
+- Lee `imagenes/imagenes-ia-aprobadas.json`, donde la primera imagen de
+  cada producto es la portada.
+- Sube cada imagen por URL: Shopify la descarga de Higgsfield. Quedan en
+  las posiciones 1 y 2, y las fotos que ya había quedan detrás, en su
+  mismo orden.
+- Es idempotente: cada imagen lleva en su `alt` el sufijo `[ia:n]`.
+  Nunca borra nada.
+- El `alt` describe la escena, lo que ayuda en SEO. Ejemplo: "Combo
+  Okuma Boundary 7'0" Spinning — En lancha en Chapala con pelícanos
+  [ia:1]".
+
+**Resultado:**
+- 39 imágenes subidas en 20 productos, 0 errores.
+- Verificado por API: 20 de 20 productos con la imagen de IA en la
+  posición 1.
+- Verificado en el sitio (celular, Playwright): la colección de combos
+  y la ficha del kit Tundra Pro ya muestran la portada nueva.
+
+**Criterio de portada:** la escena donde el producto se ve más grande y
+completo.
+- **Kits:** el flat lay de "todo lo que incluye". En el Clarus, la caña
+  junto al lago, porque su flat lay se rechazó.
+- **Combos:** la escena sin personas, con el combo armado entero. Antes,
+  la foto 1 de Power Boat, Revenger 2.40 y Corux era solo la caña.
+- **Óptica y carrete:** el bodegón (sin personas). Las escenas con
+  personas van de foto 2.
+
+**Riesgo vigilado:** Google Shopping toma la foto 1 como imagen
+principal. El recordatorio del 22 oct (`trig_019cTdRcdy14uUrzCpTKXFkt`)
+ya incluye revisar que Google no marque estas 20 portadas. Si alguna
+sale marcada, se regresa la foto real a la posición 1.
+
+**Meta:** el catálogo de Facebook se sincroniza solo desde Shopify, así
+que los anuncios de catálogo de la fase 4 ya usarán estas portadas.
+
+**Graphify:** `scripts/` pasó de 205/469 a **209/483** (13 comunidades)
+por el script nuevo.
