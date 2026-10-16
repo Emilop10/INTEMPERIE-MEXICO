@@ -30,7 +30,7 @@ El dueño abre una sesión nueva para que carguen el conector de
 - Encendidos ~04:55 UTC: campaña, conjunto v5 (hombres 55+, $55/día),
   v5-RT (retargeting, $20/día) y sus 2 anuncios (en revisión de Meta
   al encender).
-- 🗓️ Check-in de salud a las 3 h (`trig_01JMDneZKiwjyDZkcR9XUiPF`).
+- ✅ Check-in de salud (07:58 UTC): los 2 anuncios activos y aprobados, gastando; tope intacto en $2,283.
   Corte programado para el **24 oct** (`trig_017pQPsVwrXo54x3ifh5W27s`).
 - ⛔ No hacer compras de prueba mientras la campaña entrega. No juzgar
   resultados antes del corte.

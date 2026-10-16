@@ -9514,3 +9514,16 @@ Trae:
 **Observación:** en la colección de cañas, las **agotadas** (Solara,
 Stimula) salen **primero**. Conviene que las agotadas vayan al final.
 Se propuso al dueño; no se cambió.
+
+### Check-in de salud (16 oct, 07:58 UTC, ~3 h después de encender)
+
+Solo se revisó que la campaña entregue; no se juzgan resultados.
+- **Anuncios:** los 2 en `ACTIVE`, sin `issues_info` ni observaciones de
+  revisión.
+- **Conjuntos:** los 2 en `ACTIVE` y gastando. Insights con `time_range`
+  del 2026-10-16:
+  - v5: $7.07 · 83 impresiones · 75 personas alcanzadas.
+  - v5-RT: $5.92 · 96 impresiones · 96 personas alcanzadas.
+- **Tope:** sigue en $2,283. Gasto acumulado de la cuenta: $1,700.10, o
+  sea $17.65 desde que se encendió. Quedan unos $583 para el corte.
+- Siguiente revisión: el corte del 24 oct (`trig_017pQPsVwrXo54x3ifh5W27s`).
