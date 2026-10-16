@@ -100,6 +100,11 @@ de buenas y **fieles al producto real**.
   caja cerrada en una lancha, un muelle o una pickup. La B, abierta y
   vacía ("completely EMPTY, nothing inside"). Pedir que el logo impreso
   salga "readable, not mirrored".
+- **Señuelos:** **una imagen por producto**, porque cada color es un
+  producto. Solo se comparte si la foto real es idéntica (otra medida del
+  mismo color); comprobarlo comparando las fotos. Describir colores y
+  patrón con detalle ("BLACK blade with chartreuse dots, gold body").
+  Para revisar, armar la hoja con la foto real al lado de cada generada.
 - **Lugares mexicanos reales:** presas, Chapala, Mar de Cortés, Pacífico,
   manglares, Huasteca, Barrancas del Cobre, sierra, Baja, Yucatán.
 - **Luz:** amanecer o atardecer (hora dorada) y niebla sobre el agua.
@@ -161,6 +166,9 @@ se sube "porque casi".
 | Referencia con empaque o logo | Recortar con PIL solo el anzuelo y subirlo con `media_upload` |
 | Caja abierta: el logo se ve al revés desde adentro | Mostrarla cerrada o de canto, con el logo de frente |
 | `HTTP 429` de Shopify al subir | Ya lo maneja `subir-imagenes-ia.py` (espera y repite). Volver a correrlo es seguro |
+| Señuelo "flotando" en el aire sobre el agua | Ponerlo sobre un muelle o "floating ON the water surface" |
+| Foto de referencia con el señuelo dentro de su caja | Recortar el señuelo con PIL. Si casi no se ve, no se genera |
+| Dos tareas con el mismo índice | Usar índices distintos (p. ej. `r1286` para la repetición) y guardar el estado en un JSON |
 | `failed` del lado de Higgsfield | Repetir igual |
 
 ---
@@ -212,7 +220,9 @@ se sube "porque casi".
 | 16 oct | Miras, monturas y linterna táctica | 14 | 26 de 30 | 60 | §90 |
 | 16 oct | Anzuelos (14 modelos, imágenes compartidas entre medidas) | 46 | 26 de 33 | 66 | §91 |
 | 16 oct | Cajas (la Utility Box ya tenía) | 6 | 12 de 13 | 26 | §92 |
+| 16 oct | Señuelos y cucharillas (1 por producto) | 101 de 102 | 94 de 96 | 192 | §93 |
 
-Siguientes categorías sugeridas, en orden de venta: **señuelos y
-cucharillas → flotadores**. Hilos van al final: sus fotos de catálogo
-ya son claras y son de bajo precio. Anzuelos y cajas ya están (§91-§92).
+Siguientes categorías sugeridas, en orden de venta: **flotadores →
+plomos → destorcedores**. Hilos van al final: sus fotos de catálogo ya
+son claras y son de bajo precio. Anzuelos, cajas y señuelos ya están
+(§91-§93).

@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 16 de octubre de 2026 (sección 92)
+**Última actualización:** 16 de octubre de 2026 (sección 93)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -120,6 +120,7 @@ como respaldo
 90. [Miras telescópicas y accesorios de óptica con IA (16 oct)](#90-miras-telescópicas-y-accesorios-de-óptica-con-ia-16-oct)
 91. [Anzuelos con imágenes de IA (16 oct)](#91-anzuelos-con-imágenes-de-ia-16-oct)
 92. [Cajas con imágenes de IA (16 oct)](#92-cajas-con-imágenes-de-ia-16-oct)
+93. [Señuelos y cucharillas con imágenes de IA (16 oct)](#93-señuelos-y-cucharillas-con-imágenes-de-ia-16-oct)
 
 ---
 
@@ -9863,3 +9864,63 @@ medias.
 
 **Graphify:** `scripts/` actualizado: 209 nodos, 484 aristas, 12
 comunidades (antes 483 y 13; `crear-kits.py` quedó dentro de otra).
+
+## 93. Señuelos y cucharillas con imágenes de IA (16 oct)
+
+El dueño pidió seguir con los señuelos y cucharillas: **102 productos**,
+la categoría más grande de la tienda.
+
+**Decisión: una imagen por producto, no dos.**
+- A diferencia de los anzuelos (§91), **cada señuelo es de un color
+  distinto**, así que no se puede compartir una imagen entre colores.
+- Dos por producto (unas 204 imágenes) no cabían en los 409.5 créditos.
+  Con una portada por producto alcanzó y sobró.
+- Solo se compartió imagen cuando la foto real era **idéntica** (mismo
+  color en otra medida): Hot Pepper #1/#3, Vibrax Dorado/Rojo #1/#2,
+  Vibrax Naranja/Blanco #1/#2, pulpo rojo 140 mm/89 mm, Countdown Elite
+  Oikawa 75/95, Largo Shad Live Bluegill 3"/4" y WildEye Bluegill 2"/4".
+  Se comprobó comparando las fotos píxel por píxel.
+
+**Escenas:** el señuelo solo, de cerca, sobre una piedra de río, un
+tronco con musgo, un muelle o la cubierta de una lancha, o en la palma
+de un señor. Los poppers y lápices, flotando en el agua. Los pulpos y
+calamares, en una lancha en el mar. Sin carnada ni pescados.
+
+**Referencias:** todas con `media_import_url`. Las tres que venían
+dentro de su caja (Countdown Elite Oikawa y los dos Floating Magnum) se
+recortaron con PIL y se subieron con `media_upload`.
+
+**Por partes** (subida y commit al terminar cada una):
+
+| Parte | Productos | Imágenes aprobadas |
+|---|---|---|
+| 1. Cucharillas Blue Fox y Gimbel | 21 | 18 |
+| 2. Señuelos Gimbel (duros, suaves y pulpos) | 25 | 24 |
+| 3. Rapala | 44 de 45 | 43 |
+| 4. Suaves Gimbel y Storm | 11 | 9 |
+
+**Resultado:**
+- 101 de 102 productos con portada de IA.
+- Se generaron 96 imágenes y se aprobaron **94**.
+- **Rechazadas (2):**
+  - Vibrax Cobre/Rojo con la paleta rosa pálido. Al rehacerla se vio
+    que la foto real también es cobre rosado; la segunda quedó.
+  - Skitter V flotando en el aire sobre el agua. Se rehízo sobre un
+    muelle.
+- 2 trabajos fallaron del lado de Higgsfield y se repitieron sin costo.
+- **Créditos:** 192. Quedan **217.5**.
+- **Verificado por API:** 101 de 102 con `[ia:1]` en la posición 1, y
+  las 102 fotos reales siguen ahí.
+
+**Sin imagen de IA:** Countdown Elite 75 Gilded Red Belly. Su foto real
+es el señuelo dentro de la caja, casi no se ve, y trae la marca de agua
+"fishingshop.kz" de otra tienda. Conviene cambiarla por una foto limpia.
+
+**Hallazgo:** varias descripciones de señuelos Gimbel están cruzadas.
+Por ejemplo, S3102, S5499, SW5019S Naranja, W8023 y W8024 son de plástico suave, pero
+dicen "cuerpo de plástico duro con anzuelos tipo triple". No se tocaron:
+quedan anotadas en PENDIENTES.
+
+**Total con portada de IA:** 219 productos.
+
+**Graphify:** sin cambios. No hubo código nuevo.
