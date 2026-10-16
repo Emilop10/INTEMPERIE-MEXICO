@@ -9218,3 +9218,11 @@ encender y decidir el presupuesto (GUIA-POR-FASES.md, pasos 4.1 y 4.2).
   Desde el último grafo (12 oct) no ha cambiado código: el token de Meta
   y los precios fueron configuración y documentación. El script de
   precios vive en el scratchpad, fuera del repositorio.
+
+### Fase 4 en espera como pendiente urgente (16 oct)
+
+El dueño pidió dejar Facebook "medio pendiente" para atender primero otro
+encargo, y marcarlo como **el pendiente urgente**: es lo siguiente en
+cuanto ese encargo termine. Quedó al inicio de PENDIENTES.md con lo que
+falta (regla de corte, recarga de ~$300, verificar el token en una
+sesión nueva, encender v5 y v5-RT).

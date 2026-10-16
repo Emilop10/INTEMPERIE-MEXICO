@@ -1,5 +1,23 @@
 # Pendientes — Intemperie México
 
+## 🔴 PENDIENTE URGENTE (16 oct): encender Facebook — fase 4
+
+**Es lo siguiente en cuanto se termine el encargo que el dueño está por
+dar.** Está en pausa a propósito, no olvidado. Faltan solo dos respuestas
+del dueño y una revisión técnica:
+
+1. 👤 **Regla de corte** (propuesta, sin aprobar): se revisa una sola
+   vez, al llegar a **$600 gastados** (~8 días). Sigue solo si hay
+   **≥1 venta** y **≥3% de vista a carrito**; si no, se pausa.
+2. 👤 **Presupuesto:** el tope de la cuenta tiene **$326.66** (~4 días a
+   $75/día). Para llegar al corte hay que recargar **~$300**.
+3. 🤖 En una **sesión nueva**: verificar el token de Meta nuevo con
+   `debug_token` (app Claude Integration, nunca caduca) y que cargue
+   `SHOPIFY_ADMIN_TOKEN`.
+4. 🤖 Con el "sí" del dueño: encender los conjuntos v5 ($55/día, hombres
+   55+) y v5-RT ($20/día, retargeting). Detalle en GUIA-POR-FASES.md,
+   fase 4, y MANUAL §81.
+
 Temas abiertos de la tienda. Casi todos requieren una decisión o datos tuyos;
 el resto de la auditoría ya quedó implementado y en vivo.
 
@@ -964,7 +982,7 @@ llamada de API), el grafo de `scripts/` sí se movió esta vez —
 > 🔐 Token de Meta: el viejo REVOCADO; 2FA con app de autenticación; nuevo token GENERADO (16 oct) y pegado por el dueño en `META_ACCESS_TOKEN`. Verificar con `debug_token` en la próxima sesión nueva (app Claude Integration, nunca caduca).
 > Vivo: confirmar SHOPIFY_ADMIN_TOKEN y el nuevo META_ACCESS_TOKEN en la próxima sesión.
 > ✅ 16 oct: fase 3 cerrada. Revenger 2.45 y Boundary a $999; Araty 0.70 y Stimula sin cambio; sin reabasto hasta que se muevan los combos (MANUAL §81).
-> ▶️ **Fase en curso: 4 — Meta con criterio fijado** (criterio de corte por escrito + presupuesto).
+> 🔴 **Fase 4 — encender Facebook: PENDIENTE URGENTE** (ver el recuadro al inicio del archivo). En espera mientras se atiende el encargo nuevo del dueño.
 > Cortos del dueño: rotar el secreto de la app de Shopify · archivar el pedido de prueba #1005 ·
 > revisar el canal "Shop" · ~15 oct, diagnóstico de Google con Claude in Chrome.
 > Canal "Shop" ("Acción necesaria"): NO APLICA. Exige Shopify Payments, desactivado para siempre (§30). Se ignora.

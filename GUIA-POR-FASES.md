@@ -11,7 +11,7 @@ siguiente hasta cumplir la condición de "terminada".
 | 1 | Kits a la venta | ✅ 5 kits publicados (12 oct) |
 | 2 | Canales gratis: Google, Mercado Libre y carrito abandonado | ✅ 12 oct (seguimiento: diagnóstico de Google ~15 oct; Mercado Libre por decidir) |
 | 3 | Reabasto y precios de la zona muerta | ✅ 16 oct: precios aplicados; reabasto en pausa por decisión del dueño |
-| **4** | **Encender Meta con criterio fijado** | 🟡 **SIGUIENTE** (estructura lista y en pausa) |
+| **4** | **Encender Meta con criterio fijado** | 🔴 **PENDIENTE URGENTE** (16 oct): lo siguiente al terminar el encargo nuevo del dueño |
 
 Leyenda: 👤 = lo hace el dueño · 🤖 = lo hago yo.
 
