@@ -153,16 +153,28 @@
               "
             >
               {% assign skip_card_product_styles = false %}
+              {%- comment -%}
+                Intemperie (MANUAL §87): dos pasadas sobre la página, primero lo
+                disponible y después lo agotado, para que el cliente no abra la
+                colección viendo cosas que no puede comprar. Respeta el orden
+                elegido dentro de cada grupo. Con 36 por página casi todas las
+                colecciones caben en una sola.
+              {%- endcomment -%}
+              {%- assign im_n = 0 -%}
+              {%- for im_pasada in (1..2) -%}
               {%- for product in collection.products -%}
+                {%- if im_pasada == 1 and product.available == false -%}{%- continue -%}{%- endif -%}
+                {%- if im_pasada == 2 and product.available -%}{%- continue -%}{%- endif -%}
+                {%- assign im_n = im_n | plus: 1 -%}
                 {% assign lazy_load = false %}
-                {%- if forloop.index > 2 -%}
+                {%- if im_n > 2 -%}
                   {%- assign lazy_load = true -%}
                 {%- endif -%}
                 <li
                   class="grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                   {% if settings.animations_reveal_on_scroll %}
                     data-cascade
-                    style="--animation-order: {{ forloop.index }};"
+                    style="--animation-order: {{ im_n }};"
                   {% endif %}
                 >
                   {% render 'card-product',
@@ -179,6 +191,7 @@
                   %}
                 </li>
                 {%- assign skip_card_product_styles = true -%}
+              {%- endfor -%}
               {%- endfor -%}
             </ul>
 
