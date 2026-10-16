@@ -169,6 +169,7 @@ se sube "porque casi".
 | Señuelo "flotando" en el aire sobre el agua | Ponerlo sobre un muelle o "floating ON the water surface" |
 | Foto de referencia con el señuelo dentro de su caja | Recortar el señuelo con PIL. Si casi no se ve, no se genera |
 | Dos tareas con el mismo índice | Usar índices distintos (p. ej. `r1286` para la repetición) y guardar el estado en un JSON |
+| Flotador "parado" con todo el cuerpo fuera del agua | "body SUBMERGED below the surface, ONLY the tip above the water", toma a ras del agua |
 | `failed` del lado de Higgsfield | Repetir igual |
 
 ---
@@ -221,8 +222,9 @@ se sube "porque casi".
 | 16 oct | Anzuelos (14 modelos, imágenes compartidas entre medidas) | 46 | 26 de 33 | 66 | §91 |
 | 16 oct | Cajas (la Utility Box ya tenía) | 6 | 12 de 13 | 26 | §92 |
 | 16 oct | Señuelos y cucharillas (1 por producto) | 101 de 102 | 94 de 96 | 192 | §93 |
+| 16 oct | Flotadores (fotos compartidas entre medidas) | 14 | 20 de 25 | 50 | §94 |
 
-Siguientes categorías sugeridas, en orden de venta: **flotadores →
-plomos → destorcedores**. Hilos van al final: sus fotos de catálogo ya
-son claras y son de bajo precio. Anzuelos, cajas y señuelos ya están
-(§91-§93).
+Siguientes categorías sugeridas, en orden de venta: **plomos →
+destorcedores**. Hilos van al final: sus fotos de catálogo ya son
+claras y son de bajo precio. Anzuelos, cajas, señuelos y flotadores ya
+están (§91-§94).

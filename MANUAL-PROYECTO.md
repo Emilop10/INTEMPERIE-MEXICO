@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 16 de octubre de 2026 (sección 93)
+**Última actualización:** 16 de octubre de 2026 (sección 94)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -121,6 +121,7 @@ como respaldo
 91. [Anzuelos con imágenes de IA (16 oct)](#91-anzuelos-con-imágenes-de-ia-16-oct)
 92. [Cajas con imágenes de IA (16 oct)](#92-cajas-con-imágenes-de-ia-16-oct)
 93. [Señuelos y cucharillas con imágenes de IA (16 oct)](#93-señuelos-y-cucharillas-con-imágenes-de-ia-16-oct)
+94. [Flotadores con imágenes de IA (16 oct)](#94-flotadores-con-imágenes-de-ia-16-oct)
 
 ---
 
@@ -9922,5 +9923,39 @@ dicen "cuerpo de plástico duro con anzuelos tipo triple". No se tocaron:
 quedan anotadas en PENDIENTES.
 
 **Total con portada de IA:** 219 productos.
+
+**Graphify:** sin cambios. Se volvió a correr `graphify update .` en `scripts/` a petición del dueño: "No code-graph topology changes detected" (209 nodos, 484 aristas). La rama está al día con el remoto; no hizo falta merge.
+
+## 94. Flotadores con imágenes de IA (16 oct)
+
+El dueño pidió documentar, revisar el graphify (sin cambios, ver §93) y
+seguir con los flotadores.
+
+**Alcance:** los 14 flotadores, todos activos. Son **10 fotos
+distintas**: la esfera roja y blanca Mod. 1010 usa la misma foto en sus
+4 medidas, y el SU7039 3g aparece en dos productos con la misma foto
+(se comprobó comparando los archivos).
+
+**Dos imágenes por modelo** (sí alcanzaban los créditos):
+- **Portada:** el flotador flotando en el agua de un lago o presa al
+  amanecer, con la línea saliendo del cuadro.
+- **Segunda:** en la palma de un señor o sobre un muelle. En la esfera,
+  un abuelo con el flotador en la mano y el nieto pescando detrás.
+
+**Lección:** en la primera tanda, 5 flotadores de antena salieron
+"parados" con todo el cuerpo fuera del agua. Un flotador real lleva el
+cuerpo sumergido y solo asoma la antena; un pescador lo nota. Se
+rehicieron pidiendo "body SUBMERGED below the surface, ONLY the tip
+above the water", en toma a ras del agua, y quedaron bien.
+
+**Resultado:**
+- Se generaron 25 imágenes y se aprobaron **20**.
+- **Créditos:** 50. Quedan **167.5**.
+- **Subida:** 28 imágenes en 14 productos (las de la esfera y el
+  SU7039, compartidas).
+- **Verificado por API:** 14 de 14 con portada de IA; las 14 fotos
+  reales siguen ahí.
+
+**Total con portada de IA:** 233 productos.
 
 **Graphify:** sin cambios. No hubo código nuevo.
