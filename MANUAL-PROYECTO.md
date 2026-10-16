@@ -9108,4 +9108,25 @@ zona muerta.
   Meta, porque cargó el token viejo al iniciar. Se verifica en la
   próxima sesión nueva, junto con `SHOPIFY_ADMIN_TOKEN`. La campaña está
   en pausa y la fase 3 no depende de Meta.
+- **Ejecución (16 oct):**
+  - **META 1:** portafolio "Intemperie México" (business
+    `1324138699447721`). El usuario del sistema "Claude Integration"
+    (`61593331374615`), con rol Admin, es el único. Activos con acceso
+    total: página, cuenta publicitaria "Intemperie México Ads", catálogo
+    de Shopify, app Claude Integration y la cuenta de Instagram
+    intemperiemexico. El pixel no está asignado: se usa a través de la
+    cuenta publicitaria, como siempre.
+  - **META 2:** "Revocar identificadores" (revoca todos los del usuario,
+    no deja elegir app) → **"Se han revocado correctamente todos los
+    identificadores."** **El token expuesto quedó inválido.**
+  - **META 3:** no se pudo dejar el mínimo privilegio. Meta marca **17
+    scopes y no deja desmarcar** los 9 de Instagram y Threads ("Este
+    ámbito ya se ha añadido a todos los identificadores generados a
+    través de esta aplicación"): son scopes fijados a nivel de la app en
+    developers.facebook.com.
+  - **Decisión:** generar con los 17. Recortar la app no compensa: el
+    riesgo de los scopes extra solo existe si el token se filtra, y este
+    no pasa por el chat.
+  - El dueño da el clic de "Generar identificador" y lo pega en
+    `META_ACCESS_TOKEN=`.
 
