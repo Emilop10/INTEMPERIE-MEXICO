@@ -10,8 +10,8 @@ siguiente hasta cumplir la condición de "terminada".
 | 0 | Arreglos de la ficha de producto | ✅ En vivo (30 sep) |
 | 1 | Kits a la venta | ✅ 5 kits publicados (12 oct) |
 | 2 | Canales gratis: Google, Mercado Libre y carrito abandonado | ✅ 12 oct (seguimiento: diagnóstico de Google ~15 oct; Mercado Libre por decidir) |
-| **3** | **Reabasto y precios de la zona muerta** | 🟡 **EN CURSO** (15 oct) |
-| 4 | Encender Meta con criterio fijado | ⏳ Estructura lista y en pausa |
+| 3 | Reabasto y precios de la zona muerta | ✅ 16 oct: precios aplicados; reabasto en pausa por decisión del dueño |
+| **4** | **Encender Meta con criterio fijado** | 🟡 **SIGUIENTE** (estructura lista y en pausa) |
 
 Leyenda: 👤 = lo hace el dueño · 🤖 = lo hago yo.
 
@@ -83,7 +83,7 @@ está activo.
 
 ---
 
-## Fase 3 — Reabasto y precios ⏳
+## Fase 3 — Reabasto y precios ✅
 
 **Objetivo:** tener fondo de inventario de lo que se va a anunciar, y
 sacar los productos de la zona muerta de $799-$987.
@@ -95,6 +95,22 @@ sacar los productos de la zona muerta de $799-$987.
 
 **✅ Terminada cuando:** hay al menos 3 piezas de cada kit que se va a
 anunciar, y ningún producto anunciado está en la zona muerta.
+
+> **16 oct — cierre:**
+> - **Reabasto:** el dueño no hará pedidos hasta que se muevan los combos.
+>   Los kits se anuncian con lo que hay (1 a 2 por kit); la condición de
+>   "3 piezas" queda suspendida.
+> - **Guías:** solo ha habido una venta; se calcula con $189 hasta tener
+>   costos reales.
+> - **Precios** (con el "sí" del dueño):
+>
+> | Producto | Antes | Ahora | Deja (envío gratis) |
+> |---|---|---|---|
+> | Combo Okuma Revenger 8'0" (2.45m) | $849 | **$999** | de $105 a $255 |
+> | Combo Okuma Boundary 7'0" | $949 | **$999** | de $155 a $205 |
+> | Hilo Araty 0.70mm | $812 | $812 (sin cambio) | $343: sin caja de caña, ya pasa de $300 |
+> | Caña Shimano Stimula | $849 | $849 (sin cambio) | agotada y sin reabasto |
+
 
 ---
 

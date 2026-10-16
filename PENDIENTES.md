@@ -963,10 +963,10 @@ llamada de API), el grafo de `scripts/` sí se movió esta vez —
 > ✅ 15 oct: Google con 287/325 aprobados, 0 por armas, devoluciones verificadas. 🗓️ 22 oct: re-revisar las 4 "Image not processed".
 > 🔐 Token de Meta: el viejo REVOCADO; 2FA con app de autenticación; nuevo token GENERADO (16 oct) y pegado por el dueño en `META_ACCESS_TOKEN`. Verificar con `debug_token` en la próxima sesión nueva (app Claude Integration, nunca caduca).
 > Vivo: confirmar SHOPIFY_ADMIN_TOKEN y el nuevo META_ACCESS_TOKEN en la próxima sesión.
-> ▶️ **Fase en curso: 3 — reabasto y precios.**
+> ✅ 16 oct: fase 3 cerrada. Revenger 2.45 y Boundary a $999; Araty 0.70 y Stimula sin cambio; sin reabasto hasta que se muevan los combos (MANUAL §81).
+> ▶️ **Fase en curso: 4 — Meta con criterio fijado** (criterio de corte por escrito + presupuesto).
 > Cortos del dueño: rotar el secreto de la app de Shopify · archivar el pedido de prueba #1005 ·
 > revisar el canal "Shop" · ~15 oct, diagnóstico de Google con Claude in Chrome.
-> Insumos de la fase 3: cotización del proveedor (Okuma y piezas de kits) · costo real de guías recientes.
 > Canal "Shop" ("Acción necesaria"): NO APLICA. Exige Shopify Payments, desactivado para siempre (§30). Se ignora.
 > 🔁 Producto nuevo publicado = correr `sincronizar-canal-meta.py` para Meta **y**
 > con `--canal "Google & YouTube"`.

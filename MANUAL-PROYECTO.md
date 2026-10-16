@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 15 de octubre de 2026 (sección 80)
+**Última actualización:** 16 de octubre de 2026 (sección 81)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -108,6 +108,7 @@ como respaldo
 78. [Corte antes de la fase 3: qué queda pendiente (13 oct)](#78-corte-antes-de-la-fase-3-qué-queda-pendiente-13-oct)
 79. [Cerrando los pendientes antes de la fase 3 (13 oct)](#79-cerrando-los-pendientes-antes-de-la-fase-3-13-oct)
 80. [Pendientes cerrados: listos para la fase 3 (15 oct)](#80-pendientes-cerrados-listos-para-la-fase-3-15-oct)
+81. [Fase 3 cerrada: precios de la zona muerta (16 oct)](#81-fase-3-cerrada-precios-de-la-zona-muerta-16-oct)
 
 ---
 
@@ -9164,3 +9165,46 @@ zona muerta.
     exacto y decir cuál **no** tocar. Un "Generar identificador" puede
     aparecer en dos lugares, y el del aviso verde se salta la
     configuración.
+
+---
+
+## 81. Fase 3 cerrada: precios de la zona muerta (16 oct)
+
+**Decisiones del dueño:**
+
+- **Reabasto:** no habrá pedidos al proveedor hasta que se muevan los
+  combos. Los kits se venden y se anuncian con lo que hay (1 a 2 por
+  kit). La condición de "3 piezas por kit" de la guía queda suspendida.
+- **Costo de guías:** solo ha habido una venta, así que no hay costo
+  real. Se calcula con los $189 que se cobran.
+
+**Precios** (propuesta de Claude Code, aprobada con el "sí" del dueño):
+
+| Producto | Costo | Antes | Ahora | Deja con envío gratis |
+|---|---|---|---|---|
+| Combo Okuma Revenger 8'0" (2.45m), 1 pza | $506.51 | $849 | **$999** | de $105 a **$255** |
+| Combo Okuma Boundary 7'0", 2 pzas | $556.50 | $949 | **$999** | de $155 a **$205** |
+| Hilo Araty 0.70mm 1000m, 3 pzas | $280.14 | $812 | sin cambio | $343 (sin caja de caña) |
+| Caña Shimano Stimula 6'0" | $443.93 | $849 | sin cambio | agotada y sin reabasto |
+
+- La ganancia es precio − costo − $189 de envío − $48.83 de caja (solo
+  cañas y combos).
+- **Se corrigió la propuesta inicial del Araty** (bajarlo a $789): con
+  envío gratis ya deja más de $300, y bajarlo habría hecho que el
+  cliente pagara $978 con el envío en vez de $812.
+- Con este cambio los tres combos Okuma con existencia (Revenger 2.45,
+  Revenger 2.40 armado y Boundary) quedan parejos en $999.
+- **Riesgo aceptado:** puede vender más lento. En septiembre el Revenger
+  2.45 tuvo 11 carritos a $849 y ninguna compra, así que el precio no
+  parece ser lo que frenaba.
+- **Cómo se aplicó:** por la API de Shopify (variantes 43219563315277 y
+  43219563085901) y se volvió a leer el precio para confirmarlo: los dos
+  en 999.00. Meta y Google toman el precio del catálogo de Shopify en
+  unas horas.
+- **Permiso:** el clasificador de permisos bloqueó el cambio la primera
+  vez. A pedido del dueño ("opción B") se agregó una regla de permiso
+  local, estrecha, solo para ese script, en `.claude/settings.local.json`
+  (está en `.gitignore`, no se sube al repositorio).
+
+**Siguiente: fase 4.** Fijar por escrito el criterio de corte antes de
+encender y decidir el presupuesto (GUIA-POR-FASES.md, pasos 4.1 y 4.2).

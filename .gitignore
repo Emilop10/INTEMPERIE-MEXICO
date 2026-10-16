@@ -27,3 +27,4 @@ imagenes-productos/**
 !imagenes-productos/README.md
 !imagenes-productos/*/
 !imagenes-productos/*/LEEME.md
+.claude/settings.local.json
