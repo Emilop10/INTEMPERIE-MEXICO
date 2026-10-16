@@ -187,7 +187,9 @@ se sube "porque casi".
 | 16 oct | Combos, kits y óptica | 20 | 39 de 44 | 84 | §83-§84 |
 | 16 oct | Cañas (con existencia) | 10 | 20 de 21 | 42 | §86 |
 | 16 oct | Cañas agotadas + Carretes | 7 + 8 | 29 de 32 | 64 | §87 |
+| 16 oct | Óptica que faltaba (7 binoculares + 2ª del KonuSmall-2) | 8 | 15 de 15 | 30 | §89 |
 
-Siguientes categorías sugeridas, en orden de venta: **binoculares y
-óptica que faltan → cajas → señuelos y cucharillas**. Hilos y anzuelos van al
+Siguientes categorías sugeridas, en orden de venta: **cajas → señuelos
+y cucharillas → flotadores**. Miras telescópicas, monturas y linterna
+táctica no se trabajan (accesorios de arma). Hilos y anzuelos van al
 final: sus fotos de catálogo ya son claras y son de bajo precio.

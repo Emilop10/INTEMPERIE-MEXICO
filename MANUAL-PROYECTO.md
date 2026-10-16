@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 16 de octubre de 2026 (sección 88)
+**Última actualización:** 16 de octubre de 2026 (sección 89)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -116,6 +116,7 @@ como respaldo
 86. [Instructivo de imágenes con IA y categoría Cañas (16 oct)](#86-instructivo-de-imágenes-con-ia-y-categoría-cañas-16-oct)
 87. [Agotados al final, cañas completas y carretes con IA (16 oct)](#87-agotados-al-final-cañas-completas-y-carretes-con-ia-16-oct)
 88. [Safari de iOS 26 tapaba la barra de compra (16 oct)](#88-safari-de-ios-26-tapaba-la-barra-de-compra-16-oct)
+89. [Óptica completa con imágenes de IA (16 oct)](#89-óptica-completa-con-imágenes-de-ia-16-oct)
 
 ---
 
@@ -9658,3 +9659,57 @@ quedaba debajo de la barra de direcciones y no se podía tocar bien.
   compra queda 78 px más alta de lo necesario. Se ve bien y no tapa nada.
 
 **Graphify:** sin cambios (`tema-shopify/` 463/665; no extrae Liquid).
+
+## 89. Óptica completa con imágenes de IA (16 oct)
+
+El dueño confirmó el arreglo de iOS 26 (§88) y pidió seguir con la
+óptica.
+
+**Alcance:**
+- Los 7 binoculares sin imágenes de IA: Mendoza MODS-003 8x21, Tasco
+  Essentials 8-24x25 (agotado) y Lobo 10-30x50, 10x60, 12x50, 16x50 y
+  20x50.
+- La segunda imagen del monocular KonuSmall-2, que en §83 se había
+  quedado con una sola.
+- **Fuera:** miras telescópicas, monturas y la linterna táctica, por ser
+  accesorios de arma (regla 3 del instructivo).
+
+**Escenas** (portada sin personas, segunda con personas):
+
+| Producto | Portada | Segunda |
+|---|---|---|
+| Mendoza 8x21 | Con su estuche en un mirador de la sierra | Señor en las gradas de un lienzo charro |
+| Tasco Essentials | Roca en la Sierra de Órganos, Zacatecas | Abuelo y nieto viendo garzas en el lago |
+| Lobo 10-30x50 | Cofre de pickup en la Sierra Madre | Señor viendo caballos en el rancho |
+| Lobo 10x60 | Barandal de mirador en Baja California Sur | Señor viendo delfines desde una lancha |
+| Lobo 12x50 | Junto a mochila frente al Pico de Orizaba | Padre e hijo viendo venados |
+| Lobo 16x50 | Balcón de cabaña en la Sierra Gorda | Señor viendo guacamayas en Chiapas |
+| Lobo 20x50 | Muro de mirador en Barrancas del Cobre | Señor viendo la luna junto a una fogata |
+| KonuSmall-2 | (ya tenía) | Sobre un mapa con brújula y sombrero |
+
+Los cinco Lobo se parecen mucho entre sí, así que se distinguieron por
+el lugar y por el color de sus lentes (naranja, rojo o amarillo), igual
+que en sus fotos reales.
+
+**Resultado:**
+- Se generaron 15 imágenes y se aprobaron **15**.
+- El KonuSmall-2 salió esta vez con sus anillos verdes y la etiqueta
+  Konus, porque se describieron en el prompt (la lección de §83).
+- Un trabajo falló del lado de Higgsfield y se repitió sin costo.
+- **Créditos:** 30. Quedan **561.5**.
+- **Subida:** 15 subidas, 88 ya estaban, 0 errores.
+- **Verificado por API:** binoculares 12 de 12 y monoculares 2 de 2 con
+  portada de IA.
+
+**Nota para el 22 oct:** el Tasco Essentials era uno de los 4 productos
+con "Image not processed" en Merchant Center. Su foto 1 ahora es nueva,
+así que Google la reprocesa. Puede que eso resuelva el aviso sin tener
+que re-subir la foto vieja.
+
+**Total con portada de IA:** 52 productos.
+- 5 kits y 7 combos.
+- 17 cañas y 9 carretes.
+- 12 binoculares y 2 monoculares.
+
+**Graphify:** sin cambios. No hubo código nuevo; solo el JSON de
+imágenes y documentación.
