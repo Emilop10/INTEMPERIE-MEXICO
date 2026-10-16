@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 16 de octubre de 2026 (sección 82)
+**Última actualización:** 16 de octubre de 2026 (sección 83)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -110,6 +110,7 @@ como respaldo
 80. [Pendientes cerrados: listos para la fase 3 (15 oct)](#80-pendientes-cerrados-listos-para-la-fase-3-15-oct)
 81. [Fase 3 cerrada: precios de la zona muerta (16 oct)](#81-fase-3-cerrada-precios-de-la-zona-muerta-16-oct)
 82. [Higgsfield conectado: prueba de imágenes con IA (16 oct)](#82-higgsfield-conectado-prueba-de-imágenes-con-ia-16-oct)
+83. [Imágenes con IA para combos, kits y óptica (16 oct)](#83-imágenes-con-ia-para-combos-kits-y-óptica-16-oct)
 
 ---
 
@@ -9271,3 +9272,59 @@ créditos** en total (quedan 781.5).
   "rediseñarlo". Conviene encuadres donde el combo se vea completo.
 - Ninguna imagen se ha subido a Shopify todavía: falta el visto bueno
   del dueño.
+
+## 83. Imágenes con IA para combos, kits y óptica (16 oct)
+
+El dueño pidió "las imágenes que más llamen la atención y más vendan"
+para los combos y los productos que se van a promocionar.
+
+**Alcance (20 productos):**
+- 7 combos con existencia.
+- 5 kits.
+- Del conjunto de productos de Meta, los que no son armas: carrete
+  Sienna, 5 binoculares y 2 monoculares.
+- Se dejaron fuera diábolos, miras, linterna y montura, porque Meta los
+  rechaza.
+
+**Cómo se hizo:**
+- **Referencias:** una imagen por producto, armada con sus fotos reales
+  de Shopify. Para kits y combos de varias piezas se hizo un collage:
+  caña arriba y carrete, hilo, caja y señuelos abajo.
+- **Escenas:** dos por producto, pensadas para hombres de 55+.
+  - Una de ambiente o "todo incluido".
+  - Una con gente: abuelo y nieto, padre e hijo, el señor con la lobina.
+  - Lugares de México: presa, Chapala, Mar de Cortés, Barrancas del
+    Cobre, Huasteca, Baja, manglares.
+- **Modelo:** Nano Banana 2.1, 2k, 1:1.
+
+**Resultado:**
+- Se generaron 44 imágenes.
+- Se aprobaron **39**: 10 de kits, 14 de combos (incluye las 2 del
+  Revenger 2.45 de §82) y 15 de óptica y carrete.
+- Costo de la tanda: **84 créditos**. Quedan 697.5.
+- Lista con producto, escena y URL de cada imagen:
+  [`imagenes/imagenes-ia-aprobadas.json`](./imagenes/imagenes-ia-aprobadas.json).
+
+**Rechazadas y rehechas**, porque no eran fieles al producto:
+- **Flat lays con piezas de más:** se pidió de nuevo con las cantidades
+  exactas.
+  - #120 Fresh: 4 carretes de hilo.
+  - #150 Tundra: 3 carretes de hilo y el logo de Storm al revés.
+  - #160 Clarus: 3 carretes de hilo y 3 señuelos.
+- **#151 Tundra:** logo de Storm al revés. Se rehízo sin caja.
+- **#917 KonuSmall-2:** salió un monocular negro genérico, sin los anillos
+  verdes. Se dejó con 1 imagen.
+- **Fallas de la herramienta:** #70 marcado por el filtro por error
+  (se repitió), #150 falló en Higgsfield, y varios toparon con el límite
+  de 8 trabajos simultáneos (no cobran).
+
+**Lecciones:**
+- Los flat lays tienden a duplicar consumibles. Hay que escribir la
+  cantidad exacta y "nada más".
+- Los logos en cajas pueden salir al revés. Mejor no pedirlos.
+- Higgsfield acepta máximo **8 trabajos a la vez** por modelo.
+  Conviene mandar tandas de 8.
+
+**Estado:** ninguna imagen se ha subido a Shopify. Falta el visto bueno
+del dueño. La regla sigue igual: la foto real es la 1 y las de IA van
+de la 2 en adelante.
