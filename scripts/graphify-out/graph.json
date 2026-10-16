@@ -763,6 +763,66 @@
       "source_location": "L153"
     },
     {
+      "id": "crear_kits_api",
+      "label": "api()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "json",
+      "file_type": "code",
+      "norm_label": "api()",
+      "source_file": "crear-kits.py",
+      "source_location": "L177"
+    },
+    {
+      "id": "crear_kits_main",
+      "label": "main()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "json",
+      "file_type": "code",
+      "norm_label": "main()",
+      "source_file": "crear-kits.py",
+      "source_location": "L237"
+    },
+    {
+      "id": "crear_kits_main_cuerpo_html",
+      "label": "cuerpo_html()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "json",
+      "file_type": "code",
+      "norm_label": "cuerpo_html()",
+      "source_file": "crear-kits.py",
+      "source_location": "L299"
+    },
+    {
+      "id": "crear_kits_producto",
+      "label": "producto()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "json",
+      "file_type": "code",
+      "norm_label": "producto()",
+      "source_file": "crear-kits.py",
+      "source_location": "L186"
+    },
+    {
+      "id": "crear_kits_revisar_existencias",
+      "label": "revisar_existencias()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "json",
+      "file_type": "code",
+      "norm_label": "revisar_existencias()",
+      "source_file": "crear-kits.py",
+      "source_location": "L191"
+    },
+    {
       "id": "subir_imagenes_ia_api",
       "label": "api()",
       "_callable": true,
@@ -784,7 +844,7 @@
       "file_type": "code",
       "norm_label": "main()",
       "source_file": "subir-imagenes-ia.py",
-      "source_location": "L42"
+      "source_location": "L50"
     },
     {
       "id": "fotos_kits_api",
@@ -1061,66 +1121,6 @@
       "norm_label": "next_page_url()",
       "source_file": "vincular-codigo-b1.py",
       "source_location": "L70"
-    },
-    {
-      "id": "crear_kits_api",
-      "label": "api()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 7,
-      "community_name": "crear-kits.py",
-      "file_type": "code",
-      "norm_label": "api()",
-      "source_file": "crear-kits.py",
-      "source_location": "L177"
-    },
-    {
-      "id": "crear_kits_main",
-      "label": "main()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 7,
-      "community_name": "crear-kits.py",
-      "file_type": "code",
-      "norm_label": "main()",
-      "source_file": "crear-kits.py",
-      "source_location": "L237"
-    },
-    {
-      "id": "crear_kits_main_cuerpo_html",
-      "label": "cuerpo_html()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 7,
-      "community_name": "crear-kits.py",
-      "file_type": "code",
-      "norm_label": "cuerpo_html()",
-      "source_file": "crear-kits.py",
-      "source_location": "L299"
-    },
-    {
-      "id": "crear_kits_producto",
-      "label": "producto()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 7,
-      "community_name": "crear-kits.py",
-      "file_type": "code",
-      "norm_label": "producto()",
-      "source_file": "crear-kits.py",
-      "source_location": "L186"
-    },
-    {
-      "id": "crear_kits_revisar_existencias",
-      "label": "revisar_existencias()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 7,
-      "community_name": "crear-kits.py",
-      "file_type": "code",
-      "norm_label": "revisar_existencias()",
-      "source_file": "crear-kits.py",
-      "source_location": "L191"
     },
     {
       "id": "prueba_tarjetas_coleccion_armar_repro",
@@ -1768,6 +1768,17 @@
       "source_location": "L1"
     },
     {
+      "id": "crear_kits",
+      "label": "crear-kits.py",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "json",
+      "file_type": "code",
+      "norm_label": "crear-kits.py",
+      "source_file": "crear-kits.py",
+      "source_location": "L1"
+    },
+    {
       "id": "subir_imagenes_ia",
       "label": "subir-imagenes-ia.py",
       "_origin": "ast",
@@ -1820,6 +1831,28 @@
       "file_type": "rationale",
       "norm_label": "crea los combos propuestos en combos-nuevos-pendientes.md. uso:...",
       "source_file": "crear-combos.py",
+      "source_location": "L2"
+    },
+    {
+      "id": "crear_kits_rationale_192",
+      "label": "Reparte las piezas reales entre combos y kits; corrige con --aplicar.",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "json",
+      "file_type": "rationale",
+      "norm_label": "reparte las piezas reales entre combos y kits; corrige con --aplicar.",
+      "source_file": "crear-kits.py",
+      "source_location": "L192"
+    },
+    {
+      "id": "crear_kits_rationale_2",
+      "label": "Kits \"listos para pescar\" (MANUAL \u00a769, ANALISIS-ESTRATEGICO-30-SEP.md). Por qu\u00e9\u2026",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "json",
+      "file_type": "rationale",
+      "norm_label": "kits \"listos para pescar\" (manual \u00a769, analisis-estrategico-30-sep.md). por que...",
+      "source_file": "crear-kits.py",
       "source_location": "L2"
     },
     {
@@ -1941,39 +1974,6 @@
       "file_type": "rationale",
       "norm_label": "guarda el \"codigo b1\" del pos en el campo `barcode` de cada producto de...",
       "source_file": "vincular-codigo-b1.py",
-      "source_location": "L2"
-    },
-    {
-      "id": "crear_kits",
-      "label": "crear-kits.py",
-      "_origin": "ast",
-      "community": 7,
-      "community_name": "crear-kits.py",
-      "file_type": "code",
-      "norm_label": "crear-kits.py",
-      "source_file": "crear-kits.py",
-      "source_location": "L1"
-    },
-    {
-      "id": "crear_kits_rationale_192",
-      "label": "Reparte las piezas reales entre combos y kits; corrige con --aplicar.",
-      "_origin": "ast",
-      "community": 7,
-      "community_name": "crear-kits.py",
-      "file_type": "rationale",
-      "norm_label": "reparte las piezas reales entre combos y kits; corrige con --aplicar.",
-      "source_file": "crear-kits.py",
-      "source_location": "L192"
-    },
-    {
-      "id": "crear_kits_rationale_2",
-      "label": "Kits \"listos para pescar\" (MANUAL \u00a769, ANALISIS-ESTRATEGICO-30-SEP.md). Por qu\u00e9\u2026",
-      "_origin": "ast",
-      "community": 7,
-      "community_name": "crear-kits.py",
-      "file_type": "rationale",
-      "norm_label": "kits \"listos para pescar\" (manual \u00a769, analisis-estrategico-30-sep.md). por que...",
-      "source_file": "crear-kits.py",
       "source_location": "L2"
     },
     {
@@ -2339,6 +2339,17 @@
       "type": "external"
     },
     {
+      "id": "time",
+      "label": "time",
+      "community": 4,
+      "community_name": "json",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "time",
+      "source_file": "",
+      "type": "external"
+    },
+    {
       "id": "urllib_error",
       "label": "urllib_error",
       "community": 4,
@@ -2423,17 +2434,6 @@
       "external": true,
       "file_type": "concept",
       "norm_label": "sys",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "time",
-      "label": "time",
-      "community": 6,
-      "community_name": "sys",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "time",
       "source_file": "",
       "type": "external"
     },
@@ -4670,20 +4670,8 @@
       "weight": 1.0
     },
     {
-      "source": "subir_imagenes_ia_main",
-      "target": "sys",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "subir-imagenes-ia.py",
-      "source_location": "L46",
-      "weight": 1.0
-    },
-    {
-      "source": "subir_imagenes_ia_main",
-      "target": "json",
+      "source": "subir_imagenes_ia_api",
+      "target": "time",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -4695,6 +4683,30 @@
     },
     {
       "source": "subir_imagenes_ia_main",
+      "target": "sys",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "subir-imagenes-ia.py",
+      "source_location": "L54",
+      "weight": 1.0
+    },
+    {
+      "source": "subir_imagenes_ia_main",
+      "target": "json",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "subir-imagenes-ia.py",
+      "source_location": "L55",
+      "weight": 1.0
+    },
+    {
+      "source": "subir_imagenes_ia_main",
       "target": "subir_imagenes_ia_api",
       "relation": "calls",
       "_origin": "ast",
@@ -4702,7 +4714,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "subir-imagenes-ia.py",
-      "source_location": "L51",
+      "source_location": "L59",
       "weight": 1.0
     },
     {
@@ -4714,7 +4726,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "subir-imagenes-ia.py",
-      "source_location": "L77",
+      "source_location": "L85",
       "weight": 1.0
     },
     {
@@ -7315,7 +7327,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "subir-imagenes-ia.py",
-      "source_location": "L42",
+      "source_location": "L50",
       "weight": 1.0
     },
     {
@@ -8098,5 +8110,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "4f81df07938d2c5aa25a389ada9d72808d1db200"
+  "built_at_commit": "831add327c3a3b6ad1576468420d5a95796f8d06"
 }

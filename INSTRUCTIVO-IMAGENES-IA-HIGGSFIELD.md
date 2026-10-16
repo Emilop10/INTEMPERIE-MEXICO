@@ -96,6 +96,10 @@ de buenas y **fieles al producto real**.
   señor, amarrado al hilo. No se muestra el paquete ni cuántas piezas
   trae, porque cambia entre medidas. Si un modelo se vende en varias
   medidas, las dos imágenes se comparten entre todas.
+- **Cajas:** se venden vacías, así que van **sin señuelos**. La A es la
+  caja cerrada en una lancha, un muelle o una pickup. La B, abierta y
+  vacía ("completely EMPTY, nothing inside"). Pedir que el logo impreso
+  salga "readable, not mirrored".
 - **Lugares mexicanos reales:** presas, Chapala, Mar de Cortés, Pacífico,
   manglares, Huasteca, Barrancas del Cobre, sierra, Baja, Yucatán.
 - **Luz:** amanecer o atardecer (hora dorada) y niebla sobre el agua.
@@ -155,6 +159,8 @@ se sube "porque casi".
 | Anzuelo triple acostado: parece doble | Pedirlo "standing UPRIGHT on its three bends, all THREE points clearly visible" |
 | Anzuelo circular sale en forma de J | "almost a closed circle: the point curves sharply INWARD toward the shank, not a J shape". Aun así falla seguido |
 | Referencia con empaque o logo | Recortar con PIL solo el anzuelo y subirlo con `media_upload` |
+| Caja abierta: el logo se ve al revés desde adentro | Mostrarla cerrada o de canto, con el logo de frente |
+| `HTTP 429` de Shopify al subir | Ya lo maneja `subir-imagenes-ia.py` (espera y repite). Volver a correrlo es seguro |
 | `failed` del lado de Higgsfield | Repetir igual |
 
 ---
@@ -205,7 +211,8 @@ se sube "porque casi".
 | 16 oct | Óptica que faltaba (7 binoculares + 2ª del KonuSmall-2) | 8 | 15 de 15 | 30 | §89 |
 | 16 oct | Miras, monturas y linterna táctica | 14 | 26 de 30 | 60 | §90 |
 | 16 oct | Anzuelos (14 modelos, imágenes compartidas entre medidas) | 46 | 26 de 33 | 66 | §91 |
+| 16 oct | Cajas (la Utility Box ya tenía) | 6 | 12 de 13 | 26 | §92 |
 
-Siguientes categorías sugeridas, en orden de venta: **cajas → señuelos
-y cucharillas → flotadores**. Hilos van al final: sus fotos de catálogo
-ya son claras y son de bajo precio. Anzuelos ya están (§91).
+Siguientes categorías sugeridas, en orden de venta: **señuelos y
+cucharillas → flotadores**. Hilos van al final: sus fotos de catálogo
+ya son claras y son de bajo precio. Anzuelos y cajas ya están (§91-§92).

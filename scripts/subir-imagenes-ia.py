@@ -35,8 +35,16 @@ def api(metodo, ruta, token, cuerpo=None):
     datos = json.dumps(cuerpo).encode() if cuerpo is not None else None
     req = urllib.request.Request(url, data=datos, method=metodo, headers={
         "X-Shopify-Access-Token": token, "Content-Type": "application/json"})
-    with urllib.request.urlopen(req) as r:
-        return json.load(r)
+    # Con más de ~100 productos en la lista, las consultas seguidas llegan al
+    # límite de Shopify (429): se espera lo que pida Retry-After y se repite.
+    for intento in range(5):
+        try:
+            with urllib.request.urlopen(req) as r:
+                return json.load(r)
+        except urllib.error.HTTPError as e:
+            if e.code != 429 or intento == 4:
+                raise
+            time.sleep(float(e.headers.get("Retry-After") or 2))
 
 
 def main():

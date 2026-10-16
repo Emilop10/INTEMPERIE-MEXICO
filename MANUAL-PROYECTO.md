@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 16 de octubre de 2026 (sección 91)
+**Última actualización:** 16 de octubre de 2026 (sección 92)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -119,6 +119,7 @@ como respaldo
 89. [Óptica completa con imágenes de IA (16 oct)](#89-óptica-completa-con-imágenes-de-ia-16-oct)
 90. [Miras telescópicas y accesorios de óptica con IA (16 oct)](#90-miras-telescópicas-y-accesorios-de-óptica-con-ia-16-oct)
 91. [Anzuelos con imágenes de IA (16 oct)](#91-anzuelos-con-imágenes-de-ia-16-oct)
+92. [Cajas con imágenes de IA (16 oct)](#92-cajas-con-imágenes-de-ia-16-oct)
 
 ---
 
@@ -9822,3 +9823,43 @@ tienda ("curricanes.com"), igual que la Axeon (§90). Conviene cambiarla.
 **Total con portada de IA:** 112 productos.
 
 **Graphify:** sin cambios. No hubo código nuevo.
+
+## 92. Cajas con imágenes de IA (16 oct)
+
+El dueño pidió seguir con las cajas.
+
+**Alcance:** 6 de las 7 cajas, incluidas las 2 Rapala agotadas (Tackle
+Tray 276 y 356) y las 4 Storm. La **Rapala Utility Box Chica** se dejó
+como estaba: ya tenía 5 imágenes de IA desde el 24 sep (§64).
+
+**Regla de las cajas:** se venden **vacías**, así que salen **sin
+señuelos**. Si salieran llenas, el cliente creería que los señuelos
+vienen incluidos (regla 2 del instructivo). La portada es la caja
+cerrada en una lancha, un muelle o la batea de una pickup. La segunda,
+abierta y vacía, para que se vean los compartimentos.
+
+**Referencias:** se recortó con PIL el encabezado de marca de las fotos
+de catálogo (la franja "TACKLE TRAY · Rapala" y el logo Storm suelto que
+no va impreso en la caja), y se subieron con `media_upload`.
+
+**Resultado:**
+- Se generaron 13 imágenes y se aprobaron **12**.
+- **Rechazada (1):** la Storm Doble Acceso abierta salió con la tapa
+  transparente (es amarilla) y el logo visto al revés desde adentro. Se
+  rehízo cerrada, parada de canto.
+- El logo Storm salió legible y derecho en todas las demás.
+- **Créditos:** 26. Quedan **409.5**.
+- **Subida:** 12 subidas, 219 ya estaban, 0 errores.
+- **Verificado por API:** 6 de 6 con portada de IA.
+
+**Arreglo en `scripts/subir-imagenes-ia.py`:** con 118 productos en la
+lista, las consultas seguidas de los productos que ya tenían sus
+imágenes llegaron al límite de Shopify (`HTTP 429`) y el script se
+detuvo. Ahora `api()` espera lo que pide `Retry-After` y repite, hasta 5
+veces. No se había subido nada antes del error, así que no quedó nada a
+medias.
+
+**Total con portada de IA:** 118 productos.
+
+**Graphify:** `scripts/` actualizado: 209 nodos, 484 aristas, 12
+comunidades (antes 483 y 13; `crear-kits.py` quedó dentro de otra).
