@@ -9429,3 +9429,37 @@ cuenta mostraba otra cosa:
   con `time_range` explícito desde el 2026-10-16.
 - Mientras la campaña entregue: nada de compras de prueba, y no se mira
   el resultado día a día.
+
+### Verificación después de encender (16 oct, ~05:05 UTC)
+
+- **Los 2 anuncios v5 pasaron la revisión de Meta:** `IN_PROCESS` →
+  `ACTIVE`, minutos después de encenderlos.
+- **Segmentación confirmada en vivo:**
+
+| | v5, prospección | v5-RT, retargeting |
+|---|---|---|
+| Público | Hombres de 55 a 65, México | Hombres de 45 a 65 que vieron un producto en 30 días (pixel) |
+| Exclusión | Excluye a quienes vieron producto, para no encimarse con el RT | El público personalizado puede ampliarse (`custom_audience: 1`) |
+| Ubicaciones | Facebook feed y Marketplace, solo celular | Igual |
+| Optimización | `ADD_TO_CART` con el pixel `2011984246408291`, conjunto de productos `2097987747472219` | Igual |
+| Puja | Costo más bajo sin tope | Igual |
+| Atribución | 7 días por clic, 1 día por vista | Igual |
+
+- **Advantage+ audience apagado** en los dos (`advantage_audience: 0`):
+  la edad y el sexo se respetan tal cual.
+
+**Lo que se le dijo al dueño:**
+- La campaña está mucho mejor armada que la de agosto: productos con
+  margen, hombres de 55+, portadas de ambiente, ficha y pago arreglados,
+  correo de carrito abandonado, prospección y retargeting separados, y
+  regla de corte con freno automático.
+- Nada garantiza ventas. Con $600 y una tienda casi sin historial, lo
+  realista es esperar de 0 a 2 compras. El corte dice si la gente ya
+  llega al carrito y, si no, en qué paso se cae.
+
+**Estado del repositorio:**
+- Merge: no hace falta. `claude/intemperie-mexico-audit-n3yxbs` es la
+  rama por defecto, está sincronizada con el remoto y hay 0 PR
+  abiertos.
+- Graphify sin cambios desde §84: `scripts/` 209/483 y `tema-shopify/`
+  463/665.
