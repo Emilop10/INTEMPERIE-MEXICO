@@ -961,7 +961,8 @@ llamada de API), el grafo de `scripts/` sí se movió esta vez —
 > ✅ 15 oct: bienvenida activa · secreto de la app rotado · SHOPIFY_ADMIN_TOKEN en variables de entorno (confirmar en la próxima sesión nueva).
 > ✅ 15 oct: pendientes de §78 cerrados (MANUAL §80). TikTok: sin cuenta todavía. Mercado Libre: después de la fase 4.
 > ✅ 15 oct: Google con 287/325 aprobados, 0 por armas, devoluciones verificadas. 🗓️ 22 oct: re-revisar las 4 "Image not processed".
-> Vivos (no bloquean): 🔐 regenerar el token de Meta (¡lo usa también otro proyecto!) · confirmar SHOPIFY_ADMIN_TOKEN en la próxima sesión.
+> 🔐 Token de Meta: el viejo REVOCADO (16 oct); generar el nuevo requiere cambiar el teléfono de seguridad de Facebook (el …0809 ya no lo tiene el dueño). Sin token, Claude no consulta Meta.
+> Vivo: confirmar SHOPIFY_ADMIN_TOKEN y el nuevo META_ACCESS_TOKEN en la próxima sesión.
 > ▶️ **Fase en curso: 3 — reabasto y precios.**
 > Cortos del dueño: rotar el secreto de la app de Shopify · archivar el pedido de prueba #1005 ·
 > revisar el canal "Shop" · ~15 oct, diagnóstico de Google con Claude in Chrome.

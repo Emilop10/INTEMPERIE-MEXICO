@@ -9129,4 +9129,16 @@ zona muerta.
     no pasa por el chat.
   - El dueño da el clic de "Generar identificador" y lo pega en
     `META_ACCESS_TOKEN=`.
+- **Bloqueo al generar (15 oct, 18:06):** Meta pidió un código por SMS
+  al **+52 777 440 0809**, una línea que el dueño ya no tiene.
+  - Ruta: agregar el número personal en el Centro de cuentas
+    (información de contacto) y una **app de autenticación** como
+    segundo factor; quitar el número viejo con su "sí"; luego volver a
+    "Generar identificador".
+  - Prompt de Claude in Chrome en el chat. Reglas: Claude in Chrome no
+    escribe números, códigos ni el token; solo navega y se detiene donde
+    escribe el dueño.
+  - **Estado mientras tanto:** no hay token de Meta válido. No afecta a
+    la tienda, al catálogo, al pixel ni a los anuncios (en pausa); solo
+    a las consultas de Claude.
 
