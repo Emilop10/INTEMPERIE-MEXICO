@@ -91,6 +91,11 @@ de buenas y **fieles al producto real**.
   en una caña.
 - **Óptica:** la A es un bodegón en un paisaje. La B, un señor usándolo
   (ballenas, flamencos, venados, un velero frente a un faro).
+- **Anzuelos y terminales:** la A es **un solo anzuelo** de cerca sobre
+  un muelle, una borda, arena o una piedra de río. La B, en la mano de un
+  señor, amarrado al hilo. No se muestra el paquete ni cuántas piezas
+  trae, porque cambia entre medidas. Si un modelo se vende en varias
+  medidas, las dos imágenes se comparten entre todas.
 - **Lugares mexicanos reales:** presas, Chapala, Mar de Cortés, Pacífico,
   manglares, Huasteca, Barrancas del Cobre, sierra, Baja, Yucatán.
 - **Luz:** amanecer o atardecer (hora dorada) y niebla sobre el agua.
@@ -147,6 +152,9 @@ se sube "porque casi".
 | Producto dentro de un estuche que no viene incluido | No pedir estuches ni cajas; poner el producto sobre la mesa |
 | Monturas con acabado rugoso o gris | Pedir "SMOOTH satin black anodized finish, not textured" |
 | Monturas: salen de más o de menos | "exactly TWO rings (a matching pair)" |
+| Anzuelo triple acostado: parece doble | Pedirlo "standing UPRIGHT on its three bends, all THREE points clearly visible" |
+| Anzuelo circular sale en forma de J | "almost a closed circle: the point curves sharply INWARD toward the shank, not a J shape". Aun así falla seguido |
+| Referencia con empaque o logo | Recortar con PIL solo el anzuelo y subirlo con `media_upload` |
 | `failed` del lado de Higgsfield | Repetir igual |
 
 ---
@@ -196,7 +204,8 @@ se sube "porque casi".
 | 16 oct | Cañas agotadas + Carretes | 7 + 8 | 29 de 32 | 64 | §87 |
 | 16 oct | Óptica que faltaba (7 binoculares + 2ª del KonuSmall-2) | 8 | 15 de 15 | 30 | §89 |
 | 16 oct | Miras, monturas y linterna táctica | 14 | 26 de 30 | 60 | §90 |
+| 16 oct | Anzuelos (14 modelos, imágenes compartidas entre medidas) | 46 | 26 de 33 | 66 | §91 |
 
 Siguientes categorías sugeridas, en orden de venta: **cajas → señuelos
-y cucharillas → flotadores**. Hilos y anzuelos van al final: sus fotos
-de catálogo ya son claras y son de bajo precio.
+y cucharillas → flotadores**. Hilos van al final: sus fotos de catálogo
+ya son claras y son de bajo precio. Anzuelos ya están (§91).

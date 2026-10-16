@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 16 de octubre de 2026 (sección 90)
+**Última actualización:** 16 de octubre de 2026 (sección 91)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -118,6 +118,7 @@ como respaldo
 88. [Safari de iOS 26 tapaba la barra de compra (16 oct)](#88-safari-de-ios-26-tapaba-la-barra-de-compra-16-oct)
 89. [Óptica completa con imágenes de IA (16 oct)](#89-óptica-completa-con-imágenes-de-ia-16-oct)
 90. [Miras telescópicas y accesorios de óptica con IA (16 oct)](#90-miras-telescópicas-y-accesorios-de-óptica-con-ia-16-oct)
+91. [Anzuelos con imágenes de IA (16 oct)](#91-anzuelos-con-imágenes-de-ia-16-oct)
 
 ---
 
@@ -9772,3 +9773,51 @@ cambiarla por una foto limpia del proveedor.
 
 **Graphify:** sin cambios. No hubo código nuevo; solo el JSON de
 imágenes y documentación.
+
+## 91. Anzuelos con imágenes de IA (16 oct)
+
+El dueño pidió seguir con los anzuelos.
+
+**Alcance:** los 46 productos de tipo "Anzuelos", todos con existencia.
+Son **14 modelos**: casi todos se venden en varias medidas, y cada
+medida es un producto aparte con la misma foto.
+
+**Cómo se resolvió:**
+- **Dos imágenes por modelo**, compartidas por todas sus medidas. El
+  anzuelo es el mismo y en una foto de ambiente no se nota la medida.
+  Así se generaron 33 imágenes en lugar de 92.
+- **Se revisó cuántas piezas trae cada uno** (de 1 a 25, y cambia entre
+  medidas del mismo modelo). Por eso la imagen muestra **un solo
+  anzuelo** de cerca, sin el empaque, y no un "todo lo que incluye". La
+  excepción son las cabezas de jig negras: las 10 piezas exactas.
+- **Escenas:** la portada es el anzuelo solo sobre un muelle, una borda,
+  arena o una piedra de río. La segunda, en la mano de un señor,
+  amarrado al hilo, con el agua detrás. Sin carnada ni pescados.
+- **Referencias:** las fotos que traían empaque o logo (Trokar, Kirby,
+  Live Bait, VMC 9291) se recortaron para dejar solo el anzuelo y se
+  subieron con `media_upload`. Las demás, con `media_import_url`.
+
+**Modelos:** EagleClaw Trokar TK110 (5 medidas), Mustad Sea Kirby (11),
+Mustad 32807 Baitholder (4), Mustad 92661 Extra Largo (6), Mustad 94151
+Live Bait (6), Mustad Tuna Circle, Redondo de acero carbón, Triple
+Gimbel, Triple VMC 3X, Triple VMC 8540BN, VMC 9291 Baitholder (4), EWG
+para gusano (3), y las dos cabezas de jig EagleClaw.
+
+**Resultado:**
+- Se generaron 33 imágenes y se aprobaron **26**.
+- **Rechazadas (7):**
+  - Kirby con el tallo corto (el real es largo).
+  - Tuna Circle: dos veces salió en forma de J, no circular.
+  - Triples acostados: parecían anzuelos dobles (3). Se rehicieron
+    **parados sobre sus tres puntas**.
+- Una salió `nsfw` (el redondo sobre "un rollo de cuerda"); se reformuló.
+- **Con 1 sola imagen:** Tuna Circle y Triple VMC 8540BN.
+- **Créditos:** 66. Quedan **435.5**.
+- **Subida:** 90 imágenes en 46 productos.
+
+**Ojo:** la foto real del Trokar TK110 trae la marca de agua de otra
+tienda ("curricanes.com"), igual que la Axeon (§90). Conviene cambiarla.
+
+**Total con portada de IA:** 112 productos.
+
+**Graphify:** sin cambios. No hubo código nuevo.
