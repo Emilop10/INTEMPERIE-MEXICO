@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 16 de octubre de 2026 (sección 81)
+**Última actualización:** 16 de octubre de 2026 (sección 82)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -109,6 +109,7 @@ como respaldo
 79. [Cerrando los pendientes antes de la fase 3 (13 oct)](#79-cerrando-los-pendientes-antes-de-la-fase-3-13-oct)
 80. [Pendientes cerrados: listos para la fase 3 (15 oct)](#80-pendientes-cerrados-listos-para-la-fase-3-15-oct)
 81. [Fase 3 cerrada: precios de la zona muerta (16 oct)](#81-fase-3-cerrada-precios-de-la-zona-muerta-16-oct)
+82. [Higgsfield conectado: prueba de imágenes con IA (16 oct)](#82-higgsfield-conectado-prueba-de-imágenes-con-ia-16-oct)
 
 ---
 
@@ -9240,3 +9241,33 @@ salida 0.**
   cumpliendo, así que no hubo que cambiarlo.
 - Los plugins nuevos se cargan hasta la **siguiente sesión**. Coincide
   con la sesión nueva que ya hacía falta para el token de Meta.
+
+## 82. Higgsfield conectado: prueba de imágenes con IA (16 oct)
+
+El dueño conectó el conector oficial de Higgsfield
+(`https://mcp.higgsfield.ai/mcp`, OAuth, plan Plus, 794 créditos) y
+quedó activo en esta misma sesión.
+
+**Reglas acordadas:**
+- La foto real se queda como foto 1.
+- La IA solo pone el producto real en un ambiente; esas imágenes van
+  como fotos 2 en adelante y como creativos de Facebook.
+- Claude revisa cada imagen (marca, color, piezas) antes de subirla.
+
+**Prueba con el Combo Okuma Revenger 2.45:** la foto de Shopify se usó
+como referencia. Se hicieron 4 imágenes a 2k que costaron **12.5
+créditos** en total (quedan 781.5).
+
+| # | Escena | Modelo | Costo | Revisión |
+|---|---|---|---|---|
+| 1 | Muelle en presa al amanecer | Nano Banana 2.1 | 2 | ✅ fiel |
+| 2 | Lancha en laguna con manglar | Nano Banana 2.1 | 2 | ✅ fiel, se lee "REVENGER" |
+| 3 | Escollera al atardecer | Nano Banana 2.1 | 2 | ❌ el carrete cambió (carrete naranja y más grande) |
+| 4 | Muelle en presa al amanecer | GPT Image 2 (calidad alta) | 6.5 | ❌ al carrete le falta la manivela |
+
+- **Modelo elegido:** Nano Banana 2.1. Es más fiel al producto y cuesta
+  un tercio de GPT Image 2.
+- **Lección:** cuando la escena acerca el carrete, el modelo tiende a
+  "rediseñarlo". Conviene encuadres donde el combo se vea completo.
+- Ninguna imagen se ha subido a Shopify todavía: falta el visto bueno
+  del dueño.
