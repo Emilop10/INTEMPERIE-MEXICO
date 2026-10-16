@@ -28,8 +28,11 @@ de buenas y **fieles al producto real**.
      Si el cliente ve la otra pieza, cree que viene incluida.
    - En un "todo lo que incluye" va **exactamente** lo que trae el kit.
      Ni un carrete de hilo de más.
-3. **Nada de armas ni sus accesorios** (diábolos, miras, monturas,
-   linternas tácticas). Meta y Google los rechazan.
+3. **Nunca aparece un arma**, ni animales de caza. Las miras, monturas
+   y la linterna táctica **sí** llevan imágenes **en la tienda** (el
+   dueño lo pidió el 16 oct, §90). Van solas, sobre una mesa, roca o
+   banco de taller, y **nunca** se usan en anuncios de Meta ni de
+   Google, que los rechazan.
 4. **Revisión obligatoria, imagen por imagen**, antes de subir (ver §5).
 5. **Nunca se borra nada** de Shopify. Las imágenes se agregan; si una no
    sirve, se cambia de posición.
@@ -140,6 +143,10 @@ se sube "porque casi".
 | Monocular genérico, sin sus anillos verdes | Describir los rasgos distintivos en el prompt. Si sigue saliendo mal, dejar el producto con 1 imagen |
 | `429 rate_limit_reached` | Máximo **8 trabajos a la vez** por modelo. Mandar tandas de 8 y esperar con `jobs_wait` antes de la siguiente. Los rechazados por límite no cobran |
 | Marcado como `nsfw` sin razón | Reformular la escena con otras palabras y repetir |
+| Mira reflex (Axeon) marcada `nsfw` 3 veces | Quitar "red dot", "reflex", "sight" y "scope": describirla como "compact black optical device" en un banco de taller |
+| Producto dentro de un estuche que no viene incluido | No pedir estuches ni cajas; poner el producto sobre la mesa |
+| Monturas con acabado rugoso o gris | Pedir "SMOOTH satin black anodized finish, not textured" |
+| Monturas: salen de más o de menos | "exactly TWO rings (a matching pair)" |
 | `failed` del lado de Higgsfield | Repetir igual |
 
 ---
@@ -188,8 +195,8 @@ se sube "porque casi".
 | 16 oct | Cañas (con existencia) | 10 | 20 de 21 | 42 | §86 |
 | 16 oct | Cañas agotadas + Carretes | 7 + 8 | 29 de 32 | 64 | §87 |
 | 16 oct | Óptica que faltaba (7 binoculares + 2ª del KonuSmall-2) | 8 | 15 de 15 | 30 | §89 |
+| 16 oct | Miras, monturas y linterna táctica | 14 | 26 de 30 | 60 | §90 |
 
 Siguientes categorías sugeridas, en orden de venta: **cajas → señuelos
-y cucharillas → flotadores**. Miras telescópicas, monturas y linterna
-táctica no se trabajan (accesorios de arma). Hilos y anzuelos van al
-final: sus fotos de catálogo ya son claras y son de bajo precio.
+y cucharillas → flotadores**. Hilos y anzuelos van al final: sus fotos
+de catálogo ya son claras y son de bajo precio.

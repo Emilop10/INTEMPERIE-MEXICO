@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 16 de octubre de 2026 (sección 89)
+**Última actualización:** 16 de octubre de 2026 (sección 90)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -117,6 +117,7 @@ como respaldo
 87. [Agotados al final, cañas completas y carretes con IA (16 oct)](#87-agotados-al-final-cañas-completas-y-carretes-con-ia-16-oct)
 88. [Safari de iOS 26 tapaba la barra de compra (16 oct)](#88-safari-de-ios-26-tapaba-la-barra-de-compra-16-oct)
 89. [Óptica completa con imágenes de IA (16 oct)](#89-óptica-completa-con-imágenes-de-ia-16-oct)
+90. [Miras telescópicas y accesorios de óptica con IA (16 oct)](#90-miras-telescópicas-y-accesorios-de-óptica-con-ia-16-oct)
 
 ---
 
@@ -9710,6 +9711,64 @@ que re-subir la foto vieja.
 - 5 kits y 7 combos.
 - 17 cañas y 9 carretes.
 - 12 binoculares y 2 monoculares.
+
+**Graphify:** sin cambios. No hubo código nuevo; solo el JSON de
+imágenes y documentación.
+
+## 90. Miras telescópicas y accesorios de óptica con IA (16 oct)
+
+El dueño pidió hacer también las miras telescópicas y los accesorios de
+óptica, que en §89 se habían dejado fuera.
+
+**Cambio de regla (instructivo, regla 3):** estos productos **sí** llevan
+imágenes de IA **en la tienda**. Siguen fuera de los anuncios de Meta y
+de Google, y ninguna imagen muestra un arma ni animales. Las miras van
+solas, con sus monturas cuando las incluyen, sobre mesas, rocas, cercas
+o bancos de taller.
+
+**Alcance (14 productos, incluidos los 2 agotados):**
+- 8 miras: Axeon R47 (reflex), Gamo 4x28 TV, Gamo 4x32 WR, Lobo 4x20
+  (agotada), Mendoza 4x32, Nakashi 3-9x40 con montura, Nakashi 3-9x40
+  Iluminada y Nakashi 4x32 Mildot.
+- Linterna táctica Konus KonusLight-TL.
+- 5 monturas: Konus universal 11/22mm (adaptador de riel), Mendoza bajas
+  11mm, Nakashi altas 11mm (agotada), Nakashi altas 22mm y Mendoza
+  Picatinny bajas 21mm.
+
+**Escenas:**
+- **Miras:** mesa de práctica, cerca de rancho, tronco con musgo en la
+  sierra, roca frente a un cañón y desierto de Sonora. La segunda es un
+  detalle sobre un tapete de piel o un banco de taller.
+- **Linterna:** iluminando un campamento de noche, y en la mano de un
+  señor alumbrando una vereda.
+- **Monturas:** el par exacto (dos anillos) en un banco de taller con
+  llave Allen, y sobre un tapete de piel.
+
+**Resultado:**
+- Se generaron 30 imágenes y se aprobaron **26**.
+- **Rechazadas (4):**
+  - Nakashi 3-9x40 dentro de un estuche que no viene incluido (se rehízo
+    junto a una ventana).
+  - Mendoza 11mm con acabado rugoso (se rehízo liso).
+  - Nakashi 11mm con objetos raros al fondo; al rehacerla salió gris
+    metálico. Se queda con 1 imagen.
+- **Axeon R47:** el filtro de contenido de Higgsfield la marcó `nsfw` 3
+  veces (no cobra). Pasó al describirla como "compact black optical
+  device" en un banco de taller, sin las palabras "red dot", "reflex" ni
+  "sight". Se queda con 1 imagen.
+- **Créditos:** 60. Quedan **501.5**.
+- **Subida:** 26 subidas, 103 ya estaban, 0 errores.
+- **Verificado por API:** 14 de 14 productos con portada de IA (`[ia:1]` en la posición 1).
+
+**Ojo:** la foto real de la Axeon trae la marca de agua de otra tienda
+("EVIKE.COM"). Ahora queda detrás de la portada de IA, pero conviene
+cambiarla por una foto limpia del proveedor.
+
+**Total con portada de IA:** 66 productos.
+- 5 kits y 7 combos.
+- 17 cañas y 9 carretes.
+- 12 binoculares y 2 monoculares.
+- 8 miras, 5 monturas y 1 linterna.
 
 **Graphify:** sin cambios. No hubo código nuevo; solo el JSON de
 imágenes y documentación.
