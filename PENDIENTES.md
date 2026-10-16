@@ -961,7 +961,7 @@ llamada de API), el grafo de `scripts/` sí se movió esta vez —
 > ✅ 15 oct: bienvenida activa · secreto de la app rotado · SHOPIFY_ADMIN_TOKEN en variables de entorno (confirmar en la próxima sesión nueva).
 > ✅ 15 oct: pendientes de §78 cerrados (MANUAL §80). TikTok: sin cuenta todavía. Mercado Libre: después de la fase 4.
 > ✅ 15 oct: Google con 287/325 aprobados, 0 por armas, devoluciones verificadas. 🗓️ 22 oct: re-revisar las 4 "Image not processed".
-> 🔐 Token de Meta: el viejo REVOCADO (16 oct); generar el nuevo requiere cambiar el teléfono de seguridad de Facebook (el …0809 ya no lo tiene el dueño). Sin token, Claude no consulta Meta.
+> 🔐 Token de Meta: el viejo REVOCADO; 2FA con app de autenticación; nuevo token GENERADO (16 oct) y pegado por el dueño en `META_ACCESS_TOKEN`. Verificar con `debug_token` en la próxima sesión nueva (app Claude Integration, nunca caduca).
 > Vivo: confirmar SHOPIFY_ADMIN_TOKEN y el nuevo META_ACCESS_TOKEN en la próxima sesión.
 > ▶️ **Fase en curso: 3 — reabasto y precios.**
 > Cortos del dueño: rotar el secreto de la app de Shopify · archivar el pedido de prueba #1005 ·

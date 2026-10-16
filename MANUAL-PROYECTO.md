@@ -9142,3 +9142,25 @@ zona muerta.
     la tienda, al catálogo, al pixel ni a los anuncios (en pausa); solo
     a las consultas de Claude.
 
+- **Teléfono y segundo factor resueltos (16 oct):** app de autenticación
+  activada como segundo factor de Facebook; el …0809 quitado; quedan el
+  número personal (…7340) y dos correos.
+- **Token nuevo generado (16 oct):** Claude in Chrome dio clic por error
+  en el botón azul "Generar identificador" del aviso verde "Generación
+  de identificadores de acceso aprobada". Eso creó el token **de
+  inmediato**, sin pasar por la pantalla de app, caducidad y permisos.
+  Claude in Chrome no leyó el token.
+  - El dueño lo copia desde la ventana "Identificador creado" (Meta lo
+    muestra una sola vez), reemplaza el valor de `META_ACCESS_TOKEN=` en
+    las variables de entorno de claude.ai y después da "Listo".
+  - **Por verificar en la próxima sesión nueva** (las variables de
+    entorno solo se cargan al iniciar una sesión): `debug_token` debe
+    decir app **Claude Integration**, `expires_at: 0` (nunca caduca) y
+    los scopes de la app. Lo más probable es que así haya quedado,
+    porque es la única app ligada al usuario del sistema. Si sale otra
+    app o una caducidad, se revoca y se genera otro con el "sí" del
+    dueño.
+  - **Lección para los prompts de Claude in Chrome:** nombrar el botón
+    exacto y decir cuál **no** tocar. Un "Generar identificador" puede
+    aparecer en dos lugares, y el del aviso verde se salta la
+    configuración.
