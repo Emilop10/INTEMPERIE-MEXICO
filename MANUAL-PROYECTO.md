@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 16 de octubre de 2026 (sección 85)
+**Última actualización:** 16 de octubre de 2026 (sección 86)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -113,6 +113,7 @@ como respaldo
 83. [Imágenes con IA para combos, kits y óptica (16 oct)](#83-imágenes-con-ia-para-combos-kits-y-óptica-16-oct)
 84. [Imágenes de IA subidas a Shopify como portada (16 oct)](#84-imágenes-de-ia-subidas-a-shopify-como-portada-16-oct)
 85. [Fase 4: campaña de Facebook encendida con regla de corte (16 oct)](#85-fase-4-campaña-de-facebook-encendida-con-regla-de-corte-16-oct)
+86. [Instructivo de imágenes con IA y categoría Cañas (16 oct)](#86-instructivo-de-imágenes-con-ia-y-categoría-cañas-16-oct)
 
 ---
 
@@ -9463,3 +9464,53 @@ cuenta mostraba otra cosa:
   abiertos.
 - Graphify sin cambios desde §84: `scripts/` 209/483 y `tema-shopify/`
   463/665.
+
+## 86. Instructivo de imágenes con IA y categoría Cañas (16 oct)
+
+El dueño pidió dos cosas:
+- Un instructivo en el repositorio para recordar siempre cómo se hacen
+  las imágenes.
+- Seguir por categorías, empezando por las cañas.
+
+**Instructivo:**
+[`INSTRUCTIVO-IMAGENES-IA-HIGGSFIELD.md`](./INSTRUCTIVO-IMAGENES-IA-HIGGSFIELD.md).
+Trae:
+- Las reglas que no se negocian (fidelidad, no mostrar lo que no se
+  vende, nada de armas, revisión obligatoria, nunca borrar).
+- El modelo y sus ajustes, y cómo armar las referencias.
+- Las escenas que venden a hombres de 55+ y una plantilla de prompt.
+- La lista de revisión, los errores conocidos y el flujo de 12 pasos.
+- Un registro por categoría.
+
+**Cañas:**
+- **Alcance:** 10 cañas activas con existencia. Se dejaron fuera las 7
+  agotadas.
+- **Regla nueva:** una caña sola va **sin carrete**, porque no lo
+  incluye. Se escribió en cada prompt ("NO reel mounted on the rod and
+  no reel anywhere") y se revisó una por una: ninguna imagen trae
+  carrete.
+- **Escenas:**
+  - **A (portada):** la caña entera en un lugar. Muelle, playa con
+    portacañas, panga en el Mar de Cortés, escollera, batea de pickup,
+    palmera, lancha en presa, terraza de cabaña, arroyo de montaña.
+  - **B:** un close-up del mango, el portacarrete vacío y los gráficos,
+    o los tramos de la caña acomodados.
+- **Referencias:** con `media_import_url` desde el CDN de Shopify, más
+  simple que `media_upload` para fotos sueltas. Las dos Clarus comparten
+  foto, así que se les dieron escenas distintas.
+- **Resultado:** se generaron 21 imágenes y se aprobaron **20**.
+  - Se rechazó la #391 (Clarus 6'3"), que salió con el blank plateado
+    cuando es negro. Se repitió con "matte BLACK … not silver" y quedó
+    bien.
+- **Créditos:** 42. Quedan **655.5**.
+
+**Subida:**
+- `subir-imagenes-ia.py --aplicar`: 20 subidas, 39 ya estaban, 0
+  errores.
+- Verificado: 10 de 10 cañas con `[ia:1]` en la posición 1.
+- En el sitio (celular): la colección `/collections/canas` y la ficha de
+  la Tundra Pro ya muestran las portadas nuevas.
+
+**Observación:** en la colección de cañas, las **agotadas** (Solara,
+Stimula) salen **primero**. Conviene que las agotadas vayan al final.
+Se propuso al dueño; no se cambió.
