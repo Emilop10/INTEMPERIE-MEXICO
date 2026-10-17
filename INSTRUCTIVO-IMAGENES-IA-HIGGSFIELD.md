@@ -223,8 +223,9 @@ se sube "porque casi".
 | 16 oct | Cajas (la Utility Box ya tenía) | 6 | 12 de 13 | 26 | §92 |
 | 16 oct | Señuelos y cucharillas (1 por producto) | 101 de 102 | 94 de 96 | 192 | §93 |
 | 16 oct | Flotadores (fotos compartidas entre medidas) | 14 | 20 de 25 | 50 | §94 |
+| 17 oct | Plomos (6 modelos, compartidas entre medidas) | 16 | 12 de 12 | 24 | §95 |
 
-Siguientes categorías sugeridas, en orden de venta: **plomos →
-destorcedores**. Hilos van al final: sus fotos de catálogo ya son
-claras y son de bajo precio. Anzuelos, cajas, señuelos y flotadores ya
-están (§91-§94).
+Siguientes categorías sugeridas, en orden de venta:
+**destorcedores**. Hilos van al final: sus fotos de catálogo ya son
+claras y son de bajo precio. Anzuelos, cajas, señuelos, flotadores y
+plomos ya están (§91-§95).

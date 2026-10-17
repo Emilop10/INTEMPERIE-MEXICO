@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 16 de octubre de 2026 (sección 94)
+**Última actualización:** 17 de octubre de 2026 (sección 95)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -122,6 +122,7 @@ como respaldo
 92. [Cajas con imágenes de IA (16 oct)](#92-cajas-con-imágenes-de-ia-16-oct)
 93. [Señuelos y cucharillas con imágenes de IA (16 oct)](#93-señuelos-y-cucharillas-con-imágenes-de-ia-16-oct)
 94. [Flotadores con imágenes de IA (16 oct)](#94-flotadores-con-imágenes-de-ia-16-oct)
+95. [Plomos con imágenes de IA (17 oct)](#95-plomos-con-imágenes-de-ia-17-oct)
 
 ---
 
@@ -9957,5 +9958,41 @@ above the water", en toma a ras del agua, y quedaron bien.
   reales siguen ahí.
 
 **Total con portada de IA:** 233 productos.
+
+**Graphify:** sin cambios. No hubo código nuevo.
+
+## 95. Plomos con imágenes de IA (17 oct)
+
+El dueño pidió actualizar el manual y el graphify y seguir con los
+plomos.
+
+**Manual y graphify:** el manual ya tenía la §94. Se volvió a correr
+`graphify update .` en `scripts/`: "No code-graph topology changes
+detected" (209 nodos, 484 aristas). La rama está al día con el remoto;
+no hizo falta merge.
+
+**Alcance:** los 16 productos de "Plomos y Lastres", todos activos. Son
+**6 modelos**: bola (4 medidas), oval (4), pera, bala (2), con ranura
+(4) y el set surtido de 54 piezas. Las medidas de cada modelo
+comparten las imágenes.
+
+**Una sola pieza en la imagen:** cuestan de $2 a $35 y se venden por
+pieza, así que cada imagen muestra un solo plomo. El set sale tal como
+viene: el estuche redondo morado con sus seis compartimentos.
+
+**Escenas:**
+- **Portada:** el plomo solo sobre un muelle, una piedra de río, la
+  borda de una panga o la cubierta de una lancha.
+- **Segunda:** en la mano de un señor, puesto en el hilo (la bola y la
+  bala ensartadas, la pera amarrada de su ojo, el de ranura apretado).
+
+**Resultado:**
+- Se generaron 12 imágenes y se aprobaron **12**, sin rechazos.
+- **Créditos:** 24. Quedan **143.5**.
+- **Subida:** 32 imágenes en 16 productos.
+- **Verificado por API:** 16 de 16 con portada de IA; las 16 fotos
+  reales siguen ahí.
+
+**Total con portada de IA:** 249 productos.
 
 **Graphify:** sin cambios. No hubo código nuevo.
