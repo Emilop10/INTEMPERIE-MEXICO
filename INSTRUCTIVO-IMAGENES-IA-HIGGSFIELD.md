@@ -224,8 +224,10 @@ se sube "porque casi".
 | 16 oct | Señuelos y cucharillas (1 por producto) | 101 de 102 | 94 de 96 | 192 | §93 |
 | 16 oct | Flotadores (fotos compartidas entre medidas) | 14 | 20 de 25 | 50 | §94 |
 | 17 oct | Plomos (6 modelos, compartidas entre medidas) | 16 | 12 de 12 | 24 | §95 |
+| 17 oct | Destorcedores (5 modelos, compartidas entre medidas) | 14 | 10 de 10 | 20 | §96 |
 
-Siguientes categorías sugeridas, en orden de venta:
-**destorcedores**. Hilos van al final: sus fotos de catálogo ya son
-claras y son de bajo precio. Anzuelos, cajas, señuelos, flotadores y
-plomos ya están (§91-§95).
+Siguientes categorías sugeridas, en orden de venta: **hilos y
+líneas** (69, al final por ser de bajo precio y con fotos de catálogo
+claras). Anzuelos, cajas, señuelos, flotadores, plomos y destorcedores
+ya están (§91-§96). Diábolos, pistolas y rifles de aire no se trabajan
+sin preguntar al dueño (regla 3).

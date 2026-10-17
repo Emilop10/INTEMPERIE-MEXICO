@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 17 de octubre de 2026 (sección 95)
+**Última actualización:** 17 de octubre de 2026 (sección 96)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -123,6 +123,7 @@ como respaldo
 93. [Señuelos y cucharillas con imágenes de IA (16 oct)](#93-señuelos-y-cucharillas-con-imágenes-de-ia-16-oct)
 94. [Flotadores con imágenes de IA (16 oct)](#94-flotadores-con-imágenes-de-ia-16-oct)
 95. [Plomos con imágenes de IA (17 oct)](#95-plomos-con-imágenes-de-ia-17-oct)
+96. [Destorcedores con imágenes de IA (17 oct)](#96-destorcedores-con-imágenes-de-ia-17-oct)
 
 ---
 
@@ -9994,5 +9995,49 @@ viene: el estuche redondo morado con sus seis compartimentos.
   reales siguen ahí.
 
 **Total con portada de IA:** 249 productos.
+
+**Graphify:** sin cambios. No hubo código nuevo.
+
+## 96. Destorcedores con imágenes de IA (17 oct)
+
+El dueño pidió actualizar el manual y el graphify y seguir con los
+destorcedores.
+
+**Manual y graphify:** el manual ya tenía la §95. `graphify update .`
+en `scripts/`: "No code-graph topology changes detected" (209 nodos,
+484 aristas). La rama está al día; no hizo falta merge.
+
+**Alcance:** los 14 destorcedores, todos activos. Son **5 modelos**:
+5610N sin seguro (3 medidas), 5620N con seguro (5), 5630 triple (3),
+broche niquelado Z5079-10 y líder de acero de 70 cm (6 kg y 9 kg). Las
+medidas comparten imágenes.
+
+**Una sola pieza:** se venden por pieza ($3 a $22), así que cada imagen
+muestra uno. **El líder:** la foto real muestra tres, pero la
+descripción habla de uno y no dice cuántos trae. Para no prometer de
+más, la imagen muestra **un solo líder** enrollado.
+
+**Escenas:**
+- **Portada:** la pieza sola sobre un muelle, una piedra de río, la
+  borda de una panga o la cubierta de una lancha de altura.
+- **Segunda:** en la mano de un señor, amarrada al hilo o abriendo el
+  seguro.
+
+**Resultado:**
+- Se generaron 10 imágenes y se aprobaron **10**, sin rechazos.
+- **Créditos:** 20. Quedan **123.5**.
+- **Subida:** 28 imágenes en 14 productos.
+- **Verificado por API:** 14 de 14 con portada de IA; las 14 fotos
+  reales siguen ahí.
+
+**Por confirmar con el dueño:** cuántos líderes trae el paquete
+WL04-206 / WL04-209 (la foto muestra 3). Si son 3, conviene decirlo en
+el título o la descripción.
+
+**Total con portada de IA:** 263 productos.
+
+**Lo que falta sin imágenes de IA:** hilos y líneas (69), y diábolos,
+pistolas y rifles de aire (49), que por la regla 3 no llevan imágenes
+con armas.
 
 **Graphify:** sin cambios. No hubo código nuevo.
