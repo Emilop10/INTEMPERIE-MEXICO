@@ -2,8 +2,8 @@
 
 ## ▶️ Arranque de la próxima sesión (dejado el 18 oct)
 
-1. Leer este archivo y MANUAL §97 (corte del 18 oct, lo último que se
-   hizo).
+1. Leer este archivo, MANUAL §97 (corte del 18 oct) y §98–§99
+   (campaña y por qué no agregan al carrito).
 2. `bash scripts/verificar-herramental.sh`. Si faltan plugins o agentes:
    `bash scripts/instalar-entorno.sh` (el contenedor nuevo llega vacío).
 3. Confirmar que aparecen las herramientas de Higgsfield
@@ -22,6 +22,12 @@
      24: al ritmo de ~$127/día el tope de $2,283 se alcanza ~20 oct).
      Al 18 oct: $314 gastados, 180 clics, 154 vistas, 1 carrito, 0
      compras (MANUAL §98).
+   - **Después del corte, decidir con el dueño (MANUAL §99):**
+     - barra de compra visible desde la primera pantalla;
+     - conjunto de productos con kits y combos de $999, sin los
+       sueltos caros (Sienna, KonuSmall, Kampak);
+     - revisar precios de sueltos contra Mercado Libre;
+     - ahorro real o sin "por separado" en el Kit Fresh (hoy son $21).
 6. Pendientes del dueño: cambiar 3 fotos reales con marca de agua de
    otra tienda (Axeon R47, Trokar TK110, Countdown Elite Red Belly),
    decir cuántos líderes trae el WL04-206/209, y si se corrigen las

@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 18 de octubre de 2026 (sección 98)
+**Última actualización:** 18 de octubre de 2026 (sección 99)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -126,6 +126,7 @@ como respaldo
 96. [Destorcedores con imágenes de IA (17 oct)](#96-destorcedores-con-imágenes-de-ia-17-oct)
 97. [Corte del 18 oct: resumen de las imágenes con IA](#97-corte-del-18-oct-resumen-de-las-imágenes-con-ia)
 98. [Revisión de la campaña a mitad del corte (18 oct)](#98-revisión-de-la-campaña-a-mitad-del-corte-18-oct)
+99. [Por qué casi nadie agrega al carrito (18 oct)](#99-por-qué-casi-nadie-agrega-al-carrito-18-oct)
 
 ---
 
@@ -10142,3 +10143,78 @@ para incluir las primeras horas. Si al 21 todavía no llega a $600, la
 tarea se reprograma sola.
 
 **Graphify:** sin cambios. No hubo código nuevo.
+
+## 99. Por qué casi nadie agrega al carrito (18 oct)
+
+El dueño preguntó por qué la gente no agrega al carrito: 1 carrito en
+154 vistas de producto (§98).
+
+**1. No es una falla técnica.** Se probaron los 6 productos con más
+clics en el navegador interno de Facebook, en iOS y Android
+(Playwright con el user agent de la app). Los resultados:
+
+- Cargan en 3 a 4.5 s.
+- No hay errores de JavaScript.
+- El botón dice "Agregar al carrito" y está activo.
+- Al tocarlo, el producto entra al carrito y se abre el cajón.
+- Se ve el texto de envío gratis y "Bajas existencias".
+
+El carrito de prueba se vació después.
+
+*Detalle técnico:* el bloqueo de rastreadores debe filtrar por dominio
+(`urlparse(url).netloc`). Si filtra por la URL completa, también bloquea
+la página, porque lleva `utm_source=facebook` (ERR_FAILED).
+
+**2. El botón de compra queda lejos.** En un celular de 844 px de alto,
+el botón aparece a 1,220–1,770 px: entre 1.5 y 2 pantallas hacia abajo.
+La barra fija de compra (`snippets/im-barra-compra.liquid`) solo
+aparece *después* de pasar el botón original. Por eso la primera
+pantalla no tiene ninguna acción de compra. El encabezado con el logo
+también ocupa mucho espacio arriba.
+
+**3. La mitad del dinero va a productos sueltos que no venden.** El
+Sienna, la Kampak, el KonuSmall y otras ópticas se llevan cerca de la
+mitad del gasto y de los clics. Según §68, los productos sueltos
+convierten unas 5 veces peor que los kits. Además, varios se ven caros
+frente a referencias externas:
+
+| Producto | Nuestro precio | Referencia aproximada |
+|---|---|---|
+| Sienna FG 4000 | $1,279 | ~€30–35 en Europa |
+| KonuSmall-2 | $2,000 | ~€45 |
+| Kampak visión nocturna | $2,900 | genéricos desde ~$685 en Mercado Libre |
+
+Son referencias aproximadas (hinelson.com, decathlon.es,
+masterfoto.lv, marine-deals.co.nz, xataka.com.mx) y **no** precios
+exactos de Mercado Libre. El dueño debe verificarlas.
+
+**4. Los combos Okuma de $999 no están en el anuncio.** Son los que
+mejor convertían (§81): Revenger 2.45, Revenger 2.40 y Boundary.
+Quedaron fuera del conjunto de productos 2097987747472219 porque su
+margen ($205–$255) no pasa el filtro de "≥ $300".
+
+**5. El ahorro del Kit Fresh no convence.** "Por separado suma
+$1,220.10" frente a $1,199 es un ahorro de solo **$21**. Los demás kits
+sí muestran ahorros de $138 a $271. En el catálogo, compare_at y
+sale_price coinciden con el sitio, así que ahí no hay error.
+
+**Contexto del público:** hombres de 55 años o más, 100% en Facebook
+desde el celular. Es gente que da clic por curiosidad, pero que no
+desliza mucho y compara precios.
+
+**Recomendaciones.** Ninguna se aplicó. Se proponen al dueño para
+después del corte del 21 oct, para no ensuciar la prueba:
+
+1. Mostrar la barra fija de "Agregar al carrito" desde la primera
+   pantalla en el celular, y achicar el encabezado.
+2. Rehacer el conjunto de productos alrededor de los kits y los combos
+   de $999. Sacar los sueltos caros (Sienna, KonuSmall, Kampak).
+3. Revisar el precio de los sueltos contra Mercado Libre (el dueño).
+4. Darle al Kit Fresh un ahorro real, o quitarle el precio "por
+   separado".
+
+**Lo que no cambia:** la regla del corte se sigue leyendo a los $600.
+No se tocó la campaña ni el tema.
+
+**Graphify:** sin cambios. No hubo código nuevo en el repositorio; los
+scripts de diagnóstico quedaron en el scratchpad.
