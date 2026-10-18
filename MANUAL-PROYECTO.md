@@ -10079,6 +10079,9 @@ falta.
 | Destorcedores | 14 | §96 |
 | **Total en el JSON** | **263 productos, 420 imágenes** | |
 
+- Las filas suman 265 y no 263 porque dos productos se cuentan en dos
+  tandas: la caña Revenger 2.45 (prueba y cañas) y el monocular
+  KonuSmall-2 (primera tanda y su segunda imagen en §89).
 - Quedan **123.5 créditos** de Higgsfield.
 - **Sin imágenes de IA:** hilos y líneas (69). Diábolos, pistolas y
   rifles de aire (49) no se trabajan sin preguntar al dueño (regla 3).
