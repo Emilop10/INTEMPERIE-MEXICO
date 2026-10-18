@@ -18,7 +18,10 @@
 5. **Fechas que ya están programadas:**
    - **22 oct:** revisar Merchant Center (imágenes "not processed" y que
      Google no marque las portadas de IA).
-   - **24 oct:** corte de la campaña de Facebook a los $600.
+   - **21 oct:** corte de la campaña de Facebook a los $600 (se movió del
+     24: al ritmo de ~$127/día el tope de $2,283 se alcanza ~20 oct).
+     Al 18 oct: $314 gastados, 180 clics, 154 vistas, 1 carrito, 0
+     compras (MANUAL §98).
 6. Pendientes del dueño: cambiar 3 fotos reales con marca de agua de
    otra tienda (Axeon R47, Trokar TK110, Countdown Elite Red Belly),
    decir cuántos líderes trae el WL04-206/209, y si se corrigen las

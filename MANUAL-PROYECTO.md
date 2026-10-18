@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 18 de octubre de 2026 (sección 97)
+**Última actualización:** 18 de octubre de 2026 (sección 98)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -125,6 +125,7 @@ como respaldo
 95. [Plomos con imágenes de IA (17 oct)](#95-plomos-con-imágenes-de-ia-17-oct)
 96. [Destorcedores con imágenes de IA (17 oct)](#96-destorcedores-con-imágenes-de-ia-17-oct)
 97. [Corte del 18 oct: resumen de las imágenes con IA](#97-corte-del-18-oct-resumen-de-las-imágenes-con-ia)
+98. [Revisión de la campaña a mitad del corte (18 oct)](#98-revisión-de-la-campaña-a-mitad-del-corte-18-oct)
 
 ---
 
@@ -10093,5 +10094,51 @@ falta.
   foto idéntica; una sola pieza cuando se vende por pieza; triples
   parados; flotadores con el cuerpo sumergido; nada de estuches o
   señuelos que no vienen incluidos.
+
+**Graphify:** sin cambios. No hubo código nuevo.
+
+## 98. Revisión de la campaña a mitad del corte (18 oct)
+
+El dueño preguntó cómo va la campaña y si hay que cambiar algo.
+
+**Datos** (Graph API, `time_range` del 15 al 18 oct en hora de la
+cuenta; la campaña se encendió el 15 oct a las 22:55, America/Chihuahua):
+
+| | v5 (hombres 55+) | v5-RT (retargeting) | Total |
+|---|---|---|---|
+| Gasto | $230.91 | $83.14 | **$314.05** |
+| Alcance | 1,760 | 977 | 2,547 |
+| Frecuencia | 1.66 | 1.22 | 1.62 |
+| Clics al sitio | 137 | 43 | 180 |
+| CTR | 4.68% | 3.61% | 4.37% |
+| Costo por clic | $1.69 | $1.93 | $1.74 |
+| Vistas de producto | 116 | 38 | 154 |
+| Agregar al carrito | 1 | 0 | **1 (0.65%)** |
+| Compras | 0 | 0 | **0** |
+
+- **Shopify:** 0 pedidos y 0 checkouts iniciados desde el 15 oct.
+- **Por edad:** 55-64 y 65+ se llevan el 92% del gasto y los clics.
+  100% hombres, 100% Facebook en celular.
+- **Productos con más clics:** Kit Okuma Tundra Pro (36), carrete
+  Shimano Sienna FG 4000 (32), Kit Blue Fox Fresh (20), Kit Clarus
+  (19), binocular Kampak (18). Todos con existencia.
+- **Ritmo:** unos $127 al día. Faltan $287 para el tope de $2,283, así
+  que la campaña se detiene sola alrededor del **20 oct**, no el 24.
+
+**Lectura:** el anuncio funciona (CTR 4.4% y clic a $1.74, muy buenos
+para el giro), pero **casi nadie agrega al carrito**: 1 de 154. La
+regla del dueño pide ≥1 compra y ≥3% de vista → carrito. Hoy no se
+cumple ninguna de las dos. Pero la regla se lee **una sola vez, a los
+$600**, y faltan $287.
+
+**Decisión: no se cambia nada de la campaña.** Mover presupuesto,
+públicos o anuncios a mitad de la prueba reinicia el aprendizaje y deja
+el corte sin una lectura limpia.
+
+**Lo único que se ajustó:** la tarea programada del corte pasó del 24
+al **21 oct** (16:00 UTC), porque el tope la detiene antes. Además, el
+corte ahora lee desde el 15 oct (hora de la cuenta) y no desde el 16,
+para incluir las primeras horas. Si al 21 todavía no llega a $600, la
+tarea se reprograma sola.
 
 **Graphify:** sin cambios. No hubo código nuevo.
