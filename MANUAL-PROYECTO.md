@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 17 de octubre de 2026 (sección 96)
+**Última actualización:** 18 de octubre de 2026 (sección 97)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -124,6 +124,7 @@ como respaldo
 94. [Flotadores con imágenes de IA (16 oct)](#94-flotadores-con-imágenes-de-ia-16-oct)
 95. [Plomos con imágenes de IA (17 oct)](#95-plomos-con-imágenes-de-ia-17-oct)
 96. [Destorcedores con imágenes de IA (17 oct)](#96-destorcedores-con-imágenes-de-ia-17-oct)
+97. [Corte del 18 oct: resumen de las imágenes con IA](#97-corte-del-18-oct-resumen-de-las-imágenes-con-ia)
 
 ---
 
@@ -10039,5 +10040,55 @@ el título o la descripción.
 **Lo que falta sin imágenes de IA:** hilos y líneas (69), y diábolos,
 pistolas y rifles de aire (49), que por la regla 3 no llevan imágenes
 con armas.
+
+**Graphify:** sin cambios. No hubo código nuevo.
+
+## 97. Corte del 18 oct: resumen de las imágenes con IA
+
+El dueño pidió actualizar el manual y el graphify y hacer merge si hacía
+falta.
+
+**Estado del repo:**
+- **Graphify:** se corrió `graphify update .` en los dos grafos.
+  `scripts/` y `tema-shopify/`: "No code-graph topology changes
+  detected". `scripts/` sigue en 209 nodos y 484 aristas; el último
+  cambio de código fue el reintento ante 429 de `subir-imagenes-ia.py`
+  (§92).
+- **Merge:** no hace falta. `claude/intemperie-mexico-audit-n3yxbs` es
+  la rama principal del repo y está al día con el remoto.
+- **PENDIENTES:** se reescribió el bloque "Arranque de la próxima
+  sesión", que seguía en el 16 oct.
+- **Revisión de Google del 22 oct:** se actualizó la tarea programada.
+  Ahora revisa las portadas de IA de los 263 productos (antes decía
+  52) y nota que Skitter V y Vibrax SD1, dos de las 4 "Image not
+  processed", ya tienen foto 1 nueva.
+
+**Imágenes con IA, del 16 al 17 oct:**
+
+| Categoría | Productos con portada de IA | MANUAL |
+|---|---|---|
+| Kits, combos y óptica (primera tanda) | 20 | §83-§84 |
+| Cañas y carretes | 17 + 9 | §86-§87 |
+| Binoculares y monocular que faltaban | 8 | §89 |
+| Miras, monturas y linterna (solo tienda) | 14 | §90 |
+| Anzuelos | 46 | §91 |
+| Cajas | 6 (+1 que ya tenía) | §92 |
+| Señuelos y cucharillas | 101 de 102 | §93 |
+| Flotadores | 14 | §94 |
+| Plomos | 16 | §95 |
+| Destorcedores | 14 | §96 |
+| **Total en el JSON** | **263 productos, 420 imágenes** | |
+
+- Quedan **123.5 créditos** de Higgsfield.
+- **Sin imágenes de IA:** hilos y líneas (69). Diábolos, pistolas y
+  rifles de aire (49) no se trabajan sin preguntar al dueño (regla 3).
+- **Fotos reales con marca de agua de otra tienda:** Axeon R47
+  ("EVIKE.COM"), Trokar TK110 ("curricanes.com") y Countdown Elite 75
+  Gilded Red Belly ("fishingshop.kz", sin imagen de IA).
+- **Lo que se aprendió**, ya en el instructivo: comparar cada imagen
+  junto a la foto real; compartir imágenes solo entre medidas con la
+  foto idéntica; una sola pieza cuando se vende por pieza; triples
+  parados; flotadores con el cuerpo sumergido; nada de estuches o
+  señuelos que no vienen incluidos.
 
 **Graphify:** sin cambios. No hubo código nuevo.

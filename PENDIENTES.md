@@ -1,24 +1,28 @@
 # Pendientes — Intemperie México
 
-## ▶️ Arranque de la próxima sesión (dejado el 16 oct)
+## ▶️ Arranque de la próxima sesión (dejado el 18 oct)
 
-El dueño abre una sesión nueva para que carguen el conector de
-**Higgsfield** (agregado en claude.ai/customize/connectors con
-`https://mcp.higgsfield.ai/mcp`) y el token nuevo de Meta. Al empezar:
-
-1. Leer este archivo y MANUAL §81 (lo último que se hizo).
+1. Leer este archivo y MANUAL §97 (corte del 18 oct, lo último que se
+   hizo).
 2. `bash scripts/verificar-herramental.sh`. Si faltan plugins o agentes:
-   `bash scripts/instalar-entorno.sh` (el contenedor nuevo llega vacío;
-   los plugins instalados a mitad de sesión cargan hasta la siguiente).
-3. ✅ 16 oct: `SHOPIFY_ADMIN_TOKEN` y token de Meta verificados (Claude
-   Integration, `expires_at` 0).
-4. Confirmar que las herramientas de Higgsfield aparecen.
-5. **Higgsfield, reglas acordadas:** la foto real queda como foto 1; la
-   IA solo crea ambiente (escenas con el combo real como referencia),
-   para fotos 2+ y creativos de Facebook; Claude revisa cada imagen
-   (marca, color, piezas) antes de subirla; primero 2-3 imágenes de
-   prueba de un solo combo para ver calidad y créditos.
-6. Luego, el pendiente urgente de abajo (fase 4).
+   `bash scripts/instalar-entorno.sh` (el contenedor nuevo llega vacío).
+3. Confirmar que aparecen las herramientas de Higgsfield
+   (`mcp__HIGGSFIELD__*`) y revisar créditos con `balance` (quedaban
+   **123.5**).
+4. **Imágenes con IA:** la receta está en
+   `INSTRUCTIVO-IMAGENES-IA-HIGGSFIELD.md`. Ya hay **263 productos**
+   con portada de IA (420 imágenes, lista en
+   `imagenes/imagenes-ia-aprobadas.json`). Faltan **hilos y líneas**
+   (69). Diábolos, pistolas y rifles de aire (49) no se trabajan sin
+   preguntar al dueño.
+5. **Fechas que ya están programadas:**
+   - **22 oct:** revisar Merchant Center (imágenes "not processed" y que
+     Google no marque las portadas de IA).
+   - **24 oct:** corte de la campaña de Facebook a los $600.
+6. Pendientes del dueño: cambiar 3 fotos reales con marca de agua de
+   otra tienda (Axeon R47, Trokar TK110, Countdown Elite Red Belly),
+   decir cuántos líderes trae el WL04-206/209, y si se corrigen las
+   descripciones Gimbel cruzadas.
 
 ## 🟢 Fase 4 en marcha (16 oct): campaña de Facebook ENCENDIDA
 
