@@ -10569,4 +10569,18 @@ confirmado en $3,252.83. Tareas programadas:
 | Check-in de salud | `trig_016M8VqymoxozYWNpLLSBGtp` | 19 oct 20:57 UTC (3 h después) | Solo salud: anuncios aprobados, gastando, tope intacto, fichas con existencia. No juzga resultados |
 | Cortes diarios | `trig_01UxpqCyFokQncvr2kZr4mpQ` | Diario 08:47 America/Chihuahua | Aplica las reglas de $400 y $900 sobre el acumulado desde el 19 oct, pausa el anuncio de un producto agotado, reporta al dueño, se deshabilita sola cuando la campaña termina |
 
-**Graphify:** actualizado en `scripts/`.
+- **12:02 (hora de la cuenta):** los 4 anuncios ya aprobados por Meta
+  (`effective_status: ACTIVE`, sin `ad_review_feedback`).
+
+**Dónde verla:**
+- Administrador de anuncios (campaña):
+  `https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=1264279685553718&selected_campaign_ids=120250632213900175`
+- Los 4 anuncios:
+  `https://adsmanager.facebook.com/adsmanager/manage/ads?act=1264279685553718&selected_campaign_ids=120250632213900175`
+- Biblioteca de anuncios (pública, sirve en celular sin iniciar sesión):
+  `https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=MX&view_all_page_id=924461404093150&media_type=all`
+
+**Graphify:** sin cambios en `scripts/` ni en `tema-shopify/` (se
+volvió a correr a petición del dueño). **Merge:** no hace falta; la
+rama `claude/intemperie-mexico-audit-n3yxbs` es la rama principal del
+repositorio (HEAD del remoto) y está al día.
