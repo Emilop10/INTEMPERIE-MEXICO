@@ -42,6 +42,10 @@
   {%- liquid
     assign im_umbral = settings.envio_umbral_centavos | default: 79900
     assign im_costo = settings.envio_costo | default: '$189'
+    assign im_tiempo = settings.envio_tiempo | default: '2 a 7 días hábiles'
+    assign im_dias = im_tiempo | split: ' a '
+    assign im_dias_min = im_dias | first | plus: 0
+    assign im_dias_max = im_dias | last | split: ' ' | first | plus: 0
     assign im_variante = product.selected_or_first_available_variant
     if settings.currency_code_enabled
       assign im_precio_texto = im_variante.price | money_with_currency
@@ -54,7 +58,7 @@
       <span class="im-barra-compra__precio" data-im-precio>{{ im_precio_texto }}</span>
       <span class="im-barra-compra__envio" data-im-envio data-im-umbral="{{ im_umbral }}">
         <span data-im-envio-gratis{% if im_variante.price < im_umbral %} hidden{% endif %}>
-          <strong>Envío gratis</strong> a todo México
+          <strong>Envío gratis</strong> · <span data-im-entrega data-formato="corto" data-min="{{ im_dias_min }}" data-max="{{ im_dias_max }}">en {{ im_tiempo }}</span>
         </span>
         <span data-im-envio-costo{% if im_variante.price >= im_umbral %} hidden{% endif %}>
           + <strong>{{ im_costo }} de envío</strong>

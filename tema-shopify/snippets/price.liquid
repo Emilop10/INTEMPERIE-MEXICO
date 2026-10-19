@@ -114,7 +114,16 @@
     </div>
     {%- if show_badges -%}
       <span class="badge price__badge-sale color-{{ settings.sale_badge_color_scheme }}">
-        {{ 'products.product.on_sale' | t }}
+        {%- comment -%}
+          "Ahorras $222" en vez de "Oferta" (19 oct, MANUAL §103): el
+          ahorro real, calculado del precio tachado, convence más que
+          una etiqueta genérica. Solo los kits llevan precio tachado.
+        {%- endcomment -%}
+        {%- if compare_at_price > price -%}
+          Ahorras {{ compare_at_price | minus: price | money_without_trailing_zeros }}
+        {%- else -%}
+          {{ 'products.product.on_sale' | t }}
+        {%- endif -%}
       </span>
 
       <span class="badge price__badge-sold-out color-{{ settings.sold_out_badge_color_scheme }}">

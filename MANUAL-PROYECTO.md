@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 19 de octubre de 2026 (sección 102)
+**Última actualización:** 19 de octubre de 2026 (sección 103)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -130,6 +130,7 @@ como respaldo
 100. [Arreglos para que agreguen al carrito, aplicados a mitad de la prueba (19 oct)](#100-arreglos-para-que-agreguen-al-carrito-aplicados-a-mitad-de-la-prueba-19-oct)
 101. [Barra de compra integrada al diseño de la ficha (19 oct)](#101-barra-de-compra-integrada-al-diseño-de-la-ficha-19-oct)
 102. [Revisión visual de toda la tienda: tres arreglos (19 oct)](#102-revisión-visual-de-toda-la-tienda-tres-arreglos-19-oct)
+103. [Revisión de conversión: ahorro real, fecha de entrega y reseñas junto al precio (19 oct)](#103-revisión-de-conversión-ahorro-real-fecha-de-entrega-y-reseñas-junto-al-precio-19-oct)
 
 ---
 
@@ -10392,5 +10393,75 @@ contacto (formulario), quiénes somos, Cartucho, 404 y los tres
 estados abiertos. Las burbujas de WhatsApp y Cartucho se superponen a
 las tarjetas de reseñas al pasar: es el comportamiento de siempre de
 una burbuja fija, no se tocó.
+
+**Graphify:** actualizado en `tema-shopify/`.
+
+## 103. Revisión de conversión: ahorro real, fecha de entrega y reseñas junto al precio (19 oct)
+
+El dueño pidió una última revisión para que la tienda se vea confiable
+y "que la gente sienta la necesidad de comprar". Se revisó la ficha con
+el marco de conversión (propuesta de valor, botón, confianza,
+objeciones, fricción) y con el público real: hombres de 55+ desde el
+navegador de Facebook en celular.
+
+**Diagnóstico.** La ficha ya era honesta y completa (precio, envío,
+existencias reales, garantía, pagos, reseñas reales de Judge.me), pero
+escondía sus tres argumentos más fuertes:
+
+| Argumento | Dónde estaba | Problema |
+|---|---|---|
+| El ahorro del kit ($222) | "Por separado suma $1,971", dos pantallas abajo | Arriba solo decía "Oferta", que es genérico |
+| La entrega | "llega en 2 a 7 días hábiles" | Vago: el cliente no se imagina el día |
+| Las 8 reseñas reales de 5.0 | Carrusel, cuatro pantallas abajo | Nadie llega hasta ahí antes de decidir |
+
+**Regla que se respetó:** nada inventado. Ni cuentas regresivas, ni
+existencias falsas, ni reseñas ajenas. Todo sale de datos reales de la
+tienda, y lo único "nuevo" es dónde y cómo se dicen.
+
+**Lo que se hizo (desplegado el 19 oct):**
+
+1. **Etiqueta "Ahorras $222"** en vez de "Oferta", calculada del precio
+   tachado (`compare_at_price − price`). En la ficha
+   (`snippets/price.liquid`) y en las tarjetas de colección
+   (`snippets/card-product.liquid`, las dos ramas). Productos sin precio
+   tachado (Kit Fresh, sueltos) no llevan etiqueta, como antes.
+2. **Fecha de entrega concreta:** "llega entre el 21 y el 28 de
+   octubre" en la ficha y "Envío gratis · 21–28 oct" en la barra fija.
+   Nuevo `snippets/im-fecha-entrega.liquid`: suma días hábiles (lunes
+   a viernes) al día de hoy **en el navegador**, no en Liquid, porque
+   Shopify guarda la página en caché y la fecha quedaría vieja. Los
+   días (2 y 7) se leen de `settings.envio_tiempo` ("2 a 7 días
+   hábiles"). Si el script no corre, queda el texto de siempre. Se
+   vuelve a pintar cuando Dawn re-renderiza el precio al cambiar de
+   variante.
+3. **Reseñas de la tienda junto al título:** "★★★★★ 5.0 · 8 reseñas
+   verificadas" (`sections/main-product.liquid`, bloque `rating`). Lee
+   `shop.metafields.judgeme.all_reviews_count` y `all_reviews_rating`.
+   Solo aparece cuando el producto no tiene reseñas propias (Judge.me
+   deja el badge con `data-number-of-reviews='0'`); si las tiene, manda
+   su badge. Al tocarla, baja al carrusel de reseñas de la misma ficha
+   (`.jdgm-cards-carousel`; sin animación, porque el desplazamiento
+   suave se quedaba a medias con las secciones que se revelan al
+   pasar). Verificado en kit, Fresh y Sienna: el título "Lo que dicen
+   nuestros clientes" queda arriba a los 1.5 s.
+
+**Prueba** (navegador de Facebook, iOS 390×844): etiqueta "Ahorras $
+222" en ficha y tarjetas de Combos ("Ahorras $ 138" en el Tolten); fecha
+en ficha y barra (cabe sin recorte); línea de reseñas en kit, Fresh,
+Sienna y anzuelo; sin errores de JavaScript; escritorio igual.
+
+**Lo que se revisó y se dejó igual:** "Bajas existencias: quedan 1" (es
+real y ya está prominente), el bloque de confianza bajo el botón, los
+logos de pago, los acordeones de envío/devoluciones/garantía, la
+descripción de los kits y el carrusel de reseñas.
+
+**Lo que no se hizo, y por qué:**
+- Mensualidades concretas ("3 × $583"): no hay seguridad de qué
+  tarjetas y plazos aplican; se deja "Meses sin intereses con tarjetas
+  participantes".
+- Cambiar "Agregar al carrito" por "Comprar ahora": el botón ya está
+  probado y el pixel cuelga de él (§55, §66).
+- Reescribir el texto de la campaña: va en revisión de Meta y partiría
+  otra vez la prueba.
 
 **Graphify:** actualizado en `tema-shopify/`.

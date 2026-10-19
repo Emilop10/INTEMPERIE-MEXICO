@@ -1,0 +1,58 @@
+{%- comment -%}
+  Fecha de entrega concreta (19 oct, MANUAL §103).
+
+  "Llega en 2 a 7 días hábiles" es vago; "llega entre el 22 y el 28 de
+  octubre" es la misma promesa, pero el cliente la puede imaginar. Se
+  calcula en el navegador (no en Liquid: Shopify guarda la página en
+  caché y la fecha quedaría vieja) sumando días hábiles de lunes a
+  viernes al día de hoy, según el reloj del cliente.
+
+  Pinta todo elemento con data-im-entrega: data-min y data-max son los
+  días hábiles (vienen de settings.envio_tiempo, "2 a 7 días hábiles");
+  data-formato="corto" da "22–28 oct" para la barra fija. Si el script
+  no corre, se queda el texto original ("en 2 a 7 días hábiles").
+
+  Dawn re-renderiza #price-… al cambiar de variante, así que se vuelve a
+  pintar cuando cambia el bloque de información del producto.
+{%- endcomment -%}
+<script>
+  (function () {
+    var meses = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+    var mesesLargos = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+    function sumaHabiles(desde, n) {
+      var d = new Date(desde), c = 0;
+      while (c < n) {
+        d.setDate(d.getDate() + 1);
+        var w = d.getDay();
+        if (w !== 0 && w !== 6) c++;
+      }
+      return d;
+    }
+    function pintar() {
+      var nodos = document.querySelectorAll('[data-im-entrega]');
+      for (var i = 0; i < nodos.length; i++) {
+        var e = nodos[i];
+        if (e.getAttribute('data-im-listo')) continue;
+        var min = parseInt(e.getAttribute('data-min'), 10) || 2;
+        var max = parseInt(e.getAttribute('data-max'), 10) || 7;
+        var hoy = new Date();
+        var a = sumaHabiles(hoy, min), b = sumaHabiles(hoy, max);
+        var texto;
+        if (e.getAttribute('data-formato') === 'corto') {
+          texto = a.getMonth() === b.getMonth()
+            ? a.getDate() + '\u2013' + b.getDate() + ' ' + meses[b.getMonth()]
+            : a.getDate() + ' ' + meses[a.getMonth()] + '\u2013' + b.getDate() + ' ' + meses[b.getMonth()];
+        } else {
+          texto = a.getMonth() === b.getMonth()
+            ? 'entre el ' + a.getDate() + ' y el ' + b.getDate() + ' de ' + mesesLargos[b.getMonth()]
+            : 'entre el ' + a.getDate() + ' de ' + mesesLargos[a.getMonth()] + ' y el ' + b.getDate() + ' de ' + mesesLargos[b.getMonth()];
+        }
+        e.textContent = texto;
+        e.setAttribute('data-im-listo', '1');
+      }
+    }
+    pintar();
+    var zona = document.querySelector('.product__info-container') || document.body;
+    new MutationObserver(pintar).observe(zona, { childList: true, subtree: true });
+  })();
+</script>

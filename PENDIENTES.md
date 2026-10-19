@@ -29,6 +29,10 @@
      total y el tramo desde el 19 oct por separado.
    - Sigue con el dueño: revisar precios de sueltos contra Mercado
      Libre (MANUAL §99, recomendación 3).
+   - **19 oct (MANUAL §101-§103):** barra integrada al diseño, tres
+     arreglos de la revisión visual (franja negra arriba de las
+     fichas, totales del carrito, barra bajo el menú) y conversión:
+     "Ahorras $X", fecha de entrega concreta y reseñas junto al título.
 6. Pendientes del dueño: cambiar 3 fotos reales con marca de agua de
    otra tienda (Axeon R47, Trokar TK110, Countdown Elite Red Belly),
    decir cuántos líderes trae el WL04-206/209, y si se corrigen las

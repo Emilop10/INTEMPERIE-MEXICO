@@ -128,10 +128,14 @@
                     assign im_costo = settings.envio_costo | default: '$189'
                     assign im_tiempo = settings.envio_tiempo | default: '2 a 7 días hábiles'
                     assign im_precio = product.selected_or_first_available_variant.price
+                    # "2 a 7 días hábiles" → 2 y 7, para la fecha concreta (im-fecha-entrega)
+                    assign im_dias = im_tiempo | split: ' a '
+                    assign im_dias_min = im_dias | first | plus: 0
+                    assign im_dias_max = im_dias | last | split: ' ' | first | plus: 0
                   -%}
                   <p class="im-envio-precio">
                     {%- if im_precio >= im_umbral -%}
-                      <strong>Envío gratis</strong> a todo México · llega en {{ im_tiempo }}
+                      <strong>Envío gratis</strong> a todo México · llega <span data-im-entrega data-min="{{ im_dias_min }}" data-max="{{ im_dias_max }}">en {{ im_tiempo }}</span>
                     {%- else -%}
                       + <strong>{{ im_costo }} de envío</strong> · gratis si tu pedido suma ${{ im_umbral | divided_by: 100 }}
                     {%- endif -%}
@@ -588,6 +592,51 @@
                 <div class="jdgm-widget jdgm-preview-badge" data-id="{{ product.id }}">
                   {{ product.metafields.judgeme.badge }}
                 </div>
+                {%- comment -%}
+                  Reseñas de la tienda junto al precio (19 oct, MANUAL §103).
+                  Los kits no tienen reseñas propias, pero la tienda tiene
+                  8 reales con 5.0 (Judge.me, §42-§44). Antes solo se veían
+                  cuatro pantallas abajo. Lee los metafields de tienda de
+                  Judge.me (all_reviews_count / all_reviews_rating) y
+                  enlaza al widget de reseñas de esta misma ficha.
+                {%- endcomment -%}
+                {%- assign im_rc = shop.metafields.judgeme.all_reviews_count | plus: 0 -%}
+                {%- assign im_rr = shop.metafields.judgeme.all_reviews_rating | plus: 0.0 -%}
+                {%- comment -%}
+                  Judge.me deja el metafield badge con data-number-of-reviews='0'
+                  en productos sin reseñas propias: ahí también entra la línea
+                  de la tienda. Con reseñas propias, manda el badge de arriba.
+                {%- endcomment -%}
+                {%- assign im_badge = product.metafields.judgeme.badge | default: '' -%}
+                {%- assign im_sin_propias = false -%}
+                {%- if im_badge == blank -%}
+                  {%- assign im_sin_propias = true -%}
+                {%- elsif im_badge contains "data-number-of-reviews='0'" -%}
+                  {%- assign im_sin_propias = true -%}
+                {%- endif -%}
+                {%- if im_rc > 0 and im_sin_propias -%}
+                  {%- assign im_rr_redondo = im_rr | round -%}
+                  <a class="im-resenas-tienda" href="#im-resenas">
+                    <span class="im-resenas-tienda__estrellas" aria-hidden="true">
+                      {%- for i in (1..5) -%}
+                        <span{% if i > im_rr_redondo %} class="is-vacia"{% endif %}>&#9733;</span>
+                      {%- endfor -%}
+                    </span>
+                    {{ im_rr | round: 1 }} · {{ im_rc }} reseñas verificadas
+                  </a>
+                  <script>
+                    // Lleva al carrusel de reseñas de Judge.me de esta misma
+                    // ficha (sección de apps, sin id fijo en el tema).
+                    document.querySelector('.im-resenas-tienda').addEventListener('click', function (e) {
+                      var c = document.querySelector('.jdgm-cards-carousel, .jdgm-carousel, #im-resenas');
+                      if (!c) return;
+                      e.preventDefault();
+                      // Sin animación: las secciones de abajo se revelan al
+                      // pasar y el desplazamiento suave se quedaba a medias.
+                      c.scrollIntoView({ block: 'start' });
+                    });
+                  </script>
+                {%- endif -%}
               {%- when 'complementary' -%}
                 <product-recommendations
                   class="complementary-products quick-add-hidden{% if block.settings.make_collapsible_row %} is-accordion{% endif %}{% if block.settings.enable_quick_add %} complementary-products-contains-quick-add{% endif %}"
@@ -762,7 +811,7 @@
           {%- endcomment -%}
           <div
             id="judgeme_product_reviews"
-            class="jdgm-widget jdgm-review-widget"
+            id="im-resenas" class="jdgm-widget jdgm-review-widget"
             data-product-title="{{ product.title | escape }}"
             data-id="{{ product.id }}"
             data-product-id="{{ product.id }}"
@@ -840,6 +889,7 @@
   dentro del modal.
 {%- endcomment -%}
 {%- render 'im-barra-compra', product: product, section_id: section.id -%}
+{%- render 'im-fecha-entrega' -%}
 
 {% schema %}
 {
