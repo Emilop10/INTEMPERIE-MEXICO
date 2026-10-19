@@ -20,12 +20,12 @@
      Google no marque las portadas de IA).
    - ~~21 oct: corte de la campaña v5~~ **Cancelado.** La v5 se pausó el
      19 oct ($370, 177 vistas, 1 carrito, 0 compras; MANUAL §104).
-   - **Nueva ronda lista en PAUSA** (campaña `120250632213900175`, 4
-     anuncios con foto fija, $100/día, tope de cuenta $3,252.83 =
-     $1,200 de ronda). Se enciende solo con el OK del dueño; al
-     encender, programar los cortes de $400 (≥3% vista→carrito) y $900
-     (≥1 compra). Existencias: 13 piezas entre kits y combos; si vende,
-     el dueño debe resurtir.
+   - **Nueva ronda ENCENDIDA el 19 oct 11:55** (campaña
+     `120250632213900175`, 4 anuncios con foto fija, $100/día, tope de
+     cuenta $3,252.83 = $1,200 de ronda; MANUAL §104). Tareas: check-in
+     de salud a las 3 h y cortes diarios 08:47 (reglas de $400 con ≥3%
+     vista→carrito y $900 con ≥1 compra). Existencias: 13 piezas entre
+     kits y combos; si vende, el dueño debe resurtir.
    - **19 oct (MANUAL §100):** ya se aplicaron, a mitad de la prueba,
      la barra de compra desde la primera pantalla, el logo chico, el
      conjunto nuevo (5 kits + 3 combos Okuma de $999 + 3 binoculares

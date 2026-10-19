@@ -10558,4 +10558,15 @@ compra ~1,700 vistas → ~50 carritos al 3% → 5–8 ventas si 1 de cada
 7–8 carritos paga (~$10,000 de venta, ~$2,500 de margen). A $2 por
 vista (octubre): ~600 vistas → ~18 carritos → 2 ventas, tablas.
 
+### Encendida (19 oct, 11:55 hora de la cuenta)
+
+Con el OK del dueño: campaña, conjunto y 4 anuncios en ACTIVE; los
+anuncios siguen `IN_PROCESS` (revisión de Meta). Tope de la cuenta
+confirmado en $3,252.83. Tareas programadas:
+
+| Tarea | ID | Cuándo | Qué hace |
+|---|---|---|---|
+| Check-in de salud | `trig_016M8VqymoxozYWNpLLSBGtp` | 19 oct 20:57 UTC (3 h después) | Solo salud: anuncios aprobados, gastando, tope intacto, fichas con existencia. No juzga resultados |
+| Cortes diarios | `trig_01UxpqCyFokQncvr2kZr4mpQ` | Diario 08:47 America/Chihuahua | Aplica las reglas de $400 y $900 sobre el acumulado desde el 19 oct, pausa el anuncio de un producto agotado, reporta al dueño, se deshabilita sola cuando la campaña termina |
+
 **Graphify:** actualizado en `scripts/`.
