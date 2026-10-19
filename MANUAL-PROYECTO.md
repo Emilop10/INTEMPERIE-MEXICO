@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 19 de octubre de 2026 (sección 101)
+**Última actualización:** 19 de octubre de 2026 (sección 102)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -129,6 +129,7 @@ como respaldo
 99. [Por qué casi nadie agrega al carrito (18 oct)](#99-por-qué-casi-nadie-agrega-al-carrito-18-oct)
 100. [Arreglos para que agreguen al carrito, aplicados a mitad de la prueba (19 oct)](#100-arreglos-para-que-agreguen-al-carrito-aplicados-a-mitad-de-la-prueba-19-oct)
 101. [Barra de compra integrada al diseño de la ficha (19 oct)](#101-barra-de-compra-integrada-al-diseño-de-la-ficha-19-oct)
+102. [Revisión visual de toda la tienda: tres arreglos (19 oct)](#102-revisión-visual-de-toda-la-tienda-tres-arreglos-19-oct)
 
 ---
 
@@ -10352,5 +10353,44 @@ original. Lo que chirriaba:
 precio y línea de envío correctos en kit ($1,749, envío gratis), Sienna
 ($1,279) y anzuelo Trokar ($139, "+ $189 de envío"); la barra agrega al
 carrito 4/4; sin errores de JavaScript. Carrito vaciado después.
+
+**Graphify:** actualizado en `tema-shopify/`.
+
+## 102. Revisión visual de toda la tienda: tres arreglos (19 oct)
+
+El dueño pidió revisar que toda la página se vea en orden. Se recorrieron
+13 páginas (portada, 3 colecciones, 2 fichas, búsqueda, carrito,
+política de envío, contacto, quiénes somos, Cartucho y 404) en celular
+(390×844, navegador de Facebook) y escritorio (1440×900), pantalla por
+pantalla, más el menú, el buscador y el cajón del carrito abiertos. Por
+código se revisó además: errores de JavaScript (0), imágenes rotas (0),
+desborde horizontal (0) y respuestas 4xx (solo `zipchat/identify` 422,
+que es la app de chat, y `shop.app/pay` 403, bloqueado por el proxy de
+la sesión; ninguna de la tienda).
+
+> Las capturas de "página completa" de Playwright salen con zonas
+> negras y blancas en esta tienda: las secciones se revelan al hacer
+> scroll y la portada móvil (15,000px × 2) supera el tamaño máximo de
+> captura. Hay que capturar pantalla por pantalla (`scrollTo` + 650ms).
+
+**Lo que se encontró y se arregló (desplegado el 19 oct):**
+
+| # | Problema | Causa | Arreglo |
+|---|---|---|---|
+| 1 | **Todas las fichas cargaban con una franja negra vacía de ~47px** arriba del aviso de envío, en celular y escritorio. Venía desde §69 | La barra de compra marcaba el `body` con la clase `im-ficha`, que es también la clase del bloque "Ficha técnica" (`brand-tokens.css`): el body heredaba `margin-top: 26px; padding-top: 20px` | La clase del body ahora es `im-en-ficha` (`snippets/im-barra-compra.liquid`). Verificado: `body` en 0px y `.im-promesas` en 0px |
+| 2 | En `/cart` en celular, el total de cada línea se partía en dos renglones: "$" arriba y "278.00" abajo | La columna del total mide ~85px y el precio en mono de 16px con 1.3px de espaciado no cabe | `brand-tokens.css`: en < 750px, `.cart-items .cart-item__totals .price` con `white-space: nowrap`, 1.3rem y 0.02em. Verificado: "$ 1,749.00" en un renglón de 20px |
+| 3 | Con el menú abierto, la barra "Agregar al carrito" seguía encima del menú | La barra (z 997) no sabía del menú | `body[class*="overflow-hidden"] .im-barra-compra.is-visible` se guarda (Dawn pone `overflow-hidden-tablet` al abrir menú o buscador y `overflow-hidden` con el carrito). Verificado: con el menú abierto la barra queda a 851px (fuera de los 844) y vuelve a 778px al cerrarlo |
+
+**Lo que se revisó y está bien:** portada (hero, 4 bloques de
+categoría con destacados y tiras, franja de envío, reseñas, pie),
+colecciones (rejilla de 2 en celular y 4 en escritorio, etiquetas
+"Oferta" y "Agotado", paginación), fichas (galería, precio tachado,
+envío, existencias, descripción, botón, confianza, acordeones, ficha
+técnica, reseñas, "Puede que también te interese"), búsqueda, carrito
+(página y cajón: barra de envío gratis, totales, PayPal), políticas,
+contacto (formulario), quiénes somos, Cartucho, 404 y los tres
+estados abiertos. Las burbujas de WhatsApp y Cartucho se superponen a
+las tarjetas de reseñas al pasar: es el comportamiento de siempre de
+una burbuja fija, no se tocó.
 
 **Graphify:** actualizado en `tema-shopify/`.

@@ -901,6 +901,17 @@ variant-selects .select__select {
   font-weight: var(--font-body-weight-bold);
 }
 
+/* Carrito (página /cart) en celular: la columna del total mide ~85px y el
+   precio en mono de 16px con 1.3px de espaciado ("$ 1,749.00") no cabía:
+   se partía en "$" y "1,749.00" en dos renglones (MANUAL §102). */
+@media screen and (max-width: 749px) {
+  .cart-items .cart-item__totals .price {
+    white-space: nowrap;
+    font-size: 1.3rem;
+    letter-spacing: 0.02em;
+  }
+}
+
 /* Ficha técnica del producto (Ola 7, 24 ago): snippets/ficha-tecnica.liquid.
    Dos columnas etiqueta/valor con divisores del mismo peso que el
    resto de la ficha. Los valores van en mono: son medidas y calibres,

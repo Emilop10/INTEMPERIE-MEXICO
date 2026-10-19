@@ -29,6 +29,12 @@
   DOM abierto) siguen escondidas hasta pasar el botón original, como
   antes; desde ahí suben para no tapar la barra.
 
+  La clase que marca el body es im-en-ficha. Hasta el 19 oct era
+  im-ficha, que es también la clase del bloque "Ficha técnica"
+  (brand-tokens.css): el body heredaba sus 26px de margen y 20px de
+  relleno y todas las fichas cargaban con una franja negra vacía de
+  ~47px arriba del aviso de envío (MANUAL §102).
+
   Parámetros: product, section_id
 {%- endcomment -%}
 
@@ -88,6 +94,10 @@
       }
       .im-barra-compra[hidden] { display: flex; visibility: hidden; }
       .im-barra-compra.is-visible { transform: none; visibility: visible; }
+      /* Con el menú, el buscador o el carrito abiertos (Dawn pone
+         overflow-hidden-* en el body) la barra se guarda: no tiene
+         sentido "Agregar al carrito" encima del menú. */
+      body[class*="overflow-hidden"] .im-barra-compra.is-visible { transform: translateY(110%); }
       .im-barra-compra__info {
         display: flex;
         flex-direction: column;
@@ -150,17 +160,17 @@
 
       /* La barra vive desde el inicio: el pie de página no debe quedar
          tapado al llegar hasta abajo. */
-      body.im-ficha {
+      body.im-en-ficha {
         padding-bottom: calc(66px + env(safe-area-inset-bottom, 0px) + var(--im-bajo, 0px));
       }
 
       /* En la ficha, las burbujas se esconden mientras se ve la zona de
          compra (foto, precio, envío, existencias: ahí tapaban el texto) y
          reaparecen arriba de la barra en cuanto el botón queda atrás. */
-      body.im-ficha .im-wa {
+      body.im-en-ficha .im-wa {
         transition: bottom 0.22s ease, opacity 0.2s ease;
       }
-      body.im-ficha:not(.im-barra-activa) .im-wa {
+      body.im-en-ficha:not(.im-barra-activa) .im-wa {
         opacity: 0;
         pointer-events: none;
       }
@@ -223,7 +233,7 @@
           host.classList.toggle('im-oculta', movil.matches && !sube && cerrado);
         }
       }
-      document.body.classList.add('im-ficha');
+      document.body.classList.add('im-en-ficha');
       // Zipchat carga después que la página: se reintenta hasta que exista.
       var intentos = 0;
       var espera = setInterval(function () {
