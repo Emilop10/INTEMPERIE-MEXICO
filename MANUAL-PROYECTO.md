@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 19 de octubre de 2026 (sección 103)
+**Última actualización:** 19 de octubre de 2026 (sección 104)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -131,6 +131,7 @@ como respaldo
 101. [Barra de compra integrada al diseño de la ficha (19 oct)](#101-barra-de-compra-integrada-al-diseño-de-la-ficha-19-oct)
 102. [Revisión visual de toda la tienda: tres arreglos (19 oct)](#102-revisión-visual-de-toda-la-tienda-tres-arreglos-19-oct)
 103. [Revisión de conversión: ahorro real, fecha de entrega y reseñas junto al precio (19 oct)](#103-revisión-de-conversión-ahorro-real-fecha-de-entrega-y-reseñas-junto-al-precio-19-oct)
+104. [Campaña v5 pausada y nueva ronda con foto fija, $1,200 (19 oct)](#104-campaña-v5-pausada-y-nueva-ronda-con-foto-fija-1200-19-oct)
 
 ---
 
@@ -10465,3 +10466,96 @@ descripción de los kits y el carrusel de reseñas.
   otra vez la prueba.
 
 **Graphify:** actualizado en `tema-shopify/`.
+
+## 104. Campaña v5 pausada y nueva ronda con foto fija, $1,200 (19 oct)
+
+El dueño pidió revisar la campaña y dio permiso de optimizarla.
+
+### Cierre de la v5 (15–19 oct, hora de la cuenta)
+
+| Día | Gasto | Clics | CTR | CPC | Vistas | Carritos |
+|---|---|---|---|---|---|---|
+| 16 oct | $128 | 75 | 4.2% | $1.24 | 62 | 0 |
+| 17 oct | $127 | 78 | 5.0% | $1.24 | 71 | 1 |
+| 18 oct | $93 | 40 | 2.9% | $1.62 | 36 | 0 |
+| 19 oct (hasta 11:26) | $17 | 4 | 1.9% | $3.35 | 6 | 0 |
+
+**Final: $370.24, alcance 2,934, 200 clics, 177 vistas, 1 carrito
+(0.56%), 0 compras.** Shopify: 0 pedidos y 0 checkouts desde el 15 oct.
+CPM estable ($67–82), frecuencia 1.7: no era hartazgo del público; Meta
+agotó la parte del público que daba clic. Con 1 solo evento de carrito
+en 5 días, la optimización a "agregar al carrito" no tenía con qué
+aprender. El CTR empezó a caer el 18 oct, **antes** de los cambios de
+§100 (20:55).
+
+**Decisión del dueño (opción recomendada): pausar y rediseñar.** La
+regla del corte ya estaba decidida: para pasarla, los últimos ~60
+visitantes habrían necesitado 7 carritos y una compra. Pausados
+campaña `120249613902440175` y conjuntos v5 y v5-RT a las **11:35**
+(hora de la cuenta). Tarea del corte del 21 oct
+(`trig_017pQPsVwrXo54x3ifh5W27s`) **deshabilitada**.
+
+### Lo que enseña la comparación con agosto–septiembre
+
+| | v3 (ago–sep, hombres 45+) | v5 (oct, 55–65, solo Facebook) |
+|---|---|---|
+| Costo por vista | $0.65 | $2.02 |
+| CPM | $37 | $77 |
+| Vista → carrito | 1.9% (combos $849–999: 3.6%) | 0.56% |
+
+Acotar a 55–65 y solo Facebook duplicó el costo de cada visitante; los
+combos de $999 generaban carritos y los kits de $1,549–1,749 no. El
+embudo se rompe después del carrito (1 de 39 paga, §68): justo lo que
+atacan §100–§103, todavía sin medir.
+
+### Existencias: el límite real del presupuesto
+
+Entre los 5 kits y los 3 combos Okuma hay **13 piezas** (1 o 2 de cada
+uno). Una campaña que funcione se agota en días. Por eso la inversión
+se dimensiona para **demostrar si vende**, no para escalar: si vende,
+el dueño resurte y se escala.
+
+### Nueva ronda: $1,200 aprobados por el dueño ($100/día, máx. 12 días)
+
+Construida con `scripts/campana-kits-oct19.py` (lee precios, ahorros y
+existencias de Shopify; nada escrito a mano). **Todo en PAUSA** hasta el
+OK del dueño:
+
+| Pieza | ID | Detalle |
+|---|---|---|
+| Campaña | `120250632213900175` | "IMX \| Ventas \| Kits y combos \| Foto fija \| Oct19", OUTCOME_SALES, presupuesto en la campaña $100/día, costo más bajo |
+| Conjunto | `120250632214070175` | Hombres 45–65+, México, Facebook e Instagram, **optimizado a COMPRA** (pixel `2011984246408291`), atribución 7 días clic / 1 día vista, `advantage_audience: 0` (edad y sexo son límites duros) |
+| Anuncio tundra-valor | `120250632214760175` | Foto fija del kit Tundra Pro (lancha). "Ahorras $222 frente a comprarlo por pieza" |
+| Anuncio revenger-presa-rio | `120250632215950175` | Kit Revenger (batea junto al río). "Para los que pescan en presa y río. Lo abres y te vas a pescar. No falta nada" |
+| Anuncio combo-999 | `120250632216950175` | Combo Okuma Revenger 2.45 (muelle). "Caña y carrete Okuma por $999 con envío gratis" |
+| Anuncio carrusel-kits | `120250632219580175` | 7 tarjetas (5 kits + 2 combos), cada una a su ficha con su precio y "Ahorras $X" |
+
+- Imágenes: las portadas de IA de §84–§97 (fieles al producto),
+  redimensionadas a 1080×1080 JPEG y subidas al ad account.
+- Sin "mejoras" de Meta sobre la imagen ni el texto: desde oct 2026 la
+  API ya no acepta `standard_enhancements` en bloque; se apaga cada
+  función por nombre (`3d_animation` y `music` ya no existen).
+- Meta exige ahora `targeting_automation.advantage_audience` (0/1) al
+  crear un conjunto.
+- Enlaces con `utm_campaign=kits-oct19` y `utm_content=<anuncio>`.
+- Los 4 anuncios quedaron `IN_PROCESS` (revisión de Meta) desde el
+  momento de crearse, aunque estén en pausa.
+- **Tope de la cuenta: $3,252.83** (= $2,052.83 gastados + $1,200). No
+  puede gastar un peso más.
+- Sin retargeting: son ~1,000 personas y repetirles el mismo anuncio no
+  dio nada (§98). Se agrega cuando haya volumen, con otra oferta.
+
+**Reglas al encender (se programan como tareas):**
+- A los **$400**: si vista → carrito < 3%, se pausa.
+- A los **$900**: si no hay al menos 1 compra, se pausa (a $300 de
+  contribución por kit, $900 = 3× el costo objetivo por venta: con 0
+  ventas ahí, el concepto no funciona).
+- Si se agota un producto, su anuncio se pausa (la ficha diría
+  "Agotado").
+
+**Expectativa, con números:** a $0.70 por vista (septiembre) $1,200
+compra ~1,700 vistas → ~50 carritos al 3% → 5–8 ventas si 1 de cada
+7–8 carritos paga (~$10,000 de venta, ~$2,500 de margen). A $2 por
+vista (octubre): ~600 vistas → ~18 carritos → 2 ventas, tablas.
+
+**Graphify:** actualizado en `scripts/`.

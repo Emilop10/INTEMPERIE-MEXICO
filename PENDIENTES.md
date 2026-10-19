@@ -18,10 +18,14 @@
 5. **Fechas que ya están programadas:**
    - **22 oct:** revisar Merchant Center (imágenes "not processed" y que
      Google no marque las portadas de IA).
-   - **21 oct:** corte de la campaña de Facebook a los $600 (se movió del
-     24: al ritmo de ~$127/día el tope de $2,283 se alcanza ~20 oct).
-     Al 18 oct: $314 gastados, 180 clics, 154 vistas, 1 carrito, 0
-     compras (MANUAL §98).
+   - ~~21 oct: corte de la campaña v5~~ **Cancelado.** La v5 se pausó el
+     19 oct ($370, 177 vistas, 1 carrito, 0 compras; MANUAL §104).
+   - **Nueva ronda lista en PAUSA** (campaña `120250632213900175`, 4
+     anuncios con foto fija, $100/día, tope de cuenta $3,252.83 =
+     $1,200 de ronda). Se enciende solo con el OK del dueño; al
+     encender, programar los cortes de $400 (≥3% vista→carrito) y $900
+     (≥1 compra). Existencias: 13 piezas entre kits y combos; si vende,
+     el dueño debe resurtir.
    - **19 oct (MANUAL §100):** ya se aplicaron, a mitad de la prueba,
      la barra de compra desde la primera pantalla, el logo chico, el
      conjunto nuevo (5 kits + 3 combos Okuma de $999 + 3 binoculares

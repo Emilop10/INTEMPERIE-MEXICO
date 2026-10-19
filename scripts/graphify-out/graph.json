@@ -763,6 +763,78 @@
       "source_location": "L153"
     },
     {
+      "id": "sincronizar_canal_meta_aplicar",
+      "label": "aplicar()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "json",
+      "file_type": "code",
+      "norm_label": "aplicar()",
+      "source_file": "sincronizar-canal-meta.py",
+      "source_location": "L213"
+    },
+    {
+      "id": "sincronizar_canal_meta_es_prohibido",
+      "label": "es_prohibido()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "json",
+      "file_type": "code",
+      "norm_label": "es_prohibido()",
+      "source_file": "sincronizar-canal-meta.py",
+      "source_location": "L160"
+    },
+    {
+      "id": "sincronizar_canal_meta_gql",
+      "label": "gql()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "json",
+      "file_type": "code",
+      "norm_label": "gql()",
+      "source_file": "sincronizar-canal-meta.py",
+      "source_location": "L80"
+    },
+    {
+      "id": "sincronizar_canal_meta_main",
+      "label": "main()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "json",
+      "file_type": "code",
+      "norm_label": "main()",
+      "source_file": "sincronizar-canal-meta.py",
+      "source_location": "L224"
+    },
+    {
+      "id": "sincronizar_canal_meta_resolver_canal",
+      "label": "resolver_canal()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "json",
+      "file_type": "code",
+      "norm_label": "resolver_canal()",
+      "source_file": "sincronizar-canal-meta.py",
+      "source_location": "L112"
+    },
+    {
+      "id": "sincronizar_canal_meta_traer_productos",
+      "label": "traer_productos()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "json",
+      "file_type": "code",
+      "norm_label": "traer_productos()",
+      "source_file": "sincronizar-canal-meta.py",
+      "source_location": "L126"
+    },
+    {
       "id": "subir_imagenes_ia_api",
       "label": "api()",
       "_callable": true,
@@ -991,76 +1063,100 @@
       "source_location": "L127"
     },
     {
-      "id": "sincronizar_canal_meta_aplicar",
-      "label": "aplicar()",
+      "id": "campana_kits_oct19_cargar_productos",
+      "label": "cargar_productos()",
       "_callable": true,
       "_origin": "ast",
       "community": 6,
-      "community_name": "sys",
+      "community_name": "campana-kits-oct19.py",
       "file_type": "code",
-      "norm_label": "aplicar()",
-      "source_file": "sincronizar-canal-meta.py",
-      "source_location": "L213"
+      "norm_label": "cargar_productos()",
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L85"
     },
     {
-      "id": "sincronizar_canal_meta_es_prohibido",
-      "label": "es_prohibido()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "sys",
-      "file_type": "code",
-      "norm_label": "es_prohibido()",
-      "source_file": "sincronizar-canal-meta.py",
-      "source_location": "L160"
-    },
-    {
-      "id": "sincronizar_canal_meta_gql",
-      "label": "gql()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "sys",
-      "file_type": "code",
-      "norm_label": "gql()",
-      "source_file": "sincronizar-canal-meta.py",
-      "source_location": "L80"
-    },
-    {
-      "id": "sincronizar_canal_meta_main",
+      "id": "campana_kits_oct19_main",
       "label": "main()",
       "_callable": true,
       "_origin": "ast",
       "community": 6,
-      "community_name": "sys",
+      "community_name": "campana-kits-oct19.py",
       "file_type": "code",
       "norm_label": "main()",
-      "source_file": "sincronizar-canal-meta.py",
-      "source_location": "L224"
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L161"
     },
     {
-      "id": "sincronizar_canal_meta_resolver_canal",
-      "label": "resolver_canal()",
+      "id": "campana_kits_oct19_meta",
+      "label": "meta()",
       "_callable": true,
       "_origin": "ast",
       "community": 6,
-      "community_name": "sys",
+      "community_name": "campana-kits-oct19.py",
       "file_type": "code",
-      "norm_label": "resolver_canal()",
-      "source_file": "sincronizar-canal-meta.py",
-      "source_location": "L112"
+      "norm_label": "meta()",
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L58"
     },
     {
-      "id": "sincronizar_canal_meta_traer_productos",
-      "label": "traer_productos()",
+      "id": "campana_kits_oct19_pesos",
+      "label": "pesos()",
       "_callable": true,
       "_origin": "ast",
       "community": 6,
-      "community_name": "sys",
+      "community_name": "campana-kits-oct19.py",
       "file_type": "code",
-      "norm_label": "traer_productos()",
-      "source_file": "sincronizar-canal-meta.py",
-      "source_location": "L126"
+      "norm_label": "pesos()",
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L81"
+    },
+    {
+      "id": "campana_kits_oct19_shopify",
+      "label": "shopify()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "campana-kits-oct19.py",
+      "file_type": "code",
+      "norm_label": "shopify()",
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L74"
+    },
+    {
+      "id": "campana_kits_oct19_subir_imagen",
+      "label": "subir_imagen()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "campana-kits-oct19.py",
+      "file_type": "code",
+      "norm_label": "subir_imagen()",
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L149"
+    },
+    {
+      "id": "campana_kits_oct19_tarjeta",
+      "label": "tarjeta()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "campana-kits-oct19.py",
+      "file_type": "code",
+      "norm_label": "tarjeta()",
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L144"
+    },
+    {
+      "id": "campana_kits_oct19_textos",
+      "label": "textos()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "campana-kits-oct19.py",
+      "file_type": "code",
+      "norm_label": "textos()",
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L107"
     },
     {
       "id": "crear_kits_api",
@@ -1780,6 +1876,17 @@
       "source_location": "L1"
     },
     {
+      "id": "sincronizar_canal_meta",
+      "label": "sincronizar-canal-meta.py",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "json",
+      "file_type": "code",
+      "norm_label": "sincronizar-canal-meta.py",
+      "source_file": "sincronizar-canal-meta.py",
+      "source_location": "L1"
+    },
+    {
       "id": "subir_imagenes_ia",
       "label": "subir-imagenes-ia.py",
       "_origin": "ast",
@@ -1843,6 +1950,28 @@
       "file_type": "rationale",
       "norm_label": "crea los combos propuestos en combos-nuevos-pendientes.md. uso:...",
       "source_file": "crear-combos.py",
+      "source_location": "L2"
+    },
+    {
+      "id": "sincronizar_canal_meta_rationale_161",
+      "label": "Prohibido por coleccion O por nombre. La red de colecciones sola NO alcanza, y\u2026",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "json",
+      "file_type": "rationale",
+      "norm_label": "prohibido por coleccion o por nombre. la red de colecciones sola no alcanza, y...",
+      "source_file": "sincronizar-canal-meta.py",
+      "source_location": "L161"
+    },
+    {
+      "id": "sincronizar_canal_meta_rationale_2",
+      "label": "Deja el canal \"Facebook & Instagram\" de Shopify con los productos correctos.\u2026",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "json",
+      "file_type": "rationale",
+      "norm_label": "deja el canal \"facebook & instagram\" de shopify con los productos correctos....",
+      "source_file": "sincronizar-canal-meta.py",
       "source_location": "L2"
     },
     {
@@ -1923,37 +2052,59 @@
       "source_location": "L98"
     },
     {
-      "id": "sincronizar_canal_meta",
-      "label": "sincronizar-canal-meta.py",
+      "id": "campana_kits_oct19",
+      "label": "campana-kits-oct19.py",
       "_origin": "ast",
       "community": 6,
-      "community_name": "sys",
+      "community_name": "campana-kits-oct19.py",
       "file_type": "code",
-      "norm_label": "sincronizar-canal-meta.py",
-      "source_file": "sincronizar-canal-meta.py",
+      "norm_label": "campana-kits-oct19.py",
+      "source_file": "campana-kits-oct19.py",
       "source_location": "L1"
     },
     {
-      "id": "sincronizar_canal_meta_rationale_161",
-      "label": "Prohibido por coleccion O por nombre. La red de colecciones sola NO alcanza, y\u2026",
+      "id": "campana_kits_oct19_rationale_108",
+      "label": "Los 4 anuncios. Cada cifra sale de `pr` (Shopify), nunca a mano.",
       "_origin": "ast",
       "community": 6,
-      "community_name": "sys",
+      "community_name": "campana-kits-oct19.py",
       "file_type": "rationale",
-      "norm_label": "prohibido por coleccion o por nombre. la red de colecciones sola no alcanza, y...",
-      "source_file": "sincronizar-canal-meta.py",
-      "source_location": "L161"
+      "norm_label": "los 4 anuncios. cada cifra sale de `pr` (shopify), nunca a mano.",
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L108"
     },
     {
-      "id": "sincronizar_canal_meta_rationale_2",
-      "label": "Deja el canal \"Facebook & Instagram\" de Shopify con los productos correctos.\u2026",
+      "id": "campana_kits_oct19_rationale_150",
+      "label": "Descarga la portada, la deja en 1080\u00d71080 JPEG y la sube al ad account.",
       "_origin": "ast",
       "community": 6,
-      "community_name": "sys",
+      "community_name": "campana-kits-oct19.py",
       "file_type": "rationale",
-      "norm_label": "deja el canal \"facebook & instagram\" de shopify con los productos correctos....",
-      "source_file": "sincronizar-canal-meta.py",
+      "norm_label": "descarga la portada, la deja en 1080\u00d71080 jpeg y la sube al ad account.",
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L150"
+    },
+    {
+      "id": "campana_kits_oct19_rationale_2",
+      "label": "Arma la ronda de Meta Ads del 19 oct (MANUAL \u00a7104): kits y combos con foto\u2026",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "campana-kits-oct19.py",
+      "file_type": "rationale",
+      "norm_label": "arma la ronda de meta ads del 19 oct (manual \u00a7104): kits y combos con foto...",
+      "source_file": "campana-kits-oct19.py",
       "source_location": "L2"
+    },
+    {
+      "id": "campana_kits_oct19_rationale_86",
+      "label": "Precio, tachado, ahorro, existencia, portada y URL con UTM, desde Shopify.",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "campana-kits-oct19.py",
+      "file_type": "rationale",
+      "norm_label": "precio, tachado, ahorro, existencia, portada y url con utm, desde shopify.",
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L86"
     },
     {
       "id": "crear_kits",
@@ -2164,6 +2315,17 @@
       "type": "external"
     },
     {
+      "id": "openpyxl",
+      "label": "openpyxl",
+      "community": 0,
+      "community_name": "conciliar-inventario.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "openpyxl",
+      "source_file": "",
+      "type": "external"
+    },
+    {
       "id": "openpyxl_styles",
       "label": "openpyxl_styles",
       "community": 0,
@@ -2186,13 +2348,13 @@
       "type": "external"
     },
     {
-      "id": "urllib_parse",
-      "label": "urllib_parse",
-      "community": 0,
-      "community_name": "conciliar-inventario.py",
+      "id": "base64",
+      "label": "base64",
+      "community": 1,
+      "community_name": "deploy-shopify.py",
       "external": true,
       "file_type": "concept",
-      "norm_label": "urllib_parse",
+      "norm_label": "base64",
       "source_file": "",
       "type": "external"
     },
@@ -2296,17 +2458,6 @@
       "type": "external"
     },
     {
-      "id": "base64",
-      "label": "base64",
-      "community": 13,
-      "community_name": "cargar-imagenes-productos.py",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "base64",
-      "source_file": "",
-      "type": "external"
-    },
-    {
       "id": "os",
       "label": "os",
       "community": 13,
@@ -2340,6 +2491,17 @@
       "type": "external"
     },
     {
+      "id": "argparse",
+      "label": "argparse",
+      "community": 4,
+      "community_name": "json",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "argparse",
+      "source_file": "",
+      "type": "external"
+    },
+    {
       "id": "json",
       "label": "json",
       "community": 4,
@@ -2351,13 +2513,13 @@
       "type": "external"
     },
     {
-      "id": "openpyxl",
-      "label": "openpyxl",
+      "id": "sys",
+      "label": "sys",
       "community": 4,
       "community_name": "json",
       "external": true,
       "file_type": "concept",
-      "norm_label": "openpyxl",
+      "norm_label": "sys",
       "source_file": "",
       "type": "external"
     },
@@ -2406,17 +2568,6 @@
       "type": "external"
     },
     {
-      "id": "io",
-      "label": "io",
-      "community": 5,
-      "community_name": "fotos-kits.py",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "io",
-      "source_file": "",
-      "type": "external"
-    },
-    {
       "id": "pil",
       "label": "pil",
       "community": 5,
@@ -2428,24 +2579,24 @@
       "type": "external"
     },
     {
-      "id": "sys",
-      "label": "sys",
+      "id": "io",
+      "label": "io",
       "community": 6,
-      "community_name": "sys",
+      "community_name": "campana-kits-oct19.py",
       "external": true,
       "file_type": "concept",
-      "norm_label": "sys",
+      "norm_label": "io",
       "source_file": "",
       "type": "external"
     },
     {
-      "id": "argparse",
-      "label": "argparse",
-      "community": 9,
-      "community_name": "prueba-tarjetas-coleccion.py",
+      "id": "urllib_parse",
+      "label": "urllib_parse",
+      "community": 6,
+      "community_name": "campana-kits-oct19.py",
       "external": true,
       "file_type": "concept",
-      "norm_label": "argparse",
+      "norm_label": "urllib_parse",
       "source_file": "",
       "type": "external"
     },
@@ -2473,6 +2624,222 @@
     }
   ],
   "links": [
+    {
+      "source": "campana_kits_oct19_cargar_productos",
+      "target": "campana_kits_oct19_shopify",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L89",
+      "weight": 1.0
+    },
+    {
+      "source": "campana_kits_oct19_cargar_productos",
+      "target": "sys",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L91",
+      "weight": 1.0
+    },
+    {
+      "source": "campana_kits_oct19_main",
+      "target": "sys",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L167",
+      "weight": 1.0
+    },
+    {
+      "source": "campana_kits_oct19_main",
+      "target": "campana_kits_oct19_cargar_productos",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L169",
+      "weight": 1.0
+    },
+    {
+      "source": "campana_kits_oct19_main",
+      "target": "campana_kits_oct19_textos",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L170",
+      "weight": 1.0
+    },
+    {
+      "source": "campana_kits_oct19_main",
+      "target": "campana_kits_oct19_pesos",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L173",
+      "weight": 1.0
+    },
+    {
+      "source": "campana_kits_oct19_main",
+      "target": "campana_kits_oct19_tarjeta",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L182",
+      "weight": 1.0
+    },
+    {
+      "source": "campana_kits_oct19_main",
+      "target": "campana_kits_oct19_meta",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L184",
+      "weight": 1.0
+    },
+    {
+      "source": "campana_kits_oct19_main",
+      "target": "campana_kits_oct19_subir_imagen",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L200",
+      "weight": 1.0
+    },
+    {
+      "source": "campana_kits_oct19_main",
+      "target": "json",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L212",
+      "weight": 1.0
+    },
+    {
+      "source": "campana_kits_oct19_meta",
+      "target": "json",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L69",
+      "weight": 1.0
+    },
+    {
+      "source": "campana_kits_oct19_meta",
+      "target": "sys",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L71",
+      "weight": 1.0
+    },
+    {
+      "source": "campana_kits_oct19_shopify",
+      "target": "json",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L78",
+      "weight": 1.0
+    },
+    {
+      "source": "campana_kits_oct19_subir_imagen",
+      "target": "io",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L153",
+      "weight": 1.0
+    },
+    {
+      "source": "campana_kits_oct19_subir_imagen",
+      "target": "campana_kits_oct19_meta",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L156",
+      "weight": 1.0
+    },
+    {
+      "source": "campana_kits_oct19_subir_imagen",
+      "target": "base64",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L157",
+      "weight": 1.0
+    },
+    {
+      "source": "campana_kits_oct19_tarjeta",
+      "target": "campana_kits_oct19_pesos",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L145",
+      "weight": 1.0
+    },
+    {
+      "source": "campana_kits_oct19_textos",
+      "target": "campana_kits_oct19_pesos",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L116",
+      "weight": 1.0
+    },
     {
       "source": "cargar_fichas_tecnicas_api",
       "target": "json",
@@ -4970,6 +5337,90 @@
       "weight": 1.0
     },
     {
+      "source": "campana_kits_oct19",
+      "target": "base64",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "campana_kits_oct19",
+      "target": "io",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "campana_kits_oct19",
+      "target": "json",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L27",
+      "weight": 1.0
+    },
+    {
+      "source": "campana_kits_oct19",
+      "target": "os",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L28",
+      "weight": 1.0
+    },
+    {
+      "source": "campana_kits_oct19",
+      "target": "sys",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "campana_kits_oct19",
+      "target": "urllib_parse",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L30",
+      "weight": 1.0
+    },
+    {
+      "source": "campana_kits_oct19",
+      "target": "urllib_request",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L31",
+      "weight": 1.0
+    },
+    {
       "source": "cargar_fichas_tecnicas",
       "target": "json",
       "relation": "imports",
@@ -6158,6 +6609,18 @@
       "weight": 1.0
     },
     {
+      "source": "campana_kits_oct19",
+      "target": "pil",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L33",
+      "weight": 1.0
+    },
+    {
       "source": "conciliar_inventario",
       "target": "openpyxl_styles",
       "relation": "imports_from",
@@ -6275,6 +6738,94 @@
       "context": "import",
       "source_file": "generar-carta-bienvenida.py",
       "source_location": "L42",
+      "weight": 1.0
+    },
+    {
+      "source": "campana_kits_oct19",
+      "target": "campana_kits_oct19_textos",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L107",
+      "weight": 1.0
+    },
+    {
+      "source": "campana_kits_oct19",
+      "target": "campana_kits_oct19_tarjeta",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L144",
+      "weight": 1.0
+    },
+    {
+      "source": "campana_kits_oct19",
+      "target": "campana_kits_oct19_subir_imagen",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L149",
+      "weight": 1.0
+    },
+    {
+      "source": "campana_kits_oct19",
+      "target": "campana_kits_oct19_main",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L161",
+      "weight": 1.0
+    },
+    {
+      "source": "campana_kits_oct19",
+      "target": "campana_kits_oct19_meta",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L58",
+      "weight": 1.0
+    },
+    {
+      "source": "campana_kits_oct19",
+      "target": "campana_kits_oct19_shopify",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L74",
+      "weight": 1.0
+    },
+    {
+      "source": "campana_kits_oct19",
+      "target": "campana_kits_oct19_pesos",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L81",
+      "weight": 1.0
+    },
+    {
+      "source": "campana_kits_oct19",
+      "target": "campana_kits_oct19_cargar_productos",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L85",
       "weight": 1.0
     },
     {
@@ -7532,6 +8083,50 @@
       "weight": 1.0
     },
     {
+      "source": "campana_kits_oct19_rationale_108",
+      "target": "campana_kits_oct19_textos",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L108",
+      "weight": 1.0
+    },
+    {
+      "source": "campana_kits_oct19_rationale_150",
+      "target": "campana_kits_oct19_subir_imagen",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L150",
+      "weight": 1.0
+    },
+    {
+      "source": "campana_kits_oct19_rationale_2",
+      "target": "campana_kits_oct19",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "campana_kits_oct19_rationale_86",
+      "target": "campana_kits_oct19_cargar_productos",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "campana-kits-oct19.py",
+      "source_location": "L86",
+      "weight": 1.0
+    },
+    {
       "source": "cargar_fichas_tecnicas_rationale_2",
       "target": "cargar_fichas_tecnicas",
       "relation": "rationale_for",
@@ -8146,5 +8741,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "23ec917d6b350b69f2bc962898a3d56126baffa0"
+  "built_at_commit": "74f50ac6f8d1191074de667ad4587bf024994218"
 }
