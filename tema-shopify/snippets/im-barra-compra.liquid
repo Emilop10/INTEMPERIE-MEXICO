@@ -1,16 +1,24 @@
 {%- comment -%}
-  Barra fija de compra en celular (30 sep, MANUAL §69).
+  Barra fija de compra en celular (30 sep, MANUAL §69; rediseñada el 19 oct, §100-§101).
 
   Razón de existir: en un iPhone de 390×844, el botón "Agregar al carrito"
-  queda entre 1,080 y 1,200px de alto (medido en 4 fichas), o sea fuera
-  de la primera pantalla. El 99% del tráfico de la campaña llega desde el
-  navegador de Facebook en celular. Esta barra se ve desde la primera
-  pantalla y solo se esconde mientras el botón original está a la vista,
-  para que nunca haya dos botones juntos.
+  queda entre 1,200 y 1,770px de alto, o sea fuera de la primera pantalla.
+  El 99% del tráfico de la campaña llega desde el navegador de Facebook en
+  celular. Esta barra se ve desde la primera pantalla y solo se esconde
+  mientras el botón original está a la vista, para que nunca haya dos
+  botones juntos.
 
   Hasta el 19 oct aparecía solo *después* de pasar el botón, así que la
   primera pantalla no tenía ninguna acción de compra: 1 carrito en 154
   vistas (MANUAL §99-§100).
+
+  Diseño: es la pareja del encabezado. Usa el mismo cristal oscuro con
+  desenfoque (.header-wrapper en brand-tokens.css), la misma línea
+  divisoria (--im-divider-strong), el precio con la misma tipografía mono
+  de la ficha (.product__info-container .price) y la línea de envío con
+  los mismos colores que .im-envio-precio. El botón es el mismo del
+  formulario (var(--brand-accent), pastilla, peso normal, 1px de
+  espaciado). Nada de sombras ni de pesos distintos.
 
   No tiene lógica de carrito propia: el botón hace click() sobre el botón
   real del formulario de Dawn (#ProductSubmitButton-…). Así el carrito
@@ -25,11 +33,26 @@
 {%- endcomment -%}
 
 {%- if product.available -%}
+  {%- liquid
+    assign im_umbral = settings.envio_umbral_centavos | default: 79900
+    assign im_costo = settings.envio_costo | default: '$189'
+    assign im_variante = product.selected_or_first_available_variant
+    if settings.currency_code_enabled
+      assign im_precio_texto = im_variante.price | money_with_currency
+    else
+      assign im_precio_texto = im_variante.price | money
+    endif
+  -%}
   <div class="im-barra-compra" id="ImBarraCompra-{{ section_id }}" aria-hidden="true" hidden>
     <div class="im-barra-compra__info">
-      <span class="im-barra-compra__titulo">{{ product.title | escape }}</span>
-      <span class="im-barra-compra__precio" data-im-precio>
-        {{- product.selected_or_first_available_variant.price | money -}}
+      <span class="im-barra-compra__precio" data-im-precio>{{ im_precio_texto }}</span>
+      <span class="im-barra-compra__envio" data-im-envio data-im-umbral="{{ im_umbral }}">
+        <span data-im-envio-gratis{% if im_variante.price < im_umbral %} hidden{% endif %}>
+          <strong>Envío gratis</strong> a todo México
+        </span>
+        <span data-im-envio-costo{% if im_variante.price >= im_umbral %} hidden{% endif %}>
+          + <strong>{{ im_costo }} de envío</strong>
+        </span>
       </span>
     </div>
     <button type="button" class="im-barra-compra__boton" tabindex="-1">
@@ -48,53 +71,88 @@
         z-index: 997; /* debajo de las burbujas (998/999) y del carrito (1000) */
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 14px;
         /* --im-bajo (theme.liquid): en Safari de iOS 26 el fondo de la barra
            llega hasta abajo, pero el botón queda por encima de la barra
            flotante de Safari (MANUAL §88). */
         padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px) + var(--im-bajo, 0px));
-        background: #0A0A0C; /* sólido: con la barra más alta (iOS 26) se transparentaba lo de atrás */
-        border-top: 1px solid rgba(255, 255, 255, 0.12);
-        box-shadow: 0 -6px 18px rgba(0, 0, 0, 0.35);
+        /* Mismo cristal que el encabezado (.header-wrapper), pero más
+           opaco: al cargar, la barra queda justo encima del precio de la
+           ficha y con 0.72 se leía doble. */
+        background: rgba(0, 0, 0, 0.9);
+        -webkit-backdrop-filter: saturate(180%) blur(20px);
+        backdrop-filter: saturate(180%) blur(20px);
+        border-top: 1px solid var(--im-divider-strong);
         transform: translateY(110%);
-        transition: transform 0.22s ease;
+        transition: transform 320ms cubic-bezier(.4, 0, .6, 1);
       }
       .im-barra-compra[hidden] { display: flex; visibility: hidden; }
       .im-barra-compra.is-visible { transform: none; visibility: visible; }
       .im-barra-compra__info {
         display: flex;
         flex-direction: column;
+        gap: 2px;
         min-width: 0;
         flex: 1;
       }
-      .im-barra-compra__titulo {
-        font-size: 12.5px;
+      /* Igual que el precio de la ficha: mono, tabular, peso normal. */
+      .im-barra-compra__precio {
+        font-family: var(--font-mono-family);
+        font-variant-numeric: tabular-nums;
+        font-size: 16px;
+        font-weight: 400;
+        letter-spacing: 0.08em;
         line-height: 1.3;
-        color: #B8B8BE;
+        color: #F5F5F7;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
       }
-      .im-barra-compra__precio {
-        font-family: var(--font-mono-family);
-        font-size: 16px;
-        font-weight: 600;
-        color: #FFFFFF;
+      /* Igual que .im-envio-precio, en chico. */
+      .im-barra-compra__envio {
+        font-family: var(--font-body-family);
+        font-size: 12px;
+        line-height: 1.3;
+        color: #D9D9DE;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
+      .im-barra-compra__envio strong {
+        color: #57B58A;
+        font-weight: 600;
+      }
+      /* Calcado del botón del formulario (.product-form__submit). */
       .im-barra-compra__boton {
         flex: none;
-        min-height: 46px;
-        padding: 0 20px;
+        min-height: 45px;
+        padding: 0 22px;
         border: 0;
-        border-radius: 999px;
+        border-radius: var(--brand-radius-pill);
+        /* Los mismos colores que el botón del formulario (esquema oscuro
+           de Dawn). --brand-accent no sirve aquí: depende de
+           prefers-color-scheme y la tienda siempre es oscura. */
         background: #57B58A;
-        color: #0A0A0C;
+        color: #06120D;
         font-family: var(--font-body-family);
         font-size: 15px;
-        font-weight: 600;
+        font-weight: 400;
+        letter-spacing: 1px;
+        line-height: 1;
+        white-space: nowrap;
         cursor: pointer;
       }
-      .im-barra-compra__boton:disabled { opacity: 0.55; }
+      .im-barra-compra__boton:focus-visible {
+        outline: 2px solid #F5F5F7;
+        outline-offset: 2px;
+      }
+      .im-barra-compra__boton:disabled { opacity: 0.55; cursor: default; }
+
+      /* La barra vive desde el inicio: el pie de página no debe quedar
+         tapado al llegar hasta abajo. */
+      body.im-ficha {
+        padding-bottom: calc(66px + env(safe-area-inset-bottom, 0px) + var(--im-bajo, 0px));
+      }
 
       /* En la ficha, las burbujas se esconden mientras se ve la zona de
          compra (foto, precio, envío, existencias: ahí tapaban el texto) y
@@ -109,11 +167,6 @@
       body.im-barra-activa .im-wa {
         bottom: calc(84px + env(safe-area-inset-bottom, 0px) + var(--im-bajo, 0px));
       }
-      /* La barra ya vive desde el inicio: el pie de página no debe quedar
-         tapado al llegar hasta abajo. */
-      body.im-ficha {
-        padding-bottom: calc(70px + env(safe-area-inset-bottom, 0px) + var(--im-bajo, 0px));
-      }
     }
     @media (prefers-reduced-motion: reduce) {
       .im-barra-compra, body.im-barra-activa .im-wa { transition: none; }
@@ -127,6 +180,10 @@
       if (!barra || !original || !('IntersectionObserver' in window)) return;
       var boton = barra.querySelector('.im-barra-compra__boton');
       var precio = barra.querySelector('[data-im-precio]');
+      var envio = barra.querySelector('[data-im-envio]');
+      var envioGratis = barra.querySelector('[data-im-envio-gratis]');
+      var envioCosto = barra.querySelector('[data-im-envio-costo]');
+      var umbral = parseInt(envio.getAttribute('data-im-umbral'), 10);
       var precioFuente = document.getElementById('price-{{ section_id }}');
       var movil = window.matchMedia('(max-width: 749px)');
 
@@ -188,12 +245,22 @@
         original.click();
       });
 
-      // Precio y disponibilidad siguen a la variante elegida: Dawn
+      // Precio, envío y disponibilidad siguen a la variante elegida: Dawn
       // re-renderiza #price-… y cambia el disabled del botón real.
       function sincronizar() {
         if (precioFuente) {
           var ultimo = precioFuente.querySelector('.price-item--last');
-          if (ultimo && ultimo.textContent.trim()) precio.textContent = ultimo.textContent.trim();
+          var texto = ultimo && ultimo.textContent.trim();
+          if (texto) {
+            precio.textContent = texto;
+            // "$ 1,749.00 MXN" → 174900 centavos. Si no se entiende, se deja
+            // la línea de envío como estaba.
+            var centavos = Math.round(parseFloat(texto.replace(/[^0-9.]/g, '')) * 100);
+            if (!isNaN(centavos) && !isNaN(umbral)) {
+              envioGratis.hidden = centavos < umbral;
+              envioCosto.hidden = centavos >= umbral;
+            }
+          }
         }
         boton.disabled = original.disabled;
         boton.textContent = original.disabled ? 'Agotado' : 'Agregar al carrito';

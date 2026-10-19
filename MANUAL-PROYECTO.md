@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 19 de octubre de 2026 (sección 100)
+**Última actualización:** 19 de octubre de 2026 (sección 101)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -128,6 +128,7 @@ como respaldo
 98. [Revisión de la campaña a mitad del corte (18 oct)](#98-revisión-de-la-campaña-a-mitad-del-corte-18-oct)
 99. [Por qué casi nadie agrega al carrito (18 oct)](#99-por-qué-casi-nadie-agrega-al-carrito-18-oct)
 100. [Arreglos para que agreguen al carrito, aplicados a mitad de la prueba (19 oct)](#100-arreglos-para-que-agreguen-al-carrito-aplicados-a-mitad-de-la-prueba-19-oct)
+101. [Barra de compra integrada al diseño de la ficha (19 oct)](#101-barra-de-compra-integrada-al-diseño-de-la-ficha-19-oct)
 
 ---
 
@@ -10306,3 +10307,50 @@ se reescribió para:
   claramente mejor pero el total no cumple.
 
 **Graphify:** actualizado en `scripts/` y en `tema-shopify/`.
+
+## 101. Barra de compra integrada al diseño de la ficha (19 oct)
+
+El dueño pidió que la barra de §100 no pareciera "sobrepuesta", sino
+parte de la página. Se revisó la ficha completa en celular (8 capturas a
+distintas alturas, navegador de Facebook) comparando los estilos
+calculados de la barra contra los del encabezado, el precio y el botón
+original. Lo que chirriaba:
+
+| Antes | Problema |
+|---|---|
+| Título del producto recortado con "…" | Texto cortado, no aporta: el título está arriba |
+| Precio mono **600** de peso | El precio de la ficha es mono **400** con 0.08em de espaciado |
+| Botón con peso 600 y sin espaciado | El botón original es peso 400 con 1px de espaciado |
+| Fondo sólido #0A0A0C + sombra pesada | La página no usa sombras: usa cristal oscuro y líneas finas |
+
+**Cómo quedó (`snippets/im-barra-compra.liquid`):**
+
+- **Es la pareja del encabezado:** mismo cristal oscuro con desenfoque
+  (`saturate(180%) blur(20px)`) y la misma línea divisoria
+  (`--im-divider-strong`), sin sombra. Opacidad **0.9** y no 0.72 como el
+  encabezado: al cargar, la barra queda justo encima del precio de la
+  ficha y con 0.72 se leía doble.
+- **Precio** calcado de `.product__info-container .price`: Geist Mono,
+  16px, peso 400, tabular, `letter-spacing: 0.08em`, #F5F5F7.
+- **Debajo del precio, la línea de envío** con los colores de
+  `.im-envio-precio`: "**Envío gratis** a todo México" (verde en
+  negritas) si la variante cuesta ≥ `settings.envio_umbral_centavos`
+  ($799), o "+ **$189 de envío**" si no. Sigue a la variante: el script
+  lee el precio re-renderizado por Dawn y lo convierte a centavos. Se
+  quitó el "gratis desde $799" de la versión corta porque se cortaba en
+  390px; ese dato ya está en la ficha.
+- **Botón** calcado de `.product-form__submit`: 45px, pastilla
+  (`--brand-radius-pill`), peso 400, 1px de espaciado, #57B58A sobre
+  #06120D. Los colores van fijos, no con `--brand-accent`: esa variable
+  depende de `prefers-color-scheme` y en un celular en modo claro el
+  botón salía verde oscuro (#234D3B).
+- Entrada con la misma curva del encabezado (`320ms
+  cubic-bezier(.4,0,.6,1)`), `:focus-visible` con contorno claro, y
+  `prefers-reduced-motion` respetado.
+
+**Prueba** (navegador de Facebook, iOS 390×844 y Android 412×915):
+precio y línea de envío correctos en kit ($1,749, envío gratis), Sienna
+($1,279) y anzuelo Trokar ($139, "+ $189 de envío"); la barra agrega al
+carrito 4/4; sin errores de JavaScript. Carrito vaciado después.
+
+**Graphify:** actualizado en `tema-shopify/`.
