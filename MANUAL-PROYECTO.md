@@ -10572,6 +10572,13 @@ confirmado en $3,252.83. Tareas programadas:
 - **12:02 (hora de la cuenta):** los 4 anuncios ya aprobados por Meta
   (`effective_status: ACTIVE`, sin `ad_review_feedback`).
 
+- **Check-in de salud, 14:58 (3 h después):** 4 anuncios ACTIVE
+  (aprobados), tope intacto ($3,252.83), 7 fichas con HTTP 200 y
+  existencia (1–2 cada una), 0 pedidos. Entrega arrancando despacio:
+  $3.41 en 3 h (47 impresiones; tundra $0.73, revenger $2.65, combo
+  $0.03, carrusel todavía 0). Normal el primer día de una campaña
+  optimizada a compra; se vuelve a leer en el corte de las 08:47.
+
 **Dónde verla:**
 - Administrador de anuncios (campaña):
   `https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=1264279685553718&selected_campaign_ids=120250632213900175`
