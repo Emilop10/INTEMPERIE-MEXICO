@@ -763,66 +763,6 @@
       "source_location": "L153"
     },
     {
-      "id": "crear_kits_api",
-      "label": "api()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "json",
-      "file_type": "code",
-      "norm_label": "api()",
-      "source_file": "crear-kits.py",
-      "source_location": "L177"
-    },
-    {
-      "id": "crear_kits_main",
-      "label": "main()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "json",
-      "file_type": "code",
-      "norm_label": "main()",
-      "source_file": "crear-kits.py",
-      "source_location": "L237"
-    },
-    {
-      "id": "crear_kits_main_cuerpo_html",
-      "label": "cuerpo_html()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "json",
-      "file_type": "code",
-      "norm_label": "cuerpo_html()",
-      "source_file": "crear-kits.py",
-      "source_location": "L299"
-    },
-    {
-      "id": "crear_kits_producto",
-      "label": "producto()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "json",
-      "file_type": "code",
-      "norm_label": "producto()",
-      "source_file": "crear-kits.py",
-      "source_location": "L186"
-    },
-    {
-      "id": "crear_kits_revisar_existencias",
-      "label": "revisar_existencias()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "json",
-      "file_type": "code",
-      "norm_label": "revisar_existencias()",
-      "source_file": "crear-kits.py",
-      "source_location": "L191"
-    },
-    {
       "id": "subir_imagenes_ia_api",
       "label": "api()",
       "_callable": true,
@@ -845,6 +785,78 @@
       "norm_label": "main()",
       "source_file": "subir-imagenes-ia.py",
       "source_location": "L50"
+    },
+    {
+      "id": "vincular_codigo_b1_actualizar_barcode",
+      "label": "actualizar_barcode()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "json",
+      "file_type": "code",
+      "norm_label": "actualizar_barcode()",
+      "source_file": "vincular-codigo-b1.py",
+      "source_location": "L116"
+    },
+    {
+      "id": "vincular_codigo_b1_api_request",
+      "label": "api_request()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "json",
+      "file_type": "code",
+      "norm_label": "api_request()",
+      "source_file": "vincular-codigo-b1.py",
+      "source_location": "L48"
+    },
+    {
+      "id": "vincular_codigo_b1_fetch_all_products",
+      "label": "fetch_all_products()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "json",
+      "file_type": "code",
+      "norm_label": "fetch_all_products()",
+      "source_file": "vincular-codigo-b1.py",
+      "source_location": "L77"
+    },
+    {
+      "id": "vincular_codigo_b1_leer_conteo",
+      "label": "leer_conteo()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "json",
+      "file_type": "code",
+      "norm_label": "leer_conteo()",
+      "source_file": "vincular-codigo-b1.py",
+      "source_location": "L91"
+    },
+    {
+      "id": "vincular_codigo_b1_main",
+      "label": "main()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "json",
+      "file_type": "code",
+      "norm_label": "main()",
+      "source_file": "vincular-codigo-b1.py",
+      "source_location": "L122"
+    },
+    {
+      "id": "vincular_codigo_b1_next_page_url",
+      "label": "next_page_url()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "json",
+      "file_type": "code",
+      "norm_label": "next_page_url()",
+      "source_file": "vincular-codigo-b1.py",
+      "source_location": "L70"
     },
     {
       "id": "fotos_kits_api",
@@ -1051,76 +1063,76 @@
       "source_location": "L126"
     },
     {
-      "id": "vincular_codigo_b1_actualizar_barcode",
-      "label": "actualizar_barcode()",
+      "id": "crear_kits_api",
+      "label": "api()",
       "_callable": true,
       "_origin": "ast",
-      "community": 6,
-      "community_name": "sys",
+      "community": 7,
+      "community_name": "crear-kits.py",
       "file_type": "code",
-      "norm_label": "actualizar_barcode()",
-      "source_file": "vincular-codigo-b1.py",
-      "source_location": "L116"
+      "norm_label": "api()",
+      "source_file": "crear-kits.py",
+      "source_location": "L177"
     },
     {
-      "id": "vincular_codigo_b1_api_request",
-      "label": "api_request()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "sys",
-      "file_type": "code",
-      "norm_label": "api_request()",
-      "source_file": "vincular-codigo-b1.py",
-      "source_location": "L48"
-    },
-    {
-      "id": "vincular_codigo_b1_fetch_all_products",
-      "label": "fetch_all_products()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "sys",
-      "file_type": "code",
-      "norm_label": "fetch_all_products()",
-      "source_file": "vincular-codigo-b1.py",
-      "source_location": "L77"
-    },
-    {
-      "id": "vincular_codigo_b1_leer_conteo",
-      "label": "leer_conteo()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "sys",
-      "file_type": "code",
-      "norm_label": "leer_conteo()",
-      "source_file": "vincular-codigo-b1.py",
-      "source_location": "L91"
-    },
-    {
-      "id": "vincular_codigo_b1_main",
+      "id": "crear_kits_main",
       "label": "main()",
       "_callable": true,
       "_origin": "ast",
-      "community": 6,
-      "community_name": "sys",
+      "community": 7,
+      "community_name": "crear-kits.py",
       "file_type": "code",
       "norm_label": "main()",
-      "source_file": "vincular-codigo-b1.py",
-      "source_location": "L122"
+      "source_file": "crear-kits.py",
+      "source_location": "L237"
     },
     {
-      "id": "vincular_codigo_b1_next_page_url",
-      "label": "next_page_url()",
+      "id": "crear_kits_main_cuerpo_html",
+      "label": "cuerpo_html()",
       "_callable": true,
       "_origin": "ast",
-      "community": 6,
-      "community_name": "sys",
+      "community": 7,
+      "community_name": "crear-kits.py",
       "file_type": "code",
-      "norm_label": "next_page_url()",
-      "source_file": "vincular-codigo-b1.py",
-      "source_location": "L70"
+      "norm_label": "cuerpo_html()",
+      "source_file": "crear-kits.py",
+      "source_location": "L307"
+    },
+    {
+      "id": "crear_kits_main_tachado",
+      "label": "tachado()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "crear-kits.py",
+      "file_type": "code",
+      "norm_label": "tachado()",
+      "source_file": "crear-kits.py",
+      "source_location": "L303"
+    },
+    {
+      "id": "crear_kits_producto",
+      "label": "producto()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "crear-kits.py",
+      "file_type": "code",
+      "norm_label": "producto()",
+      "source_file": "crear-kits.py",
+      "source_location": "L186"
+    },
+    {
+      "id": "crear_kits_revisar_existencias",
+      "label": "revisar_existencias()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "crear-kits.py",
+      "file_type": "code",
+      "norm_label": "revisar_existencias()",
+      "source_file": "crear-kits.py",
+      "source_location": "L191"
     },
     {
       "id": "prueba_tarjetas_coleccion_armar_repro",
@@ -1768,17 +1780,6 @@
       "source_location": "L1"
     },
     {
-      "id": "crear_kits",
-      "label": "crear-kits.py",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "json",
-      "file_type": "code",
-      "norm_label": "crear-kits.py",
-      "source_file": "crear-kits.py",
-      "source_location": "L1"
-    },
-    {
       "id": "subir_imagenes_ia",
       "label": "subir-imagenes-ia.py",
       "_origin": "ast",
@@ -1787,6 +1788,17 @@
       "file_type": "code",
       "norm_label": "subir-imagenes-ia.py",
       "source_file": "subir-imagenes-ia.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "vincular_codigo_b1",
+      "label": "vincular-codigo-b1.py",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "json",
+      "file_type": "code",
+      "norm_label": "vincular-codigo-b1.py",
+      "source_file": "vincular-codigo-b1.py",
       "source_location": "L1"
     },
     {
@@ -1834,28 +1846,6 @@
       "source_location": "L2"
     },
     {
-      "id": "crear_kits_rationale_192",
-      "label": "Reparte las piezas reales entre combos y kits; corrige con --aplicar.",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "json",
-      "file_type": "rationale",
-      "norm_label": "reparte las piezas reales entre combos y kits; corrige con --aplicar.",
-      "source_file": "crear-kits.py",
-      "source_location": "L192"
-    },
-    {
-      "id": "crear_kits_rationale_2",
-      "label": "Kits \"listos para pescar\" (MANUAL \u00a769, ANALISIS-ESTRATEGICO-30-SEP.md). Por qu\u00e9\u2026",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "json",
-      "file_type": "rationale",
-      "norm_label": "kits \"listos para pescar\" (manual \u00a769, analisis-estrategico-30-sep.md). por que...",
-      "source_file": "crear-kits.py",
-      "source_location": "L2"
-    },
-    {
       "id": "subir_imagenes_ia_rationale_2",
       "label": "Sube a Shopify las im\u00e1genes de ambiente hechas con IA (Higgsfield, MANUAL\u2026",
       "_origin": "ast",
@@ -1864,6 +1854,17 @@
       "file_type": "rationale",
       "norm_label": "sube a shopify las imagenes de ambiente hechas con ia (higgsfield, manual...",
       "source_file": "subir-imagenes-ia.py",
+      "source_location": "L2"
+    },
+    {
+      "id": "vincular_codigo_b1_rationale_2",
+      "label": "Guarda el \"Codigo B1\" del POS en el campo `barcode` de cada producto de\u2026",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "json",
+      "file_type": "rationale",
+      "norm_label": "guarda el \"codigo b1\" del pos en el campo `barcode` de cada producto de...",
+      "source_file": "vincular-codigo-b1.py",
       "source_location": "L2"
     },
     {
@@ -1933,17 +1934,6 @@
       "source_location": "L1"
     },
     {
-      "id": "vincular_codigo_b1",
-      "label": "vincular-codigo-b1.py",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "sys",
-      "file_type": "code",
-      "norm_label": "vincular-codigo-b1.py",
-      "source_file": "vincular-codigo-b1.py",
-      "source_location": "L1"
-    },
-    {
       "id": "sincronizar_canal_meta_rationale_161",
       "label": "Prohibido por coleccion O por nombre. La red de colecciones sola NO alcanza, y\u2026",
       "_origin": "ast",
@@ -1966,14 +1956,36 @@
       "source_location": "L2"
     },
     {
-      "id": "vincular_codigo_b1_rationale_2",
-      "label": "Guarda el \"Codigo B1\" del POS en el campo `barcode` de cada producto de\u2026",
+      "id": "crear_kits",
+      "label": "crear-kits.py",
       "_origin": "ast",
-      "community": 6,
-      "community_name": "sys",
+      "community": 7,
+      "community_name": "crear-kits.py",
+      "file_type": "code",
+      "norm_label": "crear-kits.py",
+      "source_file": "crear-kits.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "crear_kits_rationale_192",
+      "label": "Reparte las piezas reales entre combos y kits; corrige con --aplicar.",
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "crear-kits.py",
       "file_type": "rationale",
-      "norm_label": "guarda el \"codigo b1\" del pos en el campo `barcode` de cada producto de...",
-      "source_file": "vincular-codigo-b1.py",
+      "norm_label": "reparte las piezas reales entre combos y kits; corrige con --aplicar.",
+      "source_file": "crear-kits.py",
+      "source_location": "L192"
+    },
+    {
+      "id": "crear_kits_rationale_2",
+      "label": "Kits \"listos para pescar\" (MANUAL \u00a769, ANALISIS-ESTRATEGICO-30-SEP.md). Por qu\u00e9\u2026",
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "crear-kits.py",
+      "file_type": "rationale",
+      "norm_label": "kits \"listos para pescar\" (manual \u00a769, analisis-estrategico-30-sep.md). por que...",
+      "source_file": "crear-kits.py",
       "source_location": "L2"
     },
     {
@@ -2185,17 +2197,6 @@
       "type": "external"
     },
     {
-      "id": "base64",
-      "label": "base64",
-      "community": 1,
-      "community_name": "deploy-shopify.py",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "base64",
-      "source_file": "",
-      "type": "external"
-    },
-    {
       "id": "subprocess",
       "label": "subprocess",
       "community": 1,
@@ -2295,6 +2296,17 @@
       "type": "external"
     },
     {
+      "id": "base64",
+      "label": "base64",
+      "community": 13,
+      "community_name": "cargar-imagenes-productos.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "base64",
+      "source_file": "",
+      "type": "external"
+    },
+    {
       "id": "os",
       "label": "os",
       "community": 13,
@@ -2335,6 +2347,17 @@
       "external": true,
       "file_type": "concept",
       "norm_label": "json",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "openpyxl",
+      "label": "openpyxl",
+      "community": 4,
+      "community_name": "json",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "openpyxl",
       "source_file": "",
       "type": "external"
     },
@@ -2405,28 +2428,6 @@
       "type": "external"
     },
     {
-      "id": "argparse",
-      "label": "argparse",
-      "community": 6,
-      "community_name": "sys",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "argparse",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "openpyxl",
-      "label": "openpyxl",
-      "community": 6,
-      "community_name": "sys",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "openpyxl",
-      "source_file": "",
-      "type": "external"
-    },
-    {
       "id": "sys",
       "label": "sys",
       "community": 6,
@@ -2434,6 +2435,17 @@
       "external": true,
       "file_type": "concept",
       "norm_label": "sys",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "argparse",
+      "label": "argparse",
+      "community": 9,
+      "community_name": "prueba-tarjetas-coleccion.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "argparse",
       "source_file": "",
       "type": "external"
     },
@@ -3347,6 +3359,18 @@
       "context": "call",
       "source_file": "crear-kits.py",
       "source_location": "L261",
+      "weight": 1.0
+    },
+    {
+      "source": "crear_kits_main_cuerpo_html",
+      "target": "crear_kits_main_tachado",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "crear-kits.py",
+      "source_location": "L314",
       "weight": 1.0
     },
     {
@@ -4923,6 +4947,18 @@
     },
     {
       "source": "crear_kits_main",
+      "target": "crear_kits_main_tachado",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "crear-kits.py",
+      "source_location": "L303",
+      "weight": 1.0
+    },
+    {
+      "source": "crear_kits_main",
       "target": "crear_kits_main_cuerpo_html",
       "relation": "contains",
       "_origin": "ast",
@@ -4930,7 +4966,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "crear-kits.py",
-      "source_location": "L299",
+      "source_location": "L307",
       "weight": 1.0
     },
     {
@@ -8110,5 +8146,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "831add327c3a3b6ad1576468420d5a95796f8d06"
+  "built_at_commit": "23ec917d6b350b69f2bc962898a3d56126baffa0"
 }

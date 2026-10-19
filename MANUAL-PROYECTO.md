@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 18 de octubre de 2026 (sección 99)
+**Última actualización:** 19 de octubre de 2026 (sección 100)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -127,6 +127,7 @@ como respaldo
 97. [Corte del 18 oct: resumen de las imágenes con IA](#97-corte-del-18-oct-resumen-de-las-imágenes-con-ia)
 98. [Revisión de la campaña a mitad del corte (18 oct)](#98-revisión-de-la-campaña-a-mitad-del-corte-18-oct)
 99. [Por qué casi nadie agrega al carrito (18 oct)](#99-por-qué-casi-nadie-agrega-al-carrito-18-oct)
+100. [Arreglos para que agreguen al carrito, aplicados a mitad de la prueba (19 oct)](#100-arreglos-para-que-agreguen-al-carrito-aplicados-a-mitad-de-la-prueba-19-oct)
 
 ---
 
@@ -10218,3 +10219,90 @@ No se tocó la campaña ni el tema.
 
 **Graphify:** sin cambios. No hubo código nuevo en el repositorio; los
 scripts de diagnóstico quedaron en el scratchpad.
+
+## 100. Arreglos para que agreguen al carrito, aplicados a mitad de la prueba (19 oct)
+
+El dueño aprobó aplicar ya las recomendaciones 1, 2 y 4 de §99: *"no
+vale la pena seguir perdiendo dinero"*. Se aplicaron el 19 oct a las
+~02:55 UTC (18 oct, 20:55 hora de la cuenta). Al momento del cambio, la
+campaña llevaba $334.61.
+
+> ⚠️ La prueba de $600 queda partida en dos: antes y después del
+> cambio. El corte del 21 oct ahora reporta el total y, por separado, el
+> tramo desde el 19 oct.
+
+### 1. Barra de compra desde la primera pantalla y logo más chico
+
+- **`snippets/im-barra-compra.liquid`:** la barra fija se ve siempre que
+  el botón original *no* está en pantalla, tanto antes de llegar a él
+  como después de pasarlo. Solo se esconde mientras el botón original
+  se ve, para que no haya dos botones juntos. Las burbujas de WhatsApp
+  y Cartucho siguen como antes: escondidas hasta pasar el botón. Se
+  agregó `padding-bottom` al `body` de la ficha para que la barra no
+  tape el pie de página.
+- **`assets/brand-tokens.css`:** en celular el logo pasa de 96 a 62 px
+  de ancho. El botón original sube unos 19 px; la ganancia real está en
+  la barra.
+- Se desplegó con `deploy-shopify.py`, solo esos 2 archivos.
+- **Prueba:** navegador de Facebook (iOS 390×844 en 6 fichas, Android
+  412×915 en 2), con el pixel bloqueado:
+  - la barra está visible al cargar;
+  - se esconde con el botón original en pantalla y vuelve al pasarlo;
+  - las burbujas aparecen solo al pasar el botón;
+  - al tocar la barra en la primera pantalla, el producto entra al
+    carrito (8/8) y se abre el cajón;
+  - sin errores de JavaScript.
+
+  El carrito se vació después de cada prueba.
+
+### 2. Conjunto de productos del anuncio
+
+El conjunto `2097987747472219` se renombró a "IMX | Kits, combos Okuma y
+binoculares | Oct19". Tiene **11 productos**:
+
+| Entran | Salen |
+|---|---|
+| 5 kits (Fresh, Clarus, Tundra Pro, Revenger, Tolten) | Carrete Sienna FG 4000 ($48.79 gastados, 0 compras) |
+| Combo Okuma Revenger 2.45 m · $999 (`43219563315277`) | Monocular KonuSmall-2 ($44.99) |
+| Combo Okuma Boundary 7'0" · $999 (`43219563085901`) | Monocular KonuSmall-3 ($24.99) |
+| Combo Okuma Revenger 2.40 m · $999 (`43510764634189`) | Binocular Kampak ($27.17) |
+| Binoculares Simmons $1,290, Bushnell $1,450 y Gamo $1,970 (se quedan) | Binocular Konus NewZoom $3,400 ($3.90; mismo caso que los Konus caros) |
+
+- Los 3 binoculares baratos se quedaron porque el texto del anuncio
+  dice "Binoculares para campo y caza". Así no hubo que tocar el
+  creativo, lo que habría mandado el anuncio a revisión otra vez.
+- Todos cuestan $999 o más, así que "Envío gratis" sigue siendo cierto.
+- ⚠️ Los combos dejan $205–$255. Eso queda **abajo** de la regla de
+  ≥ $300 de §68. Se metieron porque son los que mejor convertían, y el
+  dueño lo aprobó.
+- Los conjuntos de anuncios y los anuncios no se tocaron: siguen
+  ACTIVE.
+
+### 4. Kit Fresh sin precio tachado
+
+- Se quitó `compare_at_price` ($1,220.10) y la línea "Por separado suma
+  $1,220.10" de la descripción. El precio sigue en $1,199.
+- Respaldo del producto antes del cambio en el scratchpad
+  (`fresh-respaldo-19oct.json`).
+- Ficha en vivo verificada: `compare_at_price: null` y sin el texto.
+- **`scripts/crear-kits.py`:** ahora solo pone precio tachado y "por
+  separado" si el ahorro es de **$100 o más** (`AHORRO_MINIMO`). Así,
+  un `--actualizar` no lo vuelve a poner.
+
+### La recomendación 3 (precios de sueltos) sigue con el dueño
+
+No se aplicó. Ya no urge para el anuncio, porque los sueltos caros
+salieron del conjunto.
+
+### Seguimiento
+
+La tarea del corte (`trig_017pQPsVwrXo54x3ifh5W27s`, 21 oct 16:00 UTC)
+se reescribió para:
+
+- reportar el total desde el 15 oct **y** el tramo desde el 19 oct, con
+  desglose por producto;
+- aplicar la regla sobre el total;
+- **preguntar al dueño antes de pausar** si el tramo nuevo se ve
+  claramente mejor pero el total no cumple.
+
+**Graphify:** actualizado en `scripts/` y en `tema-shopify/`.

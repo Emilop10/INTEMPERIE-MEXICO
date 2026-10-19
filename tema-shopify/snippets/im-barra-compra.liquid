@@ -4,17 +4,22 @@
   Razón de existir: en un iPhone de 390×844, el botón "Agregar al carrito"
   queda entre 1,080 y 1,200px de alto (medido en 4 fichas), o sea fuera
   de la primera pantalla. El 99% del tráfico de la campaña llega desde el
-  navegador de Facebook en celular. Esta barra aparece solo cuando el
-  botón original sale de la pantalla, y se esconde cuando vuelve a verse.
+  navegador de Facebook en celular. Esta barra se ve desde la primera
+  pantalla y solo se esconde mientras el botón original está a la vista,
+  para que nunca haya dos botones juntos.
+
+  Hasta el 19 oct aparecía solo *después* de pasar el botón, así que la
+  primera pantalla no tenía ninguna acción de compra: 1 carrito en 154
+  vistas (MANUAL §99-§100).
 
   No tiene lógica de carrito propia: el botón hace click() sobre el botón
   real del formulario de Dawn (#ProductSubmitButton-…). Así el carrito
   lateral, las variantes y el evento AddToCart del pixel siguen pasando
   por el único camino que ya está probado (§55, §66).
 
-  Mientras la barra está visible, sube las burbujas de WhatsApp y de
-  Cartucho (Zipchat, que vive en un shadow DOM abierto) para que no la
-  tapen.
+  Las burbujas de WhatsApp y de Cartucho (Zipchat, que vive en un shadow
+  DOM abierto) siguen escondidas hasta pasar el botón original, como
+  antes; desde ahí suben para no tapar la barra.
 
   Parámetros: product, section_id
 {%- endcomment -%}
@@ -104,6 +109,11 @@
       body.im-barra-activa .im-wa {
         bottom: calc(84px + env(safe-area-inset-bottom, 0px) + var(--im-bajo, 0px));
       }
+      /* La barra ya vive desde el inicio: el pie de página no debe quedar
+         tapado al llegar hasta abajo. */
+      body.im-ficha {
+        padding-bottom: calc(70px + env(safe-area-inset-bottom, 0px) + var(--im-bajo, 0px));
+      }
     }
     @media (prefers-reduced-motion: reduce) {
       .im-barra-compra, body.im-barra-activa .im-wa { transition: none; }
@@ -134,21 +144,26 @@
         return host;
       }
 
-      function mostrar(si) {
+      // si: la barra se ve. pasado: el botón original ya quedó arriba
+      // (solo entonces aparecen las burbujas, encima de la barra).
+      var estado = { si: false, pasado: false };
+      function mostrar(si, pasado) {
+        estado = { si: si, pasado: pasado };
         var ver = si && movil.matches;
+        var sube = pasado && movil.matches;
         barra.hidden = false;
         barra.classList.toggle('is-visible', ver);
         barra.setAttribute('aria-hidden', ver ? 'false' : 'true');
         boton.tabIndex = ver ? 0 : -1;
-        document.body.classList.toggle('im-barra-activa', ver);
+        document.body.classList.toggle('im-barra-activa', sube);
         var host = prepararZipchat();
         if (host) {
-          host.classList.toggle('im-sube', ver);
+          host.classList.toggle('im-sube', sube);
           // Solo se esconde el lanzador cerrado (~64px): si el cliente ya
           // abrió el chat, nunca se le oculta al subir por la página.
           var cont = host.shadowRoot && host.shadowRoot.getElementById('widget-chat-container');
           var cerrado = !cont || cont.getBoundingClientRect().height < 100;
-          host.classList.toggle('im-oculta', movil.matches && !ver && cerrado);
+          host.classList.toggle('im-oculta', movil.matches && !sube && cerrado);
         }
       }
       document.body.classList.add('im-ficha');
@@ -157,15 +172,15 @@
       var espera = setInterval(function () {
         if (prepararZipchat() || ++intentos > 20) {
           clearInterval(espera);
-          mostrar(barra.classList.contains('is-visible'));
+          mostrar(estado.si, estado.pasado);
         }
       }, 500);
 
-      // Visible solo cuando el botón real ya se pasó hacia arriba (no
-      // mientras todavía está abajo, antes de llegar a él).
+      // Visible siempre que el botón real no esté en pantalla: antes de
+      // llegar a él (primera pantalla) y después de pasarlo.
       new IntersectionObserver(function (entradas) {
         var e = entradas[0];
-        mostrar(!e.isIntersecting && e.boundingClientRect.top < 0);
+        mostrar(!e.isIntersecting, !e.isIntersecting && e.boundingClientRect.top < 0);
       }).observe(original);
 
       boton.addEventListener('click', function () {

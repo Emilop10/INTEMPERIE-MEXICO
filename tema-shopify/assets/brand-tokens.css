@@ -189,6 +189,17 @@ a.button {
   object-fit: contain;
 }
 
+/* En celular el logo de 96px empujaba la foto y el precio hacia abajo:
+   casi todo el tráfico de la campaña llega desde el navegador de Facebook
+   en celular (MANUAL §100). */
+@media screen and (max-width: 749px) {
+  .header__heading-logo-wrapper {
+    width: 62px !important;
+    padding: 4px 6px;
+    border-radius: 12px;
+  }
+}
+
 .header__inline-menu .header__menu-item {
   font-family: var(--font-body-family);
   font-size: 1.3rem;

@@ -296,6 +296,14 @@ def main():
     actualizar = "--actualizar" in sys.argv
     loc = api("GET", "locations.json", token, tienda)["locations"][0]["id"]
 
+    # Un ahorro chico se ve peor que no mostrar ninguno: el Kit Fresh
+    # mostraba "por separado $1,220.10" contra $1,199 (MANUAL §100).
+    AHORRO_MINIMO = 100
+
+    def tachado(kit):
+        ahorro = kit["separado"] - float(kit["precio"])
+        return f"{kit['separado']:.2f}" if ahorro >= AHORRO_MINIMO else None
+
     def cuerpo_html(kit):
         incluye = "".join(f"<li>{q} × {cache[h]['titulo']}</li>" for h, q in kit["piezas"])
         return (
@@ -303,7 +311,8 @@ def main():
             "Caña, carrete, hilo y los accesorios que se acaban primero, elegidos para trabajar juntos.</p>"
             f"<p>{kit['uso']}</p>"
             f"<p><strong>Incluye:</strong></p><ul>{incluye}</ul>"
-            f"<p>Por separado suma ${kit['separado']:,.2f}. <strong>Envío gratis a todo México.</strong></p>"
+            + (f"<p>Por separado suma ${kit['separado']:,.2f}. " if tachado(kit) else "<p>")
+            + "<strong>Envío gratis a todo México.</strong></p>"
         )
 
     for kit in KITS:
@@ -318,7 +327,7 @@ def main():
             api("PUT", f"products/{existente['id']}.json", token, tienda, {"product": {
                 "id": existente["id"], "title": kit["titulo"], "body_html": cuerpo_html(kit)}})
             api("PUT", f"variants/{v['id']}.json", token, tienda, {"variant": {
-                "id": v["id"], "price": kit["precio"], "compare_at_price": f"{kit['separado']:.2f}"}})
+                "id": v["id"], "price": kit["precio"], "compare_at_price": tachado(kit)}})
             api("PUT", f"inventory_items/{v['inventory_item_id']}.json", token, tienda, {"inventory_item": {
                 "id": v["inventory_item_id"], "cost": f"{kit['costo']:.2f}"}})
             api("POST", "inventory_levels/set.json", token, tienda, {
@@ -337,7 +346,7 @@ def main():
             "body_html": cuerpo_html(kit),
             "variants": [{
                 "price": kit["precio"],
-                "compare_at_price": f"{kit['separado']:.2f}",
+                "compare_at_price": tachado(kit),
                 "inventory_management": "shopify",
                 "inventory_policy": "deny",
                 "requires_shipping": True,
