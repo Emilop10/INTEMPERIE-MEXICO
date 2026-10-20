@@ -331,6 +331,102 @@
       "source_location": "L90"
     },
     {
+      "id": "campana_retargeting_oct20_main",
+      "label": "main()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "sys",
+      "file_type": "code",
+      "norm_label": "main()",
+      "source_file": "campana-retargeting-oct20.py",
+      "source_location": "L69"
+    },
+    {
+      "id": "campana_retargeting_oct20_textos",
+      "label": "textos()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "sys",
+      "file_type": "code",
+      "norm_label": "textos()",
+      "source_file": "campana-retargeting-oct20.py",
+      "source_location": "L41"
+    },
+    {
+      "id": "sincronizar_canal_meta_aplicar",
+      "label": "aplicar()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "sys",
+      "file_type": "code",
+      "norm_label": "aplicar()",
+      "source_file": "sincronizar-canal-meta.py",
+      "source_location": "L213"
+    },
+    {
+      "id": "sincronizar_canal_meta_es_prohibido",
+      "label": "es_prohibido()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "sys",
+      "file_type": "code",
+      "norm_label": "es_prohibido()",
+      "source_file": "sincronizar-canal-meta.py",
+      "source_location": "L160"
+    },
+    {
+      "id": "sincronizar_canal_meta_gql",
+      "label": "gql()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "sys",
+      "file_type": "code",
+      "norm_label": "gql()",
+      "source_file": "sincronizar-canal-meta.py",
+      "source_location": "L80"
+    },
+    {
+      "id": "sincronizar_canal_meta_main",
+      "label": "main()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "sys",
+      "file_type": "code",
+      "norm_label": "main()",
+      "source_file": "sincronizar-canal-meta.py",
+      "source_location": "L224"
+    },
+    {
+      "id": "sincronizar_canal_meta_resolver_canal",
+      "label": "resolver_canal()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "sys",
+      "file_type": "code",
+      "norm_label": "resolver_canal()",
+      "source_file": "sincronizar-canal-meta.py",
+      "source_location": "L112"
+    },
+    {
+      "id": "sincronizar_canal_meta_traer_productos",
+      "label": "traer_productos()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "sys",
+      "file_type": "code",
+      "norm_label": "traer_productos()",
+      "source_file": "sincronizar-canal-meta.py",
+      "source_location": "L126"
+    },
+    {
       "id": "cargar_imagenes_productos_api",
       "label": "api()",
       "_callable": true,
@@ -761,78 +857,6 @@
       "norm_label": "main()",
       "source_file": "crear-combos.py",
       "source_location": "L153"
-    },
-    {
-      "id": "sincronizar_canal_meta_aplicar",
-      "label": "aplicar()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "json",
-      "file_type": "code",
-      "norm_label": "aplicar()",
-      "source_file": "sincronizar-canal-meta.py",
-      "source_location": "L213"
-    },
-    {
-      "id": "sincronizar_canal_meta_es_prohibido",
-      "label": "es_prohibido()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "json",
-      "file_type": "code",
-      "norm_label": "es_prohibido()",
-      "source_file": "sincronizar-canal-meta.py",
-      "source_location": "L160"
-    },
-    {
-      "id": "sincronizar_canal_meta_gql",
-      "label": "gql()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "json",
-      "file_type": "code",
-      "norm_label": "gql()",
-      "source_file": "sincronizar-canal-meta.py",
-      "source_location": "L80"
-    },
-    {
-      "id": "sincronizar_canal_meta_main",
-      "label": "main()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "json",
-      "file_type": "code",
-      "norm_label": "main()",
-      "source_file": "sincronizar-canal-meta.py",
-      "source_location": "L224"
-    },
-    {
-      "id": "sincronizar_canal_meta_resolver_canal",
-      "label": "resolver_canal()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "json",
-      "file_type": "code",
-      "norm_label": "resolver_canal()",
-      "source_file": "sincronizar-canal-meta.py",
-      "source_location": "L112"
-    },
-    {
-      "id": "sincronizar_canal_meta_traer_productos",
-      "label": "traer_productos()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "json",
-      "file_type": "code",
-      "norm_label": "traer_productos()",
-      "source_file": "sincronizar-canal-meta.py",
-      "source_location": "L126"
     },
     {
       "id": "subir_imagenes_ia_api",
@@ -1560,6 +1584,61 @@
       "source_location": "L2"
     },
     {
+      "id": "campana_retargeting_oct20",
+      "label": "campana-retargeting-oct20.py",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "sys",
+      "file_type": "code",
+      "norm_label": "campana-retargeting-oct20.py",
+      "source_file": "campana-retargeting-oct20.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "sincronizar_canal_meta",
+      "label": "sincronizar-canal-meta.py",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "sys",
+      "file_type": "code",
+      "norm_label": "sincronizar-canal-meta.py",
+      "source_file": "sincronizar-canal-meta.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "campana_retargeting_oct20_rationale_2",
+      "label": "Retargeting con OTRA oferta (20 oct, MANUAL \u00a7105): a quien ya vio un producto y\u2026",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "sys",
+      "file_type": "rationale",
+      "norm_label": "retargeting con otra oferta (20 oct, manual \u00a7105): a quien ya vio un producto y...",
+      "source_file": "campana-retargeting-oct20.py",
+      "source_location": "L2"
+    },
+    {
+      "id": "sincronizar_canal_meta_rationale_161",
+      "label": "Prohibido por coleccion O por nombre. La red de colecciones sola NO alcanza, y\u2026",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "sys",
+      "file_type": "rationale",
+      "norm_label": "prohibido por coleccion o por nombre. la red de colecciones sola no alcanza, y...",
+      "source_file": "sincronizar-canal-meta.py",
+      "source_location": "L161"
+    },
+    {
+      "id": "sincronizar_canal_meta_rationale_2",
+      "label": "Deja el canal \"Facebook & Instagram\" de Shopify con los productos correctos.\u2026",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "sys",
+      "file_type": "rationale",
+      "norm_label": "deja el canal \"facebook & instagram\" de shopify con los productos correctos....",
+      "source_file": "sincronizar-canal-meta.py",
+      "source_location": "L2"
+    },
+    {
       "id": "cargar_imagenes_productos",
       "label": "cargar-imagenes-productos.py",
       "_origin": "ast",
@@ -1876,17 +1955,6 @@
       "source_location": "L1"
     },
     {
-      "id": "sincronizar_canal_meta",
-      "label": "sincronizar-canal-meta.py",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "json",
-      "file_type": "code",
-      "norm_label": "sincronizar-canal-meta.py",
-      "source_file": "sincronizar-canal-meta.py",
-      "source_location": "L1"
-    },
-    {
       "id": "subir_imagenes_ia",
       "label": "subir-imagenes-ia.py",
       "_origin": "ast",
@@ -1950,28 +2018,6 @@
       "file_type": "rationale",
       "norm_label": "crea los combos propuestos en combos-nuevos-pendientes.md. uso:...",
       "source_file": "crear-combos.py",
-      "source_location": "L2"
-    },
-    {
-      "id": "sincronizar_canal_meta_rationale_161",
-      "label": "Prohibido por coleccion O por nombre. La red de colecciones sola NO alcanza, y\u2026",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "json",
-      "file_type": "rationale",
-      "norm_label": "prohibido por coleccion o por nombre. la red de colecciones sola no alcanza, y...",
-      "source_file": "sincronizar-canal-meta.py",
-      "source_location": "L161"
-    },
-    {
-      "id": "sincronizar_canal_meta_rationale_2",
-      "label": "Deja el canal \"Facebook & Instagram\" de Shopify con los productos correctos.\u2026",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "json",
-      "file_type": "rationale",
-      "norm_label": "deja el canal \"facebook & instagram\" de shopify con los productos correctos....",
-      "source_file": "sincronizar-canal-meta.py",
       "source_location": "L2"
     },
     {
@@ -2458,6 +2504,28 @@
       "type": "external"
     },
     {
+      "id": "importlib_util",
+      "label": "importlib_util",
+      "community": 12,
+      "community_name": "sys",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "importlib_util",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "sys",
+      "label": "sys",
+      "community": 12,
+      "community_name": "sys",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "sys",
+      "source_file": "",
+      "type": "external"
+    },
+    {
       "id": "os",
       "label": "os",
       "community": 13,
@@ -2491,17 +2559,6 @@
       "type": "external"
     },
     {
-      "id": "argparse",
-      "label": "argparse",
-      "community": 4,
-      "community_name": "json",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "argparse",
-      "source_file": "",
-      "type": "external"
-    },
-    {
       "id": "json",
       "label": "json",
       "community": 4,
@@ -2509,17 +2566,6 @@
       "external": true,
       "file_type": "concept",
       "norm_label": "json",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "sys",
-      "label": "sys",
-      "community": 4,
-      "community_name": "json",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "sys",
       "source_file": "",
       "type": "external"
     },
@@ -2557,35 +2603,24 @@
       "type": "external"
     },
     {
-      "id": "importlib_util",
-      "label": "importlib_util",
+      "id": "io",
+      "label": "io",
       "community": 5,
       "community_name": "fotos-kits.py",
       "external": true,
       "file_type": "concept",
-      "norm_label": "importlib_util",
+      "norm_label": "io",
       "source_file": "",
       "type": "external"
     },
     {
       "id": "pil",
       "label": "pil",
-      "community": 5,
-      "community_name": "fotos-kits.py",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "pil",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "io",
-      "label": "io",
       "community": 6,
       "community_name": "campana-kits-oct19.py",
       "external": true,
       "file_type": "concept",
-      "norm_label": "io",
+      "norm_label": "pil",
       "source_file": "",
       "type": "external"
     },
@@ -2597,6 +2632,17 @@
       "external": true,
       "file_type": "concept",
       "norm_label": "urllib_parse",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "argparse",
+      "label": "argparse",
+      "community": 9,
+      "community_name": "prueba-tarjetas-coleccion.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "argparse",
       "source_file": "",
       "type": "external"
     },
@@ -2838,6 +2884,42 @@
       "context": "call",
       "source_file": "campana-kits-oct19.py",
       "source_location": "L116",
+      "weight": 1.0
+    },
+    {
+      "source": "campana_retargeting_oct20_main",
+      "target": "json",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "campana-retargeting-oct20.py",
+      "source_location": "L103",
+      "weight": 1.0
+    },
+    {
+      "source": "campana_retargeting_oct20_main",
+      "target": "sys",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "campana-retargeting-oct20.py",
+      "source_location": "L75",
+      "weight": 1.0
+    },
+    {
+      "source": "campana_retargeting_oct20_main",
+      "target": "campana_retargeting_oct20_textos",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "campana-retargeting-oct20.py",
+      "source_location": "L77",
       "weight": 1.0
     },
     {
@@ -5421,6 +5503,54 @@
       "weight": 1.0
     },
     {
+      "source": "campana_retargeting_oct20",
+      "target": "importlib_util",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "campana-retargeting-oct20.py",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "campana_retargeting_oct20",
+      "target": "json",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "campana-retargeting-oct20.py",
+      "source_location": "L27",
+      "weight": 1.0
+    },
+    {
+      "source": "campana_retargeting_oct20",
+      "target": "os",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "campana-retargeting-oct20.py",
+      "source_location": "L28",
+      "weight": 1.0
+    },
+    {
+      "source": "campana_retargeting_oct20",
+      "target": "sys",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "campana-retargeting-oct20.py",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
       "source": "cargar_fichas_tecnicas",
       "target": "json",
       "relation": "imports",
@@ -6829,6 +6959,28 @@
       "weight": 1.0
     },
     {
+      "source": "campana_retargeting_oct20",
+      "target": "campana_retargeting_oct20_textos",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "campana-retargeting-oct20.py",
+      "source_location": "L41",
+      "weight": 1.0
+    },
+    {
+      "source": "campana_retargeting_oct20",
+      "target": "campana_retargeting_oct20_main",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "campana-retargeting-oct20.py",
+      "source_location": "L69",
+      "weight": 1.0
+    },
+    {
       "source": "cargar_fichas_tecnicas",
       "target": "cargar_fichas_tecnicas_leer_metafield",
       "relation": "contains",
@@ -8127,6 +8279,17 @@
       "weight": 1.0
     },
     {
+      "source": "campana_retargeting_oct20_rationale_2",
+      "target": "campana_retargeting_oct20",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "campana-retargeting-oct20.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
       "source": "cargar_fichas_tecnicas_rationale_2",
       "target": "cargar_fichas_tecnicas",
       "relation": "rationale_for",
@@ -8741,5 +8904,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "74f50ac6f8d1191074de667ad4587bf024994218"
+  "built_at_commit": "1a69d1bde2c1819aa54a4e68346aed45dadb4d49"
 }

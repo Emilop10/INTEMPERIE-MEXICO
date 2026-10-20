@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 19 de octubre de 2026 (sección 104)
+**Última actualización:** 20 de octubre de 2026 (sección 105)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -132,6 +132,7 @@ como respaldo
 102. [Revisión visual de toda la tienda: tres arreglos (19 oct)](#102-revisión-visual-de-toda-la-tienda-tres-arreglos-19-oct)
 103. [Revisión de conversión: ahorro real, fecha de entrega y reseñas junto al precio (19 oct)](#103-revisión-de-conversión-ahorro-real-fecha-de-entrega-y-reseñas-junto-al-precio-19-oct)
 104. [Campaña v5 pausada y nueva ronda con foto fija, $1,200 (19 oct)](#104-campaña-v5-pausada-y-nueva-ronda-con-foto-fija-1200-19-oct)
+105. [Dónde se pierden las ventas: checkout, pagos abandonados y retargeting con otra oferta (20 oct)](#105-dónde-se-pierden-las-ventas-checkout-pagos-abandonados-y-retargeting-con-otra-oferta-20-oct)
 
 ---
 
@@ -10617,3 +10618,95 @@ los $400):
 volvió a correr a petición del dueño). **Merge:** no hace falta; la
 rama `claude/intemperie-mexico-audit-n3yxbs` es la rama principal del
 repositorio (HEAD del remoto) y está al día.
+
+## 105. Dónde se pierden las ventas: checkout, pagos abandonados y retargeting con otra oferta (20 oct)
+
+El dueño pidió investigar y proponer más formas de vender, con carta
+abierta sobre la página: "necesitamos empezar a tener ventas ya".
+
+### 1. El checkout, recorrido como cliente
+
+Se recorrió `/cart` → `/checkout` en celular (navegador de Facebook,
+pixel bloqueado) con datos de prueba ("PRUEBA CLAUDE NO ENVIAR",
+`prueba-claude@example.com`), hasta la pantalla de pago, **sin pagar**.
+Queda un checkout abandonado con esos datos; ignorarlo.
+
+| Qué | Resultado |
+|---|---|
+| Errores | Ninguno. Correo obligatorio, teléfono opcional, dirección completa |
+| Envío | "Envío estándar GRATIS" para $999 (único método) |
+| Pagos | Tarjeta de crédito (con selector de "Meses"), PayPal, Mercado Pago y "+5" más. Shopify Payments está desactivado desde agosto (§31–§33); la tarjeta la procesa Mercado Pago Tarjetas (§54) |
+| **Fecha de entrega** | **"mar 27 de oct – jue 29 de oct"** (5–7 días hábiles desde el 20 oct), mientras la ficha, la barra y los anuncios dicen "2 a 7 días hábiles" ("entre el 21 y el 28"). **Contradicción**: la fecha del checkout sale de los tiempos de manejo/tránsito del perfil de envío de Shopify (Configuración → Envíos), que la Admin API no expone. Lo tiene que ajustar el dueño (o confirmar cuál es la real para alinear la ficha) |
+| Efectivo | El OXXO/7-Eleven vive **dentro** de la opción "Mercado Pago"; en la pantalla no se ve la palabra OXXO |
+
+**Dato:** los dos únicos pedidos del año (24 ago $190.95 y 12 sep $849)
+se pagaron con **Mercado Pago Checkout Pro**, ninguno con tarjeta
+directa.
+
+**Arreglo en la página:** `snippets/pagos-aceptados.liquid` ahora dice
+"También en efectivo en OXXO y 7-Eleven: **elige Mercado Pago al
+pagar**". Desplegado y verificado en vivo.
+
+### 2. Pagos abandonados: 8 clientes reales con dirección escrita
+
+Desde el 1 ago hay 11 checkouts abandonados; 2 son pruebas (dominio
+`ilovemyemail.net`, 4 oct) y 1 corresponde al pedido del 12 sep. Quedan
+**8 reales, todos con correo, 3 con teléfono**, combos en su mayoría
+($738–$1,499). El correo automático de recuperación ya funciona (§77);
+lo que no se ha hecho es un contacto **personal**. Se entregó al dueño
+un CSV (fuera del repo, lleva datos personales) con nombre, contacto,
+productos y el enlace `abandoned_checkout_url` para terminar la compra.
+
+### 3. Retargeting con OTRA oferta (construido, en pausa)
+
+La v5-RT repetía el mismo carrusel a quienes ya lo vieron: 44 vistas, 0
+carritos. Esta vez se contestan objeciones y se ofrece la entrada:
+`scripts/campana-retargeting-oct20.py` (reutiliza las funciones de
+`campana-kits-oct19.py`).
+
+| Pieza | ID | Detalle |
+|---|---|---|
+| Campaña | `120250648101180175` | "IMX \| Ventas \| Retargeting \| Oct20", OUTCOME_SALES, presupuesto en el conjunto (`is_adset_budget_sharing_enabled: false`, obligatorio ahora) |
+| Conjunto | `120250648101560175` | **$20/día** (Meta rechaza menos de $18.59), público existente "Vieron producto 30 días (pixel)" `120250344355530175`, México, 18–65+, FB+IG, optimizado a COMPRA |
+| Anuncio objeciones | `120250648102380175` | Foto del kit Revenger. Envío gratis y fecha, pagos (tarjeta a meses, PayPal, OXXO eligiendo Mercado Pago), 7 días para cambios, garantía, WhatsApp. A `/collections/combos` |
+| Anuncio combo-999-rt | `120250648103360175` | "Si el kit completo te pareció mucho, empieza por aquí": combo Okuma $999 |
+
+**Quedó en PAUSA.** El clasificador de la sesión bloqueó el encendido
+("Real-World Transactions"); lo enciende el dueño con un "sí" o desde el
+Administrador. Comparte el tope de $1,200 con la ronda del 19 oct; con
+las dos activas el gasto diario sube a $120 y la ronda dura ~10 días.
+La tarea de cortes diarios ya contempla las dos campañas y aplica las
+reglas sobre el acumulado conjunto.
+
+### 4. Lo que se descartó, con números
+
+- **Kit de entrada más barato (~$799–$899):** con la caña Fresh ($349,
+  costo $191) y el carrete Gimbel S500 ($419, costo $235) más hilo y
+  anzuelos, el kit a $899 deja ~$190 después de los $238 de envío y
+  caja; a $799, ~$90. No vale la pena: los combos de $999 ya son la
+  entrada y dejan $205–$255.
+- **Shopify Payments / tarjetas:** no hay evidencia de que el cobro
+  falle (`eligible_for_payments: false` solo refleja que Shopify
+  Payments está apagado); sin acceso a intentos fallidos no se puede
+  afirmar más.
+
+### 5. Propuestas que dependen del dueño
+
+1. **Encender el retargeting** (arriba).
+2. **Alinear la fecha de entrega:** o se corrigen los tiempos en
+   Shopify → Configuración → Envíos (manejo 1 día + tránsito 1–6, como
+   dice la política, §76) para que el checkout diga lo mismo que la
+   ficha, o se cambia `settings.envio_tiempo` a "5 a 7 días hábiles" y
+   los anuncios. Mientras, el cliente ve dos fechas distintas.
+3. **Escribir a los 8 del CSV** por WhatsApp (3) y correo (8), con el
+   enlace de su carrito. Plantilla propuesta en el reporte al dueño.
+4. **Oferta real de lanzamiento, con fecha:** 10% en kits con código
+   hasta el 31 oct. Un kit de $1,549 deja $320; con 10% deja ~$165.
+   Combos no (dejarían ~$105). Si el dueño dice sí, se crea el
+   descuento y se usa como "otra oferta" en el retargeting.
+5. **Mercado Libre:** sigue abierto desde §76 (la cuenta vieja era del
+   papá). Es donde ya está la demanda de pesca en México; los kits y
+   combos con las fotos de IA se pueden listar en una tarde. Decisión
+   del dueño; los textos se preparan aquí.
+
+**Graphify:** actualizado en `scripts/` y `tema-shopify/`.

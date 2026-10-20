@@ -118,5 +118,11 @@
     "seen": 1792432155.9428241,
     "ast_hash": "26f2b1263abaeb6ff650ffe6509a2b36",
     "semantic_hash": ""
+  },
+  "campana-retargeting-oct20.py": {
+    "mtime": 1792520207.4739377,
+    "seen": 1792520388.1889606,
+    "ast_hash": "39e9104424c0f853cb145dfa1bc1d3b7",
+    "semantic_hash": ""
   }
 }

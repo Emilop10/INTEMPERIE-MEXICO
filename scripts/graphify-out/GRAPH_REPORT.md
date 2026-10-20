@@ -1,17 +1,17 @@
-# Graph Report - scripts  (2026-10-19)
+# Graph Report - scripts  (2026-10-20)
 
 ## Corpus Check
-- 18 files · ~41,180 words
+- 19 files · ~41,874 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 3 file(s) not represented in the graph (top: .ttf 3)
 
 ## Summary
-- 223 nodes · 524 edges · 13 communities
-- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 8 edges (avg confidence: 0.85)
+- 227 nodes · 534 edges · 14 communities
+- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 8 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `74f50ac6`
+- Built from commit: `1a69d1bd`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -28,6 +28,7 @@
 - prueba-tarjetas-coleccion.py
 - verificar-herramental.sh
 - generar-carta-bienvenida.py
+- sys
 - cargar-imagenes-productos.py
 
 ## God Nodes (most connected - your core abstractions)
@@ -45,19 +46,19 @@
 ## Surprising Connections (you probably didn't know these)
 - `meta()` --calls--> `json`  [EXTRACTED]
   campana-kits-oct19.py →   _Bridges community 6 → community 4_
+- `meta()` --calls--> `sys`  [EXTRACTED]
+  campana-kits-oct19.py →   _Bridges community 6 → community 12_
 - `subir_imagen()` --calls--> `base64`  [EXTRACTED]
   campana-kits-oct19.py →   _Bridges community 6 → community 1_
-- `parsear_documento()` --calls--> `re`  [EXTRACTED]
-  cargar-fichas-tecnicas.py →   _Bridges community 4 → community 13_
-- `multipart()` --calls--> `base64`  [EXTRACTED]
-  cargar-imagenes-productos.py →   _Bridges community 13 → community 1_
-- `api_get()` --calls--> `json`  [EXTRACTED]
-  conciliar-inventario.py →   _Bridges community 0 → community 4_
+- `subir_imagen()` --calls--> `io`  [EXTRACTED]
+  campana-kits-oct19.py →   _Bridges community 6 → community 5_
+- `main()` --calls--> `json`  [EXTRACTED]
+  campana-retargeting-oct20.py →   _Bridges community 12 → community 4_
 
 ## Import Cycles
 - None detected.
 
-## Communities (13 total, 0 thin omitted)
+## Communities (14 total, 0 thin omitted)
 
 ### Community 0 - "conciliar-inventario.py"
 Cohesion: 0.14
@@ -76,15 +77,15 @@ Cohesion: 0.20
 Nodes (15): api_request(), cmd_activar(), cmd_activos(), cmd_crear_campania(), cmd_listar(), cmd_pausar(), cmd_presupuesto(), cmd_reporte() (+7 more)
 
 ### Community 4 - "json"
-Cohesion: 0.13
-Nodes (22): api(), catalogo_por_handle(), leer_metafield(), main(), parsear_documento(), api(), buscar(), main() (+14 more)
+Cohesion: 0.16
+Nodes (16): api(), catalogo_por_handle(), leer_metafield(), main(), parsear_documento(), api(), buscar(), main() (+8 more)
 
 ### Community 5 - "fotos-kits.py"
-Cohesion: 0.19
+Cohesion: 0.22
 Nodes (11): api(), bajar(), corto(), datos_pieza(), enderezar(), envolver(), fuente(), main() (+3 more)
 
 ### Community 6 - "campana-kits-oct19.py"
-Cohesion: 0.24
+Cohesion: 0.23
 Nodes (8): cargar_productos(), main(), meta(), pesos(), shopify(), subir_imagen(), tarjeta(), textos()
 
 ### Community 7 - "crear-kits.py"
@@ -96,7 +97,7 @@ Cohesion: 0.39
 Nodes (7): bien(), falla(), MERCADOS, omite(), paso(), PLUGINS, instalar-entorno.sh script
 
 ### Community 9 - "prueba-tarjetas-coleccion.py"
-Cohesion: 0.36
+Cohesion: 0.33
 Nodes (5): armar_repro(), bajar(), buscar_chrome(), main(), medir()
 
 ### Community 10 - "verificar-herramental.sh"
@@ -106,6 +107,10 @@ Nodes (3): instalar_de(), marketplace_de(), verificar-herramental.sh script
 ### Community 11 - "generar-carta-bienvenida.py"
 Cohesion: 0.14
 Nodes (6): construir_story(), estilos(), generar_hoja_imprimible(), generar_tarjeta_unica(), main(), registrar_fuentes()
+
+### Community 12 - "sys"
+Cohesion: 0.25
+Nodes (8): main(), textos(), aplicar(), es_prohibido(), gql(), main(), resolver_canal(), traer_productos()
 
 ### Community 13 - "cargar-imagenes-productos.py"
 Cohesion: 0.14
@@ -118,7 +123,7 @@ Nodes (13): api(), catalogo_por_handle(), crear_carpetas(), dimensiones(), graph
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `main()` connect `cargar-imagenes-productos.py` to `deploy-shopify.py`, `json`?**
+- **Why does `main()` connect `cargar-imagenes-productos.py` to `prueba-tarjetas-coleccion.py`, `json`, `deploy-shopify.py`?**
   _High betweenness centrality (0.026) - this node is a cross-community bridge._
 - **What connects `MERCADOS`, `PLUGINS`, `Por que existe esto` to the rest of the system?**
   _8 weakly-connected nodes found - possible documentation gaps or missing edges._
@@ -126,9 +131,9 @@ _Questions this graph is uniquely positioned to answer:_
   _Cohesion score 0.1422924901185771 - nodes in this community are weakly interconnected._
 - **Why does `main()` connect `generar-carta-bienvenida.py` to `cargar-imagenes-productos.py`?**
   _High betweenness centrality (0.019) - this node is a cross-community bridge._
-- **Should `json` be split into smaller, more focused modules?**
-  _Cohesion score 0.1329268292682927 - nodes in this community are weakly interconnected._
-- **Why does `main()` connect `crear-kits.py` to `json`?**
-  _High betweenness centrality (0.018) - this node is a cross-community bridge._
 - **Should `generar-carta-bienvenida.py` be split into smaller, more focused modules?**
   _Cohesion score 0.14035087719298245 - nodes in this community are weakly interconnected._
+- **Why does `main()` connect `crear-kits.py` to `sys`, `json`?**
+  _High betweenness centrality (0.018) - this node is a cross-community bridge._
+- **Should `cargar-imagenes-productos.py` be split into smaller, more focused modules?**
+  _Cohesion score 0.13675213675213677 - nodes in this community are weakly interconnected._

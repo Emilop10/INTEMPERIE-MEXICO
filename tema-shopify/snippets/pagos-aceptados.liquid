@@ -41,7 +41,11 @@
     <span class="im-pagos-aceptados__extra">y Mercado Pago</span>
   </div>
   <div class="im-pagos-extra">
-    <span class="im-pagos-extra__item">También en efectivo: OXXO y 7-Eleven</span>
+    {%- comment -%}
+      El efectivo vive dentro de "Mercado Pago" en la pantalla de pago y
+      nadie lo encontraba (MANUAL §105): se dice dónde elegirlo.
+    {%- endcomment -%}
+    <span class="im-pagos-extra__item">También en efectivo en OXXO y 7-Eleven: elige Mercado Pago al pagar</span>
     {%- if monto_centavos and monto_centavos >= settings.msi_minimo_centavos -%}
       <span class="im-pagos-extra__item">Meses sin intereses con tarjetas participantes</span>
     {%- endif -%}
