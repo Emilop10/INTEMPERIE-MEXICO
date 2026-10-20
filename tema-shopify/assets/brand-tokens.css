@@ -531,6 +531,18 @@ variant-selects .select__select {
 }
 .im-resenas-tienda__estrellas .is-vacia { color: rgba(255, 255, 255, 0.22); }
 
+/* Aviso de lanzamiento en la ficha de los kits (MANUAL §106). Mismo tono que
+   la línea de envío; la negrita en verde es lo único que llama la atención. */
+.im-lanzamiento {
+  margin: 4px 0 0;
+  font-family: var(--font-body-family);
+  font-size: 14px;
+  line-height: 1.45;
+  color: #D9D9DE;
+}
+.im-lanzamiento strong { color: #57B58A; font-weight: 600; }
+.im-promesas__item--lanzamiento { color: #57B58A; }
+
 /* Nota de confianza en la ficha de producto (reemplaza un recuadro claro con
    estilos en línea que no seguía el sistema de diseño de la tienda) */
 .im-trust-note {

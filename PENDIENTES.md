@@ -29,11 +29,18 @@
      - 20 oct 08:49: $64, 24 vistas, 1 carrito, 0 compras; sin corte.
        Para el corte de $400: Instagram sale carísimo (CPM ~$200, 0
        clics) y 45–54 gasta sin carritos (MANUAL §104).
-   - **20 oct (MANUAL §105), decisiones del dueño pendientes:** encender
-     el retargeting (campaña `120250648101180175`, en pausa, $20/día);
-     alinear la fecha de entrega (checkout dice 27–29 oct, ficha dice
-     21–28); escribir a los 8 pagos abandonados del CSV; 10% en kits
-     hasta el 31 oct (sí/no); abrir Mercado Libre (sí/no).
+   - **20 oct (MANUAL §105–§106). Hecho:** kits con 10% menos hasta el
+     31 oct (precio bajado, tachado real; se restaura solo el 1 nov,
+     `trig_01WGwf8uZX2iAgkSVBdRSBcm`), aviso en fichas y barra, OXXO
+     explicado, retargeting construido, 4 anuncios "-lanz" creados en
+     pausa, `MERCADO-LIBRE-LISTADOS.md`. **Lo que enciende el dueño en
+     el Administrador:** campaña "Retargeting | Oct20"; anuncios
+     `…-lanz` (y apagar tundra-valor, revenger-presa-rio, carrusel-kits;
+     luego `anuncios-lanzamiento-oct20.py --pausar-viejos` si prefiere).
+     **Lo que hace el dueño en Shopify:** tiempos de envío (manejo 1 +
+     tránsito 1–6) para que el checkout diga lo mismo que la ficha;
+     correo a suscriptores; WhatsApp/correo a los 8 del CSV; Mercado
+     Libre; resurtir.
    - **19 oct (MANUAL §100):** ya se aplicaron, a mitad de la prueba,
      la barra de compra desde la primera pantalla, el logo chico, el
      conjunto nuevo (5 kits + 3 combos Okuma de $999 + 3 binoculares

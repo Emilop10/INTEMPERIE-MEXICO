@@ -331,6 +331,30 @@
       "source_location": "L90"
     },
     {
+      "id": "anuncios_lanzamiento_oct20_main",
+      "label": "main()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "sys",
+      "file_type": "code",
+      "norm_label": "main()",
+      "source_file": "anuncios-lanzamiento-oct20.py",
+      "source_location": "L65"
+    },
+    {
+      "id": "anuncios_lanzamiento_oct20_textos",
+      "label": "textos()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "sys",
+      "file_type": "code",
+      "norm_label": "textos()",
+      "source_file": "anuncios-lanzamiento-oct20.py",
+      "source_location": "L38"
+    },
+    {
       "id": "campana_retargeting_oct20_main",
       "label": "main()",
       "_callable": true,
@@ -1584,6 +1608,17 @@
       "source_location": "L2"
     },
     {
+      "id": "anuncios_lanzamiento_oct20",
+      "label": "anuncios-lanzamiento-oct20.py",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "sys",
+      "file_type": "code",
+      "norm_label": "anuncios-lanzamiento-oct20.py",
+      "source_file": "anuncios-lanzamiento-oct20.py",
+      "source_location": "L1"
+    },
+    {
       "id": "campana_retargeting_oct20",
       "label": "campana-retargeting-oct20.py",
       "_origin": "ast",
@@ -1604,6 +1639,17 @@
       "norm_label": "sincronizar-canal-meta.py",
       "source_file": "sincronizar-canal-meta.py",
       "source_location": "L1"
+    },
+    {
+      "id": "anuncios_lanzamiento_oct20_rationale_2",
+      "label": "Anuncios del lanzamiento (20 oct, MANUAL \u00a7106): los 5 kits bajaron 10% hasta el\u2026",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "sys",
+      "file_type": "rationale",
+      "norm_label": "anuncios del lanzamiento (20 oct, manual \u00a7106): los 5 kits bajaron 10% hasta el...",
+      "source_file": "anuncios-lanzamiento-oct20.py",
+      "source_location": "L2"
     },
     {
       "id": "campana_retargeting_oct20_rationale_2",
@@ -2616,8 +2662,8 @@
     {
       "id": "pil",
       "label": "pil",
-      "community": 6,
-      "community_name": "campana-kits-oct19.py",
+      "community": 5,
+      "community_name": "fotos-kits.py",
       "external": true,
       "file_type": "concept",
       "norm_label": "pil",
@@ -2670,6 +2716,42 @@
     }
   ],
   "links": [
+    {
+      "source": "anuncios_lanzamiento_oct20_main",
+      "target": "sys",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "anuncios-lanzamiento-oct20.py",
+      "source_location": "L69",
+      "weight": 1.0
+    },
+    {
+      "source": "anuncios_lanzamiento_oct20_main",
+      "target": "anuncios_lanzamiento_oct20_textos",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "anuncios-lanzamiento-oct20.py",
+      "source_location": "L73",
+      "weight": 1.0
+    },
+    {
+      "source": "anuncios_lanzamiento_oct20_main",
+      "target": "json",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "anuncios-lanzamiento-oct20.py",
+      "source_location": "L88",
+      "weight": 1.0
+    },
     {
       "source": "campana_kits_oct19_cargar_productos",
       "target": "campana_kits_oct19_shopify",
@@ -5419,6 +5501,54 @@
       "weight": 1.0
     },
     {
+      "source": "anuncios_lanzamiento_oct20",
+      "target": "importlib_util",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "anuncios-lanzamiento-oct20.py",
+      "source_location": "L20",
+      "weight": 1.0
+    },
+    {
+      "source": "anuncios_lanzamiento_oct20",
+      "target": "json",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "anuncios-lanzamiento-oct20.py",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "anuncios_lanzamiento_oct20",
+      "target": "os",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "anuncios-lanzamiento-oct20.py",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "anuncios_lanzamiento_oct20",
+      "target": "sys",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "anuncios-lanzamiento-oct20.py",
+      "source_location": "L23",
+      "weight": 1.0
+    },
+    {
       "source": "campana_kits_oct19",
       "target": "base64",
       "relation": "imports",
@@ -6871,6 +7001,28 @@
       "weight": 1.0
     },
     {
+      "source": "anuncios_lanzamiento_oct20",
+      "target": "anuncios_lanzamiento_oct20_textos",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "anuncios-lanzamiento-oct20.py",
+      "source_location": "L38",
+      "weight": 1.0
+    },
+    {
+      "source": "anuncios_lanzamiento_oct20",
+      "target": "anuncios_lanzamiento_oct20_main",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "anuncios-lanzamiento-oct20.py",
+      "source_location": "L65",
+      "weight": 1.0
+    },
+    {
       "source": "campana_kits_oct19",
       "target": "campana_kits_oct19_textos",
       "relation": "contains",
@@ -8235,6 +8387,17 @@
       "weight": 1.0
     },
     {
+      "source": "anuncios_lanzamiento_oct20_rationale_2",
+      "target": "anuncios_lanzamiento_oct20",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "anuncios-lanzamiento-oct20.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
       "source": "campana_kits_oct19_rationale_108",
       "target": "campana_kits_oct19_textos",
       "relation": "rationale_for",
@@ -8904,5 +9067,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "1a69d1bde2c1819aa54a4e68346aed45dadb4d49"
+  "built_at_commit": "3f67ea415eae333e4b0b316c007db2cf9e5a3003"
 }

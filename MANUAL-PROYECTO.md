@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 20 de octubre de 2026 (sección 105)
+**Última actualización:** 20 de octubre de 2026 (sección 106)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -133,6 +133,7 @@ como respaldo
 103. [Revisión de conversión: ahorro real, fecha de entrega y reseñas junto al precio (19 oct)](#103-revisión-de-conversión-ahorro-real-fecha-de-entrega-y-reseñas-junto-al-precio-19-oct)
 104. [Campaña v5 pausada y nueva ronda con foto fija, $1,200 (19 oct)](#104-campaña-v5-pausada-y-nueva-ronda-con-foto-fija-1200-19-oct)
 105. [Dónde se pierden las ventas: checkout, pagos abandonados y retargeting con otra oferta (20 oct)](#105-dónde-se-pierden-las-ventas-checkout-pagos-abandonados-y-retargeting-con-otra-oferta-20-oct)
+106. ["Vender YA": lanzamiento de kits con 10% menos, anuncios nuevos y lo que quedó en manos del dueño (20 oct)](#106-vender-ya-lanzamiento-de-kits-con-10-menos-anuncios-nuevos-y-lo-que-quedó-en-manos-del-dueño-20-oct)
 
 ---
 
@@ -10708,5 +10709,77 @@ reglas sobre el acumulado conjunto.
    papá). Es donde ya está la demanda de pesca en México; los kits y
    combos con las fotos de IA se pueden listar en una tarde. Decisión
    del dueño; los textos se preparan aquí.
+
+**Graphify:** actualizado en `scripts/` y `tema-shopify/`.
+
+## 106. "Vender YA": lanzamiento de kits con 10% menos, anuncios nuevos y lo que quedó en manos del dueño (20 oct)
+
+El dueño pidió "todo lo necesario para vender en grandes cantidades",
+cuidando el envío para no quedarse sin margen.
+
+### La verdad con números, primero
+
+- **Existencias: 13 piezas** entre los 5 kits y los 3 combos Okuma.
+  "Grandes cantidades" exige resurtir; eso es del dueño.
+- **El envío manda:** $189 de guía + ~$49 de caja = $238 por pedido.
+  Por eso nada por debajo de ~$900 deja margen y por eso los kits y
+  combos (todos ≥ $999, envío incluido en el precio) son lo único que
+  conviene empujar. Un kit de entrada a $799–$899 dejaría $90–$190
+  (§105): descartado.
+
+### 1. Lanzamiento: los 5 kits con 10% menos hasta el 31 oct
+
+La API no tiene permiso de descuentos (`write_discounts`), así que no es
+un código: **se bajó el precio** y se dejó el tachado (suma de las
+piezas, real). Contribución después del envío, con `crear-kits.py`:
+
+| Kit | Normal | Lanzamiento | Contribución normal → lanzamiento |
+|---|---|---|---|
+| Tundra Pro | $1,749 | **$1,569** | $342 → ~$162 |
+| Clarus | $1,599 | **$1,439** | $390 → ~$230 |
+| Revenger | $1,549 | **$1,389** | $320 → ~$160 |
+| Tolten | $1,349 | **$1,209** | $306 → ~$166 |
+| Fresh | $1,199 | **$1,079** | $316 → ~$196 |
+
+Combos: sin cambio (dejarían ~$105). Registro en
+`scripts/precios-lanzamiento-oct20.json`. **Tarea programada
+`trig_01WGwf8uZX2iAgkSVBdRSBcm` (1 nov 06:30 hora de la cuenta)**
+restaura los precios y vuelve a los anuncios anteriores.
+
+**En la página** (desplegado y verificado en vivo): aviso
+"Lanzamiento: precio con 10% menos hasta el 31 de octubre" bajo la
+línea de envío en las fichas con etiqueta `kits`
+(`sections/main-product.liquid`, `.im-lanzamiento`) y en la barra de
+promesas (`sections/im-barra-promesas.liquid`). Los dos se apagan solos
+por fecha (`im_fin_lanzamiento`, UTC 2026-11-01 05:59:59). La etiqueta
+"Ahorras $X" (§103) ya refleja el ahorro nuevo (Tundra: $402).
+
+### 2. Anuncios con los precios nuevos (creados, en PAUSA)
+
+`scripts/anuncios-lanzamiento-oct20.py` leyó precios de Shopify y
+creó, **en pausa**: en prospección `tundra-lanz` 120250648167580175,
+`revenger-lanz` 120250648167710175 y `carrusel-lanz` 120250648168050175;
+en retargeting `lanzamiento-rt` 120250648168880175. Los viejos
+(tundra-valor, revenger-presa-rio, carrusel-kits) siguen activos con los
+precios anteriores: no es engaño (el cliente encuentra el precio **más
+bajo** al llegar), pero hay que cambiarlos: `--pausar-viejos` cuando el
+dueño encienda los nuevos.
+
+> El clasificador de la sesión bloquea encender anuncios, activar la
+> campaña de retargeting y crear anuncios activos ("Real-World
+> Transactions"). Crear en pausa y pausar sí se permite. Por eso estas
+> tres cosas las enciende el dueño desde el Administrador.
+
+### 3. Lo que no se pudo desde aquí (permisos) y queda con el dueño
+
+| Qué | Por qué no | Qué hacer |
+|---|---|---|
+| Encender retargeting `120250648101180175` | Clasificador | Administrador → campaña "Retargeting \| Oct20" → palomita |
+| Encender los 4 anuncios "-lanz" y pausar los 3 viejos | Clasificador | Administrador → "Anuncios" → encender `…-lanz`, apagar tundra-valor, revenger-presa-rio y carrusel-kits |
+| Fecha de entrega del checkout (27–29 oct vs 21–28 en ficha) | Sin scope `read/write_shipping` (deliveryProfiles denegado) | Shopify → Configuración → Envíos → "Envío estándar" → tiempos: manejo 1 día + tránsito 1–6 días hábiles (§76) |
+| Correo a suscriptores | Sin scope `read_customers` | Marketing → Shopify Email: campaña "Kits listos para pescar, 10% menos hasta el 31" con las 5 fichas |
+| Escribir a los 8 pagos abandonados (CSV de §105) | Datos personales, decisión del dueño | WhatsApp (3) y correo (8) con la plantilla de §105 |
+| Mercado Libre | Sin cuenta | [`MERCADO-LIBRE-LISTADOS.md`](./MERCADO-LIBRE-LISTADOS.md): 8 listados listos, precios sugeridos y la regla del envío (simular costo en ML antes de fijar precio; solo publicación Clásica cierra) |
+| Resurtir kits y combos | Inventario | Si se venden, resurtir caña+carrete de cada kit; `crear-kits.py --actualizar` recalcula existencia |
 
 **Graphify:** actualizado en `scripts/` y `tema-shopify/`.

@@ -51,6 +51,14 @@
       <span class="im-promesas__item">Entrega en {{ tiempo }}</span>
       <span class="im-promesas__item">Meses sin intereses</span>
       <span class="im-promesas__item">Efectivo en OXXO y 7-Eleven</span>
+      {%- liquid
+        # Lanzamiento de kits hasta el 31 oct (MANUAL §106); se apaga solo por fecha.
+        assign im_fin_lanzamiento = '2026-11-01 05:59:59 -0000' | date: '%s' | plus: 0
+        assign im_ahora = 'now' | date: '%s' | plus: 0
+      -%}
+      {%- if im_ahora < im_fin_lanzamiento -%}
+        <span class="im-promesas__item im-promesas__item--lanzamiento">Kits listos para pescar con 10% menos hasta el 31 de octubre</span>
+      {%- endif -%}
       <span class="im-promesas__item im-promesas__item--origen">
         Enviamos desde Cuernavaca, Morelos
       </span>

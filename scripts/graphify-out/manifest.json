@@ -124,5 +124,17 @@
     "seen": 1792520388.1889606,
     "ast_hash": "39e9104424c0f853cb145dfa1bc1d3b7",
     "semantic_hash": ""
+  },
+  "anuncios-lanzamiento-oct20.py": {
+    "mtime": 1792520983.0969932,
+    "seen": 1792521092.5276814,
+    "ast_hash": "c2b4e0cbeeaa9c562131e3b20ab37acd",
+    "semantic_hash": ""
+  },
+  "precios-lanzamiento-oct20.json": {
+    "mtime": 1792520832.6329412,
+    "seen": 1792521092.5277057,
+    "ast_hash": "50d005473eb064d1a2c2ecfea43f672c",
+    "semantic_hash": ""
   }
 }

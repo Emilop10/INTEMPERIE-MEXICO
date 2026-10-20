@@ -140,6 +140,18 @@
                       + <strong>{{ im_costo }} de envío</strong> · gratis si tu pedido suma ${{ im_umbral | divided_by: 100 }}
                     {%- endif -%}
                   </p>
+                  {%- comment -%}
+                    Lanzamiento de kits (20 oct – 31 oct, MANUAL §106): los 5 kits
+                    bajaron 10% de precio (no es código: es el precio). El aviso
+                    se apaga solo por fecha; el 1 nov una tarea restaura precios.
+                  {%- endcomment -%}
+                  {%- liquid
+                    assign im_fin_lanzamiento = '2026-11-01 05:59:59 -0000' | date: '%s' | plus: 0
+                    assign im_ahora = 'now' | date: '%s' | plus: 0
+                  -%}
+                  {%- if product.tags contains 'kits' and im_ahora < im_fin_lanzamiento -%}
+                    <p class="im-lanzamiento"><strong>Lanzamiento:</strong> precio con 10% menos hasta el 31 de octubre.</p>
+                  {%- endif -%}
                 </div>
                 {%- if product.quantity_price_breaks_configured? -%}
                   <div class="volume-pricing-note" id="Volume-Note-{{ section.id }}">
