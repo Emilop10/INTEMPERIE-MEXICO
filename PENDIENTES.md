@@ -44,6 +44,16 @@
      tránsito 1–6) para que el checkout diga lo mismo que la ficha;
      correo a suscriptores; WhatsApp/correo a los 8 del CSV; Mercado
      Libre; resurtir.
+   - **20 oct 13:50, desde la Mac (MANUAL §107). Hecho por API:**
+     campaña "Retargeting | Oct20" + su conjunto ($20/día) + objeciones,
+     combo-999-rt y lanzamiento-rt ACTIVOS; tundra-lanz, revenger-lanz y
+     carrusel-lanz ACTIVOS (carrusel-lanz en revisión); tundra-valor,
+     revenger-presa-rio y carrusel-kits PAUSADOS; combo-999 sigue.
+     Gasto diario combinado $120. 🔴 **El tope de la cuenta quedó en
+     $325,283 (no $3,252.83)**: `campana-kits-oct19.py` posteó centavos
+     (trampa de §56). Corregir con `POST spend_cap=3252.83` (pesos) con
+     el "sí" del dueño y arreglar la línea 264 del script. Faltan en la
+     Mac: bloques B, C, D y E.
    - **19 oct (MANUAL §100):** ya se aplicaron, a mitad de la prueba,
      la barra de compra desde la primera pantalla, el logo chico, el
      conjunto nuevo (5 kits + 3 combos Okuma de $999 + 3 binoculares

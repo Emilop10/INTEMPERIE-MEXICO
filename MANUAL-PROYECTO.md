@@ -10783,3 +10783,65 @@ dueño encienda los nuevos.
 | Resurtir kits y combos | Inventario | Si se venden, resurtir caña+carrete de cada kit; `crear-kits.py --actualizar` recalcula existencia |
 
 **Graphify:** actualizado en `scripts/` y `tema-shopify/`.
+
+## 107. Bloque A desde la Mac: retargeting y anuncios "-lanz" encendidos por API, viejos apagados; el tope de la cuenta estaba 100× (20 oct)
+
+Primera sesión local en la Mac del dueño (`ARRANQUE-LOCAL-MAC.md`). La
+carpeta descargada no era repositorio: se convirtió en checkout de la
+rama `claude/intemperie-mexico-audit-n3yxbs` (idéntica a cb769be, cero
+diferencias). `META_ACCESS_TOKEN` y `META_AD_ACCOUNT_ID` quedaron en el
+`~/.zshrc` del dueño; `SHOPIFY_ADMIN_TOKEN` todavía no.
+
+### Lo que se hizo (13:50 hora de la Mac, por Marketing API, sin Chrome)
+
+El dueño pidió encender por ID. Orden: anuncios → conjunto → campaña
+(de adentro hacia afuera, como `meta-ads.py activar`), y después apagar.
+Los 11 POST respondieron `success: true`.
+
+| Pieza | ID | Antes | Después |
+|---|---|---|---|
+| Campaña "IMX \| Ventas \| Retargeting \| Oct20" | `120250648101180175` | PAUSED | **ACTIVE** |
+| Conjunto "Retargeting vieron producto 30d \| Otra oferta" ($20/día) | `120250648101560175` | PAUSED | **ACTIVE** (sin él la campaña no entregaba nada) |
+| objeciones | `120250648102380175` | PAUSED | ACTIVE |
+| combo-999-rt | `120250648103360175` | PAUSED | ACTIVE |
+| lanzamiento-rt | `120250648168880175` | PAUSED | ACTIVE |
+| tundra-lanz (prospección) | `120250648167580175` | PAUSED | ACTIVE |
+| revenger-lanz (prospección) | `120250648167710175` | PAUSED | ACTIVE |
+| carrusel-lanz (prospección) | `120250648168050175` | PAUSED | ACTIVE (`effective_status: IN_PROCESS`, revisión de Meta) |
+| tundra-valor | `120250632214760175` | ACTIVE | **PAUSED** |
+| revenger-presa-rio | `120250632215950175` | ACTIVE | **PAUSED** |
+| carrusel-kits | `120250632219580175` | ACTIVE | **PAUSED** |
+| combo-999 | `120250632216950175` | ACTIVE | ACTIVE (no se tocó) |
+
+Verificado con `python3 scripts/meta-ads.py listar` (Retargeting Oct20
+ACTIVE, Kits y combos Oct19 ACTIVE $100/día, Catálogo Ago26 PAUSED) y
+releyendo `status`/`effective_status` de conjuntos y anuncios. Ningún
+`ad_review_feedback`. Quedan entregando: en prospección combo-999 +
+los 3 "-lanz"; en retargeting objeciones, combo-999-rt y
+lanzamiento-rt. Gasto diario combinado: $120. No se tocaron
+presupuestos, públicos ni textos. Ya no hace falta
+`anuncios-lanzamiento-oct20.py --pausar-viejos`.
+
+### 🔴 El tope de la cuenta NO es $3,252.83: es $325,283.00
+
+Al releer la cuenta: `spend_cap: "32528300"` (centavos) con
+`amount_spent: "214017"` ($2,140.17). Es la trampa de §56 otra vez:
+`campana-kits-oct19.py` (línea 264) hizo `POST spend_cap = gastado +
+TOPE_RONDA` con los dos en **centavos** (205283 + 120000 = 325283), y
+Meta lee el POST en **pesos**. El check-in de §104 lo dio por bueno
+porque dividió entre 100 una sola vez… la cifra impresa (325283.00) se
+leyó como 3,252.83. **El freno de $1,200 de la ronda no existe hoy**;
+lo único que limita el gasto son los presupuestos diarios ($100 + $20)
+y el corte de las 08:47. Corrección pendiente del "sí" del dueño:
+`POST spend_cap=3252.83` (en pesos) y releer que devuelva `325283`.
+Pendiente también corregir la línea 264 del script para que postee
+`(gastado + TOPE_RONDA) / 100`.
+
+### Para la sesión en la nube
+
+- El corte diario (`trig_01UxpqCyFokQncvr2kZr4mpQ`) ya contempla las
+  dos campañas; ahora las dos están activas y los anuncios que corren
+  son los de precios de lanzamiento. Nada que duplicar desde la Mac.
+- Siguen en la Mac: bloques B (tiempos de entrega), C (correo a
+  suscriptores), D (pagos abandonados) y E (Mercado Libre, si hay
+  cuenta).
