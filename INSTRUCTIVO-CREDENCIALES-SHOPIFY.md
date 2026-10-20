@@ -153,6 +153,9 @@ Esta tabla es la fuente de verdad. **La lista que aparece en
 > eso: **simplemente el scope no estaba pedido en la URL de
 > autorización.**
 | `read_online_store_navigation`, `write_online_store_navigation` | menús de navegación | — |
+| `read_discounts`, `write_discounts` | descuentos automáticos y códigos (agregado el 20 oct 2026, MANUAL §106: la API respondió `Access denied… write_discounts` al crear el 10% de lanzamiento y hubo que bajar precios a mano) | `POST /graphql.json` (`discountAutomaticBasicCreate`) |
+| `read_shipping`, `write_shipping` | leer y corregir los tiempos de entrega del checkout (agregado el 20 oct 2026, §105: `deliveryProfiles` denegado) | `POST /graphql.json` (`deliveryProfiles`, `deliveryProfileUpdate`) |
+| `read_customers` | contar suscriptores y ver quién compró (agregado el 20 oct 2026; `customers/count.json` dio 403) | `GET /customers.json` |
 
 ### ⚠️ La regla que evita el desastre
 
@@ -202,7 +205,7 @@ Con **la lista completa de scopes**. Esta es la URL vigente, lista para
 copiar:
 
 ```
-https://wfuxvx-yn.myshopify.com/admin/oauth/authorize?client_id=34956e1ca24e94b27c531d85cb898e99&scope=read_legal_policies,write_legal_policies,read_online_store_navigation,write_online_store_navigation,read_products,write_products,read_themes,write_themes,read_publications,write_publications,read_inventory,write_inventory,read_locations,read_orders&redirect_uri=https%3A%2F%2Fexample.com&state=intemperie2026
+https://wfuxvx-yn.myshopify.com/admin/oauth/authorize?client_id=34956e1ca24e94b27c531d85cb898e99&scope=read_legal_policies,write_legal_policies,read_online_store_navigation,write_online_store_navigation,read_products,write_products,read_themes,write_themes,read_publications,write_publications,read_inventory,write_inventory,read_locations,read_orders,read_discounts,write_discounts,read_shipping,write_shipping,read_customers&redirect_uri=https%3A%2F%2Fexample.com&state=intemperie2026
 ```
 
 ### Paso 3 — El dueño la abre y autoriza
