@@ -261,7 +261,11 @@ def main():
         ids["anuncios"][a["clave"]] = {"creativo": creativo, "anuncio": anuncio}
         print(f"  ✓ {a['clave']}: anuncio {anuncio}")
 
-    meta("POST", f"/{cuenta}", token, {"spend_cap": gastado + TOPE_RONDA})
+    # OJO: amount_spent y spend_cap se LEEN en centavos, pero spend_cap se
+    # ESCRIBE en pesos (trampa de §56). El 19 oct se posteó en centavos y el
+    # tope quedó en $325,283 (100×); lo detectó la sesión local (§107) y se
+    # corrigió el 20 oct.
+    meta("POST", f"/{cuenta}", token, {"spend_cap": f"{(gastado + TOPE_RONDA) / 100:.2f}"})
     print(f"\nTope de la cuenta: {pesos((gastado + TOPE_RONDA) / 100)}")
     print(json.dumps(ids, indent=1))
 

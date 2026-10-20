@@ -10845,3 +10845,11 @@ Pendiente también corregir la línea 264 del script para que postee
 - Siguen en la Mac: bloques B (tiempos de entrega), C (correo a
   suscriptores), D (pagos abandonados) y E (Mercado Libre, si hay
   cuenta).
+
+**Corrección del tope (20 oct, 14:0x hora de la cuenta, desde la nube):**
+`POST act_… spend_cap=3252.83` → GET devuelve `325283` (centavos) =
+**$3,252.83**. Confirmado. El bug estaba en `campana-kits-oct19.py`
+(posteaba centavos); corregido para que escriba pesos. Verificado por
+API el estado que dejó la Mac: 6 anuncios nuevos ACTIVE (carrusel-lanz
+ya aprobado), 3 viejos PAUSED, combo-999 ACTIVE, retargeting con
+conjunto de $20/día ACTIVE.
