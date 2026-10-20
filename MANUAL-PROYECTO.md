@@ -10853,3 +10853,20 @@ Pendiente también corregir la línea 264 del script para que postee
 API el estado que dejó la Mac: 6 anuncios nuevos ACTIVE (carrusel-lanz
 ya aprobado), 3 viejos PAUSED, combo-999 ACTIVE, retargeting con
 conjunto de $20/día ACTIVE.
+
+**Token de Shopify regenerado (20 oct, desde la Mac; §107).** Flujo OAuth
+manual con la URL vigente del instructivo. Shopify concedió 11 scopes
+explícitos (los `read_X` quedan implícitos cuando hay `write_X`); nuevos:
+`write_discounts`, `write_shipping`, `read_customers` (28 clientes). El
+dueño lo guardó en la variable de entorno de la nube y en el secret de
+GitHub; en la Mac va en `~/.zshrc`. En esta sesión de la nube, que
+arrancó con el token viejo (ya inválido, 401), el nuevo vive fuera del
+repo en el scratchpad (`sec/shopify.env`) y se carga con `.` antes de
+cada comando; las tareas programadas ya lo saben. El secreto `shpss_`
+pasó por el chat: el dueño lo rota en el Dev Dashboard.
+
+Con `write_shipping` se leyó el perfil de envío por GraphQL: "General
+profile", zona "Domestic" (MX), ubicación "ALCAMPO CENTRO", tarifa
+"Envío estándar" $189 y la misma a $0 con condición `TOTAL_PRICE ≥ 799`.
+**Los tiempos de entrega (manejo/tránsito) no aparecen en la API**: se
+configuran en Shopify → Configuración → Envíos (bloque B, por Chrome).
