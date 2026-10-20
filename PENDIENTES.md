@@ -2,8 +2,11 @@
 
 ## ▶️ Arranque de la próxima sesión (dejado el 19 oct)
 
-1. Leer este archivo, MANUAL §97 (corte del 18 oct) y §98–§100
-   (campaña, por qué no agregan al carrito y los arreglos).
+0. **Si esta sesión corre en la Mac del dueño:** leer primero
+   [`ARRANQUE-LOCAL-MAC.md`](./ARRANQUE-LOCAL-MAC.md) (Chrome, secretos,
+   bloques A–E y reglas para no pisarse con la nube).
+1. Leer este archivo, MANUAL §97 (corte del 18 oct) y §98–§106
+   (campaña, conversión, lanzamiento de kits y lo que falta).
 2. `bash scripts/verificar-herramental.sh`. Si faltan plugins o agentes:
    `bash scripts/instalar-entorno.sh` (el contenedor nuevo llega vacío).
 3. Confirmar que aparecen las herramientas de Higgsfield
