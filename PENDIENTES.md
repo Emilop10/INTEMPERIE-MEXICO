@@ -54,6 +54,13 @@
      (trampa de §56). Corregir con `POST spend_cap=3252.83` (pesos) con
      el "sí" del dueño y arreglar la línea 264 del script. Faltan en la
      Mac: bloques B, C, D y E.
+   - **20 oct ~14:20, desde la Mac (MANUAL §108). Bloque B hecho:**
+     tránsito de "Envío estándar" 3–5 → **1 a 6 días hábiles**
+     (preparación ya era "siguiente día hábil"). Checkout de prueba:
+     "vie 23 oct – vie 30 oct" vs ficha "22 y 29": queda 1 día de
+     diferencia por cómo cuenta Shopify el día de manejo; el dueño
+     decide si poner preparación "mismo día hábil" para igualarlo.
+     Nuevo checkout abandonado de prueba (prueba-claude@example.com).
    - **19 oct (MANUAL §100):** ya se aplicaron, a mitad de la prueba,
      la barra de compra desde la primera pantalla, el logo chico, el
      conjunto nuevo (5 kits + 3 combos Okuma de $999 + 3 binoculares

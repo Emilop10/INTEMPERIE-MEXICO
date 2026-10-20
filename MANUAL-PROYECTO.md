@@ -10870,3 +10870,61 @@ profile", zona "Domestic" (MX), ubicación "ALCAMPO CENTRO", tarifa
 "Envío estándar" $189 y la misma a $0 con condición `TOTAL_PRICE ≥ 799`.
 **Los tiempos de entrega (manejo/tránsito) no aparecen en la API**: se
 configuran en Shopify → Configuración → Envíos (bloque B, por Chrome).
+
+## 108. Bloque B desde la Mac: tiempos de entrega del checkout alineados con la ficha (20 oct)
+
+Hecho por Chrome (Claude in Chrome con la sesión del dueño), porque los
+tiempos de manejo y tránsito no están en la Admin API (§107) y porque
+el plugin `claude-seo-ai` de la Mac bloquea todo POST a la Admin API
+desde la terminal, incluso GraphQL de lectura.
+
+### Dónde viven los tiempos en Shopify
+
+- **Manejo:** Configuración → Envíos → "Fechas de entrega estimadas" →
+  Estimaciones de entrega (modo Manual) → "Tiempo de preparación de
+  pedidos". Opciones: mismo día hábil, **siguiente día hábil** (ya
+  estaba así = 1 día hábil de manejo), 2 días hábiles, personalizado.
+  No se tocó.
+- **Tránsito:** por tarifa, en el perfil general → zona "Domestic"
+  (México) → "Envío estándar" → "Tiempo de tránsito". Es un control
+  `s-internal-select` de Shopify que ni `form_input` ni el teclado de
+  la extensión pueden cambiar; se fijó con JavaScript sobre el `<select>`
+  nativo dentro del shadow DOM (`value='custom'` + eventos `input` y
+  `change`), lo que abrió el cuadro "Tiempo de tránsito personalizado".
+
+### Antes → después (con el "sí" del dueño, guardado ~14:20)
+
+| | Antes | Después |
+|---|---|---|
+| Tarifa | Envío estándar, $189, gratis desde $799 (una sola tarifa con condición; no hay dos) | igual |
+| Tránsito | **3 a 5 días hábiles** | **1 a 6 días hábiles** (rango personalizado) |
+| Preparación | Siguiente día hábil | igual |
+| Vista previa del editor | lun 26 oct – mié 28 oct | jue 22 oct – jue 29 oct |
+
+Shopify confirmó "Perfil actualizado"; la tarifa ahora lista "Gratis a
+partir de $799.00 · 1 a 6 días hábiles".
+
+### Prueba del checkout (sin pagar)
+
+Combo Okuma Boundary 7'0" ($999) → carrito → checkout, correo
+`prueba-claude@example.com`, "PRUEBA CLAUDE NO ENVIAR", Guerrero 45a,
+62000 Cuernavaca, Morelos. El carrito del Chrome del dueño ya traía una
+caña Blue Fox Portada SP 11' ($649) de antes; se dejó. Resultado:
+
+| Dónde | Fecha mostrada |
+|---|---|
+| Ficha del combo | "llega entre el 22 y el 29 de octubre" |
+| Checkout | **"Envío estándar — vie 23 de oct – vie 30 de oct", GRATIS** |
+
+Antes del cambio el checkout decía 27–29 oct (§105). **Queda 1 día de
+diferencia**: la ficha suma 2–7 días hábiles al día de hoy
+(`snippets/im-fecha-entrega.liquid`); Shopify cuenta el día de manejo
+completo y empieza el tránsito al siguiente, así que "siguiente día
+hábil + 1 a 6" sale como 3–8 días hábiles desde el pedido. Para que
+coincidan al día hay dos salidas, decisión del dueño: poner la
+preparación en "El mismo día hábil" (el checkout diría 22–29, igual que
+la ficha; el manejo real sigue siendo de un día, Shopify solo lo cuenta
+distinto) o dejar la diferencia de un día, que ya no engaña a nadie.
+Queda un checkout abandonado con esos datos de prueba; ignorarlo (y
+excluirlo del bloque D). Pestaña del checkout cerrada; no se tocó
+ningún método de pago.
