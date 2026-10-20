@@ -26,6 +26,9 @@
      de salud a las 3 h y cortes diarios 08:47 (reglas de $400 con ≥3%
      vista→carrito y $900 con ≥1 compra). Existencias: 13 piezas entre
      kits y combos; si vende, el dueño debe resurtir.
+     - 20 oct 08:49: $64, 24 vistas, 1 carrito, 0 compras; sin corte.
+       Para el corte de $400: Instagram sale carísimo (CPM ~$200, 0
+       clics) y 45–54 gasta sin carritos (MANUAL §104).
    - **19 oct (MANUAL §100):** ya se aplicaron, a mitad de la prueba,
      la barra de compra desde la primera pantalla, el logo chico, el
      conjunto nuevo (5 kits + 3 combos Okuma de $999 + 3 binoculares

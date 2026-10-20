@@ -10579,6 +10579,32 @@ confirmado en $3,252.83. Tareas programadas:
   $0.03, carrusel todavía 0). Normal el primer día de una campaña
   optimizada a compra; se vuelve a leer en el corte de las 08:47.
 
+### Cortes diarios
+
+**20 oct, 08:49 — sin corte.** Acumulado desde el 19 oct: **$64.21**,
+1,398 impresiones, 1,177 personas, 32 clics (CTR 2.3%, CPC $2.01), 24
+vistas, **1 carrito (4.2%)**, 0 pagos iniciados, 0 compras (Shopify: 0
+pedidos, 0 checkouts). Ayer (desde las 11:55): $54; hoy hasta las 08:49:
+$9.28. Existencias sin cambio (1–2 por producto). Tope intacto.
+
+| Anuncio | Gasto | Imp. | Clics | CTR | Vistas | Carritos |
+|---|---|---|---|---|---|---|
+| Kit Revenger (presa y río) | $32.12 | 593 | 14 | 2.4% | 12 | 0 |
+| Kit Tundra Pro (valor) | $28.23 | 680 | 13 | 1.9% | 10 | 1 |
+| Combo Okuma $999 | $2.69 | 84 | 1 | 1.2% | 0 | 0 |
+| Carrusel | $1.17 | 41 | 4 | 9.8% | 2 | 0 |
+
+Observaciones (no se actúa a medio camino; se deciden en el corte de
+los $400):
+- Entrega lenta: $54 en el primer medio día, bajo los $100/día. Meta
+  reparte casi todo a los dos kits; combo y carrusel casi no salen.
+- Costo por vista **$2.68**: CPM más barato que la v5 ($45 vs $77) pero
+  CTR más bajo (2.3% vs 4.4%), así que la vista sale igual de cara.
+- Instagram: $8.84 por 44 impresiones (CPM ~$200) y 0 clics. Facebook
+  feed trae el 83% del gasto y el único carrito.
+- 45–54 se llevó 42% del gasto con 6 vistas y 0 carritos; 65+ tiene el
+  carrito. Consistente con §68.
+
 **Dónde verla:**
 - Administrador de anuncios (campaña):
   `https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=1264279685553718&selected_campaign_ids=120250632213900175`
