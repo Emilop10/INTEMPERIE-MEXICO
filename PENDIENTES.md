@@ -61,6 +61,15 @@
      diferencia por cómo cuenta Shopify el día de manejo; el dueño
      decide si poner preparación "mismo día hábil" para igualarlo.
      Nuevo checkout abandonado de prueba (prueba-claude@example.com).
+   - **20 oct 17:56–19:17, desde la Mac (MANUAL §109). Bloques C y D
+     hechos:** Shopify Email (app Messaging) enviado a los **6**
+     suscriptores a las 17:57, sin precios en el bloque de kits. Cuatro
+     correos personales desde admin@intemperiemexico.com: Victor
+     (enlace de su carrito), Arturo (ARTURO79), Abelardo (ABELARDO79),
+     David (DAVID150); códigos de 1 uso hasta el 31 oct. El Elite Pro
+     está agotado; el Revenger 2.45m vale $999. Quedan del dueño:
+     WhatsApp a Victor y Arturo, rotar el secreto `shpss_`, y el
+     bloque E (Mercado Libre) solo si ya hay cuenta.
    - **19 oct (MANUAL §100):** ya se aplicaron, a mitad de la prueba,
      la barra de compra desde la primera pantalla, el logo chico, el
      conjunto nuevo (5 kits + 3 combos Okuma de $999 + 3 binoculares

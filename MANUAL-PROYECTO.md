@@ -10928,3 +10928,90 @@ distinto) o dejar la diferencia de un día, que ya no engaña a nadie.
 Queda un checkout abandonado con esos datos de prueba; ignorarlo (y
 excluirlo del bloque D). Pestaña del checkout cerrada; no se tocó
 ningún método de pago.
+
+## 109. Bloques C y D desde la Mac: correo a suscriptores, tres códigos de un solo uso y cuatro correos personales a pagos abandonados (20 oct)
+
+Todo por Chrome con la sesión del dueño; nada por API de escritura (el
+plugin `claude-seo-ai` de la Mac bloquea los POST a Shopify desde la
+terminal, §108). Lecturas sí por API con el token nuevo (§107).
+
+### Bloque C: Shopify Email ("Messaging") a suscriptores
+
+- Shopify Email ahora vive en la app **Messaging** (Marketing → crear
+  mensaje → plantilla "En blanco"). Campaña `79003037`.
+- Asunto: "Kits listos para pescar: 10% menos hasta el 31 de octubre".
+  Vista previa: "Cinco kits con caña, carrete, hilo y accesorios. Envío
+  gratis, llega en 2 a 7 días hábiles." Texto de apertura y cierre
+  tal cual los de `PROMPT-CLAUDE-CHROME-VENDER-YA.md`; bloque de
+  productos **estático** con los 5 kits; botón "Ver los kits" →
+  `/collections/combos`.
+- **Segmento "Suscriptores de correo electrónico": 6 personas** (de 28
+  clientes). Poco alcance; la lista de correo nunca se ha trabajado.
+- **Trampa de precios:** el editor mostró un rato los precios viejos
+  ($1,349 / $1,549 / $1,599) en tres kits mientras la API confirmaba
+  los de lanzamiento; la pantalla "Revisar" sí traía los correctos. Y
+  Shopify Email formatea "1.569,00 $" (coma decimal), distinto de la
+  tienda. Prueba enviada a intemperiemexico030903@gmail.com; el dueño
+  decidió **quitar los precios del bloque** (Contenido → Precio
+  oculto): quedaron foto, nombre y botón.
+- **Enviada a las 17:57** (hora de la cuenta) a los 6 suscriptores.
+  Estado "Enviando"; las aperturas se leen en Messaging → la campaña.
+
+### Bloque D: pagos abandonados, con códigos de descuento
+
+Lista por API (`GET /checkouts.json`, 11 abiertos desde el 1 ago). Se
+excluyeron: 3 de `ilovemyemail.net` / `quiet.harbor503+…` (pruebas), el
+de `prueba-claude@example.com` (fecha 14 ago porque reutilizó un
+token viejo del Chrome del dueño; es la prueba de §108), los 2 del
+propio dueño (17 y 22 ago) y Sabido (12 sep, es el pedido pagado ese
+día). Quedaron **4 reales**, no 8 como decía §105.
+
+Hallazgos antes de escribir: el Combo Okuma Elite Pro 7'0" de dos
+carritos está **agotado** (existencia 0) y el Combo Okuma Revenger
+8'0" (2.45m) subió de $849 a $999 (§100), así que los enlaces de
+recuperación de esos tres carritos ya no servían tal cual.
+
+Shopify ya **no tiene botón "Enviar correo de recuperación"** en el
+detalle del pago abandonado: solo un `mailto:` y la automatización
+genérica. Los correos personales salieron desde **Gmail,
+admin@intemperiemexico.com** (el dueño inició esa cuenta en Chrome),
+en texto plano, firmados "Emiliano, Intemperie México":
+
+| Hora | Cliente | Correo | Qué se le dijo | Código |
+|---|---|---|---|---|
+| 17:56 | Victor Manuel Morán | vicmoran03@gmail.com | Texto de la plantilla de §105 con su enlace `abandoned_checkout_url` (caña Rapala Corux 240 + 2 señuelos, $977, todo en existencia) | ninguno |
+| 18:16 | Arturo Ortuño | arthurop55@hotmail.com | El Elite Pro se agotó; Combo Okuma Boundary 7'0" a $999 con envío gratis; con el código queda en $920 | **ARTURO79** |
+| 19:16 | Abelardo Angulo | anguloperezabelardo@gmail.com | Igual que Arturo | **ABELARDO79** |
+| 19:17 | David Felipe Ladrón de Guevara | master_tekpatl@hotmail.com | El Revenger 8'0" (2.45m) cambió a $999; con el código queda en los $849 que vio | **DAVID150** |
+
+Códigos (Shopify → Descuentos, "Importe de descuento en productos",
+monto fijo, producto específico, **1 uso total y 1 por cliente**, del 20
+oct al **31 oct 11:30 p.m.** GMT-6, sin combinar con otros descuentos):
+
+| Código | ID | Monto | Producto |
+|---|---|---|---|
+| ARTURO79 | 1539294167117 | $79 | Combo Okuma Boundary 7'0" Spinning |
+| ABELARDO79 | 1539294265421 | $79 | Combo Okuma Boundary 7'0" Spinning |
+| DAVID150 | 1539294363725 | $150 | Combo Okuma Revenger 8'0" (2.45m) |
+
+Si se usan, se ven en Descuentos → el código → "Rendimiento". El
+Boundary tiene 2 piezas y el Revenger 2.45m 1: si alguien compra, se
+agota su anuncio en Meta (el corte de las 08:47 lo pausa). Para
+WhatsApp quedan Victor y Arturo (teléfono en el detalle del pago).
+
+### Notas de operación en Chrome (para la próxima vez)
+
+- Gmail: con `?compose=new` el campo Para no suelta el foco al hacer
+  clic en Asunto; hay que escribir el destinatario y pulsar **Tab**. El
+  "?" de un enlace escrito fuera del cuerpo abre la ayuda de atajos.
+  El modo "Texto sin formato" se queda activado entre correos.
+- Shopify: escribir rápido fuera de un campo dispara el lector de
+  códigos de barras del admin ("No se encontró el código de barras").
+  El selector de tránsito y los `<select>` de descuentos viven en
+  shadow DOM: se cambian por JavaScript con eventos `input`+`change`.
+- Un borrador con el texto de Victor quedó un momento en el Gmail
+  personal del dueño (`emilianolopezcostaprepa@`, al 96% de espacio);
+  se descartó. Nada salió desde ahí.
+
+Pendientes del dueño: rotar el secreto `shpss_` de la app Claude
+Integration (§107) y escribir por WhatsApp a Victor y Arturo.
