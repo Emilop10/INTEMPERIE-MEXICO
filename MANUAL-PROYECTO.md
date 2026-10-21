@@ -11015,3 +11015,92 @@ WhatsApp quedan Victor y Arturo (teléfono en el detalle del pago).
 
 Pendientes del dueño: rotar el secreto `shpss_` de la app Claude
 Integration (§107) y escribir por WhatsApp a Victor y Arturo.
+
+## 110. Bloque E desde la Mac: 7 de 8 productos publicados en Mercado Libre, WhatsApp a Victor y Arturo (20 oct, noche)
+
+Cuenta de Mercado Libre a nombre de Intemperie México (usuario
+EMILIANO), sesión en Chrome del dueño. Todo por la Central de
+vendedores con Claude in Chrome; fotos bajadas del CDN de Shopify al
+scratchpad de la sesión y convertidas con `sips` a JPG 1600×1600
+(portada de IA) más la foto real de las piezas.
+
+### WhatsApp (antes de Mercado Libre)
+
+Desde WhatsApp Business Web, con los textos que dictó el dueño y un solo
+"sí" para los dos: **Victor Manuel Morán** (+52 55 4044 5894) a las
+20:17 y **Arturo Ortuño** (+52 233 106 3673) a las 20:18. Truco útil:
+`https://web.whatsapp.com/send?phone=52…&text=…` abre el chat con el
+texto cargado sin tener el contacto guardado; luego Enter.
+
+### Lo que Mercado Libre pide y cómo se resolvió
+
+- **Código universal (EAN):** obligatorio en la categoría "Cañas" y sin
+  casilla de excepción; solo el combo Revenger 2.45 m lo tiene
+  (4718947972576). Los kits y los otros combos son armados propios, así
+  que se publicaron en **Deportes y Fitness › Camping, Caza y Pesca ›
+  Equipamiento para Pescar › Cañas y Accesorios › Otros**, donde sí
+  existe la casilla "Mi producto no lo tiene". No hay categoría "Kits
+  de pesca" en ML México.
+- **Tipo de publicación:** Clásica siempre (15% de comisión con IVA).
+  Existe también "Prueba limitada gratis" (sin comisión, menor
+  exposición); no se usó por la regla del dueño.
+- **Cargos reales por venta** (los calcula ML en el formulario):
+  comisión 15% del precio; impuestos retenidos 2.5% ISR + 8% IVA sobre
+  el precio sin IVA (≈9.05% del precio); envío Mercado Envíos con 50%
+  de descuento por reputación, que ML estima por publicación ($95,
+  $122.50 o $139.50). Fórmula que cuadra con el panel: `recibes ≈
+  0.7595 × precio − envío`.
+- **Regla del dueño:** publicar si `recibes − costo de mercancía ≥
+  $150`; si no, subir el precio hasta llegar. Costos leídos del
+  `inventory_item.cost` de Shopify (los de `crear-kits.py`); el combo
+  Revenger 2.40 no tiene costo cargado y se tomó ~$506 como el 2.45.
+- **"Publicar similar"** copia marca, modelo, fotos, condiciones y
+  precio; hay que cambiar todo lo que difiere. Los títulos truncan a 60
+  caracteres sin avisar: revisar el contador.
+- **Trampas:** escribir el precio y salir con Tab a veces no lo toma
+  (releer el panel "Resumen estimado de cargos"); el borrador del kit
+  Fresh perdió dos veces la opción "Envíos en Mercado Libre" (solo
+  ofrecía "Por tu cuenta" / "Acordar con el comprador") y no se publicó.
+
+### Publicado (todo Clásica, envío gratis por Mercado Envíos, garantía del vendedor 7 días, stock según el dueño)
+
+| # | Producto | ML | Precio | Recibes (ML) | Costo | Queda | Enlace |
+|---|---|---|---|---|---|---|---|
+| 1 | Combo Okuma Revenger 8' (2.45 m), stock 1, EAN real | MLM-6444730308 | $1,199 | $771.12 | $506.51 | $264.61 | https://articulo.mercadolibre.com.mx/MLM-6444730308-combo-pesca-okuma-revenger-8-cana-carrete-spinning-2-pzas-negro-_JM |
+| 2 | Combo Okuma Revenger 8' (2.40 m) + RV-80, stock 1 | MLM-6444798834 | $1,199 | $771.12 | ~$506 | ~$265 | https://articulo.mercadolibre.com.mx/MLM-6444798834-combo-pesca-okuma-revenger-8-cana-2-piezas-carrete-rv-80-_JM |
+| 3 | Combo Okuma Boundary 7', stock 2 | MLM-6444801030 | $1,199 | $788.12 | $556.50 | $231.62 | https://articulo.mercadolibre.com.mx/MLM-6444801030-combo-pesca-okuma-boundary-7-cana-y-carrete-spinning-40-_JM |
+| 4 | Kit Okuma Tundra Pro 7' + Topaz Pro 40, stock 1 | MLM-6444714326 | **$1,929** (arranque $1,849) | $1,325.55 | $1,169.44 | $156.11 | https://articulo.mercadolibre.com.mx/MLM-6444714326-kit-pesca-okuma-tundra-pro-7-cana-carrete-hilo-senuelo-caja-_JM |
+| 5 | Kit Shimano Clarus 5'8" + IX R 1000, stock 2 | MLM-6444779904 | $1,699 | $1,195.36 | $971.13 | $224.23 | https://articulo.mercadolibre.com.mx/MLM-6444779904-kit-pesca-shimano-clarus-58-carrete-ix-r-1000-hilo-senuelo-_JM |
+| 6 | Kit Okuma Revenger 7' Todo Terreno, stock 2 | MLM-3682581883 | **$1,699** (arranque $1,649) | $1,150.86 | $990.93 | $159.93 | https://articulo.mercadolibre.com.mx/MLM-3682581883-kit-pesca-okuma-revenger-7-cana-carrete-caja-senuelos-plomo-_JM |
+| 7 | Kit Blue Fox Tolten 8' Mar y Costa, stock 2 | MLM-3682621565 | $1,449 | $977.99 | $805.48 | $172.51 | https://articulo.mercadolibre.com.mx/MLM-3682621565-kit-pesca-mar-blue-fox-tolten-8-cana-carrete-caja-plomos-_JM |
+| 8 | Kit Blue Fox Fresh 7' Agua Dulce, stock 2 | **no publicado** | $1,299 previsto | ~$864 | $645.05 | ~$219 | — |
+
+Tundra y kit Revenger se publicaron primero a $1,909 y $1,679; con el
+envío definitivo de $139.50 que ML asignó en la lista quedaban en
+$140.91 y $144.74, así que se subieron desde "Modificar" a $1,929 y
+$1,699 (el precio del Revenger puede tardar en refrescar en la lista;
+el "Recibes" ya muestra $1,150.86). SKUs en ML: RV-S-802M-40,
+COMBO-REV-240, B-S-702-40, KIT-TUNDRA, KIT-CLARUS, KIT-REVENGER,
+KIT-TOLTEN.
+
+### Pendiente: kit Fresh
+
+Dos borradores quedaron en ML (Publicaciones → borradores) con todo
+cargado menos el envío. Al llegar a "Condiciones de venta" el
+formulario solo ofrece "Por tu cuenta" o "Acordar con el comprador"; la
+opción "Envíos en Mercado Libre" no aparece aunque el panel de cargos
+sí la estima. Recargar, volver al paso 2 y crear otro "similar" desde
+el Tolten no lo arregló; ML bloqueó cambiar a Premium como prueba. Toca
+intentarlo desde cero ("Publicar" → título → "Es de otra categoría" →
+Otros), que fue como el Revenger 2.40 recuperó Mercado Envíos, o
+revisar en la cuenta si Mercado Envíos sigue activo.
+
+### Para operar
+
+- Si se vende algo en ML, bajar la existencia en Shopify a mano el
+  mismo día (y al revés): no hay sincronización.
+- Las 7 publicaciones piden "Agrega más fotos" (calidad 67–72): subir
+  las fotos reales de cada pieza cuando haya tiempo.
+- Costo real de envío: ML lo cobra sobre el paquete medido al
+  despachar; una caña de 1.10 m puede salir "voluminosa" y costar más
+  que el estimado. Revisar en la primera venta.

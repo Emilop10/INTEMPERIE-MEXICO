@@ -70,6 +70,15 @@
      está agotado; el Revenger 2.45m vale $999. Quedan del dueño:
      WhatsApp a Victor y Arturo, rotar el secreto `shpss_`, y el
      bloque E (Mercado Libre) solo si ya hay cuenta.
+   - **20 oct noche, desde la Mac (MANUAL §110). Bloque E:** 7 de 8
+     publicados en Mercado Libre (Clásica, Mercado Envíos, garantía 7
+     días, categoría Cañas y Accesorios › Otros por falta de EAN):
+     combos Revenger 2.45, Revenger 2.40 y Boundary a $1,199; kits
+     Tundra $1,929, Clarus $1,699, Revenger $1,699, Tolten $1,449. Todos
+     dejan ≥ $150 sobre costo según el "Recibes" de ML. **Falta el kit
+     Fresh**: su borrador pierde la opción "Envíos en Mercado Libre";
+     intentar desde cero. WhatsApp enviados a Victor y Arturo. Si algo
+     se vende en ML, bajar existencia en Shopify a mano.
    - **19 oct (MANUAL §100):** ya se aplicaron, a mitad de la prueba,
      la barra de compra desde la primera pantalla, el logo chico, el
      conjunto nuevo (5 kits + 3 combos Okuma de $999 + 3 binoculares
