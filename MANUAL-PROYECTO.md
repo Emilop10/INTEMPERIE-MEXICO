@@ -10607,6 +10607,29 @@ los $400):
 - 45–54 se llevó 42% del gasto con 6 vistas y 0 carritos; 65+ tiene el
   carrito. Consistente con §68.
 
+**21 oct, 08:49 — sin corte.** Acumulado desde el 19 oct, las dos
+campañas: **$170.34** (prospección $162.57, retargeting $7.77), 3,762
+impresiones, 79 clics (2.1%), **63 vistas, 1 carrito (1.6%)**, 0 pagos
+iniciados, 0 compras (Shopify: 0 pedidos, 0 checkouts reales). Ayer
+prospección gastó $93.76 (ya casi el presupuesto completo); hoy hasta
+las 08:49, $14.18. Existencias y precios de lanzamiento sin cambio.
+Tope $3,252.83 intacto (gastado en la cuenta: $2,233.00).
+
+| Anuncio | Gasto | Imp. | Clics | CTR | Vistas | Carritos |
+|---|---|---|---|---|---|---|
+| revenger-presa-rio (pausado 20 oct 13:50) | $49.20 | 885 | 22 | 2.5% | 18 | 0 |
+| tundra-lanz | $38.30 | 943 | 14 | 1.5% | 12 | 0 |
+| tundra-valor (pausado) | $37.10 | 886 | 17 | 1.9% | 12 | 1 |
+| revenger-lanz | $24.03 | 623 | 12 | 1.9% | 9 | 0 |
+| carrusel-lanz | $7.13 | 121 | 2 | 1.7% | 2 | 0 |
+| combo-999 | $5.23 | 165 | 4 | 2.4% | 3 | 0 |
+| lanzamiento-rt (retargeting) | $6.82 | 64 | 4 | 6.3% | 5 | 0 |
+
+Lectura: con 63 vistas el 1.6% de vista → carrito va **abajo del 3%**
+que exige el corte de los $400 (faltan ~$230, unos 2 días). Los
+anuncios "-lanz" llevan 20 h; su CTR (1.5–1.9%) es algo menor que el
+de los viejos (1.9–2.5%), todavía con pocos datos. Nada se toca.
+
 **Dónde verla:**
 - Administrador de anuncios (campaña):
   `https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=1264279685553718&selected_campaign_ids=120250632213900175`
