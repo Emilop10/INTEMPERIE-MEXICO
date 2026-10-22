@@ -5,6 +5,45 @@ propia de Mercado Libre. Aquí están los 8 listados listos para copiar y pegar,
 con los precios vigentes (lanzamiento de kits con 10% menos hasta el 31 oct;
 después vuelven a los de "precio normal").
 
+## Estado vigente (22 oct 2026) — leer esto primero
+
+Los 8 productos ya están publicados (MANUAL §110–§117). Los textos de abajo
+son la referencia original; **los precios y la regla de margen vigentes son
+estos:**
+
+**Regla de margen en Mercado Libre (obligatoria):**
+`lo que recibes (simulador de ML) − costo de TODAS las piezas − $48.83 de
+caja de cartón ≥ $150`, con precio terminado en 9. Publicación siempre
+Clásica, envío gratis por Mercado Envíos, garantía del vendedor 7 días.
+La caja de envío de caña la pone el vendedor aunque ML pague la guía
+(paquete de 6 por $293, MANUAL §59).
+
+| Publicación | ML | Precio | Te queda (con caja) |
+|---|---|---|---|
+| Combo Okuma Revenger 8' (2.45 m), en catálogo | MLM-6444730308 + copia de catálogo MLM6451018360 | $1,169 | ~$193 |
+| Combo Okuma Revenger 8' (2.40 m) + RV-80 | MLM-6444798834 | $1,199 | ~$216 |
+| Combo Okuma Boundary 7' | MLM-6444801030 | $1,199 | ~$183 |
+| Kit Okuma Tundra Pro 7' | MLM-6444714326 | $1,989 | $152.84 |
+| Kit Shimano Clarus 5'8" | MLM-6444779904 | $1,699 | ~$175 |
+| Kit Okuma Revenger 7' | MLM-3682581883 | $1,759 | $156.67 |
+| Kit Blue Fox Tolten 8' | MLM-3682621565 | $1,489 | $154.06 |
+| Kit Blue Fox Fresh 7' | MLM-3693474151 | $1,369 | $155.86 |
+
+**Operación:**
+- **No hay sincronización de inventario** con Shopify: si se vende en ML,
+  bajar la existencia en Shopify el mismo día; si se vende en Shopify,
+  pausar o bajar la cantidad en ML.
+- La **portada** de cada publicación es la foto de ambiente de IA (§113);
+  en Shopify la infografía se llama "…-portada.jpg" y no es la portada.
+- Categoría usada: Cañas y Accesorios › Otros (única con "Mi producto no
+  tiene código universal"); solo el Revenger 2.45 lleva EAN real.
+- La primera publicación desde la cuenta pidió validación facial (§111):
+  la hace el dueño frente a la cámara.
+- Al cambiar precios, confirmar en la lista de Publicaciones que se
+  guardó (a veces el primer "Confirmar" no guarda, §117).
+
+---
+
 **Antes de publicar, el envío:** en Mercado Libre el envío lo cobra o lo
 absorbe el vendedor según el precio. Arriba de $299 ML obliga a "envío
 gratis" para el comprador y le descuenta al vendedor el costo (tabla de ML,

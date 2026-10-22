@@ -11686,3 +11686,15 @@ repitió pulsando el botón por coordenadas y ahí sí quedó.
 **Mínimos de §115:** quedan sustituidos por estos. El párrafo "piezas por
 separado cuestan más de $X" de §116 sigue siendo válido, porque los totales
 no cambian.
+
+**Cierre de documentación del 22 oct (desde la nube, a pedido del dueño).**
+- `MERCADO-LIBRE-LISTADOS.md` tiene ahora al inicio un bloque **"Estado
+  vigente"**: los 8 precios actuales con su ID de ML y margen con caja, la
+  regla de margen (recibes − piezas − $48.83 ≥ $150, terminación 9,
+  Clásica) y las reglas de operación (inventario sin sincronizar, portada
+  de ambiente, categoría Otros, validación facial, confirmar guardados).
+  Los textos originales de los listados quedan abajo como referencia.
+- **Merge: no hace falta.** `claude/intemperie-mexico-audit-n3yxbs` es la
+  rama principal (HEAD del remoto). La otra rama remota,
+  `claude/peaceful-ptolemy-old8fo` (último commit 22 sep), ya está
+  contenida en ella: no tiene nada que traer.
