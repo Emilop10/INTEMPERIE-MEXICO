@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 20 de octubre de 2026 (sección 106)
+**Última actualización:** 22 de octubre de 2026 (sección 114)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -134,6 +134,14 @@ como respaldo
 104. [Campaña v5 pausada y nueva ronda con foto fija, $1,200 (19 oct)](#104-campaña-v5-pausada-y-nueva-ronda-con-foto-fija-1200-19-oct)
 105. [Dónde se pierden las ventas: checkout, pagos abandonados y retargeting con otra oferta (20 oct)](#105-dónde-se-pierden-las-ventas-checkout-pagos-abandonados-y-retargeting-con-otra-oferta-20-oct)
 106. ["Vender YA": lanzamiento de kits con 10% menos, anuncios nuevos y lo que quedó en manos del dueño (20 oct)](#106-vender-ya-lanzamiento-de-kits-con-10-menos-anuncios-nuevos-y-lo-que-quedó-en-manos-del-dueño-20-oct)
+107. [Bloque A desde la Mac: retargeting y anuncios "-lanz" encendidos por API, viejos apagados; el tope de la cuenta estaba 100× (20 oct)](#107-bloque-a-desde-la-mac-retargeting-y-anuncios--lanz-encendidos-por-api-viejos-apagados-el-tope-de-la-cuenta-estaba-100-20-oct)
+108. [Bloque B desde la Mac: tiempos de entrega del checkout alineados con la ficha (20 oct)](#108-bloque-b-desde-la-mac-tiempos-de-entrega-del-checkout-alineados-con-la-ficha-20-oct)
+109. [Bloques C y D desde la Mac: correo a suscriptores, tres códigos de un solo uso y cuatro correos personales a pagos abandonados (20 oct)](#109-bloques-c-y-d-desde-la-mac-correo-a-suscriptores-tres-códigos-de-un-solo-uso-y-cuatro-correos-personales-a-pagos-abandonados-20-oct)
+110. [Bloque E desde la Mac: 7 de 8 productos publicados en Mercado Libre, WhatsApp a Victor y Arturo (20 oct, noche)](#110-bloque-e-desde-la-mac-7-de-8-productos-publicados-en-mercado-libre-whatsapp-a-victor-y-arturo-20-oct-noche)
+111. [Remates en Mercado Libre: fotos reales en las 7 publicaciones, borradores, y el Fresh detenido por validación de identidad (21–22 oct)](#111-remates-en-mercado-libre-fotos-reales-en-las-7-publicaciones-borradores-y-el-fresh-detenido-por-validación-de-identidad-2122-oct)
+112. [Merchant Center, revisión del 22 oct: 325 de 325 aprobados](#112-merchant-center-revisión-del-22-oct-325-de-325-aprobados)
+113. [Mercado Libre: portada de ambiente como foto 1 en las 8 publicaciones (22 oct)](#113-mercado-libre-portada-de-ambiente-como-foto-1-en-las-8-publicaciones-22-oct)
+114. [Kit Fresh en Mercado Libre: precio de $1,299 a $1,349 por el envío de $190 (22 oct)](#114-kit-fresh-en-mercado-libre-precio-de-1299-a-1349-por-el-envío-de-190-22-oct)
 
 ---
 
@@ -11302,10 +11310,41 @@ no mueve las fotos. Las miniaturas son `.media-uploader__element` con
 disparando `dragstart` en la foto, `dragenter`/`dragover`/`drop` sobre
 la primera y `dragend`, con un mismo `DataTransfer`. Luego "Confirmar".
 
-Nota de margen: en la lista el kit Fresh ahora muestra envío de  (no
-.50) y "Recibes" .56; contra el costo de .05 quedan
-~.51, todavía arriba del piso de , pero justo.
+Nota de margen: en la lista el kit Fresh ahora muestra envío de $190 (no
+$139.50) y "Recibes" $796.56; contra el costo de $645.05 quedan
+~$151.51, todavía arriba del piso de $150, pero justo. (Se corrigió en
+§114: precio subido a $1,349.)
 
 **Verificado en la lista de Publicaciones:** las 8 miniaturas muestran
 la foto de ambiente (la del Fresh tardó unos minutos en refrescar).
 Captura: `imagenes/capturas/ml-publicaciones-portadas-22oct.png`.
+
+## 114. Kit Fresh en Mercado Libre: precio de $1,299 a $1,349 por el envío de $190 (22 oct)
+
+**Qué se pidió:** con el envío de $190 el margen del Kit Fresh
+(MLM-3693474151) quedó en ~$151, justo en el piso. El dueño pidió subirlo a
+$1,349, revisar la simulación y aplicarlo sin preguntar si quedaba en $180 o
+más.
+
+**Simulación de Mercado Libre a $1,349** (Modificar → Condiciones de venta,
+panel "Resumen de cargos"; Clásica, Envíos en Mercado Libre con envío gratis):
+
+| Concepto | Monto |
+|---|---|
+| Precio | $1,349.00 |
+| Cargo por venta (Clásica 15%) | −$202.35 |
+| Costo por envío (50% cubierto por reputación) | −$190.00 |
+| Impuestos (ISR 2.5% $29.07 + IVA 8% $93.03) | −$122.10 |
+| **Recibes** | **$834.55** |
+| Costo de la mercancía | $645.05 |
+| **Queda** | **$189.50** |
+
+Antes, a $1,299: recibía $796.56 y quedaban ~$151.51.
+
+**Resultado:** $189.50 ≥ $180, así que se aplicó con "Confirmar". ML
+respondió "¡Listo! Guardamos los cambios satisfactoriamente" y la sección
+ya muestra "$1,349 | Clásica | Envío gratis". Sigue en Clásica; no se tocó
+nada más (fotos, stock 2, título).
+
+**Ojo:** el precio de Shopify del Kit Fresh no se cambió (regla de no tocar
+precios en la tienda). Si el envío de ML vuelve a subir, revisar de nuevo.

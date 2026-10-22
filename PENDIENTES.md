@@ -104,6 +104,9 @@
      reordenaron; Clarus y combo 2.45 ya estaban bien). No se borraron
      fotos; ML no puso objeción de fondo blanco. Ojo: el Fresh ahora paga
      envío $190 y deja ~$151.51, justo arriba del piso de $150.
+   - **22 oct (MANUAL §114):** Kit Fresh en ML subido de $1,299 a $1,349
+     por el envío de $190: recibe $834.55 y quedan $189.50 sobre el costo
+     ($645.05). El precio en Shopify no cambió.
    - **19 oct (MANUAL §100):** ya se aplicaron, a mitad de la prueba,
      la barra de compra desde la primera pantalla, el logo chico, el
      conjunto nuevo (5 kits + 3 combos Okuma de $999 + 3 binoculares
