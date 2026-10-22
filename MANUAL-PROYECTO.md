@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 22 de octubre de 2026 (sección 119)
+**Última actualización:** 22 de octubre de 2026 (sección 120)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -147,6 +147,7 @@ como respaldo
 117. [Mercado Libre: margen con caja de cartón ($48.83) y 4 kits resubidos (22 oct)](#117-mercado-libre-margen-con-caja-de-cartón-4883-y-4-kits-resubidos-22-oct)
 118. [Mercado Libre: recomendaciones de la plataforma, Publicidad y métricas (22 oct)](#118-mercado-libre-recomendaciones-de-la-plataforma-publicidad-y-métricas-22-oct)
 119. [Mercado Libre: Despegue detenido por saldo, fotos nuevas en Boundary y Revenger 2.45 (22 oct)](#119-mercado-libre-despegue-detenido-por-saldo-fotos-nuevas-en-boundary-y-revenger-245-22-oct)
+120. [Mercado Libre: Programa Despegue activado; Product Ads detenido por falta de confirmación del cobro (22 oct)](#120-mercado-libre-programa-despegue-activado-product-ads-detenido-por-falta-de-confirmación-del-cobro-22-oct)
 
 ---
 
@@ -11942,3 +11943,106 @@ Boundary plateada con carrete rojo y plata, igual en apariencia, pero el
 dueño debería confirmar que corresponde al 7'.
 
 **No se activó:** ni Premium, ni descuentos, ni publicidad.
+
+## 120. Mercado Libre: Programa Despegue activado; Product Ads detenido por falta de confirmación del cobro (22 oct)
+
+### Despegue: pagado con el "sí" del dueño
+
+El dueño ingresó $850 a Mercado Pago. Antes de pagar, la pantalla de
+garantía mostró:
+
+- **Medio de pago:** "Dinero en tu cuenta de Mercado Pago", con saldo
+  **$850.25**.
+- **Detalle:** Garantía $850, Total $850.
+- **Al confirmar se acepta:** los Términos y condiciones y la Domiciliación.
+- **Sin préstamo ni tarjeta:** no se usó "Solicitar préstamo".
+
+Con el "sí" final se pulsó "Confirmar". ML respondió **"¡Listo!
+Activaste el Programa de despegue"**, con $850 como "Dinero en Mercado
+Pago: verás esta operación como dinero en garantía". Captura:
+`imagenes/capturas/ml-despegue-activado-22oct.jpg`.
+
+**Estado en Reputación:**
+
+- **Vigencia:** "Programa activo — Te quedan 365 días". Los compradores
+  ven la cuenta **verde claro**.
+- **Ventas afectadas:** 0 de 5. Son ventas con reclamos, cancelaciones
+  hechas por nosotros o envíos incorrectos.
+- **Garantía:** **$850 en reserva** en Mercado Pago, no cobrados.
+- **Lo que se cobra al final según ventas afectadas:**
+
+| Ventas afectadas | Cobro |
+|---|---|
+| 0 | $0 |
+| 1 | $170 |
+| 2 | $340 |
+| 3 | $510 |
+| 4 | $680 |
+| 5 | $850 y se pierde el programa |
+
+- **Color propio:** a las 10 ventas la cuenta obtiene su color real.
+- **Salida:** existe un botón "Cancelar Programa".
+
+### 1. Product Ads: NO activado
+
+En Publicidad → crear campaña ya aparece **"TE REGALAMOS $850 DE
+BONIFICACIÓN — Programa de despegue activo"**. El botón es "Activar
+campaña y bonificación", con presupuesto sugerido de $356 al día y "93
+ventas extras al mes". Solo deja fijar un **presupuesto promedio
+diario**; no hay tope total ni opción de "pausar al agotar la
+bonificación".
+
+**No se pudo confirmar** que el gasto salga solo del crédito:
+
+- **Fuentes oficiales:** Product Ads se cobra por clic y se factura al
+  día siguiente ([ayuda 16366](https://www.mercadolibre.com.mx/ayuda/16366)).
+  La bonificación tiene saldo y fecha de fin ([developers: Bonificaciones
+  para Product Ads](https://developers.mercadolibre.com.ar/productos-recibe-notificaciones/bonificaciones-para-product-ads)).
+- **Lo que no se encontró:** ninguna página ni los términos del programa
+  dicen que la campaña se detenga al agotarse el crédito.
+- **Presupuesto:** es un **promedio**, así que puede gastar más algunos
+  días.
+
+Por la orden del dueño ("si no puedes confirmarlo, detente"), **no se
+activó**.
+
+**Opción para decidir:** activar con $30 al día. Los $850 alcanzan
+~28 días. La campaña se pausaría a mano antes de que se acabe, revisando
+el saldo de la bonificación en el administrador. Requiere decisión del
+dueño.
+
+### 2. Catálogo del Revenger 2.45
+
+En Publicaciones, la copia MLM6451018360 sigue "COMPITIENDO" pero
+**"RESTRINGIDO PARA GANAR"**, ahora con otro texto: **"No puedes ganar.
+Revisa reclamos, cancelaciones y nuestras políticas"**. Antes del
+programa decía "obtén reputación activando el programa". La cuenta no
+tiene reclamos ni cancelaciones, así que puede ser que el estado aún no
+se actualice tras la activación ("en los próximos minutos…").
+
+Al abrir la página del producto MLM62089454 para ver al ganador, ML
+mostró un **captcha** ("Seguridad — Mercado Libre"); no se resolvió.
+
+**Por revisar de nuevo en unas horas.**
+
+### 3. Promociones
+
+Siguen bloqueadas: "Por ahora, no puedes ofrecer promociones. Conoce
+los requisitos". Según la nota de la Central de promociones, se puede
+participar si se cumple todo esto:
+
+- Reputación verde o amarilla, o ser MercadoLíder o tienda oficial.
+- Producto nuevo.
+- Publicación Clásica o Premium.
+- **Experiencia de compra igual o mayor a 50.**
+
+La experiencia de compra de las 9 publicaciones dice "Sin calcular"
+porque no hay ventas. Es probable que eso bloquee las promociones aunque
+ya se tenga verde claro. No hay promociones ofrecidas por ML que
+revisar todavía. No se activó nada.
+
+### Otros
+
+- **Foto del Boundary:** el dueño confirmó que la foto real
+  (`B-S-1002-65`) es de la misma caña. Se queda.
+- **Sin activar:** Premium, descuentos y publicidad.

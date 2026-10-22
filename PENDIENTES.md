@@ -144,8 +144,18 @@
      Después: Product Ads solo con el crédito de $850 (~$30/día) y revisar
      si el Revenger 2.45 gana el catálogo. Hecho: Boundary y Revenger 2.45
      con 4 fotos (calidad del 2.45: 70 → 75). "Acción" del 2.45 está
-     bloqueada por el catálogo. Confirmar que la foto real del Boundary
-     (archivo B-S-1002-65) es del 7'.
+     bloqueada por el catálogo. Foto del Boundary confirmada por el dueño.
+   - **22 oct (MANUAL §120):** **Despegue ACTIVO** (365 días, verde claro;
+     $850 en reserva en Mercado Pago; cada venta afectada cuesta $170,
+     con 5 se pierde). **Product Ads NO activado:** el panel ofrece "$850
+     de bonificación", pero no se pudo confirmar que el gasto no siga con
+     dinero propio al agotarse (solo hay presupuesto promedio diario, sin
+     tope). Decisión del dueño: activar a $30/día y pausar a mano antes
+     de ~28 días, o esperar. **Revisar en unas horas:** el Revenger 2.45
+     dice "No puedes ganar. Revisa reclamos, cancelaciones y nuestras
+     políticas" (posible demora tras la activación). Promociones siguen
+     bloqueadas: piden experiencia de compra ≥ 50, que está "sin
+     calcular" porque no hay ventas.
    - **19 oct (MANUAL §100):** ya se aplicaron, a mitad de la prueba,
      la barra de compra desde la primera pantalla, el logo chico, el
      conjunto nuevo (5 kits + 3 combos Okuma de $999 + 3 binoculares
