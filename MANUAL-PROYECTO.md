@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 22 de octubre de 2026 (sección 117)
+**Última actualización:** 22 de octubre de 2026 (sección 118)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -145,6 +145,7 @@ como respaldo
 115. [Mercado Libre: análisis de precios de las 8 publicaciones contra la competencia (22 oct)](#115-mercado-libre-análisis-de-precios-de-las-8-publicaciones-contra-la-competencia-22-oct)
 116. [Mercado Libre: Revenger 2.45 a $1,169 en catálogo y párrafo de valor en los 5 kits (22 oct)](#116-mercado-libre-revenger-245-a-1169-en-catálogo-y-párrafo-de-valor-en-los-5-kits-22-oct)
 117. [Mercado Libre: margen con caja de cartón ($48.83) y 4 kits resubidos (22 oct)](#117-mercado-libre-margen-con-caja-de-cartón-4883-y-4-kits-resubidos-22-oct)
+118. [Mercado Libre: recomendaciones de la plataforma, Publicidad y métricas (22 oct)](#118-mercado-libre-recomendaciones-de-la-plataforma-publicidad-y-métricas-22-oct)
 
 ---
 
@@ -11698,3 +11699,153 @@ no cambian.
   rama principal (HEAD del remoto). La otra rama remota,
   `claude/peaceful-ptolemy-old8fo` (último commit 22 sep), ya está
   contenida en ella: no tiene nada que traer.
+
+## 118. Mercado Libre: recomendaciones de la plataforma, Publicidad y métricas (22 oct)
+
+**Qué se pidió:** solo mirar, sin gastar ni activar nada.
+
+- Las recomendaciones de ML por publicación y a nivel cuenta.
+- Publicidad (Product Ads).
+- Las métricas desde el 20 oct.
+- Una tabla de acciones con su efecto en el margen según la regla §117:
+  `Recibes − piezas − $48.83 ≥ $150`.
+
+**No se activó ni se guardó nada.** Las pestañas de Premium y de "Activar
+campaña" se abrieron solo para leer y se cerraron sin confirmar.
+
+### 1. Lo que sugiere ML
+
+**Hallazgo principal:** la cuenta **no tiene color de reputación**, y eso
+bloquea casi todo:
+
+- **Catálogo:** la publicación MLM6451018360 del Revenger 2.45 aparece
+  "COMPITIENDO" pero **"RESTRINGIDO PARA GANAR: Para ganar, obtén
+  reputación activando el programa"**. En la página del producto
+  MLM62089454 sigue ganando **SR Bikes a $1,176** ("Ver 4 opciones desde
+  $1,176"). Nuestra oferta de $1,169 no aparece.
+- **Promociones:** "Por ahora, no puedes ofrecer promociones. Si activas
+  el Programa de Despegue podrás ofrecerlas". No hay descuentos
+  sugeridos.
+- **Búsqueda:** ML dice que sin reputación las publicaciones aparecen en
+  los últimos lugares y que el color verde aumenta las ventas "hasta 20
+  veces".
+
+**Objetivos de calidad por publicación** (panel de cada edición):
+
+| Publicación | Calidad | Objetivos pendientes |
+|---|---|---|
+| Combo Revenger 2.45 original | 70 | Corregir características, mejorar fotos, agregar stock, Premium |
+| Revenger 2.45 catálogo MLM6451018360 | 76 | 2 objetivos (no se abrió su edición) |
+| Combo Revenger 2.40 | 76 | Agregar stock, Premium |
+| Combo Boundary | 72 | Mejorar fotos, Premium |
+| Kit Tundra | 76 | Agregar stock, Premium |
+| Kits Clarus, Revenger 7', Tolten y Fresh | 77 | Solo Premium |
+
+**"Suma meses sin intereses"** significa cambiar a **Premium**. En el
+Tundra a $1,989, Clásica cobra $298.35 (15%) y Premium $358.02 (18%). Los
+impuestos y el envío no cambian. Premium da exposición máxima y 6 meses
+sin intereses, y le quita 3% del precio a lo que recibes:
+
+| Publicación | Queda en Clásica | Queda en Premium | ¿Cumple $150? |
+|---|---|---|---|
+| Tundra | $152.86 | $93.19 | No |
+| Revenger 7' | $156.69 | $103.92 | No |
+| Tolten | $154.07 | $109.40 | No |
+| Fresh | $155.86 | $114.79 | No |
+| Clarus | $175.42 | $124.45 | No |
+| Boundary | $182.80 | $146.83 | No |
+| Combo Revenger 2.45 | $193.01 | $157.94 | Sí |
+| Combo Revenger 2.40 | $216.30 | $180.33 | Sí |
+
+Para mantener $150 en Premium, los kits tendrían que subir de precio (el
+Tundra, a ~$2,069).
+
+**Programa Despegue:**
+
+- **Cómo funciona:** se dejan **$850 de garantía** en Mercado Pago. A
+  cambio da **reputación verde durante un año** y **$850 en publicidad
+  de regalo**.
+- **Desbloquea:** Promociones, Clips (video), Envíos Flex y la
+  posibilidad de ganar catálogo.
+- **Requisitos:** no tener color de reputación, no tener restricciones ni
+  reclamos, y aceptar los Términos y Condiciones de Mercado Pago, con
+  domiciliación.
+- **Cuándo termina:** si se llega a **5 ventas afectadas** (reclamos,
+  cancelaciones hechas por nosotros o envíos incorrectos), el programa
+  termina y se pierden los beneficios.
+- **Devolución:** al final, ML devuelve el 100% con 0 ventas afectadas o
+  una parte según cuántas haya. El programa se puede cancelar antes, y
+  también devuelven según las afectadas.
+- **Reputación propia:** a las 10 ventas se obtiene el color real. Si
+  sale rojo o naranja, ML sigue mostrando verde durante el año.
+
+**Preguntas:** 0. Nada por responder.
+
+### 2. Publicidad (Product Ads)
+
+- **Acceso:** sí se puede anunciar. La sección existe y no hay campañas.
+- **Primera campaña:** es un asistente automático: "Elegimos tus mejores
+  publicaciones". No deja elegir cuáles, así que **no se puede limitar a
+  los 3 combos en la primera**. La "Configuración" de Publicidad está
+  deshabilitada hasta crear una campaña.
+- **Presupuesto:** ML sugiere un **promedio diario de $356**. El campo
+  acepta $10 sin aviso de mínimo, solo con la advertencia "Te sugerimos
+  $356 para no limitar tu campaña".
+- **Estimación de ML:** crece en línea recta con el presupuesto y no es
+  creíble con 0–1 visitas por publicación. Ningún valor muestra costo
+  por clic ni ROAS antes de activar.
+
+| Presupuesto diario | Ventas extra al mes según ML |
+|---|---|
+| $10 | 5 |
+| $100 | 45 |
+| $356 | 158 |
+
+- **Cómo cobra:** **costo por clic** contra un presupuesto diario. La
+  tabla de campañas mide con **"ACOS objetivo"** (inversión ÷ ingresos) y
+  "Nivel de optimización". El cobro por clic viene de fuentes no
+  oficiales (blogs y agencias); en el panel solo se vio la columna de
+  ACOS.
+- **Cuánto se puede gastar sin bajar de $150** (ACOS máximo):
+
+| Publicación | Gasto máximo por venta | ACOS máximo |
+|---|---|---|
+| Kits Tundra, Revenger 7', Tolten y Fresh | $3 a $7 | 0.1–0.4% |
+| Clarus | $25 | 1.5% |
+| Boundary | $33 | 2.7% |
+| Combo Revenger 2.45 | $43 | 3.7% |
+| Combo Revenger 2.40 | $66 | 5.5% |
+
+  Pagar publicidad con dinero propio rompe la regla en todo lo que no
+  sea combo. Solo cuadra con los $850 de regalo de Despegue.
+
+### 3. Métricas desde el 20 oct
+
+Visitas totales según la edición de cada publicación:
+
+| Publicación | Visitas |
+|---|---|
+| Combo Revenger 2.40 | 1 |
+| Kit Tundra | 1 |
+| Kit Tolten | 1 |
+| Las demás | 0 |
+
+Hay 0 ventas y 0 preguntas. El tráfico es prácticamente nulo, lo que
+coincide con el aviso de reputación.
+
+### 4. Recomendaciones, por impacto y costo
+
+| # | Qué | Costo | Efecto en el margen | ¿Se recomienda? |
+|---|---|---|---|---|
+| 1 | **Activar Programa Despegue** | $850 en garantía, se recupera 100% con 0 ventas afectadas | Ninguno | **Sí, es lo de mayor impacto.** Desbloquea visibilidad, catálogo, promociones y $850 de publicidad. Requiere "sí" del dueño. |
+| 2 | Con Despegue, primera campaña de Product Ads con los $850 de regalo, presupuesto bajo (~$30/día) | $0 de dinero propio mientras dure el crédito | Ninguno mientras dure; después rompe $150 en kits | Sí, solo con el crédito. Al terminarse, seguir solo con combos con ACOS objetivo ≤ 3%. |
+| 3 | **Gratis:** fotos al Boundary y al Revenger 2.45 (ML: "mejora las fotos") | $0 | Ninguno | Sí |
+| 4 | **Gratis:** corregir características del Revenger 2.45 original | $0 | Ninguno | Sí |
+| 5 | **Gratis:** Clips (video corto), al activarse Despegue | $0 | Ninguno | Sí, ML dice "3 veces más visitas" |
+| 6 | **Gratis:** "Agregar stock" en Tundra, Revenger 2.40 y Revenger 2.45 | $0 | Ninguno | Solo si hay piezas reales; no inventar existencias |
+| 7 | Premium en los combos Revenger 2.45 y 2.40 | +3% del precio, unos $35 por venta | Quedan $157.94 y $180.33 | Opcional, después de Despegue. Revisar primero si el catálogo exige Clásica. |
+| 8 | Premium en kits, Clarus y Boundary | +3%, $36 a $60 por venta | Quedan $93 a $147 | **No**, rompe $150 |
+| 9 | Promociones o descuentos (con Despegue) | — | Cada $1 de descuento quita ~$0.76 | Solo combos, como máximo: 2.45 −$57, 2.40 −$87, Boundary −$43. **No en kits** (holgura de $4 a $33). |
+| 10 | Product Ads pagado con dinero propio | CPC | Rompe $150 en todo salvo combos con ACOS ≤ 3–5% | No, por ahora |
+
+**Gratis:** 3, 4, 5 y 6 (el 5 depende de Despegue).

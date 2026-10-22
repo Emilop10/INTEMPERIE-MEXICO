@@ -128,6 +128,15 @@
      cálculo de Mercado Libre. Kits resubidos: Tundra $1,989, Revenger 7'
      $1,759, Tolten $1,489, Fresh $1,369 (quedan $152.84 / $156.67 /
      $154.06 / $155.86). Clarus y combos sin cambio (ya arriba de $150).
+   - **22 oct (MANUAL §118) — DECISIÓN DEL DUEÑO PENDIENTE:** sin
+     reputación, ML esconde las publicaciones (0–1 visitas cada una, 0
+     preguntas), bloquea promociones y deja el Revenger 2.45 "restringido
+     para ganar" el catálogo (SR Bikes sigue a $1,176). **Programa
+     Despegue:** $850 de garantía reembolsable (100% con 0 ventas
+     afectadas; termina con 5), da verde un año y $850 de publicidad.
+     Requiere "sí". Gratis ya: fotos a Boundary y Revenger 2.45 y
+     corregir características del 2.45. Premium solo cuadra en los combos
+     Revenger; Product Ads con dinero propio no cuadra con $150 en kits.
    - **19 oct (MANUAL §100):** ya se aplicaron, a mitad de la prueba,
      la barra de compra desde la primera pantalla, el logo chico, el
      conjunto nuevo (5 kits + 3 combos Okuma de $999 + 3 binoculares
