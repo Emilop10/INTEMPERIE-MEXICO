@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 22 de octubre de 2026 (sección 120)
+**Última actualización:** 22 de octubre de 2026 (sección 121)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -148,6 +148,7 @@ como respaldo
 118. [Mercado Libre: recomendaciones de la plataforma, Publicidad y métricas (22 oct)](#118-mercado-libre-recomendaciones-de-la-plataforma-publicidad-y-métricas-22-oct)
 119. [Mercado Libre: Despegue detenido por saldo, fotos nuevas en Boundary y Revenger 2.45 (22 oct)](#119-mercado-libre-despegue-detenido-por-saldo-fotos-nuevas-en-boundary-y-revenger-245-22-oct)
 120. [Mercado Libre: Programa Despegue activado; Product Ads detenido por falta de confirmación del cobro (22 oct)](#120-mercado-libre-programa-despegue-activado-product-ads-detenido-por-falta-de-confirmación-del-cobro-22-oct)
+121. [Mercado Libre: campaña de Product Ads activada con la bonificación de $850; pausar el 12 nov (22 oct)](#121-mercado-libre-campaña-de-product-ads-activada-con-la-bonificación-de-850-pausar-el-12-nov-22-oct)
 
 ---
 
@@ -12055,3 +12056,54 @@ programadas: `trig_016uafSWXLKVSNUuPu5H9ZCU` (5 nov, revisar crédito
 restante; si queda < $300, pausar antes) y `trig_014mFqTWbcPsWvSutwTXxbs5`
 (12 nov, pausar). Las fechas asumen activación el 22 oct; si la Mac la
 activa otro día, hay que moverlas.
+
+## 121. Mercado Libre: campaña de Product Ads activada con la bonificación de $850; pausar el 12 nov (22 oct)
+
+**Qué se pidió:** con el "sí" del dueño, activar Product Ads a $30 al día
+con la bonificación de $850. Detenerse si ML pedía tarjeta u otro medio
+de pago. Anotar fecha, hora y saldo, y revisar el catálogo del Revenger
+2.45 en unas horas.
+
+### Activación
+
+- **Cuándo:** **jueves 22 de octubre de 2026, 13:31:52**, hora del centro
+  de México (GMT-6), según el reloj del navegador al llegar a la
+  confirmación.
+- **Cómo:** Publicidad → "Activa tu primera campaña" → presupuesto
+  promedio diario **$30** (el sugerido era $356; ML estimó "8 ventas
+  extras / mes") → **"Activar campaña y bonificación"**.
+- **Medio de pago:** **ML no pidió tarjeta ni otro medio de pago.**
+- **Confirmación de ML:** "¡Creaste tu campaña de Publicidad!".
+  - Nombre: **"Campaña Mercado Libre"**, "$850 de bonificación".
+  - Presupuesto promedio diario: $30.
+  - Selección de anuncios: **Automática** (ML elige las publicaciones).
+  - Luego: "¡Tu campaña automática ya está activa!".
+- **Anunciante:** INTEMPERIEMEXICO (advertiser_id 3602767). Presupuesto
+  "NO COMPARTIDO".
+- **Saldo de bonificación al activar:** **Disponible $850 · Utilizadas
+  $0**. Los valores son de los últimos 60 días.
+
+**Regla de cobro confirmada en el panel:** en la ventana "Bonificación
+disponible" ML dice: *"La bonificación es un monto que se descuenta de lo
+que inviertes en publicidad. **Una vez que se agota, tus campañas activas
+comienzan a generar cargos en tu factura mensual.**"* Por eso hay que
+pausar a mano antes de que se acabe.
+
+**Cuánto dura el crédito:** a $30 promedio son ~28 días. El promedio
+puede pasarse algunos días.
+
+**FECHA PARA PAUSAR: jueves 12 de noviembre de 2026**, 21 días después de
+la activación, orden del dueño. Antes, revisar "Bonificación disponible";
+si baja de ~$150, pausar en ese momento.
+
+**Capturas:**
+
+- `imagenes/capturas/ml-product-ads-campana-creada-22oct.jpg`
+- `imagenes/capturas/ml-product-ads-bonificacion-850-22oct.jpg`
+
+### Catálogo del Revenger 2.45
+
+A las **13:32** (una hora y media después de activar Despegue), la
+publicación de catálogo MLM6451018360 seguía "RESTRINGIDO PARA GANAR —
+No puedes ganar. Revisa reclamos, cancelaciones y nuestras políticas".
+Se revisa otra vez en unas horas (ver entrada siguiente).

@@ -156,6 +156,13 @@
      políticas" (posible demora tras la activación). Promociones siguen
      bloqueadas: piden experiencia de compra ≥ 50, que está "sin
      calcular" porque no hay ventas.
+   - **🗓️ 12 NOV 2026 — PAUSAR PRODUCT ADS (MANUAL §121):** la campaña
+     "Campaña Mercado Libre" se activó el 22 oct 2026 a las 13:31:52 (CDMX)
+     a $30/día con bonificación de $850 (disponible $850, usado $0). ML
+     confirma que, al agotarse la bonificación, las campañas activas
+     **cobran en la factura mensual**. Pausarla el 12 nov, o antes si
+     "Bonificación disponible" baja de ~$150. Selección de anuncios
+     automática.
    - **19 oct (MANUAL §100):** ya se aplicaron, a mitad de la prueba,
      la barra de compra desde la primera pantalla, el logo chico, el
      conjunto nuevo (5 kits + 3 combos Okuma de $999 + 3 binoculares
