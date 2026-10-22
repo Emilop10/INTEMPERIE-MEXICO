@@ -11218,7 +11218,7 @@ en ML, bajar la existencia en Shopify a mano el mismo día.
 
 ## 112. Merchant Center, revisión del 22 oct: 325 de 325 aprobados
 
-Revisión programada desde §(15 oct, "Diagnóstico de Merchant Center").
+Revisión programada del 15 oct (ver "Diagnóstico de Merchant Center, 15 oct").
 Desde la Mac, con la sesión admin@ de Google en Chrome (cuenta
 5872999371, authuser=8). Solo se miró; no se cambió nada.
 

@@ -24,8 +24,11 @@
      la sesión de la Mac con Chrome (bloque C de
      `PROMPT-CLAUDE-CHROME-GOOGLE-Y-CARRITO.md` + revisar que Google no
      marque las 263 portadas de IA; si marca alguna, foto real a la
-     posición 1 y la de IA a la 2, nunca borrar). Pendiente hasta que el
-     dueño lo corra.
+     posición 1 y la de IA a la 2, nunca borrar). **Hecho desde la Mac
+     el 22 oct (MANUAL §112): 325 de 325 aprobados, 0 en revisión, 0 no
+     aprobados; los 4 "Image not processed" se resolvieron solos (no
+     re-subirlas) y ninguna portada de IA fue marcada.** Único aviso de
+     cuenta: Google Ads sin ligar (intencional).
    - ~~21 oct: corte de la campaña v5~~ **Cancelado.** La v5 se pausó el
      19 oct ($370, 177 vistas, 1 carrito, 0 compras; MANUAL §104).
    - **Nueva ronda ENCENDIDA el 19 oct 11:55** (campaña
@@ -1085,7 +1088,7 @@ llamada de API), el grafo de `scripts/` sí se movió esta vez —
 > ✅ 14 oct: los 5 bloques de Claude in Chrome están hechos (#1005 archivado, Shop no aplica, foto vieja quitada, casilla de marketing visible, agradecimiento activo).
 > ✅ 15 oct: bienvenida activa · secreto de la app rotado · SHOPIFY_ADMIN_TOKEN en variables de entorno (confirmar en la próxima sesión nueva).
 > ✅ 15 oct: pendientes de §78 cerrados (MANUAL §80). TikTok: sin cuenta todavía. Mercado Libre: después de la fase 4.
-> ✅ 15 oct: Google con 287/325 aprobados, 0 por armas, devoluciones verificadas. 🗓️ 22 oct: re-revisar las 4 "Image not processed".
+> ✅ 15 oct: Google con 287/325 aprobados, 0 por armas, devoluciones verificadas. ✅ 22 oct: 325/325 aprobados, las 4 se resolvieron solas (§112).
 > 🔐 Token de Meta: el viejo REVOCADO; 2FA con app de autenticación; nuevo token GENERADO (16 oct) y pegado por el dueño en `META_ACCESS_TOKEN`. Verificar con `debug_token` en la próxima sesión nueva (app Claude Integration, nunca caduca).
 > Vivo: confirmar SHOPIFY_ADMIN_TOKEN y el nuevo META_ACCESS_TOKEN en la próxima sesión.
 > ✅ 16 oct: fase 3 cerrada. Revenger 2.45 y Boundary a $999; Araty 0.70 y Stimula sin cambio; sin reabasto hasta que se muevan los combos (MANUAL §81).
