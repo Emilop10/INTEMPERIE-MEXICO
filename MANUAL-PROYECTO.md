@@ -11607,3 +11607,29 @@ Clarus $1,699, Revenger $1,699, Tolten $1,449 y Fresh $1,349.
 - **Accesorios:** los totales incluyen paquetes completos (caja de 100
   anzuelos Mustad, bolsas de plomo, hilo de 10 piezas). Si alguien lo
   cuestiona, el detalle está en §115.
+
+**Corrección de márgenes en Mercado Libre: faltaba la caja de cartón (22
+oct, desde la nube, a raíz de una pregunta del dueño).** Los márgenes de
+§110, §111, §113, §114, §115 y §116 restaban solo el costo de las piezas
+(todas: caña, carrete, hilos, caja organizadora, señuelos, anzuelos,
+plomos, destorcedores; verificado con el kit Revenger, 11 piezas =
+$990.93). **No restaban la caja de envío de caña, $48.83** (§59, paquete
+de 6 por $293), que pone el vendedor aunque ML pague la guía. Márgenes
+reales con la caja:
+
+| Publicación | Precio | Antes | Real |
+|---|---|---|---|
+| Combo Revenger 2.40 + RV-80 | $1,199 | $265 | $216 |
+| Combo Revenger 2.45 | $1,169 | $242 | $193 |
+| Combo Boundary | $1,199 | $232 | $183 |
+| Kit Clarus | $1,699 | $224 | $175 |
+| Kit Fresh | $1,349 | $190 | $141 |
+| Kit Tolten | $1,449 | $173 | $124 |
+| Kit Revenger 7' | $1,699 | $160 | $111 |
+| Kit Tundra | $1,929 | $156 | $107 |
+
+Ninguno pierde dinero; 4 kits quedan bajo el piso de $150. Los "precios
+mínimos" de §115 también suben ~$58 (la caja más la comisión e impuestos
+sobre esa diferencia). Decisión de precios pendiente del dueño. **Regla
+para cálculos futuros de ML:** margen = lo que recibes − costo de las
+piezas − $48.83 de caja.

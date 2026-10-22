@@ -138,6 +138,11 @@
    decir cuántos líderes trae el WL04-206/209, y si se corrigen las
    descripciones Gimbel cruzadas.
 
+   - **22 oct, márgenes ML corregidos (MANUAL §116):** faltaba restar la
+     caja de cartón ($48.83). Tundra $107, Revenger 7' $111, Tolten
+     $124 y Fresh $141 quedan bajo el piso de $150. El dueño decide:
+     subir esos 4 kits ~$60–$70 o aceptar un piso de ~$100 en ML.
+
 ## 🟢 Fase 4 en marcha (16 oct): campaña de Facebook ENCENDIDA
 
 - Regla aprobada por el dueño: se lee **una sola vez**, al llegar a
