@@ -2,6 +2,10 @@
 
 ## ▶️ Arranque de la próxima sesión (dejado el 19 oct)
 
+0. **Facebook en pausa (22 oct 17:43, MANUAL §124):** las dos campañas de la
+   ronda Oct19 quedaron pausadas con el "sí" del dueño: $352, 2 carritos,
+   0 compras. Los cortes diarios están deshabilitados. No reactivar ni
+   crear campañas sin un plan nuevo aprobado por el dueño.
 0. **Pull automático (22 oct, MANUAL §122):** activo y probado en la Mac
    y en la nube. Ya no hay que pedir pull; si el gancho avisa que falló,
    hacerlo a mano.

@@ -12293,3 +12293,18 @@ la v5 pausada el 19):
 gastarían esta noche. El resultado ya está decidido. Esperar su "sí";
 sin respuesta, el corte de mañana lo hace solo.
 
+**Pausa aplicada (22 oct, 17:43 hora de la cuenta), con el "sí" del dueño.**
+- Campañas 120250632213900175 (prospección) y 120250648101180175
+  (retargeting) en PAUSED; verificado con `meta-ads.py listar`. No se
+  borró nada.
+- **Cierre de la ronda Oct19:** ~$352 gastados, 153 vistas, 2 carritos,
+  0 compras. El tope de la cuenta queda con ~$846 sin usar.
+- La tarea de cortes diarios (`trig_01UxpqCyFokQncvr2kZr4mpQ`) quedó
+  deshabilitada: ya no hay campaña que cortar.
+- La tarea del 1 nov sigue: restaura los precios de los kits, y como la
+  ronda terminó, no toca Meta.
+
+**Siguiente paso propuesto:** no meterle más dinero a Facebook hasta
+entender por qué la ficha no convierte. Esta semana el esfuerzo va a
+Mercado Libre, con Product Ads.
+
