@@ -12161,3 +12161,9 @@ el temporizador de 3 horas de esa sesión. La nube programó un recordatorio
 Cuando dispare, la nube le da al dueño el mensaje para que la Mac revise
 el catálogo MLM6451018360 con Chrome.
 
+**Prueba real en la Mac: funciona (22 oct).** Después de reiniciar Claude
+Code, la Mac estaba en 1848924 y la nube ya había subido 0211a98. Al
+abrir la sesión, el gancho avisó "Repo actualizado con commits de la otra
+sesión: 0211a98…". La Mac quedó al día con origin sin pedir pull y sin
+cambios locales. El pull automático queda operando en las dos sesiones.
+
