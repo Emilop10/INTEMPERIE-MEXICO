@@ -11215,3 +11215,39 @@ https://articulo.mercadolibre.com.mx/MLM-3693474151-kit-pesca-agua-dulce-blue-fo
 Con esto están los **8 productos en Mercado Libre** (tabla completa en
 §110 más esta fila). Regla de operación sin cambios: si algo se vende
 en ML, bajar la existencia en Shopify a mano el mismo día.
+
+## 112. Merchant Center, revisión del 22 oct: 325 de 325 aprobados
+
+Revisión programada desde §(15 oct, "Diagnóstico de Merchant Center").
+Desde la Mac, con la sesión admin@ de Google en Chrome (cuenta
+5872999371, authuser=8). Solo se miró; no se cambió nada.
+
+| | 15 oct | 22 oct |
+|---|---|---|
+| Total | 325 | 325 |
+| Aprobados | 287 | **325** (+38) |
+| Limitados | 0 | 0 |
+| En revisión | 34 | **0** |
+| No aprobados | 4 | **0** |
+
+- **Los 4 de "Image not processed"** (Rapala Skitter V 10 Gold, Tasco
+  Essentials Porro 8-24x25, Blue Fox Vibrax SD1 Plata, Hilo Araty 0.50mm
+  1000m) **se resolvieron solos**: la cuenta marca "Not approved −4" en 7
+  días y "Necesitan atención" está vacía con y sin el filtro de
+  prioridad. No hace falta re-subir esas imágenes con otro nombre.
+- **Los 34 en revisión del 15 oct terminaron aprobados** (Under review
+  −34, Approved +38 = 34 + los 4).
+- **Portadas de IA (263 productos, `imagenes/imagenes-ia-aprobadas.json`):
+  ningún producto marcado** por imagen (ni "imagen generada", "engañosa",
+  "producto no visible" ni "no coincide"). No se movió ninguna foto en
+  Shopify.
+- **Armas o productos peligrosos:** 0. **GTIN:** sin avisos.
+- **Avisos de cuenta:** solo "No Google Ads account linked" (intencional).
+  Sugerencias de Google, no errores: completar descripciones de 92
+  señuelos, 1 producto agotado con alta demanda en México, validar los
+  canales de atención al cliente.
+- 16 clics orgánicos en los últimos 28 días (antes 0).
+
+Nota: la búsqueda de la tabla de productos usa IA y no filtra por
+título de forma fiable ("Skitter" lo tomó como marca); para revisar
+productos sueltos conviene el resumen de estados o la descarga CSV.
