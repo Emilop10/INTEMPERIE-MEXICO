@@ -69,6 +69,9 @@ al dueño antes de cada cambio:
 
 ## 4. Reglas para no pisarse con la sesión en la nube
 
+- **Regla maestra (ver `CLAUDE.md`):** al terminar cada tarea, documentar en
+  MANUAL, en PENDIENTES si hace falta, y commit + push. Siempre.
+
 - **Antes de trabajar:** `git pull --rebase origin claude/intemperie-mexico-audit-n3yxbs`.
 - **Commits chicos y push inmediato** después de cada bloque. La sesión en la
   nube hace `git pull` antes de escribir en MANUAL y PENDIENTES.

@@ -11259,3 +11259,10 @@ es el **Okuma Aria 5000 (Aria-5000A)**, que no está en la tienda (el
 clics atribuibles. **Decisión: no resurtir por esta señal** (es débil y
 genérica); se mantiene la regla del dueño de resurtir solo lo que se
 venda. Dato guardado para cuando toque comprar mercancía.
+
+**Instrucción maestra en `CLAUDE.md` (22 oct, orden del dueño).** Se creó
+`CLAUDE.md` en la raíz del repo, que Claude Code carga solo al iniciar
+cualquier sesión (Mac o nube). Regla: al terminar **cada** tarea, documentar
+en MANUAL, actualizar PENDIENTES si cambia algo para la próxima sesión, y
+`git pull --rebase` + commit + push a la rama principal. También fija que
+tokens y datos personales de clientes nunca van al repo.
