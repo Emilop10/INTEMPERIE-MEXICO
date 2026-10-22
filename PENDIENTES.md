@@ -90,6 +90,12 @@
      Fresh**: su borrador pierde la opción "Envíos en Mercado Libre";
      intentar desde cero. WhatsApp enviados a Victor y Arturo. Si algo
      se vende en ML, bajar existencia en Shopify a mano.
+   - **21–22 oct, desde la Mac (MANUAL §111):** fotos reales subidas a
+     las publicaciones de ML (calidad 76–77). **Kit Fresh: borrador
+     completo a $1,299 (quedan $202), detenido porque ML pide
+     validación facial del dueño al publicar**; en cuanto la haga, se
+     publica (borrador `…833543238d4c`). Los 2 borradores viejos no se
+     pueden borrar desde la interfaz.
    - **19 oct (MANUAL §100):** ya se aplicaron, a mitad de la prueba,
      la barra de compra desde la primera pantalla, el logo chico, el
      conjunto nuevo (5 kits + 3 combos Okuma de $999 + 3 binoculares

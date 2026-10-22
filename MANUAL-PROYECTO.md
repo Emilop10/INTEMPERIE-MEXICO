@@ -11155,3 +11155,54 @@ revisar en la cuenta si Mercado Envíos sigue activo.
 - Costo real de envío: ML lo cobra sobre el paquete medido al
   despachar; una caña de 1.10 m puede salir "voluminosa" y costar más
   que el estimado. Revisar en la primera venta.
+
+## 111. Remates en Mercado Libre: fotos reales en las 7 publicaciones, borradores, y el Fresh detenido por validación de identidad (21–22 oct)
+
+### Fotos de las piezas
+
+Se bajaron del CDN de Shopify todas las fotos de cada producto que no son
+portadas de IA (57 archivos, `scratchpad/ml-fotos/piezas/`, convertidas
+a JPG y reducidas a 1600 px) y se subieron desde Publicaciones →
+Modificar → Fotos, dejando la portada de IA como primera. ML rechaza
+las imágenes de menos de 500 px por lado (varias miniaturas de anzuelos,
+plomos y destorcedores), así que no todas entraron:
+
+| Publicación | Fotos antes | Fotos ahora | Calidad antes → ahora |
+|---|---|---|---|
+| Kit Tundra Pro | 2 | 10 | 71 → 76 |
+| Kit Clarus | 2 | 9 | 72 → 77 |
+| Kit Revenger | 2 | 7 | 72 → 77 |
+| Kit Tolten | 1 (la real no había entrado) | 10 | 67 → 77 |
+| Combo Revenger 2.40 | 2 | 3 | 71 → 76 |
+| Combo Revenger 2.45 y Boundary | 2 | 2 (Shopify no tiene más fotos reales) | sin cambio |
+
+Lo que ML sigue pidiendo para subir más la calidad: Premium (no), más
+stock, y fotos de accesorios más grandes (habría que refotografiar
+anzuelos, plomos y destorcedores a 1000 px o más).
+
+### Borradores atorados del Fresh
+
+No hay forma de borrarlos desde la interfaz: ni la pantalla "¿Qué
+publicación quieres continuar?", ni el hub de Publicar, ni la lista de
+Publicaciones ofrecen eliminar un borrador. Quedan los dos (`…ce65fa20680c`
+y `…6126e112cf31`) hasta que ML los expire; no están activos ni cobran.
+
+### Kit Fresh: borrador bueno, detenido por validación de identidad
+
+Se rehízo desde cero ("Publicar" → título → "Es de otra categoría" →
+Cañas y Accesorios › Otros) y por esa ruta sí apareció "Envíos en
+Mercado Libre". Quedó completo: Blue Fox, modelo "Kit Fresh 7' Agua
+Dulce", sin código universal, título "Kit Pesca Agua Dulce Blue Fox
+Fresh 7' Caña Carrete Flotador", 10 fotos, stock 2, SKU KIT-FRESH,
+descripción con piezas, $1,299 Clásica envío gratis, garantía 7 días.
+Simulación de ML: comisión $194.85, envío $139.50, impuestos $117.59,
+**recibes $847.06**, costo $645.05, **quedan $202.01**.
+
+Al pulsar "Publicar" (22 oct, con el "sí" del dueño) Mercado Libre
+desvió a **"Validación de identidad: usaremos el reconocimiento facial
+para confirmar que la cuenta te pertenece"** y pide la cámara del
+navegador (`/liveness/detection/enrollment?initiative_id=reauth`). Eso
+solo lo puede hacer el dueño frente a la cámara; el borrador
+(`…833543238d4c`) sigue guardado y se publica en cuanto la validación
+pase. Es la primera vez que ML lo pide en esta cuenta (las 7 anteriores
+salieron sin eso); probablemente por el volumen de altas en 24 h.
