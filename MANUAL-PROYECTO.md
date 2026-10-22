@@ -11206,3 +11206,12 @@ solo lo puede hacer el dueño frente a la cámara; el borrador
 (`…833543238d4c`) sigue guardado y se publica en cuanto la validación
 pase. Es la primera vez que ML lo pide en esta cuenta (las 7 anteriores
 salieron sin eso); probablemente por el volumen de altas en 24 h.
+
+**Publicado (22 oct):** el dueño pasó la validación facial
+(`face_auth_status=success`) y el borrador se publicó tal cual:
+**MLM-3693474151**, $1,299 Clásica, envío gratis, stock 2, SKU
+KIT-FRESH, recibes $847.06, quedan $202.01.
+https://articulo.mercadolibre.com.mx/MLM-3693474151-kit-pesca-agua-dulce-blue-fox-fresh-7-cana-carrete-flotador-_JM
+Con esto están los **8 productos en Mercado Libre** (tabla completa en
+§110 más esta fila). Regla de operación sin cambios: si algo se vende
+en ML, bajar la existencia en Shopify a mano el mismo día.
