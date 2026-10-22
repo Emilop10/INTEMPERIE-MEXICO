@@ -11251,3 +11251,11 @@ Desde la Mac, con la sesión admin@ de Google en Chrome (cuenta
 Nota: la búsqueda de la tabla de productos usa IA y no filtra por
 título de forma fiable ("Skitter" lo tomó como marca); para revisar
 productos sueltos conviene el resumen de estados o la descarga CSV.
+
+**Sugerencia "producto agotado con alta demanda" (22 oct, desde la Mac):**
+es el **Okuma Aria 5000 (Aria-5000A)**, que no está en la tienda (el
+único Aria es el C4000A, $639, existencia 0). Popularidad en México: lugar
+1,282 en Artículos deportivos (sep 2026), +561 lugares. Sin búsquedas ni
+clics atribuibles. **Decisión: no resurtir por esta señal** (es débil y
+genérica); se mantiene la regla del dueño de resurtir solo lo que se
+venda. Dato guardado para cuando toque comprar mercancía.
