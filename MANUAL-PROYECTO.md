@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 22 de octubre de 2026 (sección 123)
+**Última actualización:** 22 de octubre de 2026 (sección 124)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -151,6 +151,7 @@ como respaldo
 121. [Mercado Libre: campaña de Product Ads activada con la bonificación de $850; pausar el 12 nov (22 oct)](#121-mercado-libre-campaña-de-product-ads-activada-con-la-bonificación-de-850-pausar-el-12-nov-22-oct)
 122. [Pull automático: la Mac y la nube traen lo último del repositorio solas (22 oct)](#122-pull-automático-la-mac-y-la-nube-traen-lo-último-del-repositorio-solas-22-oct)
 123. [Inventario del 22 oct: conciliación, kits recalculados y tabla para Mercado Libre](#123-inventario-del-22-oct-conciliación-kits-recalculados-y-tabla-para-mercado-libre)
+124. [Revisión de la campaña de Facebook, 22 oct 17:40: el corte de $400 no se va a pasar](#124-revisión-de-la-campaña-de-facebook-22-oct-1740-el-corte-de-400-no-se-va-a-pasar)
 
 ---
 
@@ -12250,4 +12251,45 @@ repositorio.
   0 pausadas.
 - **Sin tocar:** precios y la copia de catálogo, que comparte stock con
   la original.
+
+## 124. Revisión de la campaña de Facebook, 22 oct 17:40: el corte de $400 no se va a pasar
+
+**Qué pidió el dueño.** Revisar cómo va la campaña.
+
+**Números de la ronda desde el 19 oct** (API de Meta, sin los $19.09 de
+la v5 pausada el 19):
+
+| | Gasto | Vistas | Carritos | Vista → carrito | Pagos | Compras |
+|---|---|---|---|---|---|---|
+| Prospección + retargeting | $352.23 | 153 | 2 | **1.3%** | 0 | 0 |
+| Hoy (hasta 17:40) | $63.44 | 31 | 0 | 0% | 0 | 0 |
+| Ayer 21 oct | $135.89 | 69 | 1 | 1.4% | 0 | 0 |
+
+**Por anuncio (acumulado):**
+
+| Anuncio | Gasto | Vistas | Carritos |
+|---|---|---|---|
+| revenger-lanz | $143.01 | 64 | 0 |
+| tundra-lanz | $61.43 | 25 | 0 |
+| revenger-presa-rio (pausado) | $49.20 | 18 | 0 |
+| lanzamiento-rt (retargeting) | $42.27 | 25 | 1 |
+| tundra-valor (pausado) | $37.10 | 12 | 1 |
+| combo-999 | $6.72 | 5 | 0 |
+| demás | $12.50 | 4 | 0 |
+
+**Shopify desde el 19 oct:** 0 pedidos y 0 pagos abandonados.
+
+**Tope de la cuenta:** se han gastado $2,406.80 de $3,252.83.
+
+**Lectura.**
+- El anuncio sí trae gente: CTR ~1.8% y ~$2.30 por vista. Pero casi
+  nadie agrega al carrito. Revenger-lanz se lleva el 41% del gasto con
+  64 vistas y 0 carritos.
+- Para pasar el corte de los $400 (3%) harían falta ~3 carritos más en
+  las ~20 vistas que quedan. No va a pasar.
+- El corte automático de mañana a las 08:47 pausará las dos campañas.
+
+**Recomendación al dueño:** pausar hoy mismo y ahorrar los ~$50 que se
+gastarían esta noche. El resultado ya está decidido. Esperar su "sí";
+sin respuesta, el corte de mañana lo hace solo.
 
