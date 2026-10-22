@@ -114,6 +114,14 @@
      Bikes a $1,176. Tundra, Kit Revenger y Fresh no pueden competir en
      precio (mínimos $1,921 / $1,686 / $1,297); vender con kit completo y
      fotos. Boundary: ML pide más fotos.
+   - **22 oct (MANUAL §116):** hecho con el "sí" del dueño. El Revenger
+     2.45 quedó a $1,169 (quedan $241.83) y compite en el catálogo
+     MLM62089454 con la publicación sincronizada **MLM6451018360**. Ahora
+     hay 9 publicaciones; las dos del Revenger 2.45 comparten la única
+     unidad. **Revisar en 1–2 días** si gana la primera opción de compra
+     frente a SR Bikes ($1,176). Los 5 kits tienen al inicio de la
+     descripción el párrafo "piezas por separado cuestan más de $X"
+     ($3,000 / $3,100 / $3,000 / $2,600 / $2,200), sin cambio de precio.
    - **19 oct (MANUAL §100):** ya se aplicaron, a mitad de la prueba,
      la barra de compra desde la primera pantalla, el logo chico, el
      conjunto nuevo (5 kits + 3 combos Okuma de $999 + 3 binoculares

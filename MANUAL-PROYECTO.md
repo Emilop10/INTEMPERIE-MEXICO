@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 22 de octubre de 2026 (sección 115)
+**Última actualización:** 22 de octubre de 2026 (sección 116)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -143,6 +143,7 @@ como respaldo
 113. [Mercado Libre: portada de ambiente como foto 1 en las 8 publicaciones (22 oct)](#113-mercado-libre-portada-de-ambiente-como-foto-1-en-las-8-publicaciones-22-oct)
 114. [Kit Fresh en Mercado Libre: precio de $1,299 a $1,349 por el envío de $190 (22 oct)](#114-kit-fresh-en-mercado-libre-precio-de-1299-a-1349-por-el-envío-de-190-22-oct)
 115. [Mercado Libre: análisis de precios de las 8 publicaciones contra la competencia (22 oct)](#115-mercado-libre-análisis-de-precios-de-las-8-publicaciones-contra-la-competencia-22-oct)
+116. [Mercado Libre: Revenger 2.45 a $1,169 en catálogo y párrafo de valor en los 5 kits (22 oct)](#116-mercado-libre-revenger-245-a-1169-en-catálogo-y-párrafo-de-valor-en-los-5-kits-22-oct)
 
 ---
 
@@ -11531,3 +11532,78 @@ En `imagenes/capturas/`:
   cucharilla Whiptail a $98. El hilo Araty 0.40 se tomó del paquete
   multicolor de $299.
 - **Sin cambios en ML:** no se cambió ningún precio.
+
+## 116. Mercado Libre: Revenger 2.45 a $1,169 en catálogo y párrafo de valor en los 5 kits (22 oct)
+
+**Qué se pidió:** el dueño dio el "sí" a la recomendación de §115.
+
+- **Combo Revenger 2.45:** bajarlo a $1,169 y usar "Verificar producto"
+  para que compita en el catálogo.
+- **Los 5 kits:** agregar al principio de la descripción un párrafo con
+  el costo de las piezas por separado, sin cambiar precios.
+
+### Combo Revenger 2.45 (MLM-6444730308)
+
+Simulador a **$1,169**, Clásica, Envíos de Mercado Libre:
+
+| Concepto | Monto |
+|---|---|
+| Cargo por venta | −$175.35 |
+| Envío | −$139.50 |
+| Impuestos | −$105.81 |
+| **Recibes** | **$748.34** |
+| Costo de la mercancía | $506.51 |
+| **Queda** | **$241.83** |
+
+Se confirmó y ML respondió "¡Listo! Guardamos los cambios".
+
+**Verificar producto:** se eligió el producto de catálogo sugerido
+**MLM62089454**, "Combo De Pesca Okuma Rv-s-802m-40 Revenger Sp 8'0 Color
+Oscuro", mismo modelo RV-S-802M-40. ML marcó 6 diferencias menores: color
+"Oscuro" contra "Negro", 2.43 m contra 2.45 m y resistencia "Medio" contra
+"11-20 lb".
+
+- **Cómo funciona:** ML avisa que crea una publicación nueva de catálogo,
+  sincronizada en stock, precio y condiciones con la original, y que no
+  cambia nada de la original.
+- **Resultado:** "¡Listo! Confirmaste un producto de catálogo. Estás
+  compitiendo con este producto". Catálogo sincronizado con
+  **#MLM6451018360**.
+- **En la lista de Publicaciones:** ahora hay 9.
+  - MLM6451018360 (catálogo): $1,169, Clásica, recibe $748.34,
+    "Sincronizada con #6444730308". Estado de competencia "ACTUALIZANDO".
+  - MLM6444730308 (original): $1,169, "Sincronizada con #6451018360".
+  - Las dos comparten la única unidad de stock.
+- **Captura:** `imagenes/capturas/ml-revenger245-catalogo-confirmado-22oct.png`.
+
+### Párrafo al inicio de la descripción de los 5 kits
+
+Texto, con X = el total por separado de §115 redondeado hacia abajo a
+centenas:
+
+> Kit completo de marca, listo para pescar. Comprar estas mismas piezas
+> por separado en Mercado Libre cuesta más de $X porque los accesorios se
+> venden en paquetes y con envío aparte; aquí van todas, con envío gratis.
+
+| Kit | Total de §115 | X | Caracteres antes → después |
+|---|---|---|---|
+| Tundra (MLM-6444714326) | ~$3,092 | $3,000 | 799 → 1,019 |
+| Clarus (MLM-6444779904) | ~$3,108 | $3,100 | 657 → 877 |
+| Revenger 7' (MLM-3682581883) | ~$3,052 | $3,000 | 743 → 963 |
+| Tolten (MLM-3682621565) | ~$2,600 | $2,600 | 711 → 931 |
+| Fresh (MLM-3693474151) | ~$2,235 | $2,200 | 690 → 910 |
+
+Se escribió al principio del texto existente, con una línea en blanco
+después, y se guardó con "Confirmar" en cada uno. ML respondió "¡Listo!
+Guardamos los cambios" las 5 veces. El resto de la descripción no se tocó.
+
+Los precios de los kits no cambiaron; la lista sigue en Tundra $1,929,
+Clarus $1,699, Revenger $1,699, Tolten $1,449 y Fresh $1,349.
+
+**Ojo:**
+
+- **Clarus:** la caña Clarus de 5'8" no está en ML; su total usa la Clarus
+  más cercana (1.98–2.10 m, $1,399).
+- **Accesorios:** los totales incluyen paquetes completos (caja de 100
+  anzuelos Mustad, bolsas de plomo, hilo de 10 piezas). Si alguien lo
+  cuestiona, el detalle está en §115.
