@@ -12046,3 +12046,12 @@ revisar todavía. No se activó nada.
 - **Foto del Boundary:** el dueño confirmó que la foto real
   (`B-S-1002-65`) es de la misma caña. Se queda.
 - **Sin activar:** Premium, descuentos y publicidad.
+
+**Recomendación de la nube sobre Product Ads (22 oct, 13:30).** Activar a
+$30/día con la bonificación de $850 (~28 días) y **pausar a mano el día
+21** (~$630 gastados, margen por si un día se pasa del promedio), porque ML
+no deja tope total ni garantiza detenerse al acabar el crédito. Tareas
+programadas: `trig_016uafSWXLKVSNUuPu5H9ZCU` (5 nov, revisar crédito
+restante; si queda < $300, pausar antes) y `trig_014mFqTWbcPsWvSutwTXxbs5`
+(12 nov, pausar). Las fechas asumen activación el 22 oct; si la Mac la
+activa otro día, hay que moverlas.

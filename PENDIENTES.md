@@ -183,6 +183,11 @@
      inventario Shopify ↔ ML (`trig_01FdxfkEppwcMnf243FsnFfk`, 09:52 y
      18:52) para evitar ventas dobles y cancelaciones.
 
+   - **ML Product Ads (MANUAL §120):** si se activa a $30/día con la
+     bonificación de $850, revisar crédito el 5 nov y **pausar el 12 nov**
+     (tareas `trig_016uafSWXLKVSNUuPu5H9ZCU` y `trig_014mFqTWbcPsWvSutwTXxbs5`).
+     Si la activación no fue el 22 oct, mover esas fechas.
+
 ## 🟢 Fase 4 en marcha (16 oct): campaña de Facebook ENCENDIDA
 
 - Regla aprobada por el dueño: se lee **una sola vez**, al llegar a
