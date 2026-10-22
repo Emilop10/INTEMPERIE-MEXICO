@@ -12218,7 +12218,36 @@ Ninguna queda en 0; no hay que pausar nada.
 **4. Base de la vigilancia.** `scratchpad/sec/existencias-base.json` ya
 tiene los nuevos valores: Revenger 7' 1 y Tolten 1.
 
-**Pendiente:** que la Mac ponga las cantidades en Mercado Libre y lo
-confirme. El Excel conciliado se le entregó al dueño; no se guarda en el
+El Excel conciliado se le entregó al dueño; no se guarda en el
 repositorio.
+
+**5. Aplicado en Mercado Libre desde la Mac (22 oct, noche).**
+
+- **Ventas:** antes de cambiar se revisó **Ventas** (envíos de hoy,
+  próximos días, en tránsito y finalizadas; últimos 2 meses). **0 ventas
+  en todas**, así que se usaron las cantidades del inventario.
+- **Cambios:** solo dos publicaciones tenían cantidad distinta. Se
+  cambiaron en Modificar → "Stock en tu depósito" → Confirmar, y ML
+  respondió "Guardamos los cambios" en ambas.
+  - **Kit Okuma Revenger 7'** (MLM-3682581883): de 2 a **1**.
+  - **Kit Blue Fox Tolten 8'** (MLM-3682621565): de 2 a **1**. La lista
+    tardó unos segundos en reflejarlo.
+- **Lista de Publicaciones después del cambio:** coincide con la tabla
+  del punto 3.
+
+| Publicación | Stock | Precio (sin cambio) |
+|---|---|---|
+| Combo Revenger 2.45 (MLM-6444730308) y su copia de catálogo MLM6451018360 | 1 compartido | $1,169 |
+| Combo Revenger 2.40 + RV-80 | 1 | $1,199 |
+| Combo Boundary 7' | 2 | $1,199 |
+| Kit Tundra Pro 7' | 1 | $1,989 |
+| Kit Clarus 5'8" | 2 | $1,699 |
+| Kit Revenger 7' | **1** | $1,759 |
+| Kit Tolten 8' | **1** | $1,489 |
+| Kit Fresh 7' | 2 | $1,369 |
+
+- **Pausas:** ninguna publicación quedó en 0. 9 publicaciones activas,
+  0 pausadas.
+- **Sin tocar:** precios y la copia de catálogo, que comparte stock con
+  la original.
 
