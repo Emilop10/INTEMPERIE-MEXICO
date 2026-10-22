@@ -24,6 +24,14 @@ No hay tarea terminada hasta que se cumplen los tres pasos, en este orden:
 Al reportar al dueño, di en una línea en qué sección del manual quedó y que
 ya está subido.
 
+## Pull automático (desde el 22 oct 2026)
+
+`.claude/settings.json` corre `.claude/hooks/auto-pull.sh` al abrir la
+sesión y antes de cada mensaje del dueño: trae lo último de la rama sin
+pedirlo. Si el gancho avisa que no pudo (sin red o con conflicto), haz el
+pull a mano antes de escribir. El push sigue siendo tuyo al cerrar cada
+tarea. Detalle en MANUAL §122.
+
 ## Lo que nunca va al repositorio
 
 Tokens, secretos y contraseñas (`shpat_…`, `shpss_…`, `EAA…`), ni datos

@@ -2,6 +2,10 @@
 
 ## ▶️ Arranque de la próxima sesión (dejado el 19 oct)
 
+0. **Pull automático (22 oct, MANUAL §122):** el repositorio se actualiza
+   solo al abrir la sesión y antes de cada mensaje. En la Mac falta que el
+   dueño haga **un** `git pull` a mano y reinicie Claude Code para que
+   cargue el gancho (después, nunca más).
 0. **Si esta sesión corre en la Mac del dueño:** leer primero
    [`ARRANQUE-LOCAL-MAC.md`](./ARRANQUE-LOCAL-MAC.md) (Chrome, secretos,
    bloques A–E y reglas para no pisarse con la nube).

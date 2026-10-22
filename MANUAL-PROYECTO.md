@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 22 de octubre de 2026 (sección 121)
+**Última actualización:** 22 de octubre de 2026 (sección 122)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -149,6 +149,7 @@ como respaldo
 119. [Mercado Libre: Despegue detenido por saldo, fotos nuevas en Boundary y Revenger 2.45 (22 oct)](#119-mercado-libre-despegue-detenido-por-saldo-fotos-nuevas-en-boundary-y-revenger-245-22-oct)
 120. [Mercado Libre: Programa Despegue activado; Product Ads detenido por falta de confirmación del cobro (22 oct)](#120-mercado-libre-programa-despegue-activado-product-ads-detenido-por-falta-de-confirmación-del-cobro-22-oct)
 121. [Mercado Libre: campaña de Product Ads activada con la bonificación de $850; pausar el 12 nov (22 oct)](#121-mercado-libre-campaña-de-product-ads-activada-con-la-bonificación-de-850-pausar-el-12-nov-22-oct)
+122. [Pull automático: la Mac y la nube traen lo último del repositorio solas (22 oct)](#122-pull-automático-la-mac-y-la-nube-traen-lo-último-del-repositorio-solas-22-oct)
 
 ---
 
@@ -12117,3 +12118,39 @@ Shopify, recalcula kits y combos con `crear-kits.py --revisar-existencias
 --aplicar`, entrega la tabla de las 8 publicaciones y actualiza la base de
 la vigilancia; la **Mac** pone esas cantidades en Mercado Libre y pausa lo
 que quede en 0.
+
+## 122. Pull automático: la Mac y la nube traen lo último del repositorio solas (22 oct)
+
+**Qué pidió el dueño.** Que la sesión de la Mac haga `git pull` sola cada
+vez que haga falta, para no tener que acordarse ni repetir instrucciones.
+
+**Qué se hizo.** Dos ganchos (hooks) de Claude Code, guardados en el
+repositorio para que los usen la Mac y la nube:
+
+- `.claude/settings.json`: corre el gancho al **abrir la sesión**
+  (SessionStart) y **antes de cada mensaje del dueño** (UserPromptSubmit).
+- `.claude/hooks/auto-pull.sh`: hace
+  `git pull --rebase --autostash origin claude/intemperie-mexico-audit-n3yxbs`.
+  - Solo actúa si la sesión está en esa rama. Si hay un rebase a medias,
+    no toca nada.
+  - Los cambios sin guardar se apartan y se devuelven solos (autostash).
+  - Si no hay red o hay conflicto, deshace el intento, deja el repositorio
+    como estaba y le avisa a Claude que haga el pull a mano.
+  - Nunca bloquea el mensaje; el límite es de 30 s.
+  - Si llegaron commits de la otra sesión, se los lista a Claude para
+    que sepa qué cambió.
+
+**Prueba.** En una copia del repositorio atrasada 2 commits y con un
+cambio sin guardar: trajo los 2 commits (b48361b, 7bf18c0), los listó y
+conservó el cambio. En el repositorio al día no hizo nada y salió con 0.
+
+**Lo que el dueño hace una sola vez en la Mac.** Un `git pull` a mano,
+para que la Mac reciba los ganchos, y luego cerrar y abrir Claude Code
+(o abrir `/hooks` una vez) para que los cargue. Si Claude Code pregunta
+si confía en los ganchos del proyecto, contestar que sí. Desde ahí ya no
+hace falta pedir pull.
+
+**Lo que no cambia.** El push sigue siendo manual y al cerrar cada tarea
+(regla de `CLAUDE.md`), porque subir cambios debe ser una decisión. El
+pull antes de escribir se sigue haciendo; el gancho solo lo garantiza.
+

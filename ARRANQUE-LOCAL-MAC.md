@@ -72,7 +72,10 @@ al dueño antes de cada cambio:
 - **Regla maestra (ver `CLAUDE.md`):** al terminar cada tarea, documentar en
   MANUAL, en PENDIENTES si hace falta, y commit + push. Siempre.
 
-- **Antes de trabajar:** `git pull --rebase origin claude/intemperie-mexico-audit-n3yxbs`.
+- **Antes de trabajar:** el pull ya es automático (gancho en
+  `.claude/settings.json`, MANUAL §122): corre al abrir la sesión y antes
+  de cada mensaje. Si avisa que no pudo, hacer a mano
+  `git pull --rebase origin claude/intemperie-mexico-audit-n3yxbs`.
 - **Commits chicos y push inmediato** después de cada bloque. La sesión en la
   nube hace `git pull` antes de escribir en MANUAL y PENDIENTES.
 - **MANUAL y PENDIENTES:** cada sesión agrega su entrada; no se reescriben
