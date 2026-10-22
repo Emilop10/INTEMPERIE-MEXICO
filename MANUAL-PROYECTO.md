@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 22 de octubre de 2026 (sección 122)
+**Última actualización:** 22 de octubre de 2026 (sección 123)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -150,6 +150,7 @@ como respaldo
 120. [Mercado Libre: Programa Despegue activado; Product Ads detenido por falta de confirmación del cobro (22 oct)](#120-mercado-libre-programa-despegue-activado-product-ads-detenido-por-falta-de-confirmación-del-cobro-22-oct)
 121. [Mercado Libre: campaña de Product Ads activada con la bonificación de $850; pausar el 12 nov (22 oct)](#121-mercado-libre-campaña-de-product-ads-activada-con-la-bonificación-de-850-pausar-el-12-nov-22-oct)
 122. [Pull automático: la Mac y la nube traen lo último del repositorio solas (22 oct)](#122-pull-automático-la-mac-y-la-nube-traen-lo-último-del-repositorio-solas-22-oct)
+123. [Inventario del 22 oct: conciliación, kits recalculados y tabla para Mercado Libre](#123-inventario-del-22-oct-conciliación-kits-recalculados-y-tabla-para-mercado-libre)
 
 ---
 
@@ -12166,4 +12167,58 @@ Code, la Mac estaba en 1848924 y la nube ya había subido 0211a98. Al
 abrir la sesión, el gancho avisó "Repo actualizado con commits de la otra
 sesión: 0211a98…". La Mac quedó al día con origin sin pedir pull y sin
 cambios locales. El pull automático queda operando en las dos sesiones.
+
+## 123. Inventario del 22 oct: conciliación, kits recalculados y tabla para Mercado Libre
+
+**Qué pidió el dueño.** Actualizar el inventario con el conteo del 22 de
+octubre (`22_OCTUBRE_INVENTARIO.xlsx`) en Shopify y en Mercado Libre. Es
+el primero que sigue el proceso completo de
+`INSTRUCTIVO-CONCILIAR-INVENTARIO.md`, con el paso de Mercado Libre.
+
+**1. Conciliación en Shopify (nube).**
+- Archivo: 1,188 filas con datos. Traía ~1M de filas vacías con formato,
+  como el del 4 de septiembre; no afectó.
+- Ensayo: 293 verdes, 48 amarillos, 755 rojos, 92 grises; 12 filas se
+  vincularon por código B1.
+- En firme: **50 variantes actualizadas, 0 errores.** Re-ensayo: 0
+  pendientes.
+- Quedaron en 0: **JSR05 FT** y **RPR05 GCH**.
+- Saltos a revisar en el POS:
+  - Diábolo Gamo Expander 5.5 mm, de 1 a 11.
+  - CO2N, de 554 a 532.
+  - Plomos 15PLOMOS118QI, de 43 a 26.
+- Grises: bajaron de 103 a 92.
+
+**2. Kits y combos (`crear-kits.py --revisar-existencias --aplicar`).**
+Se corrigieron 2:
+
+| Kit | Antes | Ahora | Por qué |
+|---|---|---|---|
+| Kit Okuma Revenger 7' Todo Terreno | 2 | **1** | El hilo Araty 0.35 mm 100 m solo alcanza para uno |
+| Kit Blue Fox Tolten 8' Mar y Costa | 2 | **1** | Se vendió una caña Tolten (BFTOLT240 de 2 a 1) |
+
+Los demás cuadran: Corux 1, Combo Revenger 2.40 1, Blue Fox Power Boat 1,
+Clarus 2, Fresh 2 y Tundra 1.
+
+**3. Tabla para Mercado Libre (la aplica la Mac con Chrome).**
+
+| Publicación | MLM | Cantidad |
+|---|---|---|
+| Combo Okuma Revenger 2.45 (y su copia de catálogo, que comparte stock) | MLM-6444730308 / MLM6451018360 | 1 |
+| Combo Okuma Revenger 2.40 + RV-80 | MLM-6444798834 | 1 |
+| Combo Okuma Boundary 7' | MLM-6444801030 | 2 |
+| Kit Okuma Tundra Pro 7' | MLM-6444714326 | 1 |
+| Kit Shimano Clarus 5'8" | MLM-6444779904 | 2 |
+| Kit Okuma Revenger 7' | MLM-3682581883 | **1 (bajó de 2)** |
+| Kit Blue Fox Tolten 8' | MLM-3682621565 | **1 (bajó de 2)** |
+| Kit Blue Fox Fresh 7' | MLM-3693474151 | 2 |
+
+Ninguna queda en 0; no hay que pausar nada.
+
+**4. Base de la vigilancia.** `scratchpad/sec/existencias-base.json` ya
+tiene los nuevos valores: Revenger 7' 1 y Tolten 1.
+
+**Pendiente:** que la Mac ponga las cantidades en Mercado Libre y lo
+confirme. El Excel conciliado se le entregó al dueño; no se guarda en el
+repositorio.
 
