@@ -158,6 +158,12 @@
      $124 y Fresh $141 quedan bajo el piso de $150. El dueño decide:
      subir esos 4 kits ~$60–$70 o aceptar un piso de ~$100 en ML.
 
+   - **22 oct, ML (MANUAL §118):** recomendado activar Programa Despegue
+     ($850 reembolsables) + Product Ads solo con el crédito de regalo;
+     decisión y pago del dueño en la Mac. Nueva tarea de vigilancia de
+     inventario Shopify ↔ ML (`trig_01FdxfkEppwcMnf243FsnFfk`, 09:52 y
+     18:52) para evitar ventas dobles y cancelaciones.
+
 ## 🟢 Fase 4 en marcha (16 oct): campaña de Facebook ENCENDIDA
 
 - Regla aprobada por el dueño: se lee **una sola vez**, al llegar a

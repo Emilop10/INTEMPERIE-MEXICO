@@ -11849,3 +11849,25 @@ coincide con el aviso de reputación.
 | 10 | Product Ads pagado con dinero propio | CPC | Rompe $150 en todo salvo combos con ACOS ≤ 3–5% | No, por ahora |
 
 **Gratis:** 3, 4, 5 y 6 (el 5 depende de Despegue).
+
+**Recomendación de la nube y vigilancia de inventario (22 oct, 12:50).**
+Lectura: el freno en ML es la falta de reputación (cuenta nueva), no el
+precio. Recomendación al dueño: **sí al Programa Despegue** ($850 de
+garantía reembolsable; reputación verde, $850 de publicidad, promociones y
+poder ganar el catálogo), Product Ads **solo con el crédito de regalo**, y
+las mejoras gratis; no a Premium en kits, descuentos en kits ni publicidad
+con dinero propio. Riesgo principal de Despegue: 5 ventas con cancelación
+hacen perder la garantía, y la causa más probable de cancelación es una
+venta doble por inventario sin sincronizar.
+
+Por eso se creó la tarea **"Vigilancia de inventario Shopify ↔ Mercado
+Libre"** (`trig_01FdxfkEppwcMnf243FsnFfk`, 09:52 y 18:52 hora de la
+cuenta): compara la existencia de los 8 productos contra una base guardada
+fuera del repo (`scratchpad/sec/existencias-base.json`), avisa al dueño en
+cuanto haya un pedido en Shopify para que baje la cantidad en ML, y
+reconoce como venta de ML una baja de existencia sin pedido. Si no pasa
+nada, no escribe. Es independiente del corte de Meta, así que sigue
+corriendo aunque las campañas se pausen.
+
+Facebook a las 12:28: $323.42 acumulado (las dos campañas), 136 vistas, 2
+carritos (1.5%), 0 compras; el corte de $400 cae el 23 oct.
