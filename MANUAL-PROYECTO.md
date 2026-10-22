@@ -12154,3 +12154,10 @@ hace falta pedir pull.
 (regla de `CLAUDE.md`), porque subir cambios debe ser una decisión. El
 pull antes de escribir se sigue haciendo; el gancho solo lo garantiza.
 
+**Temporizador del catálogo pasado a la nube (22 oct, 17:13).** El dueño
+reinicia Claude Code en la Mac para cargar el pull automático, y eso borra
+el temporizador de 3 horas de esa sesión. La nube programó un recordatorio
+(`trig_013FKF88Avc1KmkMq3HsfbWz`) para hoy a las **20:00 hora de México**.
+Cuando dispare, la nube le da al dueño el mensaje para que la Mac revise
+el catálogo MLM6451018360 con Chrome.
+
