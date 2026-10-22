@@ -122,6 +122,12 @@
      frente a SR Bikes ($1,176). Los 5 kits tienen al inicio de la
      descripción el párrafo "piezas por separado cuestan más de $X"
      ($3,000 / $3,100 / $3,000 / $2,600 / $2,200), sin cambio de precio.
+   - **22 oct (MANUAL §117) — REGLA DE MARGEN ML (orden del dueño):**
+     `Recibes (simulador) − costo de piezas − $48.83 de caja ≥ $150`,
+     precio redondeado hacia arriba a terminación 9. Se aplica a todo
+     cálculo de Mercado Libre. Kits resubidos: Tundra $1,989, Revenger 7'
+     $1,759, Tolten $1,489, Fresh $1,369 (quedan $152.84 / $156.67 /
+     $154.06 / $155.86). Clarus y combos sin cambio (ya arriba de $150).
    - **19 oct (MANUAL §100):** ya se aplicaron, a mitad de la prueba,
      la barra de compra desde la primera pantalla, el logo chico, el
      conjunto nuevo (5 kits + 3 combos Okuma de $999 + 3 binoculares

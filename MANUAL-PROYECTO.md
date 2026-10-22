@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 22 de octubre de 2026 (sección 116)
+**Última actualización:** 22 de octubre de 2026 (sección 117)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -144,6 +144,7 @@ como respaldo
 114. [Kit Fresh en Mercado Libre: precio de $1,299 a $1,349 por el envío de $190 (22 oct)](#114-kit-fresh-en-mercado-libre-precio-de-1299-a-1349-por-el-envío-de-190-22-oct)
 115. [Mercado Libre: análisis de precios de las 8 publicaciones contra la competencia (22 oct)](#115-mercado-libre-análisis-de-precios-de-las-8-publicaciones-contra-la-competencia-22-oct)
 116. [Mercado Libre: Revenger 2.45 a $1,169 en catálogo y párrafo de valor en los 5 kits (22 oct)](#116-mercado-libre-revenger-245-a-1169-en-catálogo-y-párrafo-de-valor-en-los-5-kits-22-oct)
+117. [Mercado Libre: margen con caja de cartón ($48.83) y 4 kits resubidos (22 oct)](#117-mercado-libre-margen-con-caja-de-cartón-4883-y-4-kits-resubidos-22-oct)
 
 ---
 
@@ -11633,3 +11634,55 @@ mínimos" de §115 también suben ~$58 (la caja más la comisión e impuestos
 sobre esa diferencia). Decisión de precios pendiente del dueño. **Regla
 para cálculos futuros de ML:** margen = lo que recibes − costo de las
 piezas − $48.83 de caja.
+
+## 117. Mercado Libre: margen con caja de cartón ($48.83) y 4 kits resubidos (22 oct)
+
+**Corrección del dueño:** los márgenes de §110–§116 no restaban la caja de
+cartón de cada envío, que cuesta **$48.83**.
+
+**Regla de margen de Mercado Libre, desde ahora:**
+
+```
+queda = Recibes (simulador de ML) − costo de las piezas − $48.83
+publicar solo si queda ≥ $150; precio = el más bajo que cumpla, redondeado hacia arriba a terminación 9
+```
+
+`Recibes = precio − 15% − envío − 9.05% de impuestos` cuadra al centavo
+con el simulador; hay que leerlo después de unos 7 segundos.
+
+### Kits resubidos
+
+Se aplicó sin preguntar porque los cuatro quedan entre $150 y $170. Cada
+precio se probó en el simulador, se guardó con "Confirmar" y se revisó en
+la lista de Publicaciones.
+
+| Kit | Antes | Ahora | Recibes | Costo | Queda con caja |
+|---|---|---|---|---|---|
+| Tundra (MLM-6444714326) | $1,929 | **$1,989** | $1,371.11 | $1,169.44 | $152.84 |
+| Revenger 7' (MLM-3682581883) | $1,699 | **$1,759** | $1,196.43 | $990.93 | $156.67 |
+| Tolten (MLM-3682621565) | $1,449 | **$1,489** | $1,008.37 | $805.48 | $154.06 |
+| Fresh (MLM-3693474151) | $1,349 | **$1,369** | $849.74 | $645.05 | $155.86 |
+
+**Precios esperados del dueño:** había anticipado ~$1,979, ~$1,749,
+~$1,479 y ~$1,359. Con esos precios quedaban $145.26, $149.09, $146.48 y
+$148.27, todos debajo de $150. Por eso cada uno subió a la siguiente
+terminación 9, $10 más.
+
+**Sin cambio, ya arriba de $150 con la caja:**
+
+| Publicación | Queda con caja |
+|---|---|
+| Clarus $1,699 | $175.42 |
+| Combo Revenger 2.45 $1,169 | $193.00 |
+| Combo Revenger 2.40 $1,199 | ~$216 |
+| Boundary $1,199 | $182.79 |
+
+**Problema al guardar:** el primer "Confirmar" del Tundra, pulsado por
+referencia de accesibilidad, no se guardó y la lista siguió en $1,929. Se
+repitió pulsando el botón por coordenadas y ahí sí quedó.
+
+**Fresh:** la lista tardó un par de minutos en mostrar $1,369.
+
+**Mínimos de §115:** quedan sustituidos por estos. El párrafo "piezas por
+separado cuestan más de $X" de §116 sigue siendo válido, porque los totales
+no cambian.
