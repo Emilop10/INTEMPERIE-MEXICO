@@ -29,6 +29,9 @@
      de salud a las 3 h y cortes diarios 08:47 (reglas de $400 con ≥3%
      vista→carrito y $900 con ≥1 compra). Existencias: 13 piezas entre
      kits y combos; si vende, el dueño debe resurtir.
+     - 22 oct 08:50: $302, 131 vistas, 2 carritos (1.5%), 0 compras, 0
+       códigos usados; sin corte. El de $400 cae mañana 23 oct y, con
+       1.5%, lo más probable es que pause las dos campañas.
      - 21 oct 08:49: $170 (las dos campañas), 63 vistas, 1 carrito
        (1.6%), 0 compras; sin corte. El 1.6% va abajo del 3% del corte
        de $400 (~2 días).

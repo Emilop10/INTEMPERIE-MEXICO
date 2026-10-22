@@ -10630,6 +10630,34 @@ que exige el corte de los $400 (faltan ~$230, unos 2 días). Los
 anuncios "-lanz" llevan 20 h; su CTR (1.5–1.9%) es algo menor que el
 de los viejos (1.9–2.5%), todavía con pocos datos. Nada se toca.
 
+**22 oct, 08:50 — sin corte (por $98).** Acumulado desde el 19 oct, las
+dos campañas: **$302.00** (prospección $267.26, retargeting $34.74),
+8,409 impresiones, 7,045 personas, 157 clics (1.9%), **131 vistas, 2
+carritos (1.5%)**, 0 pagos iniciados, 0 compras. Shopify: 0 pedidos, 0
+checkouts reales; códigos ARTURO79 / ABELARDO79 / DAVID150: 0 usos.
+Existencias y precios sin cambio (ni ventas en ML reflejadas). Tope
+intacto (gastado en la cuenta $2,357.20).
+
+Ayer: prospección $107.26 (60 clics, 48 vistas, 0 carritos) y
+retargeting $27.90 (19 clics, 21 vistas, **1 carrito**). El CPM de
+prospección bajó a $27 (hoy $19): Meta ya encontró inventario barato,
+pero las vistas no se convierten en carritos.
+
+| Anuncio | Gasto | Imp. | Clics | CTR | Vistas | Carritos |
+|---|---|---|---|---|---|---|
+| revenger-lanz | $109.10 | 4,178 | 62 | 1.5% | 47 | 0 |
+| tundra-lanz | $56.54 | 1,581 | 23 | 1.5% | 22 | 0 |
+| revenger-presa-rio (pausado) | $49.20 | 885 | 22 | 2.5% | 18 | 0 |
+| tundra-valor (pausado) | $37.10 | 886 | 17 | 1.9% | 12 | 1 |
+| lanzamiento-rt (retargeting) | $31.59 | 418 | 21 | 5.0% | 24 | 1 |
+| carrusel-lanz | $7.13 | 121 | 2 | 1.7% | 2 | 0 |
+| combo-999 | $6.61 | 218 | 6 | 2.8% | 4 | 0 |
+
+Lectura: con 131 vistas, vista → carrito está en **1.5%**, la mitad del
+3% que exige el corte de los $400. Al ritmo de ~$120/día el corte llega
+**mañana 23 oct**; para librarlo harían falta ~3 carritos más en ~40
+vistas. Si no, la regla pausa las dos campañas. Nada se toca hoy.
+
 **Dónde verla:**
 - Administrador de anuncios (campaña):
   `https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=1264279685553718&selected_campaign_ids=120250632213900175`
