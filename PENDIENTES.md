@@ -107,6 +107,13 @@
    - **22 oct (MANUAL §114):** Kit Fresh en ML subido de $1,299 a $1,349
      por el envío de $190: recibe $834.55 y quedan $189.50 sobre el costo
      ($645.05). El precio en Shopify no cambió.
+   - **22 oct (MANUAL §115):** análisis de precios de ML contra la
+     competencia, sin cambios. **Espera el "sí" del dueño:** bajar el combo
+     Revenger 2.45 de $1,199 a $1,169 (quedan $241.84) y "Verificar
+     producto" para competir en el catálogo MLM62089454, donde gana SR
+     Bikes a $1,176. Tundra, Kit Revenger y Fresh no pueden competir en
+     precio (mínimos $1,921 / $1,686 / $1,297); vender con kit completo y
+     fotos. Boundary: ML pide más fotos.
    - **19 oct (MANUAL §100):** ya se aplicaron, a mitad de la prueba,
      la barra de compra desde la primera pantalla, el logo chico, el
      conjunto nuevo (5 kits + 3 combos Okuma de $999 + 3 binoculares

@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 22 de octubre de 2026 (sección 114)
+**Última actualización:** 22 de octubre de 2026 (sección 115)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -142,6 +142,7 @@ como respaldo
 112. [Merchant Center, revisión del 22 oct: 325 de 325 aprobados](#112-merchant-center-revisión-del-22-oct-325-de-325-aprobados)
 113. [Mercado Libre: portada de ambiente como foto 1 en las 8 publicaciones (22 oct)](#113-mercado-libre-portada-de-ambiente-como-foto-1-en-las-8-publicaciones-22-oct)
 114. [Kit Fresh en Mercado Libre: precio de $1,299 a $1,349 por el envío de $190 (22 oct)](#114-kit-fresh-en-mercado-libre-precio-de-1299-a-1349-por-el-envío-de-190-22-oct)
+115. [Mercado Libre: análisis de precios de las 8 publicaciones contra la competencia (22 oct)](#115-mercado-libre-análisis-de-precios-de-las-8-publicaciones-contra-la-competencia-22-oct)
 
 ---
 
@@ -11348,3 +11349,185 @@ nada más (fotos, stock 2, título).
 
 **Ojo:** el precio de Shopify del Kit Fresh no se cambió (regla de no tocar
 precios en la tienda). Si el envío de ML vuelve a subir, revisar de nuevo.
+
+## 115. Mercado Libre: análisis de precios de las 8 publicaciones contra la competencia (22 oct)
+
+**Qué se pidió:** solo mirar, sin cambiar precios. Para los 3 combos, los 5
+competidores más relevantes del mismo modelo. Para los 5 kits, kits
+parecidos y cuánto le costaría al comprador armar el mismo kit con piezas
+de ML. Revisar lo que ML dice de cada publicación, calcular el precio
+mínimo que deja $150 o más con el simulador, y entregar una tabla con
+recomendación.
+
+**Cómo se hizo:** búsquedas en ML desde Chrome con la sesión del dueño (CP
+62120). El vendedor, la reputación, MercadoLíder, tienda oficial, Full y
+envío se leyeron de los datos de cada página de producto. La API pública
+de búsqueda de ML ya responde 403. El simulador es el panel "Resumen de
+cargos" de **Modificar → Condiciones de venta**: se escribió el precio, se
+leyó "Recibes" y se le dio **Cancelar**. Al final la lista de
+Publicaciones mostró los 8 precios sin cambios.
+
+Ojo con el panel: si se lee antes de unos 7 segundos muestra la cifra
+anterior. La fórmula que cuadra al centavo es `recibes = precio − 15% −
+envío − 9.05% de impuestos` (ISR 2.5% + IVA 8% sobre el precio sin IVA).
+
+### Lo que dice Mercado Libre de cada publicación
+
+- **Combo Revenger 2.45:** es la única marcada **"Elegible para
+  competir"**, con el botón "Verifica el producto para competir". Coincide
+  con el producto de catálogo MLM62089454 (RV-S-802M-40), donde hoy gana
+  SR Bikes a $1,176.
+- **Las 8:** "Precio para ganar" y "Mejor precio dentro y fuera" dicen
+  **"Sin referencia"**. No hay aviso de "precio alto" ni "precio
+  competitivo", ni precio sugerido. Las recomendaciones son de calidad:
+  "Suma meses sin intereses" (pide Premium) y, en Boundary, "Agrega más
+  fotos".
+- **Envío que cobra ML hoy:**
+
+| Publicación | Envío |
+|---|---|
+| Clarus | $95 |
+| Boundary y Tolten | $122.50 |
+| Revenger 2.45, Revenger 2.40, Tundra y Kit Revenger | $139.50 |
+| Fresh | $190 |
+
+### Precio mínimo con $150 o más, verificado en el simulador
+
+| Publicación | Costo | Precio mínimo | Recibes | Queda |
+|---|---|---|---|---|
+| Combo Revenger 2.45 | $506.51 | $1,049 | $657.20 | $150.69 |
+| Combo Revenger 2.40 + RV-80 | ~$506 | $1,049 | $657.20 | ~$151 |
+| Combo Boundary 7' | $556.50 | $1,092 | $706.86 | $150.36 |
+| Kit Tundra | $1,169.44 | $1,921 | $1,319.47 | $150.03 |
+| Kit Clarus | $971.13 | $1,602 | $1,121.69 | $150.56 |
+| Kit Revenger 7' | $990.93 | $1,686 | $1,140.98 | $150.05 |
+| Kit Tolten | $805.48 | $1,420 | $955.97 | $150.49 |
+| Kit Fresh | $645.05 | $1,297 | $795.05 | $150.00 |
+
+### Competidores de los combos
+
+Todos con envío gratis y reputación verde (5_green). Ninguno es Full,
+salvo los carretes sueltos de Pescafacil.
+
+**Combo Revenger 2.45** (nuestro $1,199):
+
+| Vendedor | Precio | Tipo | Ventas | Publicación |
+|---|---|---|---|---|
+| Pescafacil, tienda oficial Okuma | $1,175 | MercadoLíder Platinum | +100 vendidos | MLM1492775807, Revenger 8' con carrete 4000 |
+| SR Bikes | $1,176 | MercadoLíder Platinum | +5 vendidos | MLM2929718851, mismo RV-S-802M-40, gana el catálogo |
+| fergoimportaciones | $1,319.55 (antes $1,389) | MercadoLíder Silver | +5 vendidos | MLM3797881536 |
+| SIPESCA, tienda oficial | $1,395 | MercadoLíder Gold | — | MLM823739385, Revenger 8' con carrete Revenger 40 |
+| BAJAMARK, tienda oficial | $1,434 | MercadoLíder Platinum | — | MLM2301941619, mismo RV-S-802M-40 |
+
+**Combo Revenger 2.40 + RV-80** (nuestro $1,199): nadie más vende este
+combo con carrete tamaño 80.
+
+- **Piezas sueltas:** caña RV-S-802M en $640 (SIPESCA, oficial, +100
+  vendidos). Carrete Revenger 8000 en $899 (Pescafacil, Full) o RVP-80 en
+  $999 (Pescafacil, Full, +100 vendidos). Por separado suman **$1,539 a
+  $1,639**.
+- **Combo Revenger 8' más parecido:** Pescafacil con carrete 6000 en
+  $1,299 (oficial, Platinum, +100 vendidos, MLM1524340339).
+
+**Combo Boundary 7'** (nuestro $1,199): solo hay **un competidor directo**.
+
+| Vendedor | Precio | Producto | Publicación |
+|---|---|---|---|
+| CAMPESCA SHOP-GO | $1,340 | Boundary 7' con carrete, línea y accesorios | MLM2899269815 |
+| CAMPESCA SHOP-GO | $1,285 | Okuma 7' con carrete 4000 y accesorios | MLM2197165842 |
+| CAMPESCA SHOP-GO | $1,290 | Okuma 7' con línea | MLM1325043093 |
+| CAMPESCA SHOP-GO | $1,295 | Okuma 7' con 20 accesorios | MLM550650080 |
+| Pescafacil, tienda oficial | $1,175 | Revenger 8' con carrete 4000, mismo nivel | MLM1492775807 |
+
+CAMPESCA es MercadoLíder Gold con +1000 ventas y +5 vendidos en cada
+publicación.
+
+### Kits parecidos
+
+Los "kits de pesca" genéricos de ML son telescópicos sin marca, de $188 a
+$1,074, así que no son comparables. Abajo van los combos de marca con
+accesorios.
+
+- **Tundra:**
+  - SIPESCA, tienda oficial, vende **la misma caña Tundra Pro 7' con el
+    carrete Topaz Pro 340 en $1,645**, sin hilo, caja ni señuelos
+    (MLM2292582123).
+  - CAMPESCA vende Tundra 7' con carrete 5000 en $1,899 y $2,120, con
+    línea.
+- **Clarus:**
+  - Shimano FX 7' con carrete IX R 4000 en $1,499 (+100 vendidos).
+  - Shimano 6' con IX 4000 en $1,250.
+  - Revenger 7' con Shimano IX 4000 en $1,399.
+  - Shimano FX 8' con FX 4000 en $1,709 (+500 vendidos).
+  - Nadie más vende la caña Clarus con carrete.
+- **Revenger 7':** CAMPESCA vende Okuma 7' con carrete y accesorios.
+  - Con carrete 4000 y accesorios: $1,285.
+  - Con 20 accesorios: $1,295.
+  - Con línea: $1,290.
+  - Con 15 accesorios: $1,975.
+- **Tolten, mar:** combos Okuma de playa y surfcasting.
+  - Okuma 8' con carrete Tolten 4000, línea y señuelo: $1,269.
+  - Surfcasting 8' con accesorios: $1,408.
+  - 9' con 20 accesorios: $1,497 a $1,535.
+- **Fresh, agua dulce:**
+  - Blue Fox 1.65 m con carrete: $1,199.
+  - Kits genéricos de 1.68 a 1.8 m: $608 a $923, con +500 vendidos.
+
+### Cuánto cuesta armar el kit con piezas de ML
+
+Precio más bajo razonable, casi todos con envío gratis en caña y carrete.
+Los accesorios se venden en paquetes (hilo de 10 piezas, bolsas de plomo,
+caja de 100 anzuelos Mustad) y casi ninguno trae envío gratis; se suman
+~$96 de envío (lo que cobra una caja Storm).
+
+| Kit | Caña + carrete | Accesorios | Total aprox. | Nuestro precio |
+|---|---|---|---|---|
+| Tundra | $1,857 ($1,225 + $632) | $1,139 | ~$3,090 | $1,929 |
+| Clarus | $2,049 ($1,399 Clarus 1.98–2.10 m + $650 IX 1000R) | $963 | ~$3,110 | $1,699 |
+| Revenger 7' | $1,538 ($699 + $839 JL4000) | $1,418 | ~$3,050 | $1,699 |
+| Tolten | $1,044 ($645 + $399 S500) | $1,460 | ~$2,600 | $1,449 |
+| Fresh | $1,149 ($480 + $669 AFR230) | $990 | ~$2,235 | $1,349 |
+
+Los accesorios salen caros porque ML los vende por paquete. Aun contando
+solo caña y carrete, el Tundra y el Clarus ya cuestan más sueltos que
+nuestro kit completo.
+
+### Tabla final y recomendación
+
+| Producto | Nuestro precio | Competidores | Precio sugerido | Nos queda | Recomendación |
+|---|---|---|---|---|---|
+| Combo Revenger 2.45 | $1,199 | $1,175 – $1,434 | **$1,169** | $241.84 | **Bajar** y "Verificar producto" para competir en el catálogo. Con $1,169 quedamos abajo de SR Bikes ($1,176) y de Pescafacil ($1,175) y todavía dejamos $240. |
+| Combo Revenger 2.40 + RV-80 | $1,199 | sin igual; Revenger 8' con 6000 a $1,299; piezas $1,539–$1,639 | $1,199 | $265 | **Mantener.** Ya es el combo Revenger con el carrete más grande y el más barato; si no se mueve en 2 semanas, no hace falta bajar. |
+| Combo Boundary 7' | $1,199 | $1,285 – $1,340 | $1,199 | $231.62 | **Mantener.** Somos los más baratos del Boundary por $141. Falta agregar fotos, que ML pide. |
+| Kit Tundra | $1,929 | $1,645 sin accesorios; $1,899 – $2,120 | $1,929 | $156.11 | **No competimos en precio.** El mínimo es $1,921 y SIPESCA da caña y carrete en $1,645. Ventaja: kit completo (2 hilos, caja Storm, señuelo, cucharilla, plomos, destorcedores), fotos de ambiente y "por separado suma ~$3,090". |
+| Kit Clarus | $1,699 | $1,250 – $1,749 (Shimano FX/IX) | $1,699 | $224.23 | **Mantener.** Caña Clarus, un escalón arriba de FX; caña y carrete sueltos ya cuestan $2,049. |
+| Kit Revenger 7' | $1,699 | $1,285 – $1,975 (CAMPESCA) | $1,699 | $159.93 | **No competimos en precio** contra $1,285–$1,295; el mínimo es $1,686. Ventaja: modelo Revenger nombrado, caja Storm, 2 hilos y accesorios de marca Gimbel/Mustad; piezas sueltas ~$3,050. |
+| Kit Tolten | $1,449 | $1,269 – $1,535 | $1,449 | $172.52 | **Mantener**, dentro del rango. Bajar a $1,420 solo deja $150. Ventaja: kit de mar completo (líder de acero, plomos pera y bala, destorcedores triples). |
+| Kit Fresh | $1,349 | $608 – $1,199 | $1,349 | $189.50 | **No competimos en precio** contra kits genéricos; el mínimo es $1,297. Ventaja: marca Blue Fox, kit armado para agua dulce con flotadores y plomos; piezas sueltas ~$2,235. |
+
+**Resumen:** el único movimiento de precio con sentido es bajar el combo
+Revenger 2.45 a $1,169 y verificar el producto para entrar al catálogo.
+Eso espera el "sí" del dueño. En el resto, el precio no es la ventaja; lo
+son el kit completo, las fotos, el envío gratis y la garantía.
+
+### Capturas
+
+En `imagenes/capturas/`:
+
+- `ml-competencia-revenger245-srbikes-1176-22oct.jpg`
+- `ml-competencia-busqueda-combo-revenger-22oct.jpg`
+- `ml-competencia-tundra-topaz-sipesca-1645-22oct.jpg`
+- `ml-competencia-boundary-campesca-1340-22oct.jpg`
+- `ml-competencia-combos-okuma-7pies-22oct.jpg`
+
+### Límites de este análisis
+
+- **Datos de los vendedores:** "Ventas" es lo que muestra la página del
+  vendedor. "Vendidos" puede faltar en publicaciones nuevas.
+- **Clarus:** no hay en ML la caña de 5'8" spinning; se usó la Clarus más
+  cercana (1.98–2.10 m).
+- **Accesorios sin búsqueda propia:** el señuelo Gimbel 4007040 y la
+  cucharilla Gimbel rosa no se buscaron; se tomó como equivalente la
+  cucharilla Whiptail a $98. El hilo Araty 0.40 se tomó del paquete
+  multicolor de $299.
+- **Sin cambios en ML:** no se cambió ningún precio.
