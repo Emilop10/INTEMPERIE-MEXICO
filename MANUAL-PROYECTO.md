@@ -12107,3 +12107,13 @@ A las **13:32** (una hora y media después de activar Despegue), la
 publicación de catálogo MLM6451018360 seguía "RESTRINGIDO PARA GANAR —
 No puedes ganar. Revisa reclamos, cancelaciones y nuestras políticas".
 Se revisa otra vez en unas horas (ver entrada siguiente).
+
+**Proceso de inventario con Mercado Libre (22 oct, pedido del dueño).**
+El dueño pidió cómo actualizar su inventario en Shopify y en Mercado Libre
+a la vez, cuidando que un combo o kit quede agotado si se vende una pieza
+indispensable. Se agregó a `INSTRUCTIVO-CONCILIAR-INVENTARIO.md` la
+sección "Después: Mercado Libre" con el reparto: la **nube** concilia en
+Shopify, recalcula kits y combos con `crear-kits.py --revisar-existencias
+--aplicar`, entrega la tabla de las 8 publicaciones y actualiza la base de
+la vigilancia; la **Mac** pone esas cantidades en Mercado Libre y pausa lo
+que quede en 0.

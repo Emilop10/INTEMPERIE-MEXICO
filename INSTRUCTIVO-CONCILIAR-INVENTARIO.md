@@ -191,6 +191,25 @@ equivalente en existencia, Claude lo propone; no lo cambia sin permiso.
 > que los kits, y sus piezas se reservaron primero desde el principio
 > (`COMBOS_MANUALES` en `crear-kits.py`).
 
+### Después: Mercado Libre (obligatorio desde el 20 oct de 2026)
+
+Los 5 kits y los 3 combos Okuma también están publicados en Mercado Libre
+(MANUAL §110–§121), **sin sincronización con Shopify**. Por eso cada
+inventario termina en dos lugares, en este orden y con este reparto:
+
+| Paso | Quién | Qué |
+|---|---|---|
+| 1. Conciliar piezas en Shopify | **Sesión en la nube** (la Mac tiene un plugin que bloquea escribir en la Admin API de Shopify) | `conciliar-inventario.py` en seco, luego en firme |
+| 2. Recalcular kits y combos | Sesión en la nube | `crear-kits.py --revisar-existencias --aplicar`: si falta una pieza indispensable, el kit o combo queda en lo que se pueda armar, o en 0 |
+| 3. Tabla para Mercado Libre | Sesión en la nube | Existencia final en Shopify de las 8 publicaciones de ML, con su número MLM (lista en `MERCADO-LIBRE-LISTADOS.md`, "Estado vigente") |
+| 4. Actualizar Mercado Libre | **Sesión de la Mac**, con Chrome | Poner esa misma cantidad en cada publicación; **si queda en 0, pausarla** (no borrarla). La copia de catálogo del Revenger 2.45 comparte stock con la original |
+| 5. Base de la vigilancia | Sesión en la nube | Actualizar `scratchpad/sec/existencias-base.json` con las existencias nuevas, para que la tarea de vigilancia no confunda el ajuste con una venta en ML |
+
+Si entre el conteo y el paso 4 se vende algo en Mercado Libre, ese
+producto se ajusta con el conteo **menos** esa venta. Ante la duda,
+pausar la publicación de ML: una pausa no cuesta nada; una cancelación
+descuenta $170 de la garantía de Despegue.
+
 ## Qué revisar tú al final
 
 - **El reporte de kits y combos:** cuál quedó incompleto y por qué
