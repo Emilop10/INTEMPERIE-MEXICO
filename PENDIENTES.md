@@ -19,8 +19,13 @@
    (69). Diábolos, pistolas y rifles de aire (49) no se trabajan sin
    preguntar al dueño.
 5. **Fechas que ya están programadas:**
-   - **22 oct:** revisar Merchant Center (imágenes "not processed" y que
-     Google no marque las portadas de IA).
+   - **22 oct:** la tarea de Merchant Center disparó (10:01 hora de la
+     cuenta). Desde la nube no hay acceso a Merchant Center: queda para
+     la sesión de la Mac con Chrome (bloque C de
+     `PROMPT-CLAUDE-CHROME-GOOGLE-Y-CARRITO.md` + revisar que Google no
+     marque las 263 portadas de IA; si marca alguna, foto real a la
+     posición 1 y la de IA a la 2, nunca borrar). Pendiente hasta que el
+     dueño lo corra.
    - ~~21 oct: corte de la campaña v5~~ **Cancelado.** La v5 se pausó el
      19 oct ($370, 177 vistas, 1 carrito, 0 compras; MANUAL §104).
    - **Nueva ronda ENCENDIDA el 19 oct 11:55** (campaña
