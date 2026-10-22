@@ -137,6 +137,15 @@
      Requiere "sí". Gratis ya: fotos a Boundary y Revenger 2.45 y
      corregir características del 2.45. Premium solo cuadra en los combos
      Revenger; Product Ads con dinero propio no cuadra con $150 en kits.
+   - **22 oct (MANUAL §119) — BLOQUEADO EN EL DUEÑO:** Despegue solo se
+     paga con saldo de Mercado Pago, que tiene $0.25. El dueño debe
+     ingresar $850 a Mercado Pago (Claude no mueve dinero); luego Claude
+     vuelve a "Activar Programa" y espera el "sí" final para "Confirmar".
+     Después: Product Ads solo con el crédito de $850 (~$30/día) y revisar
+     si el Revenger 2.45 gana el catálogo. Hecho: Boundary y Revenger 2.45
+     con 4 fotos (calidad del 2.45: 70 → 75). "Acción" del 2.45 está
+     bloqueada por el catálogo. Confirmar que la foto real del Boundary
+     (archivo B-S-1002-65) es del 7'.
    - **19 oct (MANUAL §100):** ya se aplicaron, a mitad de la prueba,
      la barra de compra desde la primera pantalla, el logo chico, el
      conjunto nuevo (5 kits + 3 combos Okuma de $999 + 3 binoculares

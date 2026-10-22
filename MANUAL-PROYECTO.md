@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 22 de octubre de 2026 (sección 118)
+**Última actualización:** 22 de octubre de 2026 (sección 119)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -146,6 +146,7 @@ como respaldo
 116. [Mercado Libre: Revenger 2.45 a $1,169 en catálogo y párrafo de valor en los 5 kits (22 oct)](#116-mercado-libre-revenger-245-a-1169-en-catálogo-y-párrafo-de-valor-en-los-5-kits-22-oct)
 117. [Mercado Libre: margen con caja de cartón ($48.83) y 4 kits resubidos (22 oct)](#117-mercado-libre-margen-con-caja-de-cartón-4883-y-4-kits-resubidos-22-oct)
 118. [Mercado Libre: recomendaciones de la plataforma, Publicidad y métricas (22 oct)](#118-mercado-libre-recomendaciones-de-la-plataforma-publicidad-y-métricas-22-oct)
+119. [Mercado Libre: Despegue detenido por saldo, fotos nuevas en Boundary y Revenger 2.45 (22 oct)](#119-mercado-libre-despegue-detenido-por-saldo-fotos-nuevas-en-boundary-y-revenger-245-22-oct)
 
 ---
 
@@ -11871,3 +11872,73 @@ corriendo aunque las campañas se pausen.
 
 Facebook a las 12:28: $323.42 acumulado (las dos campañas), 136 vistas, 2
 carritos (1.5%), 0 compras; el corte de $400 cae el 23 oct.
+
+## 119. Mercado Libre: Despegue detenido por saldo, fotos nuevas en Boundary y Revenger 2.45 (22 oct)
+
+**Qué se pidió:** el dueño dio "sí" al Programa Despegue con garantía de
+$850, pero pidió saber antes de dónde se toma el pago y esperar su "sí"
+final. Después, sin preguntar:
+
+1. Una campaña de Product Ads solo con el crédito de regalo, a ~$30 por
+   día.
+2. Las mejoras gratis.
+3. Revisar el catálogo del Revenger 2.45 en unas horas.
+
+### Despegue: detenido antes de pagar
+
+En **Activar Programa → "Deja el dinero en garantía para activar el
+Programa"**, el único medio que ofrece ML es **"Dinero en tu cuenta de
+Mercado Pago"**. No hay opción de tarjeta.
+
+- **Saldo actual:** **$0.25**.
+- **Aviso de ML:** "El saldo en tu cuenta es insuficiente. Para activar
+  el Programa de Despegue, puedes ingresar dinero o pedir un Préstamo
+  Personal".
+- **Botón "Confirmar":** queda **deshabilitado**. El detalle muestra
+  Garantía $850 y Total $850.
+- **Lo que sigue:** el dueño ingresa $850 a su cuenta de Mercado Pago; Claude
+  no mueve dinero. No se pidió el préstamo. Con el saldo cargado, se
+  vuelve a esta pantalla y se espera el "sí" final para "Confirmar".
+- **Captura:** `imagenes/capturas/ml-despegue-saldo-insuficiente-22oct.png`.
+
+**Pasos que dependen de Despegue y quedan en espera:**
+
+- **Product Ads con el crédito:** el crédito de $850 llega con
+  Despegue. Sin él, cualquier campaña se cobraría de dinero propio, así
+  que no se creó, como pidió el dueño.
+- **Revisión del catálogo:** el Revenger 2.45 seguirá "restringido para
+  ganar" hasta tener reputación. No tiene caso revisarlo antes de
+  activar Despegue.
+
+### Mejoras gratis (hechas)
+
+- **Combo Boundary (MLM-6444801030): de 2 a 4 fotos.**
+  - Segunda foto de ambiente de Shopify: pescador amarrando señuelo a la
+    orilla de una presa, la imagen de IA "ia:2" del producto.
+  - Acercamiento del carrete recortado de la foto real del producto
+    (1200×1200).
+  - La portada sigue en la posición 1. ML: "Guardamos los cambios".
+- **Combo Revenger 2.45 (MLM-6444730308): de 2 a 4 fotos.**
+  - Segunda foto de ambiente: lancha en laguna con manglar ("ia:2").
+  - Acercamiento del carrete Okuma de la foto real.
+  - La calidad subió de **70 a 75**. Guardado.
+- **Características del Revenger 2.45: no se pudieron corregir.** El
+  objetivo pide completar las características principales; la que falta
+  es **"Acción"**.
+  - Desde la asociación al catálogo (§116), ML muestra "Tu publicación
+    usa información de un producto de catálogo. Puedes sugerir una
+    corrección o cambiar el producto desde la sección 'Producto de
+    catálogo'".
+  - Los campos son de solo lectura.
+  - El catálogo MLM62089454 ya tiene "Acción: Rápida".
+  - "Productos de catálogo" en el menú solo lleva a "Explorar catálogo",
+    no a corregir.
+  - Queda como está; es probable que ML lo resuelva al sincronizar.
+
+**Ojo con la foto real del Boundary en Shopify:** el archivo se llama
+`B-S-1002-65.01.01.jpg`, que es el código de otro Boundary (10' con
+carrete 65). Nuestro combo es B-S-702-40. La foto muestra una caña
+Boundary plateada con carrete rojo y plata, igual en apariencia, pero el
+dueño debería confirmar que corresponde al 7'.
+
+**No se activó:** ni Premium, ni descuentos, ni publicidad.
