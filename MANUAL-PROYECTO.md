@@ -11266,3 +11266,46 @@ cualquier sesión (Mac o nube). Regla: al terminar **cada** tarea, documentar
 en MANUAL, actualizar PENDIENTES si cambia algo para la próxima sesión, y
 `git pull --rebase` + commit + push a la rama principal. También fija que
 tokens y datos personales de clientes nunca van al repo.
+
+## 113. Mercado Libre: portada de ambiente como foto 1 en las 8 publicaciones (22 oct)
+
+El dueño vio en la lista de Publicaciones que la primera foto era la
+infografía oscura de piezas (kits) o la foto de fondo blanco (combos).
+Objetivo: foto 1 = la portada de ambiente de IA, la misma que es foto 1
+en Shopify (primera URL de cada producto en
+`imagenes/imagenes-ia-aprobadas.json`).
+
+| Publicación | Antes (foto 1) | Qué se hizo |
+|---|---|---|
+| Kit Tolten | Infografía (la de ambiente no estaba) | Subida `kit-tolten-portada.jpg` (playa) y movida a la 1. 11 fotos |
+| Kit Tundra Pro | Infografía (la de ambiente no estaba) | Subida `kit-tundra-portada.jpg` (lancha) y movida a la 1. 11 fotos |
+| Kit Revenger | Infografía; batea en la 2 | Batea movida a la 1 |
+| Kit Fresh | Acercamiento de la caña; muelle en la 8 | Muelle movido a la 1 |
+| Kit Clarus | Ya era la de ambiente (roca junto al lago) | Sin cambios |
+| Combo Revenger 2.40 | Fondo blanco; playa al atardecer en la 2 | Playa movida a la 1 |
+| Combo Boundary | Fondo blanco; lancha con pelícanos en la 2 | Lancha movida a la 1 |
+| Combo Revenger 2.45 | Ya era la de ambiente (muelle en presa) | Sin cambios |
+
+No se borró ninguna foto; la infografía y la de fondo blanco quedaron
+después. Mercado Libre aceptó la foto de ambiente como portada en
+Clásica sin ningún mensaje de "fondo blanco".
+
+**Por qué faltaba la de ambiente en Tolten y Tundra:** al publicar con
+"Publicar similar" se borraron las fotos copiadas y se subieron
+portada + real; en esas dos ML se quedó solo con la real (la
+infografía, que en Shopify se llama `…-portada.jpg`). Ojo con ese
+nombre: en Shopify "portada" es la infografía, no la de ambiente.
+
+**Cómo se reordena (técnica):** el arrastre con el ratón de la extensión
+no mueve las fotos. Las miniaturas son `.media-uploader__element` con
+`draggable="true"` (arrastre HTML5); se mueven con JavaScript
+disparando `dragstart` en la foto, `dragenter`/`dragover`/`drop` sobre
+la primera y `dragend`, con un mismo `DataTransfer`. Luego "Confirmar".
+
+Nota de margen: en la lista el kit Fresh ahora muestra envío de  (no
+.50) y "Recibes" .56; contra el costo de .05 quedan
+~.51, todavía arriba del piso de , pero justo.
+
+**Verificado en la lista de Publicaciones:** las 8 miniaturas muestran
+la foto de ambiente (la del Fresh tardó unos minutos en refrescar).
+Captura: `imagenes/capturas/ml-publicaciones-portadas-22oct.png`.

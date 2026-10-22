@@ -98,6 +98,12 @@
      (MLM-3693474151, $1,299, quedan $202) tras la validación facial
      del dueño: ya están los 8 productos en ML. Los 2 borradores viejos no se
      pueden borrar desde la interfaz.
+   - **22 oct (MANUAL §113):** en las 8 publicaciones de Mercado Libre
+     la foto 1 ya es la portada de ambiente de IA (Tolten y Tundra no la
+     tenían y se subió; Revenger, Fresh, combo 2.40 y Boundary se
+     reordenaron; Clarus y combo 2.45 ya estaban bien). No se borraron
+     fotos; ML no puso objeción de fondo blanco. Ojo: el Fresh ahora paga
+     envío $190 y deja ~$151.51, justo arriba del piso de $150.
    - **19 oct (MANUAL §100):** ya se aplicaron, a mitad de la prueba,
      la barra de compra desde la primera pantalla, el logo chico, el
      conjunto nuevo (5 kits + 3 combos Okuma de $999 + 3 binoculares
