@@ -12605,3 +12605,18 @@ videos de las 8 publicaciones y fotos nuevas de los 3 combos. La guía
 (tomas, duración, orden por importancia y mensaje para la Mac) quedó en
 `GUIA-VIDEOS-FOTOS-MERCADO-LIBRE.md`.
 
+**Lectura de la nube sobre la revisión de cierre (23 oct).**
+- Lo bueno: el catálogo del Revenger 2.45 ya gana por precio a $1,169.
+- El problema: **Product Ads casi no entrega.** En ~24 h lleva 14
+  impresiones y $0 gastados.
+- Causa probable: el **ROAS objetivo de 5x**. ML solo muestra el anuncio
+  donde espera vender $5 por cada $1, y una cuenta nueva sin ventas casi
+  nunca llega a eso. Así la campaña no aprende.
+- Por qué conviene bajarlo: mientras dure la bonificación de $850 el gasto
+  no sale de la bolsa. La pausa del 12 nov ya está programada.
+- **Propuesta al dueño:** bajar el ROAS objetivo a **3x** hasta el 12 nov.
+  Requiere su "sí", porque cambia cómo se gasta.
+- Después de la bonificación, ninguna venta deja más de ~$150–$215, así
+  que la publicidad solo sería rentable con un ROAS muy alto. Eso se
+  decide el 12 nov.
+
