@@ -12620,3 +12620,28 @@ videos de las 8 publicaciones y fotos nuevas de los 3 combos. La guía
   que la publicidad solo sería rentable con un ROAS muy alto. Eso se
   decide el 12 nov.
 
+### ROAS objetivo de Product Ads: de 5x a 3x (23 oct, 11:48, con el "sí" del dueño)
+
+- **Cómo:** en Publicidad → Campañas → fila "Campaña Mercado Libre" →
+  lápiz de la columna **ROAS Objetivo** → ventana "Modifica tu ROAS
+  Objetivo".
+- **Valor:** 5 → **3**. ML aceptó **3 exacto** y lo etiquetó "Altamente
+  competitivo"; a 5 decía "Competitivo".
+- **Confirmación de ML:** "¡Listo! Configuraste el objetivo de tu campaña
+  exitosamente".
+- **Fila después de guardar:**
+
+| Concepto | Valor |
+|---|---|
+| ROAS Objetivo | **3x** |
+| Presupuesto diario | $30, sin cambio |
+| Anuncios | 8, automática, sin cambio |
+| Estado | APRENDIENDO |
+| Bonificación disponible | $850 |
+| Impresiones (ya iban) | 46 |
+
+- **Tropiezo:** el primer lápiz que se abrió era el de **presupuesto**
+  (ventana "Presupuesto", $30). Se cerró con "Cancelar", sin guardar.
+- **Sin tocar:** precios y publicaciones.
+- **Para revisar:** al pausar el 12 nov o si la bonificación baja de
+  ~$150.
