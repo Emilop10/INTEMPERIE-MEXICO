@@ -12447,3 +12447,9 @@ subirla al primer lugar.
    y operación; evaluarlo aparte.
 8. Product Ads: dejar como está hasta que salga de "aprendiendo" (7
    días). No subir el presupuesto.
+
+**Recordatorio del catálogo (23 oct, 20:00 hora de México):** disparó
+`trig_013FKF88Avc1KmkMq3HsfbWz`. No hizo falta mandarle nada a la Mac: la
+auditoría de §125 ya había revisado el catálogo a las 18:12. Ya no está
+restringido; ahora aparece "PERDIENDO" frente a Pescafacil.
+
