@@ -12516,6 +12516,85 @@ porque ML agregó el objetivo "Crea un video". No es por el texto.
 necesitan material real del dueño. Los cambios 6–8 (precio y dinero) no
 se recomiendan.
 
+### Revisión de cierre de Mercado Libre (23 oct, 09:20–09:35, solo lectura)
+
+El dueño la pidió como "métricas de hoy, 22 de octubre". ML y el navegador
+ya marcaban **viernes 23 de octubre**, así que "hoy" es el 23 y "total" es
+desde la activación de Product Ads (22 oct, 13:31). **No se cambió nada.**
+
+**Lo urgente:** nada requiere acción.
+
+**Catálogo del Revenger 2.45 (MLM6451018360): ahora GANANDO.**
+
+- **Estado:** pasó de "Perdiendo" a **"GANANDO — Ofreces mejores
+  condiciones que otros vendedores"**, con la etiqueta **"Ganador por
+  precio"** a **$1,169**, Clásica, envío gratis por agencias.
+- **Visitas:** 1 en 7 días.
+- **Avisos aún visibles:** la tarjeta "Con precio alto" (filtro de los
+  últimos 7 días) y la etiqueta "PRECIO ALTO" en Condiciones de venta
+  apuntan a esta misma publicación, pero no dicen contra qué precio.
+  Parecen restos de antes de ganar. No se cambia el precio.
+- **Oferta de ML:** "Vende más con afiliados. Pagas solo si vendes"
+  aparece en varias filas. Es un costo por venta; no se activó.
+
+**Por publicación** (sin ventas en ninguna):
+
+| Publicación | Visitas hoy | Visitas totales | Calidad | Stock | Precio |
+|---|---|---|---|---|---|
+| Revenger 2.45 (MLM-6444730308) | 1 | 2 | 64 | 1 | $1,169 |
+| Revenger 2.45 catálogo (MLM6451018360) | — | 1 en 7 días | 76 | 1 compartido | $1,169 |
+| Revenger 2.40 (MLM-6444798834) | 0 | 1 | 70 | 1 | $1,199 |
+| Boundary (MLM-6444801030) | 0 | 2 | 71 | 2 | $1,199 |
+| Tundra (MLM-6444714326) | 0 | 1 | 70 | 1 | $1,989 |
+| Clarus (MLM-6444779904) | 0 | 0 | 71 | 2 | $1,699 |
+| Kit Revenger 7' (MLM-3682581883) | 0 | 0 | 70 | 1 | $1,759 |
+| Tolten (MLM-3682621565) | 0 | 1 | 70 | 1 | $1,489 |
+| Fresh (MLM-3693474151) | 0 | 0 | 71 | 2 | $1,369 |
+
+- **Visitas de hoy:** son la diferencia contra la revisión anterior,
+  porque ML solo da el total y la columna de 7 días.
+- **Conversión:** 0%.
+- **Stock:** coincide con el inventario del dueño.
+- **Calidad:** bajó 5–6 puntos en casi todas porque ML agregó el objetivo
+  "Crea un video".
+- **Estado:** las 9 están activas.
+- **Títulos:** los de la lista coinciden con los guardados esta mañana.
+- **Descripciones y garantía:** se verificaron al guardarlas (longitud,
+  inicio y final del texto), y la del Boundary también tras recargar.
+- **Impresiones y clics por publicación:** no disponibles; la pestaña
+  "Anuncios" de Publicidad sigue deshabilitada.
+
+**Product Ads** ("Campaña Mercado Libre", automática, 8 anuncios):
+
+| Concepto | Hoy, 23 oct | Total desde la activación |
+|---|---|---|
+| Impresiones | 14 | 14 (el 22 oct quedó en 0) |
+| Clics | 0 | 0 |
+| CTR | 0% | 0% |
+| Inversión | $0 | $0 |
+| Ventas atribuidas | 0 | 0 |
+| Ingresos | $0 | $0 |
+
+- **Bonificación disponible:** **$850**, sin usar.
+- **Estado:** **"APRENDIENDO — se estabilizará en 7 días"**. Presupuesto
+  $30, ROAS objetivo 5x.
+- **Avisos:** no hay de presupuesto ni de publicaciones no elegibles.
+  Las primeras impresiones llegaron hoy.
+
+**Otros:**
+
+- **Ventas:** 0, en hoy y en finalizadas.
+- **Preguntas:** 0.
+- **Reputación:** "Programa activo, te quedan 365 días"; los compradores
+  ven **verde claro**. Ventas afectadas 0 de 5. $850 en reserva en Mercado
+  Pago. Sin reclamos ni cancelaciones.
+- **Avisos de ML:** la campana no muestra contador de avisos sin leer y su
+  panel no se abrió. En la lista no hay publicaciones pausadas,
+  inactivas, ni avisos de moderación, fotos, ficha o envío. Los únicos
+  avisos son de calidad ("Crea un video") y "Agrega más stock" en las de
+  1 unidad.
+- **Mensajes:** no se revisó una bandeja aparte porque no hay ventas.
+
 **Recordatorio del catálogo (23 oct, 20:00 hora de México):** disparó
 `trig_013FKF88Avc1KmkMq3HsfbWz`. No hizo falta mandarle nada a la Mac: la
 auditoría de §125 ya había revisado el catálogo a las 18:12. Ya no está

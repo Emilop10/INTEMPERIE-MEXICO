@@ -188,6 +188,10 @@
      **23 oct: aplicados 3, 4 y 5** (descripciones de combos, garantía en
      kits, títulos de Clarus, Revenger 2.40 y Boundary). Quedan 1 (videos)
      y 2 (fotos), que esperan material del dueño.
+     **23 oct 09:30:** el catálogo del Revenger 2.45 está **GANANDO**
+     ("Ganador por precio", $1,169). Product Ads lleva 14 impresiones, 0
+     clics, $0 de inversión; bonificación $850 intacta y "aprendiendo"
+     hasta ~29 oct. 0 ventas y 0 preguntas.
    - **19 oct (MANUAL §100):** ya se aplicaron, a mitad de la prueba,
      la barra de compra desde la primera pantalla, el logo chico, el
      conjunto nuevo (5 kits + 3 combos Okuma de $999 + 3 binoculares
