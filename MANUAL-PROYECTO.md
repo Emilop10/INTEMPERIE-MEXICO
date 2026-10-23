@@ -12448,6 +12448,74 @@ subirla al primer lugar.
 8. Product Ads: dejar como está hasta que salga de "aprendiendo" (7
    días). No subir el presupuesto.
 
+### Aplicado con el "sí" del dueño: cambios 3, 4 y 5 (23 oct, 09:02–09:10)
+
+Se cambiaron solo textos. **No se tocaron precios, fotos ni stock.** Cada
+cambio se guardó con "Confirmar" en su sección, y ML respondió
+"Guardamos los cambios" o "Publicación actualizada".
+
+**3. Descripciones nuevas de los 3 combos.** Cada una queda con:
+
+- Una frase de entrada.
+- Un bloque **"Incluye:"** con la caña (medida, piezas y material) y el
+  carrete (tamaño y relación), con los datos de
+  `MERCADO-LIBRE-LISTADOS.md`.
+- **"Para qué pesca sirve"**.
+- "Producto nuevo, en su empaque. Enviamos desde Cuernavaca, Morelos".
+- **"Garantía del vendedor: 7 días."**
+
+| Combo | Caracteres antes → después | Para qué pesca sirve |
+|---|---|---|
+| Boundary (MLM-6444801030) | 274 → 543, verificado tras recargar | Río, presa y lago, orilla o lancha; lobina, mojarra, trucha y carpa |
+| Revenger 2.40 + RV-80 (MLM-6444798834) | 377 → 542 | Agua dulce y salada ligera: orilla de mar, escollera, presa y lancha |
+| Revenger 2.45 (MLM-6444730308) | 308 → 557 | Río, presa, laguna y costa; lobina, mojarra y robalo chico |
+
+En el Revenger 2.45 la descripción sí se pudo editar, aunque las
+características siguen bloqueadas por el catálogo.
+
+**4. Línea de garantía en los 5 kits.** Se agregó al final de cada
+descripción, después de una línea en blanco: "Garantía del vendedor: 7
+días." El resto del texto no cambió.
+
+| Kit | Caracteres antes → después |
+|---|---|
+| Clarus | 877 → 909 |
+| Tundra | 1,019 → 1,051 |
+| Revenger 7' | 963 → 995 |
+| Tolten | 931 → 963 |
+| Fresh | 910 → 942 |
+
+**5. Títulos.** Lista de Publicaciones después del cambio (ML capitaliza
+"M" e "Ix" solo):
+
+| Publicación | Antes | Ahora |
+|---|---|---|
+| Kit Clarus (MLM-6444779904) | Kit Pesca Shimano Clarus 5'8 Carrete Ix R 1000 Hilo Señuelo | **Kit Pesca Shimano Clarus 5'8 Caña + Carrete Ix 1000 Señuelo** |
+| Combo Revenger 2.40 (MLM-6444798834) | Combo Pesca Okuma Revenger 8' Caña 2 Piezas + Carrete Rv-80 | **Combo Pesca Okuma Revenger Caña 8' 2.40 M Carrete Rv-80 Mar** |
+| Combo Boundary (MLM-6444801030) | Combo Pesca Okuma Boundary 7' Caña Y Carrete Spinning 40 | **Combo Pesca Okuma Boundary Caña 7' 2.10m Carrete Spinning 40** |
+
+**Precios al terminar (sin cambio):**
+
+| Publicación | Precio |
+|---|---|
+| Revenger 2.45 (y su catálogo) | $1,169 |
+| Revenger 2.40 | $1,199 |
+| Boundary | $1,199 |
+| Tundra | $1,989 |
+| Clarus | $1,699 |
+| Kit Revenger | $1,759 |
+| Tolten | $1,489 |
+| Fresh | $1,369 |
+
+Siguen 9 publicaciones activas.
+
+**Efecto en la calidad:** el Revenger 2.45 bajó de 75 a 64 en el panel
+porque ML agregó el objetivo "Crea un video". No es por el texto.
+
+**Siguen pendientes de §125:** el cambio 1 (videos) y el 2 (fotos), que
+necesitan material real del dueño. Los cambios 6–8 (precio y dinero) no
+se recomiendan.
+
 **Recordatorio del catálogo (23 oct, 20:00 hora de México):** disparó
 `trig_013FKF88Avc1KmkMq3HsfbWz`. No hizo falta mandarle nada a la Mac: la
 auditoría de §125 ya había revisado el catálogo a las 18:12. Ya no está

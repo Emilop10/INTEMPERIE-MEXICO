@@ -182,6 +182,9 @@
      Catálogo del 2.45: ya compite pero PIERDE contra Pescafacil ($1,211,
      Flex y colecta); ML sugiere $1,093, que rompe la regla; el mínimo
      válido es $1,119. Posición en búsquedas sin medir por captcha de ML.
+     **23 oct: aplicados 3, 4 y 5** (descripciones de combos, garantía en
+     kits, títulos de Clarus, Revenger 2.40 y Boundary). Quedan 1 (videos)
+     y 2 (fotos), que esperan material del dueño.
    - **19 oct (MANUAL §100):** ya se aplicaron, a mitad de la prueba,
      la barra de compra desde la primera pantalla, el logo chico, el
      conjunto nuevo (5 kits + 3 combos Okuma de $999 + 3 binoculares
