@@ -5,6 +5,9 @@
 0. **Videos y fotos para Mercado Libre (dueño, 24 oct):** grabar los 8
    videos y las fotos de los combos según
    `GUIA-VIDEOS-FOTOS-MERCADO-LIBRE.md`; luego los sube la Mac.
+0. **Facebook, siguiente prueba (MANUAL §126):** propuesta de anuncios que
+   abren WhatsApp, con los videos reales, ~$300 en 5 días. Espera la
+   decisión del dueño y los videos del 24 oct.
 0. **Facebook en pausa (22 oct 17:43, MANUAL §124):** las dos campañas de la
    ronda Oct19 quedaron pausadas con el "sí" del dueño: $352, 2 carritos,
    0 compras. Los cortes diarios están deshabilitados. No reactivar ni

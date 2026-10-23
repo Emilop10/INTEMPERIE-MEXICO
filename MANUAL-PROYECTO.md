@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 22 de octubre de 2026 (sección 125)
+**Última actualización:** 22 de octubre de 2026 (sección 126)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -153,6 +153,7 @@ como respaldo
 123. [Inventario del 22 oct: conciliación, kits recalculados y tabla para Mercado Libre](#123-inventario-del-22-oct-conciliación-kits-recalculados-y-tabla-para-mercado-libre)
 124. [Revisión de la campaña de Facebook, 22 oct 17:40: el corte de $400 no se va a pasar](#124-revisión-de-la-campaña-de-facebook-22-oct-1740-el-corte-de-400-no-se-va-a-pasar)
 125. [Mercado Libre: auditoría de las 9 publicaciones para vender más (22 oct, solo revisión)](#125-mercado-libre-auditoría-de-las-9-publicaciones-para-vender-más-22-oct-solo-revisión)
+126. [Facebook: por qué no convierte y propuesta de la siguiente prueba (23 oct)](#126-facebook-por-qué-no-convierte-y-propuesta-de-la-siguiente-prueba-23-oct)
 
 ---
 
@@ -12652,4 +12653,51 @@ México. Ese día se pide a la Mac medir la entrega:
 - Si sigue debajo de ~100 impresiones diarias, se propone bajar a 2x
   mientras dure la bonificación.
 - Si ya hay clics, se deja igual hasta la revisión del 5 nov.
+
+## 126. Facebook: por qué no convierte y propuesta de la siguiente prueba (23 oct)
+
+**Qué pidió el dueño.** Con Mercado Libre listo, ver qué hacer con la
+publicidad de Facebook.
+
+### Diagnóstico de la ronda Oct19 (pausada el 22 oct)
+
+**Embudo:** 198 clics → 162 cargas de página (82%) → 160 vistas de
+producto → **2 carritos (1.3%)** → 0 pagos.
+- La página sí carga: se pierde muy poca gente entre el clic y la ficha.
+- Casi todo el tráfico vino del **navegador interno de la app de
+  Facebook en celular**: 98% del gasto, 77% Android. Instagram gastó $32
+  con 1 clic.
+- Edades: 45–54, 55–64 y 65+ se repartieron el gasto parejo. El único
+  carrito de prospección vino de 65+.
+
+**Prueba técnica.** Se emuló el navegador de Facebook en Android, con el
+pixel bloqueado para no ensuciar datos, en las fichas del Kit Revenger y
+del Kit Tundra:
+- carga en 4–6 s;
+- sin errores de JavaScript;
+- precio y botón visibles en la primera pantalla;
+- **"Agregar al carrito" funciona**: el carrito se abre con envío gratis,
+  garantía y formas de pago. El carrito se vació después.
+
+Detalle menor: la barra de compra fija tapa la línea "Ahorras $431"
+cuando la página está arriba.
+
+**Conclusión.** No es una falla técnica; es la oferta frente a ese
+público. Gente de 45–65 años que va pasando por Facebook no compra $1,389
+a $1,569 en una tienda que no conoce, sin hablar con nadie. Las portadas
+de ambiente hechas con IA tampoco ayudan a la confianza en ese público.
+
+### Propuesta (espera decisión del dueño; no se ha creado ni gastado nada)
+
+1. **Anuncios que abren WhatsApp** en vez de la tienda. En México, para
+   compras de más de $1,000 la gente quiere preguntar antes de pagar. El
+   dueño ya tiene WhatsApp Business. Se mide por conversaciones y ventas
+   cerradas.
+2. **Usar los videos reales que el dueño graba el 24 oct** (los de
+   Mercado Libre) como anuncio, en vez de fotos de IA.
+3. **Prueba chica con reglas:** ~$300 en 5 días ($60/día), Facebook en
+   celular, hombres de 35–65.
+   - Corte a los $150 si hay menos de 5 conversaciones.
+   - Corte a los $300 si hay 0 ventas.
+4. Mientras tanto, Facebook sigue en pausa.
 
