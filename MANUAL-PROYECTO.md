@@ -12521,3 +12521,8 @@ se recomiendan.
 auditoría de §125 ya había revisado el catálogo a las 18:12. Ya no está
 restringido; ahora aparece "PERDIENDO" frente a Pescafacil.
 
+**Guía para grabar videos y fotos (23 oct).** El dueño grabará mañana los
+videos de las 8 publicaciones y fotos nuevas de los 3 combos. La guía
+(tomas, duración, orden por importancia y mensaje para la Mac) quedó en
+`GUIA-VIDEOS-FOTOS-MERCADO-LIBRE.md`.
+

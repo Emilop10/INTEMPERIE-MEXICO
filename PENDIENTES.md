@@ -2,6 +2,9 @@
 
 ## ▶️ Arranque de la próxima sesión (dejado el 19 oct)
 
+0. **Videos y fotos para Mercado Libre (dueño, 24 oct):** grabar los 8
+   videos y las fotos de los combos según
+   `GUIA-VIDEOS-FOTOS-MERCADO-LIBRE.md`; luego los sube la Mac.
 0. **Facebook en pausa (22 oct 17:43, MANUAL §124):** las dos campañas de la
    ronda Oct19 quedaron pausadas con el "sí" del dueño: $352, 2 carritos,
    0 compras. Los cortes diarios están deshabilitados. No reactivar ni
