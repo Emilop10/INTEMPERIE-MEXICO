@@ -12645,3 +12645,11 @@ videos de las 8 publicaciones y fotos nuevas de los 3 combos. La guía
 - **Sin tocar:** precios y publicaciones.
 - **Para revisar:** al pausar el 12 nov o si la bonificación baja de
   ~$150.
+
+**Seguimiento programado del ROAS 3x (nube):** recordatorio
+`trig_01UiWjN2XrbhiHauLc1JJwoS` el **domingo 25 oct a las 10:07** hora de
+México. Ese día se pide a la Mac medir la entrega:
+- Si sigue debajo de ~100 impresiones diarias, se propone bajar a 2x
+  mientras dure la bonificación.
+- Si ya hay clics, se deja igual hasta la revisión del 5 nov.
+
