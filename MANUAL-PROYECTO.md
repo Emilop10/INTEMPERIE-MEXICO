@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 22 de octubre de 2026 (sección 124)
+**Última actualización:** 22 de octubre de 2026 (sección 125)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -152,6 +152,7 @@ como respaldo
 122. [Pull automático: la Mac y la nube traen lo último del repositorio solas (22 oct)](#122-pull-automático-la-mac-y-la-nube-traen-lo-último-del-repositorio-solas-22-oct)
 123. [Inventario del 22 oct: conciliación, kits recalculados y tabla para Mercado Libre](#123-inventario-del-22-oct-conciliación-kits-recalculados-y-tabla-para-mercado-libre)
 124. [Revisión de la campaña de Facebook, 22 oct 17:40: el corte de $400 no se va a pasar](#124-revisión-de-la-campaña-de-facebook-22-oct-1740-el-corte-de-400-no-se-va-a-pasar)
+125. [Mercado Libre: auditoría de las 9 publicaciones para vender más (22 oct, solo revisión)](#125-mercado-libre-auditoría-de-las-9-publicaciones-para-vender-más-22-oct-solo-revisión)
 
 ---
 
@@ -12308,3 +12309,141 @@ sin respuesta, el corte de mañana lo hace solo.
 entender por qué la ficha no convierte. Esta semana el esfuerzo va a
 Mercado Libre, con Product Ads.
 
+## 125. Mercado Libre: auditoría de las 9 publicaciones para vender más (22 oct, solo revisión)
+
+**Qué se pidió:** revisar las 9 publicaciones en 10 puntos (calidad,
+ficha técnica, título, fotos, descripción, envío, competencia, Product
+Ads, preguntas y catálogo) y proponer cambios **sin aplicar nada** hasta
+el "sí" del dueño. Reglas:
+
+- Precio: `precio − 15% − envío − todas las piezas − $48.83 ≥ $150`,
+  terminado en 9.
+- Solo Clásica.
+- No subir publicidad.
+- Pausar, no borrar.
+
+**Cómo:** página de edición de cada publicación (panel de calidad,
+título, fotos, características, código, descripción y categoría),
+Publicidad, Preguntas y la competencia del catálogo, en la sesión de
+Chrome del dueño. La API de items de ML responde 403.
+
+**No se cambió nada.**
+
+### Lo que aplica a todas
+
+- **Ficha técnica:** los 7 kits y combos sin EAN están en la categoría
+  **"Cañas y Accesorios > Otros"**. Ahí ML solo pide Marca y Modelo
+  (principales) e "Incluye pilas" (secundaria), y las tres están
+  completas. No hay más atributos que llenar en esa categoría. El
+  Revenger 2.45 está en "Cañas", con 5 principales y 9 secundarias, pero
+  bloqueadas por el catálogo (§119).
+- **Calidad:** ML ya no pide ficha ni fotos, salvo el Revenger 2.45.
+  Repite en todas "Elige Premium" (descartado por regla), "Agrega más
+  stock" en las de 1 unidad y, nuevo con Despegue, **"Crea un video para
+  no perder ventas"** (sección **Videos**: "aumentar tus ventas 3 veces").
+  Ninguna tiene video.
+- **Garantía:** la publicación dice "garantía del vendedor por 7 días",
+  pero **ninguna descripción la menciona**.
+- **Envío:** todas tienen Envíos en Mercado Libre, envío gratis y modalidad
+  **"por agencias"** (nosotros dejamos el paquete).
+
+| Publicación | ML nos cobra de envío |
+|---|---|
+| Clarus | $95 |
+| Boundary, Tolten | $122.50 |
+| Revenger 2.45, Revenger 2.40, Tundra, Kit Revenger | $139.50 |
+| Fresh | $190 |
+
+  Full y Flex no están activos; los dos implican costo u operación nueva.
+- **Tiempo de disponibilidad:** vacío en todas (= despacho inmediato).
+  Está bien.
+- **Preguntas:** 0 por responder.
+- **Product Ads** ("Campaña Mercado Libre", automática, 8 anuncios, $30 al
+  día, ROAS objetivo 5x):
+
+| Concepto | Valor (22 oct, 18:10) |
+|---|---|
+| Estado | "APRENDIENDO — se estabilizará en 7 días" |
+| Clics, inversión, ventas, ingresos | 0 |
+| Bonificación disponible | **$850 sin usar** |
+
+  La pestaña "Anuncios", con el detalle por publicación, aún está
+  deshabilitada.
+- **Visitas totales desde que se publicaron:**
+
+| Publicación | Visitas |
+|---|---|
+| Boundary | 2 |
+| Revenger 2.45, Revenger 2.40, Tundra, Tolten | 1 cada una |
+| Clarus, Kit Revenger, Fresh | 0 |
+
+- **Competencia (punto 7): NO se pudo medir la posición.** ML puso
+  **captcha** ("Seguridad — Mercado Libre") en las búsquedas desde Chrome,
+  y el navegador integrado pidió "account-verification". No se
+  resolvieron. Los precios de referencia siguen siendo los de §115.
+
+### Catálogo del Revenger 2.45 (MLM6451018360): cambió de estado
+
+Ya **no está "restringido para ganar"**. A las 18:12 aparece **"PERDIENDO
+— Otros vendedores ofrecen mejores condiciones"**. ML muestra:
+
+- **Visitas:** "en la última hora, otras publicaciones recibieron el 100%
+  de las visitas".
+- **Ganador:** **Pescafacil a $1,211.25**, Clásica, envío gratis,
+  **"Flex + Envíos en Mercado Libre: Con colecta"**, 1,211 unidades.
+- **Nosotros:** $1,169, Clásica, envío gratis, "Envíos en Mercado Libre:
+  Por agencias".
+- **Sugerencia de ML:** "Bajar a **$1,093**". A ese precio quedarían
+  $135.28, **debajo de $150: no cumple la regla**. El mínimo que cumple
+  con caja es **$1,119**, que deja **$155.03**; hoy, a $1,169, quedan
+  $193.01.
+
+Pescafacil gana aun siendo $42 más caro, así que pesan más su envío (Flex
+y colecta) y su reputación que el precio. Bajar a $1,119 podría no
+alcanzar.
+
+### Tabla por publicación
+
+| Publicación | Bien | Falta | Propuesta (gratis salvo que se diga) |
+|---|---|---|---|
+| **Combo Revenger 2.45** (MLM-6444730308) | Título de 60 caracteres con marca, modelo y medida. EAN real. 4 fotos. Calidad 75 | Solo 4 fotos (meta: 6). "Corrige las características" (Acción vacía, bloqueada por catálogo). Descripción corta (308 caracteres) sin lista "Incluye" ni garantía. Sin video | +2 fotos reales: puño y etiqueta, y caña desarmada en 2 piezas. Descripción con "Incluye" y garantía. Video de 15–30 s |
+| **Combo Revenger 2.40 + RV-80** (MLM-6444798834) | Único combo con carrete 8000 en ML | **Solo 3 fotos.** Descripción de 377 caracteres sin "Incluye" ni garantía. Título sin "2.40 m" ni el uso (mar) | +3 fotos (portada IA ya hay; Shopify tiene 2 más de la tienda). Título: "Combo Pesca Okuma Revenger Caña 8' 2.40 m Carrete Rv-80 Mar" (59). Descripción con "Incluye" y garantía |
+| **Combo Boundary 7'** (MLM-6444801030) | 4 fotos (§119). El más barato de su modelo | 4 fotos. Descripción de 274 caracteres sin "Incluye" ni garantía. "Y" en el título no aporta búsqueda | +2 fotos. Título: "Combo Pesca Okuma Boundary Caña 7' 2.10m Carrete Spinning 40" (60). Descripción completa |
+| **Kit Tundra Pro 7'** (MLM-6444714326) | 11 fotos. Título de 60 caracteres. Descripción completa con párrafo de valor | Sin garantía en la descripción. Sin video. "Agrega más stock" (hay 1; no inventar) | Agregar garantía. Video |
+| **Kit Clarus 5'8"** (MLM-6444779904) | 9 fotos. Descripción completa | **El título no dice "Caña"**, que es lo que más se busca. Sin garantía en la descripción. Sin video | Título: "Kit Pesca Shimano Clarus 5'8 Caña + Carrete IX 1000 Señuelo" (59). Garantía. Video |
+| **Kit Revenger 7'** (MLM-3682581883) | Título de 60 caracteres. Descripción completa | 7 fotos (las menos de los kits). Sin garantía. ML pide video y stock | Garantía. Video |
+| **Kit Tolten 8'** (MLM-3682621565) | 11 fotos. Título de 57 caracteres con "Mar" | Sin garantía. ML pide video y stock | Garantía. Video |
+| **Kit Fresh 7'** (MLM-3693474151) | 10 fotos. Título de 60 caracteres con "Agua Dulce" | Sin garantía. Sin video | Garantía. Video |
+
+**Sobre la portada:** la regla de ML recomienda la foto 1 sobre fondo
+blanco o claro, sin texto. Nuestras portadas son de ambiente (§113), por
+decisión del dueño. **ML no las ha marcado** y no aparecen en los
+objetivos de calidad. No se propone cambiarlas; si algún día ML las
+objeta, hay foto real sobre fondo blanco en cada publicación para
+subirla al primer lugar.
+
+### Cambios propuestos, de más a menos impacto
+
+**Gratis (esperan "sí"):**
+
+1. **Video de 15–30 s en cada publicación** (sección Videos; ML ya lo
+   pide en Tolten y Kit Revenger y promete "3 veces" más ventas).
+   Necesita que el dueño grabe la caña y el carrete reales.
+2. **Fotos:** Revenger 2.40 de 3 a 6 o más, y Boundary y Revenger 2.45 de
+   4 a 6. Necesita fotos reales nuevas o las que haya en Shopify.
+3. **Descripciones de los 3 combos:** agregar bloque "Incluye:", tipo de
+   pesca y "Garantía del vendedor: 7 días por defectos de fábrica".
+4. **Garantía en la descripción de los 5 kits:** una línea al final.
+5. **Títulos:** Clarus (agregar "Caña"), Revenger 2.40 (agregar "2.40 m"
+   y "Mar") y Boundary (agregar "2.10m" y quitar "Y").
+
+**Tocan precio o dinero (no se recomiendan ahora):**
+
+6. Revenger 2.45 a **$1,119**, el mínimo que cumple; deja $155.03. Es
+   dudoso que gane, porque el ganador está más caro. ML pide $1,093, que
+   rompe la regla.
+7. Envíos **Flex** o **colecta**: es lo que hace ganar a Pescafacil.
+   Requiere entregar el mismo día o que pasen por los paquetes. Es costo
+   y operación; evaluarlo aparte.
+8. Product Ads: dejar como está hasta que salga de "aprendiendo" (7
+   días). No subir el presupuesto.

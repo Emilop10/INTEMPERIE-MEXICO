@@ -170,6 +170,18 @@
      **cobran en la factura mensual**. Pausarla el 12 nov, o antes si
      "Bonificación disponible" baja de ~$150. Selección de anuncios
      automática.
+   - **22 oct (MANUAL §125) — ESPERA "SÍ" DEL DUEÑO:** auditoría de ML.
+     Gratis:
+     (1) video por publicación, que graba el dueño;
+     (2) fotos: Revenger 2.40 tiene 3 y Boundary y Revenger 2.45 tienen 4,
+     la meta es 6;
+     (3) descripciones de combos con "Incluye" y garantía;
+     (4) línea de garantía en los 5 kits;
+     (5) títulos de Clarus (+"Caña"), Revenger 2.40 (+"2.40 m Mar") y
+     Boundary (+"2.10m").
+     Catálogo del 2.45: ya compite pero PIERDE contra Pescafacil ($1,211,
+     Flex y colecta); ML sugiere $1,093, que rompe la regla; el mínimo
+     válido es $1,119. Posición en búsquedas sin medir por captcha de ML.
    - **19 oct (MANUAL §100):** ya se aplicaron, a mitad de la prueba,
      la barra de compra desde la primera pantalla, el logo chico, el
      conjunto nuevo (5 kits + 3 combos Okuma de $999 + 3 binoculares
