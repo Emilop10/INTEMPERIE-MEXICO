@@ -12786,3 +12786,20 @@ del teléfono.
   No se tocó.
 
 **Sin tocar:** anuncios y presupuestos.
+
+**Campaña de WhatsApp creada en pausa (24 oct, nube,
+`scripts/campana-whatsapp-oct24.py`).**
+
+| Objeto | ID | Detalle |
+|---|---|---|
+| Campaña | `120250719523890175` | "IMX \| WhatsApp \| Kits y combos \| Oct24", OUTCOME_ENGAGEMENT, PAUSED |
+| Conjunto | `120250719524550175` | Destino WHATSAPP, optimizado a CONVERSATIONS, **$400 totales**, del 26 oct 9:00 al 30 oct 18:00. Horario diario **9:00–18:00 en hora de la cuenta** (`timezone_type: ADVERTISER`). Hombres 35–65, México, solo Facebook en celular (feed, historias y reels), `advantage_audience: 0`. PAUSED |
+| Tope de la cuenta | — | Bajado de $3,252.83 a **$2,813.94** (lo gastado, $2,413.94, + $400). Verificado: la API lee 281394 |
+
+- El horario quedó en **18:00 y no en 18:30**: Meta solo acepta horas
+  cerradas. Así queda una hora para contestar antes de las 19:00.
+- La primera corrida creó la campaña y falló en el conjunto por los
+  minutos; el script ahora reutiliza la campaña.
+- **Faltan los anuncios:** se crean con los videos del dueño. Después, el
+  dueño revisa y enciende.
+
