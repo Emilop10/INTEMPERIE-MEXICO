@@ -10,7 +10,8 @@
    estaba vinculado, +52 1 777 327 7340 como número principal; no hizo
    falta código.** El botón de llamada a la acción de WhatsApp está
    apagado: decide el dueño. La cuenta de WhatsApp "Alcampo Cuernavaca"
-   aparece en el portafolio Intemperie México, (2) los videos del dueño y (3) ya definido: contesta el dueño de 9:00
+   aparece en el portafolio Intemperie México (revisar si va ahí). Siguen
+   pendientes (2) los videos del dueño y (3) ya definido: contesta el dueño de 9:00
    a 19:00, y los anuncios corren de 9:00 a 18:30. Después, la nube crea la campaña en pausa ($400 de tope).
    Guía de atención: `GUIA-VENTAS-WHATSAPP.md`.
 0. **Facebook en pausa (22 oct 17:43, MANUAL §124):** las dos campañas de la
