@@ -12835,3 +12835,17 @@ junto a él "Siguiendo" y "Enviar mensaje" (Messenger).
 
 **Sin cambio:** el resto de la página, el portafolio, anuncios y
 presupuestos. "Mostrar número de WhatsApp en la página" sigue encendido.
+
+**Guía de videos para los anuncios (24 oct).**
+`GUIA-VIDEOS-ANUNCIOS-FACEBOOK-INSTAGRAM.md` tiene los 4 videos que el
+dueño graba el lunes 26 temprano: "Soy Emiliano", "Abre la caja", "¿Cuál
+es para ti?" y "Combo a $999".
+- Los 4 llevan guion, gancho en los primeros 3 segundos, formato vertical
+  y reglas para que Meta los apruebe.
+- Se graban en la misma sesión que los 8 videos de Mercado Libre.
+- Los de anuncios van a la nube, para crear los anuncios en la campaña en
+  pausa; los de Mercado Libre van a la Mac.
+- La campaña sigue solo en Facebook (Instagram trajo 1 clic con $32 en la
+  ronda pasada). Como los videos son verticales, sirven para Instagram si
+  el dueño quiere sumarlo.
+
