@@ -12741,3 +12741,9 @@ conversaciones.
   (America/Chihuahua, igual a la del centro de México). Así el último
   mensaje llega con tiempo de contestarlo antes de las 19:00.
 
+**Presupuesto subido a $400 (24 oct, orden del dueño).**
+- **$400 totales en 5 días,** de 9:00 a 18:30. El tope de la cuenta se
+  ajustará a +$400 al crear la campaña.
+- **Cortes:** a los $150, si hay menos de 5 conversaciones; a los $400,
+  si hay 0 ventas.
+

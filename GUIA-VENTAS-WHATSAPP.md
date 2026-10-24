@@ -90,4 +90,4 @@ teléfonos:
 
 Pásale esos números a Claude cuando revise la campaña. Así se decide si
 la prueba sigue: el corte es a los $150 si hay menos de 5 conversaciones,
-y a los $300 si no hay ventas.
+y a los $400 si no hay ventas.
