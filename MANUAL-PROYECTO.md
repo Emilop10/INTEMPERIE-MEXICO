@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 23 de octubre de 2026 (sección 126)
+**Última actualización:** 24 de octubre de 2026 (sección 126)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -12700,4 +12700,35 @@ de ambiente hechas con IA tampoco ayudan a la confianza en ese público.
    - Corte a los $150 si hay menos de 5 conversaciones.
    - Corte a los $300 si hay 0 ventas.
 4. Mientras tanto, Facebook sigue en pausa.
+
+### Aprobada la prueba de WhatsApp (24 oct, "sí" del dueño)
+
+**Plan.** Campaña de Facebook con destino WhatsApp, optimizada a
+conversaciones.
+- Videos reales del dueño como anuncio.
+- Presupuesto: $60/día, tope de **$300**.
+- Público: hombres de 35–65, México, Facebook en celular.
+- Cortes: a los $150 con menos de 5 conversaciones; a los $300 con 0
+  ventas.
+
+**Hecho hoy.**
+- `GUIA-VENTAS-WHATSAPP.md`: mensajes automáticos, respuestas rápidas,
+  guion de 5 pasos, qué anotar para medir, y tabla de los 8 productos con
+  precio y **link de pago directo**. El link `/cart/<variante>:1` lleva
+  directo al pago; se probó y redirige al checkout (302).
+- **Revisión de la página de Facebook (924461404093150):** la API no
+  devuelve `whatsapp_number`, así que todavía no hay WhatsApp vinculado.
+  Sin ese vínculo Meta no deja crear el conjunto con destino WhatsApp.
+
+**Orden para encender.**
+1. La Mac vincula el WhatsApp Business de la tienda a la página. El dueño
+   escribe el código de verificación.
+2. El dueño graba los videos (guía de Mercado Libre) y configura los
+   mensajes automáticos.
+3. La nube crea campaña, conjunto y anuncios **en pausa**, con tope de
+   cuenta +$300.
+4. El dueño revisa y enciende.
+5. La nube programa los cortes.
+
+**Pendiente del dueño:** quién contesta los WhatsApp y en qué horario.
 
