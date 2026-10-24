@@ -5,9 +5,12 @@
 0. **Videos y fotos para Mercado Libre (dueño, 24 oct):** grabar los 8
    videos y las fotos de los combos según
    `GUIA-VIDEOS-FOTOS-MERCADO-LIBRE.md`; luego los sube la Mac.
-0. **Prueba de WhatsApp aprobada (24 oct, MANUAL §126):** falta (1) que la
-   Mac vincule WhatsApp a la página de Facebook (el dueño escribe el
-   código), (2) los videos del dueño y (3) ya definido: contesta el dueño de 9:00
+0. **Prueba de WhatsApp aprobada (24 oct, MANUAL §126):** falta (1) ~~que la
+   Mac vincule WhatsApp a la página de Facebook~~ **hecho 24 oct: ya
+   estaba vinculado, +52 1 777 327 7340 como número principal; no hizo
+   falta código.** El botón de llamada a la acción de WhatsApp está
+   apagado: decide el dueño. La cuenta de WhatsApp "Alcampo Cuernavaca"
+   aparece en el portafolio Intemperie México, (2) los videos del dueño y (3) ya definido: contesta el dueño de 9:00
    a 19:00, y los anuncios corren de 9:00 a 18:30. Después, la nube crea la campaña en pausa ($400 de tope).
    Guía de atención: `GUIA-VENTAS-WHATSAPP.md`.
 0. **Facebook en pausa (22 oct 17:43, MANUAL §124):** las dos campañas de la

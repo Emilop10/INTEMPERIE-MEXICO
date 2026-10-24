@@ -12747,3 +12747,42 @@ conversaciones.
 - **Cortes:** a los $150, si hay menos de 5 conversaciones; a los $400,
   si hay 0 ventas.
 
+### WhatsApp Business vinculado a la página de Facebook (24 oct, desde la Mac)
+
+**Qué se pidió:** vincular el WhatsApp de la tienda (+52 777 327 7340) a la
+página "Intemperie México" (ID 924461404093150), pedirle al dueño el código
+de verificación y no tocar nada más.
+
+**Resultado: ya estaba vinculado; no hizo falta código ni cambiar nada.**
+
+- **Cómo se revisó:** en Facebook, cambiando el perfil a la página
+  Intemperie México (menú del avatar), en **Configuración → Cuenta de
+  WhatsApp** (`facebook.com/settings/?tab=linked_whatsapp`).
+- **Lo que muestra "Tu número de WhatsApp":** **+52 1 777 327 7340 —
+  Número principal**.
+- **"Mostrar número de WhatsApp en la página":** **encendido**.
+- **"Usar WhatsApp como botón de llamada a la acción":** **apagado**. No
+  se tocó; encenderlo pondría WhatsApp como botón principal de la página.
+  Queda como propuesta para el dueño.
+- **Perfil:** al terminar se regresó Facebook al perfil personal del
+  dueño.
+- **Captura:** `imagenes/capturas/fb-pagina-whatsapp-vinculado-24oct.jpg`.
+
+**No se usó el camino del portafolio.** En Business Suite → Ajustes →
+Cuentas de WhatsApp está el alta de la **API de WhatsApp Business**.
+Registrar ahí el número lo desconectaría de la app de WhatsApp Business
+del teléfono.
+
+**Ojo con los portafolios:**
+
+- **Al entrar:** Business Suite abrió primero el portafolio **"Alcampo
+  Cuernavaca"** (otra empresa del dueño, página 946449442044229). No se
+  tocó nada ahí y se cambió al portafolio Intemperie México
+  (business_id 1324138699447721).
+- **Cuenta de WhatsApp ajena:** en Ajustes del portafolio Intemperie
+  México, la pestaña "Cuentas de WhatsApp" muestra una cuenta llamada
+  **"Alcampo Cuernavaca"** (2 personas con acceso). Es de la otra
+  empresa, pero está en este portafolio; el dueño decide si la mueve.
+  No se tocó.
+
+**Sin tocar:** anuncios y presupuestos.
