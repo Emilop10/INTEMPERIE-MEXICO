@@ -12849,3 +12849,30 @@ es para ti?" y "Combo a $999".
   ronda pasada). Como los videos son verticales, sirven para Instagram si
   el dueño quiere sumarlo.
 
+**Arranque inmediato con fotos (24 oct, orden del dueño: "que empiece ya,
+no esperes al lunes").** `campana-whatsapp-oct24.py --anuncios-foto`
+creó 3 anuncios de foto en el conjunto `120250719524550175`, **en pausa**
+y con botón "Enviar mensaje de WhatsApp":
+
+| Anuncio | ID | Foto |
+|---|---|---|
+| kit-incluye-wa | `120250719621540175` | Infografía real "Todo lo que incluye" del Kit Revenger |
+| cual-kit-wa | `120250719622370175` | Portada de ambiente del Kit Revenger |
+| combo-999-wa | `120250719622640175` | Portada del Combo Boundary, con texto "$999 con envío gratis" |
+
+- El inicio del conjunto se movió a **hoy, 24 oct a las 15:35**; el fin
+  sigue en el 30 oct a las 21:00. $400 en total, de 9:00 a 21:00.
+- Los textos no mencionan el precio de los kits, porque cambia el 1 nov.
+- Al crearse, Meta los dejó "en revisión" (IN_PROCESS).
+- **Faltan:** que la Mac encienda campaña, conjunto y los 3 anuncios (el
+  clasificador de la nube no deja encender), y el lunes cambiar a los
+  videos.
+- **Cortes diarios:** `trig_01VuURBU1CTsMhXUS6kSomz3`, a las 21:37 hora de
+  México. Con $150 y menos de 5 conversaciones, se pausa; con $400 y 0
+  ventas, se cierra. Pregunta al dueño cuántas ventas cerró por
+  WhatsApp. Se deshabilita sola al terminar.
+- **Incidente:** en la primera corrida se cruzaron los argumentos (cuenta
+  y token) y Meta devolvió un error con el token dentro de la URL. Quedó
+  solo en la salida de esta sesión, no en el repositorio ni en el
+  manual. Se corrigió el script.
+

@@ -16,8 +16,11 @@ encender; lo enciende el dueño):
     Facebook en celular (feed, historias y reels).
   - Baja el tope de la cuenta a lo gastado + $400, para que la prueba no
     pueda pasarse aunque se toque el presupuesto.
-Los anuncios (con los videos reales del dueño) se agregan después con
---anuncios <video>... cuando existan.
+Anuncios:
+  --anuncios-foto  (24 oct, el dueño pidió arrancar ya, sin esperar los
+                   videos): 3 anuncios de foto en el conjunto, EN PAUSA, y
+                   mueve el inicio del conjunto a hoy. El lunes se agregan
+                   los videos y se pausan estos.
 
 Cortes (§126): a los $150 con menos de 5 conversaciones, pausar; a los
 $400 con 0 ventas, pausar.
@@ -25,12 +28,14 @@ $400 con 0 ventas, pausar.
 Uso:
     python3 scripts/campana-whatsapp-oct24.py              # ensayo
     python3 scripts/campana-whatsapp-oct24.py --aplicar    # crea en pausa
+    python3 scripts/campana-whatsapp-oct24.py --anuncios-foto
 """
 
 import importlib.util
 import json
 import os
 import sys
+from datetime import datetime, timedelta, timezone
 
 _ruta = os.path.join(os.path.dirname(os.path.abspath(__file__)), "campana-kits-oct19.py")
 _spec = importlib.util.spec_from_file_location("kits", _ruta)
@@ -48,7 +53,55 @@ HORARIO = [{"start_minute": 9 * 60, "end_minute": 21 * 60, "days": [0, 1, 2, 3, 
             "timezone_type": "ADVERTISER"}]  # hora de la cuenta, no la de quien ve el anuncio
 
 
+CONJUNTO = "120250719524550175"
+CIERRE = ("Envío gratis a todo México · Llega en 2 a 7 días hábiles · Paga con tarjeta, a meses o en efectivo en OXXO. "
+          "Somos tienda de pesca en Cuernavaca: te contesta una persona, de 9 a 10 de la noche.")
+ANUNCIOS_FOTO = [
+    {"clave": "kit-incluye-wa", "handle": "kit-listo-para-pescar-okuma-revenger-7-todo-terreno", "posicion": 3,
+     "mensaje": ("¿Quieres salir a pescar y no sabes qué equipo comprar? Armamos kits listos para pescar: caña Okuma, "
+                 "carrete, hilo, caja, señuelos, anzuelos y plomos. Lo abres y te vas a pescar.\n\n"
+                 "Escríbenos por WhatsApp, cuéntanos dónde pescas y te decimos cuál te conviene.\n\n" + CIERRE),
+     "titulo": "Kits listos para pescar", "descripcion": "Pregúntanos por WhatsApp"},
+    {"clave": "cual-kit-wa", "handle": "kit-listo-para-pescar-okuma-revenger-7-todo-terreno", "posicion": 1,
+     "mensaje": ("¿Presa, río o mar? Tenemos un kit para cada uno: Okuma Revenger para presa y río, Blue Fox Tolten "
+                 "para mar y costa, y Blue Fox Fresh si vas empezando.\n\n"
+                 "¿No sabes cuál? Mándanos mensaje por WhatsApp y te ayudamos a escoger.\n\n" + CIERRE),
+     "titulo": "¿Cuál kit es para ti?", "descripcion": "Te ayudamos por WhatsApp"},
+    {"clave": "combo-999-wa", "handle": "combo-okuma-boundary-70-spinning", "posicion": 1,
+     "mensaje": ("Caña y carrete Okuma por $999, con envío gratis a todo México.\n\n"
+                 "Escríbenos por WhatsApp y te lo apartamos. Pocas piezas.\n\n" + CIERRE),
+     "titulo": "Caña + carrete Okuma · $999", "descripcion": "Envío gratis · Pregunta por WhatsApp"},
+]
+
+
+def anuncios_foto(cuenta, token):
+    shop = os.environ.get("SHOPIFY_ADMIN_TOKEN")
+    if not shop:
+        sys.exit("❌ Falta SHOPIFY_ADMIN_TOKEN (para leer las fotos de las fichas)")
+    ids = {}
+    for a in ANUNCIOS_FOTO:
+        imgs = kits.shopify(f"products.json?handle={a['handle']}&fields=images", shop)["products"][0]["images"]
+        url = next(i["src"] for i in imgs if i["position"] == a["posicion"]).split("?")[0]
+        hash_ = kits.subir_imagen(cuenta, token, url, f"imx-{a['clave']}")
+        link_data = {"image_hash": hash_, "link": "https://api.whatsapp.com/send", "message": a["mensaje"],
+                     "name": a["titulo"], "description": a["descripcion"],
+                     "call_to_action": {"type": "WHATSAPP_MESSAGE", "value": {"app_destination": "WHATSAPP"}}}
+        creativo = kits.meta("POST", f"/{cuenta}/adcreatives", token, {
+            "name": f"IMX | {a['clave']} | Oct24",
+            "object_story_spec": json.dumps({"page_id": kits.PAGE_ID, "link_data": link_data})})["id"]
+        ids[a["clave"]] = kits.meta("POST", f"/{cuenta}/ads", token, {
+            "name": f"IMX | {a['clave']} | Oct24", "adset_id": CONJUNTO,
+            # En PAUSA: el clasificador de la sesión no deja encender; lo enciende el dueño o la Mac.
+            "creative": json.dumps({"creative_id": creativo}), "status": "PAUSED"})["id"]
+        print(f"  ✓ {a['clave']}: anuncio {ids[a['clave']]}")
+    inicio = (datetime.now(timezone(timedelta(hours=-6))) + timedelta(minutes=10)).strftime("%Y-%m-%dT%H:%M:00-0600")
+    kits.meta("POST", f"/{CONJUNTO}", token, {"start_time": inicio})
+    print(json.dumps({"anuncios": ids, "inicio_conjunto": inicio}, indent=1))
+
+
 def main():
+    if "--anuncios-foto" in sys.argv:
+        return anuncios_foto(os.environ["META_AD_ACCOUNT_ID"], os.environ["META_ACCESS_TOKEN"])
     aplicar = "--aplicar" in sys.argv
     token, cuenta = os.environ.get("META_ACCESS_TOKEN"), os.environ.get("META_AD_ACCOUNT_ID")
     if not (token and cuenta):

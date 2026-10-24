@@ -13,7 +13,7 @@
    (encendido el 24 oct). La cuenta de WhatsApp "Alcampo Cuernavaca"
    aparece en el portafolio Intemperie México (revisar si va ahí). Siguen
    pendientes (2) los videos del dueño y (3) ya definido: contesta el dueño de 9:00
-   a 22:00, y los anuncios corren de 9:00 a 21:00. Campaña 120250719523890175 y conjunto 120250719524550175 ya creados en pausa ($400, 26–30 oct, tope de cuenta $2,813.94); faltan los anuncios con los videos.
+   a 22:00, y los anuncios corren de 9:00 a 21:00. Campaña 120250719523890175 y conjunto 120250719524550175 ya creados en pausa ($400, 26–30 oct, tope de cuenta $2,813.94); 3 anuncios de foto creados en pausa (arranque 24 oct); falta que la Mac encienda campaña, conjunto y anuncios. El lunes 26 se agregan los videos. Cortes diarios: trig_01VuURBU1CTsMhXUS6kSomz3 (21:37).
    Guía de atención: `GUIA-VENTAS-WHATSAPP.md`.
 0. **Facebook en pausa (22 oct 17:43, MANUAL §124):** las dos campañas de la
    ronda Oct19 quedaron pausadas con el "sí" del dueño: $352, 2 carritos,
