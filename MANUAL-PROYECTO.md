@@ -12732,3 +12732,12 @@ conversaciones.
 
 **Pendiente del dueño:** quién contesta los WhatsApp y en qué horario.
 
+**Quién contesta y horario (24 oct):** contesta el dueño, de **9:00 a
+19:00**.
+- **Cambio de presupuesto:** Meta solo permite programar horarios con
+  presupuesto total. La campaña llevará **$300 totales en 5 días**, en vez
+  de $60 diarios.
+- **Horario de los anuncios:** de 9:00 a 18:30, hora de la cuenta
+  (America/Chihuahua, igual a la del centro de México). Así el último
+  mensaje llega con tiempo de contestarlo antes de las 19:00.
+

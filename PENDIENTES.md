@@ -7,8 +7,8 @@
    `GUIA-VIDEOS-FOTOS-MERCADO-LIBRE.md`; luego los sube la Mac.
 0. **Prueba de WhatsApp aprobada (24 oct, MANUAL §126):** falta (1) que la
    Mac vincule WhatsApp a la página de Facebook (el dueño escribe el
-   código), (2) los videos del dueño y (3) saber quién contesta y en qué
-   horario. Después, la nube crea la campaña en pausa ($300 de tope).
+   código), (2) los videos del dueño y (3) ya definido: contesta el dueño de 9:00
+   a 19:00, y los anuncios corren de 9:00 a 18:30. Después, la nube crea la campaña en pausa ($300 de tope).
    Guía de atención: `GUIA-VENTAS-WHATSAPP.md`.
 0. **Facebook en pausa (22 oct 17:43, MANUAL §124):** las dos campañas de la
    ronda Oct19 quedaron pausadas con el "sí" del dueño: $352, 2 carritos,
