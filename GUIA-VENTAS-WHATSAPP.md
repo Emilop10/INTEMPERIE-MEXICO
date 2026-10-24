@@ -7,7 +7,7 @@ tienda (sección 3). Esta guía es para quien conteste los mensajes.
 
 ## 1. La regla de oro: contestar rápido
 
-- **Contestar en menos de 15 minutos** en horario de tienda. Un mensaje
+- **Contestar en menos de 15 minutos** de 9:00 a 22:00 (los anuncios corren de 9:00 a 21:00). Un mensaje
   que espera horas es una venta perdida.
 - Fuera de horario, el mensaje automático de la sección 2 avisa cuándo se
   responde.

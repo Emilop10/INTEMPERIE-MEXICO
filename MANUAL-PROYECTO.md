@@ -12803,3 +12803,9 @@ del teléfono.
 - **Faltan los anuncios:** se crean con los videos del dueño. Después, el
   dueño revisa y enciende.
 
+**Horario ampliado (24 oct, orden del dueño):** el dueño contesta hasta
+las **22:00**. El conjunto `120250719524550175` ahora corre de
+**9:00 a 21:00**, hora de la cuenta; la hora antes de las 22:00 es para
+contestar. Termina el 30 oct a las 21:00. Presupuesto ($400) y estado
+(PAUSED) sin cambio; verificado por API.
+

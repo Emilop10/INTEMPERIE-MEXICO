@@ -5,13 +5,13 @@ Prueba de anuncios que abren WhatsApp (24 oct, MANUAL §126).
 La ronda de foto fija a la tienda trajo visitas pero no carritos (§124):
 para compras de $1,000+ el público de 45–65 quiere preguntar antes de
 pagar. Esta campaña manda al chat de WhatsApp Business de la tienda, que
-contesta el dueño de 9:00 a 19:00 (guion en GUIA-VENTAS-WHATSAPP.md).
+contesta el dueño de 9:00 a 22:00 (guion en GUIA-VENTAS-WHATSAPP.md).
 
 Qué crea (--aplicar), todo EN PAUSA (el clasificador de la sesión no deja
 encender; lo enciende el dueño):
   - Campaña OUTCOME_ENGAGEMENT, presupuesto en el conjunto.
   - Conjunto con destino WHATSAPP, optimizado a conversaciones:
-    $400 totales del 26 al 30 oct, solo de 9:00 a 18:00 hora de la cuenta
+    $400 totales del 26 al 30 oct, solo de 9:00 a 21:00 hora de la cuenta
     (los horarios exigen presupuesto total). Hombres 35–65, México,
     Facebook en celular (feed, historias y reels).
   - Baja el tope de la cuenta a lo gastado + $400, para que la prueba no
@@ -38,13 +38,13 @@ kits = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(kits)
 
 NOMBRE_CAMPANIA = "IMX | WhatsApp | Kits y combos | Oct24"
-NOMBRE_CONJUNTO = "IMX | WhatsApp | Hombres 35-65 | 9:00-18:00 | Oct24"
+NOMBRE_CONJUNTO = "IMX | WhatsApp | Hombres 35-65 | 9:00-21:00 | Oct24"
 TOPE_PRUEBA = 400                       # pesos, total de la prueba
 INICIO = "2026-10-26T09:00:00-0600"
-FIN = "2026-10-30T18:00:00-0600"
+FIN = "2026-10-30T21:00:00-0600"
 # adset_schedule va en minutos desde la medianoche, hora de la cuenta; días 0=domingo.
-# Meta solo acepta horas cerradas: 18:00 deja una hora para contestar antes de las 19:00.
-HORARIO = [{"start_minute": 9 * 60, "end_minute": 18 * 60, "days": [0, 1, 2, 3, 4, 5, 6],
+# Meta solo acepta horas cerradas. El dueño contesta hasta las 22:00 (24 oct): 21:00 le deja una hora.
+HORARIO = [{"start_minute": 9 * 60, "end_minute": 21 * 60, "days": [0, 1, 2, 3, 4, 5, 6],
             "timezone_type": "ADVERTISER"}]  # hora de la cuenta, no la de quien ve el anuncio
 
 
@@ -58,7 +58,7 @@ def main():
     nuevo_tope = f"{(gastado + TOPE_PRUEBA * 100) / 100:.2f}"  # se escribe en pesos
     print(f"Gastado en la cuenta: ${gastado / 100:,.2f}; tope actual ${int(estado['spend_cap']) / 100:,.2f}; "
           f"tope nuevo {nuevo_tope}")
-    print(f"Campaña: {NOMBRE_CAMPANIA}\nConjunto: {NOMBRE_CONJUNTO}\n  ${TOPE_PRUEBA} del {INICIO[:10]} al {FIN[:10]}, 9:00–18:00")
+    print(f"Campaña: {NOMBRE_CAMPANIA}\nConjunto: {NOMBRE_CONJUNTO}\n  ${TOPE_PRUEBA} del {INICIO[:10]} al {FIN[:10]}, 9:00–21:00")
     if not aplicar:
         print("\nEnsayo: no se creó nada. Agrega --aplicar.")
         return
