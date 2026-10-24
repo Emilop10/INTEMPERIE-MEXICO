@@ -8,8 +8,8 @@
 0. **Prueba de WhatsApp aprobada (24 oct, MANUAL §126):** falta (1) ~~que la
    Mac vincule WhatsApp a la página de Facebook~~ **hecho 24 oct: ya
    estaba vinculado, +52 1 777 327 7340 como número principal; no hizo
-   falta código.** El botón de llamada a la acción de WhatsApp está
-   apagado: decide el dueño. La cuenta de WhatsApp "Alcampo Cuernavaca"
+   falta código.** Botón de llamada a la acción de la página: **WhatsApp**
+   (encendido el 24 oct). La cuenta de WhatsApp "Alcampo Cuernavaca"
    aparece en el portafolio Intemperie México (revisar si va ahí). Siguen
    pendientes (2) los videos del dueño y (3) ya definido: contesta el dueño de 9:00
    a 22:00, y los anuncios corren de 9:00 a 21:00. Campaña 120250719523890175 y conjunto 120250719524550175 ya creados en pausa ($400, 26–30 oct, tope de cuenta $2,813.94); faltan los anuncios con los videos.

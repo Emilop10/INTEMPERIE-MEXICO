@@ -12809,3 +12809,29 @@ las **22:00**. El conjunto `120250719524550175` ahora corre de
 contestar. Termina el 30 oct a las 21:00. Presupuesto ($400) y estado
 (PAUSED) sin cambio; verificado por API.
 
+### Botón de WhatsApp encendido en la página de Facebook (24 oct, con el "sí" del dueño)
+
+**Primer intento, sin éxito:** desde Configuración → Cuenta de WhatsApp
+(actuando como la página), el interruptor "Usar WhatsApp como botón de
+llamada a la acción" respondió dos veces "**No se puede añadir un botón a
+tu página. Vuelve a intentarlo.**" y siguió apagado.
+
+**Lo que funcionó:** página → menú "···" → **Botón de acción** →
+"Personaliza tu botón de llamada a la acción" → Probar.
+
+- **Antes:** "Enviar mensaje" (Messenger).
+- **Elegido:** **"Enviar mensaje de WhatsApp"** → Siguiente.
+- **Cuenta:** "Conectar tu cuenta: Intemperie México, WhatsApp +52 1 777
+  327 7340" → **Guardar**.
+- **Comprobación:** en Configuración → Cuenta de WhatsApp el interruptor
+  ya aparece **encendido**.
+
+**Captura:** vista como visitante, ya con el **perfil personal** del
+dueño. La cabecera de la página muestra el botón azul **"WhatsApp"**, y
+junto a él "Siguiendo" y "Enviar mensaje" (Messenger).
+`imagenes/capturas/fb-pagina-boton-whatsapp-24oct.png`.
+
+**Después:** Facebook quedó otra vez en el perfil personal del dueño.
+
+**Sin cambio:** el resto de la página, el portafolio, anuncios y
+presupuestos. "Mostrar número de WhatsApp en la página" sigue encendido.
