@@ -4,7 +4,6 @@
 
 0. **🔴 URGENTE (26 oct, MANUAL §127):** venta #1007 del Combo Revenger 2.40.
    - Descontar en el punto de venta la caña RV-S-802M y el carrete RV-80.
-   - Anotar el costo real de la guía a Tabasco para cerrar el margen.
 
 0. **Videos (dueño, lunes 26 temprano):** 4 de anuncios
    (`GUIA-VIDEOS-ANUNCIOS-FACEBOOK-INSTAGRAM.md`), que van a la nube, y 8 de

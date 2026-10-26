@@ -13187,3 +13187,27 @@ automática deja de mostrarse solo porque la publicación está en pausa.
 
 **Para reactivarla** (si vuelve a haber RV-80): el mismo interruptor en
 la lista de Publicaciones.
+
+**Costo real de la guía (dato del dueño, 26 oct): $219 a Tabasco.**
+
+| Concepto | Monto |
+|---|---|
+| Venta | $999.00 |
+| Piezas | −$665.82 |
+| Caja | −$48.83 |
+| Guía real | −$219.00 |
+| **Antes de comisiones** | **$65.35** |
+| Mercado Pago (~3.5% + $4 + IVA, estimado) | ~−$45 |
+| Shopify 2% por pasarela externa (si aplica) | ~−$20 |
+| **Margen neto** | **≈ $0 a $20** |
+
+- **Segundo dato de envío real:** $219 a Tabasco y $223 a Quintana Roo
+  (§59). Al sureste la guía ronda los **$220**.
+- Con $220 de envío, un producto de $999 debe costar unos $665 o menos
+  para no perder. Para dejar ~$150 netos, el costo debe quedar cerca de
+  $515.
+- Por eso el Revenger 2.45 ($506.50) y el Boundary ($556.50) sí dejan, y
+  el 2.40 armado ($665.82) no.
+- **Regla para precios futuros con envío gratis:** precio − costo − $49 de
+  caja − $220 de guía al sureste − ~6.5% de comisiones ≥ $150.
+
