@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 26 de octubre de 2026 (sección 126)
+**Última actualización:** 26 de octubre de 2026 (sección 127)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -154,6 +154,7 @@ como respaldo
 124. [Revisión de la campaña de Facebook, 22 oct 17:40: el corte de $400 no se va a pasar](#124-revisión-de-la-campaña-de-facebook-22-oct-1740-el-corte-de-400-no-se-va-a-pasar)
 125. [Mercado Libre: auditoría de las 9 publicaciones para vender más (22 oct, solo revisión)](#125-mercado-libre-auditoría-de-las-9-publicaciones-para-vender-más-22-oct-solo-revisión)
 126. [Facebook: por qué no convierte y propuesta de la siguiente prueba (23 oct)](#126-facebook-por-qué-no-convierte-y-propuesta-de-la-siguiente-prueba-23-oct)
+127. [Primera venta de la prueba de WhatsApp: Combo Revenger 2.40 a $999 y su margen real (26 oct)](#127-primera-venta-de-la-prueba-de-whatsapp-combo-revenger-240-a-999-y-su-margen-real-26-oct)
 
 ---
 
@@ -13123,4 +13124,48 @@ tienda, foto y código B1 en el campo "Código de barras", para que se
 concilien solos. Los combos baratos (Cascade telescópica, infantiles)
 también sirven para WhatsApp y regalos. Con precio menor a $799 pagan
 envío de $189.
+
+## 127. Primera venta de la prueba de WhatsApp: Combo Revenger 2.40 a $999 y su margen real (26 oct)
+
+**Qué pasó.** Pedido **#1007**, 26 oct 11:53: **Combo Okuma Revenger 8'0"
+(2.40 m) + RV-80** a **$999**.
+- Pagado con tarjeta de débito por Mercado Pago, a 1 pago. Envío gratis.
+- Destino: Tabasco. Los datos personales del cliente no se guardan aquí.
+- Es el combo por el que preguntaron por WhatsApp ese mismo día (§126):
+  el dueño mandó el link y el cliente pagó en la tienda.
+- Es la segunda venta en la historia de la tienda.
+
+**Inventario ajustado de inmediato (nube).**
+- Shopify descontó solo el combo (1 → 0). Las piezas sueltas se bajaron a
+  mano: caña RV-S-802M de 2 a 1 y carrete RV-80 de 1 a 0.
+- `crear-kits.py --revisar-existencias`: todo cuadra; el combo queda en 0
+  porque ya no hay carrete RV-80.
+- Base de la vigilancia actualizada (combo 2.40 = 0).
+- **Pendiente:** pausar en Mercado Libre la publicación MLM-6444798834,
+  que quedó sin pieza. Lo hace la Mac.
+
+**Margen de la venta** (costos del conteo del 22 oct; envío y comisiones
+estimados hasta tener la guía real):
+
+| Concepto | Monto |
+|---|---|
+| Venta | $999.00 |
+| Caña RV-S-802M (costo) | −$304.60 |
+| Carrete RV-80 (costo) | −$361.22 |
+| **Margen bruto** | **$333.18** |
+| Caja | −$48.83 |
+| Guía a Tabasco (estimado; la de Quintana Roo costó $223, §59) | −$180 a −$225 |
+| Mercado Pago, débito (estimado ~3.5% + $4 + IVA) | ~−$45 |
+| Shopify, 2% por pasarela externa (si aplica al plan) | ~−$20 |
+| **Margen neto antes de publicidad** | **≈ −$5 a +$40** |
+| Publicidad de WhatsApp hasta hoy | $76.13 (11 conversaciones) |
+
+**Lectura.**
+- Ese combo casi no deja: sus piezas cuestan $666 y el envío lejano se
+  come el resto.
+- Los otros combos de $999 dejan más: Boundary cuesta $556.50 (≈ $130
+  netos) y Revenger 2.45 cuesta $506.50 (≈ $180 netos).
+- El anuncio combo-999-wa usa la foto del Boundary, el de mejor margen.
+- Para confirmar el número hace falta el costo real de la guía cuando el
+  dueño la compre.
 
