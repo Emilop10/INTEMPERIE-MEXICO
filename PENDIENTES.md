@@ -6,11 +6,6 @@
    (`GUIA-VIDEOS-ANUNCIOS-FACEBOOK-INSTAGRAM.md`), que van a la nube, y 8 de
    Mercado Libre más las fotos de los combos
    (`GUIA-VIDEOS-FOTOS-MERCADO-LIBRE.md`), que van a la Mac.
-0. **Revisión de Product Ads en ML tras el ROAS 3x (pendiente, 25 oct):** el
-   dueño la dejó para después de arrancar Facebook. Mensaje listo en esta
-   conversación: impresiones y clics por día desde el 23, bonificación,
-   visitas y catálogo. Con menos de ~100 impresiones al día, proponer
-   bajar a 2x.
 0. **Prueba de WhatsApp ENCENDIDA (25 oct 19:13, MANUAL §126):** campaña
    120250719523890175, conjunto 120250719524550175 y 3 anuncios de foto en
    ACTIVE. $400 totales hasta el 30 oct a las 21:00. Anuncios de 9:00 a

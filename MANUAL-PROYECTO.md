@@ -12654,6 +12654,80 @@ México. Ese día se pide a la Mac medir la entrega:
   mientras dure la bonificación.
 - Si ya hay clics, se deja igual hasta la revisión del 5 nov.
 
+### Product Ads tras el ROAS 3x (25 oct, 19:20, solo lectura)
+
+**Total desde la activación** (22 oct 13:31; columnas de la campaña y
+tarjetas de Métricas):
+
+| Concepto | Valor |
+|---|---|
+| Impresiones | **2,224** |
+| Clics | **55** (CTR ≈ 2.5%) |
+| Inversión | **$120.86** |
+| Ventas atribuidas | 0 |
+| Otras ventas | 0 |
+| Ingresos | $0 |
+| ROAS | — |
+
+**Por día** (gráfica de Inversión y Clics, "Últimos 7 días"):
+
+| Día | Inversión | Clics |
+|---|---|---|
+| 22 oct | $0 | 0 |
+| 23 oct (ROAS 3x desde 11:48) | $25 | 10 |
+| 24 oct | $60 | 19 |
+| 25 oct, hasta las 19:20 | $36 | 26 |
+
+- **Impresiones por día:** la gráfica no las muestra; solo hay el total.
+  El 23 a las 9:30 iban 14, el 23 a las 11:48 iban 46, y ahora 2,224.
+  Con 3x pasó de unas decenas a cientos al día.
+- **Gasto sobre el presupuesto:** el 24 oct gastó $60 con presupuesto
+  promedio de $30. ML permite pasarse algunos días y compensar, porque
+  es un promedio.
+
+**Bonificación disponible: $765.14.** Se han descontado $84.86, menos
+que los $120.86 gastados; la diferencia de ~$36 es lo de hoy, que aún no
+se descuenta. Campaña **"APRENDIENDO — se estabilizará en 5 días"**,
+presupuesto $30, ROAS objetivo 3x.
+
+**Ritmo:** a ~$40 por día real, la bonificación alcanza unos 19 días más,
+hasta cerca del **12–13 nov**. Coincide con la fecha de pausa del 12 nov,
+pero hay que vigilar que no se agote antes.
+
+**Visitas totales:**
+
+| Publicación | Antes (23 oct) | Ahora (25 oct) |
+|---|---|---|
+| Revenger 2.40 | 1 | **12** |
+| Clarus | 0 | **10** |
+| Tolten | 1 | **9** |
+| Revenger 2.45 original | 2 | 4 |
+| Kit Revenger | 0 | 4 |
+| Boundary | 2 | 3 |
+| Tundra | 1 | 2 |
+| Fresh | 0 | 0 |
+| Copia de catálogo MLM6451018360 | — | **35 en 7 días** |
+
+**Catálogo del Revenger 2.45: volvió a "PERDIENDO".**
+
+- **Ganador:** **SR Bikes a $1,176**, 2 unidades, envío gratis **con
+  colecta**.
+- **Nosotros:** $1,169, por agencias.
+- **Sugerencia de ML:** "Bajar a $1,081". Rompe la regla de §117 (el
+  mínimo válido es $1,119). No se cambió nada.
+- **Por qué pesa la colecta:** SR Bikes cobra $7 más y aun así gana,
+  igual que antes Pescafacil con Flex y colecta. La forma de envío pesa
+  más que el precio.
+
+**Ventas y preguntas:** 0 ventas (hoy, próximos días, en tránsito y
+finalizadas) y 0 preguntas.
+
+**Lectura:** hay 55 clics y 0 ventas por $121, todavía con bonificación.
+Las visitas subieron sobre todo en Revenger 2.40, Clarus y Tolten. La
+campaña sigue aprendiendo; no conviene tocarla antes de que salga de esa
+fase (~30 oct).
+
+
 ## 126. Facebook: por qué no convierte y propuesta de la siguiente prueba (23 oct)
 
 **Qué pidió el dueño.** Con Mercado Libre listo, ver qué hacer con la
