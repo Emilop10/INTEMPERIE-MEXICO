@@ -3,8 +3,6 @@
 ## ▶️ Arranque de la próxima sesión (dejado el 19 oct)
 
 0. **🔴 URGENTE (26 oct, MANUAL §127):** venta #1007 del Combo Revenger 2.40.
-   - Pausar en Mercado Libre la publicación MLM-6444798834 (quedó en 0).
-     Lo hace la Mac.
    - Descontar en el punto de venta la caña RV-S-802M y el carrete RV-80.
    - Anotar el costo real de la guía a Tabasco para cerrar el margen.
 

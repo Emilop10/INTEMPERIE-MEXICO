@@ -13169,3 +13169,21 @@ estimados hasta tener la guía real):
 - Para confirmar el número hace falta el costo real de la guía cuando el
   dueño la compre.
 
+### Publicación de Mercado Libre pausada (26 oct, desde la Mac, con el "sí" del dueño)
+
+**Cómo:** Publicaciones → fila **#6444798834 "Combo Pesca Okuma Revenger
+Caña 8' 2.40 M Carrete Rv-80 Mar"** (SKU COMBO-REV-240, $1,199, 1 unidad,
+20 visitas en 7 días) → interruptor de la derecha apagado. ML respondió
+"**Tu publicación se ha pausado exitosamente**" y la fila quedó en
+**"Pausada"**. Se pausó, no se borró.
+
+**Por qué:** se vendió en la tienda (pedido #1007) y ya no hay carrete
+RV-80.
+
+**Las otras 8 siguen activas:** Revenger 2.45 (original y catálogo),
+Boundary, Tundra, Clarus, Kit Revenger, Tolten y Fresh. No se tocó nada
+más: precios, stock, títulos, ni Product Ads. Su anuncio en la campaña
+automática deja de mostrarse solo porque la publicación está en pausa.
+
+**Para reactivarla** (si vuelve a haber RV-80): el mismo interruptor en
+la lista de Publicaciones.
