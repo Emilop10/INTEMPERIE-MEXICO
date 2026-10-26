@@ -342,9 +342,8 @@ etiquetó el combo de $999. La colección quedó en **7 productos**, todos
 disponibles y sobre $799; la ficha del $999 sigue activa y comprable por
 enlace directo.
 
-> 🔁 **Cuando se agoten las 3 unidades del combo de $849, quitarle la
-> etiqueta `oculto-en-combos` al de $999** para devolverlo a la vitrina.
-> Es un solo cambio, sin tocar reglas ni precios. Sección 50 del manual.
+> ✅ **Hecho el 26 oct:** se quitó `oculto-en-combos` al combo Revenger
+> 2.40, porque los dos combos ya cuestan $999 (MANUAL §126).
 
 **✅ Cerrado el 25 de agosto — la foto del Combo Okuma Elite Pro sí
 corresponde.** Se había marcado como dudosa porque su archivo

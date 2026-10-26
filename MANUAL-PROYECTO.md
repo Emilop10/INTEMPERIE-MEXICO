@@ -13084,3 +13084,17 @@ las 19:14 y corrió hasta las 21:00.
 - No se dispara ningún corte ($33.60 < $150). No se tocó nada.
 - Se le preguntó al dueño cuántas conversaciones y ventas cerró.
 
+**El Combo Revenger 2.40 regresa a la colección "Combos" (26 oct).**
+- **Qué pasó:** un cliente preguntó por WhatsApp por el Combo Okuma
+  Revenger 2.40 + RV-80 y el dueño no lo encontró en "Combos".
+- **Causa:** desde el 25 ago (§50) tenía la etiqueta `oculto-en-combos`.
+  Se había ocultado porque costaba $999 junto al Revenger 2.45 de $849 y
+  parecía el mismo combo, más caro. Esa razón ya no aplica: los dos
+  cuestan $999.
+- **Hecho:** se quitó la etiqueta (producto 7942897893453). Ya aparece en
+  la colección (API y tienda en vivo).
+- **Las piezas que lo forman,** para ubicarlo en el piso:
+  - caña RV-S-802M, código B1 3836, 2 piezas;
+  - carrete RV-80, código B1 5559, 1 pieza.
+- No es el "COMBO REVENGER 2.45" de fábrica (RV-S-802M-40).
+
