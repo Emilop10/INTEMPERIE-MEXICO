@@ -13098,3 +13098,29 @@ las 19:14 y corrió hasta las 21:00.
   - carrete RV-80, código B1 5559, 1 pieza.
 - No es el "COMBO REVENGER 2.45" de fábrica (RV-S-802M-40).
 
+**Revisión de combos ocultos (26 oct, pedido del dueño).**
+- **Shopify:** ya no hay ningún combo oculto por etiqueta. Fuera de la
+  colección quedan 5 combos Okuma de fábrica con 0 existencias (Cascade
+  II 6', Elite Pro 7', Fin Chaser X 6'6" y 7', Steeler XP 6'). Salen solos
+  por la regla `variant_inventory > 0` y regresan solos si se resurten.
+  El "Rifle Kit NXG" no es combo de pesca. La colección tiene 12
+  productos.
+- **Conteo físico del 22 oct:** hay **7 combos con existencia que no
+  están dados de alta en la tienda en línea**, 10 piezas:
+
+| Combo (POS) | No. de parte | Exist. | Costo |
+|---|---|---|---|
+| Cascade Tele 5'6 Okuma | CAS565C2000A | 2 | $356.70 |
+| Cascade Tele 6'0 Okuma | CAS605C3000A | 1 | $373.06 |
+| Infantil Reel Sweet 4'6 Okuma | RSW-462BU-2000 | 2 | $287.32 |
+| Infantil Reel Sweet 5'6 Okuma | RSW-562BU2000 | 2 | $292.45 |
+| Kit Spinning 1.65 Storm | 15ST165-20 | 1 | $487.13 |
+| Tundra Pro 8'0 Okuma | TXP-802M-60 | 1 | $1,210.46 |
+| Vibe SP 7'0 Okuma | VB-702M-300R | 1 | $445.88 |
+
+**Propuesta (espera decisión del dueño):** darlos de alta con su precio de
+tienda, foto y código B1 en el campo "Código de barras", para que se
+concilien solos. Los combos baratos (Cascade telescópica, infantiles)
+también sirven para WhatsApp y regalos. Con precio menor a $799 pagan
+envío de $189.
+

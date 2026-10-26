@@ -18,6 +18,10 @@
    los 4 videos del dueño. La cuenta de WhatsApp "Alcampo Cuernavaca"
    aparece en el portafolio de Intemperie: revisar si va ahí.
    Guía de atención: `GUIA-VENTAS-WHATSAPP.md`.
+0. **7 combos de la tienda física sin alta en línea (26 oct, MANUAL §126):**
+   Cascade Tele 5'6 y 6'0, Infantil Reel Sweet 4'6 y 5'6, Storm 1.65,
+   Tundra Pro 8'0 y Vibe 7'0 (10 piezas). Espera el "sí" y los precios
+   del dueño.
 0. **Facebook en pausa (22 oct 17:43, MANUAL §124):** las dos campañas de la
    ronda Oct19 quedaron pausadas con el "sí" del dueño: $352, 2 carritos,
    0 compras. Los cortes diarios están deshabilitados. No reactivar ni
