@@ -13069,3 +13069,18 @@ cerrado; no incluye el 25).**
 - Fresh y Tundra casi no se muestran (38 y 57 impresiones). Es el sistema
   aprendiendo, no un error.
 
+**Corte del 25 oct (21:37).** Primer día real: la campaña se encendió a
+las 19:14 y corrió hasta las 21:00.
+
+| Anuncio | Gasto | Impresiones | Clics | CTR | Conversaciones |
+|---|---|---|---|---|---|
+| combo-999-wa | $21.59 | 318 | 43 | 13.5% | **4** |
+| cual-kit-wa | $8.98 | 254 | 19 | 7.5% | 1 |
+| kit-incluye-wa | $3.47 | 125 | 4 | 3.2% | 1 |
+| **Total** | **$33.60** | 692 | 66 | 9.5% | **6 ($5.60 c/u)** |
+
+- 3 conversaciones llegaron a un segundo mensaje y 1 a un tercero.
+- Shopify: 0 pedidos.
+- No se dispara ningún corte ($33.60 < $150). No se tocó nada.
+- Se le preguntó al dueño cuántas conversaciones y ventas cerró.
+
