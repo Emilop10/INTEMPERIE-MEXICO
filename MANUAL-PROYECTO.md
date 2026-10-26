@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 24 de octubre de 2026 (sección 126)
+**Última actualización:** 26 de octubre de 2026 (sección 126)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -12875,4 +12875,14 @@ y con botón "Enviar mensaje de WhatsApp":
   y token) y Meta devolvió un error con el token dentro de la URL. Quedó
   solo en la salida de esta sesión, no en el repositorio ni en el
   manual. Se corrigió el script.
+
+**Por qué no han llegado mensajes (26 oct).** El dueño preguntó por qué no
+le ha escrito nadie por WhatsApp. Se verificó por API:
+- La campaña `120250719523890175`, el conjunto y los 3 anuncios siguen
+  en **PAUSED**, con **$0 gastados**: los anuncios nunca salieron.
+- El reporte que pegó el dueño era el del **botón de WhatsApp de la
+  página** (24 oct), no el del encendido.
+- El corte del 24 oct ya había avisado que seguía apagada.
+- **Pendiente:** que la Mac encienda los 5 objetos.
+- La revisión de Product Ads en ML queda en PENDIENTES.
 

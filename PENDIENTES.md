@@ -6,6 +6,15 @@
    (`GUIA-VIDEOS-ANUNCIOS-FACEBOOK-INSTAGRAM.md`), que van a la nube, y 8 de
    Mercado Libre más las fotos de los combos
    (`GUIA-VIDEOS-FOTOS-MERCADO-LIBRE.md`), que van a la Mac.
+0. **(26 oct) La campaña de WhatsApp NUNCA se encendió:** campaña, conjunto
+   y los 3 anuncios siguen en PAUSED, con $0 gastados; por eso no han
+   llegado mensajes. Meta ya aprobó los anuncios. Falta que la Mac los
+   encienda (mensaje de encendido en MANUAL §126).
+0. **Revisión de Product Ads en ML tras el ROAS 3x (pendiente, 25 oct):** el
+   dueño la dejó para después de arrancar Facebook. Mensaje listo en esta
+   conversación: impresiones y clics por día desde el 23, bonificación,
+   visitas y catálogo. Con menos de ~100 impresiones al día, proponer
+   bajar a 2x.
 0. **Prueba de WhatsApp aprobada (24 oct, MANUAL §126):** falta (1) ~~que la
    Mac vincule WhatsApp a la página de Facebook~~ **hecho 24 oct: ya
    estaba vinculado, +52 1 777 327 7340 como número principal; no hizo
