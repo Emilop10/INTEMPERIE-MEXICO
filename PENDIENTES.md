@@ -15,7 +15,12 @@
    conversación: impresiones y clics por día desde el 23, bonificación,
    visitas y catálogo. Con menos de ~100 impresiones al día, proponer
    bajar a 2x.
-0. **Prueba de WhatsApp aprobada (24 oct, MANUAL §126):** falta (1) ~~que la
+0. 0. **Prueba de WhatsApp ENCENDIDA (25 oct 19:13, MANUAL §126):** campaña
+   120250719523890175, conjunto 120250719524550175 y 3 anuncios en ACTIVE.
+   $400 de presupuesto total hasta el 30 oct 21:00. Horario real del
+   conjunto: 9:00–21:00 (no 18:30). Tope de la cuenta con $400 libres,
+   justo lo de la prueba.
+**Prueba de WhatsApp aprobada (24 oct, MANUAL §126):** falta (1) ~~que la
    Mac vincule WhatsApp a la página de Facebook~~ **hecho 24 oct: ya
    estaba vinculado, +52 1 777 327 7340 como número principal; no hizo
    falta código.** Botón de llamada a la acción de la página: **WhatsApp**

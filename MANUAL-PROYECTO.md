@@ -12886,3 +12886,38 @@ le ha escrito nadie por WhatsApp. Se verificó por API:
 - **Pendiente:** que la Mac encienda los 5 objetos.
 - La revisión de Product Ads en ML queda en PENDIENTES.
 
+### Prueba de WhatsApp encendida (25 oct, 19:13 CDMX, desde la Mac, con el "sí" del dueño)
+
+**Cómo:** por Graph API v21.0, `POST {id} status=ACTIVE`, en el orden que
+pidió el dueño. Los 5 respondieron `{"success":true}` entre 19:13:22 y
+19:13:41.
+
+1. Anuncio 120250719621540175 "IMX | kit-incluye-wa | Oct24".
+2. Anuncio 120250719622370175 "IMX | cual-kit-wa | Oct24".
+3. Anuncio 120250719622640175 "IMX | combo-999-wa | Oct24".
+4. Conjunto 120250719524550175 "IMX | WhatsApp | Hombres 35-65 | 9:00-21:00
+   | Oct24".
+5. Campaña 120250719523890175 "IMX | WhatsApp | Kits y combos | Oct24".
+
+**Comprobación a las 19:14:** los 5 con `status` y `effective_status` =
+**ACTIVE**. Los anuncios no traen `issues_info`.
+
+**Sin cambio** (leído antes y después):
+
+| Concepto | Valor |
+|---|---|
+| Presupuesto del conjunto | Total `lifetime_budget` 40000 = **$400** |
+| Inicio | 24 oct 21:35 UTC |
+| Fin | 31 oct 03:00 UTC (= **30 oct 21:00 CDMX**) |
+| Horario | Todos los días, minuto 540 a 1260, hora del anunciante (**9:00–21:00**) |
+| Optimización | CONVERSATIONS, destino WHATSAPP |
+| Tope de la cuenta (spend_cap) | $2,813.94 |
+| Gastado en la cuenta | $2,413.94 |
+| Margen bajo el tope | **$400**, justo el presupuesto de la prueba |
+
+No se tocaron públicos ni textos.
+
+**Ojo con el horario:** el conjunto está configurado de **9:00 a 21:00**
+(su nombre también lo dice). PENDIENTES mencionaba anuncios de 9:00 a
+18:30; no se cambió nada. Al encenderse a las 19:13 de domingo, entrega
+hasta las 21:00 de hoy.
