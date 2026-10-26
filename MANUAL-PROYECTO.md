@@ -12995,3 +12995,35 @@ No se tocaron públicos ni textos.
 (su nombre también lo dice). PENDIENTES mencionaba anuncios de 9:00 a
 18:30; no se cambió nada. Al encenderse a las 19:13 de domingo, entrega
 hasta las 21:00 de hoy.
+
+**Reporte detallado de Product Ads (exportado de ML, 17–24 oct, a día
+cerrado; no incluye el 25).**
+
+| Publicación | Impresiones | Clics | CPC | Gasto |
+|---|---|---|---|---|
+| Copia de catálogo del Revenger 2.45 (MLM6451018360) | 408 | **17** | $3.08 | **$52.39** |
+| Clarus (MLM6444779904) | 55 | 2 | **$8.19** | $16.37 |
+| Revenger 2.40 (MLM6444798834) | 109 | 5 | $1.48 | $7.41 |
+| Tolten (MLM3682621565) | 119 | 2 | $2.46 | $4.93 |
+| Kit Revenger (MLM3682581883) | 98 | 2 | $1.29 | $2.59 |
+| Boundary (MLM6444801030) | 164 | 1 | $1.17 | $1.17 |
+| Tundra (MLM6444714326) | 57 | 0 | — | $0 |
+| Fresh (MLM3693474151) | 38 | 0 | — | $0 |
+| **Total** | **1,048** | **29** | $2.93 | **$84.86** |
+
+0 ventas directas o indirectas. La publicación original del Revenger 2.45
+(MLM-6444730308) no aparece: se anuncia solo la copia de catálogo.
+
+**Lectura de la nube.**
+- La copia de catálogo se lleva el **59% de los clics y el 62% del
+  gasto**. En catálogo, el que compra lo hace a quien esté ganando: con
+  "Perdiendo" (hoy gana SR Bikes), pagamos el clic y la venta se la puede
+  llevar otro.
+- **Propuesta (espera el "sí" del dueño):** pausar el anuncio de la copia
+  de catálogo mientras diga "Perdiendo" y volver a encenderlo cuando diga
+  "Ganando". Las otras 7 se quedan igual: con 1 o 2 clics cada una no hay
+  datos para quitar ninguna.
+- Clarus tiene el clic más caro ($8.19), pero son solo 2 clics; se vigila.
+- Fresh y Tundra casi no se muestran (38 y 57 impresiones). Es el sistema
+  aprendiendo, no un error.
+
