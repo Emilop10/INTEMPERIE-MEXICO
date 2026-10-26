@@ -57,7 +57,7 @@ tabla se actualiza ese día.
 | Kit Blue Fox Tolten 8' Mar y Costa | $1,209 | Mar y costa | https://intemperiemexico.com/cart/67559406862413:1 | https://intemperiemexico.com/products/kit-listo-para-pescar-blue-fox-tolten-8-mar-y-costa |
 | Kit Blue Fox Fresh 7' Agua Dulce | $1,079 | Agua dulce, para empezar | https://intemperiemexico.com/cart/67559406895181:1 | https://intemperiemexico.com/products/kit-listo-para-pescar-blue-fox-fresh-7-agua-dulce |
 | Combo Okuma Revenger 8' (2.45 m) | $999 | Caña + carrete, presa y río | https://intemperiemexico.com/cart/43219563315277:1 | https://intemperiemexico.com/products/combo-okuma-revenger-80-2-45m |
-| Combo Okuma Revenger 8' (2.40 m) + RV-80 | $999 | Caña + carrete 8000, mar | https://intemperiemexico.com/cart/43510764634189:1 | https://intemperiemexico.com/products/combo-okuma-revenger-80-2-40m-cana-carrete |
+| Combo Okuma Revenger 8' (2.40 m) + RV-80 — **AGOTADO** (26 oct) | $1,169 | Caña + carrete 8000, mar | https://intemperiemexico.com/cart/43510764634189:1 | https://intemperiemexico.com/products/combo-okuma-revenger-80-2-40m-cana-carrete |
 | Combo Okuma Boundary 7' | $999 | Caña + carrete, todo uso | https://intemperiemexico.com/cart/43219563085901:1 | https://intemperiemexico.com/products/combo-okuma-boundary-70-spinning |
 
 **Existencias:** casi todos tienen 1 o 2 piezas. Antes de cerrar, revisa

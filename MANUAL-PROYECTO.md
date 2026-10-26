@@ -13211,3 +13211,19 @@ la lista de Publicaciones.
 - **Regla para precios futuros con envío gratis:** precio − costo − $49 de
   caja − $220 de guía al sureste − ~6.5% de comisiones ≥ $150.
 
+**Precio del Combo Revenger 2.40 ajustado (26 oct, orden del dueño).**
+- Shopify: variante 43510764634189 de **$999 a $1,169**; se quitó el
+  precio tachado ($1,148). Verificado en vivo: $1,169, sin tachado,
+  agotado.
+- $1,169 es el mínimo terminado en 9 que cumple la regla de envío gratis
+  al sureste: $1,169 − $665.82 − $48.83 − $220 − 6.5% = **$158**.
+- Se quitó el tachado porque las piezas sueltas suman $1,148 (caña $549 y
+  carrete $599). Comprar la caña y el carrete por separado sale $21 más
+  barato, y el "Ahorras" quedaría negativo.
+- **Pendiente si se reabastece el RV-80:** decidir si también suben las
+  piezas sueltas, porque esos $1,148 tampoco dejan margen con envío
+  lejano.
+- Mercado Libre se queda en $1,199 (pausada). Ahí el margen ya era de
+  ~$165.
+- `GUIA-VENTAS-WHATSAPP.md` actualizada: $1,169, agotado.
+
