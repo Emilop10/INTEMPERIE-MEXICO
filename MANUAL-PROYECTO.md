@@ -12728,6 +12728,48 @@ campaña sigue aprendiendo; no conviene tocarla antes de que salga de esa
 fase (~30 oct).
 
 
+### Anuncio del catálogo del Revenger 2.45 pausado en Product Ads (25 oct, ~19:45, con el "sí" del dueño)
+
+**Por qué:** el catálogo dice "Perdiendo" (gana SR Bikes a $1,176 con
+colecta) y ese anuncio se llevaba la mayor parte del gasto. El dueño
+pidió pausar solo ese anuncio mientras el catálogo diga "Perdiendo".
+
+**Dónde:** Publicidad → "Campaña Mercado Libre" (id 7552153) →
+dashboard, tabla de 8 anuncios → fila **"#MLM62089453 — Caña de pescar
+spinning Okuma RV-S-802M-40"** (COMPITIENDO) → "⋮ Acciones del anuncio" →
+**Pausar**.
+
+**Métricas de esa fila al pausar:**
+
+| Concepto | Valor |
+|---|---|
+| Impresiones | 865 |
+| Clics | 26 |
+| Costo por clic | $2.63 |
+| Inversión | **$68.28** |
+| Ventas | 0 |
+
+**El anuncio cubre las dos publicaciones del Revenger 2.45.** Su panel
+"2 variantes" muestra la copia de catálogo **MLM6451018360** y la
+original **MLM6444730308** ("Sincronizado con catálogo"). La original no
+tiene anuncio propio, así que **las dos quedan sin publicidad** mientras
+esté en pausa. ML no permite pausar una variante sola.
+
+**Resultado:**
+
+- **Confirmación de ML:** "**¡Pausaste 1 anuncio!**" y la fila muestra
+  **PAUSADO**.
+- **Los otros 7 anuncios, activos:** Revenger 2.40, Clarus, Tolten, Kit
+  Revenger, Boundary, Fresh y Tundra.
+- **Campaña sin cambio:** activa, presupuesto **$30**, ROAS objetivo
+  **3x**.
+- **Las dos publicaciones del Revenger 2.45 siguen ACTIVAS** y a la venta
+  ($1,169, 1 unidad compartida); 9 publicaciones activas, 0 pausadas.
+- **Catálogo:** sigue "PERDIENDO".
+
+**Para reactivar:** en la misma fila, "⋮" → **Activar**, cuando el
+catálogo vuelva a "Ganando".
+
 ## 126. Facebook: por qué no convierte y propuesta de la siguiente prueba (23 oct)
 
 **Qué pidió el dueño.** Con Mercado Libre listo, ver qué hacer con la

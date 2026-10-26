@@ -6,6 +6,10 @@
    (`GUIA-VIDEOS-ANUNCIOS-FACEBOOK-INSTAGRAM.md`), que van a la nube, y 8 de
    Mercado Libre más las fotos de los combos
    (`GUIA-VIDEOS-FOTOS-MERCADO-LIBRE.md`), que van a la Mac.
+0. **ML Product Ads (25 oct, MANUAL §125):** anuncio #MLM62089453 del
+   catálogo del Revenger 2.45 en **PAUSA** (cubre la copia MLM6451018360
+   y la original MLM6444730308). Reactivarlo ("⋮ → Activar") cuando el
+   catálogo vuelva a "Ganando". Los otros 7 siguen activos.
 0. **Prueba de WhatsApp ENCENDIDA (25 oct 19:13, MANUAL §126):** campaña
    120250719523890175, conjunto 120250719524550175 y 3 anuncios de foto en
    ACTIVE. $400 totales hasta el 30 oct a las 21:00. Anuncios de 9:00 a
