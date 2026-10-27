@@ -13241,3 +13241,18 @@ la lista de Publicaciones.
   - kit-incluye-wa: $7.23, 1 conversación.
 - No se dispara ningún corte ($121 < $150 y 19 ≥ 5). No se tocó nada.
 
+**Revisión a pedido del dueño (27 oct, 10:52).**
+- **Acumulado:** $143.45, 3,266 impresiones, 2,343 personas (frecuencia
+  1.39), 307 clics (CTR 9.4%), **20 conversaciones a $7.17 c/u** y 1
+  venta (#1007).
+- **Hoy hasta las 10:52:** $18.54, 1 conversación.
+- **combo-999-wa:** 16 de las 20 conversaciones.
+- **Por edad (gasto / conversaciones):** 35–44 $23 / 5 (la más barata),
+  45–54 $40 / 4, 55–64 $49 / 7, 65+ $31 / 4.
+- El corte de $150 se pasará hoy y no se dispara: hay 20 conversaciones,
+  y el mínimo es 5.
+- **Atención:** de los combos de $999 solo quedan 3 piezas (Boundary 2 y
+  Revenger 2.45 1). Si se acaban, pausar combo-999-wa.
+- Costo por venta hasta hoy: $143 contra un margen de $100–$180 por
+  combo. Con 1 venta todavía no hay conclusión.
+
