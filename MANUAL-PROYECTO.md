@@ -13282,3 +13282,17 @@ sube nada al repositorio.
 - Se arranca con `/loop 3m` en un chat nuevo del mismo proyecto. El
   mensaje de arranque está en la respuesta al dueño de este día.
 
+**Motion graphics para los videos (27 oct, pedido del dueño).** Se agregó
+la sección "Motion graphics" a las dos guías:
+- `GUIA-VIDEOS-ANUNCIOS-FACEBOOK-INSTAGRAM.md`:
+  - zonas seguras de Reels e Historias (texto entre y = 270 y 1250 px);
+  - colores y letras de la marca (#57B58A, #234D3B, Instrument Sans y
+    Geist Mono);
+  - subtítulos obligatorios y cierre de marca común;
+  - lo que Meta rechaza (botones falsos, flechas al botón);
+  - guion de gráficos por segundo de los 4 videos;
+  - entrega en 9:16 y 4:5.
+- `GUIA-VIDEOS-FOTOS-MERCADO-LIBRE.md`: versión discreta, sin logo,
+  precio, contacto ni "envío gratis" (reglas de ML), con texto por toma y
+  datos tomados de cada ficha.
+
