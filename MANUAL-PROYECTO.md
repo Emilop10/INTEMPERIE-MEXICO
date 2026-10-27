@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 26 de octubre de 2026 (sección 127)
+**Última actualización:** 27 de octubre de 2026 (sección 128)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -155,6 +155,7 @@ como respaldo
 125. [Mercado Libre: auditoría de las 9 publicaciones para vender más (22 oct, solo revisión)](#125-mercado-libre-auditoría-de-las-9-publicaciones-para-vender-más-22-oct-solo-revisión)
 126. [Facebook: por qué no convierte y propuesta de la siguiente prueba (23 oct)](#126-facebook-por-qué-no-convierte-y-propuesta-de-la-siguiente-prueba-23-oct)
 127. [Primera venta de la prueba de WhatsApp: Combo Revenger 2.40 a $999 y su margen real (26 oct)](#127-primera-venta-de-la-prueba-de-whatsapp-combo-revenger-240-a-999-y-su-margen-real-26-oct)
+128. [Respondedor automático de mensajes en la Mac: WhatsApp y Business Suite cada 3 minutos (27 oct)](#128-respondedor-automático-de-mensajes-en-la-mac-whatsapp-y-business-suite-cada-3-minutos-27-oct)
 
 ---
 
@@ -13255,4 +13256,29 @@ la lista de Publicaciones.
   Revenger 2.45 1). Si se acaban, pausar combo-999-wa.
 - Costo por venta hasta hoy: $143 contra un margen de $100–$180 por
   combo. Con 1 venta todavía no hay conclusión.
+
+## 128. Respondedor automático de mensajes en la Mac: WhatsApp y Business Suite cada 3 minutos (27 oct)
+
+**Qué pidió el dueño.** Un chat nuevo en el proyecto de la Mac que revise
+cada 3 minutos el WhatsApp del negocio y la bandeja de Meta Business Suite
+(mensajes de Facebook e Instagram y comentarios), y conteste. Ese chat no
+sube nada al repositorio.
+
+**Qué se hizo.**
+- Se creó `RESPONDEDOR-MENSAJES.md` con las reglas del respondedor:
+  - solo lee el repositorio: no hace commit, push ni merge, y no
+    documenta (excepción a la regla de cierre de `CLAUDE.md`);
+  - antes de dar precio o existencia, revisa la tienda en vivo con el
+    `.js` de cada producto;
+  - sigue el guion de `GUIA-VENTAS-WHATSAPP.md`;
+  - pasa al dueño (etiqueta "Atender Emiliano") los descuentos, pedidos,
+    quejas, artículos que no están en línea, armas y cualquier duda;
+  - di la verdad si le preguntan si es bot;
+  - no guarda datos personales;
+  - no toca la cuenta "Alcampo Cuernavaca";
+  - escribe un resumen de una línea por ciclo.
+- El ciclo vuelve a leer el archivo cada vez. Si alguien cambia una
+  regla, el pull automático la trae y el siguiente ciclo ya la aplica.
+- Se arranca con `/loop 3m` en un chat nuevo del mismo proyecto. El
+  mensaje de arranque está en la respuesta al dueño de este día.
 

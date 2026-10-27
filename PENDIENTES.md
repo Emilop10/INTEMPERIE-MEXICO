@@ -2,6 +2,11 @@
 
 ## ▶️ Arranque de la próxima sesión (dejado el 19 oct)
 
+0. **Respondedor de mensajes (27 oct, MANUAL §128):** chat aparte en la Mac
+   con `/loop 3m` y las reglas de `RESPONDEDOR-MENSAJES.md`. No escribe en
+   el repositorio. Si cambia un precio, un producto o una regla de
+   atención, actualizar ese archivo y `GUIA-VENTAS-WHATSAPP.md`.
+
 0. **🔴 URGENTE (26 oct, MANUAL §127):** venta #1007 del Combo Revenger 2.40.
    - Descontar en el punto de venta la caña RV-S-802M y el carrete RV-80.
 
