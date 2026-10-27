@@ -13227,3 +13227,17 @@ la lista de Publicaciones.
   ~$165.
 - `GUIA-VENTAS-WHATSAPP.md` actualizada: $1,169, agotado.
 
+**Corte del 26 oct (21:37), prueba de WhatsApp (§126).**
+
+| | Hoy | Acumulado desde el 24 |
+|---|---|---|
+| Gasto | $82.85 | $121.00 |
+| Conversaciones | 13 | **19** ($6.37 c/u) |
+| Ventas | 1 (#1007, §127) | 1 |
+
+- **Por anuncio, acumulado:**
+  - combo-999-wa: $90.81, 15 conversaciones, CTR 11.2%;
+  - cual-kit-wa: $22.96, 3 conversaciones;
+  - kit-incluye-wa: $7.23, 1 conversación.
+- No se dispara ningún corte ($121 < $150 y 19 ≥ 5). No se tocó nada.
+
