@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 27 de octubre de 2026 (sección 128)
+**Última actualización:** 28 de octubre de 2026 (sección 129)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -156,6 +156,7 @@ como respaldo
 126. [Facebook: por qué no convierte y propuesta de la siguiente prueba (23 oct)](#126-facebook-por-qué-no-convierte-y-propuesta-de-la-siguiente-prueba-23-oct)
 127. [Primera venta de la prueba de WhatsApp: Combo Revenger 2.40 a $999 y su margen real (26 oct)](#127-primera-venta-de-la-prueba-de-whatsapp-combo-revenger-240-a-999-y-su-margen-real-26-oct)
 128. [Respondedor automático de mensajes en la Mac: WhatsApp y Business Suite cada 3 minutos (27 oct)](#128-respondedor-automático-de-mensajes-en-la-mac-whatsapp-y-business-suite-cada-3-minutos-27-oct)
+129. [Agente de WhatsApp en servidor con la API de Claude: Fase 1, plan (28 oct)](#129-agente-de-whatsapp-en-servidor-con-la-api-de-claude-fase-1-plan-28-oct)
 
 ---
 
@@ -13296,3 +13297,69 @@ la sección "Motion graphics" a las dos guías:
   precio, contacto ni "envío gratis" (reglas de ML), con texto por toma y
   datos tomados de cada ficha.
 
+## 129. Agente de WhatsApp en servidor con la API de Claude: Fase 1, plan (28 oct)
+
+**Qué pidió el dueño.** Un agente en un servidor (no en la Mac) que
+reciba los WhatsApp del +52 777 327 7340 por webhook de la API oficial de
+Meta, conteste en segundos con `claude-sonnet-5-5` siguiendo
+`RESPONDEDOR-MENSAJES.md`, consulte precio y existencia en vivo, mande el
+link de pago directo y pase al dueño lo que no le toca. Presupuesto de
+Claude: $100 USD al mes. Cuatro fases, con su "sí" entre cada una. No
+tocar campañas, precios, existencias ni Mercado Libre.
+
+**Qué se hizo (Fase 1).** Investigación y `AGENTE-WHATSAPP-PLAN.md`.
+No se creó ninguna cuenta ni se gastó nada.
+
+**Hallazgos.**
+
+- **Coexistencia (app del celular + API en el mismo número):** existe y
+  **México está permitido** (en 2026 solo se excluyen Nigeria y
+  Sudáfrica).
+- **No se activa por cuenta propia:** Meta solo la da por el registro
+  integrado de un **proveedor técnico**. Volverse proveedor exige
+  verificación del negocio y revisión de app; no vale para un número.
+- El alta de "API de WhatsApp Business" en Business Suite (vista el 24
+  oct, §126) **desconecta el número del celular**. No usarla.
+- **Lo que se pierde en la app:** dispositivos vinculados (se vuelven a
+  vincular), listas de difusión (solo lectura), mensajes temporales y
+  "ver una vez". Hay que **abrir la app cada 13 días**.
+- **Verificación del negocio:** no hace falta para contestar.
+- **Meta cobra** desde el 1 oct 2026 las respuestas después de las
+  primeras 1,000 del mes (≈ US$0.0085 c/u en México). Los chats que llegan
+  por anuncios de WhatsApp son gratis en su ventana. Hace falta tarjeta en
+  la cuenta de WhatsApp.
+- **Política de IA de Meta (15 ene 2026):** prohíbe asistentes de
+  propósito general; los bots de atención de un negocio están permitidos.
+
+**Recomendación.**
+
+| Pieza | Opción | Costo al mes |
+|---|---|---|
+| Proveedor técnico | **Kapso** (reenvía el webhook de Meta sin cambios); alternativas YCloud y 360dialog | $0 hasta 2,000 mensajes; $25 USD Pro |
+| Servidor | **Render** Starter + 1 GB de disco; alternativa VPS (Hetzner/DigitalOcean) | ≈ $7.25 USD |
+| Claude `claude-sonnet-5-5` | Caché de instrucciones, esfuerzo bajo, tope diario de $4 y tope en consola de $100 | ≈ $25 USD hoy (~7 conversaciones/día); ≈ $70 con ~20 |
+| Meta | Respuestas de servicio | $0–7 USD |
+| **Total** | | **≈ $32–64 USD** |
+
+**Diseño acordado para la Fase 2** (detalle en el plan, sección 4):
+
+- Python en `agente-whatsapp/`; todo por variables de entorno.
+- Tres herramientas: consultar producto, buscar producto y pasar al
+  dueño. Los links de pago los arma el código con variantes confirmadas
+  en vivo.
+- El agente se calla en un chat 12 h cuando el dueño contesta desde el
+  celular.
+- Modos `borrador`, `prueba` (solo el número del dueño) y `activo`.
+- Conversaciones en SQLite del servidor, se borran a los 30 días.
+
+**Pendiente.**
+
+- El "sí" del dueño a la Fase 2 y sus 5 decisiones (plan, sección 7):
+  proveedor, servidor, canal de avisos, horas de pausa y si comparte los
+  chats anteriores.
+- Los pasos del dueño en Kapso, Meta, Anthropic y Render (plan,
+  sección 5) se hacen al empezar la Fase 3.
+- Al encender el agente, apagar el respondedor de la Mac en WhatsApp
+  (§128).
+- Fase 4 (Messenger e Instagram): requiere verificación del negocio y
+  revisión de la app de Meta; puede iniciarse ya.
