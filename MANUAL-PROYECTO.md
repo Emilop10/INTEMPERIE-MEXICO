@@ -13589,3 +13589,30 @@ al dueño en el chat.
   - `AGENTE_ANTHROPIC_API_KEY`, `RESEND_API_KEY`, `CLOUDFLARE_API_TOKEN`,
     `KAPSO_API_KEY` y `NUMEROS_PRUEBA`;
   - el despliegue sigue en una sesión nueva.
+
+### Fase 3: cuenta de Anthropic y vencimiento de los créditos (28 oct)
+
+**Reporte de Claude in Chrome (bloque 1):**
+
+- Organización "Emiliano's Individual Org".
+- Límite de gasto mensual cambiado de 500 a **100 USD**.
+- Llave "agente-whatsapp": workspace Default, **sin caducidad** (venía
+  en 30 días). La crea y la copia el dueño.
+
+**Hallazgo:** los $100 son un **crédito promocional único**: se
+aplica a API, Agent SDK, lotes, Playground y agentes gestionados, y
+**vence el 21 nov 2026**. No hay método de pago. El dueño creía que eran
+$100 al mes.
+
+- Después del 21 nov la API deja de responder, aunque el límite mensual
+  siga activo.
+- El dueño decide antes de esa fecha: más créditos, una tarjeta con tope,
+  o apagar el agente.
+
+**Cambio en el código:**
+
+- Si Claude falla (por ejemplo, sin créditos), el agente avisa **una vez
+  al día**, no una vez por mensaje (`Control.primerAviso`).
+- El aviso dice que conteste él y que, si el error habla de saldo, se
+  acabaron o vencieron los créditos.
+- 46 de 46 pruebas.

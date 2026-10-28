@@ -87,6 +87,7 @@ export class ConversacionDO extends DurableObject<Env> {
       control: {
         verificar: (ahora) => ctrl.verificar(ahora),
         registrar: (r, ahora) => ctrl.registrar(r, ahora),
+        primerAviso: (clave, ahora) => ctrl.primerAviso(clave, ahora),
       },
       llamar: (params) => claude.beta.messages.create(params),
       tienda: crearTienda(),
@@ -119,6 +120,10 @@ export class ControlDO extends DurableObject<Env> {
 
   async registrar(r: Registro, ahora: number): Promise<void> {
     await this.nucleo().registrar(r, ahora);
+  }
+
+  async primerAviso(clave: string, ahora: number): Promise<boolean> {
+    return this.nucleo().primerAviso(clave, ahora);
   }
 
   async resumen(ahora: number) {

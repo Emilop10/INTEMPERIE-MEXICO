@@ -13,6 +13,15 @@
    - **No** usar el alta de "API de WhatsApp Business" de Business Suite:
      desconecta el celular.
    - Al pasar a activo, apagar el respondedor de la Mac en WhatsApp.
+   - 🔴 **Los $100 de Anthropic NO son mensuales (28 oct):** son un crédito
+     promocional único que **vence el 21 nov 2026** (UTC), sin método de
+     pago. Después de esa fecha la API deja de responder; el agente avisa
+     una vez al día y no contesta. Antes del 21 nov el dueño decide:
+     agregar créditos o una tarjeta (con tope mensual), o apagar el agente.
+   - **Avance de Claude in Chrome (28 oct):** Anthropic hecho. Org
+     "Emiliano's Individual Org", límite de gasto mensual 100 USD (antes
+     500), llave "agente-whatsapp" sin caducidad, workspace Default.
+     Faltan Resend, Cloudflare y Kapso.
    - **Cómo llegan las llaves a la nube (28 oct):** el dueño las pone como
      variables de entorno del entorno de nube (menú del entorno → Editar):
      `CLOUDFLARE_API_TOKEN` (plantilla "Edit Cloudflare Workers"),

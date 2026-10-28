@@ -82,6 +82,15 @@ export class Control {
     return { ok: false, motivo, avisar };
   }
 
+  /** true solo la primera vez que se pide esta clave en el mes (para avisar una vez). */
+  async primerAviso(clave: string, ahora: number): Promise<boolean> {
+    const e = await this.estado(ahora);
+    if (e.avisados.includes(clave)) return false;
+    e.avisados.push(clave);
+    await this.almacen.put("estado", e);
+    return true;
+  }
+
   async resumen(ahora: number): Promise<EstadoControl> {
     return this.estado(ahora);
   }

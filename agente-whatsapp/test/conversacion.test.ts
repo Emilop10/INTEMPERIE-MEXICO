@@ -176,13 +176,24 @@ describe("conversación", () => {
     expect(avisos[0].titulo).toBe("No se pudo enviar una respuesta");
   });
 
-  it("si Claude falla, avisa al dueño", async () => {
+  it("si Claude falla (p. ej. sin créditos), avisa una sola vez al día", async () => {
     const claude = claudeConGuion([]); // sin respuestas: lanza error
-    const { conv, avisos, enviados } = armarConversacion({ claude });
-    await conv.recibir(mensaje("hola"), MEDIODIA);
-    await conv.alarma(MEDIODIA + ESPERA);
-    expect(enviados).toHaveLength(0);
-    expect(avisos[0].titulo).toBe("El agente falló en un chat");
+    const almacenControl = new AlmacenMemoria();
+    const a = armarConversacion({ claude, almacenControl });
+    await a.conv.recibir(mensaje("hola"), MEDIODIA);
+    await a.conv.alarma(MEDIODIA + ESPERA);
+    expect(a.enviados).toHaveLength(0);
+    expect(a.avisos.map((x) => x.titulo)).toEqual(["El agente no pudo usar Claude"]);
+    // Otro chat el mismo día: no vuelve a avisar.
+    const b = armarConversacion({ claude, almacenControl });
+    await b.conv.recibir(mensaje("buenas", undefined, "5217773334444"), MEDIODIA + HORA);
+    await b.conv.alarma(MEDIODIA + HORA + ESPERA);
+    expect(b.avisos).toHaveLength(0);
+    // Al día siguiente, sí.
+    const c = armarConversacion({ claude, almacenControl });
+    await c.conv.recibir(mensaje("hola", undefined, "5217775556666"), MEDIODIA + 24 * HORA);
+    await c.conv.alarma(MEDIODIA + 24 * HORA + ESPERA);
+    expect(c.avisos).toHaveLength(1);
   });
 
   it("borra la conversación a los 30 días sin actividad", async () => {

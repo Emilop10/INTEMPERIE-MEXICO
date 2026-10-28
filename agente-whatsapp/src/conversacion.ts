@@ -59,6 +59,7 @@ export interface Dependencias {
   control: {
     verificar(ahora: number): Promise<Verificacion>;
     registrar(r: Registro, ahora: number): Promise<void>;
+    primerAviso(clave: string, ahora: number): Promise<boolean>;
   };
   llamar: LlamarClaude;
   tienda: Tienda;
@@ -184,12 +185,20 @@ export class Conversacion {
     } catch (err) {
       console.error("Fallo del agente:", String(err).slice(0, 300));
       e.historial.push({ role: "user", content: nuevos });
-      await this.d.avisar({
-        titulo: "El agente falló en un chat",
-        resumen: `No pudo contestar el chat ${enmascarar(e.chat)}. Contesta tú desde la app.`,
-        detalle: `No pudo contestar el chat ${this.enlace(e)}.\nError: ${String(err).slice(0, 300)}\n\nMensaje del cliente:\n${nuevos}`,
-        urgente: true,
-      });
+      // Un aviso al día, no uno por mensaje: si se acaban o vencen los
+      // créditos de Claude, fallan todos los chats a la vez.
+      if (await this.d.control.primerAviso(`falla-claude-${horaMexico(ahora).fecha}`, ahora)) {
+        await this.d.avisar({
+          titulo: "El agente no pudo usar Claude",
+          resumen: `Falló al contestar (chat ${enmascarar(e.chat)}). Hoy contesta tú desde la app. Detalle en el correo.`,
+          detalle:
+            `No pudo contestar el chat ${this.enlace(e)}.\nError: ${String(err).slice(0, 300)}\n\n` +
+            `Mensaje del cliente:\n${nuevos}\n\n` +
+            "Mientras dure la falla, el agente no contesta y no vuelve a avisar hoy: contesta tú desde la app. " +
+            "Si el error habla de crédito o saldo (credit balance), se acabaron o vencieron los créditos de Anthropic.",
+          urgente: true,
+        });
+      }
       return;
     }
     await this.d.control.registrar({ costoUsd: vuelta.costoUsd }, ahora);
