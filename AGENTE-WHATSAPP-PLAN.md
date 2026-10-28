@@ -218,13 +218,14 @@ como secretos de Cloudflare.
      de Anthropic, para investigar fichas técnicas, comparar modelos o
      explicar cómo se usa algo. Primero lee la descripción de la ficha de
      la tienda. Precio y existencia salen solo de la tienda; no menciona
-     otras tiendas ni manda sus links; Mercado Libre está bloqueado. Lo
-     investigado lleva "Fuente: dominio" al final.
+     otras tiendas ni manda sus links; Mercado Libre está bloqueado. No
+     pone fuentes (decisión del dueño).
 4. **Los links de pago los arma el código, no la IA:**
    `https://intemperiemexico.com/cart/<variante>:1` solo con una variante
    que la tienda acaba de confirmar disponible. La IA no puede inventar
    precios, links ni descuentos.
-5. Se manda la respuesta (2 a 4 líneas, de "tú") y se suman los
+5. Se manda la respuesta (cálida y natural; datos de producto con ✅ y
+   negritas, como el ejemplo del dueño) y se suman los
    contadores del mes (sección 3).
 
 **Cuando se pasa al dueño:**

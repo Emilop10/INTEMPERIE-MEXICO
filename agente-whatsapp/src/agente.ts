@@ -137,7 +137,6 @@ export const HERRAMIENTAS_WEB: Anthropic.Beta.Messages.BetaToolUnion[] = [
     max_uses: 2,
     max_content_tokens: 8000,
     blocked_domains: SIN_DOMINIOS,
-    citations: { enabled: true },
   },
 ];
 
@@ -244,7 +243,7 @@ export async function atender(
       continue;
     }
 
-    const texto = textoFinal(r.content);
+    const texto = formatoWhatsApp(textoFinal(r.content));
     if (!texto) {
       return fin({ accion: "pasar", motivo: "otro", resumen: "El asistente no generó respuesta.", producto: "" });
     }
@@ -252,13 +251,9 @@ export async function atender(
     if (problema) {
       return fin({ accion: "pasar", motivo: "otro", resumen: problema, producto: "" });
     }
-    // Lo investigado en internet se atribuye a su fuente (sin link: no se
-    // mandan links de otros sitios).
-    const fuentes = fuentesCitadas(r.content);
-    const conFuente = fuentes.length ? `${texto.slice(0, 1400)}\n\nFuente: ${fuentes.join(", ")}` : texto.slice(0, 1500);
     return fin({
       accion: "responder",
-      texto: conFuente,
+      texto: texto.slice(0, 3000),
       linksPago: [...linksEmitidos].filter((l) => texto.includes(l)),
     });
   }
@@ -290,23 +285,18 @@ export function textoFinal(contenido: Bloque[]): string {
     .trim();
 }
 
-/** Dominios citados en la respuesta (máximo 2), p. ej. "okuma.com". */
-export function fuentesCitadas(contenido: Bloque[]): string[] {
-  const dominios = new Set<string>();
-  for (const b of contenido) {
-    if (b.type !== "text" || !b.citations) continue;
-    for (const c of b.citations) {
-      const url = "url" in c && typeof c.url === "string" ? c.url : null;
-      if (!url) continue;
-      try {
-        const host = new URL(url).hostname.replace(/^www\./, "");
-        if (!/intemperiemexico\.com$/.test(host)) dominios.add(host);
-      } catch {
-        // URL rara: se ignora
-      }
-    }
-  }
-  return [...dominios].slice(0, 2);
+/**
+ * Markdown a formato de WhatsApp: **negritas** -> *negritas*, sin títulos
+ * "#", y [texto](link) -> texto link.
+ */
+export function formatoWhatsApp(texto: string): string {
+  return texto
+    .replace(/\*\*(.+?)\*\*/g, "*$1*")
+    .replace(/__(.+?)__/g, "*$1*")
+    .replace(/^#{1,6}\s+/gm, "")
+    .replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, "$1 $2")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
 }
 
 /** Ningún link de pago inventado y ningún dominio ajeno. */

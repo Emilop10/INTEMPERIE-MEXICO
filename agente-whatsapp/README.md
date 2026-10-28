@@ -32,8 +32,8 @@ $0.01 USD cada una) y `web_fetch` (máx. 2 por llamada, hasta 8,000 tokens
 por página), corridas por Anthropic, sin Mercado Libre. Primero lee la
 ficha de la tienda (`consultar_producto` trae la descripción); internet es
 para fichas técnicas, comparaciones o cómo se usa algo. Precio y
-existencia salen solo de la tienda. Lo investigado lleva "Fuente:
-dominio" al final, sin link.
+existencia salen solo de la tienda. No se ponen fuentes (decisión del
+dueño, 28 oct). `formatoWhatsApp` convierte `**negritas**` a `*negritas*`.
 
 **Reglas que pone el código, no la IA:**
 

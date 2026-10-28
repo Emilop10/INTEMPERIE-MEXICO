@@ -13530,3 +13530,41 @@ de los $100 de créditos. Los topes ($90 al mes, $5 al día) no cambian.
 - **Sin probar con Claude real:** no hay llave en la nube. En la Fase 3,
   el modo borrador permite revisar las respuestas investigadas antes de
   que salgan.
+
+### Estilo de las respuestas y sin fuentes (28 oct, pedido del dueño)
+
+**Qué pidió el dueño:**
+
+- que el agente no ponga las fuentes de lo que investiga;
+- que conteste de forma natural, como en su ejemplo para "Tamaño de la
+  caña / ¿Para qué peso es el carrete?":
+  - saludo con 🎣;
+  - un renglón por dato, con ✅ y el nombre del dato en negritas;
+  - datos concretos con unidades y una aclaración útil;
+  - cierre amable.
+
+**Qué se hizo:**
+
+- **`INSTRUCCIONES-AGENTE.md`**, sección "Cómo escribes":
+  - estilo cálido, de "tú" con el cliente y "nosotros" para la tienda;
+  - saludo solo en la primera respuesta;
+  - charla en 1 a 3 líneas;
+  - preguntas de producto con el formato del ejemplo del dueño, que
+    quedó copiado ahí como "respuesta ideal" (sus datos son solo de
+    muestra);
+  - sin fuentes ni links de otros sitios.
+- **Código:**
+  - se quitó la línea "Fuente: …" y las citas de `web_fetch`;
+  - `formatoWhatsApp` convierte `**negritas**` de Markdown a `*negritas*`
+    de WhatsApp (con dos asteriscos WhatsApp mostraría asteriscos de más)
+    y quita títulos `#`;
+  - el tope del mensaje sube de 1,500 a 3,000 caracteres.
+- **`RESPONDEDOR-MENSAJES.md` §3 (respondedor de la Mac):** el mismo tono
+  y la misma regla de no poner fuentes, para que los dos atiendan igual.
+- **Pruebas:** 46 de 46; `tsc` limpio.
+
+**Nota para el dueño:** la documentación de Anthropic pide mostrar las
+fuentes cuando se muestra al usuario, tal cual, lo que devuelve la
+búsqueda web. Cuando el texto se reescribe y se combina con material
+propio, como hace el agente, deja la decisión al negocio. Se le comentó
+al dueño en el chat.

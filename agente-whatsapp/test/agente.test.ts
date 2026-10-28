@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { atender, costoDeUso, fuentesCitadas, revisarLinks, textoFinal } from "../src/agente";
+import { atender, costoDeUso, formatoWhatsApp, revisarLinks, textoFinal } from "../src/agente";
 import { claudeConGuion, herramienta, producto, texto, tiendaFalsa } from "./ayudas";
 
 const boundary = producto({
@@ -131,7 +131,7 @@ describe("atender", () => {
 });
 
 describe("investigar en internet", () => {
-  it("contesta con lo investigado, sin el 'déjame buscar' y con la fuente al final", async () => {
+  it("contesta con lo investigado, sin el 'déjame buscar' y sin poner fuentes", async () => {
     const claude = claudeConGuion([
       {
         stop_reason: "end_turn",
@@ -152,7 +152,7 @@ describe("investigar en internet", () => {
     const v = await atender({ llamar: claude, tienda, modelo: "claude-sonnet-5-5" }, entrada);
     expect(v.resultado).toEqual({
       accion: "responder",
-      texto: "El Boundary de 7' es de acción media y aguanta línea de 6 a 12 lb.\n\nFuente: okuma.com",
+      texto: "El Boundary de 7' es de acción media y aguanta línea de 6 a 12 lb.",
       linksPago: [],
     });
     // 5,000 entrada + 200 salida + 3,000 caché + 1 búsqueda de $0.01
@@ -179,9 +179,19 @@ describe("investigar en internet", () => {
     expect(v.resultado.accion).toBe("pasar");
   });
 
-  it("textoFinal y fuentesCitadas con contenido sin búsquedas", () => {
+  it("textoFinal une los bloques sin búsquedas", () => {
     expect(textoFinal([{ type: "text", text: "Hola ", citations: null }, { type: "text", text: "amigo", citations: null }] as any)).toBe("Hola amigo");
-    expect(fuentesCitadas([{ type: "text", text: "x", citations: null }] as any)).toEqual([]);
+  });
+
+  it("convierte las negritas de Markdown a las de WhatsApp", async () => {
+    expect(formatoWhatsApp("## Datos\n✅ **Tamaño de la caña:** 2.13 m\n\n\n\n¡Saludos!")).toBe(
+      "Datos\n✅ *Tamaño de la caña:* 2.13 m\n\n¡Saludos!",
+    );
+    const v = await atender(
+      { llamar: claudeConGuion([texto("✅ **Carrete:** tamaño 4000 (40)")]), tienda, modelo: "claude-sonnet-5-5" },
+      entrada,
+    );
+    expect(v.resultado).toMatchObject({ accion: "responder", texto: "✅ *Carrete:* tamaño 4000 (40)" });
   });
 });
 
