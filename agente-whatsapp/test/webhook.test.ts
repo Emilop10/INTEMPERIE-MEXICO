@@ -104,4 +104,36 @@ describe("eventos de Meta", () => {
     );
     expect(ev[0]).toMatchObject({ chat: "MX.123", destino: { recipient: "MX.123" } });
   });
+
+  it("formato Kapso (Sandbox): mensaje recibido, lote, y lo que manda la app como eco", () => {
+    const recibido = {
+      message: {
+        id: "wamid.K1",
+        timestamp: "1730092800",
+        type: "text",
+        from: "5217773277340",
+        text: { body: "Hola" },
+        kapso: { direction: "inbound", origin: "cloud_api", content: "Hola" },
+      },
+      conversation: { id: "conv_1", contact_name: "Emiliano", phone_number: "5217773277340", phone_number_id: "597907523413541" },
+      phone_number_id: "597907523413541",
+    };
+    expect(extraerEventos(recibido)).toEqual([
+      {
+        tipo: "mensaje",
+        chat: "5217773277340",
+        destino: { to: "5217773277340" },
+        id: "wamid.K1",
+        ts: 1730092800000,
+        texto: "Hola",
+        nombre: "Emiliano",
+        anuncio: undefined,
+      },
+    ]);
+    expect(extraerEventos({ type: "whatsapp.message.received", batch: true, data: [recibido, recibido] })).toHaveLength(2);
+    const delAgente = { ...recibido, message: { ...recibido.message, to: "5217773277340", from: undefined, kapso: { direction: "outbound", origin: "cloud_api" } } };
+    expect(extraerEventos(delAgente)).toEqual([]);
+    const delCelular = { ...recibido, message: { ...recibido.message, kapso: { direction: "outbound", origin: "business_app" } } };
+    expect(extraerEventos(delCelular)[0]).toMatchObject({ tipo: "eco", chat: "5217773277340" });
+  });
 });

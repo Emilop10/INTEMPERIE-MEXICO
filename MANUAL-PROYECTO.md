@@ -13714,3 +13714,38 @@ El complemento del prompt (A–D) queda como referencia; se usa este flujo.
   conversaciones (el mínimo es 5). No se tocó nada.
 - Quedan ~$198 para 3 días.
 
+### Fase 3: prueba con el número Sandbox de Kapso (28 oct)
+
+**Qué pidió el dueño:** avanzar lo más rápido posible. Dio el
+7773277340 como su número.
+
+**Aclaración:** ese es el número de la tienda. Para la prueba con el
+Sandbox sí sirve, porque la app de WhatsApp Business del celular hace de
+cliente y le escribe al número Sandbox de Kapso. Para la prueba final con
+el número de la tienda conectado hará falta otro WhatsApp.
+
+**Hecho:**
+
+- El Sandbox de Kapso no acepta webhooks tipo "meta" ("Kind meta
+  webhooks are not allowed for sandbox WhatsApp configs").
+- `src/webhook.ts` ahora lee también el **formato propio de Kapso**:
+  mensajes sueltos o en lote; `direction: inbound` es un mensaje del
+  cliente; `outbound` con origen `business_app` es eco del dueño. Una
+  prueba nueva lo cubre: 47 de 47.
+- Desplegado con `--var AGENTE_MODO:prueba --var
+  WHATSAPP_PHONE_NUMBER_ID:597907523413541`. En `wrangler.toml` sigue
+  `borrador`.
+- Secretos:
+  - `NUMEROS_PRUEBA` = 5217773277340 y 527773277340 (las dos formas en
+    que Meta escribe un número de México);
+  - `WEBHOOK_SECRET` nuevo.
+- **Webhook en Kapso** registrado en el número Sandbox: tipo `kapso`,
+  evento `whatsapp.message.received`, id
+  b4b672fc-faa5-4344-be30-7aa08eabd346.
+
+**Falta:**
+
+- El dueño crea la sesión del Sandbox en Kapso (WhatsApp → Sandbox → Add
+  Test Number) y manda el código de activación desde WhatsApp Business.
+- Luego le escribe al Sandbox y se ve si la respuesta sale por la API
+  compatible con Meta de Kapso con el phone_number_id del Sandbox.

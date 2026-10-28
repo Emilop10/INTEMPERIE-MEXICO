@@ -90,6 +90,11 @@ function soloDigitos(v: unknown): string | undefined {
 }
 
 export function extraerEventos(payload: Json): Evento[] {
+  // Formato propio de Kapso (webhook "kapso"; el Sandbox solo admite este).
+  if (!payload?.entry && (payload?.message || payload?.batch)) {
+    const items: Json[] = payload.batch ? payload.data ?? [] : [payload];
+    return items.flatMap(eventoKapso);
+  }
   const eventos: Evento[] = [];
   for (const entrada of payload?.entry ?? []) {
     for (const cambio of entrada?.changes ?? []) {
@@ -136,4 +141,41 @@ export function extraerEventos(payload: Json): Evento[] {
     }
   }
   return eventos;
+}
+
+/**
+ * Un mensaje en formato Kapso: el mensaje trae la misma forma que el de
+ * Meta, más `message.kapso` (dirección y origen) y `conversation`.
+ */
+function eventoKapso(item: Json): Evento[] {
+  const m = item?.message;
+  const conv = item?.conversation ?? {};
+  if (!m) return [];
+  const direccion = m.kapso?.direction;
+  const telefono = soloDigitos(m.from) ?? soloDigitos(conv.phone_number) ?? soloDigitos(m.to);
+  const bsuid: string | undefined = m.from_user_id ?? conv.business_scoped_user_id;
+  const chat = telefono ?? bsuid;
+  if (!chat) return [];
+  const texto = textoDeMensaje(m);
+  if (direccion === "inbound") {
+    if (texto === null || texto.trim() === "") return [];
+    const ref = m.referral;
+    return [
+      {
+        tipo: "mensaje",
+        chat,
+        destino: telefono ? { to: telefono } : { recipient: bsuid },
+        id: String(m.id ?? `${chat}-${m.timestamp}`),
+        ts: Number(m.timestamp ?? 0) * 1000,
+        texto,
+        nombre: conv.contact_name,
+        anuncio: ref ? [ref.headline, ref.body].filter(Boolean).join(" — ") || "anuncio de Facebook" : undefined,
+      },
+    ];
+  }
+  // Lo que el dueño manda desde la app del celular (no lo que manda el agente por la API).
+  if (direccion === "outbound" && /business_app|smb/i.test(String(m.kapso?.origin ?? ""))) {
+    return [{ tipo: "eco", chat, id: String(m.id ?? `${chat}-${m.timestamp}`), ts: Number(m.timestamp ?? 0) * 1000, texto: texto ?? "[mensaje]" }];
+  }
+  return [];
 }
