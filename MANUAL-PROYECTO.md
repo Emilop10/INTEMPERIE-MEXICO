@@ -13568,3 +13568,24 @@ fuentes cuando se muestra al usuario, tal cual, lo que devuelve la
 búsqueda web. Cuando el texto se reescribe y se combina con material
 propio, como hace el agente, deja la decisión al negocio. Se le comentó
 al dueño en el chat.
+
+### Fase 3, paso 1: ntfy funcionando y prompt para Claude in Chrome (28 oct)
+
+- **ntfy:** el dueño se suscribió al tema en su celular y recibió el aviso
+  de prueba "Prueba Intemperie". El canal de avisos al celular funciona.
+- **El dueño pidió** un prompt para que Claude in Chrome haga solo los
+  pasos de las cuentas: Anthropic, Resend, Cloudflare y Kapso.
+- **Se creó `PROMPT-CLAUDE-CHROME-AGENTE-WHATSAPP.md`:**
+  - 4 bloques con su punto de control;
+  - Chrome navega y llena lo que no es secreto;
+  - se detiene para que el dueño escriba contraseñas y códigos, escanee
+    el QR y dé el clic final de cada llave;
+  - nunca lee ni escribe llaves; no agrega tarjetas; no toca "Alcampo
+    Cuernavaca";
+  - reporta datos no secretos: Account ID de Cloudflare, Phone number ID
+    y WABA ID de Kapso.
+- **Las llaves** las pega el dueño en las variables de entorno de
+  claude.ai/code:
+  - `AGENTE_ANTHROPIC_API_KEY`, `RESEND_API_KEY`, `CLOUDFLARE_API_TOKEN`,
+    `KAPSO_API_KEY` y `NUMEROS_PRUEBA`;
+  - el despliegue sigue en una sesión nueva.
