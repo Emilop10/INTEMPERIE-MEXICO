@@ -24,6 +24,7 @@ describe("tienda en vivo", () => {
           price: 99900,
           compare_at_price: null,
           available: true,
+          description: "<p>Caña Boundary de 7&#39; y carrete <strong>BD-2000</strong>.</p><ul><li>Acción media</li><li>Línea 6–12 lb</li></ul>",
           variants: [{ id: 43219563085901, title: "Default Title", price: 99900, available: true }],
         },
       },
@@ -37,6 +38,7 @@ describe("tienda en vivo", () => {
       disponible: true,
       restringido: false,
       ficha: "https://intemperiemexico.com/products/combo-okuma-boundary-70-spinning",
+      descripcion: "Caña Boundary de 7' y carrete BD-2000 .\nAcción media\nLínea 6–12 lb",
       variantes: [{ id: 43219563085901, titulo: "Default Title", precio: 999, disponible: true }],
     });
   });

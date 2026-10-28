@@ -79,7 +79,7 @@ export class ConversacionDO extends DurableObject<Env> {
   private nucleo(): Conversacion {
     const env = this.env;
     const config = leerConfig(env);
-    const claude = new Anthropic({ apiKey: env.ANTHROPIC_API_KEY, timeout: 60_000 });
+    const claude = new Anthropic({ apiKey: env.ANTHROPIC_API_KEY, timeout: 120_000 });
     const ctrl = control(env);
     return new Conversacion({
       config,

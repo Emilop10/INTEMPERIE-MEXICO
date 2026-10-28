@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { atender, costoDeUso, revisarLinks } from "../src/agente";
+import { atender, costoDeUso, fuentesCitadas, revisarLinks, textoFinal } from "../src/agente";
 import { claudeConGuion, herramienta, producto, texto, tiendaFalsa } from "./ayudas";
 
 const boundary = producto({
@@ -38,6 +38,13 @@ describe("atender", () => {
     expect(p.cache_control).toEqual({ type: "ephemeral" });
     expect(p.fallbacks).toBe("default");
     expect(p.betas).toContain("server-side-fallback-2026-07-01");
+    // Internet: búsqueda y lectura con tope por llamada, sin Mercado Libre.
+    const web = (p.tools ?? []).filter((t: any) => t.name === "web_search" || t.name === "web_fetch") as any[];
+    expect(web.map((t) => [t.type, t.max_uses])).toEqual([
+      ["web_search_20260318", 3],
+      ["web_fetch_20260209", 2],
+    ]);
+    for (const t of web) expect(t.blocked_domains).toContain("mercadolibre.com.mx");
     expect(Array.isArray(p.system) && p.system[0].cache_control).toEqual({ type: "ephemeral" });
     // El contexto va como mensaje de sistema al final, después del cliente.
     expect(p.messages.at(-1)).toEqual({ role: "system", content: "Ahora: martes." });
@@ -120,6 +127,61 @@ describe("atender", () => {
     const v = await atender({ llamar: claude, tienda, modelo: "claude-sonnet-5-5" }, entrada);
     expect(v.llamadas).toBe(5);
     expect(v.resultado.accion).toBe("pasar");
+  });
+});
+
+describe("investigar en internet", () => {
+  it("contesta con lo investigado, sin el 'déjame buscar' y con la fuente al final", async () => {
+    const claude = claudeConGuion([
+      {
+        stop_reason: "end_turn",
+        content: [
+          { type: "text", text: "Déjame buscar las especificaciones." },
+          { type: "server_tool_use", id: "srv_1", name: "web_search", input: { query: "Okuma Boundary 7 especificaciones" } },
+          { type: "web_search_tool_result", tool_use_id: "srv_1", content: [] },
+          { type: "text", text: "El Boundary de 7' es de acción media ", citations: null },
+          {
+            type: "text",
+            text: "y aguanta línea de 6 a 12 lb.",
+            citations: [{ type: "web_search_result_location", url: "https://www.okuma.com/boundary", title: "Okuma", cited_text: "6-12 lb" }],
+          },
+        ],
+        usage: { input_tokens: 5000, output_tokens: 200, cache_read_input_tokens: 3000, cache_creation_input_tokens: 0, server_tool_use: { web_search_requests: 1 } },
+      },
+    ]);
+    const v = await atender({ llamar: claude, tienda, modelo: "claude-sonnet-5-5" }, entrada);
+    expect(v.resultado).toEqual({
+      accion: "responder",
+      texto: "El Boundary de 7' es de acción media y aguanta línea de 6 a 12 lb.\n\nFuente: okuma.com",
+      linksPago: [],
+    });
+    // 5,000 entrada + 200 salida + 3,000 caché + 1 búsqueda de $0.01
+    expect(v.costoUsd).toBeCloseTo((5000 * 2 + 200 * 10 + 3000 * 0.2) / 1e6 + 0.01, 9);
+  });
+
+  it("si la búsqueda pausa el turno, reenvía la respuesta tal cual y sigue", async () => {
+    const pausa = {
+      stop_reason: "pause_turn",
+      content: [{ type: "server_tool_use", id: "srv_2", name: "web_search", input: { query: "x" } }],
+    };
+    const claude = claudeConGuion([pausa, texto("Listo: es de acción media.")]);
+    const v = await atender({ llamar: claude, tienda, modelo: "claude-sonnet-5-5" }, entrada);
+    expect(v.resultado).toMatchObject({ accion: "responder", texto: "Listo: es de acción media." });
+    const segunda = claude.llamadas[1].messages;
+    expect(segunda.at(-1)).toEqual({ role: "assistant", content: pausa.content });
+  });
+
+  it("un link de otra tienda encontrado en internet no se envía", async () => {
+    const v = await atender(
+      { llamar: claudeConGuion([texto("Aquí lo ves: https://www.okuma.com/boundary")]), tienda, modelo: "claude-sonnet-5-5" },
+      entrada,
+    );
+    expect(v.resultado.accion).toBe("pasar");
+  });
+
+  it("textoFinal y fuentesCitadas con contenido sin búsquedas", () => {
+    expect(textoFinal([{ type: "text", text: "Hola ", citations: null }, { type: "text", text: "amigo", citations: null }] as any)).toBe("Hola amigo");
+    expect(fuentesCitadas([{ type: "text", text: "x", citations: null }] as any)).toEqual([]);
   });
 });
 

@@ -111,6 +111,38 @@ const HERRAMIENTAS: Anthropic.Beta.Messages.BetaTool[] = [
   },
 ];
 
+// Internet: búsqueda y lectura de páginas, corridas por Anthropic. Sirven
+// para investigar fichas técnicas, comparar modelos o explicar cómo se usa
+// algo; precio y existencia salen solo de la tienda (INSTRUCCIONES-AGENTE.md).
+// Mercado Libre se bloquea: aquí no se habla de él ni de sus precios.
+const SIN_DOMINIOS = ["mercadolibre.com.mx", "mercadolibre.com", "mercadolibre.com.ar"];
+export const HERRAMIENTAS_WEB: Anthropic.Beta.Messages.BetaToolUnion[] = [
+  {
+    type: "web_search_20260318",
+    name: "web_search",
+    max_uses: 3,
+    blocked_domains: SIN_DOMINIOS,
+    user_location: {
+      type: "approximate",
+      city: "Cuernavaca",
+      region: "Morelos",
+      country: "MX",
+      timezone: "America/Mexico_City",
+    },
+    response_inclusion: "excluded",
+  },
+  {
+    type: "web_fetch_20260209",
+    name: "web_fetch",
+    max_uses: 2,
+    max_content_tokens: 8000,
+    blocked_domains: SIN_DOMINIOS,
+    citations: { enabled: true },
+  },
+];
+
+const USD_POR_BUSQUEDA = 0.01; // $10 USD por 1,000 búsquedas
+
 // USD por millón de tokens: entrada, salida, lectura de caché, escritura de caché (5 min).
 const PRECIOS: Record<string, [number, number, number, number]> = {
   "claude-sonnet-5-5": [2, 10, 0.2, 2.5],
@@ -126,7 +158,8 @@ export function costoDeUso(modelo: string, uso: Beta["usage"]): number {
       (uso.output_tokens ?? 0) * sal +
       (uso.cache_read_input_tokens ?? 0) * lee +
       (uso.cache_creation_input_tokens ?? 0) * esc) /
-    1_000_000
+      1_000_000 +
+    (uso.server_tool_use?.web_search_requests ?? 0) * USD_POR_BUSQUEDA
   );
 }
 
@@ -154,20 +187,26 @@ export async function atender(
     llamadas++;
     const r = await deps.llamar({
       model: deps.modelo,
-      max_tokens: 2048,
+      max_tokens: 4096,
       betas: ["server-side-fallback-2026-07-01"],
       fallbacks: "default",
       thinking: { type: "adaptive" },
       output_config: { effort: "low" },
       cache_control: { type: "ephemeral" },
       system: [{ type: "text", text: INSTRUCCIONES, cache_control: { type: "ephemeral" } }],
-      tools: HERRAMIENTAS,
+      tools: [...HERRAMIENTAS, ...HERRAMIENTAS_WEB],
       messages: mensajes,
     });
     costoUsd += costoDeUso(r.model ?? deps.modelo, r.usage);
 
     if (r.stop_reason === "refusal") {
       return fin({ accion: "pasar", motivo: "otro", resumen: "El asistente no pudo contestar este mensaje.", producto: "" });
+    }
+
+    // Una búsqueda larga puede pausar el turno: se reenvía tal cual y sigue.
+    if (r.stop_reason === "pause_turn") {
+      mensajes.push({ role: "assistant", content: r.content });
+      continue;
     }
 
     const usos = r.content.filter((b) => b.type === "tool_use");
@@ -205,11 +244,7 @@ export async function atender(
       continue;
     }
 
-    const texto = r.content
-      .filter((b) => b.type === "text")
-      .map((b) => b.text)
-      .join("\n")
-      .trim();
+    const texto = textoFinal(r.content);
     if (!texto) {
       return fin({ accion: "pasar", motivo: "otro", resumen: "El asistente no generó respuesta.", producto: "" });
     }
@@ -217,9 +252,13 @@ export async function atender(
     if (problema) {
       return fin({ accion: "pasar", motivo: "otro", resumen: problema, producto: "" });
     }
+    // Lo investigado en internet se atribuye a su fuente (sin link: no se
+    // mandan links de otros sitios).
+    const fuentes = fuentesCitadas(r.content);
+    const conFuente = fuentes.length ? `${texto.slice(0, 1400)}\n\nFuente: ${fuentes.join(", ")}` : texto.slice(0, 1500);
     return fin({
       accion: "responder",
-      texto: texto.slice(0, 1500),
+      texto: conFuente,
       linksPago: [...linksEmitidos].filter((l) => texto.includes(l)),
     });
   }
@@ -229,6 +268,45 @@ export async function atender(
     resumen: "El asistente dio demasiadas vueltas sin contestar.",
     producto: "",
   });
+}
+
+type Bloque = Beta["content"][number];
+
+/**
+ * El texto para el cliente: lo que Claude escribió después de su última
+ * búsqueda o lectura (antes suele haber un "déjame buscar…"). Las citas
+ * parten el texto en varios bloques, así que se unen sin separador.
+ */
+export function textoFinal(contenido: Bloque[]): string {
+  let desde = 0;
+  contenido.forEach((b, i) => {
+    if (b.type !== "text" && b.type !== "thinking" && b.type !== "redacted_thinking") desde = i + 1;
+  });
+  return contenido
+    .slice(desde)
+    .filter((b) => b.type === "text")
+    .map((b) => b.text)
+    .join("")
+    .trim();
+}
+
+/** Dominios citados en la respuesta (máximo 2), p. ej. "okuma.com". */
+export function fuentesCitadas(contenido: Bloque[]): string[] {
+  const dominios = new Set<string>();
+  for (const b of contenido) {
+    if (b.type !== "text" || !b.citations) continue;
+    for (const c of b.citations) {
+      const url = "url" in c && typeof c.url === "string" ? c.url : null;
+      if (!url) continue;
+      try {
+        const host = new URL(url).hostname.replace(/^www\./, "");
+        if (!/intemperiemexico\.com$/.test(host)) dominios.add(host);
+      } catch {
+        // URL rara: se ignora
+      }
+    }
+  }
+  return [...dominios].slice(0, 2);
 }
 
 /** Ningún link de pago inventado y ningún dominio ajeno. */
@@ -268,6 +346,7 @@ export async function ejecutarHerramienta(
         precio_antes: p.precioAntes,
         disponible: p.disponible,
         ficha: p.ficha,
+        descripcion: p.descripcion || undefined,
         envio: p.precio >= 799 ? "gratis" : "$189",
         variantes:
           p.variantes.length > 1

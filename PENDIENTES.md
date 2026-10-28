@@ -3,8 +3,8 @@
 ## ▶️ Arranque de la próxima sesión (dejado el 19 oct)
 
 0. **Agente de WhatsApp en servidor (28 oct, MANUAL §129):** Fases 1 y 2
-   hechas (plan en `AGENTE-WHATSAPP-PLAN.md`, código y 41 pruebas en
-   `agente-whatsapp/`). Espera el "sí" del dueño a la **Fase 3**: él abre
+   hechas (plan en `AGENTE-WHATSAPP-PLAN.md`, código y 45 pruebas en
+   `agente-whatsapp/`; desde el 28 oct también investiga en internet). Espera el "sí" del dueño a la **Fase 3**: él abre
    Kapso, Cloudflare, Resend y ntfy y crea las llaves (plan, sección 5);
    se despliega en `borrador`, luego `prueba`, luego `activo`.
    - **Condición del dueño:** costo extra $0; solo créditos de Claude.

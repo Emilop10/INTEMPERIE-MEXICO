@@ -23,6 +23,7 @@ export interface Producto {
   disponible: boolean;
   restringido: boolean;
   ficha: string;
+  descripcion: string; // texto de la ficha, sin HTML, recortado
   variantes: Variante[];
 }
 
@@ -60,6 +61,7 @@ export function crearTienda(fetchFn: typeof fetch = fetch): Tienda {
         disponible: Boolean(p.available),
         restringido: esRestringido(p.title, p.type, tags),
         ficha: `${TIENDA}/products/${p.handle}`,
+        descripcion: textoPlano(String(p.description ?? "")).slice(0, 1500),
         variantes: (p.variants ?? []).map((v: any) => ({
           id: Number(v.id),
           titulo: v.title,
@@ -87,6 +89,22 @@ export function crearTienda(fetchFn: typeof fetch = fetch): Tienda {
       }));
     },
   };
+}
+
+/** HTML de la ficha a texto simple. */
+export function textoPlano(html: string): string {
+  return html
+    .replace(/<(script|style)[\s\S]*?<\/\1>/gi, " ")
+    .replace(/<\/(p|li|h[1-6]|div|tr)>|<br\s*\/?>/gi, "\n")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;|&rsquo;/g, "'")
+    .replace(/&[a-z]+;/gi, " ")
+    .replace(/[ \t]+/g, " ")
+    .replace(/\s*\n\s*/g, "\n")
+    .trim();
 }
 
 /** Link de pago directo (GUIA-VENTAS-WHATSAPP.md, sección 3). */

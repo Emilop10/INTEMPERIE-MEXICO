@@ -11,7 +11,8 @@ completo y costos: `../AGENTE-WHATSAPP-PLAN.md`. Historia: MANUAL §129.
 ```
 Cliente → WhatsApp → Meta → Kapso → POST /webhook (firma HMAC)
   → Durable Object del chat: espera 8 s por si manda más mensajes
-  → Claude + herramientas (precio en vivo, búsqueda, link de pago, pasar al dueño)
+  → Claude + herramientas (ficha y precio en vivo, búsqueda en la tienda,
+    búsqueda y lectura en internet, link de pago, pasar al dueño)
   → responde por Kapso, o pasa al dueño (correo + ntfy) y se calla 12 h
 ```
 
@@ -25,6 +26,14 @@ Cliente → WhatsApp → Meta → Kapso → POST /webhook (firma HMAC)
 | `src/tienda.ts` | `/products/<handle>.js` y búsqueda de la tienda, en vivo |
 | `src/whatsapp.ts` / `src/avisos.ts` | Enviar mensajes; avisos por correo (Resend) y ntfy |
 | `src/worker.ts` | Entrada de Cloudflare y los dos Durable Objects |
+
+**Investigar en internet:** Claude tiene `web_search` (máx. 3 por llamada,
+$0.01 USD cada una) y `web_fetch` (máx. 2 por llamada, hasta 8,000 tokens
+por página), corridas por Anthropic, sin Mercado Libre. Primero lee la
+ficha de la tienda (`consultar_producto` trae la descripción); internet es
+para fichas técnicas, comparaciones o cómo se usa algo. Precio y
+existencia salen solo de la tienda. Lo investigado lleva "Fuente:
+dominio" al final, sin link.
 
 **Reglas que pone el código, no la IA:**
 
@@ -67,7 +76,7 @@ curl -H "authorization: Bearer $WEBHOOK_SECRET" https://<worker>.workers.dev/est
 
 ```bash
 npm install
-npm test                 # 41 pruebas con WhatsApp, tienda y Claude simulados
+npm test                 # 45 pruebas con WhatsApp, tienda y Claude simulados
 npm run tipos            # revisión de TypeScript
 npm run simular -- "Hola" "¿Tienen kits para presa?"   # Claude real, no envía nada (necesita ANTHROPIC_API_KEY)
 ```

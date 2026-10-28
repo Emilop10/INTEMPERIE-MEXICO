@@ -38,6 +38,7 @@ export function producto(p: Partial<Producto> & { handle: string }): Producto {
     disponible: true,
     restringido: false,
     ficha: `https://intemperiemexico.com/products/${p.handle}`,
+    descripcion: "",
     variantes: [{ id: 111, titulo: "Default Title", precio: p.precio ?? 999, disponible: p.disponible ?? true }],
     ...p,
   };

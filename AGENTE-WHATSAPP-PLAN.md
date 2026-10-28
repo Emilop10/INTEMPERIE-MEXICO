@@ -13,8 +13,8 @@ Todo lo demás (servidor, proveedor, Meta) va en planes gratis, sin
 tarjeta donde se pueda, y el agente se detiene solo antes de llegar a
 cualquier cobro.
 
-**Estado (28 oct):** Fase 2 terminada: código en `agente-whatsapp/`,
-41 pruebas pasando, probado de punta a punta en local. Espera el "sí" del
+**Estado (28 oct):** Fase 2 terminada, con búsqueda en internet: código
+en `agente-whatsapp/`, 45 pruebas pasando, probado de punta a punta en local. Espera el "sí" del
 dueño para la Fase 3 (cuentas y despliegue). No se ha creado ninguna
 cuenta ni se ha gastado nada.
 
@@ -151,11 +151,14 @@ salida $10, lectura de caché $0.20, escritura de caché $2.50.
   esfuerzo bajo.
 - ≈ **$0.014 USD por mensaje contestado**, más ≈ $0.035 por conversación
   para volver a cargar la caché.
+- **Respuesta investigada en internet:** ≈ $0.03–0.08 USD (1 o 2
+  búsquedas de $0.01 más el texto que lee). Si 1 de cada 5 respuestas
+  investiga, suma ≈ $2–5 al mes.
 
 | Escenario | Conversaciones al mes | Claude al mes |
 |---|---|---|
-| Pocos mensajes (orgánico) | ~60 | **≈ $7 USD** |
-| Tope del plan gratis de Kapso (1,900 mensajes) | ~80 | ≈ $15 USD |
+| Pocos mensajes (orgánico) | ~60 | **≈ $9–12 USD** (con internet) |
+| Tope del plan gratis de Kapso (1,900 mensajes) | ~80 | ≈ $18–20 USD |
 
 Con los topes gratis de Kapso y Meta, **los $100 de Claude no se acaban**:
 el límite real es el número de mensajes, no los créditos.
@@ -182,7 +185,7 @@ el mes habría que pagar Kapso Pro ($25 USD); eso se decide solo si pasa.
 
 | Concepto | Costo |
 |---|---|
-| Claude | ≈ $7–15 de los $100 de créditos |
+| Claude | ≈ $9–20 de los $100 de créditos (con internet) |
 | Kapso | $0 (plan gratis) |
 | Cloudflare | $0 (plan gratis) |
 | Meta | $0 (sin tarjeta; topes en el agente) |
@@ -204,13 +207,19 @@ como secretos de Cloudflare.
 2. Se esperan unos segundos por si el cliente manda varios mensajes
    seguidos, y se contestan juntos.
 3. Claude recibe las reglas (caché) y el historial del chat, y puede usar
-   **solo tres herramientas**:
+   estas herramientas:
    - `consultar_producto(handle)`: lee
      `intemperiemexico.com/products/<handle>.js` (precio, disponible,
      variante);
    - `buscar_producto(palabra)`: busca en la tienda en vivo;
    - `pasar_al_dueno(tema)`: descuentos, pedidos, quejas, productos que
-     no están en línea, armas, "ya pagué", "¿eres bot?", o cualquier duda.
+     no están en línea, armas, "ya pagué", "¿eres bot?", o cualquier duda;
+   - **internet** (pedido del dueño, 28 oct): `web_search` y `web_fetch`
+     de Anthropic, para investigar fichas técnicas, comparar modelos o
+     explicar cómo se usa algo. Primero lee la descripción de la ficha de
+     la tienda. Precio y existencia salen solo de la tienda; no menciona
+     otras tiendas ni manda sus links; Mercado Libre está bloqueado. Lo
+     investigado lleva "Fuente: dominio" al final.
 4. **Los links de pago los arma el código, no la IA:**
    `https://intemperiemexico.com/cart/<variante>:1` solo con una variante
    que la tienda acaba de confirmar disponible. La IA no puede inventar
