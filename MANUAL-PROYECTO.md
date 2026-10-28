@@ -13616,3 +13616,14 @@ $100 al mes.
 - El aviso dice que conteste él y que, si el error habla de saldo, se
   acabaron o vencieron los créditos.
 - 46 de 46 pruebas.
+
+**Origen del crédito (28 oct, Claude in Chrome en Facturación):**
+
+- El historial de facturas tiene una sola fila: 27 oct 2026, "API credit
+  (Max 5x)", 100 USD, "Caduca el 21 nov 2026".
+- La columna de la tabla de créditos es "Fecha de concesión" (27/10/2026).
+- No hay créditos anteriores ni texto sobre renovación.
+- Viene de la suscripción Claude Max 5x del dueño, que dice que se le dan
+  cada mes. Probablemente vence al cerrar el periodo y se renueva con él;
+  se confirma con la fecha de renovación de Max y viendo si llega uno
+  nuevo el 21 nov.

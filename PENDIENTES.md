@@ -13,11 +13,15 @@
    - **No** usar el alta de "API de WhatsApp Business" de Business Suite:
      desconecta el celular.
    - Al pasar a activo, apagar el respondedor de la Mac en WhatsApp.
-   - 🔴 **Los $100 de Anthropic NO son mensuales (28 oct):** son un crédito
-     promocional único que **vence el 21 nov 2026** (UTC), sin método de
-     pago. Después de esa fecha la API deja de responder; el agente avisa
-     una vez al día y no contesta. Antes del 21 nov el dueño decide:
-     agregar créditos o una tarjeta (con tope mensual), o apagar el agente.
+   - **Créditos de Anthropic (28 oct):** $100 de "API credit (Max 5x)",
+     concedidos el 27 oct y con vencimiento el **21 nov 2026** (UTC); sin
+     método de pago. Vienen de la suscripción Claude Max 5x del dueño. Es
+     el primer crédito: no hay historial que confirme que se renueve, y la
+     página no lo dice. Lo más probable es que vence al cerrar el periodo
+     de Max y se da otro al renovar. **Confirmar:** fecha de renovación de
+     Max (claude.ai → Configuración → Facturación) y que el 21–22 nov
+     aparezca un crédito nuevo. Si no aparece, el agente avisa una vez al
+     día y no contesta; nunca hay cobro.
    - **Avance de Claude in Chrome (28 oct):** Anthropic hecho. Org
      "Emiliano's Individual Org", límite de gasto mensual 100 USD (antes
      500), llave "agente-whatsapp" sin caducidad, workspace Default.
