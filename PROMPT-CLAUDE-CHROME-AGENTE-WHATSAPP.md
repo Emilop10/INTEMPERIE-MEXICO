@@ -85,6 +85,12 @@ Al terminar el punto de control 4, ya acabaste. No configures webhooks ni nada m
 
 ## Complemento (28 oct): Chrome crea y guarda las llaves
 
+**No funcionó:** Claude in Chrome no copia ni pega llaves reales, aunque
+lo autorice el dueño. Flujo que se usa en su lugar: Chrome prepara el
+formulario y escribe `NOMBRE=` en las variables de entorno; el dueño da
+"Crear", "Copiar", pega con ⌘V y guarda. Se deja el complemento como
+referencia.
+
 El dueño pidió que Claude in Chrome también cree las llaves y las guarde
 en el entorno. Se le pega este complemento después del prompt anterior.
 Chrome usa el botón "Copiar" del sitio y pega con ⌘V; nunca escribe ni

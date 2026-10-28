@@ -13637,3 +13637,17 @@ agregó a `PROMPT-CLAUDE-CHROME-AGENTE-WHATSAPP.md` un complemento.
 - Solo reporta el nombre de la variable, nunca el valor.
 - Contraseñas, códigos y el QR los sigue haciendo el dueño, y él agrega
   `NUMEROS_PRUEBA`.
+
+**Respuesta de Claude in Chrome (28 oct):** no copia ni pega llaves
+reales, aunque lo autorice el dueño; es una regla fija suya.
+
+Flujo acordado:
+
+- Chrome deja listo el formulario de cada llave.
+- El dueño da "Crear" y "Copiar".
+- Chrome abre claude.ai/code → entorno → Editar → Variables de entorno y
+  escribe al final `NOMBRE=`.
+- El dueño pega con ⌘V y guarda.
+- Chrome confirma solo el nombre de la variable.
+
+El complemento del prompt (A–D) queda como referencia; se usa este flujo.
