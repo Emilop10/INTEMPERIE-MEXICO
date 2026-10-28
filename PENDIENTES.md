@@ -13,6 +13,16 @@
    - **No** usar el alta de "API de WhatsApp Business" de Business Suite:
      desconecta el celular.
    - Al pasar a activo, apagar el respondedor de la Mac en WhatsApp.
+   - **Cómo llegan las llaves a la nube (28 oct):** el dueño las pone como
+     variables de entorno del entorno de nube (menú del entorno → Editar):
+     `CLOUDFLARE_API_TOKEN` (plantilla "Edit Cloudflare Workers"),
+     `AGENTE_ANTHROPIC_API_KEY` (**no** `ANTHROPIC_API_KEY`: esa la usaría
+     Claude Code y cobraría la sesión a sus créditos), `KAPSO_API_KEY`,
+     `RESEND_API_KEY` y `NUMEROS_PRUEBA`. Solo las ve una sesión nueva.
+     La sesión nueva: `wrangler deploy`, carga los secretos con
+     `wrangler secret put`, genera el `WEBHOOK_SECRET` y da de alta el
+     webhook en Kapso por su API. El dueño dice el `phone_number_id` en
+     el chat.
 
 0. **Respondedor de mensajes (27 oct, MANUAL §128):** chat aparte en la Mac
    con `/loop 3m` y las reglas de `RESPONDEDOR-MENSAJES.md`. No escribe en
