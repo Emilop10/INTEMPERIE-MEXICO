@@ -22,10 +22,22 @@
      Max (claude.ai → Configuración → Facturación) y que el 21–22 nov
      aparezca un crédito nuevo. Si no aparece, el agente avisa una vez al
      día y no contesta; nunca hay cobro.
-   - **Avance de Claude in Chrome (28 oct):** Anthropic hecho. Org
-     "Emiliano's Individual Org", límite de gasto mensual 100 USD (antes
-     500), llave "agente-whatsapp" sin caducidad, workspace Default.
-     Faltan Resend, Cloudflare y Kapso.
+   - **Fase 3, avance (28 oct):** cuentas y llaves listas (Anthropic,
+     Resend, Cloudflare —cuenta nueva "Admin@intemperiemexico.com's
+     Account", id c7a319d59119f9f447392f3f806b6461— y Kapso, plan Free,
+     proyecto "Intemperie México"). Las 4 variables están en el entorno
+     y verificadas. **Agente desplegado en borrador:**
+     https://intemperie-agente-whatsapp.steep-lake-2ee7.workers.dev
+     (`/salud` responde; webhook sin firma → 401). Secretos cargados:
+     ANTHROPIC_API_KEY, WHATSAPP_API_KEY, RESEND_API_KEY, NTFY_TEMA,
+     WEBHOOK_SECRET (aleatorio; se regenera al registrar el webhook en
+     Kapso). Simulación con Claude real: bien ($0.06 por 3 mensajes).
+     Correo de prueba de Resend enviado.
+     - **Falta:** `NUMEROS_PRUEBA` (WhatsApp personal del dueño); prueba
+       con el número Sandbox de Kapso (phone_number_id 597907523413541)
+       si el dueño quiere; **conectar el +52 777 327 7340 el 30 oct en la
+       noche** (después de la campaña; Kapso marca la coexistencia como
+       "Unstable" y avisa de posibles bloqueos temporales de Meta).
    - **Cómo llegan las llaves a la nube (28 oct):** el dueño las pone como
      variables de entorno del entorno de nube (menú del entorno → Editar):
      `CLOUDFLARE_API_TOKEN` (plantilla "Edit Cloudflare Workers"),

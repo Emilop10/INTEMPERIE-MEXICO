@@ -13651,3 +13651,51 @@ Flujo acordado:
 - Chrome confirma solo el nombre de la variable.
 
 El complemento del prompt (A–D) queda como referencia; se usa este flujo.
+
+### Fase 3: cuentas listas y agente desplegado en borrador (28 oct)
+
+**Cuentas, vía Claude in Chrome y el dueño:**
+
+- **Resend:** plan gratis (3,000 correos al mes, sin método de pago),
+  equipo "intemperiemexico", sin dominio.
+- **Cloudflare:** se descartó la cuenta personal de Gmail, que tiene el
+  proyecto "alcampo-sistema", y se creó una cuenta solo para Intemperie,
+  "Admin@intemperiemexico.com's Account"
+  (id c7a319d59119f9f447392f3f806b6461). Token "agente-whatsapp" con la
+  plantilla "Edit Cloudflare Workers". Subdominio `steep-lake-2ee7`; no
+  se cambia, porque los clientes no lo ven.
+- **Kapso:** plan Free, proyecto "Intemperie México", número Sandbox
+  creado por Kapso (597907523413541).
+- **Conexión del número:** la opción "Connect WhatsApp Business App" está
+  marcada como **"Unstable"**. Kapso avisa de posibles bloqueos
+  temporales de Meta y de que algunos primeros mensajes podrían no
+  sincronizar. Pide mandar un mensaje desde la app cada 14 días. **Se
+  conecta el 30 oct en la noche, cuando termine la campaña de anuncios.**
+- **Entorno:** 7 variables. Las de Meta y Shopify siguen sin cambios.
+
+**Verificado desde la nube** (sin mostrar valores):
+
+- Token de Cloudflare: activo.
+- Kapso: lista el número Sandbox.
+- Resend: envió un correo de prueba a admin@intemperiemexico.com.
+- **Claude real** (`npm run simular`), tres mensajes:
+  - "vi el anuncio del combo de 999": presentó los dos combos de $999
+    con datos de las fichas y preguntó qué pesca hace;
+  - "Tamaño de la caña. Para que peso es el carrete": contestó con el
+    formato del dueño (✅ y negritas), medidas y relación del carrete;
+  - "me lo dejas en 850?": lo pasó al dueño como descuento;
+  - **$0.061 USD** en total, de 2 a 13 s por respuesta.
+
+**Despliegue:** `wrangler deploy`.
+
+- URL: https://intemperie-agente-whatsapp.steep-lake-2ee7.workers.dev
+- Modo `borrador`. `/salud` responde; un webhook sin firma recibe 401.
+- Secretos cargados desde el entorno sin imprimirse: ANTHROPIC_API_KEY,
+  WHATSAPP_API_KEY, RESEND_API_KEY, NTFY_TEMA y WEBHOOK_SECRET
+  (aleatorio; se regenera al registrar el webhook en Kapso).
+
+**Falta:**
+
+- `NUMEROS_PRUEBA`;
+- prueba opcional con el Sandbox de Kapso;
+- conectar el número el 30 oct.
