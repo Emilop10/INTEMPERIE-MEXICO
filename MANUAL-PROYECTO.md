@@ -13699,3 +13699,18 @@ El complemento del prompt (A–D) queda como referencia; se usa este flujo.
 - `NUMEROS_PRUEBA`;
 - prueba opcional con el Sandbox de Kapso;
 - conectar el número el 30 oct.
+
+**Corte del 27 oct (21:37), prueba de WhatsApp (§126).**
+
+| | Hoy | Acumulado desde el 24 |
+|---|---|---|
+| Gasto | $76.62 | $201.53 |
+| Conversaciones | 12 | **31** ($6.50 c/u) |
+| Ventas (Shopify) | 0 | 1 (#1007) |
+
+- combo-999-wa trajo 12 de las 12 conversaciones de hoy y 27 de las 31
+  en total.
+- No se dispara ningún corte: se pasaron los $150, pero hay 31
+  conversaciones (el mínimo es 5). No se tocó nada.
+- Quedan ~$198 para 3 días.
+
