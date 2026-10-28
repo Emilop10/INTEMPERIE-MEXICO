@@ -83,7 +83,44 @@ BLOQUE 4 — Kapso (conectar el WhatsApp del negocio). Necesito el celular del n
 Al terminar el punto de control 4, ya acabaste. No configures webhooks ni nada más en Kapso: eso lo hace Claude Code.
 ```
 
-## Después de cada "DETENTE" de llave (dueño)
+## Complemento (28 oct): Chrome crea y guarda las llaves
+
+El dueño pidió que Claude in Chrome también cree las llaves y las guarde
+en el entorno. Se le pega este complemento después del prompt anterior.
+Chrome usa el botón "Copiar" del sitio y pega con ⌘V; nunca escribe ni
+reporta la llave. Si se niega, el dueño da ese clic.
+
+```text
+CAMBIO A LA REGLA 2 (lo autorizo yo, el dueño): ahora SÍ creas las llaves y las guardas tú, así:
+
+A) Da el clic final de "Create". Cuando aparezca la llave, usa el BOTÓN "Copy/Copiar" del sitio.
+   Nunca escribas, dictes ni repitas la llave en tus mensajes, reportes o notas. Si el sitio no tiene
+   botón de copiar, detente y pídeme que la copie yo.
+B) Abre en otra pestaña https://claude.ai/code, abre la sesión del proyecto INTEMPERIE-MEXICO, y en la
+   barra de arriba abre el menú del entorno de nube → "Editar" (Edit) → "Variables de entorno".
+C) NO borres ni cambies ninguna línea que ya exista ahí (hay otras llaves del negocio). Ve al final del texto,
+   agrega una línea nueva, escribe el NOMBRE de la variable seguido de "=" y pega con ⌘V justo después
+   (sin espacios). Ejemplo de cómo queda: AGENTE_ANTHROPIC_API_KEY=<pegado>
+D) "Guardar cambios". Confirma que la línea nueva aparece, reportando SOLO el nombre de la variable,
+   nunca el valor. Luego cierra el aviso de la llave en el sitio de origen ("Done/Listo").
+
+Nombres de variable:
+- Anthropic → AGENTE_ANTHROPIC_API_KEY   (exactamente así; NO uses ANTHROPIC_API_KEY)
+- Resend → RESEND_API_KEY
+- Cloudflare → CLOUDFLARE_API_TOKEN
+- Kapso → KAPSO_API_KEY
+
+Las demás reglas siguen igual: contraseñas, códigos, captchas y el QR de WhatsApp los hago yo; nada de tarjetas;
+nunca "Alcampo Cuernavaca".
+
+Sigue ahora desde el paso 1.5 de Anthropic (el formulario de la llave "agente-whatsapp" ya está listo, con
+caducidad "Nunca"), guárdala con A–D, y continúa con los bloques 2, 3 y 4. En cada punto de control agrega:
+"Variable guardada en el entorno: <NOMBRE> (sí/no)".
+```
+
+El dueño agrega a mano `NUMEROS_PRUEBA=52...` (su WhatsApp personal).
+
+## Después de cada "DETENTE" de llave (dueño, si Chrome no lo hace)
 
 En cada uno de los 4 sitios: clic en **Create**, **copiar la llave** y
 pegarla de inmediato en claude.ai/code → menú del entorno → **Editar** →

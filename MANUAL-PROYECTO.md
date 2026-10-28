@@ -13627,3 +13627,13 @@ $100 al mes.
   cada mes. Probablemente vence al cerrar el periodo y se renueva con él;
   se confirma con la fecha de renovación de Max y viendo si llega uno
   nuevo el 21 nov.
+
+**Chrome también guarda las llaves (28 oct, pedido del dueño):** se
+agregó a `PROMPT-CLAUDE-CHROME-AGENTE-WHATSAPP.md` un complemento.
+
+- Chrome crea cada llave, la copia con el botón "Copiar" del sitio y la
+  pega con ⌘V en las variables de entorno de claude.ai/code, al final y
+  sin tocar las líneas que ya existen.
+- Solo reporta el nombre de la variable, nunca el valor.
+- Contraseñas, códigos y el QR los sigue haciendo el dueño, y él agrega
+  `NUMEROS_PRUEBA`.
