@@ -7,8 +7,14 @@ conteste en segundos con Claude (`claude-sonnet-5-5`) siguiendo
 existencia en vivo, mande el link de pago directo y pase al dueño lo que
 no le toca.
 
-**Estado:** plan entregado. Espera el "sí" del dueño para la Fase 2
-(código). No se ha creado ninguna cuenta ni se ha gastado nada.
+**Condición del dueño (28 oct): costo extra $0.** Solo se gastan los
+$100 USD al mes de créditos de la API de Claude. Llegan pocos mensajes.
+Todo lo demás (servidor, proveedor, Meta) va en planes gratis, sin
+tarjeta donde se pueda, y el agente se detiene solo antes de llegar a
+cualquier cobro.
+
+**Estado:** plan entregado y ajustado a $0. Espera el "sí" del dueño para
+la Fase 2 (código). No se ha creado ninguna cuenta ni se ha gastado nada.
 
 ---
 
@@ -54,43 +60,47 @@ agente se calla en ese chat** (ver sección 4).
   app. El nuestro se usa desde hace meses: cumple.
 - Ser administrador del portafolio **Intemperie México**
   (business_id 1324138699447721).
-- **Verificación del negocio: no hace falta para empezar.** La
-  verificación clásica ni siquiera está disponible para números con
-  coexistencia. Sin verificar hay límite de mensajes que **inicia el
-  negocio** (250 al día), y el agente solo contesta: no le afecta.
-- Una **tarjeta** en la cuenta de WhatsApp (WhatsApp Manager → Pagos).
-  Desde el 1 oct 2026 Meta cobra las respuestas después de las primeras
-  1,000 del mes; sin tarjeta, deja de entregarlas.
+- **Verificación del negocio: no hace falta.** La verificación clásica ni
+  siquiera está disponible para números con coexistencia. Sin verificar
+  hay límite de mensajes que **inicia el negocio** (250 al día), y el
+  agente solo contesta: no le afecta.
+- **Tarjeta en la cuenta de WhatsApp: no se pone.** Desde el 1 oct 2026
+  Meta cobra las respuestas después de las primeras **1,000 del mes**.
+  Sin tarjeta, Meta no cobra nada: solo deja de entregar respuestas de la
+  API pasadas las 1,000. El agente se detiene antes (sección 3).
 
 ### Qué proveedor técnico usar
 
-| Proveedor | Costo al mes | A favor | En contra |
+| Proveedor | Plan gratis | A favor | En contra |
 |---|---|---|---|
-| **Kapso** (recomendado) | **$0** hasta 2,000 mensajes (entrada + salida); **$25 USD** el plan Pro (100,000) | Hecho para programadores. Reenvía a nuestro servidor **el mismo webhook de Meta, sin cambios**, firmado con HMAC. Coexistencia por QR documentada. No cobra comisión sobre Meta | Al volumen de la prueba de anuncios (≈2,500 mensajes) se pasa del gratis: contar con $25 |
-| YCloud | $0 plan gratis, sin tope declarado | Sin comisión sobre Meta | Su API tiene formato propio; la coexistencia en el plan gratis no está confirmada en su página; hay que prepagar un monedero |
-| 360dialog | €49 por número | Muy usado, estable | El más caro |
+| **Kapso** (recomendado) | **$0**, 2,000 mensajes al mes (cuentan los que entran y los que salen), 1 número | Hecho para programadores. Reenvía a nuestro servidor **el mismo webhook de Meta, sin cambios**, firmado con HMAC. Coexistencia por QR documentada | El tope de 2,000. Con pocos mensajes alcanza (≈ 80 conversaciones de 12 mensajes al mes) |
+| YCloud (respaldo) | $0, sin tope declarado | Sin comisión sobre Meta | API con formato propio; la coexistencia en el plan gratis no está confirmada en su página |
 
-**Recomendación: Kapso.** El código de la Fase 2 hablará el formato de
-Meta y tendrá una capa delgada para enviar. Si Kapso falla o sube de
-precio, cambiar a otro proveedor (o a Meta directo, si algún día nos
-volvemos proveedor técnico) es cambiar esa capa, no el agente.
+360dialog (€49 al mes) queda descartado por costo.
 
-**A confirmar en la Fase 2** (no lo dice la documentación pública):
-la ruta exacta de Kapso para **enviar** mensajes y que reenvíe los
-`smb_message_echoes`. Si no los reenviara, el agente detecta la
-intervención del dueño con su propio registro (ver sección 4).
+**Recomendación: Kapso, plan gratis.** El agente cuenta los mensajes del
+mes y se detiene en **1,900** (sección 3). El código habla el formato de
+Meta con una capa delgada para enviar: si un día hace falta cambiar a
+YCloud, se cambia esa capa, no el agente.
 
-### Cuánto cobra Meta
+**A confirmar en la Fase 2** (no lo dice la documentación pública de
+Kapso):
+
+- la ruta exacta para **enviar** mensajes;
+- que reenvíe los `smb_message_echoes` (si no, el agente detecta la
+  intervención del dueño con su propio registro);
+- qué pasa al llegar a 2,000 (bloqueo o cobro) y si el plan gratis pide
+  tarjeta. Si pidiera tarjeta o cobrara solo, se usa YCloud.
+
+### Cuánto cobra Meta: $0
 
 | Mensaje | Costo |
 |---|---|
 | Lo que escribe el cliente | Gratis |
-| Lo que contesta el dueño desde la app | Gratis |
-| Respuestas del agente en las 24 h después del mensaje del cliente | **Primeras 1,000 al mes gratis**; después ≈ US$0.0085 c/u (México, cifra de terceros; la oficial está en la tabla en MXN de Meta) |
-| Chats que llegan por un anuncio de "Enviar mensaje de WhatsApp" | Gratis mientras dure la ventana de anuncio (Meta: hasta 7 días) |
-| Mensajes fuera de las 24 h (plantillas) | Se cobran. **El agente no los usa** |
-
-Con el volumen de hoy: **$0 a $7 USD al mes.**
+| Lo que contesta el dueño desde la app | Gratis, sin límite |
+| Respuestas del agente en las 24 h después del mensaje del cliente | **Primeras 1,000 al mes gratis.** El agente se detiene en 950 |
+| Chats que llegan por un anuncio de "Enviar mensaje de WhatsApp" | Gratis mientras dure la ventana del anuncio |
+| Mensajes fuera de las 24 h (plantillas) | Se cobran. **El agente no los usa nunca** |
 
 ### Política de Meta sobre IA (vigente desde el 15 ene 2026)
 
@@ -101,27 +111,31 @@ preguntan y pasa a una persona cuando el cliente lo pide: cumple.
 
 ---
 
-## 2. Servidor: dos opciones
+## 2. Servidor gratis: Cloudflare Workers
 
-El agente necesita: estar siempre encendido, una dirección HTTPS para el
-webhook, unos 256 MB de memoria y un disco chico para guardar las
-conversaciones activas.
+El agente necesita estar siempre encendido, una dirección HTTPS para el
+webhook y una base de datos chica para las conversaciones activas.
 
-| | **A. Render (recomendada)** | B. VPS (Hetzner CX23 o DigitalOcean) |
+| Opción | Costo | Por qué sí / por qué no |
 |---|---|---|
-| Costo | **$7 USD** (Starter, 512 MB) + $0.25 por 1 GB de disco ≈ **$7.25 USD** | Hetzner ≈ €4.49 con IPv4 (si hay disponibilidad; en 2026 la limitaron); DigitalOcean ≈ $6 USD |
-| HTTPS | Automático (`…onrender.com`) | Hay que instalar Caddy y apuntar un subdominio |
-| Despliegue | Se conecta al repositorio de GitHub y se actualiza solo al hacer push | Por SSH; actualizaciones a mano |
-| Mantenimiento | Ninguno | Parches del sistema, firewall y respaldos son nuestros |
-| Secretos | Variables de entorno en su panel (las captura el dueño) | Archivo `.env` en el servidor |
+| **Cloudflare Workers (recomendada)** | **$0**, sin tarjeta | Siempre disponible, sin arranque en frío, HTTPS incluido (`…workers.dev`). Plan gratis: 100,000 peticiones al día (usaremos unas cuantas decenas). Base de datos D1 gratis. Se despliega con un comando |
+| Google Cloud Run | $0 dentro del nivel gratis | Pide tarjeta para abrir la cuenta. Tarda 2–4 s en despertar |
+| Render gratis | $0 | **No sirve:** se duerme a los 15 min y el primer mensaje tardaría ~1 minuto |
+| Oracle Cloud "Always Free" | $0 | Pide tarjeta, la disponibilidad de máquinas es irregular y el mantenimiento es nuestro |
 
-**Recomendación: Render.** Cuesta $2 más que un VPS y quita todo el
-mantenimiento. El plan gratis de Render **no sirve**: se duerme y el
-primer mensaje tardaría ~1 minuto.
+**Recomendación: Cloudflare Workers.** Lo único que cambia es el
+lenguaje: Workers corre **TypeScript** (con el SDK oficial de Anthropic).
+Los scripts del repositorio son Python, pero el agente es independiente
+y vive en su carpeta.
+
+**Cuidado con el tiempo de CPU:** el plan gratis da pocos milisegundos de
+CPU por petición, pero **esperar** a Claude o a la tienda no cuenta como
+CPU. Un agente que casi todo el tiempo espera respuestas de red cabe de
+sobra. Se medirá en la Fase 3.
 
 ---
 
-## 3. Costo de la API de Claude
+## 3. Costo de la API de Claude (lo único que se gasta)
 
 **Precios de `claude-sonnet-5-5`** (por millón de tokens): entrada $2,
 salida $10, lectura de caché $0.20, escritura de caché $2.50.
@@ -136,45 +150,56 @@ salida $10, lectura de caché $0.20, escritura de caché $2.50.
 - ≈ **$0.014 USD por mensaje contestado**, más ≈ $0.035 por conversación
   para volver a cargar la caché.
 
-| Escenario | Conversaciones al día | Claude al mes |
+| Escenario | Conversaciones al mes | Claude al mes |
 |---|---|---|
-| Hoy (prueba de anuncios: 20 en 3 días, más orgánicos) | ~7 | **≈ $25 USD** |
-| Con más anuncios | ~20 | ≈ $70 USD |
-| Límite de los $100 | ~28 | $100 USD |
+| Pocos mensajes (orgánico) | ~60 | **≈ $7 USD** |
+| Tope del plan gratis de Kapso (1,900 mensajes) | ~80 | ≈ $15 USD |
 
-**Candados para no pasar de $100:**
+Con los topes gratis de Kapso y Meta, **los $100 de Claude no se acaban**:
+el límite real es el número de mensajes, no los créditos.
 
-1. En la consola de Anthropic, una llave solo para el agente y un **tope
-   de gasto mensual de $100**. Si se llega, la API deja de contestar.
-2. En el agente, un contador diario. Si pasa de **$4 USD en el día**,
-   deja de contestar con IA, manda a los clientes el mensaje de "te
-   escribo en un momento" y avisa al dueño.
-3. Respuestas cortas (máximo ~600 tokens) y esfuerzo bajo.
+**Candados para que nunca haya un cobro:**
+
+| Límite | Se detiene en | Qué hace al llegar |
+|---|---|---|
+| Créditos de Claude ($100) | **$90 en el mes** (y tope de $100 en la consola de Anthropic) | Deja de contestar con IA |
+| Kapso gratis (2,000 mensajes) | **1,900** mensajes en el mes | Igual |
+| Meta gratis (1,000 respuestas) | **950** respuestas en el mes | Igual |
+| Gasto diario de Claude | **$5** en el día | Igual, hasta el día siguiente |
+
+"Deja de contestar" quiere decir: el agente ya no responde, avisa al
+dueño **una vez** y el dueño atiende desde la app del celular como
+siempre, gratis y sin límite. El primer día del mes siguiente vuelve solo.
+
+**Si se reactivan los anuncios de WhatsApp:** la prueba de octubre trajo
+20 conversaciones en 3 días. A ese ritmo, el tope de Kapso se alcanza en
+unas dos semanas y el resto del mes contesta el dueño. Para cubrir todo
+el mes habría que pagar Kapso Pro ($25 USD); eso se decide solo si pasa.
 
 ## Costo total al mes
 
-| Concepto | Hoy | Con más volumen |
-|---|---|---|
-| Claude | ~$25 | ~$70 |
-| Kapso | $0–25 | $25 |
-| Render | $7.25 | $7.25 |
-| Meta | $0–7 | ~$10 |
-| **Total** | **≈ $32–64 USD** | **≈ $112 USD** |
+| Concepto | Costo |
+|---|---|
+| Claude | ≈ $7–15 de los $100 de créditos |
+| Kapso | $0 (plan gratis) |
+| Cloudflare | $0 (plan gratis) |
+| Meta | $0 (sin tarjeta; topes en el agente) |
+| **Costo extra** | **$0** |
 
 ---
 
 ## 4. Cómo va a funcionar el agente (diseño de la Fase 2)
 
-**Lenguaje:** Python, como los scripts del repositorio. Carpeta
-`agente-whatsapp/`. Ningún secreto en el repositorio: todo por variables
-de entorno (`ANTHROPIC_API_KEY`, `KAPSO_API_KEY`, `WEBHOOK_SECRET`,
-`NUMERO_DUENO`, etc.).
+**Lenguaje:** TypeScript en Cloudflare Workers, carpeta
+`agente-whatsapp/`. Ningún secreto en el repositorio: las llaves
+(`ANTHROPIC_API_KEY`, `KAPSO_API_KEY`, `WEBHOOK_SECRET`, etc.) se guardan
+como secretos de Cloudflare.
 
 **Flujo de un mensaje:**
 
-1. Meta → Kapso → `POST /webhook` en el servidor. Se verifica la firma
-   HMAC y se contesta 200 de inmediato.
-2. Se esperan ~8 segundos por si el cliente manda varios mensajes
+1. Meta → Kapso → `POST /webhook` en el Worker. Se verifica la firma HMAC
+   y se contesta 200 de inmediato; lo demás sigue en segundo plano.
+2. Se esperan unos segundos por si el cliente manda varios mensajes
    seguidos, y se contestan juntos.
 3. Claude recibe las reglas (caché) y el historial del chat, y puede usar
    **solo tres herramientas**:
@@ -188,18 +213,18 @@ de entorno (`ANTHROPIC_API_KEY`, `KAPSO_API_KEY`, `WEBHOOK_SECRET`,
    `https://intemperiemexico.com/cart/<variante>:1` solo con una variante
    que la tienda acaba de confirmar disponible. La IA no puede inventar
    precios, links ni descuentos.
-5. Se manda la respuesta (2 a 4 líneas, de "tú").
+5. Se manda la respuesta (2 a 4 líneas, de "tú") y se suman los
+   contadores del mes (sección 3).
 
 **Cuando se pasa al dueño:**
 
 - Al cliente: "Déjame confirmarlo y te escribo en un momento 🙌".
 - El chat queda **en pausa para el agente**.
-- Aviso al dueño **sin nombre ni teléfono en el texto**: canal, tema y un
-  enlace `wa.me` al chat. Dos opciones, decide el dueño:
-  - correo a admin@intemperiemexico.com (gratis);
-  - notificación al celular con ntfy (gratis, app aparte).
-  
-  La etiqueta "Atender Emiliano" de la app **no se puede poner por API**.
+- Aviso gratis al dueño, **sin nombre ni teléfono en el texto**: canal,
+  tema y un enlace `wa.me` al chat. Opciones:
+  - correo a admin@intemperiemexico.com;
+  - notificación al celular con ntfy (app gratis).
+- La etiqueta "Atender Emiliano" de la app **no se puede poner por API**.
   El dueño la pone al abrir el chat, si quiere.
 
 **Cuando el dueño contesta él mismo** desde el celular, el agente se
@@ -210,23 +235,23 @@ a la vez.
 
 | Modo | Qué hace |
 |---|---|
-| `borrador` | No envía nada. Escribe la respuesta propuesta en el registro y en el aviso al dueño |
+| `borrador` | No envía nada. Manda al dueño la respuesta que habría dado |
 | `prueba` | Contesta solo a los números de `NUMEROS_PRUEBA` (el del dueño). A los demás, nada |
 | `activo` | Contesta a todos |
 
 **Horario:** contesta las 24 horas. Fuera de 9:00–22:00 los pases al
 dueño dicen "mañana a primera hora".
 
-**Datos personales:** las conversaciones viven solo en el disco del
-servidor (SQLite), se borran a los 30 días y nunca van al repositorio.
-Los registros guardan el teléfono enmascarado (`52777***7340`).
+**Datos personales:** las conversaciones viven solo en la base D1 de
+Cloudflare, se borran a los 30 días y nunca van al repositorio. Los
+registros guardan el teléfono enmascarado (`52777***7340`).
 
-**Pruebas locales:** `pytest` con mensajes simulados en el formato del
-webhook de Meta y la tienda y Claude simulados: precio en vivo, producto
-agotado, descuento, "ya pagué", armas, cliente que manda 3 mensajes
-seguidos, dueño que interviene, firma inválida y tope diario. Además, un
-script `simular.py "¿tienen kits para presa?"` que llama a Claude de
-verdad y muestra la respuesta sin enviarla.
+**Pruebas locales:** pruebas automáticas con mensajes simulados en el
+formato del webhook de Meta y la tienda y Claude simulados: precio en
+vivo, producto agotado, descuento, "ya pagué", armas, cliente que manda 3
+mensajes seguidos, dueño que interviene, firma inválida y cada uno de los
+topes. Además, un comando `simular "¿tienen kits para presa?"` que llama
+a Claude de verdad y muestra la respuesta sin enviarla.
 
 **Al encender el agente** se apaga el respondedor de la Mac (`/loop 3m`,
 MANUAL §128) en WhatsApp, para que no contesten los dos. El de Messenger
@@ -238,19 +263,19 @@ e Instagram sigue en la Mac hasta la Fase 4.
 
 **Cuándo:** al empezar la Fase 3, con el código ya probado. Mientras no
 haya webhook, conectar el número no cambia nada para los clientes. Ten el
-celular del número a la mano.
+celular del número a la mano. **No se pone ninguna tarjeta en ningún
+paso.**
 
 ### A. Antes de empezar (5 minutos)
 
 1. En el celular: actualiza **WhatsApp Business** desde la tienda de apps.
    Debe ser 2.24.17 o más nueva (Ajustes → Ayuda → Info. de la app).
-2. Ten a la mano una tarjeta para los cobros de Meta.
 
 ### B. Conectar el número en Kapso (15 minutos)
 
 1. Entra a **kapso.ai** y crea la cuenta con
-   admin@intemperiemexico.com. Proyecto: "Intemperie México". Plan
-   gratis para empezar.
+   admin@intemperiemexico.com. Proyecto: "Intemperie México". **Plan
+   gratis.** Si pide tarjeta, detente y avísame.
 2. **Connected numbers → Connect new number → WhatsApp Business App.**
    No elijas "Display name only": crea un número de EE. UU. que no
    queremos.
@@ -272,25 +297,22 @@ celular del número a la mano.
    información de clientes. **No se puede cambiar después.**
 10. Confirma permisos → **Finalizar**. Si en algún momento Meta pide un
     código por SMS en vez del QR, **detente** y mándame captura.
+11. Si Meta te pide agregar un método de pago, **no lo agregues**: se
+    puede omitir, y sin tarjeta Meta no cobra.
 
-### C. Pagos en Meta (5 minutos)
+### C. Llaves (10 minutos)
 
-1. **business.facebook.com/wa/manage** → elige la cuenta nueva
-   "Intemperie México" → **Ajustes de pago** → agrega la tarjeta.
-
-### D. Llaves para el servidor (10 minutos)
-
-Estas llaves **no me las pegues en el chat**. Las capturas tú en el panel
-de Render cuando te diga, en la Fase 3.
+Estas llaves **no me las pegues en el chat**. Las capturas tú en
+Cloudflare cuando te diga, en la Fase 3.
 
 1. **Kapso:** API Keys → crear "agente-servidor". Guárdala.
 2. **Anthropic** (console.anthropic.com): API Keys → crear
    "agente-whatsapp". En **Limits / Spend limits**, pon tope de **$100
    USD al mes**.
-3. **Render** (render.com): crea la cuenta con GitHub y autoriza el
-   repositorio INTEMPERIE-MEXICO. Plan de pago con tarjeta (~$7.25 USD).
+3. **Cloudflare** (dash.cloudflare.com): crea la cuenta gratis con
+   admin@intemperiemexico.com. Sin tarjeta.
 
-### E. Después de conectar
+### D. Después de conectar
 
 1. WhatsApp Web en la Mac se habrá desconectado: vuelve a vincularlo si
    lo usas.
@@ -304,24 +326,26 @@ de Render cuando te diga, en la Fase 3.
 
 | Fase | Qué | Quién | Cuándo |
 |---|---|---|---|
-| 1 | Este plan | Nube | ✅ 28 oct |
+| 1 | Este plan | Nube | ✅ 28 oct (ajustado a $0 el mismo día) |
 | 2 | Código en `agente-whatsapp/`, pruebas locales y modo borrador | Nube | Con tu "sí" |
-| 3 | Kapso y Render (sección 5), despliegue, 1–2 días en `borrador`, luego `prueba` con tu número, luego `activo` | Tú (cuentas y llaves) + nube | Después de la 2 |
+| 3 | Kapso y Cloudflare (sección 5), despliegue, 1–2 días en `borrador`, luego `prueba` con tu número, luego `activo` | Tú (cuentas y llaves) + nube | Después de la 2 |
 | 4 | Messenger e Instagram | Nube | Cuando Meta apruebe la app |
 
-**Para la Fase 4:** Messenger e Instagram sí van con nuestra propia app de
-Meta, sin proveedor. La app necesita los permisos `pages_messaging` e
-`instagram_manage_messages` con **acceso avanzado**, que pide revisión de
-Meta y **verificación del negocio** (RFC y comprobante de domicilio). Se
-puede iniciar esa verificación mientras avanzan las fases 2 y 3.
+**Para la Fase 4:** Messenger e Instagram van con nuestra propia app de
+Meta, sin proveedor y sin costo por mensaje. La app necesita los permisos
+`pages_messaging` e `instagram_manage_messages` con **acceso avanzado**,
+que pide revisión de Meta y **verificación del negocio** (RFC y
+comprobante de domicilio; trámite gratis). Se puede iniciar esa
+verificación mientras avanzan las fases 2 y 3.
 
 ## 7. Decisiones que te tocan
 
-1. **Proveedor:** Kapso (recomendado), YCloud o 360dialog.
-2. **Servidor:** Render (recomendado) o VPS.
-3. **Avisos de pase al dueño:** correo, ntfy o los dos.
-4. **Pausa del agente cuando contestas tú:** 12 horas (propuesta) u otra.
-5. **Chats anteriores:** no compartir (recomendado) o compartir.
+1. **Aviso cuando un chat es para ti:** correo, ntfy o los dos.
+2. **Pausa del agente cuando contestas tú:** 12 horas (propuesta) u otra.
+3. **Chats anteriores:** no compartir (recomendado) o compartir.
+
+Proveedor (Kapso gratis) y servidor (Cloudflare gratis) quedan
+decididos por la condición de $0.
 
 ---
 
@@ -334,4 +358,5 @@ puede iniciar esa verificación mientras avanzan las fases 2 y 3.
 - YCloud: ycloud.com/pricing
 - Países excluidos (2026): github.com/orgs/chatwoot/discussions/11216
 - Política de IA de Meta: techcrunch.com, 18 oct 2025
-- Render y Hetzner: páginas de precios de terceros (temps.sh, findstack.com)
+- Cloudflare, límites del plan gratis: eastondev.com (resumen de la documentación de Workers)
+- Render: temps.sh (precios 2026)

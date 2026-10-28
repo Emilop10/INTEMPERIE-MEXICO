@@ -4,9 +4,11 @@
 
 0. **Agente de WhatsApp en servidor (28 oct, MANUAL §129):** Fase 1
    entregada en `AGENTE-WHATSAPP-PLAN.md`. Espera el "sí" del dueño a la
-   Fase 2 (código en `agente-whatsapp/`) y sus 5 decisiones (sección 7
-   del plan). La coexistencia solo se activa por un proveedor técnico
-   (recomendado Kapso); **no** usar el alta de "API de WhatsApp Business"
+   Fase 2 (código en `agente-whatsapp/`) y sus 3 decisiones (sección 7
+   del plan). **Condición del dueño: costo extra $0**; solo se gastan
+   los $100 USD de créditos de Claude (Cloudflare Workers gratis, Kapso
+   gratis, Meta sin tarjeta, topes en el agente). La coexistencia solo se
+   activa por un proveedor técnico; **no** usar el alta de "API de WhatsApp Business"
    de Business Suite, que desconecta el celular. Al encender el agente,
    apagar el respondedor de la Mac en WhatsApp.
 

@@ -13363,3 +13363,40 @@ No se creó ninguna cuenta ni se gastó nada.
   (§128).
 - Fase 4 (Messenger e Instagram): requiere verificación del negocio y
   revisión de la app de Meta; puede iniciarse ya.
+
+### Plan ajustado a costo extra $0 (28 oct, orden del dueño)
+
+**Qué pidió el dueño.** Que no le cueste nada: llegan pocos mensajes y
+solo quiere usar los $100 USD al mes de créditos de Claude.
+
+**Cambios al plan (`AGENTE-WHATSAPP-PLAN.md`):**
+
+| Pieza | Antes | Ahora |
+|---|---|---|
+| Servidor | Render, ≈ $7.25 USD | **Cloudflare Workers gratis**, sin tarjeta, sin arranque en frío; base de datos D1 gratis. El código pasa a **TypeScript** |
+| Proveedor | Kapso, $0–25 USD | **Kapso plan gratis** (2,000 mensajes al mes, entrada + salida); YCloud gratis de respaldo |
+| Meta | Tarjeta en la cuenta; $0–7 USD | **Sin tarjeta**: Meta no cobra y solo deja de entregar pasadas 1,000 respuestas al mes |
+
+**Topes en el agente** para que nunca haya un cobro:
+
+- Claude: $90 en el mes, $5 en el día, y tope de $100 en la consola.
+- Kapso: 1,900 mensajes en el mes.
+- Meta: 950 respuestas en el mes.
+
+Al llegar a cualquiera de ellos, el agente deja de contestar, avisa al
+dueño una vez y el dueño atiende desde la app (gratis). Vuelve solo el
+mes siguiente.
+
+**Costo estimado:** Claude ≈ $7–15 USD de los $100 al mes; costo extra
+**$0**. El límite real es el plan gratis de Kapso (≈ 80 conversaciones al
+mes), no los créditos. Si se reactivan los anuncios de WhatsApp (20
+conversaciones en 3 días en octubre), el tope llega en unas dos semanas.
+
+**A confirmar en la Fase 2:** si el plan gratis de Kapso pide tarjeta o
+cobra solo al pasar de 2,000 (si es así, se usa YCloud), cómo se envían
+mensajes por su API y si reenvía los mensajes que el dueño escribe desde
+el celular.
+
+**Decisiones pendientes del dueño:** canal de avisos (correo o ntfy),
+horas de pausa cuando él contesta (propuesta: 12) y si comparte los chats
+anteriores (recomendado: no).
