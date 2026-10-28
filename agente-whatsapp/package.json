@@ -1,0 +1,26 @@
+{
+  "name": "intemperie-agente-whatsapp",
+  "version": "1.0.0",
+  "description": "Agente de WhatsApp de Intemperie México (Cloudflare Workers + Claude)",
+  "scripts": {
+    "conocimiento": "node scripts/generar-conocimiento.mjs",
+    "tipos": "tsc --noEmit",
+    "test": "vitest run",
+    "simular": "tsx scripts/simular.ts",
+    "dev": "wrangler dev",
+    "desplegar": "npm run conocimiento && npm run tipos && npm test && wrangler deploy"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.3.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261027.1",
+    "@types/node": "^26.6.5",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.5",
+    "wrangler": "^4.154.0"
+  },
+  "private": true,
+  "type": "module"
+}

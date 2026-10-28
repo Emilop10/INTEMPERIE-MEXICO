@@ -2,15 +2,17 @@
 
 ## ▶️ Arranque de la próxima sesión (dejado el 19 oct)
 
-0. **Agente de WhatsApp en servidor (28 oct, MANUAL §129):** Fase 1
-   entregada en `AGENTE-WHATSAPP-PLAN.md`. Espera el "sí" del dueño a la
-   Fase 2 (código en `agente-whatsapp/`) y sus 3 decisiones (sección 7
-   del plan). **Condición del dueño: costo extra $0**; solo se gastan
-   los $100 USD de créditos de Claude (Cloudflare Workers gratis, Kapso
-   gratis, Meta sin tarjeta, topes en el agente). La coexistencia solo se
-   activa por un proveedor técnico; **no** usar el alta de "API de WhatsApp Business"
-   de Business Suite, que desconecta el celular. Al encender el agente,
-   apagar el respondedor de la Mac en WhatsApp.
+0. **Agente de WhatsApp en servidor (28 oct, MANUAL §129):** Fases 1 y 2
+   hechas (plan en `AGENTE-WHATSAPP-PLAN.md`, código y 41 pruebas en
+   `agente-whatsapp/`). Espera el "sí" del dueño a la **Fase 3**: él abre
+   Kapso, Cloudflare, Resend y ntfy y crea las llaves (plan, sección 5);
+   se despliega en `borrador`, luego `prueba`, luego `activo`.
+   - **Condición del dueño:** costo extra $0; solo créditos de Claude.
+   - **Decisiones:** avisos por correo y ntfy, pausa de 12 h, compartir
+     chats.
+   - **No** usar el alta de "API de WhatsApp Business" de Business Suite:
+     desconecta el celular.
+   - Al pasar a activo, apagar el respondedor de la Mac en WhatsApp.
 
 0. **Respondedor de mensajes (27 oct, MANUAL §128):** chat aparte en la Mac
    con `/loop 3m` y las reglas de `RESPONDEDOR-MENSAJES.md`. No escribe en

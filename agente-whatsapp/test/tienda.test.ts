@@ -1,0 +1,70 @@
+import { describe, expect, it } from "vitest";
+import { crearTienda } from "../src/tienda";
+
+function fetchFalso(rutas: Record<string, { status?: number; body?: unknown }>) {
+  const pedidas: string[] = [];
+  const fn = (async (url: string) => {
+    pedidas.push(url);
+    const r = Object.entries(rutas).find(([k]) => url.includes(k))?.[1];
+    if (!r) return new Response("no", { status: 404 });
+    return new Response(JSON.stringify(r.body ?? {}), { status: r.status ?? 200 });
+  }) as unknown as typeof fetch;
+  return { fn, pedidas };
+}
+
+describe("tienda en vivo", () => {
+  it("lee precio, existencia y variantes del .js (precios en centavos)", async () => {
+    const { fn } = fetchFalso({
+      "/products/combo-okuma-boundary-70-spinning.js": {
+        body: {
+          handle: "combo-okuma-boundary-70-spinning",
+          title: 'Combo Okuma Boundary 7\'0" Spinning',
+          type: "Combos",
+          tags: ["combo"],
+          price: 99900,
+          compare_at_price: null,
+          available: true,
+          variants: [{ id: 43219563085901, title: "Default Title", price: 99900, available: true }],
+        },
+      },
+    });
+    const p = await crearTienda(fn).consultar("combo-okuma-boundary-70-spinning");
+    expect(p).toEqual({
+      handle: "combo-okuma-boundary-70-spinning",
+      titulo: 'Combo Okuma Boundary 7\'0" Spinning',
+      precio: 999,
+      precioAntes: null,
+      disponible: true,
+      restringido: false,
+      ficha: "https://intemperiemexico.com/products/combo-okuma-boundary-70-spinning",
+      variantes: [{ id: 43219563085901, titulo: "Default Title", precio: 999, disponible: true }],
+    });
+  });
+
+  it("marca los rifles de aire como restringidos", async () => {
+    const { fn } = fetchFalso({
+      "/products/rifle-x.js": { body: { handle: "rifle-x", title: "Rifle Mendoza Ventus", type: "Rifles de Aire", price: 1, available: true, variants: [] } },
+    });
+    expect((await crearTienda(fn).consultar("rifle-x"))?.restringido).toBe(true);
+  });
+
+  it("un handle raro no sale a internet; un 404 es 'no existe'", async () => {
+    const { fn, pedidas } = fetchFalso({});
+    const t = crearTienda(fn);
+    expect(await t.consultar("../admin")).toBeNull();
+    expect(pedidas).toHaveLength(0);
+    expect(await t.consultar("no-existe")).toBeNull();
+  });
+
+  it("busca con suggest.json", async () => {
+    const { fn, pedidas } = fetchFalso({
+      "/search/suggest.json": {
+        body: { resources: { results: { products: [{ handle: "kit-a", title: "Kit A", price: "1439.00", available: true, type: "Kits" }] } } },
+      },
+    });
+    expect(await crearTienda(fn).buscar("kit finesse")).toEqual([
+      { handle: "kit-a", titulo: "Kit A", precio: 1439, disponible: true, restringido: false },
+    ]);
+    expect(pedidas[0]).toContain("q=kit%20finesse");
+  });
+});

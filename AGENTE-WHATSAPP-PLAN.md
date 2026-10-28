@@ -13,8 +13,10 @@ Todo lo demás (servidor, proveedor, Meta) va en planes gratis, sin
 tarjeta donde se pueda, y el agente se detiene solo antes de llegar a
 cualquier cobro.
 
-**Estado:** plan entregado y ajustado a $0. Espera el "sí" del dueño para
-la Fase 2 (código). No se ha creado ninguna cuenta ni se ha gastado nada.
+**Estado (28 oct):** Fase 2 terminada: código en `agente-whatsapp/`,
+41 pruebas pasando, probado de punta a punta en local. Espera el "sí" del
+dueño para la Fase 3 (cuentas y despliegue). No se ha creado ninguna
+cuenta ni se ha gastado nada.
 
 ---
 
@@ -236,7 +238,7 @@ a la vez.
 | Modo | Qué hace |
 |---|---|
 | `borrador` | No envía nada. Manda al dueño la respuesta que habría dado |
-| `prueba` | Contesta solo a los números de `NUMEROS_PRUEBA` (el del dueño). A los demás, nada |
+| `prueba` | Contesta solo a los números de `NUMEROS_PRUEBA` (el del dueño). Con los demás, borrador |
 | `activo` | Contesta a todos |
 
 **Horario:** contesta las 24 horas. Fuera de 9:00–22:00 los pases al
@@ -292,9 +294,13 @@ paso.**
 7. Sale un **código QR** en la pantalla. En el celular: WhatsApp Business
    → Chats → ícono de cámara → escanea el QR.
 8. En el celular: **Continuar → Conectar a la plataforma empresarial.**
-9. Te pregunta si compartir los chats anteriores. **Recomiendo "No
-   compartir chats"**: el agente no los necesita y así no sale
-   información de clientes. **No se puede cambiar después.**
+9. Te pregunta si compartir los chats anteriores. **Decisión del dueño
+   (28 oct): "Compartir todos los chats".** Ojo: los chats **no se
+   pierden con ninguna de las dos opciones**; se quedan en el celular.
+   Compartir solo copia a Kapso los últimos 6 meses. El agente ignora esa
+   copia y no la guarda. **No se puede cambiar después.** El primer día,
+   revisar en Kapso que la copia no se haya contado contra los 2,000
+   mensajes gratis.
 10. Confirma permisos → **Finalizar**. Si en algún momento Meta pide un
     código por SMS en vez del QR, **detente** y mándame captura.
 11. Si Meta te pide agregar un método de pago, **no lo agregues**: se
@@ -311,8 +317,35 @@ Cloudflare cuando te diga, en la Fase 3.
    USD al mes**.
 3. **Cloudflare** (dash.cloudflare.com): crea la cuenta gratis con
    admin@intemperiemexico.com. Sin tarjeta.
+4. **Resend** (resend.com), para los avisos por correo: crea la cuenta
+   gratis **con admin@intemperiemexico.com** (solo puede mandar correos a
+   la dirección de la cuenta) → API Keys → crear "agente-whatsapp".
+   Plan gratis: 3,000 correos al mes, sin tarjeta.
+5. **ntfy**, para los avisos al celular: ver la sección 5.D.
 
-### D. Después de conectar
+### D. ntfy: avisos al celular (5 minutos, gratis, sin cuenta)
+
+ntfy es una app que recibe notificaciones de un "tema" (un canal con
+nombre). El agente publica en un tema con nombre secreto y tu celular lo
+escucha.
+
+1. Instala **ntfy** desde la App Store o Google Play (el ícono es una
+   campana verde con "ntfy").
+2. Ábrela → **+** (abajo a la derecha) → en "Topic name" escribe el
+   nombre del tema que te di en el chat (empieza con
+   `intemperie-avisos-`). Deja el servidor en ntfy.sh → **Subscribe**.
+3. En iPhone, acepta las notificaciones cuando lo pida. En Android, en la
+   suscripción, activa "Instant delivery" para que lleguen al momento.
+4. Listo. Cada aviso dice el tema ("Atender: pide descuento", "POSIBLE
+   VENTA: …") y el chat con el número enmascarado. El detalle completo
+   (mensaje del cliente y enlace para abrir el chat) llega por correo.
+
+**El nombre del tema es como una contraseña:** quien lo sepa puede leer
+los avisos. Por eso no está en el repositorio y los avisos de ntfy nunca
+llevan nombres, teléfonos completos ni el texto del cliente. Si se filtra,
+se cambia por otro.
+
+### E. Después de conectar
 
 1. WhatsApp Web en la Mac se habrá desconectado: vuelve a vincularlo si
    lo usas.
@@ -327,7 +360,7 @@ Cloudflare cuando te diga, en la Fase 3.
 | Fase | Qué | Quién | Cuándo |
 |---|---|---|---|
 | 1 | Este plan | Nube | ✅ 28 oct (ajustado a $0 el mismo día) |
-| 2 | Código en `agente-whatsapp/`, pruebas locales y modo borrador | Nube | Con tu "sí" |
+| 2 | Código en `agente-whatsapp/`, pruebas locales y modo borrador | Nube | ✅ 28 oct |
 | 3 | Kapso y Cloudflare (sección 5), despliegue, 1–2 días en `borrador`, luego `prueba` con tu número, luego `activo` | Tú (cuentas y llaves) + nube | Después de la 2 |
 | 4 | Messenger e Instagram | Nube | Cuando Meta apruebe la app |
 
@@ -338,14 +371,13 @@ que pide revisión de Meta y **verificación del negocio** (RFC y
 comprobante de domicilio; trámite gratis). Se puede iniciar esa
 verificación mientras avanzan las fases 2 y 3.
 
-## 7. Decisiones que te tocan
+## 7. Decisiones del dueño (28 oct)
 
-1. **Aviso cuando un chat es para ti:** correo, ntfy o los dos.
-2. **Pausa del agente cuando contestas tú:** 12 horas (propuesta) u otra.
-3. **Chats anteriores:** no compartir (recomendado) o compartir.
-
-Proveedor (Kapso gratis) y servidor (Cloudflare gratis) quedan
-decididos por la condición de $0.
+1. **Avisos:** por correo y por la app ntfy.
+2. **Pausa del agente cuando contesta el dueño:** 12 horas.
+3. **Chats anteriores:** compartir.
+4. Proveedor (Kapso gratis) y servidor (Cloudflare gratis), por la
+   condición de $0.
 
 ---
 

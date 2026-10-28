@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 28 de octubre de 2026 (sección 129)
+**Última actualización:** 28 de octubre de 2026 (sección 129, Fase 2)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -156,7 +156,7 @@ como respaldo
 126. [Facebook: por qué no convierte y propuesta de la siguiente prueba (23 oct)](#126-facebook-por-qué-no-convierte-y-propuesta-de-la-siguiente-prueba-23-oct)
 127. [Primera venta de la prueba de WhatsApp: Combo Revenger 2.40 a $999 y su margen real (26 oct)](#127-primera-venta-de-la-prueba-de-whatsapp-combo-revenger-240-a-999-y-su-margen-real-26-oct)
 128. [Respondedor automático de mensajes en la Mac: WhatsApp y Business Suite cada 3 minutos (27 oct)](#128-respondedor-automático-de-mensajes-en-la-mac-whatsapp-y-business-suite-cada-3-minutos-27-oct)
-129. [Agente de WhatsApp en servidor con la API de Claude: Fase 1, plan (28 oct)](#129-agente-de-whatsapp-en-servidor-con-la-api-de-claude-fase-1-plan-28-oct)
+129. [Agente de WhatsApp en servidor con la API de Claude: Fase 1, plan (28 oct)](#129-agente-de-whatsapp-en-servidor-con-la-api-de-claude-fase-1-plan-28-oct) (incluye Fase 2: código)
 
 ---
 
@@ -13400,3 +13400,80 @@ el celular.
 **Decisiones pendientes del dueño:** canal de avisos (correo o ntfy),
 horas de pausa cuando él contesta (propuesta: 12) y si comparte los chats
 anteriores (recomendado: no).
+
+### Fase 2: código del agente (28 oct, con el "sí" del dueño)
+
+**Decisiones del dueño:** avisos por correo y por la app ntfy, pausa de
+**12 horas** cuando él contesta, y **compartir** los chats anteriores al
+conectar. Se le aclaró que los chats no se pierden con ninguna opción
+(se quedan en el celular); compartir solo copia 6 meses a Kapso, y el
+agente ignora esa copia.
+
+**Qué se hizo:** carpeta `agente-whatsapp/` (TypeScript, Cloudflare
+Workers; ver su `README.md`).
+
+- **Instrucciones de Claude:** `INSTRUCCIONES-AGENTE.md` (reglas del
+  respondedor adaptadas al servidor) + secciones 2–4 de
+  `GUIA-VENTAS-WHATSAPP.md`, juntas en `src/generado/conocimiento.ts`
+  con `npm run conocimiento`. Una prueba falla si el generado queda
+  viejo.
+- **Herramientas de Claude:** `consultar_producto` y `buscar_producto`
+  (tienda en vivo), `link_de_pago`, `pasar_al_dueno` y `no_responder`.
+- **Candados en el código, no en la IA:**
+  - solo se envían links `/cart/` que dio la herramienta con una variante
+    disponible en vivo; un link inventado o de otro dominio se pasa al
+    dueño;
+  - rifles, pistolas de aire y diábolos se detectan por título y tipo de
+    producto y no tienen link de pago;
+  - nunca escribe fuera de las 24 h del último mensaje del cliente;
+  - topes de Claude ($90 al mes, $5 al día), Kapso (1,900) y Meta (950).
+- **Conversación (un Durable Object por chat):**
+  - junta los mensajes seguidos (8 s);
+  - descarta reintentos de Meta;
+  - se calla 12 h si el dueño escribe desde el celular o si se pasa al
+    dueño;
+  - un solo seguimiento 2 h después del link de pago;
+  - borra el chat a los 30 días.
+- **Modos:** `borrador` (por omisión), `prueba` y `activo`.
+- **Claude:** `claude-sonnet-5-5`, esfuerzo bajo, caché de
+  instrucciones, y respaldo automático del servidor si el modelo se niega
+  (`fallbacks: "default"`).
+- **Avisos:**
+  - correo por Resend (plan gratis, cuenta con
+    admin@intemperiemexico.com), con el detalle y el enlace `wa.me`;
+  - ntfy, sin nombres, teléfonos completos ni texto del cliente.
+- **Tema de ntfy:** creado y probado (respondió 200). El nombre se le dio
+  al dueño en el chat; no va al repositorio.
+
+**Verificación:**
+
+- `npm test`: **41 de 41** pruebas. Cubren:
+  - firmas de Kapso y Meta;
+  - formatos de mensaje, ecos del dueño y BSUID;
+  - tienda en vivo simulada;
+  - links inventados, agotados y armas;
+  - espera de 8 s, borrador, prueba y pausa por el dueño;
+  - pases al dueño, fuera de horario y "ya pagué";
+  - seguimiento, topes, fallas de envío y de Claude, y borrado a los 30
+    días.
+- `tsc` sin errores. `wrangler deploy --dry-run` compila: **183 KB**
+  comprimido (límite gratis: 3 MB).
+- **Prueba de punta a punta con `wrangler dev`:**
+  - webhook firmado → 200;
+  - firma falsa → 401;
+  - la alarma de 2 s llamó a Claude;
+  - con llave falsa, el error se manejó sin tronar;
+  - `/estado` contó 1 mensaje.
+- **Sin probar con Claude real:** no hay llave en la nube.
+  `npm run simular` lo hace en cuanto haya una.
+
+**Pendiente (Fase 3, con el "sí" del dueño):**
+
+- El dueño abre las cuentas y crea las llaves (plan, sección 5): Kapso,
+  Anthropic, Cloudflare, Resend y ntfy.
+- Conectar el número con QR.
+- Desplegar en borrador 1–2 días, luego prueba con su número, luego
+  activo.
+- Al pasar a activo, apagar el respondedor de la Mac en WhatsApp.
+- Revisar el primer día que la copia de chats no haya gastado mensajes
+  del plan gratis de Kapso.

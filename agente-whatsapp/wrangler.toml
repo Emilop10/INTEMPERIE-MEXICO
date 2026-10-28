@@ -1,0 +1,40 @@
+# Cloudflare Workers, plan gratis. Las llaves NO van aquí: se cargan con
+#   npx wrangler secret put ANTHROPIC_API_KEY   (y las demás, ver README.md)
+name = "intemperie-agente-whatsapp"
+main = "src/worker.ts"
+compatibility_date = "2026-09-01"
+compatibility_flags = ["nodejs_compat"]
+
+[observability]
+enabled = true
+
+[[durable_objects.bindings]]
+name = "CONVERSACION"
+class_name = "ConversacionDO"
+
+[[durable_objects.bindings]]
+name = "CONTROL"
+class_name = "ControlDO"
+
+# Durable Objects con SQLite: los únicos que permite el plan gratis.
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["ConversacionDO", "ControlDO"]
+
+[vars]
+# borrador: no envía nada, manda al dueño la respuesta propuesta
+# prueba: contesta solo a NUMEROS_PRUEBA (secreto); a los demás, borrador
+# activo: contesta a todos
+AGENTE_MODO = "borrador"
+PROVEEDOR = "kapso"
+# Lo da Kapso al conectar el número (no es secreto).
+WHATSAPP_PHONE_NUMBER_ID = ""
+AVISO_CORREO = "admin@intemperiemexico.com"
+MODELO = "claude-sonnet-5-5"
+PAUSA_HORAS = "12"
+ESPERA_SEGUNDOS = "8"
+SEGUIMIENTO = "si"
+TOPE_CLAUDE_MES_USD = "90"
+TOPE_CLAUDE_DIA_USD = "5"
+TOPE_MENSAJES_KAPSO_MES = "1900"
+TOPE_RESPUESTAS_META_MES = "950"
