@@ -34,6 +34,10 @@ export interface Tienda {
   >;
 }
 
+// Sin User-Agent, Shopify responde 403 a las peticiones que salen de
+// Cloudflare Workers (verificado el 28 oct).
+const ENCABEZADOS = { accept: "application/json", "user-agent": "Mozilla/5.0 (compatible; IntemperieAgenteWhatsApp/1.0)" };
+
 const HANDLE_VALIDO = /^[a-z0-9][a-z0-9-]{0,200}$/;
 
 export function esRestringido(...textos: (string | undefined)[]): boolean {
@@ -45,9 +49,7 @@ export function crearTienda(fetchFn: typeof fetch = fetch): Tienda {
     async consultar(handle) {
       handle = handle.trim().toLowerCase();
       if (!HANDLE_VALIDO.test(handle)) return null;
-      const r = await fetchFn(`${TIENDA}/products/${handle}.js`, {
-        headers: { accept: "application/json" },
-      });
+      const r = await fetchFn(`${TIENDA}/products/${handle}.js`, { headers: ENCABEZADOS });
       if (r.status === 404) return null;
       if (!r.ok) throw new Error(`La tienda respondió ${r.status} para ${handle}`);
       /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -77,7 +79,7 @@ export function crearTienda(fetchFn: typeof fetch = fetch): Tienda {
       const url =
         `${TIENDA}/search/suggest.json?q=${encodeURIComponent(q)}` +
         "&resources%5Btype%5D=product&resources%5Blimit%5D=6";
-      const r = await fetchFn(url, { headers: { accept: "application/json" } });
+      const r = await fetchFn(url, { headers: ENCABEZADOS });
       if (!r.ok) throw new Error(`La búsqueda respondió ${r.status}`);
       const d: any = await r.json();
       return (d?.resources?.results?.products ?? []).map((p: any) => ({

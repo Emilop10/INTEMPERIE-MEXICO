@@ -70,3 +70,15 @@ describe("tienda en vivo", () => {
     expect(pedidas[0]).toContain("q=kit%20finesse");
   });
 });
+
+describe("encabezados", () => {
+  it("manda User-Agent (sin él Shopify responde 403 desde Cloudflare)", async () => {
+    let ua = "";
+    const fn = (async (_u: string, init: RequestInit) => {
+      ua = new Headers(init.headers).get("user-agent") ?? "";
+      return new Response("{}", { status: 404 });
+    }) as unknown as typeof fetch;
+    await crearTienda(fn).consultar("x");
+    expect(ua).toMatch(/Mozilla/);
+  });
+});

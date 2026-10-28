@@ -14,7 +14,7 @@ export interface Aviso {
 export type Avisar = (aviso: Aviso) => Promise<void>;
 
 export function crearAvisador(
-  opciones: { resendApiKey?: string; correo: string; ntfyTema?: string },
+  opciones: { resendApiKey?: string; correo: string; ntfyTema?: string; ntfyToken?: string },
   fetchFn: typeof fetch = fetch,
 ): Avisar {
   return async (aviso) => {
@@ -27,6 +27,9 @@ export function crearAvisador(
             Title: encodeHeader(aviso.titulo),
             Priority: aviso.urgente ? "high" : "default",
             Tags: aviso.urgente ? "rotating_light" : "fishing_pole_and_fish",
+            // Sin cuenta, ntfy.sh limita por IP, y las de Cloudflare son
+            // compartidas: el límite diario ya viene agotado (429).
+            ...(opciones.ntfyToken ? { Authorization: `Bearer ${opciones.ntfyToken}` } : {}),
           },
           body: aviso.resumen,
         }).then(revisar("ntfy")),

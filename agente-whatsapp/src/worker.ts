@@ -21,11 +21,16 @@ export default {
       return Response.json({ ok: true, modo: config.modo, proveedor: config.proveedor });
     }
 
-    if (url.pathname === "/estado" && request.method === "GET") {
-      if (request.headers.get("authorization") !== `Bearer ${env.WEBHOOK_SECRET}`) {
+    // Administración (llave ADMIN_TOKEN): contadores del mes y reiniciar un chat.
+    if (url.pathname === "/estado" || url.pathname === "/reiniciar") {
+      if (!env.ADMIN_TOKEN || request.headers.get("authorization") !== `Bearer ${env.ADMIN_TOKEN}`) {
         return new Response("No autorizado", { status: 401 });
       }
-      return Response.json(await control(env).resumen(Date.now()));
+      if (url.pathname === "/estado") return Response.json(await control(env).resumen(Date.now()));
+      const chat = (url.searchParams.get("chat") ?? "").replace(/[^\w.]/g, "");
+      if (request.method !== "POST" || !chat) return new Response("POST /reiniciar?chat=<número>", { status: 400 });
+      await conversacion(env, chat).reiniciar();
+      return Response.json({ ok: true, chat });
     }
 
     if (url.pathname !== "/webhook") return new Response("No encontrado", { status: 404 });
@@ -96,6 +101,7 @@ export class ConversacionDO extends DurableObject<Env> {
         resendApiKey: env.RESEND_API_KEY,
         correo: config.avisoCorreo,
         ntfyTema: env.NTFY_TEMA,
+        ntfyToken: env.NTFY_TOKEN,
       }),
     });
   }
@@ -106,6 +112,12 @@ export class ConversacionDO extends DurableObject<Env> {
 
   async alarm(): Promise<void> {
     await this.nucleo().alarma(Date.now());
+  }
+
+  /** Borra el chat (historial, pausa y pendientes). Para pruebas. */
+  async reiniciar(): Promise<void> {
+    await this.ctx.storage.deleteAll();
+    await this.ctx.storage.deleteAlarm();
   }
 }
 

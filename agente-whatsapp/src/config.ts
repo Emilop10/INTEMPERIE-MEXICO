@@ -13,6 +13,8 @@ export interface Env {
   WEBHOOK_SECRET: string; // secret_key del webhook de Kapso (o App Secret de Meta)
   RESEND_API_KEY?: string;
   NTFY_TEMA?: string; // nombre secreto del tema de ntfy
+  NTFY_TOKEN?: string; // token de la cuenta gratis de ntfy.sh (tk_...)
+  ADMIN_TOKEN?: string; // para /estado y /reiniciar
   NUMEROS_PRUEBA?: string; // "5217771234567,52..." solo dígitos, separados por coma
   META_VERIFY_TOKEN?: string; // solo PROVEEDOR=meta
 

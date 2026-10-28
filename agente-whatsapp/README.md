@@ -69,7 +69,8 @@ Al llegar a uno, el agente deja de contestar, avisa una vez y vuelve solo
 el siguiente día o mes. Ver los contadores:
 
 ```bash
-curl -H "authorization: Bearer $WEBHOOK_SECRET" https://<worker>.workers.dev/estado
+curl -H "authorization: Bearer $ADMIN_TOKEN" https://<worker>.workers.dev/estado
+curl -X POST -H "authorization: Bearer $ADMIN_TOKEN" "https://<worker>.workers.dev/reiniciar?chat=<número>"   # borra un chat de prueba
 ```
 
 ## Trabajo local

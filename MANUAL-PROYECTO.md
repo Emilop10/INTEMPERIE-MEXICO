@@ -13749,3 +13749,34 @@ el número de la tienda conectado hará falta otro WhatsApp.
   Test Number) y manda el código de activación desde WhatsApp Business.
 - Luego le escribe al Sandbox y se ve si la respuesta sale por la API
   compatible con Meta de Kapso con el phone_number_id del Sandbox.
+
+**Primera prueba real con el Sandbox (28 oct, 13:05):**
+
+- **Lo que funcionó:**
+  - activación del Sandbox con el código desde WhatsApp Business;
+  - el mensaje del dueño llegó al Worker;
+  - Claude lo procesó y la respuesta salió por la API compatible con Meta
+    de Kapso con el phone_number_id del Sandbox ("Déjame confirmarlo…");
+  - llegó el correo de aviso a admin@intemperiemexico.com con el resumen
+    y el enlace al chat;
+  - "me lo dejas en 850?" no recibió respuesta porque el chat ya estaba
+    en pausa: es lo esperado.
+- **Falla 1, la tienda respondió 403 desde Cloudflare Workers:**
+  - el agente pasó el chat al dueño ("la tienda no respondió");
+  - con un Worker de diagnóstico temporal (ya borrado):
+    `/products/<handle>.js` sin User-Agent → 403, con User-Agent → 200;
+  - **arreglado:** `src/tienda.ts` manda User-Agent; hay una prueba nueva.
+- **Falla 2, ntfy no llegó:**
+  - ntfy.sh respondió **429, "daily message quota reached"**;
+  - sin cuenta, ntfy limita por IP, y las IP de salida de Cloudflare son
+    compartidas;
+  - **arreglado en código:** si existe el secreto `NTFY_TOKEN` (token de
+    una cuenta gratis de ntfy.sh), se publica con `Authorization: Bearer`
+    y el límite es el de la cuenta (≈250 al día).
+  - **Falta** que el dueño cree la cuenta y el token.
+- **Administración:**
+  - nuevo secreto `ADMIN_TOKEN` para `/estado` y `POST /reiniciar?chat=`,
+    que borra un chat de prueba;
+  - se reinició el chat del dueño, que estaba en pausa de 12 h;
+  - costo acumulado del día: $0.058 USD.
+- **Pruebas:** 48 de 48.
