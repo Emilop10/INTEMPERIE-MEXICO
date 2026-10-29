@@ -13947,3 +13947,29 @@ https://fb.me/23lSPhUmCjFiR4U · combo foto https://fb.me/23n2exwa2jb0hdX.
   pegarla en el chat). Con un token válido se podría usar la API de
   administración, que no limita por IP, como vía principal.
 - Chat del dueño reiniciado para repetir la prueba.
+
+### §129, continuación: prueba completa con éxito en el Sandbox (29 oct, 13:10)
+
+**Resultado:** el circuito completo funcionó de punta a punta.
+
+- "Hola, tamaño de la caña del combo Boundary y para qué peso es el
+  carrete" → leyó la ficha (registro `consultar_producto` ok) y contestó
+  en el formato del dueño: saludo con 🎣, ✅ *Tamaño de la caña* 7 pies
+  (2.13 m) en 2 piezas, ✅ *Carrete* tamaño 40 y 5.2:1, ✅ *Línea* 6–12 lb
+  con kg, aclaración del peso del pez, precio en vivo $999 con envío
+  gratis, link de la ficha y "¿Te lo aparto?".
+- "¿Me mandas el link para pagarlo?" → `link_de_pago` verificado:
+  `https://intemperiemexico.com/cart/43219563085901:1`, formas de pago y
+  tiempo de entrega.
+- "Me lo dejas en 850?" → `pasar_al_dueno (descuento)`, "Déjame
+  confirmarlo…" al cliente y correo con motivo, resumen, producto y
+  enlace al chat.
+- Costo del día: $0.13 USD; acumulado del mes $0.25.
+- **ntfy sigue fallando desde Cloudflare** (522 en el pase; 429 y 522 en
+  pruebas anteriores). El correo sí llega siempre. Se necesita el token de
+  una cuenta de ntfy o cambiar de canal.
+
+**Pendiente para abrir a clientes:** conectar el +52 777 327 7340 en Kapso
+(coexistencia por QR). La campaña de WhatsApp se amplió hasta el 5 nov
+(§126), así que "esperar a que termine" ya no es viable; propuesta: conectar
+de noche, después de las 21:00, cuando los anuncios no corren.
