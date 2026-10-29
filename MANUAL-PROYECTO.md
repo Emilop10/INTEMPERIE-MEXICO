@@ -13973,3 +13973,50 @@ https://fb.me/23lSPhUmCjFiR4U · combo foto https://fb.me/23n2exwa2jb0hdX.
 (coexistencia por QR). La campaña de WhatsApp se amplió hasta el 5 nov
 (§126), así que "esperar a que termine" ya no es viable; propuesta: conectar
 de noche, después de las 21:00, cuando los anuncios no corren.
+
+### §129, continuación: número de la tienda conectado en Kapso; agente en borrador (29 oct, 16:43)
+
+**Conexión (Claude in Chrome + dueño, con el "sí" del dueño pese a la
+campaña activa):** "Connect WhatsApp Business App" → Meta → QR desde el
+celular → chats compartidos.
+
+| Dato | Valor |
+|---|---|
+| Phone number ID | `742563942272641` |
+| WABA ID | `2146162969186009` |
+| Portafolio | 1324138699447721 (Intemperie México) |
+| Tipo | coexistencia (`is_coexistence: true`), estado CONNECTED |
+| Nombre verificado en Meta | **"Alcampo Cuernavaca"**, `AVAILABLE_WITHOUT_REVIEW` |
+| Límite de mensajes iniciados por el negocio | 250 al día (no se usan) |
+| Verificación del negocio | no verificado (no hace falta) |
+
+**El nombre "Alcampo Cuernavaca":** lo más probable es que el número ya
+estuviera en la cuenta de WhatsApp "Alcampo Cuernavaca" que vive en el
+portafolio de Intemperie (§126, 24 oct), y Meta lo registró ahí. En
+coexistencia, lo que ven los clientes es el perfil de la app del celular;
+se pidió al dueño confirmar que ahí sigue "Intemperie México". Se envió
+por Kapso una **solicitud de cambio de nombre a "Intemperie México"**
+(Meta la revisa en 24–48 h).
+
+**Pago a Meta:** Kapso preguntó cómo pagar las tarifas de Meta ("Use
+Kapso credits" o "Pay Meta directly"); no se eligió nada (regla de $0).
+Kapso muestra "Billing needs attention". Solo afecta a mensajes iniciados
+por el negocio, que el agente no usa; las respuestas de servicio son
+gratis hasta 1,000 al mes y el agente se detiene en 950.
+
+**Agente conectado al número real, en modo `borrador`:**
+
+- Desplegado con `WHATSAPP_PHONE_NUMBER_ID=742563942272641` y
+  `AGENTE_MODO=borrador`; `WEBHOOK_SECRET` nuevo.
+- Webhook de Kapso tipo **meta** registrado en el número
+  (`00905f3a-e3c0-46b5-a1c8-aa0463c14a42`).
+- El webhook del Sandbox se borró.
+- En borrador, cada mensaje de cliente genera un correo con la respuesta
+  propuesta; no se envía nada por WhatsApp.
+
+**Efectos para el dueño:** WhatsApp Web de la Mac se desvinculó (hay que
+volver a vincularlo), y el respondedor de la Mac no ve WhatsApp hasta
+entonces. Hay que mandar un mensaje desde la app al menos cada 14 días.
+
+**Falta:** token de ntfy (bloque 5 de Chrome), revisar los borradores por
+correo y pasar a `activo` (y apagar el respondedor de la Mac en WhatsApp).
