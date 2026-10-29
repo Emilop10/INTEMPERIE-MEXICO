@@ -13796,3 +13796,13 @@ el número de la tienda conectado hará falta otro WhatsApp.
 - El dueño no ha reportado ventas cerradas por WhatsApp fuera de
   Shopify.
 
+**Videos de anuncios listos (29 oct, dato del dueño).**
+- Grabó y editó los 4 videos de la guía, con **3 variantes de cada uno**:
+  **12 videos** en total.
+- Los sube un chat nuevo de la Mac, abierto en una carpeta vacía del
+  Escritorio (sin repositorio), con el mensaje que ya se le pasó:
+  subirlos a `act_1264279685553718/advideos` y hacer imágenes de revisión.
+- El dueño manda a la nube la tabla de video_id y las imágenes, y la
+  nube arma los anuncios en pausa.
+- Los videos de Mercado Libre siguen pendientes.
+
