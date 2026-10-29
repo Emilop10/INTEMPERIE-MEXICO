@@ -13780,3 +13780,19 @@ el número de la tienda conectado hará falta otro WhatsApp.
   - se reinició el chat del dueño, que estaba en pausa de 12 h;
   - costo acumulado del día: $0.058 USD.
 - **Pruebas:** 48 de 48.
+
+**Corte del 28 oct (21:37), prueba de WhatsApp (§126).**
+
+| | Hoy | Acumulado desde el 24 |
+|---|---|---|
+| Gasto | $68.70 | $272.47 |
+| Conversaciones | 10 | **41** ($6.65 c/u) |
+| Ventas (Shopify) | 0 | 1 (#1007) |
+
+- combo-999-wa trajo 9 de las 10 conversaciones de hoy y 36 de las 41
+  en total.
+- No se dispara ningún corte. No se tocó nada.
+- Quedan ~$128 para el 29 y el 30.
+- El dueño no ha reportado ventas cerradas por WhatsApp fuera de
+  Shopify.
+
