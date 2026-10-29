@@ -115,6 +115,18 @@ describe("conversación", () => {
     expect(avisos[0]).toMatchObject({ titulo: "POSIBLE VENTA: Combo Boundary", urgente: true });
   });
 
+  it("cliente de Alcampo (otro negocio): no contesta, no avisa y se calla 12 h", async () => {
+    const claude = claudeConGuion([herramienta("pasar_al_dueno", { motivo: "otro_negocio", resumen: "Pregunta por Alcampo", producto: "" })]);
+    const { conv, enviados, avisos } = armarConversacion({ claude });
+    await conv.recibir(mensaje("Hola, ¿a qué hora abren en Alcampo?"), MEDIODIA);
+    await conv.alarma(MEDIODIA + ESPERA);
+    expect(enviados).toHaveLength(0);
+    expect(avisos).toHaveLength(0);
+    await conv.recibir(mensaje("¿hola?"), MEDIODIA + HORA);
+    await conv.alarma(MEDIODIA + HORA + ESPERA);
+    expect(claude.llamadas).toHaveLength(1);
+  });
+
   it("si preguntan si es bot, dice la verdad", async () => {
     const claude = claudeConGuion([herramienta("pasar_al_dueno", { motivo: "pide_persona", resumen: "Pregunta si es bot", producto: "" })]);
     const { conv, enviados } = armarConversacion({ claude });

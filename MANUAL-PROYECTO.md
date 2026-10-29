@@ -14020,3 +14020,30 @@ entonces. Hay que mandar un mensaje desde la app al menos cada 14 días.
 
 **Falta:** token de ntfy (bloque 5 de Chrome), revisar los borradores por
 correo y pasar a `activo` (y apagar el respondedor de la Mac en WhatsApp).
+
+### §129, continuación: el número lo comparten dos negocios (29 oct)
+
+**Decisión del dueño:** el nombre del número se queda como **"Alcampo
+Cuernavaca"**, porque usa el mismo WhatsApp para sus dos negocios. No se
+pide ningún cambio a Meta.
+
+**Consecuencia:** por ese número también escriben clientes de Alcampo, y
+el agente contestaría como tienda de pesca. Se le enseñó a distinguir:
+
+- `INSTRUCCIONES-AGENTE.md`, sección "Este número lo comparten dos
+  negocios": si el mensaje es de Alcampo o de algo ajeno a Intemperie,
+  `pasar_al_dueno` con el motivo nuevo **`otro_negocio`**; si viene de un
+  anuncio o habla de pesca, atención normal; si es ambiguo ("Hola",
+  "Info", "¿Precio?"), respuesta corta y neutra sin nombrar negocio ni
+  pesca ("¡Hola! Con gusto, ¿qué andas buscando?").
+- Código: con `otro_negocio` el agente **no envía nada, no avisa** y se
+  calla 12 h en ese chat; el dueño lo atiende desde la app. Prueba nueva:
+  51 de 51.
+- Simulación con Claude real: "Hola buenas tardes" → "¡Hola! Buenas
+  tardes, con gusto. ¿Qué andas buscando?"; "…el servicio que vi en
+  Alcampo, ¿a qué hora abren?" → `otro_negocio`, sin respuesta; "Busco
+  una caña para presa" → recomendó el Kit Tundra Pro con precio en vivo.
+- Desplegado al número real, sigue en `borrador`.
+
+**Pendiente:** que el dueño diga a qué se dedica Alcampo, para afinar la
+instrucción (hoy solo dice "otro negocio, no de pesca").

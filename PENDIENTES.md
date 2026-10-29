@@ -40,8 +40,10 @@
        "Unstable" y avisa de posibles bloqueos temporales de Meta).
    - 🟢 **Número conectado en Kapso y agente en borrador (29 oct 16:43):**
      Phone number ID 742563942272641, WABA 2146162969186009, coexistencia.
-     Nombre verificado en Meta salió "Alcampo Cuernavaca"; el dueño
-     decide si se pide a Meta el cambio a "Intemperie México" por Kapso. Falta: token de
+     El nombre se queda "Alcampo Cuernavaca" (decisión del dueño: usa el
+     número para sus dos negocios); el agente se calla con los clientes
+     de Alcampo (`otro_negocio`). Falta que el dueño diga a qué se
+     dedica Alcampo para afinar la instrucción. Falta: token de
      ntfy, revisar borradores por correo y pasar a `activo` (entonces
      apagar el respondedor de la Mac en WhatsApp y re-vincular WhatsApp
      Web). Mandar un mensaje desde la app cada 14 días.

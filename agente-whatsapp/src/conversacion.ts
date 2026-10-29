@@ -35,6 +35,7 @@ const ETIQUETAS: Record<Motivo, string> = {
   ya_pago: "dice que YA PAGÓ",
   armas: "pregunta por armas o diábolos",
   pide_persona: "quiere hablar contigo",
+  otro_negocio: "cliente de Alcampo o de otro tema (el agente se calla)",
   otro: "duda que el agente no resolvió",
 };
 
@@ -222,6 +223,15 @@ export class Conversacion {
         await this.borrador(e, nuevos, r.texto);
       }
       e.historial.push({ role: "assistant", content: r.texto });
+      return;
+    }
+
+    // Cliente del otro negocio del dueño (Alcampo Cuernavaca): el agente se
+    // calla en este chat, sin mensaje ni aviso; el dueño lo atiende como siempre.
+    if (r.motivo === "otro_negocio") {
+      console.log(`otro_negocio: ${r.resumen.slice(0, 120)}`);
+      e.pausaHasta = ahora + this.d.config.pausaMs;
+      e.seguimiento = null;
       return;
     }
 

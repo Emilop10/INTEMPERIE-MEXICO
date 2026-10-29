@@ -19,6 +19,7 @@ export const MOTIVOS = [
   "ya_pago",
   "armas",
   "pide_persona",
+  "otro_negocio",
   "otro",
 ] as const;
 export type Motivo = (typeof MOTIVOS)[number];
@@ -87,7 +88,11 @@ const HERRAMIENTAS: Anthropic.Beta.Messages.BetaTool[] = [
     input_schema: {
       type: "object",
       properties: {
-        motivo: { type: "string", enum: [...MOTIVOS] },
+        motivo: {
+          type: "string",
+          enum: [...MOTIVOS],
+          description: "otro_negocio = cliente de Alcampo Cuernavaca o de algo que no es de Intemperie; el sistema no contesta nada.",
+        },
         resumen: {
           type: "string",
           description: "Una línea para el dueño: qué quiere el cliente. Sin nombres ni teléfonos.",
