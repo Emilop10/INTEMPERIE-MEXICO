@@ -57,9 +57,10 @@
 0. **🔴 URGENTE (26 oct, MANUAL §127):** venta #1007 del Combo Revenger 2.40.
    - Descontar en el punto de venta la caña RV-S-802M y el carrete RV-80.
 
-0. **(29 oct) Videos de anuncios subidos y 4 anuncios de video creados en PAUSA**
-   (MANUAL §126). Falta que la Mac los encienda. Los videos de Mercado Libre
-   siguen pendientes.
+0. **🔴 (29 oct) Subir el tope de la cuenta de Meta a $3,513.94** (Mac; la nube no
+   puede). Sin eso la campaña de WhatsApp, ya ampliada a $1,100 hasta el 5 nov con
+   los 4 videos encendidos, se frena el 30 oct (MANUAL §126). Los videos de
+   Mercado Libre siguen pendientes.
 0. **Videos (dueño, lunes 26 temprano):** 4 de anuncios
    (`GUIA-VIDEOS-ANUNCIOS-FACEBOOK-INSTAGRAM.md`), que van a la nube, y 8 de
    Mercado Libre más las fotos de los combos

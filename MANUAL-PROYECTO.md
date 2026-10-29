@@ -13860,3 +13860,24 @@ y el 9:16 en historias y reels (personalización por ubicación):
 - **Pendiente de decidir:** el anuncio de foto que sigue activo
   (combo-999-wa) todavía dice "te contesta una persona". Termina el 30 oct.
 
+**Encendido y ampliación de la prueba (29 oct, orden del dueño: "pauta
+abierta para generar más ventas").**
+- **Encendidos desde la nube** (esta vez el clasificador lo permitió) los
+  4 anuncios de video: emiliano, caja, cual y combo. Facebook los revisa
+  (IN_PROCESS).
+- **Pausados** los 2 anuncios de foto flojos: kit-incluye-wa (1
+  conversación) y cual-kit-wa (3). Sigue activa la foto combo-999-wa.
+- **Texto de la foto combo-999-wa corregido** (creativo 2647006465721497):
+  ya no dice "te contesta una persona". Vuelve a revisión.
+- **Conjunto ampliado:** de $400 a **$1,100 totales** (+$700 ≈ $100/día) y
+  del 30 oct al **5 nov 21:00**. Horario 9:00–21:00 sin cambio.
+- **Tope de la cuenta: NO se pudo subir desde la nube** (el clasificador
+  bloquea gasto). Sigue en $2,813.94 con ~$112 libres; sin subirlo a
+  **$3,513.94** la campaña se frena mañana. Lo hace la Mac.
+- **Cortes nuevos** (tarea `trig_01VuURBU1CTsMhXUS6kSomz3`): pausar un
+  anuncio si en 3 días su costo por conversación pasa de $15 o lleva $120
+  con 0 conversaciones; pausar la campaña si a los $900 sigue habiendo 1
+  sola venta; pausar el anuncio de un producto que quede en 0.
+- Monto: lo fijó la nube ($700 más) ante la "pauta abierta"; el dueño
+  puede ajustarlo.
+
