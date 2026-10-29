@@ -34,9 +34,20 @@ export interface Tienda {
   >;
 }
 
-// Sin User-Agent, Shopify responde 403 a las peticiones que salen de
-// Cloudflare Workers (verificado el 28 oct).
-const ENCABEZADOS = { accept: "application/json", "user-agent": "Mozilla/5.0 (compatible; IntemperieAgenteWhatsApp/1.0)" };
+// Shopify limita por dirección IP, y las de salida de Cloudflare Workers son
+// compartidas: a veces responde 403 (sin User-Agent) o 429 (demasiadas
+// peticiones). Verificado el 28 y 29 oct. Defensas: User-Agent de navegador,
+// reintentos con espera, el dominio myshopify.com como segunda vía y caché
+// de 2 minutos por URL en Cloudflare.
+const ENCABEZADOS = {
+  accept: "application/json",
+  "accept-language": "es-MX,es;q=0.9",
+  "user-agent":
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+};
+const DOMINIOS = [TIENDA, "https://wfuxvx-yn.myshopify.com"];
+const CACHE_SEGUNDOS = 120;
+const ESPERAS_MS = [1500, 3000];
 
 const HANDLE_VALIDO = /^[a-z0-9][a-z0-9-]{0,200}$/;
 
@@ -44,14 +55,51 @@ export function esRestringido(...textos: (string | undefined)[]): boolean {
   return textos.some((t) => t && RESTRINGIDO.test(t));
 }
 
+const dormir = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+/**
+ * Pide una ruta de la tienda (`/products/x.js`, `/search/suggest.json?…`)
+ * con caché, reintentos y dominio alterno. Devuelve la respuesta o lanza.
+ */
+async function pedir(fetchFn: typeof fetch, ruta: string): Promise<Response> {
+  const cache = (globalThis as { caches?: { default: Cache } }).caches?.default;
+  const llave = new Request(`${TIENDA}${ruta}`);
+  if (cache) {
+    const guardada = await cache.match(llave);
+    if (guardada) return guardada;
+  }
+  let ultimo = 0;
+  for (const dominio of DOMINIOS) {
+    for (let intento = 0; intento <= ESPERAS_MS.length; intento++) {
+      const r = await fetchFn(`${dominio}${ruta}`, { headers: ENCABEZADOS });
+      if (r.ok || r.status === 404) {
+        if (r.ok && cache) {
+          const copia = new Response(await r.clone().arrayBuffer(), {
+            status: 200,
+            headers: { "content-type": "application/json", "cache-control": `public, max-age=${CACHE_SEGUNDOS}` },
+          });
+          await cache.put(llave, copia);
+        }
+        return r;
+      }
+      ultimo = r.status;
+      if (r.status !== 429 && r.status !== 403 && r.status < 500) break;
+      if (intento < ESPERAS_MS.length) {
+        const retryAfter = Number(r.headers.get("retry-after")) * 1000;
+        await dormir(Math.min(Math.max(ESPERAS_MS[intento], retryAfter || 0), 5000));
+      }
+    }
+  }
+  throw new Error(`La tienda respondió ${ultimo} para ${ruta.split("?")[0]}`);
+}
+
 export function crearTienda(fetchFn: typeof fetch = fetch): Tienda {
   return {
     async consultar(handle) {
       handle = handle.trim().toLowerCase();
       if (!HANDLE_VALIDO.test(handle)) return null;
-      const r = await fetchFn(`${TIENDA}/products/${handle}.js`, { headers: ENCABEZADOS });
+      const r = await pedir(fetchFn, `/products/${handle}.js`);
       if (r.status === 404) return null;
-      if (!r.ok) throw new Error(`La tienda respondió ${r.status} para ${handle}`);
       /* eslint-disable @typescript-eslint/no-explicit-any */
       const p: any = await r.json();
       const tags: string = Array.isArray(p.tags) ? p.tags.join(" ") : String(p.tags ?? "");
@@ -76,11 +124,11 @@ export function crearTienda(fetchFn: typeof fetch = fetch): Tienda {
     async buscar(consulta) {
       const q = consulta.trim().slice(0, 80);
       if (!q) return [];
-      const url =
-        `${TIENDA}/search/suggest.json?q=${encodeURIComponent(q)}` +
-        "&resources%5Btype%5D=product&resources%5Blimit%5D=6";
-      const r = await fetchFn(url, { headers: ENCABEZADOS });
-      if (!r.ok) throw new Error(`La búsqueda respondió ${r.status}`);
+      const r = await pedir(
+        fetchFn,
+        `/search/suggest.json?q=${encodeURIComponent(q)}&resources%5Btype%5D=product&resources%5Blimit%5D=6`,
+      );
+      if (r.status === 404) return [];
       const d: any = await r.json();
       return (d?.resources?.results?.products ?? []).map((p: any) => ({
         handle: p.handle,

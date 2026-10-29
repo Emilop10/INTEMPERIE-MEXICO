@@ -50,6 +50,26 @@ describe("tienda en vivo", () => {
     expect((await crearTienda(fn).consultar("rifle-x"))?.restringido).toBe(true);
   });
 
+  it("ante un 429 reintenta y luego prueba el dominio myshopify.com", async () => {
+    const pedidas: string[] = [];
+    const fn = (async (url: string) => {
+      pedidas.push(url);
+      if (url.includes("myshopify.com")) {
+        return new Response(JSON.stringify({ handle: "x", title: "X", price: 100, available: true, variants: [] }), { status: 200 });
+      }
+      return new Response("Too Many Requests", { status: 429, headers: { "retry-after": "0" } });
+    }) as unknown as typeof fetch;
+    const p = await crearTienda(fn).consultar("x");
+    expect(p?.titulo).toBe("X");
+    expect(pedidas.filter((u) => u.includes("intemperiemexico.com"))).toHaveLength(3);
+    expect(pedidas.at(-1)).toContain("wfuxvx-yn.myshopify.com/products/x.js");
+  }, 15000);
+
+  it("si todos los intentos fallan, lanza con el último código", async () => {
+    const fn = (async () => new Response("", { status: 429, headers: { "retry-after": "0" } })) as unknown as typeof fetch;
+    await expect(crearTienda(fn).consultar("x")).rejects.toThrow("429");
+  }, 20000);
+
   it("un handle raro no sale a internet; un 404 es 'no existe'", async () => {
     const { fn, pedidas } = fetchFalso({});
     const t = crearTienda(fn);

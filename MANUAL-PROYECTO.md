@@ -13923,3 +13923,27 @@ emiliano https://fb.me/2uvhLSaUsCojwMm · caja https://fb.me/1SVYjM0JLqxw69y
 · cual https://fb.me/2GB5ToEEnKTnhbb · combo video
 https://fb.me/23lSPhUmCjFiR4U · combo foto https://fb.me/23n2exwa2jb0hdX.
 
+### §129, continuación: causa real de los pases al dueño, 429 de Shopify (29 oct)
+
+- **Causa, por los correos y los registros nuevos:** Shopify respondió
+  **429** (demasiadas peticiones) a las dos consultas de la ficha y a la
+  búsqueda, en las dos pruebas (28 oct 16:20 y 29 oct 12:50). Shopify
+  limita por dirección IP, y las de salida de Cloudflare Workers son
+  compartidas. Por eso el agente, sin poder leer la ficha, pasó el chat.
+- **Arreglo en `src/tienda.ts`:**
+  - User-Agent de navegador normal y `accept-language`;
+  - reintentos con espera (1.5 s y 3 s, respetando `retry-after`) ante
+    429, 403 o 5xx;
+  - el dominio `wfuxvx-yn.myshopify.com` como segunda vía;
+  - caché de 2 minutos por URL en la caché de Cloudflare (`caches.default`).
+  - Dos pruebas nuevas: 50 de 50.
+- **`/diagnostico?veces=4`** desde el Worker, tres rondas: las 4 fichas y
+  la búsqueda bien (300 ms la primera vez, 5–20 ms con caché). ntfy
+  respondió 200 en esta ocasión (sigue siendo poco confiable sin token).
+- **Hallazgo aparte:** la variable `SHOPIFY_ADMIN_TOKEN` del entorno de
+  la nube trae un valor `shpss_…` (el secreto de la app), no el token de
+  acceso `shpat_…`; Shopify responde 401. Los scripts que la usan desde
+  la nube fallarían. Se le avisó al dueño para que la corrija (sin
+  pegarla en el chat). Con un token válido se podría usar la API de
+  administración, que no limita por IP, como vía principal.
+- Chat del dueño reiniciado para repetir la prueba.

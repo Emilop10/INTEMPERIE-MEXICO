@@ -8,6 +8,7 @@ import { crearAvisador } from "./avisos";
 import { leerConfig, type Env } from "./config";
 import { Control, type Registro } from "./control";
 import { Conversacion } from "./conversacion";
+import { HANDLES_GUIA } from "./generado/conocimiento";
 import { crearTienda } from "./tienda";
 import { extraerEventos, firmaValida, type Evento } from "./webhook";
 import { crearEnviador } from "./whatsapp";
@@ -30,12 +31,24 @@ export default {
       if (url.pathname === "/diagnostico") {
         // Prueba desde este mismo Worker la tienda y ntfy (sin Claude).
         const salida: Record<string, unknown> = {};
-        try {
-          const p = await crearTienda().consultar("combo-okuma-boundary-70-spinning");
-          salida.tienda = p ? { titulo: p.titulo, precio: p.precio, descripcion: p.descripcion.slice(0, 80) } : "no encontrado";
-        } catch (e) {
-          salida.tienda = `error: ${String(e).slice(0, 200)}`;
+        const tienda = crearTienda();
+        const resultados: string[] = [];
+        for (const h of HANDLES_GUIA.slice(0, Number(url.searchParams.get("veces") ?? 3))) {
+          const inicio = Date.now();
+          try {
+            const p = await tienda.consultar(h);
+            resultados.push(`${h}: ${p ? `$${p.precio} ${p.disponible ? "hay" : "agotado"}` : "no existe"} (${Date.now() - inicio} ms)`);
+          } catch (e) {
+            resultados.push(`${h}: ${String(e).slice(0, 120)} (${Date.now() - inicio} ms)`);
+          }
         }
+        try {
+          const b = await tienda.buscar("kit");
+          resultados.push(`buscar "kit": ${b.length} resultados`);
+        } catch (e) {
+          resultados.push(`buscar: ${String(e).slice(0, 120)}`);
+        }
+        salida.tienda = resultados;
         try {
           const r = await fetch(`https://ntfy.sh/${encodeURIComponent(env.NTFY_TEMA ?? "")}`, {
             method: "POST",

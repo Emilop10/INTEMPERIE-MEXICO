@@ -38,6 +38,11 @@
        si el dueño quiere; **conectar el +52 777 327 7340 el 30 oct en la
        noche** (después de la campaña; Kapso marca la coexistencia como
        "Unstable" y avisa de posibles bloqueos temporales de Meta).
+   - 🔴 **`SHOPIFY_ADMIN_TOKEN` del entorno de la nube es inválido (29
+     oct):** trae un `shpss_…` (secreto de la app), no el `shpat_…`;
+     Shopify responde 401. El dueño debe reemplazarlo en el entorno
+     (menú del entorno → Editar). Afecta a cualquier script de Shopify
+     que corra en la nube.
    - **Cómo llegan las llaves a la nube (28 oct):** el dueño las pone como
      variables de entorno del entorno de nube (menú del entorno → Editar):
      `CLOUDFLARE_API_TOKEN` (plantilla "Edit Cloudflare Workers"),
