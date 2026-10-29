@@ -29,6 +29,7 @@ Uso:
     python3 scripts/campana-whatsapp-oct24.py              # ensayo
     python3 scripts/campana-whatsapp-oct24.py --aplicar    # crea en pausa
     python3 scripts/campana-whatsapp-oct24.py --anuncios-foto
+    python3 scripts/campana-whatsapp-oct24.py --anuncios-video   # 29 oct: videos del dueño
 """
 
 import importlib.util
@@ -99,7 +100,64 @@ def anuncios_foto(cuenta, token):
     print(json.dumps({"anuncios": ids, "inicio_conjunto": inicio}, indent=1))
 
 
+VIDEOS = [
+    # (clave, video 9:16 para historias y reels, video 4:5 para feed, texto, título)
+    ("emiliano-video-wa", "2591048991406348", "1732276471183975",
+     "¿Quieres salir a pescar y no sabes qué equipo comprar? Soy Emiliano, de Intemperie México. Armamos kits con caña, "
+     "carrete, hilo y todo lo necesario, listos para usar.\n\nEscríbeme por WhatsApp, cuéntame dónde pescas y te digo "
+     "cuál te conviene.\n\n" + CIERRE, "Te ayudo a escoger tu equipo"),
+    ("caja-video-wa", "2208557973372286", "1113116031511689",
+     "Esto trae el kit: caña Okuma, carrete, hilo, caja, señuelos, anzuelos, plomos y flotadores. Lo abres y te vas a "
+     "pescar.\n\n¿Quieres uno? Escríbenos por WhatsApp.\n\n" + CIERRE, "Kits listos para pescar"),
+    ("cual-video-wa", "1565343995622771", "1456915719741211",
+     "¿Presa, río o mar? Tenemos un kit para cada uno. ¿No sabes cuál? Mándanos mensaje por WhatsApp y te ayudamos a "
+     "escoger.\n\n" + CIERRE, "¿Cuál kit es para ti?"),
+    ("combo-video-wa", "1678053247332699", "1005190099281055",
+     "Caña y carrete Okuma por $999, con envío gratis a todo México.\n\nEscríbenos por WhatsApp y te lo apartamos. "
+     "Pocas piezas.\n\n" + CIERRE, "Caña + carrete Okuma · $999"),
+]
+
+
+def miniatura(token, video_id):
+    tn = kits.meta("GET", f"/{video_id}/thumbnails", token)["data"]
+    return next((t for t in tn if t.get("is_preferred")), tn[0])["uri"]
+
+
+def anuncios_video(cuenta, token):
+    """4 anuncios de video (29 oct): un anuncio por concepto, con el video 4:5 en
+    el feed y el 9:16 en historias y reels (personalización por ubicación)."""
+    ids = {}
+    for clave, v916, v45, texto, titulo in VIDEOS:
+        cta = {"type": "WHATSAPP_MESSAGE", "value": {"app_destination": "WHATSAPP"}}
+        spec = {
+            "videos": [{"video_id": v916, "thumbnail_url": miniatura(token, v916), "adlabels": [{"name": "v916"}]},
+                       {"video_id": v45, "thumbnail_url": miniatura(token, v45), "adlabels": [{"name": "v45"}]}],
+            "bodies": [{"text": texto}], "titles": [{"text": titulo}],
+            "link_urls": [{"website_url": "https://api.whatsapp.com/send"}],
+            "call_to_action_types": ["WHATSAPP_MESSAGE"], "call_to_actions": [cta],
+            "ad_formats": ["SINGLE_VIDEO"], "optimization_type": "PLACEMENT",
+            "asset_customization_rules": [
+                {"customization_spec": {"publisher_platforms": ["facebook"], "facebook_positions": ["feed"]},
+                 "video_label": {"name": "v45"}, "priority": 1},
+                {"customization_spec": {"publisher_platforms": ["facebook"], "facebook_positions": ["story", "facebook_reels"]},
+                 "video_label": {"name": "v916"}, "priority": 2},
+            ],
+        }
+        creativo = kits.meta("POST", f"/{cuenta}/adcreatives", token, {
+            "name": f"IMX | {clave} | Oct29",
+            "object_story_spec": json.dumps({"page_id": kits.PAGE_ID}),
+            "asset_feed_spec": json.dumps(spec)})["id"]
+        ids[clave] = kits.meta("POST", f"/{cuenta}/ads", token, {
+            "name": f"IMX | {clave} | Oct29", "adset_id": CONJUNTO,
+            # En PAUSA: el clasificador de la sesión no deja encender; lo enciende el dueño o la Mac.
+            "creative": json.dumps({"creative_id": creativo}), "status": "PAUSED"})["id"]
+        print(f"  ✓ {clave}: anuncio {ids[clave]}")
+    print(json.dumps(ids, indent=1))
+
+
 def main():
+    if "--anuncios-video" in sys.argv:
+        return anuncios_video(os.environ["META_AD_ACCOUNT_ID"], os.environ["META_ACCESS_TOKEN"])
     if "--anuncios-foto" in sys.argv:
         return anuncios_foto(os.environ["META_AD_ACCOUNT_ID"], os.environ["META_ACCESS_TOKEN"])
     aplicar = "--aplicar" in sys.argv

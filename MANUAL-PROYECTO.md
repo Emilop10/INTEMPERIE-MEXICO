@@ -13806,3 +13806,38 @@ el número de la tienda conectado hará falta otro WhatsApp.
   nube arma los anuncios en pausa.
 - Los videos de Mercado Libre siguen pendientes.
 
+**Videos subidos y anuncios de video creados (29 oct).**
+- **Corrección:** las "3 variantes" son **3 formatos** del mismo video:
+  4:5, 9:16 y 9:16 sin subtítulos. Los conceptos 3 y 4 no tienen versión
+  sin subtítulos. Son 10 archivos, todos "ready", 2160 px de ancho.
+- Los subió el chat nuevo de la Mac:
+
+| Concepto | 4:5 (feed) | 9:16 (historias y reels) | 9:16 sin subtítulos |
+|---|---|---|---|
+| 1 Emiliano (17 s) | 1732276471183975 | 2591048991406348 | 2306189740224875 |
+| 2 Abre la caja (21 s) | 1113116031511689 | 2208557973372286 | 40510405295213306 |
+| 3 ¿Cuál es para ti? (21.5 s) | 1456915719741211 | 1565343995622771 | — |
+| 4 Combo $999 (10 s) | 1005190099281055 | 1678053247332699 | — |
+
+**Revisión de la nube** (miniaturas de Meta, 10 por video): subtítulos con
+palabra clave en verde, placa "Emiliano", contador 1/8 a 8/8, etiquetas
+"Presa y río", "Mar y costa" y "Para empezar", "$999" grande, cierre con
+logo y WhatsApp, y texto dentro de la zona segura. No hay botones falsos
+ni precios de kits. El video 2 incluye tomas de ambiente de un pescador en
+río.
+
+**Anuncios creados en pausa** (`campana-whatsapp-oct24.py --anuncios-video`),
+en el conjunto `120250719524550175`. Cada uno usa el video 4:5 en el feed
+y el 9:16 en historias y reels (personalización por ubicación):
+
+| Anuncio | ID |
+|---|---|
+| emiliano-video-wa | 120250811297920175 |
+| caja-video-wa | 120250811299970175 |
+| cual-video-wa | 120250811301280175 |
+| combo-video-wa | 120250811303420175 |
+
+- Al crearse, Meta los dejó "en revisión" (IN_PROCESS).
+- La tarea de cortes ya los incluye y compara fotos contra videos.
+- **Falta:** que la Mac los encienda.
+

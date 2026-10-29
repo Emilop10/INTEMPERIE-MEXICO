@@ -57,9 +57,9 @@
 0. **🔴 URGENTE (26 oct, MANUAL §127):** venta #1007 del Combo Revenger 2.40.
    - Descontar en el punto de venta la caña RV-S-802M y el carrete RV-80.
 
-0. **(29 oct) Videos de anuncios: LISTOS, 4 conceptos × 3 variantes = 12.** Faltan la
-   subida a Meta (chat nuevo de la Mac) y que la nube arme los anuncios. Los de
-   Mercado Libre siguen pendientes.
+0. **(29 oct) Videos de anuncios subidos y 4 anuncios de video creados en PAUSA**
+   (MANUAL §126). Falta que la Mac los encienda. Los videos de Mercado Libre
+   siguen pendientes.
 0. **Videos (dueño, lunes 26 temprano):** 4 de anuncios
    (`GUIA-VIDEOS-ANUNCIOS-FACEBOOK-INSTAGRAM.md`), que van a la nube, y 8 de
    Mercado Libre más las fotos de los combos
