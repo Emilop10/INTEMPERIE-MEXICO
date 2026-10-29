@@ -22,11 +22,32 @@ export default {
     }
 
     // Administración (llave ADMIN_TOKEN): contadores del mes y reiniciar un chat.
-    if (url.pathname === "/estado" || url.pathname === "/reiniciar") {
+    if (url.pathname === "/estado" || url.pathname === "/reiniciar" || url.pathname === "/diagnostico") {
       if (!env.ADMIN_TOKEN || request.headers.get("authorization") !== `Bearer ${env.ADMIN_TOKEN}`) {
         return new Response("No autorizado", { status: 401 });
       }
       if (url.pathname === "/estado") return Response.json(await control(env).resumen(Date.now()));
+      if (url.pathname === "/diagnostico") {
+        // Prueba desde este mismo Worker la tienda y ntfy (sin Claude).
+        const salida: Record<string, unknown> = {};
+        try {
+          const p = await crearTienda().consultar("combo-okuma-boundary-70-spinning");
+          salida.tienda = p ? { titulo: p.titulo, precio: p.precio, descripcion: p.descripcion.slice(0, 80) } : "no encontrado";
+        } catch (e) {
+          salida.tienda = `error: ${String(e).slice(0, 200)}`;
+        }
+        try {
+          const r = await fetch(`https://ntfy.sh/${encodeURIComponent(env.NTFY_TEMA ?? "")}`, {
+            method: "POST",
+            headers: { Title: "Diagnostico", ...(env.NTFY_TOKEN ? { Authorization: `Bearer ${env.NTFY_TOKEN}` } : {}) },
+            body: "Prueba de diagnostico del agente",
+          });
+          salida.ntfy = { status: r.status, conToken: Boolean(env.NTFY_TOKEN) };
+        } catch (e) {
+          salida.ntfy = `error: ${String(e).slice(0, 200)}`;
+        }
+        return Response.json(salida);
+      }
       const chat = (url.searchParams.get("chat") ?? "").replace(/[^\w.]/g, "");
       if (request.method !== "POST" || !chat) return new Response("POST /reiniciar?chat=<número>", { status: 400 });
       await conversacion(env, chat).reiniciar();

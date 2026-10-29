@@ -213,6 +213,7 @@ export async function atender(
       const pasar = usos.find((b) => b.name === "pasar_al_dueno");
       if (pasar) {
         const i = pasar.input as { motivo: Motivo; resumen: string; producto: string };
+        console.log(`pasar_al_dueno (${i.motivo}): ${String(i.resumen ?? "").slice(0, 200)}`);
         return fin({
           accion: "pasar",
           motivo: MOTIVOS.includes(i.motivo) ? i.motivo : "otro",
@@ -227,8 +228,10 @@ export async function atender(
         usos.map(async (b): Promise<Anthropic.Beta.Messages.BetaToolResultBlockParam> => {
           try {
             const salida = await ejecutarHerramienta(deps.tienda, b.name, b.input, linksEmitidos);
+            console.log(`herramienta ${b.name}: ${JSON.stringify(salida).slice(0, 200)}`);
             return { type: "tool_result", tool_use_id: b.id, content: JSON.stringify(salida) };
           } catch (e) {
+            console.error(`herramienta ${b.name} falló: ${String(e).slice(0, 300)}`);
             return {
               type: "tool_result",
               tool_use_id: b.id,

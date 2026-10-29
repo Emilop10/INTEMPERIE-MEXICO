@@ -13881,3 +13881,19 @@ abierta para generar más ventas").**
 - Monto: lo fijó la nube ($700 más) ante la "pauta abierta"; el dueño
   puede ajustarlo.
 
+### §129, continuación: segunda prueba del agente y diagnóstico (29 oct)
+
+- El dueño repitió la pregunta y el agente volvió a contestar "Déjame
+  confirmarlo…" y mandó el correo; ntfy no llegó.
+- Registros de Cloudflare (API de observabilidad): el webhook llegó y se
+  procesó; el único error anotado fue de ntfy (522 y 429). No había
+  registro de qué herramientas usó Claude.
+- Se agregó al agente un registro por herramienta y por pase al dueño, y
+  un endpoint `/diagnostico` (con `ADMIN_TOKEN`) que prueba la tienda y
+  ntfy desde el propio Worker.
+- `/diagnostico` el 29 oct: **la tienda responde bien** desde el Worker
+  (título, precio y descripción del Boundary); ntfy responde 522 desde
+  Cloudflare.
+- Pendiente: repetir la prueba con los registros nuevos y leer el motivo
+  del correo del 28 oct. Si ntfy sigue fallando con token, cambiar el
+  canal de avisos al celular.
