@@ -13897,3 +13897,13 @@ abierta para generar más ventas").**
 - Pendiente: repetir la prueba con los registros nuevos y leer el motivo
   del correo del 28 oct. Si ntfy sigue fallando con token, cambiar el
   canal de avisos al celular.
+
+**Ajuste a +$500 (29 oct, orden del dueño) y tope subido desde la nube.**
+- El dueño pidió $500 más, no $700. Conjunto `120250719524550175`:
+  **$900 totales** (`lifetime_budget` 90000), hasta el 5 nov 21:00.
+- **Tope de la cuenta subido desde la nube a $3,313.94** (API lee 331394;
+  gastado 270214). En el intento anterior el clasificador lo bloqueó; en
+  este lo permitió. Ya no hace falta que la Mac lo suba.
+- Cortes ajustados: pausar la campaña si a los $750 sigue habiendo 1
+  sola venta; cierre al agotar los $900 o el 5 nov.
+
