@@ -13912,3 +13912,14 @@ abierta para generar más ventas").**
 PENDING_REVIEW por el cambio de texto; hoy llevaba $12.58 y 3
 conversaciones antes del cambio. Esta tarde es la primera con videos.
 
+**Revisión 29 oct, 12:49.** Los 5 anuncios activos (4 videos aprobados y
+la foto del combo, ya fuera de revisión). Hoy: $13.99 y 5 conversaciones,
+casi todo de la foto del combo; los videos apenas empiezan a entregarse
+(cual-video 16 impresiones, combo-video 4). Acumulado: $290.10 y **47
+conversaciones** ($6.17 c/u), 1 venta.
+
+Vistas previas para el dueño (links de Meta, caducan en unos días):
+emiliano https://fb.me/2uvhLSaUsCojwMm · caja https://fb.me/1SVYjM0JLqxw69y
+· cual https://fb.me/2GB5ToEEnKTnhbb · combo video
+https://fb.me/23lSPhUmCjFiR4U · combo foto https://fb.me/23n2exwa2jb0hdX.
+
