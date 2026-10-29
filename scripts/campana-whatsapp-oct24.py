@@ -100,21 +100,28 @@ def anuncios_foto(cuenta, token):
     print(json.dumps({"anuncios": ids, "inicio_conjunto": inicio}, indent=1))
 
 
+# Los videos no prometen "te contesta una persona": desde el 27 oct también
+# contesta el respondedor automático (MANUAL §128-§129).
+CIERRE_VIDEO = ("Envío gratis a todo México · Llega en 2 a 7 días hábiles · Paga con tarjeta, a meses o en efectivo en OXXO. "
+                "Somos tienda de pesca en Cuernavaca; te contestamos de 9 a 10 de la noche.")
+ANUNCIOS_VIDEO = {"emiliano-video-wa": "120250811297920175", "caja-video-wa": "120250811299970175",
+                  "cual-video-wa": "120250811301280175", "combo-video-wa": "120250811303420175"}
+
 VIDEOS = [
     # (clave, video 9:16 para historias y reels, video 4:5 para feed, texto, título)
     ("emiliano-video-wa", "2591048991406348", "1732276471183975",
      "¿Quieres salir a pescar y no sabes qué equipo comprar? Soy Emiliano, de Intemperie México. Armamos kits con caña, "
      "carrete, hilo y todo lo necesario, listos para usar.\n\nEscríbeme por WhatsApp, cuéntame dónde pescas y te digo "
-     "cuál te conviene.\n\n" + CIERRE, "Te ayudo a escoger tu equipo"),
+     "cuál te conviene.\n\n" + CIERRE_VIDEO, "Te ayudo a escoger tu equipo"),
     ("caja-video-wa", "2208557973372286", "1113116031511689",
      "Esto trae el kit: caña Okuma, carrete, hilo, caja, señuelos, anzuelos, plomos y flotadores. Lo abres y te vas a "
-     "pescar.\n\n¿Quieres uno? Escríbenos por WhatsApp.\n\n" + CIERRE, "Kits listos para pescar"),
+     "pescar.\n\n¿Quieres uno? Escríbenos por WhatsApp.\n\n" + CIERRE_VIDEO, "Kits listos para pescar"),
     ("cual-video-wa", "1565343995622771", "1456915719741211",
      "¿Presa, río o mar? Tenemos un kit para cada uno. ¿No sabes cuál? Mándanos mensaje por WhatsApp y te ayudamos a "
-     "escoger.\n\n" + CIERRE, "¿Cuál kit es para ti?"),
+     "escoger.\n\n" + CIERRE_VIDEO, "¿Cuál kit es para ti?"),
     ("combo-video-wa", "1678053247332699", "1005190099281055",
      "Caña y carrete Okuma por $999, con envío gratis a todo México.\n\nEscríbenos por WhatsApp y te lo apartamos. "
-     "Pocas piezas.\n\n" + CIERRE, "Caña + carrete Okuma · $999"),
+     "Pocas piezas.\n\n" + CIERRE_VIDEO, "Caña + carrete Okuma · $999"),
 ]
 
 
@@ -123,30 +130,43 @@ def miniatura(token, video_id):
     return next((t for t in tn if t.get("is_preferred")), tn[0])["uri"]
 
 
+def creativo_video(cuenta, token, clave, v916, v45, texto, titulo, sufijo="Oct29"):
+    cta = {"type": "WHATSAPP_MESSAGE", "value": {"app_destination": "WHATSAPP"}}
+    spec = {
+        "videos": [{"video_id": v916, "thumbnail_url": miniatura(token, v916), "adlabels": [{"name": "v916"}]},
+                   {"video_id": v45, "thumbnail_url": miniatura(token, v45), "adlabels": [{"name": "v45"}]}],
+        "bodies": [{"text": texto}], "titles": [{"text": titulo}],
+        "link_urls": [{"website_url": "https://api.whatsapp.com/send"}],
+        "call_to_action_types": ["WHATSAPP_MESSAGE"], "call_to_actions": [cta],
+        "ad_formats": ["SINGLE_VIDEO"], "optimization_type": "PLACEMENT",
+        "asset_customization_rules": [
+            {"customization_spec": {"publisher_platforms": ["facebook"], "facebook_positions": ["feed"]},
+             "video_label": {"name": "v45"}, "priority": 1},
+            {"customization_spec": {"publisher_platforms": ["facebook"], "facebook_positions": ["story", "facebook_reels"]},
+             "video_label": {"name": "v916"}, "priority": 2},
+        ],
+    }
+    return kits.meta("POST", f"/{cuenta}/adcreatives", token, {
+        "name": f"IMX | {clave} | {sufijo}",
+        "object_story_spec": json.dumps({"page_id": kits.PAGE_ID}),
+        "asset_feed_spec": json.dumps(spec)})["id"]
+
+
+def corregir_texto_video(cuenta, token):
+    """29 oct: cambia el creativo de los 4 anuncios de video (en pausa) por uno
+    con CIERRE_VIDEO, sin "te contesta una persona"."""
+    for clave, v916, v45, texto, titulo in VIDEOS:
+        nuevo = creativo_video(cuenta, token, clave, v916, v45, texto, titulo, "Oct29b")
+        kits.meta("POST", f"/{ANUNCIOS_VIDEO[clave]}", token, {"creative": json.dumps({"creative_id": nuevo})})
+        print(f"  ✓ {clave}: creativo {nuevo}")
+
+
 def anuncios_video(cuenta, token):
     """4 anuncios de video (29 oct): un anuncio por concepto, con el video 4:5 en
     el feed y el 9:16 en historias y reels (personalización por ubicación)."""
     ids = {}
     for clave, v916, v45, texto, titulo in VIDEOS:
-        cta = {"type": "WHATSAPP_MESSAGE", "value": {"app_destination": "WHATSAPP"}}
-        spec = {
-            "videos": [{"video_id": v916, "thumbnail_url": miniatura(token, v916), "adlabels": [{"name": "v916"}]},
-                       {"video_id": v45, "thumbnail_url": miniatura(token, v45), "adlabels": [{"name": "v45"}]}],
-            "bodies": [{"text": texto}], "titles": [{"text": titulo}],
-            "link_urls": [{"website_url": "https://api.whatsapp.com/send"}],
-            "call_to_action_types": ["WHATSAPP_MESSAGE"], "call_to_actions": [cta],
-            "ad_formats": ["SINGLE_VIDEO"], "optimization_type": "PLACEMENT",
-            "asset_customization_rules": [
-                {"customization_spec": {"publisher_platforms": ["facebook"], "facebook_positions": ["feed"]},
-                 "video_label": {"name": "v45"}, "priority": 1},
-                {"customization_spec": {"publisher_platforms": ["facebook"], "facebook_positions": ["story", "facebook_reels"]},
-                 "video_label": {"name": "v916"}, "priority": 2},
-            ],
-        }
-        creativo = kits.meta("POST", f"/{cuenta}/adcreatives", token, {
-            "name": f"IMX | {clave} | Oct29",
-            "object_story_spec": json.dumps({"page_id": kits.PAGE_ID}),
-            "asset_feed_spec": json.dumps(spec)})["id"]
+        creativo = creativo_video(cuenta, token, clave, v916, v45, texto, titulo)
         ids[clave] = kits.meta("POST", f"/{cuenta}/ads", token, {
             "name": f"IMX | {clave} | Oct29", "adset_id": CONJUNTO,
             # En PAUSA: el clasificador de la sesión no deja encender; lo enciende el dueño o la Mac.
@@ -156,6 +176,8 @@ def anuncios_video(cuenta, token):
 
 
 def main():
+    if "--corregir-texto-video" in sys.argv:
+        return corregir_texto_video(os.environ["META_AD_ACCOUNT_ID"], os.environ["META_ACCESS_TOKEN"])
     if "--anuncios-video" in sys.argv:
         return anuncios_video(os.environ["META_AD_ACCOUNT_ID"], os.environ["META_ACCESS_TOKEN"])
     if "--anuncios-foto" in sys.argv:

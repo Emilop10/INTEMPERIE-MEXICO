@@ -13841,3 +13841,22 @@ y el 9:16 en historias y reels (personalización por ubicación):
 - La tarea de cortes ya los incluye y compara fotos contra videos.
 - **Falta:** que la Mac los encienda.
 
+**Revisión final de los anuncios de video (29 oct, pedido del dueño).**
+- **Texto corregido.** El cierre decía "te contesta una persona", pero
+  desde el 27 oct también contesta el respondedor automático (§128–§129).
+  Ahora dice "te contestamos de 9 a 10 de la noche" (`CIERRE_VIDEO`).
+  Con `--corregir-texto-video` se cambiaron los creativos de los 4
+  anuncios, que seguían en pausa: 4526358024342566, 1423880843199362,
+  1489972826315745 y 979956311299374.
+- **Vistas previas de Meta** (feed de Facebook en celular y Reels):
+  - el feed usa el video 4:5 y Reels el 9:16;
+  - el botón dice "WhatsApp" / "Chat on WhatsApp";
+  - los textos se cortan en "…See more" como debe.
+  El navegador de prueba no reproduce video (le falta el códec H.264):
+  es una limitación de la prueba, no del anuncio.
+- **Existencias** de lo que muestran los videos: Kit Revenger 1, Tolten
+  1, Fresh 2 y Boundary 2.
+- **Estado:** emiliano en PENDING_REVIEW; los otros tres en IN_PROCESS.
+- **Pendiente de decidir:** el anuncio de foto que sigue activo
+  (combo-999-wa) todavía dice "te contesta una persona". Termina el 30 oct.
+
