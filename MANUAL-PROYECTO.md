@@ -13907,3 +13907,8 @@ abierta para generar más ventas").**
 - Cortes ajustados: pausar la campaña si a los $750 sigue habiendo 1
   sola venta; cierre al agotar los $900 o el 5 nov.
 
+**Aprobación (29 oct, 12:21).** Los 4 anuncios de video ya están
+**ACTIVE** (aprobados, en entrega). La foto combo-999-wa quedó en
+PENDING_REVIEW por el cambio de texto; hoy llevaba $12.58 y 3
+conversaciones antes del cambio. Esta tarde es la primera con videos.
+
