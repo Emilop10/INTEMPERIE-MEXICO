@@ -16,6 +16,7 @@ export interface Env {
   NTFY_TOKEN?: string; // token de la cuenta gratis de ntfy.sh (tk_...)
   ADMIN_TOKEN?: string; // para /estado y /reiniciar
   NUMEROS_PRUEBA?: string; // "5217771234567,52..." solo dígitos, separados por coma
+  MENSAJES_AUTOMATICOS?: string; // textos automáticos de la app (bienvenida, ausencia), separados por " | "
   META_VERIFY_TOKEN?: string; // solo PROVEEDOR=meta
 
   // Variables públicas
@@ -46,6 +47,7 @@ export interface Config {
   esperaMs: number;
   seguimiento: boolean;
   numerosPrueba: Set<string>;
+  mensajesAutomaticos: string[]; // normalizados
   avisoCorreo: string;
   topes: {
     claudeMesUsd: number;
@@ -53,6 +55,16 @@ export interface Config {
     mensajesKapsoMes: number;
     respuestasMetaMes: number;
   };
+}
+
+/** Para comparar textos: minúsculas, sin acentos, sin emojis ni espacios dobles. */
+export function normalizar(texto: string): string {
+  return texto
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9ñ¿?¡!.,:;()$%+-]+/g, " ")
+    .trim();
 }
 
 function numero(valor: string | undefined, porDefecto: number): number {
@@ -86,6 +98,10 @@ export function leerConfig(env: Env): Config {
         .map((n) => n.replace(/\D/g, ""))
         .filter(Boolean),
     ),
+    mensajesAutomaticos: (env.MENSAJES_AUTOMATICOS ?? "")
+      .split("|")
+      .map(normalizar)
+      .filter(Boolean),
     avisoCorreo: env.AVISO_CORREO?.trim() || "admin@intemperiemexico.com",
     topes: {
       claudeMesUsd: numero(env.TOPE_CLAUDE_MES_USD, 90),

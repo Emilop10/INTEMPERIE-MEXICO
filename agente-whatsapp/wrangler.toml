@@ -34,6 +34,9 @@ MODELO = "claude-sonnet-5-5"
 PAUSA_HORAS = "12"
 ESPERA_SEGUNDOS = "8"
 SEGUIMIENTO = "si"
+# Textos que la app de WhatsApp Business manda sola (bienvenida, ausencia),
+# separados por " | ". Un eco con uno de estos no cuenta como que el dueño contestó.
+MENSAJES_AUTOMATICOS = "¡Hola! Aquí Alcampo Cuernavaca. Cuéntanos qué viste o qué estás buscando y con gusto te ayudamos. Si es cartucho, pásanos calibre y medida."
 TOPE_CLAUDE_MES_USD = "90"
 TOPE_CLAUDE_DIA_USD = "5"
 TOPE_MENSAJES_KAPSO_MES = "1900"

@@ -8,6 +8,7 @@ import type { Avisar } from "./avisos";
 import type { Config } from "./config";
 import type { Almacen, Registro, Verificacion } from "./control";
 import type { Tienda } from "./tienda";
+import { normalizar } from "./config";
 import { enHorario, enmascarar, horaMexico } from "./util";
 import type { Destino, Evento } from "./webhook";
 import type { EnviarTexto } from "./whatsapp";
@@ -17,6 +18,7 @@ const DIA = 24 * HORA;
 const RETENCION = 30 * DIA;
 const VENTANA_META = 24 * HORA; // fuera de 24 h solo se puede con plantilla (de pago)
 const SEGUIMIENTO_TRAS = 2 * HORA;
+const AUTO_MS = 5000; // un humano no contesta en menos de 5 s
 const MAX_HISTORIAL = 30;
 
 export const TEXTOS = {
@@ -110,6 +112,21 @@ export class Conversacion {
     await this.d.control.registrar({ entradas: 1 }, ahora);
 
     if (ev.tipo === "eco") {
+      // La app del celular manda sola el mensaje de bienvenida o de ausencia:
+      // eso no es el dueño contestando. Se reconoce por el texto configurado
+      // o porque sale en menos de 5 s después del mensaje del cliente.
+      const automatico =
+        this.d.config.mensajesAutomaticos.includes(normalizar(ev.texto)) ||
+        (e.ultimoCliente > 0 && Math.abs(ev.ts - e.ultimoCliente) < AUTO_MS) ||
+        e.pendientes.some((p) => Math.abs(ev.ts - p.ts) < AUTO_MS);
+      if (automatico) {
+        // Se anota solo si ya hay plática: el historial debe empezar con el cliente.
+        if (e.historial.length && !e.pendientes.length) {
+          e.historial.push({ role: "assistant", content: `[Mensaje automático de la app]: ${ev.texto}` });
+        }
+        await this.guardar(e);
+        return;
+      }
       // El dueño contestó desde el celular: el agente se calla en este chat.
       e.pausaHasta = ahora + this.d.config.pausaMs;
       e.seguimiento = null;

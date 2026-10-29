@@ -91,6 +91,25 @@ describe("conversación", () => {
     expect(msgs).toContainEqual({ role: "assistant", content: "[Emiliano contestó desde el celular]: Hola, soy Emiliano" });
   });
 
+  it("el mensaje de bienvenida automático de la app no pausa al agente", async () => {
+    const claude = claudeConGuion([texto("¡Hola! 🎣 ¿Qué tipo de pesca haces?")]);
+    const cfg = config({ MENSAJES_AUTOMATICOS: "¡Hola! Aquí Alcampo Cuernavaca. Cuéntanos qué viste." });
+    const { conv, enviados } = armarConversacion({ claude, config: cfg });
+    const ev = mensaje("¡Hola! Quiero más información");
+    await conv.recibir({ ...ev, ts: MEDIODIA }, MEDIODIA);
+    // Eco con el texto configurado (llega 20 s después, para que no cuente el tiempo).
+    await conv.recibir({ tipo: "eco", chat: ev.chat, id: "eco-bienvenida", ts: MEDIODIA + 20_000, texto: "¡Hola! Aquí Alcampo Cuernavaca. Cuéntanos qué viste." }, MEDIODIA + 20_000);
+    // Eco de texto desconocido pero 2 s después del cliente: también automático.
+    await conv.recibir({ tipo: "eco", chat: ev.chat, id: "eco-rapido", ts: MEDIODIA + 2000, texto: "Gracias por escribirnos" }, MEDIODIA + 2000);
+    await conv.alarma(MEDIODIA + 21_000);
+    expect(enviados).toHaveLength(1);
+    // Un eco humano sí pausa.
+    await conv.recibir({ tipo: "eco", chat: ev.chat, id: "eco-humano", ts: MEDIODIA + 60_000, texto: "Hola, soy Emiliano" }, MEDIODIA + 60_000);
+    await conv.recibir(mensaje("¿y el precio?", undefined, ev.chat), MEDIODIA + 90_000);
+    await conv.alarma(MEDIODIA + 90_000 + ESPERA);
+    expect(claude.llamadas).toHaveLength(1);
+  });
+
   it("pasa al dueño: espera para el cliente, aviso y pausa", async () => {
     const claude = claudeConGuion([
       herramienta("pasar_al_dueno", { motivo: "descuento", resumen: "Pide descuento", producto: "Kit Tundra" }),

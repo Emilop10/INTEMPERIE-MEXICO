@@ -42,8 +42,9 @@
      Phone number ID 742563942272641, WABA 2146162969186009, coexistencia.
      El nombre se queda "Alcampo Cuernavaca" (decisión del dueño: usa el
      número para sus dos negocios); el agente se calla con los clientes
-     de Alcampo (`otro_negocio`). Falta que el dueño diga a qué se
-     dedica Alcampo para afinar la instrucción. Falta: token de
+     de Alcampo (`otro_negocio`). Alcampo es la tienda física (cartuchos, etc.); el agente ignora el
+     mensaje de bienvenida automático de la app (`MENSAJES_AUTOMATICOS`).
+     Si el dueño cambia ese texto en la app, actualizarlo y desplegar. Falta: token de
      ntfy, revisar borradores por correo y pasar a `activo` (entonces
      apagar el respondedor de la Mac en WhatsApp y re-vincular WhatsApp
      Web). Mandar un mensaje desde la app cada 14 días.

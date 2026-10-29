@@ -14047,3 +14047,36 @@ el agente contestaría como tienda de pesca. Se le enseñó a distinguir:
 
 **Pendiente:** que el dueño diga a qué se dedica Alcampo, para afinar la
 instrucción (hoy solo dice "otro negocio, no de pesca").
+
+### §129, continuación: Alcampo es la tienda física y la app saluda sola (29 oct, 17:55)
+
+**Lo que aclaró el dueño (con captura):** Alcampo Cuernavaca es su
+**tienda física** (vende cartuchos, entre otras cosas) y comparte el
+WhatsApp con Intemperie. El nombre del número se queda "Alcampo
+Cuernavaca". La app de WhatsApp Business manda sola el **mensaje de
+bienvenida** "¡Hola! Aquí Alcampo Cuernavaca. Cuéntanos qué viste o qué
+estás buscando y con gusto te ayudamos. Si es cartucho, pásanos calibre y
+medida." (se vio en un chat que llegó del anuncio "Caña + carrete Okuma ·
+$999"). Y confirmó que en borrador le llega un correo por cada mensaje:
+es lo esperado hasta pasar a activo.
+
+**Problema detectado:** ese mensaje automático llega al agente como eco
+del celular, y lo habría tomado como "el dueño ya contestó": se habría
+callado 12 h en cada chat nuevo.
+
+**Arreglo:**
+
+- Variable `MENSAJES_AUTOMATICOS` (wrangler.toml) con el texto de la
+  bienvenida; un eco con ese texto (comparado sin acentos ni emojis) o
+  que llegue **menos de 5 s** después del mensaje del cliente se trata
+  como automático: no pausa, y se anota en el historial como "[Mensaje
+  automático de la app]".
+- `INSTRUCCIONES-AGENTE.md`: Alcampo es la tienda física del mismo
+  dueño; el saludo automático no impide atender; lo de pesca y la tienda
+  en línea lo atiende el agente; lo de Alcampo (cartuchos, etc.) se calla
+  (`otro_negocio`).
+- Prueba nueva (bienvenida configurada, eco rápido, eco humano): 52 de
+  52. Desplegado, sigue en `borrador`.
+
+**Si el dueño cambia el mensaje de bienvenida o de ausencia de la app,**
+hay que actualizar `MENSAJES_AUTOMATICOS` y volver a desplegar.
