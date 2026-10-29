@@ -13994,9 +13994,9 @@ celular → chats compartidos.
 estuviera en la cuenta de WhatsApp "Alcampo Cuernavaca" que vive en el
 portafolio de Intemperie (§126, 24 oct), y Meta lo registró ahí. En
 coexistencia, lo que ven los clientes es el perfil de la app del celular;
-se pidió al dueño confirmar que ahí sigue "Intemperie México". Se envió
-por Kapso una **solicitud de cambio de nombre a "Intemperie México"**
-(Meta la revisa en 24–48 h).
+se pidió al dueño confirmar que ahí sigue "Intemperie México". Kapso
+permite pedir a Meta el cambio de nombre (`display_name_requests`, la
+revisa en 24–48 h); **no se envió**: espera el "sí" del dueño.
 
 **Pago a Meta:** Kapso preguntó cómo pagar las tarifas de Meta ("Use
 Kapso credits" o "Pay Meta directly"); no se eligió nada (regla de $0).
