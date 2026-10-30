@@ -14106,3 +14106,34 @@ límite de Shopify contra las IP de Cloudflare es más duro de lo previsto.
   entre centros de datos.
 - Pruebas nuevas: caché 2 min, copia vieja con edad, vía admin con token,
   token inválido ignorado. **56 de 56.** Desplegado, sigue en `borrador`.
+
+### §129, continuación: verificación de "anuncio / cliente de Alcampo / cartuchos" (30 oct)
+
+**Qué pidió el dueño:** antes de activar, comprobar que el agente
+distingue si el cliente llega de un anuncio, si ya conoce la tienda
+física (Alcampo) o si pregunta por cartuchos.
+
+**Evidencia real:** el registro del 29 oct 21:48 dice "Cliente de
+anuncio pide…": Meta manda el dato del anuncio (`referral`) con el
+mensaje y el agente lo recibe en producción.
+
+**Reglas afinadas en `INSTRUCCIONES-AGENTE.md`:** son de Alcampo, y el
+agente se calla (`otro_negocio`): cartuchos, municiones, calibres, armas
+y diábolos aunque la pregunta sea sencilla; horario, dirección, "¿están
+abiertos?", existencias en tienda, apartados para recoger, pagos en
+mostrador, reparaciones; y clientes habituales ("lo que te encargué").
+`scripts/simular.ts` acepta `--anuncio` y `--nombre` para simular el
+contexto.
+
+**Simulación con Claude real (`npm run simular`):**
+
+| Mensaje | Resultado |
+|---|---|
+| Desde el anuncio "Caña + carrete Okuma · $999": "¡Hola! Quiero más información" | "¡Hola! 🎣 … Vi que nos escribes por el combo de caña y carrete Okuma… ¿qué tipo de pesca haces?" |
+| "Buenas, ¿tienen cartuchos calibre 12 de 2 3/4?" | `otro_negocio`: se calla |
+| "¿A qué hora cierran hoy? Voy a pasar por lo que te encargué" | `otro_negocio`: se calla |
+| "Hola" → "Es que vi en Facebook unos kits de pesca" | neutro ("¿qué andas buscando?") → atención de pesca |
+| "Necesito munición .22 para mi rifle, ¿cuánto sale la caja?" | `otro_negocio`: se calla |
+
+Costo de las 5 pruebas: $0.06 USD. 56 de 56 pruebas; desplegado, sigue
+en `borrador`.
