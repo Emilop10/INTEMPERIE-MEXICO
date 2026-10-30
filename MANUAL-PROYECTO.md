@@ -14080,3 +14080,29 @@ callado 12 h en cada chat nuevo.
 
 **Si el dueño cambia el mensaje de bienvenida o de ausencia de la app,**
 hay que actualizar `MENSAJES_AUTOMATICOS` y volver a desplegar.
+
+### §129, continuación: caché persistente del catálogo y vía con token (29–30 oct)
+
+**Por qué:** con el número real ya conectado, a las 21:47 del 29 oct
+Shopify volvió a responder **429** a un cliente del anuncio (caña y
+carrete para bagre), pese a los reintentos y al segundo dominio. El
+límite de Shopify contra las IP de Cloudflare es más duro de lo previsto.
+
+**Qué se hizo (`src/tienda.ts`, `src/worker.ts`):**
+
+- **Caché persistente del catálogo** en el Durable Object de control
+  (`cat:producto:<handle>`, `cat:buscar:<q>`): fresca 2 min; si Shopify
+  falla, se usa la última copia hasta 24 h y Claude recibe la nota
+  "precio y existencia de hace N min; si mandas link de pago, di 'si
+  sigue disponible'".
+- **Cron cada 5 min** (`[triggers] crons`) que refresca las 8 fichas de
+  la guía, para que casi siempre haya copia reciente.
+- **API de administración de Shopify** como segunda fuente, solo si
+  existe el secreto `SHOPIFY_ADMIN_TOKEN` y empieza con `shpat_`
+  (REST `products.json?handle=` y GraphQL para buscar). No limita por IP.
+  Hoy no hay token válido (el del entorno es un `shpss_`); se activa
+  sola cuando el dueño lo corrija.
+- Se quitó la caché por colo (`caches.default`), que no se compartía
+  entre centros de datos.
+- Pruebas nuevas: caché 2 min, copia vieja con edad, vía admin con token,
+  token inválido ignorado. **56 de 56.** Desplegado, sigue en `borrador`.

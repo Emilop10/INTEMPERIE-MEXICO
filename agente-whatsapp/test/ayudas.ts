@@ -49,6 +49,9 @@ export function tiendaFalsa(productos: Producto[]): Tienda {
     async consultar(h) {
       return productos.find((p) => p.handle === h) ?? null;
     },
+    async refrescar(h) {
+      return productos.find((p) => p.handle === h) ?? null;
+    },
     async buscar(q) {
       return productos
         .filter((p) => p.titulo.toLowerCase().includes(q.toLowerCase()))

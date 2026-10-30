@@ -91,6 +91,60 @@ describe("tienda en vivo", () => {
   });
 });
 
+describe("caché persistente y API con token", () => {
+  function cacheMemoria() {
+    const m = new Map<string, { valor: unknown; ts: number }>();
+    return { get: async (c: string) => m.get(c), put: async (c: string, valor: unknown, ts: number) => void m.set(c, { valor, ts }), m };
+  }
+  const ficha = { handle: "x", title: "X", price: 99900, available: true, variants: [{ id: 1, title: "D", price: 99900, available: true }] };
+
+  it("sirve de la caché 2 min y luego vuelve a consultar", async () => {
+    let t = 1_000_000;
+    const pedidas: string[] = [];
+    const fn = (async (url: string) => (pedidas.push(url), new Response(JSON.stringify(ficha)))) as unknown as typeof fetch;
+    const tienda = crearTienda({ fetchFn: fn, cache: cacheMemoria(), ahora: () => t });
+    await tienda.consultar("x");
+    await tienda.consultar("x");
+    expect(pedidas).toHaveLength(1);
+    t += 3 * 60_000;
+    await tienda.consultar("x");
+    expect(pedidas).toHaveLength(2);
+  });
+
+  it("si Shopify falla, usa la copia vieja y dice su edad", async () => {
+    let t = 1_000_000;
+    let falla = false;
+    const fn = (async () => (falla ? new Response("", { status: 429, headers: { "retry-after": "0" } }) : new Response(JSON.stringify(ficha)))) as unknown as typeof fetch;
+    const tienda = crearTienda({ fetchFn: fn, cache: cacheMemoria(), ahora: () => t });
+    await tienda.consultar("x");
+    falla = true;
+    t += 10 * 60_000;
+    const p = await tienda.consultar("x");
+    expect(p?.precio).toBe(999);
+    expect(p?.edadMin).toBe(10);
+  }, 30000);
+
+  it("con token shpat_, al fallar la tienda usa la API de administración", async () => {
+    const pedidas: string[] = [];
+    const fn = (async (url: string, init?: RequestInit) => {
+      pedidas.push(url);
+      if (url.includes("/admin/api/")) {
+        expect(new Headers(init?.headers).get("x-shopify-access-token")).toBe("shpat_abc");
+        return new Response(JSON.stringify({ products: [{ handle: "x", title: "X admin", status: "active", product_type: "Combos", tags: "", body_html: "<p>Hola</p>", variants: [{ id: 7, title: "D", price: "999.00", compare_at_price: null, inventory_quantity: 2, inventory_management: "shopify", inventory_policy: "deny" }] }] }));
+      }
+      return new Response("", { status: 429, headers: { "retry-after": "0" } });
+    }) as unknown as typeof fetch;
+    const p = await crearTienda({ fetchFn: fn, adminToken: "shpat_abc" }).consultar("x");
+    expect(p).toMatchObject({ titulo: "X admin", precio: 999, disponible: true, descripcion: "Hola", variantes: [{ id: 7, precio: 999, disponible: true }] });
+    expect(pedidas.at(-1)).toContain("/admin/api/");
+  }, 30000);
+
+  it("un token que no es shpat_ no se usa", async () => {
+    const fn = (async () => new Response("", { status: 429, headers: { "retry-after": "0" } })) as unknown as typeof fetch;
+    await expect(crearTienda({ fetchFn: fn, adminToken: "shpss_secreto" }).consultar("x")).rejects.toThrow("429");
+  }, 30000);
+});
+
 describe("encabezados", () => {
   it("manda User-Agent (sin él Shopify responde 403 desde Cloudflare)", async () => {
     let ua = "";

@@ -346,6 +346,9 @@ export async function ejecutarHerramienta(
         ficha: p.ficha,
         descripcion: p.descripcion || undefined,
         envio: p.precio >= 799 ? "gratis" : "$189",
+        nota: p.edadMin
+          ? `Shopify no respondió; precio y existencia son de hace ${p.edadMin} min. Si mandas link de pago, di "si sigue disponible".`
+          : undefined,
         variantes:
           p.variantes.length > 1
             ? p.variantes.map((v) => ({ id: v.id, titulo: v.titulo, precio: v.precio, disponible: v.disponible }))

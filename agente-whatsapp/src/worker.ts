@@ -14,6 +14,19 @@ import { extraerEventos, firmaValida, type Evento } from "./webhook";
 import { crearEnviador } from "./whatsapp";
 
 export default {
+  // Cron (wrangler.toml): refresca las fichas de la guía para tenerlas en
+  // caché aunque Shopify esté limitando.
+  async scheduled(_evento: ScheduledController, env: Env, ctx: ExecutionContext): Promise<void> {
+    const tienda = tiendaDe(env, control(env));
+    ctx.waitUntil(
+      Promise.all(
+        HANDLES_GUIA.map((h) =>
+          tienda.refrescar(h).catch((e) => console.error(`cron: no se pudo refrescar ${h}: ${String(e).slice(0, 120)}`)),
+        ),
+      ),
+    );
+  },
+
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
     const config = leerConfig(env);
@@ -31,13 +44,13 @@ export default {
       if (url.pathname === "/diagnostico") {
         // Prueba desde este mismo Worker la tienda y ntfy (sin Claude).
         const salida: Record<string, unknown> = {};
-        const tienda = crearTienda();
+        const tienda = tiendaDe(env, control(env));
         const resultados: string[] = [];
         for (const h of HANDLES_GUIA.slice(0, Number(url.searchParams.get("veces") ?? 3))) {
           const inicio = Date.now();
           try {
             const p = await tienda.consultar(h);
-            resultados.push(`${h}: ${p ? `$${p.precio} ${p.disponible ? "hay" : "agotado"}` : "no existe"} (${Date.now() - inicio} ms)`);
+            resultados.push(`${h}: ${p ? `$${p.precio} ${p.disponible ? "hay" : "agotado"}${p.edadMin ? ` (copia de hace ${p.edadMin} min)` : ""}` : "no existe"} (${Date.now() - inicio} ms)`);
           } catch (e) {
             resultados.push(`${h}: ${String(e).slice(0, 120)} (${Date.now() - inicio} ms)`);
           }
@@ -109,6 +122,13 @@ function conversacion(env: Env, chat: string) {
   return ns.get(ns.idFromName(chat));
 }
 
+function tiendaDe(env: Env, ctrl: DurableObjectStub<ControlDO>) {
+  return crearTienda({
+    cache: { get: (c) => ctrl.cacheGet(c), put: (c, v, t) => ctrl.cachePut(c, v, t) },
+    adminToken: env.SHOPIFY_ADMIN_TOKEN,
+  });
+}
+
 function control(env: Env) {
   const ns = env.CONTROL as DurableObjectNamespace<ControlDO>;
   return ns.get(ns.idFromName("global"));
@@ -129,7 +149,7 @@ export class ConversacionDO extends DurableObject<Env> {
         primerAviso: (clave, ahora) => ctrl.primerAviso(clave, ahora),
       },
       llamar: (params) => claude.beta.messages.create(params),
-      tienda: crearTienda(),
+      tienda: tiendaDe(env, ctrl),
       enviar: crearEnviador(config, env.WHATSAPP_API_KEY),
       avisar: crearAvisador({
         resendApiKey: env.RESEND_API_KEY,
@@ -170,6 +190,14 @@ export class ControlDO extends DurableObject<Env> {
 
   async primerAviso(clave: string, ahora: number): Promise<boolean> {
     return this.nucleo().primerAviso(clave, ahora);
+  }
+
+  async cacheGet(clave: string): Promise<{ valor: unknown; ts: number } | undefined> {
+    return this.ctx.storage.get<{ valor: unknown; ts: number }>(`cat:${clave}`);
+  }
+
+  async cachePut(clave: string, valor: unknown, ts: number): Promise<void> {
+    await this.ctx.storage.put(`cat:${clave}`, { valor, ts });
   }
 
   async resumen(ahora: number) {

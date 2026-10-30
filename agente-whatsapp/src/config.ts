@@ -9,6 +9,7 @@ export interface Env {
 
   // Secretos
   ANTHROPIC_API_KEY: string;
+  SHOPIFY_ADMIN_TOKEN?: string; // opcional, shpat_…: la tienda por la API de administración
   WHATSAPP_API_KEY: string; // llave de Kapso (o token de Meta si PROVEEDOR=meta)
   WEBHOOK_SECRET: string; // secret_key del webhook de Kapso (o App Secret de Meta)
   RESEND_API_KEY?: string;
