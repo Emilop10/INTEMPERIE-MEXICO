@@ -28,6 +28,7 @@ export interface Env {
   AVISO_CORREO?: string;
   MODELO?: string;
   PAUSA_HORAS?: string;
+  RESCATE_MINUTOS?: string; // si el cliente vuelve a escribir y el dueño no contesta en N min, el agente retoma
   ESPERA_SEGUNDOS?: string;
   SEGUIMIENTO?: string; // si | no
   TOPE_CLAUDE_MES_USD?: string;
@@ -45,6 +46,7 @@ export interface Config {
   phoneNumberId: string;
   modelo: string;
   pausaMs: number;
+  rescateMs: number;
   esperaMs: number;
   seguimiento: boolean;
   numerosPrueba: Set<string>;
@@ -91,6 +93,7 @@ export function leerConfig(env: Env): Config {
     phoneNumberId: env.WHATSAPP_PHONE_NUMBER_ID?.trim() ?? "",
     modelo: env.MODELO?.trim() || "claude-sonnet-5-5",
     pausaMs: numero(env.PAUSA_HORAS, 12) * 3600_000,
+    rescateMs: numero(env.RESCATE_MINUTOS, 10) * 60_000,
     esperaMs: numero(env.ESPERA_SEGUNDOS, 8) * 1000,
     seguimiento: (env.SEGUIMIENTO ?? "si").trim() !== "no",
     numerosPrueba: new Set(

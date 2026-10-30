@@ -42,6 +42,9 @@
      atrasados contestados; 3 sin estado los atiende el dueño. **El dueño
      debe apagar el respondedor de la Mac en WhatsApp.** Revisar registros
      (`/estado`, observabilidad de Cloudflare) en unas horas.
+   - **Regla de rescate (30 oct):** si el dueño contesta y el cliente
+     vuelve a escribir sin respuesta en 10 min, el agente retoma
+     (`RESCATE_MINUTOS`). El dueño puede pedir otro valor.
    - 🟢 **Número conectado en Kapso (29 oct 16:43):**
      Phone number ID 742563942272641, WABA 2146162969186009, coexistencia.
      El nombre se queda "Alcampo Cuernavaca" (decisión del dueño: usa el

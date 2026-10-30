@@ -51,6 +51,9 @@ export interface Estado {
   pendientes: { id: string; texto: string; ts: number }[];
   vistos: string[];
   pausaHasta: number;
+  /** "dueno": contestó él desde el celular (con rescate); "pase": el agente se lo pasó (sin rescate). */
+  pausaMotivo?: "dueno" | "pase";
+  pausaDesde?: number;
   ultimaActividad: number;
   ultimoCliente: number;
   procesarEn: number | null;
@@ -133,7 +136,11 @@ export class Conversacion {
         return;
       }
       // El dueño contestó desde el celular: el agente se calla en este chat.
+      // Si el cliente vuelve a escribir y el dueño no contesta en
+      // RESCATE_MINUTOS, el agente retoma (ver procesar()).
       e.pausaHasta = ahora + this.d.config.pausaMs;
+      e.pausaMotivo = "dueno";
+      e.pausaDesde = ahora;
       e.seguimiento = null;
       if (e.pendientes.length) {
         e.historial.push({ role: "user", content: e.pendientes.map((p) => p.texto).join("\n") });
@@ -151,7 +158,8 @@ export class Conversacion {
     e.ultimoCliente = ahora;
     e.seguimiento = null;
     e.pendientes.push({ id: ev.id, texto: ev.texto.slice(0, 2000), ts: ev.ts || ahora });
-    e.procesarEn = ahora + this.d.config.esperaMs;
+    const enPausaDelDueno = ahora < e.pausaHasta && e.pausaMotivo === "dueno";
+    e.procesarEn = ahora + (enPausaDelDueno ? this.d.config.rescateMs : this.d.config.esperaMs);
     await this.guardar(e);
   }
 
@@ -182,8 +190,15 @@ export class Conversacion {
     if (!nuevos) return;
 
     if (ahora < e.pausaHasta) {
-      e.historial.push({ role: "user", content: nuevos });
-      return;
+      // Rescate: el dueño contestó antes, pero el cliente volvió a escribir y
+      // el dueño no ha respondido desde entonces. El agente retoma.
+      const rescate = e.pausaMotivo === "dueno" && (e.pausaDesde ?? 0) < e.ultimoCliente;
+      if (!rescate) {
+        e.historial.push({ role: "user", content: nuevos });
+        return;
+      }
+      e.pausaHasta = 0;
+      e.pausaMotivo = undefined;
     }
     const permiso = await this.d.control.verificar(ahora);
     if (!permiso.ok) {
@@ -261,6 +276,8 @@ export class Conversacion {
     if (r.motivo === "otro_negocio") {
       console.log(`otro_negocio: ${r.resumen.slice(0, 120)}`);
       e.pausaHasta = ahora + this.d.config.pausaMs;
+      e.pausaMotivo = "pase";
+      e.pausaDesde = ahora;
       e.seguimiento = null;
       return;
     }
@@ -274,6 +291,8 @@ export class Conversacion {
     if (envia && enVentana) await this.mandar(e, textoCliente, ahora);
     e.historial.push({ role: "assistant", content: envia && enVentana ? textoCliente : `${NO_ENVIADO} ${textoCliente}` });
     e.pausaHasta = ahora + this.d.config.pausaMs;
+    e.pausaMotivo = "pase";
+    e.pausaDesde = ahora;
     e.seguimiento = null;
 
     const venta = r.motivo === "ya_pago";
@@ -346,24 +365,52 @@ export class Conversacion {
    * de nuevo los mensajes del cliente (ahora sí se envía, si el modo lo
    * permite y sigue dentro de las 24 h).
    */
-  async reprocesar(ahora: number): Promise<"enviado" | "sin_estado" | "fuera_de_ventana" | "dueno_contesto" | "sin_mensajes"> {
+  async reprocesar(ahora: number, forzar = false): Promise<"enviado" | "sin_estado" | "fuera_de_ventana" | "dueno_contesto" | "sin_mensajes"> {
     const e = await this.cargar();
     if (!e) return "sin_estado";
+    if (forzar) {
+      e.pausaHasta = 0;
+      e.pausaMotivo = undefined;
+    }
     if (ahora < e.pausaHasta) return "dueno_contesto";
     if (ahora - e.ultimoCliente >= VENTANA_META) return "fuera_de_ventana";
+    // Los mensajes del cliente después de la última respuesta (o marca).
+    let desde = 0;
+    e.historial.forEach((m, i) => {
+      if (m.role !== "user") desde = i + 1;
+    });
+    if (desde >= e.historial.length) desde = 0; // nada después: se toma todo
     const textos = e.historial
+      .slice(desde)
       .filter((m) => m.role === "user" && typeof m.content === "string")
       .map((m) => m.content as string);
     if (!textos.length && !e.pendientes.length) return "sin_mensajes";
-    // Se conservan solo las marcas (saludo automático, respuestas del dueño).
-    e.historial = e.historial.filter((m) => m.role === "assistant" && typeof m.content === "string" && m.content.startsWith("[") && !m.content.startsWith(NO_ENVIADO));
-    e.historial = []; // el historial debe empezar con el cliente: se reconstruye en procesar()
+    e.historial = e.historial.slice(0, desde);
+    while (e.historial.length && e.historial[0].role !== "user") e.historial.shift();
     e.pendientes = [...textos.map((t, i) => ({ id: `re-${i}`, texto: t, ts: e.ultimoCliente })), ...e.pendientes];
     e.borrador = null;
     await this.d.control.quitarBorrador(e.chat);
     await this.procesar(e, ahora);
     await this.guardar(e);
     return "enviado";
+  }
+
+  /** Metadatos del chat, sin textos de clientes. */
+  async resumen(ahora: number): Promise<Record<string, unknown>> {
+    const e = await this.cargar();
+    if (!e) return { existe: false };
+    const min = (t: number) => (t ? Math.round((ahora - t) / 60_000) : null);
+    return {
+      existe: true,
+      mensajesHistorial: e.historial.length,
+      roles: e.historial.map((m) => (m.role === "assistant" && typeof m.content === "string" && m.content.startsWith("[") ? m.content.slice(0, 22) : m.role)),
+      pendientes: e.pendientes.length,
+      ultimoClienteHaceMin: min(e.ultimoCliente),
+      pausaMin: e.pausaHasta > ahora ? Math.round((e.pausaHasta - ahora) / 60_000) : 0,
+      procesarEnSeg: e.procesarEn ? Math.round((e.procesarEn - ahora) / 1000) : null,
+      borrador: Boolean(e.borrador),
+      anuncio: Boolean(e.anuncio),
+    };
   }
 
   private async mandar(e: Estado, texto: string, ahora: number): Promise<void> {

@@ -38,11 +38,21 @@ export default {
     }
 
     // Administración (llave ADMIN_TOKEN): contadores del mes y reiniciar un chat.
-    if (["/estado", "/reiniciar", "/diagnostico", "/enviar-borradores", "/reprocesar"].includes(url.pathname)) {
+    if (["/estado", "/reiniciar", "/diagnostico", "/enviar-borradores", "/reprocesar", "/chat"].includes(url.pathname)) {
       if (!env.ADMIN_TOKEN || request.headers.get("authorization") !== `Bearer ${env.ADMIN_TOKEN}`) {
         return new Response("No autorizado", { status: 401 });
       }
       if (url.pathname === "/estado") return Response.json(await control(env).resumen(Date.now()));
+      if (url.pathname === "/chat") {
+        // Metadatos de un chat (sin textos), para diagnóstico.
+        const chat = (url.searchParams.get("chat") ?? "").replace(/[^\w.]/g, "");
+        if (!chat) return new Response("GET /chat?chat=<número>", { status: 400 });
+        if (request.method === "POST" && url.searchParams.get("accion") === "retomar") {
+          // Quita la pausa y vuelve a atender lo que el cliente escribió sin respuesta.
+          return Response.json({ chat, resultado: await conversacion(env, chat).reprocesar(Date.now(), true) });
+        }
+        return Response.json(await conversacion(env, chat).resumen(Date.now()));
+      }
       if (url.pathname === "/reprocesar") {
         // Chats de Kapso cuyo último mensaje es del cliente (sin respuesta del
         // dueño) dentro de las 24 h. GET: lista; POST: los vuelve a atender.
@@ -228,8 +238,12 @@ export class ConversacionDO extends DurableObject<Env> {
     return this.nucleo().enviarBorrador(ahora);
   }
 
-  async reprocesar(ahora: number) {
-    return this.nucleo().reprocesar(ahora);
+  async reprocesar(ahora: number, forzar = false) {
+    return this.nucleo().reprocesar(ahora, forzar);
+  }
+
+  async resumen(ahora: number) {
+    return this.nucleo().resumen(ahora);
   }
 
   /** Borra el chat (historial, pausa y pendientes). Para pruebas. */

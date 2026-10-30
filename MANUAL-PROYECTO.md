@@ -14193,3 +14193,28 @@ mensajes sin contestar de ayer y hoy".
 **Pendiente:** apagar el respondedor de la Mac en WhatsApp (el dueño);
 tokens de Shopify (`shpat_`) y ntfy en el entorno; re-vincular WhatsApp
 Web; revisar los registros en unas horas.
+
+### §129, continuación: revisión a la hora de activar y rescate de 10 min (30 oct, 12:30–12:45)
+
+**Revisión:** 55 webhooks en la última hora; el agente usó la tienda,
+contestó y pasó dos chats al dueño (caña Shimano FX de 10 pies no en
+línea; precio de mayoreo). Kapso marcaba 4 chats "sin respuesta":
+
+- uno con un tipo de mensaje que la API no soporta (encuesta, contacto…):
+  el agente no lo ve; lo atiende el dueño;
+- uno pasado al dueño en borrador (caña de 15 pies para orilla de mar;
+  correo de las 11:29): es del dueño;
+- uno **atorado por la regla de las 12 h**: antes de apagar la Mac, el
+  respondedor de la Mac contestó desde el celular; el agente lo tomó
+  como "el dueño ya atiende" y se calló; el cliente escribió dos veces
+  más sin respuesta.
+
+**Cambio de regla (rescate):** cuando el dueño contesta desde el celular
+el agente se calla, pero si el cliente vuelve a escribir y el dueño no
+responde en **10 minutos** (`RESCATE_MINUTOS`), el agente retoma. Los
+pases del agente al dueño (descuento, pedido, etc.) siguen sin rescate:
+12 h. Nuevo `POST /chat?chat=…&accion=retomar` para destrabar un chat a
+mano; `/reprocesar` ahora solo repite los mensajes del cliente posteriores
+a la última respuesta. Nuevo `GET /chat?chat=…` con metadatos (sin
+textos). 59 de 59 pruebas. Desplegado en activo; el chat atorado se
+retomó a mano.

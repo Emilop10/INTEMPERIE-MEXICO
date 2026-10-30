@@ -36,6 +36,9 @@ WHATSAPP_PHONE_NUMBER_ID = ""
 AVISO_CORREO = "admin@intemperiemexico.com"
 MODELO = "claude-sonnet-5-5"
 PAUSA_HORAS = "12"
+# Si el dueño contestó y el cliente vuelve a escribir, el agente espera estos
+# minutos a que conteste el dueño; si no, retoma.
+RESCATE_MINUTOS = "10"
 ESPERA_SEGUNDOS = "8"
 SEGUIMIENTO = "si"
 # Textos que la app de WhatsApp Business manda sola (bienvenida, ausencia),
