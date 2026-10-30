@@ -217,7 +217,17 @@ export class Conversacion {
     let vuelta;
     try {
       vuelta = await atender(
-        { llamar: this.d.llamar, tienda: this.d.tienda, modelo: this.d.config.modelo },
+        {
+          llamar: this.d.llamar,
+          tienda: this.d.tienda,
+          modelo: this.d.config.modelo,
+          avisar: (nota) =>
+            this.d.avisar({
+              titulo: "Aviso del agente: producto que no está en línea",
+              resumen: `Chat ${enmascarar(e.chat)}: ${nota.slice(0, 120)}`,
+              detalle: `${nota}\n\nChat: ${this.enlace(e)}\n\nEl agente sigue atendiendo este chat; esto es solo para que lo sepas (puede estar en la tienda física).`,
+            }),
+        },
         { historial: e.historial, nuevos, contexto: this.contexto(e, ahora) },
       );
     } catch (err) {

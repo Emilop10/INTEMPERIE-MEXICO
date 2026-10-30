@@ -86,6 +86,19 @@ describe("atender", () => {
     expect(r2.error).toMatch(/armas/);
   });
 
+  it("avisar_al_dueno manda el aviso y la plática sigue", async () => {
+    const avisos: string[] = [];
+    const claude = claudeConGuion([
+      herramienta("avisar_al_dueno", { nota: "Pidió caña Shimano FX 10'; le ofrecí la Tolten 8'" }),
+      texto("Ese modelo no lo manejamos en línea, pero la Blue Fox Tolten de 8' es muy parecida."),
+    ]);
+    const v = await atender({ llamar: claude, tienda, modelo: "claude-sonnet-5-5", avisar: async (n) => void avisos.push(n) }, entrada);
+    expect(avisos).toEqual(["Pidió caña Shimano FX 10'; le ofrecí la Tolten 8'"]);
+    expect(v.resultado).toMatchObject({ accion: "responder" });
+    const tr = (claude.llamadas[1].messages.at(-1)!.content as any)[0];
+    expect(JSON.parse(tr.content).ok).toBe(true);
+  });
+
   it("pasar al dueño, no responder y negativa", async () => {
     const pasar = await atender(
       {

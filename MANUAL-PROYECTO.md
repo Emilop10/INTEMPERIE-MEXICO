@@ -14218,3 +14218,31 @@ mano; `/reprocesar` ahora solo repite los mensajes del cliente posteriores
 a la última respuesta. Nuevo `GET /chat?chat=…` con metadatos (sin
 textos). 59 de 59 pruebas. Desplegado en activo; el chat atorado se
 retomó a mano.
+
+### §129, continuación: si no hay el producto, ofrece lo más parecido (30 oct, 13:00)
+
+**Qué pidió el dueño:** que, cuando un producto no esté (en línea o
+agotado), el agente analice y recomiende una opción similar en vez de
+dejar al cliente esperando.
+
+**Qué se hizo:**
+
+- `INSTRUCCIONES-AGENTE.md`, sección "Si no está o está agotado": entender
+  qué busca (tipo, uso, medida, marca, presupuesto; investigar en
+  internet si no conoce el modelo), buscar en la tienda con 2–3
+  búsquedas distintas, confirmar con `consultar_producto` los 1–2
+  candidatos disponibles, y contestar con honestidad ("no lo manejamos
+  en línea") y una recomendación concreta con precio en vivo y ficha.
+  Solo si no hay nada parecido pasa al dueño.
+- Herramienta nueva **`avisar_al_dueno`**: correo a Emiliano sin
+  detener la plática ("Aviso del agente: producto que no está en
+  línea"), con qué pidieron y qué se ofreció, por si lo tiene en la
+  tienda física. 60 de 60 pruebas.
+- Simulación con Claude real:
+  - "caña Shimano FX de 10 pies para agua dulce": avisó al dueño y
+    recomendó la Rapala Corux 7'10" ($599), explicando por qué, y
+    mencionó la Portada 11' ($649) como alternativa larga ($0.06, 19 s);
+  - "combo Okuma Revenger 2.40 + RV-80 para mar" (agotado): avisó y
+    recomendó el Kit Tolten 8' Mar y Costa ($1,209) con lo que incluye
+    ($0.03, 10 s).
+- Desplegado en activo.

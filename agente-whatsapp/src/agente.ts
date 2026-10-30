@@ -104,6 +104,20 @@ const HERRAMIENTAS: Anthropic.Beta.Messages.BetaTool[] = [
     },
   },
   {
+    name: "avisar_al_dueno",
+    description:
+      "Manda un aviso a Emiliano sin detener la plática (tú sigues contestando). Úsala cuando pidan algo que no está en la tienda en línea y le ofreciste una alternativa, o cuando haya un dato que él deba saber.",
+    strict: true,
+    input_schema: {
+      type: "object",
+      properties: {
+        nota: { type: "string", description: "Una o dos líneas: qué pidió el cliente y qué le ofreciste. Sin nombres ni teléfonos." },
+      },
+      required: ["nota"],
+      additionalProperties: false,
+    },
+  },
+  {
     name: "no_responder",
     description: "No contestar este mensaje: spam, groserías, sin sentido, o un cierre que no pide respuesta.",
     strict: true,
@@ -171,7 +185,7 @@ const MAX_LLAMADAS = 5;
 const DOMINIOS_PERMITIDOS = /^(https?:\/\/)?(www\.)?(intemperiemexico\.com|wa\.me)(\/|$)/i;
 
 export async function atender(
-  deps: { llamar: LlamarClaude; tienda: Tienda; modelo: string },
+  deps: { llamar: LlamarClaude; tienda: Tienda; modelo: string; avisar?: (nota: string) => Promise<void> },
   entrada: { historial: MensajeHistorial[]; nuevos: string; contexto: string },
 ): Promise<Vuelta> {
   const mensajes: MensajeHistorial[] = [
@@ -232,7 +246,10 @@ export async function atender(
       const resultados = await Promise.all(
         usos.map(async (b): Promise<Anthropic.Beta.Messages.BetaToolResultBlockParam> => {
           try {
-            const salida = await ejecutarHerramienta(deps.tienda, b.name, b.input, linksEmitidos);
+            const salida =
+              b.name === "avisar_al_dueno"
+                ? await avisarDueno(deps.avisar, b.input)
+                : await ejecutarHerramienta(deps.tienda, b.name, b.input, linksEmitidos);
             console.log(`herramienta ${b.name}: ${JSON.stringify(salida).slice(0, 200)}`);
             return { type: "tool_result", tool_use_id: b.id, content: JSON.stringify(salida) };
           } catch (e) {
@@ -321,6 +338,14 @@ export function revisarLinks(texto: string, linksEmitidos: Set<string>): string 
     }
   }
   return null;
+}
+
+async function avisarDueno(avisar: ((nota: string) => Promise<void>) | undefined, entrada: unknown): Promise<unknown> {
+  const nota = String((entrada as { nota?: string })?.nota ?? "").slice(0, 400);
+  if (!nota) return { error: "Falta la nota." };
+  console.log(`avisar_al_dueno: ${nota.slice(0, 160)}`);
+  if (avisar) await avisar(nota);
+  return { ok: true, nota: "Aviso enviado a Emiliano. Sigue atendiendo al cliente." };
 }
 
 export async function ejecutarHerramienta(
