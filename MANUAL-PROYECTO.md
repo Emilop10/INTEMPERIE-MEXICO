@@ -14137,3 +14137,20 @@ contexto.
 
 Costo de las 5 pruebas: $0.06 USD. 56 de 56 pruebas; desplegado, sigue
 en `borrador`.
+
+**Corte del 29 oct (21:37): primer día con videos.**
+
+| Anuncio | Gasto hoy | Conversaciones hoy | Costo c/u |
+|---|---|---|---|
+| combo-video-wa (video) | $32.48 | **10** | $3.25 |
+| combo-999-wa (foto) | $17.11 | 6 | $2.85 |
+| cual-video-wa (video) | $18.69 | 5 | $3.74 |
+| caja-video-wa (video) | $0.64 | 0 | — |
+| emiliano-video-wa (video) | $0.35 | 0 | — |
+
+- **Hoy:** $70.13 y **21 conversaciones** ($3.34 c/u), el mejor día de la
+  prueba. **Acumulado:** $346.44, **63 conversaciones** ($5.50 c/u), 1 venta.
+- Facebook concentró el dinero en los dos del combo y en "¿Cuál es para
+  ti?"; "Emiliano" y "Abre la caja" casi no se mostraron todavía.
+- Ningún corte se dispara. No se tocó nada.
+
