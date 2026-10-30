@@ -137,7 +137,7 @@ describe("conversación", () => {
 
   it("rescate: si el dueño contestó pero el cliente vuelve a escribir y el dueño no responde en 10 min, el agente retoma", async () => {
     const claude = claudeConGuion([texto("Claro, el combo trae caña y carrete.")]);
-    const { conv, enviados, almacen } = armarConversacion({ claude });
+    const { conv, enviados, almacen } = armarConversacion({ claude, config: config({ RESCATE_MINUTOS: "10" }) });
     await conv.recibir(mensaje("¿Las cañas vienen con carrete?"), MEDIODIA);
     await conv.recibir({ tipo: "eco", chat: "5217771112222", id: "eco1", ts: MEDIODIA + 60_000, texto: "¡Hola! Gracias por tu interés" }, MEDIODIA + 60_000);
     await conv.alarma(MEDIODIA + 60_000 + ESPERA);
@@ -148,7 +148,7 @@ describe("conversación", () => {
     expect(enviados.map((e) => e.texto)).toEqual(["Claro, el combo trae caña y carrete."]);
     // Si el dueño sí contesta dentro de esos 10 min, el agente no se mete.
     const claude2 = claudeConGuion([texto("x")]);
-    const b = armarConversacion({ claude: claude2 });
+    const b = armarConversacion({ claude: claude2, config: config({ RESCATE_MINUTOS: "10" }) });
     await b.conv.recibir(mensaje("hola", undefined, "5217773334444"), MEDIODIA);
     await b.conv.recibir({ tipo: "eco", chat: "5217773334444", id: "e1", ts: MEDIODIA + 60_000, texto: "Hola, dime" }, MEDIODIA + 60_000);
     await b.conv.recibir(mensaje("¿precio?", undefined, "5217773334444"), MEDIODIA + 5 * 60_000);
@@ -156,6 +156,19 @@ describe("conversación", () => {
     await b.conv.alarma(MEDIODIA + 15 * 60_000);
     expect(b.enviados).toHaveLength(0);
     expect(claude2.llamadas).toHaveLength(0);
+  });
+
+  it("por omisión no hay rescate: si el dueño contestó, el agente calla 12 h aunque el cliente siga escribiendo", async () => {
+    const claude = claudeConGuion([texto("x")]);
+    const { conv, enviados, almacen } = armarConversacion({ claude });
+    await conv.recibir(mensaje("¿Manejan mayoreo?"), MEDIODIA);
+    await conv.recibir({ tipo: "eco", chat: "5217771112222", id: "e1", ts: MEDIODIA + 60_000, texto: "Sí, sobre pedido; te armo cotización" }, MEDIODIA + 60_000);
+    await conv.recibir(mensaje("Ok, te agradezco"), MEDIODIA + 5 * 60_000);
+    expect(almacen.alarma).toBe(MEDIODIA + 5 * 60_000 + ESPERA);
+    await conv.alarma(MEDIODIA + 5 * 60_000 + ESPERA);
+    await conv.alarma(MEDIODIA + 60 * 60_000);
+    expect(enviados).toHaveLength(0);
+    expect(claude.llamadas).toHaveLength(0);
   });
 
   it("un pase al dueño no tiene rescate: el agente sigue callado 12 h", async () => {

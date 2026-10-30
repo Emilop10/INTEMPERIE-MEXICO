@@ -158,8 +158,8 @@ export class Conversacion {
     e.ultimoCliente = ahora;
     e.seguimiento = null;
     e.pendientes.push({ id: ev.id, texto: ev.texto.slice(0, 2000), ts: ev.ts || ahora });
-    const enPausaDelDueno = ahora < e.pausaHasta && e.pausaMotivo === "dueno";
-    e.procesarEn = ahora + (enPausaDelDueno ? this.d.config.rescateMs : this.d.config.esperaMs);
+    const conRescate = this.d.config.rescateMs > 0 && ahora < e.pausaHasta && e.pausaMotivo === "dueno";
+    e.procesarEn = ahora + (conRescate ? this.d.config.rescateMs : this.d.config.esperaMs);
     await this.guardar(e);
   }
 
@@ -192,7 +192,9 @@ export class Conversacion {
     if (ahora < e.pausaHasta) {
       // Rescate: el dueño contestó antes, pero el cliente volvió a escribir y
       // el dueño no ha respondido desde entonces. El agente retoma.
-      const rescate = e.pausaMotivo === "dueno" && (e.pausaDesde ?? 0) < e.ultimoCliente;
+      // Apagado por omisión (RESCATE_MINUTOS=0): el 30 oct se metió en chats
+      // que el dueño estaba atendiendo ("Ok, gracias" no pide respuesta).
+      const rescate = this.d.config.rescateMs > 0 && e.pausaMotivo === "dueno" && (e.pausaDesde ?? 0) < e.ultimoCliente;
       if (!rescate) {
         e.historial.push({ role: "user", content: nuevos });
         return;
@@ -417,6 +419,8 @@ export class Conversacion {
       pendientes: e.pendientes.length,
       ultimoClienteHaceMin: min(e.ultimoCliente),
       pausaMin: e.pausaHasta > ahora ? Math.round((e.pausaHasta - ahora) / 60_000) : 0,
+      pausaMotivo: e.pausaMotivo ?? null,
+      pausaDesdeHaceMin: e.pausaDesde ? Math.round((ahora - e.pausaDesde) / 60_000) : null,
       procesarEnSeg: e.procesarEn ? Math.round((e.procesarEn - ahora) / 1000) : null,
       borrador: Boolean(e.borrador),
       anuncio: Boolean(e.anuncio),

@@ -48,12 +48,19 @@ export default {
         const chat = (url.searchParams.get("chat") ?? "").replace(/[^\w.]/g, "");
         if (!chat) return new Response("GET /chat?chat=<número>", { status: 400 });
         if (request.method === "POST" && url.searchParams.get("accion") === "retomar") {
-          // Quita la pausa y vuelve a atender lo que el cliente escribió sin respuesta.
+          // Quita la pausa y vuelve a atender; solo si el dueño no ha escrito en ese chat en la última hora.
+          const r = (await conversacion(env, chat).resumen(Date.now())) as Record<string, unknown>;
+          if (r.existe && typeof r.pausaMin === "number" && r.pausaMin > 0 && r.pausaMotivo === "dueno" && Number(r.pausaDesdeHaceMin ?? 999) < 60) {
+            return Response.json({ chat, resultado: "el_dueno_contesto_hace_poco" }, { status: 409 });
+          }
           return Response.json({ chat, resultado: await conversacion(env, chat).reprocesar(Date.now(), true) });
         }
         return Response.json(await conversacion(env, chat).resumen(Date.now()));
       }
       if (url.pathname === "/reprocesar") {
+        // Bloqueado el 30 oct: contestó chats cerrados ("Gracias") y chats del
+        // historial compartido. Solo lista; no envía.
+        if (request.method === "POST") return Response.json({ error: "Desactivado: ver MANUAL §129 (30 oct)." }, { status: 403 });
         // Chats de Kapso cuyo último mensaje es del cliente (sin respuesta del
         // dueño) dentro de las 24 h. GET: lista; POST: los vuelve a atender.
         const ahora = Date.now();

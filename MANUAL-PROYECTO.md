@@ -14246,3 +14246,42 @@ dejar al cliente esperando.
     recomendó el Kit Tolten 8' Mar y Costa ($1,209) con lo que incluye
     ($0.03, 10 s).
 - Desplegado en activo.
+
+### §129: reclamo del dueño y causas verificadas (30 oct, 13:30)
+
+**Reclamo:** chats que el agente ya contestó y vuelve a escribir; chats
+que el dueño ya contestó y el agente escribe; chats que "en teoría"
+contestó y no.
+
+**Verificación:** se reconstruyeron con la API de Kapso (`/messages`)
+los 300 mensajes recientes, por chat y con quién escribió (cliente, app
+del dueño o agente). Causas, todas identificadas:
+
+1. **Rescate de 10 min (agregado hoy a las 12:45): dañino.** En el chat
+   de mayoreo, el dueño ya cotizaba (12:22–12:57); el cliente escribió
+   "Ok, te agradezco" (13:03) y el agente, al no ver respuesta del
+   dueño en 10 min, se metió con "Déjame confirmarlo" (13:13; el dueño
+   lo borró). Y el `retomar` manual de las 12:34 en el chat de la
+   Shimano cayó un minuto después de que el dueño contestara. **Apagado:
+   `RESCATE_MINUTOS=0`** (el código lo conserva por si algún día se
+   quiere, pero por omisión no existe). Cuando el dueño contesta, el
+   agente se queda fuera 12 h, como se decidió el 28 oct. `retomar`
+   ahora se niega si el dueño escribió en la última hora.
+2. **El reprocesado del atraso (12:21) contestó chats que no debía:**
+   tomó como "sin respuesta" cualquier chat cuyo último mensaje fuera
+   del cliente, incluidos cierres ("Gracias por la información", al que
+   el dueño ya había mandado el Boundary el 29) y un chat personal
+   importado del historial compartido (fotos con precios; "Perdón Dey,
+   no era para ti"). Fue una sola corrida; **`POST /reprocesar` queda
+   bloqueado** (solo lista).
+3. **"Contestó y no":** eran los chats atendidos en modo borrador (29
+   oct y 30 oct hasta las 12:10): el correo decía lo que habría
+   contestado y nada se envió (caña de 15 pies, carrete casting). Desde
+   la activación todo lo que decide se envía.
+
+**Lo que sí funcionó en vivo desde las 12:10:** cartuchos y calibre .410
+→ silencio; "Hola → presa → carpas" → kit recomendado; "Dame un momento
+y te confirmo" del dueño → el agente se quedó fuera; Shimano FX de 10
+pies → pase al dueño con correo.
+
+61 de 61 pruebas (nueva: por omisión no hay rescate). Desplegado.
