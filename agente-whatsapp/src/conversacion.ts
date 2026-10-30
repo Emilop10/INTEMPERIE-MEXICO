@@ -17,7 +17,10 @@ const HORA = 3600_000;
 const DIA = 24 * HORA;
 const RETENCION = 30 * DIA;
 const VENTANA_META = 24 * HORA; // fuera de 24 h solo se puede con plantilla (de pago)
-const SEGUIMIENTO_TRAS = 2 * HORA;
+const SEGUIMIENTO_LINK = 2 * HORA; // tras mandar link de pago
+const SEGUIMIENTO_PRODUCTO = 3 * HORA; // tras recomendar un producto sin link
+export const NOTA_SEGUIMIENTO =
+  "[SISTEMA, no es el cliente] Han pasado unas horas y el cliente no volvió a escribir. Decide: si conviene, manda UN recordatorio breve y útil (una o dos líneas, sin presionar, ofreciendo resolver dudas o mandar el link); si no, usa no_responder con motivo sin_necesidad.";
 const AUTO_MS = 5000; // un humano no contesta en menos de 5 s
 export const NO_ENVIADO = "[Borrador, no enviado]:";
 const MAX_HISTORIAL = 30;
@@ -189,18 +192,17 @@ export class Conversacion {
     e.procesarEn = null;
     if (!nuevos) return;
 
+    // Retomar: el dueño atendió este chat, el cliente volvió a escribir y el
+    // dueño no ha respondido en RESCATE_MINUTOS. El agente lee la plática y
+    // decide con criterio (ver INSTRUCCIONES, "Retomar un chat del dueño"):
+    // si es una venta que puede avanzar, contesta; si no, se queda fuera.
+    let retomar = false;
     if (ahora < e.pausaHasta) {
-      // Rescate: el dueño contestó antes, pero el cliente volvió a escribir y
-      // el dueño no ha respondido desde entonces. El agente retoma.
-      // Apagado por omisión (RESCATE_MINUTOS=0): el 30 oct se metió en chats
-      // que el dueño estaba atendiendo ("Ok, gracias" no pide respuesta).
-      const rescate = this.d.config.rescateMs > 0 && e.pausaMotivo === "dueno" && (e.pausaDesde ?? 0) < e.ultimoCliente;
-      if (!rescate) {
+      retomar = this.d.config.rescateMs > 0 && e.pausaMotivo === "dueno" && (e.pausaDesde ?? 0) < e.ultimoCliente;
+      if (!retomar) {
         e.historial.push({ role: "user", content: nuevos });
         return;
       }
-      e.pausaHasta = 0;
-      e.pausaMotivo = undefined;
     }
     const permiso = await this.d.control.verificar(ahora);
     if (!permiso.ok) {
@@ -230,7 +232,7 @@ export class Conversacion {
               detalle: `${nota}\n\nChat: ${this.enlace(e)}\n\nEl agente sigue atendiendo este chat; esto es solo para que lo sepas (puede estar en la tienda física).`,
             }),
         },
-        { historial: e.historial, nuevos, contexto: this.contexto(e, ahora) },
+        { historial: e.historial, nuevos, contexto: this.contexto(e, ahora, retomar) },
       );
     } catch (err) {
       console.error("Fallo del agente:", String(err).slice(0, 300));
@@ -252,10 +254,22 @@ export class Conversacion {
       return;
     }
     await this.d.control.registrar({ costoUsd: vuelta.costoUsd }, ahora);
-    await this.ejecutar(e, ahora, nuevos, vuelta.resultado);
+    if (retomar) {
+      // El chat sigue siendo del dueño salvo que el agente decida contestar.
+      if (vuelta.resultado.accion !== "responder") {
+        console.log(`retomar: el agente se queda fuera (${vuelta.resultado.accion}${"motivo" in vuelta.resultado ? ` ${vuelta.resultado.motivo}` : ""})`);
+        e.historial.push({ role: "user", content: nuevos });
+        e.pausaDesde = ahora; // volver a evaluar solo si el cliente escribe de nuevo
+        return;
+      }
+      console.log("retomar: el agente retoma el chat");
+      e.pausaHasta = 0;
+      e.pausaMotivo = undefined;
+    }
+    await this.ejecutar(e, ahora, nuevos, vuelta.resultado, vuelta.consultoProductos);
   }
 
-  private async ejecutar(e: Estado, ahora: number, nuevos: string, r: Resultado): Promise<void> {
+  private async ejecutar(e: Estado, ahora: number, nuevos: string, r: Resultado, consultoProductos = false): Promise<void> {
     const envia = this.envia(e);
     const enVentana = ahora - e.ultimoCliente < VENTANA_META;
     e.historial.push({ role: "user", content: nuevos });
@@ -266,8 +280,8 @@ export class Conversacion {
       if (envia && enVentana) {
         await this.mandar(e, r.texto, ahora);
         e.historial.push({ role: "assistant", content: r.texto });
-        if (r.linksPago.length && this.d.config.seguimiento) {
-          e.seguimiento = { en: ahora + SEGUIMIENTO_TRAS, hecho: false };
+        if (this.d.config.seguimiento && (r.linksPago.length || consultoProductos)) {
+          e.seguimiento = { en: ahora + (r.linksPago.length ? SEGUIMIENTO_LINK : SEGUIMIENTO_PRODUCTO), hecho: false };
         }
       } else {
         await this.borrador(e, nuevos, r.texto);
@@ -326,6 +340,11 @@ export class Conversacion {
     });
   }
 
+  /**
+   * Seguimiento con criterio: el agente recomendó algo (o mandó link) y el
+   * cliente se quedó callado. Se le pide a Claude que decida si manda UN
+   * recordatorio breve o nada. Una sola vez por chat.
+   */
   private async seguir(e: Estado, ahora: number): Promise<void> {
     if (!e.seguimiento) return;
     e.seguimiento.hecho = true;
@@ -333,8 +352,23 @@ export class Conversacion {
     if (!this.envia(e)) return;
     const permiso = await this.d.control.verificar(ahora);
     if (!permiso.ok) return;
-    await this.mandar(e, TEXTOS.seguimiento, ahora);
-    e.historial.push({ role: "assistant", content: TEXTOS.seguimiento });
+    let vuelta;
+    try {
+      vuelta = await atender(
+        { llamar: this.d.llamar, tienda: this.d.tienda, modelo: this.d.config.modelo },
+        { historial: e.historial, nuevos: NOTA_SEGUIMIENTO, contexto: this.contexto(e, ahora) },
+      );
+    } catch (err) {
+      console.error("Fallo en seguimiento:", String(err).slice(0, 200));
+      return;
+    }
+    await this.d.control.registrar({ costoUsd: vuelta.costoUsd }, ahora);
+    if (vuelta.resultado.accion !== "responder") {
+      console.log(`seguimiento: sin recordatorio (${vuelta.resultado.accion})`);
+      return;
+    }
+    await this.mandar(e, vuelta.resultado.texto, ahora);
+    e.historial.push({ role: "user", content: NOTA_SEGUIMIENTO }, { role: "assistant", content: vuelta.resultado.texto });
   }
 
   /**
@@ -460,8 +494,16 @@ export class Conversacion {
     return e.destino.to ? `https://wa.me/${e.destino.to}` : `(sin teléfono; ${enmascarar(e.chat)})`;
   }
 
-  private contexto(e: Estado, ahora: number): string {
+  private contexto(e: Estado, ahora: number, retomar = false): string {
     const partes = [`Ahora: ${horaMexico(ahora).texto} (hora de Ciudad de México).`];
+    if (retomar) {
+      const horas = Math.round(((ahora - e.ultimoCliente) / HORA) * 10) / 10;
+      partes.push(
+        `RETOMAR: Emiliano atendió este chat desde su celular (sus mensajes aparecen como "[Emiliano contestó desde el celular]") y el cliente volvió a escribir hace ${horas} h sin que Emiliano responda. ` +
+          "Lee toda la plática y decide con criterio: si es una venta de pesca que puedes avanzar o cerrar con lo que hay en la tienda en línea, contesta como si siguieras la plática de Emiliano (sin presentarte de nuevo). " +
+          "Si Emiliano quedó en algo (cotización, confirmar existencia, pedido, apartado), si es de Alcampo o cartuchos, o si el último mensaje del cliente no pide respuesta, usa no_responder con motivo dueno. En este modo NUNCA uses pasar_al_dueno: el chat ya es de él.",
+      );
+    }
     partes.push(
       enHorario(ahora)
         ? "Emiliano atiende hoy hasta las 22:00."

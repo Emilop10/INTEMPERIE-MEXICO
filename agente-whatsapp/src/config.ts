@@ -93,7 +93,7 @@ export function leerConfig(env: Env): Config {
     phoneNumberId: env.WHATSAPP_PHONE_NUMBER_ID?.trim() ?? "",
     modelo: env.MODELO?.trim() || "claude-sonnet-5-5",
     pausaMs: numero(env.PAUSA_HORAS, 12) * 3600_000,
-    rescateMs: numero(env.RESCATE_MINUTOS, 0) * 60_000,
+    rescateMs: numero(env.RESCATE_MINUTOS, 120) * 60_000,
     esperaMs: numero(env.ESPERA_SEGUNDOS, 8) * 1000,
     seguimiento: (env.SEGUIMIENTO ?? "si").trim() !== "no",
     numerosPrueba: new Set(

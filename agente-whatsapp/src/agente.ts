@@ -33,6 +33,8 @@ export interface Vuelta {
   resultado: Resultado;
   costoUsd: number;
   llamadas: number;
+  /** Consultó, buscó o pidió link de algún producto en esta vuelta. */
+  consultoProductos: boolean;
 }
 
 const HERRAMIENTAS: Anthropic.Beta.Messages.BetaTool[] = [
@@ -123,7 +125,13 @@ const HERRAMIENTAS: Anthropic.Beta.Messages.BetaTool[] = [
     strict: true,
     input_schema: {
       type: "object",
-      properties: { motivo: { type: "string", enum: ["spam", "groseria", "sin_sentido", "cierre"] } },
+      properties: {
+        motivo: {
+          type: "string",
+          enum: ["spam", "groseria", "sin_sentido", "cierre", "dueno", "sin_necesidad"],
+          description: "dueno = Emiliano lleva este chat y no conviene meterse; sin_necesidad = no hace falta recordatorio.",
+        },
+      },
       required: ["motivo"],
       additionalProperties: false,
     },
@@ -199,7 +207,8 @@ export async function atender(
   let costoUsd = 0;
   let llamadas = 0;
 
-  const fin = (resultado: Resultado): Vuelta => ({ resultado, costoUsd, llamadas });
+  let consultoProductos = false;
+  const fin = (resultado: Resultado): Vuelta => ({ resultado, costoUsd, llamadas, consultoProductos });
 
   while (llamadas < MAX_LLAMADAS) {
     llamadas++;
@@ -243,6 +252,7 @@ export async function atender(
       const callar = usos.find((b) => b.name === "no_responder");
       if (callar) return fin({ accion: "nada", motivo: String((callar.input as { motivo: string }).motivo) });
 
+      if (usos.some((b) => ["consultar_producto", "buscar_producto", "link_de_pago"].includes(b.name))) consultoProductos = true;
       const resultados = await Promise.all(
         usos.map(async (b): Promise<Anthropic.Beta.Messages.BetaToolResultBlockParam> => {
           try {

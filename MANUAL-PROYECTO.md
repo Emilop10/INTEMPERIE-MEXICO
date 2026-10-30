@@ -14285,3 +14285,40 @@ y te confirmo" del dueño → el agente se quedó fuera; Shimano FX de 10
 pies → pase al dueño con correo.
 
 61 de 61 pruebas (nueva: por omisión no hay rescate). Desplegado.
+
+### §129: seguimientos y retomar chats con criterio (30 oct, 14:15)
+
+**Qué pidió el dueño:** que el agente sea inteligente: que en los chats
+donde vea una venta que puede abordar, la empuje (recordatorio o
+similar), en lugar de quedarse pasivo.
+
+**Qué se hizo** (sustituye al "rescate" de reloj de la mañana):
+
+- **Seguimiento con criterio:** cuando el agente recomendó un producto
+  (3 h) o mandó un link de pago (2 h) y el cliente no volvió a escribir,
+  se le manda a Claude una nota "[SISTEMA, no es el cliente]" y decide:
+  **un** recordatorio breve y sin presión, o `no_responder
+  (sin_necesidad)`. Uno por chat. Antes el seguimiento era un texto fijo
+  y solo tras el link.
+- **Retomar chats del dueño con criterio:** si el dueño contestó desde
+  el celular y el cliente volvió a escribir sin respuesta en
+  **2 horas** (`RESCATE_MINUTOS=120`), el agente lee toda la plática con
+  una nota "RETOMAR" y decide: retoma solo si es una venta de pesca que
+  puede avanzar con lo que hay en línea (precio, link, medidas, decide
+  comprar); se queda fuera (`no_responder (dueno)`) si el dueño quedó en
+  algo (cotización, existencia, pedido), si es Alcampo/cartuchos o si
+  el último mensaje no pide respuesta. En ese modo **nunca** manda
+  "Déjame confirmarlo" (un `pasar_al_dueno` se convierte en silencio).
+  Si se queda fuera, vuelve a evaluar solo si el cliente escribe otra vez.
+- Motivos nuevos de `no_responder`: `dueno`, `sin_necesidad`.
+- 62 de 62 pruebas.
+
+**Validado con Claude real sobre los casos de hoy:**
+
+| Caso | Decisión |
+|---|---|
+| Dueño armando cotización de mayoreo; cliente "Ok, si tienes imágenes, te agradezco" | `no_responder (dueno)`: se queda fuera |
+| Dueño dio el precio del Kit Tundra; cliente "¿me mandas el link para pagar con tarjeta?" | Retoma: manda el link verificado, formas de pago y entrega |
+| Recomendó el Kit Tundra para lobina y el cliente calló 3 h | "Sigue disponible el kit para lobina, por si te interesa 🎣 … te mando el link para pagar. El envío es gratis." |
+
+Desplegado en activo.

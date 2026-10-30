@@ -158,17 +158,32 @@ describe("conversación", () => {
     expect(claude2.llamadas).toHaveLength(0);
   });
 
-  it("por omisión no hay rescate: si el dueño contestó, el agente calla 12 h aunque el cliente siga escribiendo", async () => {
-    const claude = claudeConGuion([texto("x")]);
-    const { conv, enviados, almacen } = armarConversacion({ claude });
+  it("retomar con criterio: a las 2 h el agente evalúa; si decide no_responder(dueno) calla y nunca manda 'Déjame confirmarlo'", async () => {
+    const claude = claudeConGuion([herramienta("no_responder", { motivo: "dueno" }), herramienta("pasar_al_dueno", { motivo: "descuento", resumen: "x", producto: "" })]);
+    const { conv, enviados, almacen, avisos } = armarConversacion({ claude });
     await conv.recibir(mensaje("¿Manejan mayoreo?"), MEDIODIA);
     await conv.recibir({ tipo: "eco", chat: "5217771112222", id: "e1", ts: MEDIODIA + 60_000, texto: "Sí, sobre pedido; te armo cotización" }, MEDIODIA + 60_000);
     await conv.recibir(mensaje("Ok, te agradezco"), MEDIODIA + 5 * 60_000);
-    expect(almacen.alarma).toBe(MEDIODIA + 5 * 60_000 + ESPERA);
-    await conv.alarma(MEDIODIA + 5 * 60_000 + ESPERA);
-    await conv.alarma(MEDIODIA + 60 * 60_000);
+    expect(almacen.alarma).toBe(MEDIODIA + 5 * 60_000 + 120 * 60_000); // espera 2 h
+    await conv.alarma(MEDIODIA + 125 * 60_000);
+    expect(claude.llamadas).toHaveLength(1);
+    expect(claude.llamadas[0].messages.at(-1)).toMatchObject({ role: "system", content: expect.stringContaining("RETOMAR") });
     expect(enviados).toHaveLength(0);
-    expect(claude.llamadas).toHaveLength(0);
+    // El cliente insiste; el agente vuelve a evaluar y, aunque Claude pidiera pasar al dueño, no manda nada.
+    await conv.recibir(mensaje("¿Ya quedó la cotización?"), MEDIODIA + 200 * 60_000);
+    await conv.alarma(MEDIODIA + 320 * 60_000);
+    expect(enviados).toHaveLength(0);
+    expect(avisos).toHaveLength(0);
+  });
+
+  it("retomar con criterio: si Claude decide contestar, retoma la venta", async () => {
+    const claude = claudeConGuion([texto("Claro: el Kit Tundra está en $1,569 con envío gratis. ¿Te mando el link?")]);
+    const { conv, enviados } = armarConversacion({ claude });
+    await conv.recibir(mensaje("¿Cuánto cuesta el kit Tundra?"), MEDIODIA);
+    await conv.recibir({ tipo: "eco", chat: "5217771112222", id: "e1", ts: MEDIODIA + 60_000, texto: "Hola, ahorita te paso el precio" }, MEDIODIA + 60_000);
+    await conv.recibir(mensaje("¿Y me lo puedes mandar con link para pagar?"), MEDIODIA + 5 * 60_000);
+    await conv.alarma(MEDIODIA + 125 * 60_000);
+    expect(enviados.map((e) => e.texto)).toEqual(["Claro: el Kit Tundra está en $1,569 con envío gratis. ¿Te mando el link?"]);
   });
 
   it("un pase al dueño no tiene rescate: el agente sigue callado 12 h", async () => {
@@ -226,16 +241,22 @@ describe("conversación", () => {
     expect(enviados[0].texto).toBe(TEXTOS.persona);
   });
 
-  it("un seguimiento 2 horas después del link, solo si el cliente no volvió a escribir", async () => {
+  it("un seguimiento con criterio 2 horas después del link, solo si el cliente no volvió a escribir", async () => {
     const link = "https://intemperiemexico.com/cart/111:1";
     const tienda = tiendaFalsa([producto({ handle: "combo" })]);
-    const claude = claudeConGuion([herramienta("link_de_pago", { handle: "combo", variante_id: 0 }), texto(`Aquí está: ${link}`)]);
+    const claude = claudeConGuion([
+      herramienta("link_de_pago", { handle: "combo", variante_id: 0 }),
+      texto(`Aquí está: ${link}`),
+      texto("¿Pudiste hacer el pago? Si prefieres OXXO, al pagar eliges Mercado Pago."),
+    ]);
     const { conv, enviados, almacen } = armarConversacion({ claude, tienda });
     await conv.recibir(mensaje("lo quiero"), MEDIODIA);
     await conv.alarma(MEDIODIA + ESPERA);
     expect(almacen.alarma).toBe(MEDIODIA + ESPERA + 2 * HORA);
     await conv.alarma(MEDIODIA + ESPERA + 2 * HORA);
-    expect(enviados.map((e) => e.texto)).toEqual([`Aquí está: ${link}`, TEXTOS.seguimiento]);
+    expect(enviados.map((e) => e.texto)).toEqual([`Aquí está: ${link}`, "¿Pudiste hacer el pago? Si prefieres OXXO, al pagar eliges Mercado Pago."]);
+    // Claude vio la nota del sistema, no un mensaje del cliente.
+    expect(claude.llamadas[2].messages.at(-2)).toMatchObject({ role: "user", content: expect.stringContaining("[SISTEMA") });
     await conv.alarma(MEDIODIA + ESPERA + 3 * HORA);
     expect(enviados).toHaveLength(2); // uno solo
 

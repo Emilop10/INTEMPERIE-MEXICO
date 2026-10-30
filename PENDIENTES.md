@@ -42,10 +42,11 @@
      atrasados contestados; 3 sin estado los atiende el dueño. **El dueño
      debe apagar el respondedor de la Mac en WhatsApp.** Revisar registros
      (`/estado`, observabilidad de Cloudflare) en unas horas.
-   - **Rescate apagado (30 oct 13:30):** `RESCATE_MINUTOS=0`. Cuando el
-     dueño contesta, el agente se queda fuera 12 h. `POST /reprocesar`
-     bloqueado (contestó chats cerrados y del historial). No volver a
-     correr reprocesados masivos.
+   - **Retomar y seguimientos con criterio (30 oct 14:15):**
+     `RESCATE_MINUTOS=120`; a las 2 h sin respuesta del dueño, Claude
+     decide si retoma (solo ventas de pesca que puede avanzar) o se
+     queda fuera; seguimiento único a las 2–3 h si el cliente calló.
+     `POST /reprocesar` bloqueado; no correr reprocesados masivos.
    - 🟢 **Número conectado en Kapso (29 oct 16:43):**
      Phone number ID 742563942272641, WABA 2146162969186009, coexistencia.
      El nombre se queda "Alcampo Cuernavaca" (decisión del dueño: usa el
