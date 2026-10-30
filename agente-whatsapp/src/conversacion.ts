@@ -19,6 +19,7 @@ const RETENCION = 30 * DIA;
 const VENTANA_META = 24 * HORA; // fuera de 24 h solo se puede con plantilla (de pago)
 const SEGUIMIENTO_TRAS = 2 * HORA;
 const AUTO_MS = 5000; // un humano no contesta en menos de 5 s
+export const NO_ENVIADO = "[Borrador, no enviado]:";
 const MAX_HISTORIAL = 30;
 
 export const TEXTOS = {
@@ -54,6 +55,8 @@ export interface Estado {
   ultimoCliente: number;
   procesarEn: number | null;
   seguimiento: { en: number; hecho: boolean } | null;
+  /** Última respuesta propuesta que no se envió (modo borrador). */
+  borrador?: { texto: string; ts: number } | null;
 }
 
 export interface Dependencias {
@@ -63,6 +66,8 @@ export interface Dependencias {
     verificar(ahora: number): Promise<Verificacion>;
     registrar(r: Registro, ahora: number): Promise<void>;
     primerAviso(clave: string, ahora: number): Promise<boolean>;
+    anotarBorrador(chat: string, ts: number): Promise<void>;
+    quitarBorrador(chat: string): Promise<void>;
   };
   llamar: LlamarClaude;
   tienda: Tienda;
@@ -233,13 +238,21 @@ export class Conversacion {
     if (r.accion === "responder") {
       if (envia && enVentana) {
         await this.mandar(e, r.texto, ahora);
+        e.historial.push({ role: "assistant", content: r.texto });
         if (r.linksPago.length && this.d.config.seguimiento) {
           e.seguimiento = { en: ahora + SEGUIMIENTO_TRAS, hecho: false };
         }
       } else {
         await this.borrador(e, nuevos, r.texto);
+        // No se envió: que el agente lo sepa, y que se pueda mandar después.
+        e.historial.push({ role: "assistant", content: `${NO_ENVIADO} ${r.texto}` });
+        if (envia) {
+          e.borrador = null; // fuera de la ventana de 24 h: ya no se podrá
+        } else {
+          e.borrador = { texto: r.texto, ts: ahora };
+          await this.d.control.anotarBorrador(e.chat, ahora);
+        }
       }
-      e.historial.push({ role: "assistant", content: r.texto });
       return;
     }
 
@@ -259,7 +272,7 @@ export class Conversacion {
         ? horario ? TEXTOS.persona : TEXTOS.personaManana
         : horario ? TEXTOS.espera : TEXTOS.esperaManana;
     if (envia && enVentana) await this.mandar(e, textoCliente, ahora);
-    e.historial.push({ role: "assistant", content: textoCliente });
+    e.historial.push({ role: "assistant", content: envia && enVentana ? textoCliente : `${NO_ENVIADO} ${textoCliente}` });
     e.pausaHasta = ahora + this.d.config.pausaMs;
     e.seguimiento = null;
 
@@ -293,7 +306,71 @@ export class Conversacion {
     e.historial.push({ role: "assistant", content: TEXTOS.seguimiento });
   }
 
+  /**
+   * Manda la respuesta que quedó en borrador, si todavía se puede: el modo
+   * ya envía, sigue dentro de las 24 h del último mensaje del cliente y el
+   * dueño no ha tomado el chat. Devuelve qué pasó.
+   */
+  async enviarBorrador(ahora: number): Promise<"enviado" | "sin_borrador" | "fuera_de_ventana" | "dueno_contesto" | "modo_no_envia"> {
+    const e = await this.cargar();
+    if (!e?.borrador) {
+      await this.d.control.quitarBorrador(e?.chat ?? "");
+      return "sin_borrador";
+    }
+    if (!this.envia(e)) return "modo_no_envia";
+    const quitar = async (): Promise<void> => {
+      e.borrador = null;
+      await this.d.control.quitarBorrador(e.chat);
+      await this.guardar(e);
+    };
+    if (ahora < e.pausaHasta) {
+      await quitar();
+      return "dueno_contesto";
+    }
+    if (ahora - e.ultimoCliente >= VENTANA_META) {
+      await quitar();
+      return "fuera_de_ventana";
+    }
+    const texto = e.borrador.texto;
+    await this.mandar(e, texto, ahora);
+    const i = e.historial.findIndex((m) => m.role === "assistant" && m.content === `${NO_ENVIADO} ${texto}`);
+    if (i >= 0) e.historial[i] = { role: "assistant", content: texto };
+    else e.historial.push({ role: "assistant", content: texto });
+    await quitar();
+    return "enviado";
+  }
+
+  /**
+   * Vuelve a atender un chat que quedó sin respuesta mientras el agente
+   * estaba en borrador: quita las respuestas que nunca se enviaron y procesa
+   * de nuevo los mensajes del cliente (ahora sí se envía, si el modo lo
+   * permite y sigue dentro de las 24 h).
+   */
+  async reprocesar(ahora: number): Promise<"enviado" | "sin_estado" | "fuera_de_ventana" | "dueno_contesto" | "sin_mensajes"> {
+    const e = await this.cargar();
+    if (!e) return "sin_estado";
+    if (ahora < e.pausaHasta) return "dueno_contesto";
+    if (ahora - e.ultimoCliente >= VENTANA_META) return "fuera_de_ventana";
+    const textos = e.historial
+      .filter((m) => m.role === "user" && typeof m.content === "string")
+      .map((m) => m.content as string);
+    if (!textos.length && !e.pendientes.length) return "sin_mensajes";
+    // Se conservan solo las marcas (saludo automático, respuestas del dueño).
+    e.historial = e.historial.filter((m) => m.role === "assistant" && typeof m.content === "string" && m.content.startsWith("[") && !m.content.startsWith(NO_ENVIADO));
+    e.historial = []; // el historial debe empezar con el cliente: se reconstruye en procesar()
+    e.pendientes = [...textos.map((t, i) => ({ id: `re-${i}`, texto: t, ts: e.ultimoCliente })), ...e.pendientes];
+    e.borrador = null;
+    await this.d.control.quitarBorrador(e.chat);
+    await this.procesar(e, ahora);
+    await this.guardar(e);
+    return "enviado";
+  }
+
   private async mandar(e: Estado, texto: string, ahora: number): Promise<void> {
+    if (e.borrador) {
+      e.borrador = null;
+      await this.d.control.quitarBorrador(e.chat);
+    }
     try {
       await this.d.enviar(e.destino, texto);
     } catch (err) {

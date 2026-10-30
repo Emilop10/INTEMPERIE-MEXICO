@@ -14154,3 +14154,42 @@ en `borrador`.
   ti?"; "Emiliano" y "Abre la caja" casi no se mostraron todavía.
 - Ningún corte se dispara. No se tocó nada.
 
+### §129: AGENTE ACTIVO en el número de la tienda (30 oct, 12:10 CDMX)
+
+**Orden del dueño:** "necesito que ya empiece a contestar; tengo varios
+mensajes sin contestar de ayer y hoy".
+
+**Antes de activar, dos arreglos:**
+
+- En borrador, el agente anotaba en su memoria la respuesta propuesta
+  como si la hubiera enviado. Ahora la anota como "[Borrador, no
+  enviado]" y la instrucción le dice que, si el cliente vuelve a
+  escribir, conteste como la primera vez. Los borradores nuevos se
+  registran (`anotarBorrador`) y `POST /enviar-borradores` los manda al
+  activar, si siguen dentro de las 24 h.
+- Para el atraso generado con el código anterior (sin registro), nuevo
+  `POST /reprocesar`: lee en Kapso las conversaciones de las últimas
+  24 h cuyo último mensaje es del cliente sin respuesta del dueño (o con
+  solo el saludo automático, < 5 s), y vuelve a atenderlas. Kapso escribe
+  los números de México sin el "1" (52777…) y Meta con él (521777…), así
+  que se prueban ambas formas. Se excluye el número Sandbox de Kapso.
+- El cron de refresco pedía las 8 fichas a la vez y eso mismo disparaba
+  el 429 de Shopify; ahora va una por una con 1.5 s de pausa.
+- 57 de 57 pruebas.
+
+**Activación:** `wrangler deploy --var AGENTE_MODO:activo` (12:0x CDMX).
+`/salud` → `modo: activo`.
+
+**Atraso reprocesado:** 11 chats candidatos (12 menos el Sandbox):
+- **5 contestados** por el agente;
+- **3 omitidos** porque el dueño ya había contestado desde el celular;
+- **3 "sin estado"**: el agente no tenía guardado ese chat (anteriores a
+  la conexión o con otro identificador); los atiende el dueño a mano.
+- Entre lo reprocesado: una pregunta por una caña Shimano FX de 10 pies
+  (no está en línea → pasó al dueño) y una de precio de mayoreo (→ pasó
+  al dueño). Ambas con correo.
+- Contadores: 14 respuestas de Meta en el mes, $0.84 USD de Claude.
+
+**Pendiente:** apagar el respondedor de la Mac en WhatsApp (el dueño);
+tokens de Shopify (`shpat_`) y ntfy en el entorno; re-vincular WhatsApp
+Web; revisar los registros en unas horas.

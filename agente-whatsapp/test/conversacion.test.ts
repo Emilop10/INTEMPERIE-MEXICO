@@ -58,6 +58,31 @@ describe("conversación", () => {
     expect(avisos[0].resumen).not.toContain("kit");
   });
 
+  it("en borrador la respuesta se anota como no enviada y se puede mandar al activar", async () => {
+    const claude = claudeConGuion([texto("Te recomiendo el Kit Revenger")]);
+    const almacenControl = new AlmacenMemoria();
+    const b = armarConversacion({ claude, config: config({ AGENTE_MODO: "borrador" }), almacenControl });
+    await b.conv.recibir(mensaje("¿Qué kit me recomiendas?"), MEDIODIA);
+    await b.conv.alarma(MEDIODIA + ESPERA);
+    expect(b.enviados).toHaveLength(0);
+    expect((await b.almacen.get<any>("estado")).historial.at(-1).content).toMatch(/^\[Borrador, no enviado\]/);
+    expect(Object.keys(await b.control.listarBorradores())).toEqual(["5217771112222"]);
+    // Se activa: el mismo chat (mismo almacén) manda el borrador dentro de las 24 h.
+    const a = armarConversacion({ claude, config: config({ AGENTE_MODO: "activo" }), almacenControl });
+    (a as any).almacen = b.almacen;
+    const activa = new (await import("../src/conversacion")).Conversacion({ ...(a.conv as any).d, almacen: b.almacen, control: a.control, enviar: async (d: any, t: string) => void a.enviados.push({ destino: d, texto: t }) });
+    expect(await activa.enviarBorrador(MEDIODIA + 3 * HORA)).toBe("enviado");
+    expect(a.enviados.map((x) => x.texto)).toEqual(["Te recomiendo el Kit Revenger"]);
+    expect((await b.almacen.get<any>("estado")).historial.at(-1).content).toBe("Te recomiendo el Kit Revenger");
+    expect(await a.control.listarBorradores()).toEqual({});
+    // Fuera de 24 h no se manda.
+    const c = armarConversacion({ claude: claudeConGuion([texto("Hola")]), config: config({ AGENTE_MODO: "borrador" }), almacenControl });
+    await c.conv.recibir(mensaje("hola", undefined, "5217779998888"), MEDIODIA);
+    await c.conv.alarma(MEDIODIA + ESPERA);
+    const tarde = new (await import("../src/conversacion")).Conversacion({ ...(c.conv as any).d, config: config({ AGENTE_MODO: "activo" }) });
+    expect(await tarde.enviarBorrador(MEDIODIA + 30 * HORA)).toBe("fuera_de_ventana");
+  });
+
   it("en modo prueba solo contesta a los números de prueba", async () => {
     const claude = claudeConGuion([texto("Hola dueño"), texto("Hola cliente")]);
     const cfg = config({ AGENTE_MODO: "prueba", NUMEROS_PRUEBA: "52 1 777 999 0000" });

@@ -18,12 +18,14 @@ export default {
   // caché aunque Shopify esté limitando.
   async scheduled(_evento: ScheduledController, env: Env, ctx: ExecutionContext): Promise<void> {
     const tienda = tiendaDe(env, control(env));
+    // Una por una, con pausa: pedir las 8 a la vez provoca el 429 de Shopify.
     ctx.waitUntil(
-      Promise.all(
-        HANDLES_GUIA.map((h) =>
-          tienda.refrescar(h).catch((e) => console.error(`cron: no se pudo refrescar ${h}: ${String(e).slice(0, 120)}`)),
-        ),
-      ),
+      (async () => {
+        for (const h of HANDLES_GUIA) {
+          await tienda.refrescar(h).catch((e) => console.error(`cron: no se pudo refrescar ${h}: ${String(e).slice(0, 120)}`));
+          await new Promise((r) => setTimeout(r, 1500));
+        }
+      })(),
     );
   },
 
@@ -36,11 +38,63 @@ export default {
     }
 
     // Administración (llave ADMIN_TOKEN): contadores del mes y reiniciar un chat.
-    if (url.pathname === "/estado" || url.pathname === "/reiniciar" || url.pathname === "/diagnostico") {
+    if (["/estado", "/reiniciar", "/diagnostico", "/enviar-borradores", "/reprocesar"].includes(url.pathname)) {
       if (!env.ADMIN_TOKEN || request.headers.get("authorization") !== `Bearer ${env.ADMIN_TOKEN}`) {
         return new Response("No autorizado", { status: 401 });
       }
       if (url.pathname === "/estado") return Response.json(await control(env).resumen(Date.now()));
+      if (url.pathname === "/reprocesar") {
+        // Chats de Kapso cuyo último mensaje es del cliente (sin respuesta del
+        // dueño) dentro de las 24 h. GET: lista; POST: los vuelve a atender.
+        const ahora = Date.now();
+        const r = await fetch(
+          `${config.apiBase.replace(/\/meta\/whatsapp\/v[\d.]+$/, "")}/platform/v1/whatsapp/conversations?phone_number_id=${config.phoneNumberId}&last_active_after=${new Date(ahora - 24 * 3600_000).toISOString()}&per_page=100`,
+          { headers: { "x-api-key": env.WHATSAPP_API_KEY } },
+        );
+        if (!r.ok) return Response.json({ error: `Kapso respondió ${r.status}` }, { status: 502 });
+        const d = (await r.json()) as { data?: Array<{ phone_number?: string; kapso?: { last_inbound_at?: string; last_outbound_at?: string | null } }> };
+        const candidatos = (d.data ?? [])
+          .map((c) => {
+            const chat = (c.phone_number ?? "").replace(/\D/g, "");
+            const entrada = Date.parse(c.kapso?.last_inbound_at ?? "");
+            const salida = c.kapso?.last_outbound_at ? Date.parse(c.kapso.last_outbound_at) : 0;
+            return { chat, entrada, salida };
+          })
+          // Sin respuesta, o con una "respuesta" en los 5 s siguientes (el saludo automático de la app).
+          .filter((c) => c.chat && c.chat !== "56920403095" && c.entrada && ahora - c.entrada < 24 * 3600_000 && (salida(c) < c.entrada || salida(c) - c.entrada < 5000));
+        function salida(c: { salida: number }) {
+          return c.salida;
+        }
+        const detalle = candidatos.map((c) => `${c.chat.slice(0, 5)}***${c.chat.slice(-4)}: hace ${Math.round((ahora - c.entrada) / 360_000) / 10} h`);
+        if (request.method !== "POST") return Response.json({ candidatos: candidatos.length, detalle });
+        const resultado: Record<string, number> = {};
+        for (const c of candidatos) {
+          // Kapso escribe los números de México sin el "1" (52777…); Meta los
+          // manda con él (521777…) y así se nombran los chats. Se prueban ambos.
+          const formas = [...new Set([c.chat, c.chat.replace(/^52(?!1)/, "521"), c.chat.replace(/^521/, "52")])];
+          let res = "sin_estado";
+          for (const f of formas) {
+            res = await conversacion(env, f).reprocesar(ahora);
+            if (res !== "sin_estado") break;
+          }
+          resultado[res] = (resultado[res] ?? 0) + 1;
+        }
+        return Response.json({ candidatos: candidatos.length, resultado });
+      }
+      if (url.pathname === "/enviar-borradores") {
+        // Manda las respuestas que quedaron en borrador y aún se pueden enviar.
+        // GET: solo cuenta. POST: envía.
+        const ahora = Date.now();
+        const borradores = await control(env).listarBorradores();
+        const lista = Object.entries(borradores).map(([chat, ts]) => ({ chat, horas: Math.round((ahora - ts) / 360_000) / 10 }));
+        if (request.method !== "POST") return Response.json({ pendientes: lista.length, detalle: lista.map((b) => `${b.chat.slice(0, 5)}***${b.chat.slice(-4)}: hace ${b.horas} h`) });
+        const resultado: Record<string, number> = {};
+        for (const { chat } of lista) {
+          const r = await conversacion(env, chat).enviarBorrador(ahora);
+          resultado[r] = (resultado[r] ?? 0) + 1;
+        }
+        return Response.json({ pendientes: lista.length, resultado });
+      }
       if (url.pathname === "/diagnostico") {
         // Prueba desde este mismo Worker la tienda y ntfy (sin Claude).
         const salida: Record<string, unknown> = {};
@@ -147,6 +201,8 @@ export class ConversacionDO extends DurableObject<Env> {
         verificar: (ahora) => ctrl.verificar(ahora),
         registrar: (r, ahora) => ctrl.registrar(r, ahora),
         primerAviso: (clave, ahora) => ctrl.primerAviso(clave, ahora),
+        anotarBorrador: (chat, ts) => ctrl.anotarBorrador(chat, ts),
+        quitarBorrador: (chat) => ctrl.quitarBorrador(chat),
       },
       llamar: (params) => claude.beta.messages.create(params),
       tienda: tiendaDe(env, ctrl),
@@ -166,6 +222,14 @@ export class ConversacionDO extends DurableObject<Env> {
 
   async alarm(): Promise<void> {
     await this.nucleo().alarma(Date.now());
+  }
+
+  async enviarBorrador(ahora: number) {
+    return this.nucleo().enviarBorrador(ahora);
+  }
+
+  async reprocesar(ahora: number) {
+    return this.nucleo().reprocesar(ahora);
   }
 
   /** Borra el chat (historial, pausa y pendientes). Para pruebas. */
@@ -190,6 +254,18 @@ export class ControlDO extends DurableObject<Env> {
 
   async primerAviso(clave: string, ahora: number): Promise<boolean> {
     return this.nucleo().primerAviso(clave, ahora);
+  }
+
+  async anotarBorrador(chat: string, ts: number): Promise<void> {
+    await this.nucleo().anotarBorrador(chat, ts);
+  }
+
+  async quitarBorrador(chat: string): Promise<void> {
+    await this.nucleo().quitarBorrador(chat);
+  }
+
+  async listarBorradores(): Promise<Record<string, number>> {
+    return this.nucleo().listarBorradores();
   }
 
   async cacheGet(clave: string): Promise<{ valor: unknown; ts: number } | undefined> {

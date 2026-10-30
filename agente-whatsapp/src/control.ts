@@ -91,6 +91,26 @@ export class Control {
     return true;
   }
 
+  // Registro de chats con una respuesta propuesta sin enviar (modo borrador),
+  // para poder mandarlas al pasar a activo: chat -> fecha del borrador.
+  async anotarBorrador(chat: string, ts: number): Promise<void> {
+    const b = (await this.almacen.get<Record<string, number>>("borradores")) ?? {};
+    b[chat] = ts;
+    await this.almacen.put("borradores", b);
+  }
+
+  async quitarBorrador(chat: string): Promise<void> {
+    const b = (await this.almacen.get<Record<string, number>>("borradores")) ?? {};
+    if (chat in b) {
+      delete b[chat];
+      await this.almacen.put("borradores", b);
+    }
+  }
+
+  async listarBorradores(): Promise<Record<string, number>> {
+    return (await this.almacen.get<Record<string, number>>("borradores")) ?? {};
+  }
+
   async resumen(ahora: number): Promise<EstadoControl> {
     return this.estado(ahora);
   }

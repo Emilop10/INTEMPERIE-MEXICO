@@ -38,7 +38,11 @@
        si el dueño quiere; **conectar el +52 777 327 7340 el 30 oct en la
        noche** (después de la campaña; Kapso marca la coexistencia como
        "Unstable" y avisa de posibles bloqueos temporales de Meta).
-   - 🟢 **Número conectado en Kapso y agente en borrador (29 oct 16:43):**
+   - 🟢 **AGENTE ACTIVO desde el 30 oct 12:10** (orden del dueño). 5 chats
+     atrasados contestados; 3 sin estado los atiende el dueño. **El dueño
+     debe apagar el respondedor de la Mac en WhatsApp.** Revisar registros
+     (`/estado`, observabilidad de Cloudflare) en unas horas.
+   - 🟢 **Número conectado en Kapso (29 oct 16:43):**
      Phone number ID 742563942272641, WABA 2146162969186009, coexistencia.
      El nombre se queda "Alcampo Cuernavaca" (decisión del dueño: usa el
      número para sus dos negocios); el agente se calla con los clientes
