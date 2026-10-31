@@ -14450,3 +14450,18 @@ tabla de la sección "Si llega de un anuncio" y desplegar.
   $2.18 hoy.
 - Ningún corte se dispara ("Abre la caja" lleva $2.34, lejos de los $120).
 
+**Revisión a pedido del dueño (31 oct, 10:51).**
+- Campaña de WhatsApp: hoy $7.54 y 1 conversación (sábado, arranque
+  lento). **Acumulado: $433.76 de $900, 6,905 personas alcanzadas, 80
+  conversaciones ($5.42 c/u), 1 venta (#1007).** Ritmo: ~$70/día, el
+  presupuesto alcanza hasta el 5 nov.
+- Por anuncio (acumulado): combo-video 19 conv. a $3.92, combo-foto 43 a
+  $5.82, cual-video 11 a $5.07, emiliano 2 a $1.95, caja 0 con $2.37.
+- Cuenta: gastados $2,846.56 de $3,313.94.
+- Shopify: 0 pedidos nuevos y 0 pagos abandonados desde el 29.
+- Mañana 1 nov a las 06:30 la tarea restaura los precios de los 5 kits.
+- El agente de WhatsApp (§129) está **activo** en el número de la tienda:
+  desde el 30 oct contesta él.
+- Con 80 conversaciones y 1 venta, el embudo se rompe en el chat; el
+  corte de $750 (≈ lunes 2 nov) pausará la campaña si sigue así.
+
