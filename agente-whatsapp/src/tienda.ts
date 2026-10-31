@@ -136,7 +136,7 @@ export function buscarEnIndice(items: ItemCatalogo[], consulta: string, limite =
         for (const [texto, valor] of campos) {
           const tokens = texto.split(" ").map(raiz);
           if (tokens.includes(w)) puntos += valor;
-          else if (w.length >= 4 && tokens.some((tk) => tk.startsWith(w) || w.startsWith(tk) && tk.length >= 4)) puntos += valor / 2;
+          else if ((w.length >= 4 || (/\d/.test(w) && w.length >= 2)) && tokens.some((tk) => tk.startsWith(w) || (w.startsWith(tk) && tk.length >= 4))) puntos += valor / 2;
         }
       }
       return { it, puntos };
