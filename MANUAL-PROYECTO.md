@@ -14357,3 +14357,12 @@ el mes.
 - Seguimiento por plática (`conProductos`) y una sola vez por chat
   (`seguimientoHecho`), aunque la última respuesta no use herramientas.
 - 65 de 65 pruebas. Desplegado en activo.
+
+**Afinación del índice (30 oct, 21:00):** los números cortos cuentan
+("7", "40", "0.40" → "040"), los plurales se recortan sin dejar raíces
+inútiles ("pies" → "pie", no "pi") y la puntuación se separó en
+`palabrasDeBusqueda`/`puntuar` para poder probarla. Verificado con el
+catálogo completo (388): "caña 7 pies" → cañas de 7'; "carrete 4000" →
+Sienna 4000; "hilo 0.40" → Araty 0.40; "kit para presa" → kits; "cañas
+shimano" → Clarus. Al refactorizar se borraron por error las funciones
+de descarga y se restauraron desde git antes de desplegar. 65 de 65.

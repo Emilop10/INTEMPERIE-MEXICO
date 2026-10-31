@@ -111,36 +111,44 @@ export function normalizarTexto(t: string): string {
     .trim();
 }
 
-const raiz = (palabra: string) => palabra.replace(/(es|s)$/, "");
+/** Quita el plural sin dejar raíces inútiles: cañas→caña, carretes→carrete, pies→pie, mar→mar. */
+const raiz = (w: string) => (w.length >= 5 && w.endsWith("es") ? w.slice(0, -2) : w.length >= 4 && w.endsWith("s") ? w.slice(0, -1) : w);
 
 /**
  * Búsqueda local en el índice: cada palabra de la consulta suma puntos si
  * aparece en el título (3), el tipo (2), las etiquetas o el handle (1), con
  * tolerancia a plural y a prefijos (desde 4 letras). Disponibles primero.
  */
-export function buscarEnIndice(items: ItemCatalogo[], consulta: string, limite = 6): Resultado[] {
-  const palabras = normalizarTexto(consulta)
+export function palabrasDeBusqueda(consulta: string): string[] {
+  return normalizarTexto(consulta)
     .split(" ")
-    .filter((w) => w.length >= 2 && !["de", "la", "el", "para", "un", "una", "con", "y", "o", "en"].includes(w))
+    .filter((w) => (w.length >= 2 || /\d/.test(w)) && !["de", "la", "el", "para", "un", "una", "con", "y", "o", "en", "que", "me", "tienen", "hay"].includes(w))
     .map(raiz);
+}
+
+/** Puntos de un producto para unas palabras: título 3, tipo 2, etiquetas/handle 1 (prefijos: la mitad). */
+export function puntuar(it: ItemCatalogo, palabras: string[]): number {
+  const campos: [string[], number][] = [
+    [normalizarTexto(it.t).split(" ").map(raiz), 3],
+    [normalizarTexto(it.y).split(" ").map(raiz), 2],
+    [normalizarTexto(`${it.g} ${it.h}`).split(" ").map(raiz), 1],
+  ];
+  let puntos = 0;
+  for (const w of palabras) {
+    const prefijos = w.length >= 4 || (/\d/.test(w) && w.length >= 2);
+    for (const [tokens, valor] of campos) {
+      if (tokens.includes(w)) puntos += valor;
+      else if (prefijos && tokens.some((tk) => tk.startsWith(w) || (w.startsWith(tk) && tk.length >= 4))) puntos += valor / 2;
+    }
+  }
+  return puntos;
+}
+
+export function buscarEnIndice(items: ItemCatalogo[], consulta: string, limite = 6): Resultado[] {
+  const palabras = palabrasDeBusqueda(consulta);
   if (!palabras.length) return [];
   const puntuados = items
-    .map((it) => {
-      const campos: [string, number][] = [
-        [normalizarTexto(it.t), 3],
-        [normalizarTexto(it.y), 2],
-        [normalizarTexto(`${it.g} ${it.h}`), 1],
-      ];
-      let puntos = 0;
-      for (const w of palabras) {
-        for (const [texto, valor] of campos) {
-          const tokens = texto.split(" ").map(raiz);
-          if (tokens.includes(w)) puntos += valor;
-          else if ((w.length >= 4 || (/\d/.test(w) && w.length >= 2)) && tokens.some((tk) => tk.startsWith(w) || (w.startsWith(tk) && tk.length >= 4))) puntos += valor / 2;
-        }
-      }
-      return { it, puntos };
-    })
+    .map((it) => ({ it, puntos: puntuar(it, palabras) }))
     .filter((x) => x.puntos > 0)
     .sort((x, y) => Number(y.it.a) - Number(x.it.a) || y.puntos - x.puntos || x.it.p - y.it.p);
   return puntuados.slice(0, limite).map(({ it }) => ({
