@@ -14433,3 +14433,20 @@ presa y río, Tolten mar y costa, Fresh para empezar).
 **Pendiente:** ver en los registros las primeras pláticas reales del 31
 oct con el tono nuevo; si el dueño cambia los anuncios, actualizar la
 tabla de la sección "Si llega de un anuncio" y desplegar.
+
+**Corte del 30 oct (21:37).**
+
+| Anuncio | Gasto hoy | Conv. hoy | Costo c/u (3 días) |
+|---|---|---|---|
+| combo-video-wa | $28.80 | 7 | $3.76 |
+| cual-video-wa | $33.73 | 6 | $4.91 |
+| emiliano-video-wa | $3.55 | 2 | $1.95 |
+| combo-999-wa (foto) | $2.18 | 0 | $5.51 |
+| caja-video-wa | $1.70 | 0 | — ($2.34 en total) |
+
+- **Hoy:** $69.96 y 15 conversaciones ($4.66 c/u). **Acumulado:** $421.35,
+  **78 conversaciones** ($5.40 c/u), 1 venta (#1007).
+- Facebook ya mueve el dinero a los videos: la foto del combo gastó solo
+  $2.18 hoy.
+- Ningún corte se dispara ("Abre la caja" lleva $2.34, lejos de los $120).
+
