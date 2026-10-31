@@ -145,6 +145,42 @@ describe("caché persistente y API con token", () => {
   }, 30000);
 });
 
+describe("índice local del catálogo", () => {
+  const items = [
+    { h: "kit-listo-para-pescar-okuma-tundra-pro-7-topaz-pro", t: "Kit Listo para Pescar Okuma Tundra Pro 7'0\" + Topaz Pro 40", y: "Combos", g: "kit presa lobina", p: 1569, a: true },
+    { h: "cana-blue-fox-portada-11", t: "Caña de Pescar Blue Fox Portada SP 11'0\" (3.30m)", y: "Cañas", g: "mar costa", p: 649, a: true },
+    { h: "carrete-gimbel-s500", t: "Carrete Gimbel S500 Spinning", y: "Carretes", g: "", p: 419, a: false },
+    { h: "rifle-gamo", t: "Rifle Gamo Black 1000", y: "Rifles de Aire", g: "", p: 3999, a: true },
+  ];
+
+  it("busca por palabras con tolerancia a acentos y plurales; disponibles primero", async () => {
+    const { buscarEnIndice } = await import("../src/tienda");
+    expect(buscarEnIndice(items, "cañas para mar").map((r) => r.handle)).toEqual(["cana-blue-fox-portada-11"]);
+    expect(buscarEnIndice(items, "carretes spinning")[0]).toMatchObject({ handle: "carrete-gimbel-s500", disponible: false });
+    expect(buscarEnIndice(items, "kit lobina")[0].handle).toBe("kit-listo-para-pescar-okuma-tundra-pro-7-topaz-pro");
+    expect(buscarEnIndice(items, "rifle")[0]).toMatchObject({ restringido: true });
+    expect(buscarEnIndice(items, "zapatos")).toEqual([]);
+  });
+
+  it("refrescarCatalogo descarga /products.json y buscar usa el índice sin pedir a Shopify", async () => {
+    const pedidas: string[] = [];
+    const fn = (async (url: string) => {
+      pedidas.push(url);
+      if (url.includes("/products.json")) {
+        return new Response(JSON.stringify({ products: [{ handle: "x", title: "Caña Mar X", product_type: "Cañas", tags: ["mar"], variants: [{ price: "500.00", available: true }] }] }));
+      }
+      return new Response("", { status: 429, headers: { "retry-after": "0" } });
+    }) as unknown as typeof fetch;
+    const m = new Map<string, { valor: unknown; ts: number }>();
+    const cache = { get: async (c: string) => m.get(c), put: async (c: string, valor: unknown, ts: number) => void m.set(c, { valor, ts }) };
+    const tienda = crearTienda({ fetchFn: fn, cache });
+    expect(await tienda.refrescarCatalogo()).toBe(1);
+    const antes = pedidas.length;
+    expect((await tienda.buscar("caña de mar")).map((r) => r.handle)).toEqual(["x"]);
+    expect(pedidas.length).toBe(antes); // no salió a Shopify
+  });
+});
+
 describe("encabezados", () => {
   it("manda User-Agent (sin él Shopify responde 403 desde Cloudflare)", async () => {
     let ua = "";

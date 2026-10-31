@@ -14322,3 +14322,38 @@ similar), en lugar de quedarse pasivo.
 | Recomendó el Kit Tundra para lobina y el cliente calló 3 h | "Sigue disponible el kit para lobina, por si te interesa 🎣 … te mando el link para pagar. El envío es gratis." |
 
 Desplegado en activo.
+
+### §129: revisión de la tarde del 30 oct; índice local del catálogo (30 oct, 20:00)
+
+**Revisión (14:15–20:00, por registros de Cloudflare y mensajes de
+Kapso):** 112 webhooks, 13 chats con actividad. Bien: silencio con tres
+consultas de cartuchos y con un conocido de la familia; atención completa
+a dos clientes de mar (Veracruz/escolleras → Kit Tolten $1,209; orilla
+→ Tolten); mayoreo → pase al dueño, que lo retomó; "cebadores" → pase
+(no se manejan). Costo del día: $1.02 USD; 34 respuestas enviadas en
+el mes.
+
+**Dos hallazgos:**
+
+1. Un principiante pidió un **combo casting** para lobina: la búsqueda
+   en Shopify respondió 429 cuatro veces (la caché solo cubría fichas y
+   búsquedas ya hechas), el agente ofreció el Kit Tundra (spinning) y
+   avisó al dueño; el cliente insistió en casting y se pasó al dueño. En
+   la tienda no hay combos casting, así que la recomendación fue
+   correcta, pero la búsqueda no debe depender de Shopify en el momento.
+2. El seguimiento solo se programaba si la **última** respuesta había
+   consultado un producto; si la última fue solo el precio (Veracruz,
+   19:33), no se programaba. Los seguimientos de ayer no habían fallado:
+   su hora (22:33, 22:46) no había llegado.
+
+**Qué se hizo:**
+
+- **Índice local del catálogo**: el cron descarga `/products.json`
+  (388 productos, 2 páginas) cada 30 min y lo guarda compacto en la
+  caché del Durable Object; `buscar_producto` busca ahí (palabras sin
+  acentos, plurales, prefijos; título 3 puntos, tipo 2, etiquetas 1;
+  disponibles primero) y solo cae a Shopify si el índice no tiene nada.
+  `/diagnostico?catalogo=si&buscar=…` lo construye y prueba.
+- Seguimiento por plática (`conProductos`) y una sola vez por chat
+  (`seguimientoHecho`), aunque la última respuesta no use herramientas.
+- 65 de 65 pruebas. Desplegado en activo.

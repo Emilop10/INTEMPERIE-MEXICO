@@ -61,6 +61,10 @@ export interface Estado {
   ultimoCliente: number;
   procesarEn: number | null;
   seguimiento: { en: number; hecho: boolean } | null;
+  /** En esta plática se habló de productos (precio, ficha o link). */
+  conProductos?: boolean;
+  /** Ya se mandó el único recordatorio de este chat. */
+  seguimientoHecho?: boolean;
   /** Última respuesta propuesta que no se envió (modo borrador). */
   borrador?: { texto: string; ts: number } | null;
 }
@@ -280,7 +284,8 @@ export class Conversacion {
       if (envia && enVentana) {
         await this.mandar(e, r.texto, ahora);
         e.historial.push({ role: "assistant", content: r.texto });
-        if (this.d.config.seguimiento && (r.linksPago.length || consultoProductos)) {
+        if (consultoProductos || r.linksPago.length) e.conProductos = true;
+        if (this.d.config.seguimiento && e.conProductos && !e.seguimientoHecho) {
           e.seguimiento = { en: ahora + (r.linksPago.length ? SEGUIMIENTO_LINK : SEGUIMIENTO_PRODUCTO), hecho: false };
         }
       } else {
@@ -348,6 +353,7 @@ export class Conversacion {
   private async seguir(e: Estado, ahora: number): Promise<void> {
     if (!e.seguimiento) return;
     e.seguimiento.hecho = true;
+    e.seguimientoHecho = true;
     if (ahora < e.pausaHasta || ahora - e.ultimoCliente >= VENTANA_META - HORA) return;
     if (!this.envia(e)) return;
     const permiso = await this.d.control.verificar(ahora);
@@ -458,6 +464,8 @@ export class Conversacion {
       procesarEnSeg: e.procesarEn ? Math.round((e.procesarEn - ahora) / 1000) : null,
       borrador: Boolean(e.borrador),
       anuncio: Boolean(e.anuncio),
+      seguimientoEnMin: e.seguimiento && !e.seguimiento.hecho ? Math.round((e.seguimiento.en - ahora) / 60_000) : null,
+      seguimientoHecho: Boolean(e.seguimientoHecho),
     };
   }
 

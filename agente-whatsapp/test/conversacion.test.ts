@@ -158,6 +158,30 @@ describe("conversación", () => {
     expect(claude2.llamadas).toHaveLength(0);
   });
 
+  it("el seguimiento se programa aunque la última respuesta no haya consultado productos, y solo una vez por chat", async () => {
+    const tienda = tiendaFalsa([producto({ handle: "kit" })]);
+    const claude = claudeConGuion([
+      herramienta("consultar_producto", { handle: "kit" }),
+      texto("Te recomiendo el kit, está en $999."),
+      texto("Sí, el envío es gratis."),
+      texto("¿Te quedó alguna duda del kit? Si quieres te mando el link."),
+      texto("Claro, aquí sigo."),
+    ]);
+    const { conv, enviados, almacen } = armarConversacion({ claude, tienda });
+    await conv.recibir(mensaje("¿qué kit me recomiendas?"), MEDIODIA);
+    await conv.alarma(MEDIODIA + ESPERA);
+    await conv.recibir(mensaje("¿el envío es gratis?"), MEDIODIA + 10 * 60_000);
+    await conv.alarma(MEDIODIA + 10 * 60_000 + ESPERA);
+    // La última respuesta no usó herramientas, pero la plática fue de productos: seguimiento a las 3 h.
+    expect(almacen.alarma).toBe(MEDIODIA + 10 * 60_000 + ESPERA + 3 * HORA);
+    await conv.alarma(MEDIODIA + 10 * 60_000 + ESPERA + 3 * HORA);
+    expect(enviados.at(-1)?.texto).toBe("¿Te quedó alguna duda del kit? Si quieres te mando el link.");
+    // Otra respuesta después: ya no se programa un segundo recordatorio.
+    await conv.recibir(mensaje("gracias, lo pienso"), MEDIODIA + 4 * HORA);
+    await conv.alarma(MEDIODIA + 4 * HORA + ESPERA);
+    expect(almacen.alarma).toBe(MEDIODIA + 4 * HORA + 30 * 24 * HORA);
+  });
+
   it("retomar con criterio: a las 2 h el agente evalúa; si decide no_responder(dueno) calla y nunca manda 'Déjame confirmarlo'", async () => {
     const claude = claudeConGuion([herramienta("no_responder", { motivo: "dueno" }), herramienta("pasar_al_dueno", { motivo: "descuento", resumen: "x", producto: "" })]);
     const { conv, enviados, almacen, avisos } = armarConversacion({ claude });

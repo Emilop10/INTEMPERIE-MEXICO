@@ -9,7 +9,7 @@ import { leerConfig, type Env } from "./config";
 import { Control, type Registro } from "./control";
 import { Conversacion } from "./conversacion";
 import { HANDLES_GUIA } from "./generado/conocimiento";
-import { crearTienda } from "./tienda";
+import { CATALOGO_FRESCO_MS, crearTienda } from "./tienda";
 import { extraerEventos, firmaValida, type Evento } from "./webhook";
 import { crearEnviador } from "./whatsapp";
 
@@ -17,10 +17,20 @@ export default {
   // Cron (wrangler.toml): refresca las fichas de la guía para tenerlas en
   // caché aunque Shopify esté limitando.
   async scheduled(_evento: ScheduledController, env: Env, ctx: ExecutionContext): Promise<void> {
-    const tienda = tiendaDe(env, control(env));
+    const ctrl = control(env);
+    const tienda = tiendaDe(env, ctrl);
     // Una por una, con pausa: pedir las 8 a la vez provoca el 429 de Shopify.
     ctx.waitUntil(
       (async () => {
+        // Índice del catálogo completo para buscar sin depender de Shopify.
+        const indice = (await ctrl.cacheGet("catalogo")) as { ts: number } | undefined;
+        if (!indice || Date.now() - indice.ts > CATALOGO_FRESCO_MS) {
+          await tienda
+            .refrescarCatalogo()
+            .then((n) => console.log(`cron: catálogo con ${n} productos`))
+            .catch((e) => console.error(`cron: no se pudo refrescar el catálogo: ${String(e).slice(0, 120)}`));
+          await new Promise((r) => setTimeout(r, 1500));
+        }
         for (const h of HANDLES_GUIA) {
           await tienda.refrescar(h).catch((e) => console.error(`cron: no se pudo refrescar ${h}: ${String(e).slice(0, 120)}`));
           await new Promise((r) => setTimeout(r, 1500));
@@ -117,6 +127,18 @@ export default {
         const salida: Record<string, unknown> = {};
         const tienda = tiendaDe(env, control(env));
         const resultados: string[] = [];
+        if (url.searchParams.get("catalogo") === "si") {
+          try {
+            resultados.push(`catálogo: ${await tienda.refrescarCatalogo()} productos indexados`);
+          } catch (e) {
+            resultados.push(`catálogo: ${String(e).slice(0, 120)}`);
+          }
+        }
+        const q = url.searchParams.get("buscar");
+        if (q) {
+          const b = await tienda.buscar(q);
+          resultados.push(`buscar "${q}": ${b.map((x) => `${x.titulo} $${x.precio}${x.disponible ? "" : " (agotado)"}`).join(" | ") || "nada"}`);
+        }
         for (const h of HANDLES_GUIA.slice(0, Number(url.searchParams.get("veces") ?? 3))) {
           const inicio = Date.now();
           try {

@@ -41,7 +41,21 @@ export interface Tienda {
   buscar(consulta: string): Promise<Resultado[]>;
   /** Vuelve a leer una ficha aunque la caché esté fresca (para el cron). */
   refrescar(handle: string): Promise<Producto | null>;
+  /** Descarga el catálogo completo (/products.json) y lo guarda como índice de búsqueda. */
+  refrescarCatalogo(): Promise<number>;
 }
+
+/** Un producto del índice local (compacto: cabe el catálogo entero en la caché). */
+export interface ItemCatalogo {
+  h: string; // handle
+  t: string; // título
+  y: string; // tipo
+  g: string; // etiquetas (recortadas)
+  p: number; // precio mínimo
+  a: boolean; // disponible
+}
+const CLAVE_CATALOGO = "catalogo";
+export const CATALOGO_FRESCO_MS = 30 * 60_000;
 
 /** Caché persistente del catálogo (vive en el Durable Object de control). */
 export interface CacheCatalogo {
@@ -85,6 +99,57 @@ export function esRestringido(...textos: (string | undefined)[]): boolean {
 }
 
 const dormir = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+/** Minúsculas, sin acentos, solo letras y números. */
+export function normalizarTexto(t: string): string {
+  return t
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9ñ]+/g, " ")
+    .trim();
+}
+
+const raiz = (palabra: string) => palabra.replace(/(es|s)$/, "");
+
+/**
+ * Búsqueda local en el índice: cada palabra de la consulta suma puntos si
+ * aparece en el título (3), el tipo (2), las etiquetas o el handle (1), con
+ * tolerancia a plural y a prefijos (desde 4 letras). Disponibles primero.
+ */
+export function buscarEnIndice(items: ItemCatalogo[], consulta: string, limite = 6): Resultado[] {
+  const palabras = normalizarTexto(consulta)
+    .split(" ")
+    .filter((w) => w.length >= 2 && !["de", "la", "el", "para", "un", "una", "con", "y", "o", "en"].includes(w))
+    .map(raiz);
+  if (!palabras.length) return [];
+  const puntuados = items
+    .map((it) => {
+      const campos: [string, number][] = [
+        [normalizarTexto(it.t), 3],
+        [normalizarTexto(it.y), 2],
+        [normalizarTexto(`${it.g} ${it.h}`), 1],
+      ];
+      let puntos = 0;
+      for (const w of palabras) {
+        for (const [texto, valor] of campos) {
+          const tokens = texto.split(" ").map(raiz);
+          if (tokens.includes(w)) puntos += valor;
+          else if (w.length >= 4 && tokens.some((tk) => tk.startsWith(w) || w.startsWith(tk) && tk.length >= 4)) puntos += valor / 2;
+        }
+      }
+      return { it, puntos };
+    })
+    .filter((x) => x.puntos > 0)
+    .sort((x, y) => Number(y.it.a) - Number(x.it.a) || y.puntos - x.puntos || x.it.p - y.it.p);
+  return puntuados.slice(0, limite).map(({ it }) => ({
+    handle: it.h,
+    titulo: it.t,
+    precio: it.p,
+    disponible: it.a,
+    restringido: esRestringido(it.t, it.y, it.g),
+  }));
+}
 
 /** Pide una ruta pública de la tienda con reintentos y dominio alterno. */
 async function pedir(fetchFn: typeof fetch, ruta: string): Promise<Response> {
@@ -233,9 +298,40 @@ export function crearTienda(opciones: OpcionesTienda | typeof fetch = {}): Tiend
     consultar: (h) => consultar(h, false),
     refrescar: (h) => consultar(h, true),
 
+    async refrescarCatalogo() {
+      const items: ItemCatalogo[] = [];
+      for (let pagina = 1; pagina <= 4; pagina++) {
+        const r = await pedir(fetchFn, `/products.json?limit=250&page=${pagina}`);
+        if (r.status === 404) break;
+        const d: any = await r.json();
+        const productos: any[] = d?.products ?? [];
+        for (const p of productos) {
+          const variantes: any[] = p.variants ?? [];
+          items.push({
+            h: p.handle,
+            t: p.title,
+            y: p.product_type ?? "",
+            g: (Array.isArray(p.tags) ? p.tags.join(" ") : String(p.tags ?? "")).slice(0, 80),
+            p: variantes.length ? Math.min(...variantes.map((v) => Number(v.price))) : 0,
+            a: variantes.some((v) => v.available),
+          });
+        }
+        if (productos.length < 250) break;
+        await dormir(1500);
+      }
+      if (items.length && o.cache) await o.cache.put(CLAVE_CATALOGO, items, ahora());
+      return items.length;
+    },
+
     async buscar(consulta) {
       const q = consulta.trim().slice(0, 80);
       if (!q) return [];
+      // Primero el índice local (no depende de Shopify en el momento).
+      const indice = o.cache ? await o.cache.get(CLAVE_CATALOGO) : undefined;
+      if (indice && ahora() - indice.ts < VIEJO_MAX_MS) {
+        const encontrados = buscarEnIndice(indice.valor as ItemCatalogo[], q);
+        if (encontrados.length) return encontrados;
+      }
       return conCache<Resultado[]>(
         `buscar:${q.toLowerCase()}`,
         async () => {
