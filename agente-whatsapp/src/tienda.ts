@@ -53,6 +53,8 @@ export interface ItemCatalogo {
   g: string; // etiquetas (recortadas)
   p: number; // precio mínimo
   a: boolean; // disponible
+  v?: number; // id de la variante si tiene una sola (para el link de pago)
+  n?: number; // número de variantes
 }
 const CLAVE_CATALOGO = "catalogo";
 export const CATALOGO_FRESCO_MS = 30 * 60_000;
@@ -294,15 +296,42 @@ export function crearTienda(opciones: OpcionesTienda | typeof fetch = {}): Tiend
   async function consultar(handle: string, forzar: boolean, suave = false): Promise<Producto | null> {
     handle = handle.trim().toLowerCase();
     if (!HANDLE_VALIDO.test(handle)) return null;
-    return conCache<Producto | null>(
-      `producto:${handle}`,
-      async () => {
-        const r = await pedir(fetchFn, `/products/${handle}.js`, suave);
-        return r.status === 404 ? null : productoDeJs(await r.json());
-      },
-      adminToken ? () => consultarAdmin(fetchFn, adminToken, handle) : undefined,
-      forzar,
-    );
+    try {
+      return await conCache<Producto | null>(
+        `producto:${handle}`,
+        async () => {
+          const r = await pedir(fetchFn, `/products/${handle}.js`, suave);
+          return r.status === 404 ? null : productoDeJs(await r.json());
+        },
+        adminToken ? () => consultarAdmin(fetchFn, adminToken, handle) : undefined,
+        forzar,
+      );
+    } catch (e) {
+      // Sin ficha ni copia: el índice del catálogo (título, precio, existencia
+      // y, si tiene una sola variante, su id) alcanza para ofrecerlo y cobrarlo.
+      const desdeIndice = await productoDelIndice(handle);
+      if (!desdeIndice) throw e;
+      console.error(`Tienda sin respuesta (${String(e).slice(0, 80)}); se usa el índice del catálogo para ${handle}`);
+      return desdeIndice;
+    }
+  }
+
+  async function productoDelIndice(handle: string): Promise<Producto | null> {
+    const guardado = o.cache ? await o.cache.get(CLAVE_CATALOGO) : undefined;
+    const it = ((guardado?.valor as ItemCatalogo[] | undefined) ?? []).find((x) => x.h === handle);
+    if (!guardado || !it) return null;
+    return {
+      handle: it.h,
+      titulo: it.t,
+      precio: it.p,
+      precioAntes: null,
+      disponible: it.a,
+      restringido: esRestringido(it.t, it.y, it.g),
+      ficha: `${TIENDA}/products/${it.h}`,
+      descripcion: "",
+      variantes: it.n === 1 && it.v ? [{ id: it.v, titulo: "Default Title", precio: it.p, disponible: it.a }] : [],
+      edadMin: Math.round((ahora() - guardado.ts) / 60_000),
+    };
   }
 
   return {
@@ -325,6 +354,8 @@ export function crearTienda(opciones: OpcionesTienda | typeof fetch = {}): Tiend
             g: (Array.isArray(p.tags) ? p.tags.join(" ") : String(p.tags ?? "")).slice(0, 80),
             p: variantes.length ? Math.min(...variantes.map((v) => Number(v.price))) : 0,
             a: variantes.some((v) => v.available),
+            v: variantes.length === 1 ? Number(variantes[0].id) : 0,
+            n: variantes.length,
           });
         }
         if (productos.length < 250) break;
@@ -383,6 +414,7 @@ export function textoPlano(html: string): string {
 }
 
 /** Link de pago directo (GUIA-VENTAS-WHATSAPP.md, sección 3). */
-export function linkDePago(varianteId: number): string {
-  return `${TIENDA}/cart/${varianteId}:1`;
+export function linkDePago(varianteId: number, cantidad = 1): string {
+  const n = Number.isInteger(cantidad) && cantidad >= 1 && cantidad <= 10 ? cantidad : 1;
+  return `${TIENDA}/cart/${varianteId}:${n}`;
 }

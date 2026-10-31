@@ -57,6 +57,9 @@
      (un intento, se detiene al primer 429). Shopify sigue dando 429
      desde la IP compartida de Cloudflare; el agente usa copias de caché.
      La solución de fondo sigue siendo el token `shpat_` (abajo).
+   - **31 oct 15:30:** tarde revisada (8 leads del $999 bien atendidos).
+     `link_de_pago` con `cantidad`; respaldo con el índice del catálogo
+     cuando Shopify no responde; el agente ya no cuenta fallas internas.
    - 🟢 **Número conectado en Kapso (29 oct 16:43):**
      Phone number ID 742563942272641, WABA 2146162969186009, coexistencia.
      El nombre se queda "Alcampo Cuernavaca" (decisión del dueño: usa el

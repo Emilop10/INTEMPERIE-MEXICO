@@ -193,6 +193,30 @@ describe("índice local del catálogo", () => {
   });
 });
 
+describe("respaldo con el índice", () => {
+  it("si no hay ficha ni copia, consultar usa el índice del catálogo (con id de variante) y link_de_pago acepta cantidad", async () => {
+    const { linkDePago } = await import("../src/tienda");
+    const m = new Map<string, { valor: unknown; ts: number }>();
+    const cache = { get: async (c: string) => m.get(c), put: async (c: string, valor: unknown, ts: number) => void m.set(c, { valor, ts }) };
+    let t = 1_000_000;
+    let catalogoOk = true;
+    const fn = (async (url: string) => {
+      if (url.includes("/products.json") && catalogoOk) {
+        return new Response(JSON.stringify({ products: [{ handle: "cana-x", title: "Caña X 8'", product_type: "Cañas", tags: [], variants: [{ id: 555, price: "549.00", available: true }] }] }));
+      }
+      return new Response("", { status: 429, headers: { "retry-after": "0" } });
+    }) as unknown as typeof fetch;
+    const tienda = crearTienda({ fetchFn: fn, cache, ahora: () => t });
+    await tienda.refrescarCatalogo();
+    catalogoOk = false;
+    t += 7 * 60_000;
+    const p = await tienda.consultar("cana-x");
+    expect(p).toMatchObject({ titulo: "Caña X 8'", precio: 549, disponible: true, edadMin: 7, variantes: [{ id: 555, disponible: true }] });
+    expect(linkDePago(555, 2)).toBe("https://intemperiemexico.com/cart/555:2");
+    expect(linkDePago(555, 99)).toBe("https://intemperiemexico.com/cart/555:1");
+  }, 30000);
+});
+
 describe("encabezados", () => {
   it("manda User-Agent (sin él Shopify responde 403 desde Cloudflare)", async () => {
     let ua = "";

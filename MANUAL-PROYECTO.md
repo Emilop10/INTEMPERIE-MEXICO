@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 31 de octubre de 2026 (sección 129, revisión de la mañana y cron suave)
+**Última actualización:** 31 de octubre de 2026 (sección 129, revisión de la tarde, links con cantidad)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -14506,3 +14506,49 @@ veces rebasaba el límite de subpeticiones por invocación del Worker
 **Pendiente:** vigilar si con el cron suave bajan los 429; si no, la
 salida de fondo es la API de administración con un token `shpat_`
 (pendiente del dueño).
+
+### §129: revisión de la tarde del 31 oct; links con cantidad; respaldo con el índice (31 oct, 15:30)
+
+**Pedido del dueño:** revisar cómo van los mensajes y que todo funcione.
+
+**Qué pasó de 10:50 a 15:15 (12 chats con actividad):**
+
+- **8 leads del anuncio $999**, todos atendidos en menos de un minuto
+  con el Combo Boundary, ficha y link de pago en la primera respuesta,
+  tono cálido. Preguntas resueltas sobre la marcha: meses sin intereses,
+  envío a Atlixco (dos piezas), "cuántos pies", especificaciones, cómo
+  pagar en OXXO ("por aquí no manejamos número de cuenta; eliges Mercado
+  Pago y te da la referencia").
+- **Apartado:** "apártame uno, compro mañana a meses" → pase al dueño
+  (regla de apartar sin pagar); el dueño contestó a las 15:00.
+- **Producto que no hay** (Shimano Exage 8'): ofreció dos cañas de 8'
+  parecidas con ficha y avisó al dueño, que retomó el chat a las 13:26.
+  Pero el agente escribió "no me generó el link de pago porque la tienda
+  tardó en responder": no debe contar fallas internas.
+- **Recordatorios** a las 12:02 y 14:26, cortos y con link. Un mensaje
+  de tipo no soportado (número de EE. UU.) y un chat personal del dueño
+  (datos bancarios de un conocido) quedaron en silencio, como debe ser.
+- Contadores: 60 respuestas en el mes, $2.80 USD de Claude ($0.78 hoy).
+- **Shopify sigue en 429.** El cron suave no se detenía porque la caché
+  devuelve la copia vieja en vez de fallar; igual pedía poco (un intento
+  por ficha). Casi todas las respuestas decían "si sigue disponible"
+  porque la nota de copia vieja lo pedía aunque la copia tuviera 5 min.
+
+**Qué se hizo:**
+
+- `link_de_pago` acepta `cantidad` (1 a 10): "necesito dos" → link
+  `/cart/<variante>:2`, y el agente dice que el link ya lleva las dos.
+- **Respaldo con el índice del catálogo:** el índice guarda ahora el id
+  de la variante (si el producto tiene una sola) y el número de
+  variantes; si Shopify no responde y no hay copia de la ficha,
+  `consultar_producto` y `link_de_pago` se resuelven con el índice
+  (título, precio, existencia, link). Era lo que faltó en el caso de las
+  cañas de 8'.
+- La nota de copia vieja solo pide decir "si sigue disponible" cuando
+  la copia tiene más de 2 h; antes, "ofrécelo normal".
+- Instrucciones: nunca contar fallas internas; si no hay link, mandar
+  la ficha y seguir.
+- Cron: se detiene en la corrida en cuanto una ficha vuelve como copia
+  vieja (Shopify limitando).
+- 70 de 70 pruebas. Simulación "envíos a Atlixco, necesito dos" → link
+  con 2 piezas. Desplegado en activo (versión d40d734d).

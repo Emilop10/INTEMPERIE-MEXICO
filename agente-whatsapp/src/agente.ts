@@ -77,8 +77,12 @@ const HERRAMIENTAS: Anthropic.Beta.Messages.BetaTool[] = [
           type: "integer",
           description: "ID de la variante si el producto tiene varias; 0 si tiene una sola.",
         },
+        cantidad: {
+          type: "integer",
+          description: "Piezas que quiere el cliente (1 a 10); normalmente 1. El link ya lleva esa cantidad.",
+        },
       },
-      required: ["handle", "variante_id"],
+      required: ["handle", "variante_id", "cantidad"],
       additionalProperties: false,
     },
   },
@@ -394,7 +398,9 @@ export async function ejecutarHerramienta(
         descripcion: p.descripcion || undefined,
         envio: p.precio >= 799 ? "gratis" : "$189",
         nota: p.edadMin
-          ? `Shopify no respondió; precio y existencia son de hace ${p.edadMin} min. Si mandas link de pago, di "si sigue disponible".`
+          ? p.edadMin > 120
+            ? `Precio y existencia son una copia de hace ${p.edadMin} min (la tienda no respondió). Si mandas link de pago, di "si sigue disponible".`
+            : `Precio y existencia son una copia de hace ${p.edadMin} min: es reciente, ofrécelo normal, sin "si sigue disponible". Nunca menciones al cliente que la tienda no respondió.`
           : undefined,
         variantes:
           p.variantes.length > 1
@@ -430,10 +436,14 @@ export async function ejecutarHerramienta(
         }
         variante = disponibles[0] ?? p.variantes[0];
       }
+      if (!variante && p.variantes.length === 0) {
+        return { error: "Ahora no se pudo verificar la variante; manda el link de la ficha y sigue la plática sin mencionar fallas." };
+      }
       if (!variante || !variante.disponible) return { error: "Agotado: no lo ofrezcas; ofrece otro que sí haya." };
-      const link = linkDePago(variante.id);
+      const cantidad = Number(i.cantidad ?? 1);
+      const link = linkDePago(variante.id, cantidad);
       linksEmitidos.add(link);
-      return { link, titulo: p.titulo, variante: variante.titulo, precio: variante.precio, envio: variante.precio >= 799 ? "gratis" : "$189" };
+      return { link, titulo: p.titulo, variante: variante.titulo, cantidad: cantidad >= 1 && cantidad <= 10 ? cantidad : 1, precio: variante.precio, envio: variante.precio >= 799 ? "gratis" : "$189" };
     }
     default:
       return { error: `Herramienta desconocida: ${nombre}` };

@@ -40,7 +40,9 @@ export default {
           const copia = (await ctrl.cacheGet(`producto:${h}`)) as { ts: number } | undefined;
           if (copia && Date.now() - copia.ts < 20 * 60_000) continue;
           try {
-            await tienda.refrescar(h, true);
+            const p = await tienda.refrescar(h, true);
+            // Volvió una copia vieja: Shopify está limitando; no insistir en esta corrida.
+            if (p?.edadMin) return;
           } catch (e) {
             console.error(`cron: no se pudo refrescar ${h}: ${String(e).slice(0, 120)}`);
             if (/429/.test(String(e))) return;
