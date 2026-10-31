@@ -65,6 +65,13 @@ describe("tienda en vivo", () => {
     expect(pedidas.at(-1)).toContain("wfuxvx-yn.myshopify.com/products/x.js");
   }, 15000);
 
+  it("refrescar en modo suave hace un solo intento", async () => {
+    let n = 0;
+    const fn = (async () => (n++, new Response("", { status: 429, headers: { "retry-after": "0" } }))) as unknown as typeof fetch;
+    await expect(crearTienda(fn).refrescar("x", true)).rejects.toThrow("429");
+    expect(n).toBe(1);
+  });
+
   it("si todos los intentos fallan, lanza con el último código", async () => {
     const fn = (async () => new Response("", { status: 429, headers: { "retry-after": "0" } })) as unknown as typeof fetch;
     await expect(crearTienda(fn).consultar("x")).rejects.toThrow("429");

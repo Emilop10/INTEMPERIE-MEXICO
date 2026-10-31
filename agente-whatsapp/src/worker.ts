@@ -23,16 +23,28 @@ export default {
     ctx.waitUntil(
       (async () => {
         // Índice del catálogo completo para buscar sin depender de Shopify.
+        // Shopify limita por IP compartida (429). El cron pide poco y, en cuanto
+        // ve un 429, se detiene hasta la siguiente corrida: insistir alarga el bloqueo.
         const indice = (await ctrl.cacheGet("catalogo")) as { ts: number } | undefined;
         if (!indice || Date.now() - indice.ts > CATALOGO_FRESCO_MS) {
-          await tienda
-            .refrescarCatalogo()
-            .then((n) => console.log(`cron: catálogo con ${n} productos`))
-            .catch((e) => console.error(`cron: no se pudo refrescar el catálogo: ${String(e).slice(0, 120)}`));
+          try {
+            console.log(`cron: catálogo con ${await tienda.refrescarCatalogo()} productos`);
+          } catch (e) {
+            console.error(`cron: no se pudo refrescar el catálogo: ${String(e).slice(0, 120)}`);
+            if (/429/.test(String(e))) return;
+          }
           await new Promise((r) => setTimeout(r, 1500));
         }
         for (const h of HANDLES_GUIA) {
-          await tienda.refrescar(h).catch((e) => console.error(`cron: no se pudo refrescar ${h}: ${String(e).slice(0, 120)}`));
+          // Solo las fichas con copia de más de 20 min (la caché sirve copias viejas hasta 24 h).
+          const copia = (await ctrl.cacheGet(`producto:${h}`)) as { ts: number } | undefined;
+          if (copia && Date.now() - copia.ts < 20 * 60_000) continue;
+          try {
+            await tienda.refrescar(h, true);
+          } catch (e) {
+            console.error(`cron: no se pudo refrescar ${h}: ${String(e).slice(0, 120)}`);
+            if (/429/.test(String(e))) return;
+          }
           await new Promise((r) => setTimeout(r, 1500));
         }
       })(),

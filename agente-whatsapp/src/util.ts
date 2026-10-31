@@ -45,6 +45,20 @@ export function enHorario(ahora: number): boolean {
   return hora >= 9 && hora < 22;
 }
 
+/**
+ * Hora para escribirle al cliente por iniciativa propia (recordatorios): entre
+ * 9:00 y 21:00 de México. Si cae de noche, se corre a la mañana siguiente.
+ */
+export function horaDeContacto(ts: number): number {
+  const MEDIA_HORA = 30 * 60_000;
+  for (let i = 0; i < 48; i++) {
+    const { hora } = horaMexico(ts);
+    if (hora >= 9 && hora < 21) return ts;
+    ts += MEDIA_HORA;
+  }
+  return ts;
+}
+
 /** 5217773277340 -> 52177***7340. Para registros y avisos por ntfy. */
 export function enmascarar(id: string): string {
   if (id.length <= 6) return "***";

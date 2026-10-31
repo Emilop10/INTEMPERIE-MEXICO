@@ -39,8 +39,8 @@ export interface Resultado {
 export interface Tienda {
   consultar(handle: string): Promise<Producto | null>;
   buscar(consulta: string): Promise<Resultado[]>;
-  /** Vuelve a leer una ficha aunque la caché esté fresca (para el cron). */
-  refrescar(handle: string): Promise<Producto | null>;
+  /** Vuelve a leer una ficha aunque la caché esté fresca (para el cron). Con `suave`, un solo intento. */
+  refrescar(handle: string, suave?: boolean): Promise<Producto | null>;
   /** Descarga el catálogo completo (/products.json) y lo guarda como índice de búsqueda. */
   refrescarCatalogo(): Promise<number>;
 }
@@ -161,13 +161,15 @@ export function buscarEnIndice(items: ItemCatalogo[], consulta: string, limite =
 }
 
 /** Pide una ruta pública de la tienda con reintentos y dominio alterno. */
-async function pedir(fetchFn: typeof fetch, ruta: string): Promise<Response> {
+async function pedir(fetchFn: typeof fetch, ruta: string, suave = false): Promise<Response> {
   let ultimo = 0;
   for (const dominio of DOMINIOS) {
     for (let intento = 0; intento <= ESPERAS_MS.length; intento++) {
       const r = await fetchFn(`${dominio}${ruta}`, { headers: ENCABEZADOS });
       if (r.ok || r.status === 404) return r;
       ultimo = r.status;
+      // Suave (cron): un solo intento; insistir alarga el bloqueo de Shopify.
+      if (suave) throw new Error(`La tienda respondió ${ultimo} para ${ruta.split("?")[0]}`);
       if (r.status !== 429 && r.status !== 403 && r.status < 500) break;
       if (intento < ESPERAS_MS.length) {
         const retryAfter = Number(r.headers.get("retry-after")) * 1000;
@@ -289,13 +291,13 @@ export function crearTienda(opciones: OpcionesTienda | typeof fetch = {}): Tiend
     throw error;
   }
 
-  async function consultar(handle: string, forzar: boolean): Promise<Producto | null> {
+  async function consultar(handle: string, forzar: boolean, suave = false): Promise<Producto | null> {
     handle = handle.trim().toLowerCase();
     if (!HANDLE_VALIDO.test(handle)) return null;
     return conCache<Producto | null>(
       `producto:${handle}`,
       async () => {
-        const r = await pedir(fetchFn, `/products/${handle}.js`);
+        const r = await pedir(fetchFn, `/products/${handle}.js`, suave);
         return r.status === 404 ? null : productoDeJs(await r.json());
       },
       adminToken ? () => consultarAdmin(fetchFn, adminToken, handle) : undefined,
@@ -305,7 +307,7 @@ export function crearTienda(opciones: OpcionesTienda | typeof fetch = {}): Tiend
 
   return {
     consultar: (h) => consultar(h, false),
-    refrescar: (h) => consultar(h, true),
+    refrescar: (h, suave = false) => consultar(h, true, suave),
 
     async refrescarCatalogo() {
       const items: ItemCatalogo[] = [];

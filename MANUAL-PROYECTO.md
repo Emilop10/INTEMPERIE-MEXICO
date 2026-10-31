@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 31 de octubre de 2026 (sección 129, tono y venta directa desde el anuncio)
+**Última actualización:** 31 de octubre de 2026 (sección 129, revisión de la mañana y cron suave)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -14465,3 +14465,44 @@ tabla de la sección "Si llega de un anuncio" y desplegar.
 - Con 80 conversaciones y 1 venta, el embudo se rompe en el chat; el
   corte de $750 (≈ lunes 2 nov) pausará la campaña si sigue así.
 
+### §129: revisión de la mañana del 31 oct; recordatorios sin horario nocturno; cron suave (31 oct, 11:10)
+
+**Pedido del dueño:** revisar cómo contestó en los chats de hoy y cómo
+está funcionando el agente.
+
+**Cómo contestó (Kapso y registros de Cloudflare):**
+
+| Hora | Chat | Qué pasó |
+|---|---|---|
+| 30 oct 21:00 | Lead del anuncio $999 ("Caña okuma") | Ya con las instrucciones nuevas: Boundary con ficha y link de pago en la primera respuesta. |
+| 30 oct 22:33–23:22 | 5 recordatorios (escolleras, Luis/Tolten, Cesar, y dos leads del $999 que no habían contestado) | Bien pensados y con link, pero **tres salieron entre 23:00 y 23:22**: demasiado tarde. |
+| 31 oct 10:02 | Lead del anuncio $999 (perfil "Chucholoco") | Respuesta correcta y directa, con link de pago; recordatorio programado para las 12:10. Saludó "¡Hola, Chucholoco!": usó el apodo del perfil. |
+| 31 oct 10:11 | Conocido del dueño ("joven Costa… donativo"), chat que el dueño atendió ayer | El agente se quedó callado. Correcto. |
+
+Contadores: 44 respuestas enviadas en el mes, $2.13 USD de Claude en
+el mes ($0.11 hoy). ntfy sigue en 429 (falta `NTFY_TOKEN`).
+
+**Un problema de fondo en los registros:** Shopify respondió **429** a casi
+todas las peticiones desde las 03:40 y el índice del catálogo no se pudo
+refrescar desde las 06:15 (el agente siguió contestando con las copias
+de la caché, de 5 a 60 min de edad, como está previsto). El propio cron
+empeoraba el bloqueo: cada 5 min pedía el catálogo y las 10 fichas de la
+guía con hasta 8 intentos por ficha (dos dominios × 4 intentos), y a
+veces rebasaba el límite de subpeticiones por invocación del Worker
+("Too many subrequests").
+
+**Qué se hizo:**
+
+- **Recordatorios solo de 9:00 a 21:00** (`horaDeContacto` en `util.ts`):
+  si el seguimiento cae de noche, se corre a las 9:00 del día siguiente.
+- **Cron suave:** solo refresca las fichas con copia de más de 20 min,
+  un solo intento por ficha (`refrescar(h, true)`), y **se detiene en el
+  primer 429** hasta la siguiente corrida. Las respuestas al cliente
+  siguen con reintentos y dominio alterno.
+- Instrucción: usar el nombre del perfil solo si parece nombre de pila
+  (no apodos, negocios, siglas ni emojis).
+- 69 de 69 pruebas (dos nuevas). Desplegado en activo.
+
+**Pendiente:** vigilar si con el cron suave bajan los 429; si no, la
+salida de fondo es la API de administración con un token `shpat_`
+(pendiente del dueño).

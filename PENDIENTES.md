@@ -52,7 +52,11 @@
      `INSTRUCCIONES-AGENTE.md`, "Si llega de un anuncio": $999 → Combo
      Boundary) y lo recomienda con link de pago en la primera respuesta,
      con tono más cálido. **Si cambian los anuncios, actualizar esa tabla
-     y desplegar.** Revisar las primeras pláticas reales del 31 oct.
+     y desplegar.** Revisadas las pláticas del 31 oct por la mañana: bien.
+   - **31 oct 11:10:** recordatorios solo de 9:00 a 21:00; cron suave
+     (un intento, se detiene al primer 429). Shopify sigue dando 429
+     desde la IP compartida de Cloudflare; el agente usa copias de caché.
+     La solución de fondo sigue siendo el token `shpat_` (abajo).
    - 🟢 **Número conectado en Kapso (29 oct 16:43):**
      Phone number ID 742563942272641, WABA 2146162969186009, coexistencia.
      El nombre se queda "Alcampo Cuernavaca" (decisión del dueño: usa el

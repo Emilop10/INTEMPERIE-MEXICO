@@ -9,7 +9,7 @@ import type { Config } from "./config";
 import type { Almacen, Registro, Verificacion } from "./control";
 import type { Tienda } from "./tienda";
 import { normalizar } from "./config";
-import { enHorario, enmascarar, horaMexico } from "./util";
+import { enHorario, enmascarar, horaDeContacto, horaMexico } from "./util";
 import type { Destino, Evento } from "./webhook";
 import type { EnviarTexto } from "./whatsapp";
 
@@ -293,7 +293,8 @@ export class Conversacion {
         e.historial.push({ role: "assistant", content: r.texto });
         if (consultoProductos || r.linksPago.length) e.conProductos = true;
         if (this.d.config.seguimiento && e.conProductos && !e.seguimientoHecho) {
-          e.seguimiento = { en: ahora + (r.linksPago.length ? SEGUIMIENTO_LINK : SEGUIMIENTO_PRODUCTO), hecho: false };
+          // Nunca de noche: un recordatorio a las 23:00 molesta (pasó el 30 oct).
+          e.seguimiento = { en: horaDeContacto(ahora + (r.linksPago.length ? SEGUIMIENTO_LINK : SEGUIMIENTO_PRODUCTO)), hecho: false };
         }
       } else {
         await this.borrador(e, nuevos, r.texto);

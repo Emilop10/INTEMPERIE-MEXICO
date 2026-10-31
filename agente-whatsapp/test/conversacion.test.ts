@@ -268,6 +268,19 @@ describe("conversación", () => {
     expect(claude.llamadas).toHaveLength(1);
   });
 
+  it("un seguimiento que caería de noche se corre a la mañana siguiente (9:00 de México)", async () => {
+    const link = "https://intemperiemexico.com/cart/111:1";
+    const tienda = tiendaFalsa([producto({ handle: "combo" })]);
+    const claude = claudeConGuion([herramienta("link_de_pago", { handle: "combo", variante_id: 0 }), texto(`Aquí está: ${link}`)]);
+    const { conv, almacen } = armarConversacion({ claude, tienda });
+    // NOCHE = 23:30 de México; 2 h después serían la 1:30.
+    await conv.recibir(mensaje("lo quiero"), NOCHE);
+    await conv.alarma(NOCHE + ESPERA);
+    const { horaMexico } = await import("../src/util");
+    expect(horaMexico(almacen.alarma!).hora).toBe(9);
+    expect(almacen.alarma! - NOCHE).toBeGreaterThan(9 * HORA);
+  });
+
   it("si preguntan si es bot, dice la verdad", async () => {
     const claude = claudeConGuion([herramienta("pasar_al_dueno", { motivo: "pide_persona", resumen: "Pregunta si es bot", producto: "" })]);
     const { conv, enviados } = armarConversacion({ claude });
