@@ -160,6 +160,11 @@ describe("índice local del catálogo", () => {
     expect(buscarEnIndice(items, "kit lobina")[0].handle).toBe("kit-listo-para-pescar-okuma-tundra-pro-7-topaz-pro");
     expect(buscarEnIndice(items, "rifle")[0]).toMatchObject({ restringido: true });
     expect(buscarEnIndice(items, "zapatos")).toEqual([]);
+    const hilos = [
+      { h: "hilo-020", t: "Hilo Araty 0.20mm 100m", y: "Hilos y Líneas", g: "", p: 23, a: true },
+      { h: "hilo-040", t: "Hilo Araty 0.40mm 100m", y: "Hilos y Líneas", g: "", p: 35, a: true },
+    ];
+    expect(buscarEnIndice(hilos, "hilo 0.40")[0].handle).toBe("hilo-040");
   });
 
   it("refrescarCatalogo descarga /products.json y buscar usa el índice sin pedir a Shopify", async () => {

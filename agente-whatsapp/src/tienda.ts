@@ -106,6 +106,7 @@ export function normalizarTexto(t: string): string {
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase()
+    .replace(/(\d)[.,](\d)/g, "$1$2") // 0.40 y 0,40 -> 040, para que "0.40mm" case con "0.40"
     .replace(/[^a-z0-9ñ]+/g, " ")
     .trim();
 }
