@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { atender, costoDeUso, formatoWhatsApp, revisarLinks, textoFinal } from "../src/agente";
+import { atender, costoDeUso, formatoWhatsApp, linksDePagoPrevios, revisarLinks, textoFinal } from "../src/agente";
 import { claudeConGuion, herramienta, producto, texto, tiendaFalsa } from "./ayudas";
 
 const boundary = producto({
@@ -217,6 +217,16 @@ describe("costo y links", () => {
       cache_creation_input_tokens: 100_000,
     } as any);
     expect(usd).toBeCloseTo(2 + 1 + 0.2 + 0.25, 6);
+  });
+
+  it("puede repetir un link de pago que la herramienta ya dio antes en la misma plática", () => {
+    const historial = [
+      { role: "user" as const, content: "Hola" },
+      { role: "assistant" as const, content: "Aquí lo pagas: https://intemperiemexico.com/cart/43219563085901:1" },
+    ];
+    const previos = new Set(linksDePagoPrevios(historial));
+    expect(revisarLinks("Te lo repito: https://intemperiemexico.com/cart/43219563085901:1", previos)).toBeNull();
+    expect(revisarLinks("Mira: https://intemperiemexico.com/cart/999:1", previos)).toMatch(/no verificó/);
   });
 
   it("acepta fichas de la tienda y wa.me", () => {

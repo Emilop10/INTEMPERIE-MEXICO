@@ -203,7 +203,10 @@ export async function atender(
     // mitad de conversación: no rompe la caché de las instrucciones.
     { role: "system", content: entrada.contexto },
   ];
-  const linksEmitidos = new Set<string>();
+  // Links de pago válidos en esta vuelta: los que dé link_de_pago ahora y los
+  // que la herramienta ya dio antes en esta misma plática (van en el historial
+  // como respuestas del agente), para que pueda repetirlos sin volver a pedirlos.
+  const linksEmitidos = new Set<string>(linksDePagoPrevios(entrada.historial));
   let costoUsd = 0;
   let llamadas = 0;
 
@@ -335,6 +338,15 @@ export function formatoWhatsApp(texto: string): string {
 }
 
 /** Ningún link de pago inventado y ningún dominio ajeno. */
+export function linksDePagoPrevios(historial: MensajeHistorial[]): string[] {
+  const links: string[] = [];
+  for (const m of historial) {
+    if (m.role !== "assistant" || typeof m.content !== "string") continue;
+    for (const l of m.content.match(/https:\/\/intemperiemexico\.com\/cart\/[0-9]+:[0-9]+/g) ?? []) links.push(l);
+  }
+  return links;
+}
+
 export function revisarLinks(texto: string, linksEmitidos: Set<string>): string | null {
   const urls = texto.match(/(https?:\/\/[^\s)>\]]+|(?:www\.)?[a-z0-9-]+\.(?:com|mx|me|net|org)\/[^\s)>\]]*)/gi) ?? [];
   for (const crudo of urls) {

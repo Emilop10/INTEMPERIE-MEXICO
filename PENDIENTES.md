@@ -47,6 +47,12 @@
      decide si retoma (solo ventas de pesca que puede avanzar) o se
      queda fuera; seguimiento único a las 2–3 h si el cliente calló.
      `POST /reprocesar` bloqueado; no correr reprocesados masivos.
+   - **Venta directa desde el anuncio (31 oct 02:40):** el agente ya sabe
+     qué producto muestra cada anuncio (tabla en
+     `INSTRUCCIONES-AGENTE.md`, "Si llega de un anuncio": $999 → Combo
+     Boundary) y lo recomienda con link de pago en la primera respuesta,
+     con tono más cálido. **Si cambian los anuncios, actualizar esa tabla
+     y desplegar.** Revisar las primeras pláticas reales del 31 oct.
    - 🟢 **Número conectado en Kapso (29 oct 16:43):**
      Phone number ID 742563942272641, WABA 2146162969186009, coexistencia.
      El nombre se queda "Alcampo Cuernavaca" (decisión del dueño: usa el

@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 28 de octubre de 2026 (sección 129, Fase 2)
+**Última actualización:** 31 de octubre de 2026 (sección 129, tono y venta directa desde el anuncio)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -14366,3 +14366,70 @@ catálogo completo (388): "caña 7 pies" → cañas de 7'; "carrete 4000" →
 Sienna 4000; "hilo 0.40" → Araty 0.40; "kit para presa" → kits; "cañas
 shimano" → Clarus. Al refactorizar se borraron por error las funciones
 de descarga y se restauraron desde git antes de desplegar. 65 de 65.
+
+### §129: tono más cálido y venta directa desde el anuncio (31 oct, 02:40)
+
+**Lo que pidió el dueño:** respuestas más cálidas; que el agente entienda
+qué producto vio el cliente en el anuncio y lo recomiende él mismo, con
+los links directos, en vez de preguntarle "¿cuál viste?"; que las otras
+opciones se compartan solo si las piden; que venda más y le haga fácil la
+compra; y una revisión de cómo contesta.
+
+**Revisión (respuestas reales del 30 oct, 19:30–20:25):** tres chats del
+anuncio "Caña + carrete Okuma · $999" (`120250811303420175`, el que trae
+casi todos los leads). En los tres el agente listó **dos** combos Okuma
+y preguntó qué tipo de pesca hacía o cuál era el de la publicación; a uno
+que preguntó "¿de cuántos pies es la caña?" le contestó "¿de cuál caña o
+kit?". Causas: (1) las instrucciones no decían qué producto muestra cada
+anuncio; (2) en uno de los chats Meta no adjuntó el dato del anuncio y
+el agente no sabía que "¡Hola! Quiero más información" es el texto fijo
+del botón del anuncio; (3) el guion pedía "pregunta qué tipo de pesca
+hace" antes de recomendar y "¿te mando el link?" en vez de mandarlo. El
+video del anuncio $999 muestra el **Combo Okuma Boundary 7'** ($999,
+`GUIA-VIDEOS-ANUNCIOS…`, video 4) y el de kits los tres kits (Revenger
+presa y río, Tolten mar y costa, Fresh para empezar).
+
+**Qué se hizo:**
+
+- `agente-whatsapp/INSTRUCCIONES-AGENTE.md`:
+  - "Cómo escribes": tono cercano (nombre del cliente una vez, "con mucho
+    gusto", engancharse con lo que cuenta el cliente), respuestas de
+    producto de 3 a 5 renglones, **una sola pregunta por mensaje** y
+    nunca responder una pregunta con otra; ejemplo de primera respuesta
+    al lead del anuncio $999.
+  - Sección nueva "Si llega de un anuncio": tabla anuncio → producto
+    (handles); al lead del $999 se le recomienda el Boundary **en la
+    primera respuesta** con ficha, precio en vivo y **link de pago en el
+    mismo mensaje**, sin listar dos combos ni preguntar; si está agotado,
+    el Revenger 8' al mismo precio; si dice un uso que no le va (mar de
+    orilla, surf), una sola alternativa con link y que él decida; otras
+    opciones solo si las pide; en los anuncios de kits, el kit que
+    corresponde si ya dijo dónde pesca, o los tres con precio y una sola
+    pregunta.
+  - "El link de pago": se manda en cuanto se sabe qué producto le
+    interesa, sin preguntar "¿te mando el link?".
+  - "Cómo llevar la plática": preguntar presa/río/mar solo cuando no hay
+    de qué agarrarse.
+- `src/conversacion.ts`: si llega "¡Hola! Quiero más información" como
+  primer mensaje y Meta no mandó el anuncio, se marca igual como lead de
+  anuncio (`ANUNCIO_SIN_DATO`) y así lo ve Claude en el contexto.
+- `src/agente.ts`: **error encontrado en la simulación**: el agente no
+  podía repetir un link de pago que ya había dado antes en la misma
+  plática (la revisión solo aceptaba los de la vuelta actual) y pasaba el
+  chat al dueño con "link no verificado". Ahora los links `/cart/` que
+  la herramienta ya dio en ese chat (están en el historial) valen
+  también (`linksDePagoPrevios`).
+- Pruebas: 67 de 67 (dos nuevas). Simulaciones con Claude real:
+  lead $999 → Boundary con ficha y link de pago en la primera respuesta
+  ($0.017); "¿de cuántos pies?" → responde directo sobre el Boundary;
+  "¿algo más barato?" → explica que $999 es lo más barato con carrete y
+  ofrece el Revenger con link; "me quedo con el del anuncio, ¿cómo
+  pago?" → repite el link y las formas de pago; mar de orilla → Kit
+  Tolten con link y deja vigente el combo; anuncio de kits + "presa,
+  lobina" → Kit Revenger con link; "Hola" + cartuchos → neutro y luego
+  silencio (`otro_negocio`). Costo por plática de 4 mensajes: $0.07.
+- Desplegado en activo (versión f64ed46c).
+
+**Pendiente:** ver en los registros las primeras pláticas reales del 31
+oct con el tono nuevo; si el dueño cambia los anuncios, actualizar la
+tabla de la sección "Si llega de un anuncio" y desplegar.

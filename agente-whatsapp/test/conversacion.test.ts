@@ -31,6 +31,17 @@ describe("conversación", () => {
     expect(enviados).toEqual([{ destino: { to: "5217771112222" }, texto: "¡Hola! ¿Qué tipo de pesca haces?" }]);
   });
 
+  it("el texto del botón del anuncio cuenta como lead del anuncio aunque Meta no mande el dato", async () => {
+    const claude = claudeConGuion([texto("¡Hola! Con gusto.")]);
+    const { conv } = armarConversacion({ claude });
+    await conv.recibir(mensaje("¡Hola! Quiero más información"), MEDIODIA);
+    await conv.alarma(MEDIODIA + ESPERA);
+    const contexto = String(claude.llamadas[0].messages.at(-1)?.content);
+    expect(contexto).toContain("llegó desde este anuncio");
+    expect(contexto).toContain("texto del botón del anuncio");
+    expect((await conv.resumen(MEDIODIA + ESPERA)).anuncio).toBe(true);
+  });
+
   it("no contesta antes de que pase la espera ni dos veces el mismo mensaje", async () => {
     const claude = claudeConGuion([texto("Hola")]);
     const { conv, enviados } = armarConversacion({ claude });

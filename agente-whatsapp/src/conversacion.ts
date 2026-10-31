@@ -45,6 +45,10 @@ const ETIQUETAS: Record<Motivo, string> = {
   otro: "duda que el agente no resolvió",
 };
 
+/** Texto fijo que manda el botón de los anuncios de WhatsApp. */
+const TEXTO_BOTON_ANUNCIO = /^\W*hola\W*\s*quiero m[aá]s informaci[oó]n\W*$/i;
+export const ANUNCIO_SIN_DATO = "anuncio de Facebook (no llegó el titular; el cliente escribió el texto del botón del anuncio)";
+
 export interface Estado {
   chat: string;
   destino: Destino;
@@ -162,6 +166,9 @@ export class Conversacion {
     e.destino = ev.destino;
     if (ev.nombre) e.nombre = ev.nombre.slice(0, 40);
     if (ev.anuncio && !e.anuncio) e.anuncio = ev.anuncio.slice(0, 200);
+    // El botón "Enviar mensaje" de los anuncios manda este texto fijo. Si Meta
+    // no adjuntó el dato del anuncio (pasa), igual se trata como lead del anuncio.
+    if (!e.anuncio && !e.historial.length && TEXTO_BOTON_ANUNCIO.test(ev.texto)) e.anuncio = ANUNCIO_SIN_DATO;
     e.ultimoCliente = ahora;
     e.seguimiento = null;
     e.pendientes.push({ id: ev.id, texto: ev.texto.slice(0, 2000), ts: ev.ts || ahora });
