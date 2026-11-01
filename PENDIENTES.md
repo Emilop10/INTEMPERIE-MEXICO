@@ -60,6 +60,14 @@
    - **31 oct 15:30:** tarde revisada (8 leads del $999 bien atendidos).
      `link_de_pago` con `cantidad`; respaldo con el índice del catálogo
      cuando Shopify no responde; el agente ya no cuenta fallas internas.
+   - **31 oct 23:00, embudo:** 37 chats, 19 con link, 8 siguieron, 0 de 10
+     contestaron el recordatorio. Ahora: primera respuesta y recordatorios
+     terminan con pregunta; recordatorio de cierre a las ~20 h (último
+     posible); correo al dueño si un chat pasado lleva 3 h sin su
+     respuesta. **Decisión del dueño pendiente:** plantillas de pago de
+     WhatsApp (≈$0.05 USD por mensaje, tarjeta en Meta) para escribir
+     después de 24 h a los que no contestaron; e incentivo de cierre.
+     Medir respuestas en 2 o 3 días.
    - 🟢 **Número conectado en Kapso (29 oct 16:43):**
      Phone number ID 742563942272641, WABA 2146162969186009, coexistencia.
      El nombre se queda "Alcampo Cuernavaca" (decisión del dueño: usa el

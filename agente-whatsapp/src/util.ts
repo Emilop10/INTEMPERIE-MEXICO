@@ -49,6 +49,26 @@ export function enHorario(ahora: number): boolean {
  * Hora para escribirle al cliente por iniciativa propia (recordatorios): entre
  * 9:00 y 21:00 de México. Si cae de noche, se corre a la mañana siguiente.
  */
+/**
+ * Hora del último recordatorio: unas 20 h después del último mensaje del
+ * cliente (la ventana de WhatsApp cierra a las 24 h), de día. Si no cabe de
+ * día antes de que cierre, se adelanta; si tampoco así, null (no se manda).
+ */
+export function horaUltimoAviso(ultimoCliente: number): number | null {
+  const HORA = 3600_000;
+  const deDia = (t: number) => {
+    const { hora } = horaMexico(t);
+    return hora >= 9 && hora < 21;
+  };
+  const candidato = ultimoCliente + 20 * HORA;
+  if (deDia(candidato)) return candidato;
+  const manana = horaDeContacto(candidato);
+  if (manana - ultimoCliente <= 23 * HORA) return manana;
+  let atras = candidato;
+  for (let i = 0; i < 48 && !deDia(atras); i++) atras -= HORA / 2;
+  return atras - ultimoCliente >= 5 * HORA ? atras : null;
+}
+
 export function horaDeContacto(ts: number): number {
   const MEDIA_HORA = 30 * 60_000;
   for (let i = 0; i < 48; i++) {

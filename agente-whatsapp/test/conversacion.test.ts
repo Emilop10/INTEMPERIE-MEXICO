@@ -177,6 +177,7 @@ describe("conversación", () => {
       texto("Sí, el envío es gratis."),
       texto("¿Te quedó alguna duda del kit? Si quieres te mando el link."),
       texto("Claro, aquí sigo."),
+      texto("El kit sigue disponible; si no es el momento, no pasa nada 🎣"),
     ]);
     const { conv, enviados, almacen } = armarConversacion({ claude, tienda });
     await conv.recibir(mensaje("¿qué kit me recomiendas?"), MEDIODIA);
@@ -187,10 +188,13 @@ describe("conversación", () => {
     expect(almacen.alarma).toBe(MEDIODIA + 10 * 60_000 + ESPERA + 3 * HORA);
     await conv.alarma(MEDIODIA + 10 * 60_000 + ESPERA + 3 * HORA);
     expect(enviados.at(-1)?.texto).toBe("¿Te quedó alguna duda del kit? Si quieres te mando el link.");
-    // Otra respuesta después: ya no se programa un segundo recordatorio.
+    // Otra respuesta después: ya no hay primer recordatorio; solo queda el de cierre, ~20 h después.
     await conv.recibir(mensaje("gracias, lo pienso"), MEDIODIA + 4 * HORA);
     await conv.alarma(MEDIODIA + 4 * HORA + ESPERA);
-    expect(almacen.alarma).toBe(MEDIODIA + 4 * HORA + 30 * 24 * HORA);
+    expect(almacen.alarma).toBe(MEDIODIA + 4 * HORA + ESPERA + 20 * HORA);
+    await conv.alarma(MEDIODIA + 4 * HORA + ESPERA + 20 * HORA);
+    expect(enviados.at(-1)?.texto).toBe("El kit sigue disponible; si no es el momento, no pasa nada 🎣");
+    expect(almacen.alarma).toBe(MEDIODIA + 4 * HORA + 30 * 24 * HORA); // solo queda el borrado a los 30 días
   });
 
   it("retomar con criterio: a las 2 h el agente evalúa; si decide no_responder(dueno) calla y nunca manda 'Déjame confirmarlo'", async () => {
@@ -266,6 +270,48 @@ describe("conversación", () => {
     await conv.recibir(mensaje("¿hola?"), MEDIODIA + HORA);
     await conv.alarma(MEDIODIA + HORA + ESPERA);
     expect(claude.llamadas).toHaveLength(1);
+  });
+
+  it("tras el primer recordatorio programa uno de cierre ~20 h después del último mensaje, de día, y solo uno", async () => {
+    const link = "https://intemperiemexico.com/cart/111:1";
+    const tienda = tiendaFalsa([producto({ handle: "combo" })]);
+    const claude = claudeConGuion([
+      herramienta("link_de_pago", { handle: "combo", variante_id: 0 }),
+      texto(`Aquí está: ${link}`),
+      texto("¿Te quedó alguna duda?"),
+      texto("Sigue disponible; si no es el momento, no pasa nada 🎣"),
+    ]);
+    const { conv, enviados, almacen } = armarConversacion({ claude, tienda });
+    await conv.recibir(mensaje("lo quiero"), MEDIODIA); // 14:00 de México
+    await conv.alarma(MEDIODIA + ESPERA);
+    await conv.alarma(MEDIODIA + ESPERA + 2 * HORA); // primer recordatorio
+    expect(enviados).toHaveLength(2);
+    // El de cierre: 20 h después del último mensaje del cliente = 10:00 del día siguiente.
+    expect(almacen.alarma).toBe(MEDIODIA + 20 * HORA);
+    await conv.alarma(MEDIODIA + 20 * HORA);
+    expect(enviados.map((e) => e.texto).at(-1)).toBe("Sigue disponible; si no es el momento, no pasa nada 🎣");
+    expect(claude.llamadas[3].messages.at(-2)).toMatchObject({ role: "user", content: expect.stringContaining("ÚLTIMO") });
+    // Ya no hay más recordatorios programados.
+    expect(almacen.alarma).toBeGreaterThan(MEDIODIA + 24 * HORA);
+    expect(enviados).toHaveLength(3);
+  });
+
+  it("si el dueño no contesta un chat pasado en 3 h, se le recuerda; si ya contestó, no", async () => {
+    const claude = claudeConGuion([herramienta("pasar_al_dueno", { motivo: "descuento", resumen: "Pide descuento", producto: "Kit Tundra" })]);
+    const { conv, avisos, almacen } = armarConversacion({ claude });
+    await conv.recibir(mensaje("¿me lo dejas en 1,200?"), MEDIODIA);
+    await conv.alarma(MEDIODIA + ESPERA);
+    expect(almacen.alarma).toBe(MEDIODIA + ESPERA + 3 * HORA);
+    await conv.alarma(MEDIODIA + ESPERA + 3 * HORA);
+    expect(avisos.map((a) => a.titulo)).toEqual(["Atender: pide descuento o mayoreo", "Sigue sin respuesta: chat 52177***2222"]);
+
+    const claude2 = claudeConGuion([herramienta("pasar_al_dueno", { motivo: "descuento", resumen: "Pide descuento", producto: "" })]);
+    const otra = armarConversacion({ claude: claude2 });
+    await otra.conv.recibir(mensaje("¿descuento?"), MEDIODIA);
+    await otra.conv.alarma(MEDIODIA + ESPERA);
+    await otra.conv.recibir({ tipo: "eco", chat: "5217771112222", id: "eco-d", ts: MEDIODIA + HORA, texto: "Claro, te lo dejo en 1,300" }, MEDIODIA + HORA);
+    await otra.conv.alarma(MEDIODIA + ESPERA + 3 * HORA);
+    expect(otra.avisos).toHaveLength(1);
   });
 
   it("un seguimiento que caería de noche se corre a la mañana siguiente (9:00 de México)", async () => {

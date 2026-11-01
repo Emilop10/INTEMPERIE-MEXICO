@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 31 de octubre de 2026 (sección 129, revisión de la tarde, links con cantidad)
+**Última actualización:** 31 de octubre de 2026 (sección 129, embudo del agente y recordatorio de cierre)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -14564,3 +14564,73 @@ salida de fondo es la API de administración con un token `shpat_`
   3 nov si no hay más ventas.
 - Shopify: sin pedidos nuevos.
 
+### §129: embudo del agente y cómo recuperar más ventas (31 oct, 23:00)
+
+**Pedido del dueño:** revisar cómo va el agente y, si hay forma de mandar
+más mensajes o recuperar ventas, analizar cómo.
+
+**Embudo desde la activación (30 oct 12:10 a 31 oct 22:50), con los
+mensajes de Kapso:**
+
+| Paso | Chats |
+|---|---|
+| Chats con cliente | 37 (26 de anuncio) |
+| Atendidos por el agente | 30 (los otros 7, del dueño o de Alcampo) |
+| Recibieron link de pago | 19 |
+| El cliente volvió a escribir después del link | 8 |
+| Recordatorio a las 2 h | 10 enviados, **0 respuestas** |
+| Cliente que solo mandó un mensaje y ya no contestó | 10 |
+| Ventas atribuibles al chat | 0 confirmadas (§126 cuenta 1 venta en la campaña) |
+
+**Dónde se pierde la venta:**
+
+1. **La primera respuesta es completa y cierra la plática.** El cliente
+   recibe ficha, precio y link, y ya no escribe: terminaba con "cualquier
+   duda, aquí estoy", que no pide nada.
+2. **El recordatorio repetía el link** ("por si quieres asegurar tu
+   combo…"). Diez enviados, ninguna respuesta.
+3. **Después de 24 h ya no se puede escribir** por iniciativa propia (regla
+   de WhatsApp). Los 10 leads del 30 oct que no contestaron (varios
+   recibieron la respuesta vieja de "¿qué tipo de pesca haces?") ya no se
+   pueden recuperar sin plantillas de pago.
+4. **Chats pasados al dueño que se quedaron sin respuesta:** el del combo
+   casting (30 oct 16:16) nunca recibió contestación y se perdió.
+
+**Qué se hizo (desplegado en activo):**
+
+- **La primera respuesta y los recordatorios terminan con una pregunta**
+  que invite a contestar ("¿Para dónde te lo mandaríamos?", "¿lo quieres
+  para presa o para río?"), no con "aquí estoy". El recordatorio de las
+  2 h ahora hace una pregunta concreta con el nombre del cliente, en vez
+  de repetir el link.
+- **Recordatorio de cierre** (`NOTA_ULTIMO`, `horaUltimoAviso`): unas 20 h
+  después del último mensaje del cliente, de día y antes de que venza la
+  ventana, un último mensaje amable (sigue disponible, pocas piezas, link,
+  "si no es el momento, no pasa nada"). Uno por chat, solo si hubo
+  interés real; si el cliente dijo que no o el dueño lo atendió, calla.
+  Simulación: "Luis, el combo sigue disponible a $999 con envío gratis y
+  quedan pocas piezas. Si lo quieres, este link… Si no es el momento, no
+  pasa nada."
+- **Recordatorio al dueño** (`recordarDueno`): si un chat que el agente le
+  pasó lleva 3 h sin respuesta suya (sin eco del celular), le llega un
+  correo "Sigue sin respuesta: chat …" con el último mensaje del cliente y
+  las horas que quedan de ventana.
+- 72 de 72 pruebas (tres nuevas).
+
+**Lo que no se puede sin que el dueño decida (cuesta dinero):**
+
+- **Plantillas de WhatsApp** para escribir pasadas las 24 h (recuperar a
+  los que no contestaron, avisar "ya llegó tu pedido", etc.). Meta cobra
+  cada mensaje de marketing en México (del orden de 4 a 5 centavos de
+  dólar) y exige método de pago en la cuenta de WhatsApp Business y
+  plantilla aprobada. Con 10 leads perdidos por día serían unos $0.50 USD
+  diarios. Si el dueño lo autoriza, se agrega la tarjeta en Meta, se
+  registra una plantilla ("Hola {nombre}, el combo que viste sigue
+  disponible…") y el agente la manda a las 36–48 h a quien no contestó.
+- **Un incentivo de cierre** (envío exprés, un señuelo de regalo o un
+  código de descuento) para el último mensaje. Hoy el agente no promete
+  nada de eso por regla del dueño.
+
+**Pendiente:** medir en 2 o 3 días si la pregunta final y el cierre
+levantan las respuestas (hoy 8 de 19 escriben tras el link, 0 de 10 tras
+el recordatorio).

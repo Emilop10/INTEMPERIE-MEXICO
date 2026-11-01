@@ -9,7 +9,7 @@ import type { Config } from "./config";
 import type { Almacen, Registro, Verificacion } from "./control";
 import type { Tienda } from "./tienda";
 import { normalizar } from "./config";
-import { enHorario, enmascarar, horaDeContacto, horaMexico } from "./util";
+import { enHorario, enmascarar, horaDeContacto, horaMexico, horaUltimoAviso } from "./util";
 import type { Destino, Evento } from "./webhook";
 import type { EnviarTexto } from "./whatsapp";
 
@@ -21,6 +21,9 @@ const SEGUIMIENTO_LINK = 2 * HORA; // tras mandar link de pago
 const SEGUIMIENTO_PRODUCTO = 3 * HORA; // tras recomendar un producto sin link
 export const NOTA_SEGUIMIENTO =
   "[SISTEMA, no es el cliente] Han pasado unas horas y el cliente no volvió a escribir. Decide: si conviene, manda UN recordatorio breve y útil (una o dos líneas, sin presionar, ofreciendo resolver dudas o mandar el link); si no, usa no_responder con motivo sin_necesidad.";
+export const NOTA_ULTIMO =
+  "[SISTEMA, no es el cliente] Han pasado casi 24 horas desde el último mensaje del cliente y no volvió a escribir. Este es el ÚLTIMO mensaje que puedes mandarle por iniciativa propia (después WhatsApp ya no lo permite). Decide: si hubo interés real en un producto, manda un cierre amable de 2 o 3 líneas: que sigue disponible y quedan pocas piezas, el link para pagar, y que si no es el momento no hay problema; sin presionar y sin repetir la ficha. Si ya dijo que no, ya compró, Emiliano lo atendió o no hubo interés real, usa no_responder con motivo sin_necesidad.";
+const RECORDAR_DUENO_MS = 3 * HORA; // si el dueño no contesta un chat pasado en 3 h, se le recuerda
 const AUTO_MS = 5000; // un humano no contesta en menos de 5 s
 export const NO_ENVIADO = "[Borrador, no enviado]:";
 const MAX_HISTORIAL = 30;
@@ -64,7 +67,11 @@ export interface Estado {
   ultimaActividad: number;
   ultimoCliente: number;
   procesarEn: number | null;
-  seguimiento: { en: number; hecho: boolean } | null;
+  seguimiento: { en: number; hecho: boolean; etapa?: 1 | 2 } | null;
+  /** Ya se mandó el recordatorio de cierre (antes de que venza la ventana de 24 h). */
+  seguimientoFinalHecho?: boolean;
+  /** Cuándo recordarle al dueño un chat que se le pasó y sigue sin su respuesta. */
+  recordarDueno?: number | null;
   /** En esta plática se habló de productos (precio, ficha o link). */
   conProductos?: boolean;
   /** Ya se mandó el único recordatorio de este chat. */
@@ -109,6 +116,7 @@ export class Conversacion {
     const candidatos = [e.ultimaActividad + RETENCION];
     if (e.procesarEn !== null) candidatos.push(e.procesarEn);
     if (e.seguimiento && !e.seguimiento.hecho) candidatos.push(e.seguimiento.en);
+    if (e.recordarDueno) candidatos.push(e.recordarDueno);
     await this.d.almacen.setAlarm(Math.min(...candidatos));
   }
 
@@ -187,7 +195,21 @@ export class Conversacion {
     }
     if (e.procesarEn !== null && ahora >= e.procesarEn) await this.procesar(e, ahora);
     if (e.seguimiento && !e.seguimiento.hecho && ahora >= e.seguimiento.en) await this.seguir(e, ahora);
+    if (e.recordarDueno && ahora >= e.recordarDueno) await this.recordarAlDueno(e, ahora);
     await this.guardar(e);
+  }
+
+  /** El chat se le pasó al dueño hace 3 h y él no ha contestado (su respuesta cambiaría pausaMotivo a "dueno"). */
+  private async recordarAlDueno(e: Estado, ahora: number): Promise<void> {
+    e.recordarDueno = null;
+    if (e.pausaMotivo !== "pase" || ahora - e.ultimoCliente >= VENTANA_META) return;
+    const ultimo = [...e.historial].reverse().find((m) => m.role === "user")?.content ?? "";
+    await this.d.avisar({
+      titulo: `Sigue sin respuesta: chat ${enmascarar(e.chat)}`,
+      resumen: `Hace 3 h te pasé este chat de WhatsApp y el cliente sigue esperando. Ventana para contestarle: hasta ${Math.floor((VENTANA_META - (ahora - e.ultimoCliente)) / HORA)} h más.`,
+      detalle: `Último mensaje del cliente: ${String(ultimo).slice(0, 300)}`,
+      urgente: false,
+    });
   }
 
   private envia(e: Estado): boolean {
@@ -294,7 +316,11 @@ export class Conversacion {
         if (consultoProductos || r.linksPago.length) e.conProductos = true;
         if (this.d.config.seguimiento && e.conProductos && !e.seguimientoHecho) {
           // Nunca de noche: un recordatorio a las 23:00 molesta (pasó el 30 oct).
-          e.seguimiento = { en: horaDeContacto(ahora + (r.linksPago.length ? SEGUIMIENTO_LINK : SEGUIMIENTO_PRODUCTO)), hecho: false };
+          e.seguimiento = { en: horaDeContacto(ahora + (r.linksPago.length ? SEGUIMIENTO_LINK : SEGUIMIENTO_PRODUCTO)), hecho: false, etapa: 1 };
+        } else if (this.d.config.seguimiento && e.conProductos && e.seguimientoHecho && !e.seguimientoFinalHecho) {
+          // El cliente volvió a escribir después del primer recordatorio: solo queda el de cierre.
+          const en = horaUltimoAviso(ahora);
+          if (en) e.seguimiento = { en, hecho: false, etapa: 2 };
         }
       } else {
         await this.borrador(e, nuevos, r.texto);
@@ -333,6 +359,7 @@ export class Conversacion {
     e.pausaMotivo = "pase";
     e.pausaDesde = ahora;
     e.seguimiento = null;
+    if (envia && enVentana) e.recordarDueno = ahora + RECORDAR_DUENO_MS;
 
     const venta = r.motivo === "ya_pago";
     const etiqueta = ETIQUETAS[r.motivo];
@@ -360,17 +387,26 @@ export class Conversacion {
    */
   private async seguir(e: Estado, ahora: number): Promise<void> {
     if (!e.seguimiento) return;
+    const final = e.seguimiento.etapa === 2;
     e.seguimiento.hecho = true;
-    e.seguimientoHecho = true;
+    if (final) e.seguimientoFinalHecho = true;
+    else e.seguimientoHecho = true;
+    // Tras el primer recordatorio, programa el de cierre (unas 20 h después
+    // del último mensaje del cliente, de día), una sola vez por chat.
+    if (!final && !e.seguimientoFinalHecho && e.conProductos) {
+      const en = horaUltimoAviso(e.ultimoCliente);
+      if (en && en > ahora) e.seguimiento = { en, hecho: false, etapa: 2 };
+    }
     if (ahora < e.pausaHasta || ahora - e.ultimoCliente >= VENTANA_META - HORA) return;
     if (!this.envia(e)) return;
     const permiso = await this.d.control.verificar(ahora);
     if (!permiso.ok) return;
+    const nota = final ? NOTA_ULTIMO : NOTA_SEGUIMIENTO;
     let vuelta;
     try {
       vuelta = await atender(
         { llamar: this.d.llamar, tienda: this.d.tienda, modelo: this.d.config.modelo },
-        { historial: e.historial, nuevos: NOTA_SEGUIMIENTO, contexto: this.contexto(e, ahora) },
+        { historial: e.historial, nuevos: nota, contexto: this.contexto(e, ahora) },
       );
     } catch (err) {
       console.error("Fallo en seguimiento:", String(err).slice(0, 200));
@@ -378,11 +414,11 @@ export class Conversacion {
     }
     await this.d.control.registrar({ costoUsd: vuelta.costoUsd }, ahora);
     if (vuelta.resultado.accion !== "responder") {
-      console.log(`seguimiento: sin recordatorio (${vuelta.resultado.accion})`);
+      console.log(`seguimiento${final ? " final" : ""}: sin recordatorio (${vuelta.resultado.accion})`);
       return;
     }
     await this.mandar(e, vuelta.resultado.texto, ahora);
-    e.historial.push({ role: "user", content: NOTA_SEGUIMIENTO }, { role: "assistant", content: vuelta.resultado.texto });
+    e.historial.push({ role: "user", content: nota }, { role: "assistant", content: vuelta.resultado.texto });
   }
 
   /**
