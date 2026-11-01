@@ -14552,3 +14552,15 @@ salida de fondo es la API de administración con un token `shpat_`
   vieja (Shopify limitando).
 - 70 de 70 pruebas. Simulación "envíos a Atlixco, necesito dos" → link
   con 2 piezas. Desplegado en activo (versión d40d734d).
+
+**Corte del 31 oct (21:37).**
+- **Hoy:** $76.76 y 13 conversaciones, todas del video del combo
+  (Facebook le dio casi todo el dinero).
+- **Acumulado:** **$503.02 de $900, 92 conversaciones ($5.47 c/u), 1
+  venta** (#1007).
+- Por anuncio (acumulado): combo-video 31 conv. a $4.62, combo-foto 43 a
+  $5.82, cual-video 11 a $5.10, emiliano 2 a $2.01, caja 0 con $2.40.
+- Ningún corte se dispara. El de $750 cae alrededor del lunes 2 o martes
+  3 nov si no hay más ventas.
+- Shopify: sin pedidos nuevos.
+
