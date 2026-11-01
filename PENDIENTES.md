@@ -2,6 +2,9 @@
 
 ## ▶️ Arranque de la próxima sesión (dejado el 19 oct)
 
+0. **(1 nov) Lanzamiento terminado:** los 5 kits ya están a precio normal
+   (MANUAL §106). Nada pendiente de esto.
+
 0. **Agente de WhatsApp en servidor (28 oct, MANUAL §129):** Fases 1 y 2
    hechas (plan en `AGENTE-WHATSAPP-PLAN.md`, código y 45 pruebas en
    `agente-whatsapp/`; desde el 28 oct también investiga en internet). Espera el "sí" del dueño a la **Fase 3**: él abre

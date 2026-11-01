@@ -10858,6 +10858,27 @@ dueño encienda los nuevos.
 
 **Graphify:** actualizado en `scripts/` y `tema-shopify/`.
 
+
+**Fin del lanzamiento (1 nov, 06:30, tarea automática).** Los 5 kits
+regresaron a su precio normal, verificado en vivo; los tachados no se
+tocaron:
+
+| Kit | Lanzamiento | Ahora |
+|---|---|---|
+| Tundra Pro 7' | $1,569 | **$1,749** |
+| Clarus 5'8" | $1,439 | **$1,599** |
+| Revenger 7' | $1,389 | **$1,549** |
+| Tolten 8' | $1,209 | **$1,349** |
+| Fresh 7' | $1,079 | **$1,199** |
+
+- El aviso "Lanzamiento" ya no aparece en fichas ni en la barra (se
+  apaga por fecha).
+- Meta: los anuncios "-lanz" ya estaban pausados desde el 22 oct (§124);
+  los 5 activos son los de WhatsApp, que no mencionan precios de kits.
+  No se tocó nada.
+- La guía de WhatsApp y el agente leen el precio en vivo, así que no
+  hace falta cambiarles nada.
+
 ## 107. Bloque A desde la Mac: retargeting y anuncios "-lanz" encendidos por API, viejos apagados; el tope de la cuenta estaba 100× (20 oct)
 
 Primera sesión local en la Mac del dueño (`ARRANQUE-LOCAL-MAC.md`). La
