@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 1 de noviembre de 2026 (sección 126, corte del 1 nov; sección 129, ficha con el link y regalo de cierre)
+**Última actualización:** 1 de noviembre de 2026 (sección 126, corte del 1 nov; sección 129, acción "tomar")
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -14712,3 +14712,28 @@ Worker.
 
 **Para el dueño:** al empacar un pedido, revisar la nota "Regalo:
 cucharilla Blue Fox Whiptail" y meter la cucharilla (cualquier color).
+
+### §129: acción "tomar" (el dueño le entrega un chat al agente) (1 nov, 23:30)
+
+**Pedido del dueño:** que el agente le ayude a abordar el chat de Jesús
+(el del kit Shimano Clarus), que él venía atendiendo desde el celular.
+
+**Qué se hizo:** nueva acción de administración
+`POST /chat?chat=<número>&accion=tomar` (`Conversacion.tomar`): por orden
+expresa del dueño, el agente quita la pausa aunque el dueño acabe de
+escribir, lee toda la plática (con los mensajes del dueño) y manda el
+siguiente mensaje con la nota `NOTA_TOMAR` (seguir la plática sin
+presentarse, resolver lo pendiente, ficha + link de pago con regalo; si
+el cliente ya mandó dirección, explicarle que esos datos van en la
+pantalla de pago). Después sigue atendiendo ese chat; si el dueño vuelve a
+escribir desde el celular, se pausa como siempre. A diferencia de
+`retomar`, no tiene la regla de los 60 min, porque es una orden directa.
+
+**Resultado con Jesús (23:28):** Jesús había mandado su dirección y el
+dueño contestó "Perfecto". El agente le agradeció, le explicó que la
+dirección se escribe en la pantalla de pago, mandó la ficha del kit y el
+link de pago con el regalo, y recordó el precio con envío gratis y la
+entrega. 74 de 74 pruebas. Desplegado (versión ff75c81e).
+
+**Cómo usarlo la próxima vez:** el dueño le pide a la sesión "que el
+agente tome el chat de <nombre o número>" y la sesión corre la acción.

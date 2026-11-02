@@ -76,6 +76,10 @@
      $999; el pedido en Shopify trae la nota "Regalo: cucharilla Blue Fox
      Whiptail": **el dueño la mete al paquete al empacar.** Se cambia en
      `wrangler.toml` (REGALO_TEXTO / REGALO_NOTA / REGALO_MINIMO).
+   - **1 nov 23:30:** acción `tomar` (`POST /chat?chat=…&accion=tomar`): el
+     dueño le entrega un chat al agente aunque él acabe de escribir. Usada
+     con Jesús (kit Clarus, dirección en Chihuahua): link de pago enviado;
+     pendiente ver si paga.
    - 🟢 **Número conectado en Kapso (29 oct 16:43):**
      Phone number ID 742563942272641, WABA 2146162969186009, coexistencia.
      El nombre se queda "Alcampo Cuernavaca" (decisión del dueño: usa el

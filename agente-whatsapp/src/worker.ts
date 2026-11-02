@@ -71,6 +71,10 @@ export default {
         // Metadatos de un chat (sin textos), para diagnóstico.
         const chat = (url.searchParams.get("chat") ?? "").replace(/[^\w.]/g, "");
         if (!chat) return new Response("GET /chat?chat=<número>", { status: 400 });
+        if (request.method === "POST" && url.searchParams.get("accion") === "tomar") {
+          // Orden expresa del dueño: el agente toma el chat ahora y manda el siguiente mensaje.
+          return Response.json({ chat, resultado: await conversacion(env, chat).tomar(Date.now()) });
+        }
         if (request.method === "POST" && url.searchParams.get("accion") === "retomar") {
           // Quita la pausa y vuelve a atender; solo si el dueño no ha escrito en ese chat en la última hora.
           const r = (await conversacion(env, chat).resumen(Date.now())) as Record<string, unknown>;
@@ -279,6 +283,10 @@ export class ConversacionDO extends DurableObject<Env> {
 
   async enviarBorrador(ahora: number) {
     return this.nucleo().enviarBorrador(ahora);
+  }
+
+  async tomar(ahora: number) {
+    return this.nucleo().tomar(ahora);
   }
 
   async reprocesar(ahora: number, forzar = false) {

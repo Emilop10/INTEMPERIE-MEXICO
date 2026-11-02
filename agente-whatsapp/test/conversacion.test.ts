@@ -225,6 +225,21 @@ describe("conversación", () => {
     expect(enviados.map((e) => e.texto)).toEqual(["Claro: el Kit Tundra está en $1,569 con envío gratis. ¿Te mando el link?"]);
   });
 
+  it("tomar: por orden del dueño el agente toma el chat aunque él acabe de escribir, y sigue atendiendo", async () => {
+    const claude = claudeConGuion([texto("Claro, ¿qué pesca haces?"), texto("Jesús, gracias por tus datos: los pones en la pantalla de pago."), texto("Sí, con tarjeta también.")]);
+    const { conv, enviados } = armarConversacion({ claude });
+    await conv.recibir(mensaje("Hola"), MEDIODIA);
+    await conv.alarma(MEDIODIA + ESPERA);
+    await conv.recibir({ tipo: "eco", chat: "5217771112222", id: "eco1", ts: MEDIODIA + HORA, texto: "Perfecto Jesús" }, MEDIODIA + HORA);
+    expect(await conv.tomar(MEDIODIA + HORA + 60_000)).toBe("enviado");
+    expect(enviados.at(-1)?.texto).toBe("Jesús, gracias por tus datos: los pones en la pantalla de pago.");
+    expect(claude.llamadas[1].messages.at(-2)).toMatchObject({ role: "user", content: expect.stringContaining("tomes este chat") });
+    // Ya sin pausa: contesta el siguiente mensaje del cliente.
+    await conv.recibir(mensaje("¿y con tarjeta?"), MEDIODIA + 2 * HORA);
+    await conv.alarma(MEDIODIA + 2 * HORA + ESPERA);
+    expect(enviados.at(-1)?.texto).toBe("Sí, con tarjeta también.");
+  });
+
   it("un pase al dueño no tiene rescate: el agente sigue callado 12 h", async () => {
     const claude = claudeConGuion([herramienta("pasar_al_dueno", { motivo: "descuento", resumen: "Pide descuento", producto: "" })]);
     const { conv, enviados } = armarConversacion({ claude });

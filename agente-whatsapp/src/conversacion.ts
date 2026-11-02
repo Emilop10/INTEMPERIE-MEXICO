@@ -23,6 +23,8 @@ export const NOTA_SEGUIMIENTO =
   "[SISTEMA, no es el cliente] Han pasado unas horas y el cliente no volvió a escribir. Decide: si conviene, manda UN recordatorio breve y útil (una o dos líneas, sin presionar, ofreciendo resolver dudas o mandar el link); si no, usa no_responder con motivo sin_necesidad.";
 export const NOTA_ULTIMO =
   "[SISTEMA, no es el cliente] Han pasado casi 24 horas desde el último mensaje del cliente y no volvió a escribir. Este es el ÚLTIMO mensaje que puedes mandarle por iniciativa propia (después WhatsApp ya no lo permite). Decide: si hubo interés real en un producto, manda un cierre amable de 2 o 3 líneas: que sigue disponible y quedan pocas piezas, el link para pagar, y que si no es el momento no hay problema; sin presionar y sin repetir la ficha. Si ya dijo que no, ya compró, Emiliano lo atendió o no hubo interés real, usa no_responder con motivo sin_necesidad.";
+export const NOTA_TOMAR =
+  "[SISTEMA, no es el cliente] Emiliano te pide que tomes este chat desde aquí y lo lleves a la venta. Lee toda la plática, incluidos los mensajes de Emiliano desde su celular, y escribe el siguiente mensaje al cliente como si siguieras la plática de Emiliano, sin presentarte de nuevo y sin repetir lo que ya le dijeron. Resuelve lo que quedó pendiente y acércalo al pago: link de la ficha y link de pago (con el regalo si aplica). Si el cliente ya mandó su dirección o sus datos, agradécele y explícale que esos datos los escribe en la pantalla de pago al abrir el link, y que en cuanto pague sale su pedido. Nunca uses pasar_al_dueno aquí.";
 const RECORDAR_DUENO_MS = 3 * HORA; // si el dueño no contesta un chat pasado en 3 h, se le recuerda
 const AUTO_MS = 5000; // un humano no contesta en menos de 5 s
 export const NO_ENVIADO = "[Borrador, no enviado]:";
@@ -462,6 +464,35 @@ export class Conversacion {
    * de nuevo los mensajes del cliente (ahora sí se envía, si el modo lo
    * permite y sigue dentro de las 24 h).
    */
+  /**
+   * Orden expresa del dueño: el agente toma el chat ahora (aunque el dueño
+   * acabe de escribir), quita la pausa y manda el siguiente mensaje.
+   */
+  async tomar(ahora: number): Promise<"enviado" | "sin_estado" | "fuera_de_ventana" | "sin_respuesta" | "tope"> {
+    const e = await this.cargar();
+    if (!e) return "sin_estado";
+    if (ahora - e.ultimoCliente >= VENTANA_META) return "fuera_de_ventana";
+    e.pausaHasta = 0;
+    e.pausaMotivo = undefined;
+    e.recordarDueno = null;
+    const permiso = await this.d.control.verificar(ahora);
+    if (!permiso.ok) return "tope";
+    const vuelta = await atender(
+      { llamar: this.d.llamar, tienda: this.d.tienda, modelo: this.d.config.modelo, regalo: this.d.config.regalo },
+      { historial: e.historial, nuevos: NOTA_TOMAR, contexto: this.contexto(e, ahora) },
+    );
+    await this.d.control.registrar({ costoUsd: vuelta.costoUsd }, ahora);
+    if (vuelta.resultado.accion !== "responder") {
+      await this.guardar(e);
+      return "sin_respuesta";
+    }
+    await this.mandar(e, vuelta.resultado.texto, ahora);
+    e.historial.push({ role: "user", content: NOTA_TOMAR }, { role: "assistant", content: vuelta.resultado.texto });
+    e.conProductos = true;
+    await this.guardar(e);
+    return "enviado";
+  }
+
   async reprocesar(ahora: number, forzar = false): Promise<"enviado" | "sin_estado" | "fuera_de_ventana" | "dueno_contesto" | "sin_mensajes"> {
     const e = await this.cargar();
     if (!e) return "sin_estado";
