@@ -45,6 +45,9 @@ for (const nuevos of mensajes) {
     {
       llamar: (p) => claude.beta.messages.create(p),
       tienda: crearTienda(),
+      regalo: process.env.REGALO_TEXTO
+        ? { texto: process.env.REGALO_TEXTO, nota: process.env.REGALO_NOTA || process.env.REGALO_TEXTO, minimo: Number(process.env.REGALO_MINIMO || 999) }
+        : null,
       modelo,
       avisar: async (nota) => console.log(`📣 AVISO AL DUEÑO: ${nota}`),
     },

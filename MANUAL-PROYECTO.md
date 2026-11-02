@@ -8,6 +8,8 @@ Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
 **Última actualización:** 1 de noviembre de 2026 (sección 126, corte del 1 nov)
+
+**Última actualización:** 1 de noviembre de 2026 (sección 129, ficha con el link y regalo de cierre)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -14669,3 +14671,46 @@ mensajes de Kapso:**
 **Pendiente:** medir en 2 o 3 días si la pregunta final y el cierre
 levantan las respuestas (hoy 8 de 19 escriben tras el link, 0 de 10 tras
 el recordatorio).
+
+### §129: ficha siempre con el link de pago; regalo de cierre (1 nov, 21:45)
+
+**Pedido del dueño** (con captura del chat de Jesús, 1 nov 21:02): que
+el agente no mande solo el link de pago sino también el link del combo
+para que la gente lo vea y se convenza; revisar cómo funciona; y agregar
+un incentivo, "un señuelo barato o algo así".
+
+**Revisión del 1 nov (22 chats, 10:00–21:30):** todos los leads del
+anuncio recibieron el Boundary con ficha y link al minuto; los
+recordatorios ya terminan con pregunta y los de cierre salieron a las
+~20 h ("si no es el momento, no hay problema"). Jesús (pesca muy ligera,
+caña de 4–5 pies) terminó eligiendo el Kit Shimano Clarus 5'8" y preguntó
+"¿adónde deposito?": el agente mandó **solo el link de pago**; el dueño
+tuvo que mandar a mano el link del kit. Pablo pidió fotos del combo
+Revenger y el dueño le mandó un video desde el celular. Dos clientes
+pidieron pago contra entrega (no se maneja; el agente lo explicó bien).
+Un cliente de cartuchos .410 lo atendió el dueño. Sin errores en el
+Worker.
+
+**Qué se hizo:**
+
+- **Ficha y pago siempre juntos.** `link_de_pago` devuelve también
+  `ficha` y una nota, y las instrucciones lo exigen: cada vez que va el
+  link de pago, arriba va "Fotos y detalles: …", aunque ya se haya
+  mandado o el cliente solo pregunte dónde deposita. Simulado con el caso
+  de Jesús: los dos links en cada respuesta.
+- **Regalo de cierre** (`REGALO_TEXTO`, `REGALO_NOTA`, `REGALO_MINIMO` en
+  `wrangler.toml`): con toda compra desde $999 va de regalo **una
+  cucharilla Blue Fox Whiptail** (cuesta $59 en la tienda; hay en
+  existencia en varios colores). El link de pago lleva la nota del pedido
+  (`?note=Regalo:+cucharilla+Blue+Fox+Whiptail`); **verificado en la
+  tienda real** (1 nov): la nota llega al carrito y por tanto al pedido en
+  Shopify, donde el dueño la ve al empacar. El agente lo dice en una
+  línea al dar el link ("y con tu compra te va de regalo una cucharilla
+  Blue Fox para que lo estrenes") y lo usa en recordatorios y cierre.
+  Solo ese regalo: sigue prohibido inventar descuentos u otros regalos.
+  Para cambiarlo o quitarlo: editar las variables y desplegar (vacío =
+  sin regalo). No se tocó nada en Shopify (ni precios ni descuentos).
+- 73 de 73 pruebas. Desplegado en activo (versión 180c8491).
+
+**Para el dueño:** al empacar un pedido, revisar la nota "Regalo:
+cucharilla Blue Fox Whiptail" y meter la cucharilla (cualquier color).

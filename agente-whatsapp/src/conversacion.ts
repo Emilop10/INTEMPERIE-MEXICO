@@ -258,6 +258,7 @@ export class Conversacion {
           llamar: this.d.llamar,
           tienda: this.d.tienda,
           modelo: this.d.config.modelo,
+          regalo: this.d.config.regalo,
           avisar: (nota) =>
             this.d.avisar({
               titulo: "Aviso del agente: producto que no está en línea",
@@ -405,7 +406,7 @@ export class Conversacion {
     let vuelta;
     try {
       vuelta = await atender(
-        { llamar: this.d.llamar, tienda: this.d.tienda, modelo: this.d.config.modelo },
+        { llamar: this.d.llamar, tienda: this.d.tienda, modelo: this.d.config.modelo, regalo: this.d.config.regalo },
         { historial: e.historial, nuevos: nota, contexto: this.contexto(e, ahora) },
       );
     } catch (err) {

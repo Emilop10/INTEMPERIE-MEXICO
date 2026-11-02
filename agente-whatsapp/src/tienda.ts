@@ -414,7 +414,11 @@ export function textoPlano(html: string): string {
 }
 
 /** Link de pago directo (GUIA-VENTAS-WHATSAPP.md, sección 3). */
-export function linkDePago(varianteId: number, cantidad = 1): string {
+export function linkDePago(varianteId: number, cantidad = 1, notaPedido?: string): string {
   const n = Number.isInteger(cantidad) && cantidad >= 1 && cantidad <= 10 ? cantidad : 1;
-  return `${TIENDA}/cart/${varianteId}:${n}`;
+  const base = `${TIENDA}/cart/${varianteId}:${n}`;
+  if (!notaPedido) return base;
+  // Nota del pedido (la lee el dueño en Shopify al empacar). Verificado el 1 nov: llega al carrito.
+  const nota = encodeURIComponent(notaPedido.slice(0, 80)).replace(/%20/g, "+");
+  return `${base}?note=${nota}`;
 }

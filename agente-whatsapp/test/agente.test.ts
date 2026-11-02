@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { atender, costoDeUso, formatoWhatsApp, linksDePagoPrevios, revisarLinks, textoFinal } from "../src/agente";
+import { atender, costoDeUso, ejecutarHerramienta, formatoWhatsApp, linksDePagoPrevios, revisarLinks, textoFinal } from "../src/agente";
 import { claudeConGuion, herramienta, producto, texto, tiendaFalsa } from "./ayudas";
 
 const boundary = producto({
@@ -61,6 +61,23 @@ describe("atender", () => {
     ]);
     const v = await atender({ llamar: claude, tienda, modelo: "claude-sonnet-5-5" }, entrada);
     expect(v.resultado).toEqual({ accion: "responder", texto: `Va, aquí está tu link para pagar: ${link}`, linksPago: [link] });
+  });
+
+  it("con regalo configurado, el link lleva la nota del pedido y la herramienta devuelve ficha y regalo", async () => {
+    const regalo = { texto: "una cucharilla Blue Fox", nota: "cucharilla Blue Fox", minimo: 999 };
+    const emitidos = new Set<string>();
+    const r = (await ejecutarHerramienta(tienda, "link_de_pago", { handle: boundary.handle, variante_id: 0, cantidad: 1 }, emitidos, regalo)) as any;
+    expect(r.link).toBe("https://intemperiemexico.com/cart/43219563085901:1?note=Regalo%3A+cucharilla+Blue+Fox");
+    expect(r.ficha).toBe("https://intemperiemexico.com/products/combo-okuma-boundary-70-spinning");
+    expect(r.regalo).toBe("una cucharilla Blue Fox");
+    expect(r.nota).toContain("ficha");
+    // El link con nota pasa la revisión y se puede repetir después desde el historial.
+    expect(revisarLinks(`Aquí: ${r.link}`, emitidos)).toBeNull();
+    expect(new Set(linksDePagoPrevios([{ role: "assistant", content: `Aquí: ${r.link}.` }])).has(r.link)).toBe(true);
+    // Sin llegar al mínimo, sin regalo.
+    const r2 = (await ejecutarHerramienta(tienda, "link_de_pago", { handle: boundary.handle, variante_id: 0, cantidad: 1 }, new Set(), { texto: "x", nota: "x", minimo: 5000 })) as any;
+    expect(r2.regalo).toBeUndefined();
+    expect(r2.link).toBe("https://intemperiemexico.com/cart/43219563085901:1");
   });
 
   it("un link de pago inventado o de otro dominio se pasa al dueño en vez de enviarse", async () => {

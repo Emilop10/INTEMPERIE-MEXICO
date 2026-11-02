@@ -197,7 +197,14 @@ const MAX_LLAMADAS = 5;
 const DOMINIOS_PERMITIDOS = /^(https?:\/\/)?(www\.)?(intemperiemexico\.com|wa\.me)(\/|$)/i;
 
 export async function atender(
-  deps: { llamar: LlamarClaude; tienda: Tienda; modelo: string; avisar?: (nota: string) => Promise<void> },
+  deps: {
+    llamar: LlamarClaude;
+    tienda: Tienda;
+    modelo: string;
+    avisar?: (nota: string) => Promise<void>;
+    /** Regalo que va con la compra desde cierto monto (lo anota en el pedido). */
+    regalo?: { texto: string; nota: string; minimo: number } | null;
+  },
   entrada: { historial: MensajeHistorial[]; nuevos: string; contexto: string },
 ): Promise<Vuelta> {
   const mensajes: MensajeHistorial[] = [
@@ -266,7 +273,7 @@ export async function atender(
             const salida =
               b.name === "avisar_al_dueno"
                 ? await avisarDueno(deps.avisar, b.input)
-                : await ejecutarHerramienta(deps.tienda, b.name, b.input, linksEmitidos);
+                : await ejecutarHerramienta(deps.tienda, b.name, b.input, linksEmitidos, deps.regalo ?? null);
             console.log(`herramienta ${b.name}: ${JSON.stringify(salida).slice(0, 200)}`);
             return { type: "tool_result", tool_use_id: b.id, content: JSON.stringify(salida) };
           } catch (e) {
@@ -346,7 +353,7 @@ export function linksDePagoPrevios(historial: MensajeHistorial[]): string[] {
   const links: string[] = [];
   for (const m of historial) {
     if (m.role !== "assistant" || typeof m.content !== "string") continue;
-    for (const l of m.content.match(/https:\/\/intemperiemexico\.com\/cart\/[0-9]+:[0-9]+/g) ?? []) links.push(l);
+    for (const l of m.content.match(/https:\/\/intemperiemexico\.com\/cart\/[^\s)>\]]+/g) ?? []) links.push(l.replace(/[.,;:!?]+$/, ""));
   }
   return links;
 }
@@ -379,6 +386,7 @@ export async function ejecutarHerramienta(
   nombre: string,
   entrada: unknown,
   linksEmitidos: Set<string>,
+  regalo: { texto: string; nota: string; minimo: number } | null = null,
 ): Promise<unknown> {
   const i = (entrada ?? {}) as Record<string, unknown>;
   switch (nombre) {
@@ -440,10 +448,23 @@ export async function ejecutarHerramienta(
         return { error: "Ahora no se pudo verificar la variante; manda el link de la ficha y sigue la plática sin mencionar fallas." };
       }
       if (!variante || !variante.disponible) return { error: "Agotado: no lo ofrezcas; ofrece otro que sí haya." };
-      const cantidad = Number(i.cantidad ?? 1);
-      const link = linkDePago(variante.id, cantidad);
+      const cantidad = Number.isInteger(Number(i.cantidad)) && Number(i.cantidad) >= 1 && Number(i.cantidad) <= 10 ? Number(i.cantidad) : 1;
+      const conRegalo = regalo && variante.precio * cantidad >= regalo.minimo;
+      const link = linkDePago(variante.id, cantidad, conRegalo ? `Regalo: ${regalo.nota}` : undefined);
       linksEmitidos.add(link);
-      return { link, titulo: p.titulo, variante: variante.titulo, cantidad: cantidad >= 1 && cantidad <= 10 ? cantidad : 1, precio: variante.precio, envio: variante.precio >= 799 ? "gratis" : "$189" };
+      return {
+        link,
+        ficha: p.ficha,
+        titulo: p.titulo,
+        variante: variante.titulo,
+        cantidad,
+        precio: variante.precio,
+        envio: variante.precio >= 799 ? "gratis" : "$189",
+        regalo: conRegalo ? regalo.texto : undefined,
+        nota:
+          "Manda este link de pago junto con el link de la ficha (fotos y detalles), tal cual." +
+          (conRegalo ? ` Dile que con su compra va de regalo ${regalo.texto}; ya queda anotado en el pedido.` : ""),
+      };
     }
     default:
       return { error: `Herramienta desconocida: ${nombre}` };

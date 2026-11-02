@@ -42,6 +42,12 @@ PAUSA_HORAS = "12"
 RESCATE_MINUTOS = "120"
 ESPERA_SEGUNDOS = "8"
 SEGUIMIENTO = "si"
+# Regalo de cierre: va con toda compra desde REGALO_MINIMO pesos. El link de
+# pago lo anota en el pedido ("Regalo: …") para que el dueño lo meta al paquete.
+# Vacío = sin regalo.
+REGALO_TEXTO = "una cucharilla Blue Fox Whiptail para que estrenes el equipo"
+REGALO_NOTA = "cucharilla Blue Fox Whiptail"
+REGALO_MINIMO = "999"
 # Textos que la app de WhatsApp Business manda sola (bienvenida, ausencia),
 # separados por " | ". Un eco con uno de estos no cuenta como que el dueño contestó.
 MENSAJES_AUTOMATICOS = "¡Hola! Aquí Alcampo Cuernavaca. Cuéntanos qué viste o qué estás buscando y con gusto te ayudamos. Si es cartucho, pásanos calibre y medida."

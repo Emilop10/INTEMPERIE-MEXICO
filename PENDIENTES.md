@@ -71,6 +71,11 @@
      WhatsApp (≈$0.05 USD por mensaje, tarjeta en Meta) para escribir
      después de 24 h a los que no contestaron; e incentivo de cierre.
      Medir respuestas en 2 o 3 días.
+   - **1 nov 21:45:** el link de pago va siempre con el de la ficha.
+     **Regalo activo:** cucharilla Blue Fox Whiptail con compras desde
+     $999; el pedido en Shopify trae la nota "Regalo: cucharilla Blue Fox
+     Whiptail": **el dueño la mete al paquete al empacar.** Se cambia en
+     `wrangler.toml` (REGALO_TEXTO / REGALO_NOTA / REGALO_MINIMO).
    - 🟢 **Número conectado en Kapso (29 oct 16:43):**
      Phone number ID 742563942272641, WABA 2146162969186009, coexistencia.
      El nombre se queda "Alcampo Cuernavaca" (decisión del dueño: usa el
