@@ -7,9 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 1 de noviembre de 2026 (sección 126, corte del 1 nov)
-
-**Última actualización:** 1 de noviembre de 2026 (sección 129, ficha con el link y regalo de cierre)
+**Última actualización:** 1 de noviembre de 2026 (sección 126, corte del 1 nov; sección 129, ficha con el link y regalo de cierre)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
