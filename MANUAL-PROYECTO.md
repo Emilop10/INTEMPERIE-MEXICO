@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 31 de octubre de 2026 (sección 129, embudo del agente y recordatorio de cierre)
+**Última actualización:** 1 de noviembre de 2026 (sección 126, corte del 1 nov)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -14584,6 +14584,20 @@ salida de fondo es la API de administración con un token `shpat_`
 - Ningún corte se dispara. El de $750 cae alrededor del lunes 2 o martes
   3 nov si no hay más ventas.
 - Shopify: sin pedidos nuevos.
+
+**Corte del 1 nov (21:37).**
+- **Hoy:** $88.36 y 19 conversaciones ($4.65 c/u); 18 del video del
+  combo, 1 del video "Abre la caja" (su primera).
+- **Acumulado:** **$594.41 de $900, 111 conversaciones ($5.35 c/u), 1
+  venta** (#1007 del 26 oct). Shopify: sin pedidos nuevos.
+- Por anuncio (acumulado): combo-video 49 conv. a $4.56, combo-foto 43 a
+  $5.84, cual-video 11 a $5.42, caja 1 a $8.47, emiliano 2 a $2.25.
+  Últimos 3 días: 48 conv. a $5.06; ninguno arriba de $15 ni con $120 sin
+  conversación. Facebook ya casi solo gasta en el video del combo.
+- Ningún corte se dispara. El de **$750 con 1 sola venta** cae el
+  domingo 2 o lunes 3 nov al ritmo actual (~$85/día). Al dueño se le
+  volvió a pedir el resumen de cierres por WhatsApp del agente.
+- Existencias sin cambio (Combo 2.45: 1; Boundary: 2); nada que pausar.
 
 ### §129: embudo del agente y cómo recuperar más ventas (31 oct, 23:00)
 
