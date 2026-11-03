@@ -122,6 +122,13 @@
 0. **🔴 URGENTE (26 oct, MANUAL §127):** venta #1007 del Combo Revenger 2.40.
    - Descontar en el punto de venta la caña RV-S-802M y el carrete RV-80.
 
+0. **(3 nov) Análisis de los 119 chats (MANUAL §129, último):** 0 compras con
+   63 links de pago. Esperan decisión del dueño: (a) activar transferencia
+   SPEI como pago manual en Shopify (la CLABE va en Shopify, nunca en el
+   repo); (b) cambiar el saludo automático de la app, que dice "Alcampo…
+   cartucho" en los chats del anuncio. Mensaje para el chat del agente ya
+   entregado (primera respuesta corta, seguimiento del "mañana", mensajes no
+   soportados).
 0. **(29 oct) Prueba de WhatsApp ampliada: $900 totales hasta el 5 nov 21:00,**
    4 videos + foto del combo activos, tope de cuenta $3,313.94 (MANUAL §126).
    **Al 2 nov: $677.62 gastados, 132 conversaciones ($5.13), 1 venta.** El

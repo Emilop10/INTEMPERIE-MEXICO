@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 3 de noviembre de 2026 (sección 129, exportación de chats hecha, ruta /exportar)
+**Última actualización:** 3 de noviembre de 2026 (sección 129, análisis de los 119 chats)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -14877,3 +14877,51 @@ en el chat; no están en el repo ni en Cloudflare.
 **Cómo repetirlo:** desplegado está; una sesión nueva pide las páginas
 con el `ADMIN_TOKEN` y vuelve a correr el script (está descrito arriba;
 si se perdió la carpeta temporal, se reescribe a partir de esta nota).
+
+### §129: análisis de los 119 chats exportados (3 nov, nube)
+
+**Pedido del dueño:** analizar `chats.xlsx` / `chats.jsonl` (27 oct–3 nov)
+para ver cómo mejorar y optimizar las pláticas.
+
+**Embudo:** 119 chats → 108 con respuesta (mediana 33 s; 76 en menos de
+1 min) → 61 en los que el cliente volvió a escribir → 63 con link de
+pago → 7 que pidieron pagar o mandaron dirección → **0 compras** en
+Shopify (la única venta de la prueba, #1007, fue el 26 oct). 76 chats
+vienen del anuncio del combo de $999, que el agente presenta como
+Boundary 7'. Lo que más preguntan: tipo de pesca o especie (29), precio
+(23) y medidas de la caña (22).
+
+**Hallazgos, de mayor a menor impacto:**
+
+1. **La forma de pago frena las ventas más calientes.** De los 13 chats
+   más cerca de comprar, 9 pidieron transferencia o número de cuenta,
+   pago contra entrega o depósito en OXXO. El agente y el dueño
+   contestan "solo en la página"; esos clientes no volvieron (uno de
+   Puerto Escondido pidió la cuenta, dijo "mañana sin falta" y no
+   regresó).
+2. **La primera respuesta del agente es muy larga.** Mediana de 672
+   caracteres (ficha completa con links). Cuando el primer mensaje del
+   agente tuvo menos de 300 caracteres, el cliente volvió a escribir en
+   11 de 14 chats; con más de 600, solo en 28 de 62.
+3. **Los "mañana lo compro" se pierden.** 5 chats con "mañana", "dame
+   tiempo" o "apártame"; ninguno cerró. El seguimiento llega a las 2 h y
+   otro antes de las 24 h, sin recordar lo que el cliente prometió.
+4. **El saludo automático de la app dice "Aquí Alcampo Cuernavaca… si
+   es cartucho, pásanos calibre y medida"** y salió en 102 chats,
+   incluidos los que vienen del anuncio de pesca de Intemperie.
+5. **Mensajes que el agente no lee:** 7 "[mensaje no soportado]", 5
+   audios y 7 imágenes. 6 chats orgánicos que solo mandaron un mensaje no
+   soportado no recibieron respuesta.
+6. **Seguimientos:** 55 enviados; el cliente contestó después en 12
+   (22%). Sirven, pero no rescatan a los que ya pusieron una objeción de
+   pago.
+7. Lo que funciona: respuesta rápida, recomendar otro producto cuando el
+   combo no encaja (mar → Tolten, pesca ligera → Clarus) y explicar OXXO
+   paso a paso.
+
+**Propuesta entregada al dueño:** decisiones suyas (aceptar
+transferencia SPEI como método de pago manual en Shopify; cambiar el
+saludo automático de la app) y un mensaje listo para el chat del agente
+con los cambios que no requieren decisión (primera respuesta corta,
+seguimiento del "mañana", contestar mensajes no soportados, explicar la
+transferencia si se activa). Nada se cambió todavía.
