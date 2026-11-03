@@ -70,6 +70,7 @@ describe("eventos de Meta", () => {
           { from: "521", id: "2", type: "audio", audio: { id: "x" } },
           { from: "521", id: "3", type: "image", image: { caption: "¿esta caña?" } },
           { from: "521", id: "4", type: "reaction", reaction: { emoji: "👍" } },
+          { from: "521", id: "5", type: "unsupported", errors: [{ code: 131051 }] },
         ],
         statuses: [{ id: "s", status: "delivered" }],
       }),
@@ -78,6 +79,7 @@ describe("eventos de Meta", () => {
       "Sí, mándalo",
       "[El cliente mandó un audio de voz que no puedes escuchar]",
       '[El cliente mandó una foto que no puedes ver: "¿esta caña?"]',
+      "[El cliente mandó un mensaje que no se puede leer]",
     ]);
   });
 

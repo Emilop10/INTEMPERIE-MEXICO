@@ -88,6 +88,12 @@
    - **3 nov 13:00:** ruta `GET /exportar?desde=…&pagina=N&lote=8` y
      exportación entregada al dueño (119 chats, 923 mensajes, xlsx y
      jsonl fuera del repo). El costo por chat se acumula desde hoy.
+   - **3 nov 14:30, tras el análisis:** primera respuesta de 3 líneas sin
+     links; `anotar_promesa` ("mañana lo pago") con aviso ntfy "Cliente
+     caliente" y recordatorio dentro de las 24 h; adjuntos y mensajes no
+     soportados reciben "No alcancé a ver tu mensaje…"; transferencia:
+     OXXO en 3 pasos + aviso. **Cuando el dueño active la transferencia
+     en Shopify: `TRANSFERENCIA = "si"` en `wrangler.toml` y desplegar.**
    - 🟢 **Número conectado en Kapso (29 oct 16:43):**
      Phone number ID 742563942272641, WABA 2146162969186009, coexistencia.
      El nombre se queda "Alcampo Cuernavaca" (decisión del dueño: usa el

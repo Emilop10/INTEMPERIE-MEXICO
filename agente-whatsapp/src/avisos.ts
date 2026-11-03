@@ -9,6 +9,8 @@ export interface Aviso {
   resumen: string; // para ntfy: sin datos personales
   detalle: string; // para el correo: puede llevar el enlace wa.me y el texto
   urgente?: boolean;
+  /** Solo notificación al celular (ntfy), sin correo. */
+  soloNtfy?: boolean;
 }
 
 export type Avisar = (aviso: Aviso) => Promise<void>;
@@ -35,7 +37,7 @@ export function crearAvisador(
         }).then(revisar("ntfy")),
       );
     }
-    if (opciones.resendApiKey) {
+    if (opciones.resendApiKey && !aviso.soloNtfy) {
       tareas.push(
         fetchFn("https://api.resend.com/emails", {
           method: "POST",

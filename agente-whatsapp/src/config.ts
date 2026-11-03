@@ -31,6 +31,7 @@ export interface Env {
   RESCATE_MINUTOS?: string; // si el cliente vuelve a escribir y el dueño no contesta en N min, el agente retoma
   ESPERA_SEGUNDOS?: string;
   SEGUIMIENTO?: string; // si | no
+  TRANSFERENCIA?: string; // si | no: la transferencia bancaria está activa como forma de pago en Shopify
   REGALO_TEXTO?: string; // regalo que va con la compra (vacío = sin regalo), p. ej. "una cucharilla Blue Fox"
   REGALO_MINIMO?: string; // compra mínima en pesos para el regalo
   REGALO_NOTA?: string; // texto corto que va anotado en el pedido (p. ej. "cucharilla Blue Fox")
@@ -52,6 +53,8 @@ export interface Config {
   rescateMs: number;
   esperaMs: number;
   seguimiento: boolean;
+  /** Transferencia bancaria activa en Shopify (el dueño la enciende): cambia lo que dice el agente. */
+  transferencia: boolean;
   /** Regalo que se agrega a la compra (va anotado en el pedido); null = sin regalo. */
   regalo: { texto: string; nota: string; minimo: number } | null;
   numerosPrueba: Set<string>;
@@ -101,6 +104,7 @@ export function leerConfig(env: Env): Config {
     rescateMs: numero(env.RESCATE_MINUTOS, 120) * 60_000,
     esperaMs: numero(env.ESPERA_SEGUNDOS, 8) * 1000,
     seguimiento: (env.SEGUIMIENTO ?? "si").trim() !== "no",
+    transferencia: (env.TRANSFERENCIA ?? "no").trim() === "si",
     regalo: env.REGALO_TEXTO?.trim()
       ? { texto: env.REGALO_TEXTO.trim(), nota: (env.REGALO_NOTA ?? env.REGALO_TEXTO).trim().slice(0, 60), minimo: numero(env.REGALO_MINIMO, 999) }
       : null,

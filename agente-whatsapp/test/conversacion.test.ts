@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { TEXTOS } from "../src/conversacion";
+import { TEXTO_NO_LEIDO, TEXTOS } from "../src/conversacion";
 import {
   AlmacenMemoria,
   armarConversacion,
@@ -251,6 +251,58 @@ describe("conversación", () => {
     await conv.recibir(mensaje("¿y con tarjeta?"), MEDIODIA + 2 * HORA);
     await conv.alarma(MEDIODIA + 2 * HORA + ESPERA);
     expect(enviados.at(-1)?.texto).toBe("Sí, con tarjeta también.");
+  });
+
+  it("un audio, sticker o mensaje no soportado solos: pide que lo escriba, sin Claude y una sola vez seguida", async () => {
+    const claude = claudeConGuion([texto("¡Hola! Con gusto.")]);
+    const { conv, enviados } = armarConversacion({ claude });
+    await conv.recibir(mensaje("[El cliente mandó un mensaje que no se puede leer]"), MEDIODIA);
+    await conv.alarma(MEDIODIA + ESPERA);
+    expect(enviados.map((e) => e.texto)).toEqual([TEXTO_NO_LEIDO]);
+    expect(claude.llamadas).toHaveLength(0);
+    await conv.recibir(mensaje("[El cliente mandó un sticker]"), MEDIODIA + 60_000);
+    await conv.alarma(MEDIODIA + 60_000 + ESPERA);
+    expect(enviados).toHaveLength(1); // no insiste
+    // Con texto junto, sí va a Claude.
+    await conv.recibir(mensaje("[El cliente mandó un audio de voz que no puedes escuchar]"), MEDIODIA + 120_000);
+    await conv.recibir(mensaje("¿tienen kits?"), MEDIODIA + 121_000);
+    await conv.alarma(MEDIODIA + 121_000 + ESPERA);
+    expect(claude.llamadas).toHaveLength(1);
+    expect(enviados.at(-1)?.texto).toBe("¡Hola! Con gusto.");
+  });
+
+  it("anotar_promesa: avisa por ntfy sin datos y programa un recordatorio con las palabras del cliente dentro de las 24 h", async () => {
+    const claude = claudeConGuion([
+      herramienta("anotar_promesa", { promesa: "mañana lo paga cuando cobre", producto: "Combo Boundary" }),
+      texto("Claro, sin prisa. Aquí queda el link 🎣"),
+      texto("Quedamos en que hoy lo pagabas al cobrar; sigue disponible 🎣"),
+    ]);
+    const { conv, enviados, avisos, almacen } = armarConversacion({ claude });
+    await conv.recibir(mensaje("mañana lo pago, cuando cobre"), MEDIODIA); // 14:00
+    await conv.alarma(MEDIODIA + ESPERA);
+    expect(enviados.map((e) => e.texto)).toEqual(["Claro, sin prisa. Aquí queda el link 🎣"]);
+    expect(avisos).toHaveLength(1);
+    expect(avisos[0]).toMatchObject({ titulo: "Cliente caliente", soloNtfy: true });
+    expect(avisos[0].resumen).toContain("mañana lo paga cuando cobre");
+    // Recordatorio: 20 h después (10:00 del día siguiente), con la promesa, y es el único.
+    expect(almacen.alarma).toBe(MEDIODIA + ESPERA + 20 * HORA);
+    await conv.alarma(MEDIODIA + ESPERA + 20 * HORA);
+    expect(enviados.at(-1)?.texto).toBe("Quedamos en que hoy lo pagabas al cobrar; sigue disponible 🎣");
+    expect(claude.llamadas[2].messages.at(-2)).toMatchObject({ role: "user", content: expect.stringContaining("quedó en: «mañana lo paga cuando cobre") });
+    expect(almacen.alarma).toBe(MEDIODIA + 30 * 24 * HORA);
+  });
+
+  it("el contexto dice si la transferencia está activa", async () => {
+    const claude = claudeConGuion([texto("ok")]);
+    const { conv } = armarConversacion({ claude, config: config({ TRANSFERENCIA: "si" }) });
+    await conv.recibir(mensaje("¿número de cuenta?"), MEDIODIA);
+    await conv.alarma(MEDIODIA + ESPERA);
+    expect(String(claude.llamadas[0].messages.at(-1)?.content)).toContain("SÍ está activa");
+    const otra = armarConversacion({ claude: claudeConGuion([texto("ok")]) });
+    await otra.conv.recibir(mensaje("¿número de cuenta?"), MEDIODIA);
+    await otra.conv.alarma(MEDIODIA + ESPERA);
+    const claude2 = otra.conv as unknown as { d: { llamar: { llamadas: unknown[] } } };
+    expect(String((claude2.d.llamar.llamadas[0] as { messages: { content: unknown }[] }).messages.at(-1)?.content)).toContain("NO está activa");
   });
 
   it("un pase al dueño no tiene rescate: el agente sigue callado 12 h", async () => {

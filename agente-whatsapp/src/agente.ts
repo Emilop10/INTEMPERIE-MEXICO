@@ -35,6 +35,8 @@ export interface Vuelta {
   llamadas: number;
   /** Consultó, buscó o pidió link de algún producto en esta vuelta. */
   consultoProductos: boolean;
+  /** El cliente quedó en algo ("mañana lo compro"): lo que prometió, para recordárselo. */
+  promesa?: string;
 }
 
 const HERRAMIENTAS: Anthropic.Beta.Messages.BetaTool[] = [
@@ -120,6 +122,21 @@ const HERRAMIENTAS: Anthropic.Beta.Messages.BetaTool[] = [
         nota: { type: "string", description: "Una o dos líneas: qué pidió el cliente y qué le ofreciste. Sin nombres ni teléfonos." },
       },
       required: ["nota"],
+      additionalProperties: false,
+    },
+  },
+  {
+    name: "anotar_promesa",
+    description:
+      "El cliente quedó en algo para después: 'mañana lo compro', 'dame tiempo', 'apártamelo', 'cuando cobre', 'hoy en la noche lo veo'. Anota lo que prometió para que el seguimiento se lo recuerde con sus palabras. Luego contesta corto.",
+    strict: true,
+    input_schema: {
+      type: "object",
+      properties: {
+        promesa: { type: "string", description: "Qué quedó de hacer y cuándo, en sus palabras, sin nombres ni teléfonos. Ej.: 'hoy lo veía con calma y mañana lo pagaba'." },
+        producto: { type: "string", description: "Producto del que hablan, o vacío." },
+      },
+      required: ["promesa", "producto"],
       additionalProperties: false,
     },
   },
@@ -222,7 +239,8 @@ export async function atender(
   let llamadas = 0;
 
   let consultoProductos = false;
-  const fin = (resultado: Resultado): Vuelta => ({ resultado, costoUsd, llamadas, consultoProductos });
+  let promesa: string | undefined;
+  const fin = (resultado: Resultado): Vuelta => ({ resultado, costoUsd, llamadas, consultoProductos, promesa });
 
   while (llamadas < MAX_LLAMADAS) {
     llamadas++;
@@ -270,10 +288,13 @@ export async function atender(
       const resultados = await Promise.all(
         usos.map(async (b): Promise<Anthropic.Beta.Messages.BetaToolResultBlockParam> => {
           try {
-            const salida =
-              b.name === "avisar_al_dueno"
-                ? await avisarDueno(deps.avisar, b.input)
-                : await ejecutarHerramienta(deps.tienda, b.name, b.input, linksEmitidos, deps.regalo ?? null);
+            let salida: unknown;
+            if (b.name === "avisar_al_dueno") salida = await avisarDueno(deps.avisar, b.input);
+            else if (b.name === "anotar_promesa") {
+              const i = b.input as { promesa?: string; producto?: string };
+              promesa = [String(i.promesa ?? "").slice(0, 200), i.producto ? `(${String(i.producto).slice(0, 80)})` : ""].filter(Boolean).join(" ");
+              salida = { ok: true, nota: "Anotado. El seguimiento se lo recordará con sus palabras. Contesta corto y amable, sin presionar." };
+            } else salida = await ejecutarHerramienta(deps.tienda, b.name, b.input, linksEmitidos, deps.regalo ?? null);
             console.log(`herramienta ${b.name}: ${JSON.stringify(salida).slice(0, 200)}`);
             return { type: "tool_result", tool_use_id: b.id, content: JSON.stringify(salida) };
           } catch (e) {

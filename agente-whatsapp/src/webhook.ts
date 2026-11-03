@@ -77,8 +77,11 @@ function textoDeMensaje(m: Json): string | null {
       return "[El cliente mandó una tarjeta de contacto]";
     case "order":
       return "[El cliente mandó un pedido desde el catálogo de WhatsApp]";
+    case "unsupported":
+      // Meta no entrega el contenido (encuestas, eventos, mensajes raros): se pide que lo escriba.
+      return "[El cliente mandó un mensaje que no se puede leer]";
     default:
-      // reaction, request_welcome, system, unsupported, etc.: no se contestan.
+      // reaction, request_welcome, system, etc.: no se contestan.
       return null;
   }
 }

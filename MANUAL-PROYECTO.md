@@ -14925,3 +14925,56 @@ saludo automático de la app) y un mensaje listo para el chat del agente
 con los cambios que no requieren decisión (primera respuesta corta,
 seguimiento del "mañana", contestar mensajes no soportados, explicar la
 transferencia si se activa). Nada se cambió todavía.
+
+### §129: cambios del agente tras el análisis de los 119 chats (3 nov, 14:30)
+
+**Pedido del dueño:** con base en el análisis (entrada anterior), cuatro
+cambios en el agente y nada más.
+
+1. **Primera respuesta corta.** Instrucciones: al lead del anuncio se le
+   contesta en **máximo 3 líneas**: qué es el combo del anuncio, precio
+   en vivo con envío gratis y una sola pregunta ("¿Pescas en presa, río
+   o mar?"). Sin ficha, sin links ni regalo en ese mensaje; la ficha, el
+   link de pago y el regalo van en la **segunda** respuesta, en cuanto
+   el cliente conteste o pregunte. Lo mismo para los anuncios de kits
+   (tres kits con precio, sin links, una pregunta). Ejemplos nuevos en
+   "Cómo escribes". Simulación: "¡Hola, Luis! 🎣 El combo del anuncio es
+   el *Combo Okuma Boundary 7'*: caña de 7 pies con carrete Okuma, listo
+   para pescar. / Está en *$999 con envío gratis* a todo México. /
+   ¿Pescas en presa, río o mar?" (3 líneas); "Presa, lobina" → datos,
+   ficha, link de pago y regalo.
+2. **"Mañana", "dame tiempo", "apártame", "cuando cobre".** Herramienta
+   nueva `anotar_promesa` (lo que quedó de hacer y cuándo, en sus
+   palabras, sin nombres ni teléfonos). El agente contesta corto y sin
+   presionar; el sistema guarda la promesa (`Estado.promesa`), avisa al
+   dueño **solo por ntfy** ("Cliente caliente: un cliente quedó en: …",
+   sin nombre ni teléfono; `Aviso.soloNtfy`) y programa **un**
+   recordatorio dentro de las 24 h (misma regla de hora que el cierre:
+   unas 20 h después, de día) con la nota `notaPromesa` que le pide
+   recordárselo con sus palabras ("Quedamos en que hoy lo veías…").
+   Ese recordatorio sustituye al de cierre. Simulación: "va, mañana que
+   cobre lo pago" → "¡Va, Luis, sin prisa! El link queda arriba para
+   cuando cobres, y tu cucharilla de regalo te espera con el combo 🎣" y
+   aviso al dueño.
+3. **Mensajes que no se pueden leer.** `webhook.ts`: los mensajes de tipo
+   `unsupported` (Meta no entrega el contenido; antes se descartaban y
+   el chat se quedaba sin respuesta) ahora llegan como "[El cliente mandó
+   un mensaje que no se puede leer]". `conversacion.ts`: si el lote de
+   mensajes es **solo** audio, sticker, foto o video sin texto, documento
+   o no soportado, el sistema contesta sin llamar a Claude "No alcancé a
+   ver tu mensaje, ¿me lo escribes? Con gusto te ayudo 🎣", una sola vez
+   seguida (si manda otro adjunto, no insiste). Si viene texto junto,
+   Claude atiende el texto.
+4. **Transferencia o número de cuenta.** Variable `TRANSFERENCIA`
+   (`wrangler.toml`, hoy `"no"`): el contexto de cada vuelta le dice al
+   agente si está activa. Con "no": explica OXXO en 3 pasos cortos
+   (abrir el link; elegir Mercado Pago y luego OXXO; pagar en caja con la
+   referencia, también en 7-Eleven) y avisa al dueño con
+   `avisar_al_dueno`. Con "si": "Sí, al pagar eliges *Transferencia
+   bancaria* y ahí te aparece la cuenta". **Cuando el dueño active la
+   transferencia como pago manual en Shopify, poner `TRANSFERENCIA =
+   "si"` y desplegar.**
+
+78 de 78 pruebas (cuatro nuevas: `unsupported` en el webhook, mensajes
+no legibles, flujo de promesa con aviso y recordatorio, contexto de
+transferencia). Desplegado en activo.
