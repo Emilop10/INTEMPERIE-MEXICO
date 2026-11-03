@@ -82,9 +82,8 @@
      pendiente ver si paga.
    - 🔴 **3 nov 13:00:** falla de concurrencia corregida (mensaje y
      bienvenida automática del mismo segundo se pisaban; 3 leads sin
-     respuesta). **Pendiente del dueño:** pedir que se reinyecten los 3
-     mensajes (`accion=mensaje`) antes de que venzan sus 24 h (el primero
-     el 3 nov 20:55).
+     respuesta). Los 3 se reinyectaron con el "sí" del dueño (3 nov
+     13:35) y ya tienen respuesta.
    - **3 nov 13:00:** ruta `GET /exportar?desde=…&pagina=N&lote=8` y
      exportación entregada al dueño (119 chats, 923 mensajes, xlsx y
      jsonl fuera del repo). El costo por chat se acumula desde hoy.

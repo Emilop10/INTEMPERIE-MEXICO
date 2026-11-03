@@ -14826,11 +14826,10 @@ cuarto, Mauro, volvió a escribir al día siguiente y sí se atendió).
   para reinyectar un mensaje perdido y que el agente lo atienda.
 - Desplegado en activo (versión 1724da63).
 
-**Pendiente (decisión del dueño):** reinyectar los tres mensajes para
-que el agente les conteste. La sesión de la nube no pudo correrlo sola
-(el clasificador de permisos lo bloqueó por mandar mensajes a clientes
-reales); basta con que el dueño lo pida. Ventanas de 24 h: el primero
-vence el 3 nov a las 20:55; los otros dos el 4 nov por la mañana.
+**Cerrado (3 nov, 13:35):** con el "sí" del dueño se reinyectaron los
+tres mensajes (`accion=mensaje`, con el titular del anuncio) y el agente
+contestó a los tres al minuto, ya con la primera respuesta corta de 3
+líneas.
 
 ### §129: exportación de chats hecha; ruta `/exportar` (3 nov, 13:00)
 
