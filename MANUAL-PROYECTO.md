@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 2 de noviembre de 2026 (sección 126, corte del 2 nov)
+**Última actualización:** 3 de noviembre de 2026 (sección 129, exportación de chats)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -14584,6 +14584,42 @@ salida de fondo es la API de administración con un token `shpat_`
 - Ningún corte se dispara. El de $750 cae alrededor del lunes 2 o martes
   3 nov si no hay más ventas.
 - Shopify: sin pedidos nuevos.
+
+### §129: exportación de todos los chats del agente para analizarlos (3 nov)
+
+**Pedido del dueño:** un comando para que el chat del agente genere un
+archivo con todos los chats, para que la nube los analice y proponga
+cómo mejorarlos.
+
+**Hallazgo:** el agente no tiene exportación. Cada chat vive en su
+Durable Object (`historial` de máximo 30 mensajes, se borra a los 30
+días) y el Worker no tiene índice de chats: la única lista es la API de
+Kapso (`/platform/v1/whatsapp/conversations`), que además guarda el
+historial completo, incluidos los mensajes del dueño desde el celular y
+los anteriores al agente. Por eso la exportación debe leer Kapso y
+completar con el estado del Durable Object (anuncio de origen, pausas,
+pases al dueño, links de pago).
+
+**Qué se le pidió al chat del agente** (el texto completo está en la
+respuesta del 3 nov al dueño; resumen):
+
+1. Nueva ruta de administración `GET /exportar?desde=2026-10-24` con
+   `ADMIN_TOKEN`, que lista las conversaciones en Kapso desde esa fecha,
+   baja los mensajes de cada una y junta el estado del Durable Object.
+2. Entrega dos archivos **fuera del repositorio**: `chats.xlsx` (hoja
+   "Resumen", una fila por chat; hoja "Mensajes", una fila por mensaje)
+   y `chats.jsonl`. Teléfonos solo como id anónimo (hash corto) y
+   últimos 4 dígitos; se tachan teléfonos, correos y direcciones dentro
+   de los textos.
+3. Columnas del resumen: origen (anuncio, botón de la página u
+   orgánico), fecha y hora del primer mensaje, mensajes del cliente, del
+   agente y del dueño, segundos a la primera respuesta, duración,
+   productos mencionados, si se mandó link de pago, si el cliente pidió
+   pagar o dio dirección, si se pasó al dueño y por qué, quién habló al
+   último, resultado (compró, pendiente, dejó de contestar, pasado a
+   Emiliano) y costo en Claude.
+4. El dueño descarga los archivos de ese chat y los sube a este chat de
+   la nube para el análisis.
 
 **Corte del 2 nov (21:38).**
 - **Hoy:** $81.47 y 21 conversaciones ($3.88 c/u, el día más barato);
