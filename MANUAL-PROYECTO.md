@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 1 de noviembre de 2026 (sección 126, corte del 1 nov; sección 129, acción "tomar")
+**Última actualización:** 2 de noviembre de 2026 (sección 126, corte del 2 nov)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -14584,6 +14584,20 @@ salida de fondo es la API de administración con un token `shpat_`
 - Ningún corte se dispara. El de $750 cae alrededor del lunes 2 o martes
   3 nov si no hay más ventas.
 - Shopify: sin pedidos nuevos.
+
+**Corte del 2 nov (21:38).**
+- **Hoy:** $81.47 y 21 conversaciones ($3.88 c/u, el día más barato);
+  18 del video del combo y 3 del video "Abre la caja".
+- **Acumulado:** **$677.62 de $900, 132 conversaciones ($5.13 c/u), 1
+  venta** (#1007 del 26 oct). Shopify: sin pedidos nuevos.
+- Por anuncio (acumulado): combo-video 67 conv. a $4.42, combo-foto 43 a
+  $5.90, cual-video 11 a $5.46, caja 4 a $3.95, emiliano 2 a $2.25.
+  Últimos 3 días: 53 conv. a $4.74; ninguno arriba de $15 ni con $120 sin
+  conversación. Facebook gasta casi todo en el video del combo.
+- Ningún corte se dispara. Faltan $72 para los $750: con 1 sola venta,
+  el corte del **3 nov** pausa la campaña salvo que el dueño reporte
+  ventas cerradas por WhatsApp.
+- Existencias sin cambio (Combo 2.45: 1; Boundary: 2); nada que pausar.
 
 **Corte del 1 nov (21:37).**
 - **Hoy:** $88.36 y 19 conversaciones ($4.65 c/u); 18 del video del
