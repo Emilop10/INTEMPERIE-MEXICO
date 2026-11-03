@@ -127,6 +127,19 @@ describe("conversación", () => {
     expect(msgs).toContainEqual({ role: "assistant", content: "[Emiliano contestó desde el celular]: Hola, soy Emiliano" });
   });
 
+  it("en serie: el mensaje del cliente y la bienvenida automática del mismo segundo no se pisan", async () => {
+    const { Serie } = await import("../src/util");
+    const claude = claudeConGuion([texto("¡Hola! Con gusto.")]);
+    const { conv, enviados } = armarConversacion({ claude });
+    const ev = mensaje("¡Hola! Quiero más información");
+    const eco = { tipo: "eco" as const, chat: ev.chat, id: "eco-bienvenida", ts: MEDIODIA + 300, texto: "¡Hola! Aquí Alcampo Cuernavaca. Cuéntanos qué viste." };
+    // Como en el Durable Object: cada evento llega por su lado y se encola.
+    const serie = new Serie();
+    await Promise.all([serie.ejecutar(() => conv.recibir(ev, MEDIODIA)), serie.ejecutar(() => conv.recibir(eco, MEDIODIA + 300))]);
+    await conv.alarma(MEDIODIA + ESPERA);
+    expect(enviados).toHaveLength(1);
+  });
+
   it("el mensaje de bienvenida automático de la app no pausa al agente", async () => {
     const claude = claudeConGuion([texto("¡Hola! 🎣 ¿Qué tipo de pesca haces?")]);
     const cfg = config({ MENSAJES_AUTOMATICOS: "¡Hola! Aquí Alcampo Cuernavaca. Cuéntanos qué viste." });

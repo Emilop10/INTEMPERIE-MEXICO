@@ -10,6 +10,7 @@ import { Control, type Registro } from "./control";
 import { Conversacion } from "./conversacion";
 import { HANDLES_GUIA } from "./generado/conocimiento";
 import { CATALOGO_FRESCO_MS, crearTienda } from "./tienda";
+import { Serie } from "./util";
 import { extraerEventos, firmaValida, type Evento } from "./webhook";
 import { crearEnviador } from "./whatsapp";
 
@@ -71,6 +72,26 @@ export default {
         // Metadatos de un chat (sin textos), para diagnóstico.
         const chat = (url.searchParams.get("chat") ?? "").replace(/[^\w.]/g, "");
         if (!chat) return new Response("GET /chat?chat=<número>", { status: 400 });
+        if (request.method === "POST" && url.searchParams.get("accion") === "mensaje") {
+          // Reinyecta un mensaje del cliente que se perdió (texto, nombre y anuncio por query).
+          const texto = (url.searchParams.get("texto") ?? "").trim();
+          if (!texto) return new Response("Falta texto", { status: 400 });
+          const ahora = Date.now();
+          await conversacion(env, chat).recibir(
+            {
+              tipo: "mensaje",
+              chat,
+              destino: { to: chat },
+              id: `manual-${ahora}`,
+              ts: ahora,
+              texto,
+              nombre: url.searchParams.get("nombre") ?? undefined,
+              anuncio: url.searchParams.get("anuncio") ?? undefined,
+            },
+            ahora,
+          );
+          return Response.json({ chat, resultado: "recibido" });
+        }
         if (request.method === "POST" && url.searchParams.get("accion") === "tomar") {
           // Orden expresa del dueño: el agente toma el chat ahora y manda el siguiente mensaje.
           return Response.json({ chat, resultado: await conversacion(env, chat).tomar(Date.now()) });
@@ -273,24 +294,28 @@ export class ConversacionDO extends DurableObject<Env> {
     });
   }
 
+  // Un evento a la vez por chat: entre leer y guardar el estado hay esperas
+  // (RPC al control, Claude, envío) y dos eventos del mismo segundo se pisaban.
+  private serie = new Serie();
+
   async recibir(ev: Evento, ahora: number): Promise<void> {
-    await this.nucleo().recibir(ev, ahora);
+    await this.serie.ejecutar(() => this.nucleo().recibir(ev, ahora));
   }
 
   async alarm(): Promise<void> {
-    await this.nucleo().alarma(Date.now());
+    await this.serie.ejecutar(() => this.nucleo().alarma(Date.now()));
   }
 
   async enviarBorrador(ahora: number) {
-    return this.nucleo().enviarBorrador(ahora);
+    return this.serie.ejecutar(() => this.nucleo().enviarBorrador(ahora));
   }
 
   async tomar(ahora: number) {
-    return this.nucleo().tomar(ahora);
+    return this.serie.ejecutar(() => this.nucleo().tomar(ahora));
   }
 
   async reprocesar(ahora: number, forzar = false) {
-    return this.nucleo().reprocesar(ahora, forzar);
+    return this.serie.ejecutar(() => this.nucleo().reprocesar(ahora, forzar));
   }
 
   async resumen(ahora: number) {

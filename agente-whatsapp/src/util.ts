@@ -40,6 +40,21 @@ export function horaMexico(ahora: number): {
 }
 
 /** El dueño contesta de 9:00 a 22:00 (GUIA-VENTAS-WHATSAPP.md, sección 1). */
+/**
+ * Ejecuta tareas una por una, en orden. En el Durable Object de cada chat,
+ * dos eventos del mismo segundo (el mensaje del cliente y la bienvenida
+ * automática de la app) se entrelazaban entre leer y guardar el estado, y el
+ * segundo sobrescribía al primero: se perdió el mensaje del cliente (2 nov).
+ */
+export class Serie {
+  private cola: Promise<unknown> = Promise.resolve();
+  ejecutar<T>(fn: () => Promise<T>): Promise<T> {
+    const r = this.cola.then(fn, fn);
+    this.cola = r.catch(() => undefined);
+    return r;
+  }
+}
+
 export function enHorario(ahora: number): boolean {
   const { hora } = horaMexico(ahora);
   return hora >= 9 && hora < 22;
