@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 3 de noviembre de 2026 (sección 129, exportación de chats)
+**Última actualización:** 3 de noviembre de 2026 (sección 129, exportación de chats; falla de concurrencia corregida)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -14787,3 +14787,47 @@ entrega. 74 de 74 pruebas. Desplegado (versión ff75c81e).
 
 **Cómo usarlo la próxima vez:** el dueño le pide a la sesión "que el
 agente tome el chat de <nombre o número>" y la sesión corre la acción.
+
+### §129: revisión del 2–3 nov; falla de concurrencia corregida (3 nov, 13:00)
+
+**Pedido del dueño:** revisar cómo va el agente y que todo esté en orden.
+
+**Cómo va (1 nov 23:20 a 3 nov 12:30, 46 chats con actividad):** los
+leads del anuncio reciben el Boundary con ficha, link de pago y regalo
+al minuto; los que piden mar reciben el Kit Tolten; los recordatorios
+terminan con pregunta y los de cierre salen de día (los de la noche se
+corrieron a las 9:00 del 3 nov). Pases correctos al dueño: "caña de 12
+pies con carrete 7000 para Salina Cruz" (no hay en línea; avisó y pasó).
+Silencio correcto con dos chats de cartuchos y el del donativo. Jesús
+(kit Clarus) no ha vuelto a escribir desde el link de la noche del 1 nov.
+Contadores de noviembre: 155 respuestas, $6.42 USD de Claude ($0.88 hoy).
+Shopify sigue dando 429 a ratos; el índice se refrescó 9 veces en el
+periodo y el agente contestó siempre con copias de 5 a 20 min.
+
+**Falla encontrada: tres leads sin respuesta.** Los chats 52296***0931
+(2 nov 20:55), 52921***4516 (3 nov 10:24) y 52962***6585 (3 nov 10:53)
+escribieron "¡Hola! Quiero más información" y nadie les contestó. En
+Cloudflare el webhook sí llegó, pero el estado del chat quedó vacío
+(sin historial ni pendientes). Causa: el mensaje del cliente y la
+bienvenida automática de la app llegan en el mismo segundo como dos
+eventos; `recibir` lee el estado, espera al control (RPC) y luego
+guarda; el segundo evento leía el estado viejo y lo guardaba encima, y
+el mensaje del cliente se perdía. Solo pasa cuando los dos eventos se
+entrelazan: en 90 chats desde la activación se perdieron esos 3 (el
+cuarto, Mauro, volvió a escribir al día siguiente y sí se atendió).
+
+**Qué se hizo:**
+
+- `Serie` en `util.ts` y en `ConversacionDO` (`worker.ts`): los eventos
+  de cada chat (mensajes, ecos, alarmas, acciones) se ejecutan uno por
+  uno, en orden. Prueba nueva que reproduce el caso (mensaje y eco del
+  mismo segundo): 75 de 75.
+- Acción `POST /chat?chat=…&accion=mensaje&texto=…&nombre=…&anuncio=…`
+  para reinyectar un mensaje perdido y que el agente lo atienda.
+- Desplegado en activo (versión 1724da63).
+
+**Pendiente (decisión del dueño):** reinyectar los tres mensajes para
+que el agente les conteste. La sesión de la nube no pudo correrlo sola
+(el clasificador de permisos lo bloqueó por mandar mensajes a clientes
+reales); basta con que el dueño lo pida. Ventanas de 24 h: el primero
+vence el 3 nov a las 20:55; los otros dos el 4 nov por la mañana.

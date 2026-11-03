@@ -80,6 +80,11 @@
      dueño le entrega un chat al agente aunque él acabe de escribir. Usada
      con Jesús (kit Clarus, dirección en Chihuahua): link de pago enviado;
      pendiente ver si paga.
+   - 🔴 **3 nov 13:00:** falla de concurrencia corregida (mensaje y
+     bienvenida automática del mismo segundo se pisaban; 3 leads sin
+     respuesta). **Pendiente del dueño:** pedir que se reinyecten los 3
+     mensajes (`accion=mensaje`) antes de que venzan sus 24 h (el primero
+     el 3 nov 20:55).
    - 🟢 **Número conectado en Kapso (29 oct 16:43):**
      Phone number ID 742563942272641, WABA 2146162969186009, coexistencia.
      El nombre se queda "Alcampo Cuernavaca" (decisión del dueño: usa el
