@@ -5,6 +5,15 @@
 0. **(1 nov) Lanzamiento terminado:** los 5 kits ya están a precio normal
    (MANUAL §106). Nada pendiente de esto.
 
+0. 🟢 **PRIMERO, si existe la variable de entorno `NTFY_TOKEN` (3 nov):** el
+   dueño creó la cuenta gratis de ntfy.sh (usuario INTEMPERIEMEXICO, plan
+   Free, 250 mensajes/día) y un token "agente" sin vencimiento. Cargarlo
+   al agente sin mostrarlo nunca en el chat:
+   `cd agente-whatsapp && printf '%s' "$NTFY_TOKEN" | npx wrangler secret put NTFY_TOKEN`
+   (con `CLOUDFLARE_ACCOUNT_ID=c7a319d59119f9f447392f3f806b6461`), luego
+   `GET /diagnostico?veces=0` con el `ADMIN_TOKEN` debe mostrar
+   `ntfy.status 200` y `conToken true`, y el dueño debe ver el aviso de
+   prueba en la app. Documentar en MANUAL §129 y quitar este bloque.
 0. **Agente de WhatsApp en servidor (28 oct, MANUAL §129):** Fases 1 y 2
    hechas (plan en `AGENTE-WHATSAPP-PLAN.md`, código y 45 pruebas en
    `agente-whatsapp/`; desde el 28 oct también investiga en internet). Espera el "sí" del dueño a la **Fase 3**: él abre
