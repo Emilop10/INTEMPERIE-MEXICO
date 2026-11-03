@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 3 de noviembre de 2026 (sección 129, exportación de chats; falla de concurrencia corregida)
+**Última actualización:** 3 de noviembre de 2026 (sección 129, exportación de chats hecha, ruta /exportar)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -14831,3 +14831,49 @@ que el agente les conteste. La sesión de la nube no pudo correrlo sola
 (el clasificador de permisos lo bloqueó por mandar mensajes a clientes
 reales); basta con que el dueño lo pida. Ventanas de 24 h: el primero
 vence el 3 nov a las 20:55; los otros dos el 4 nov por la mañana.
+
+### §129: exportación de chats hecha; ruta `/exportar` (3 nov, 13:00)
+
+**Pedido del dueño:** ruta de administración para exportar todos los
+chats del agente y dos archivos (xlsx y jsonl) para analizarlos en otro
+chat de Claude, con privacidad y sin guardar nada en el repositorio.
+
+**Qué se hizo:**
+
+- **`GET /exportar?desde=AAAA-MM-DD&pagina=N&lote=8`** (con `ADMIN_TOKEN`,
+  solo lectura): lista las conversaciones de Kapso activas desde esa
+  fecha (`/platform/v1/whatsapp/conversations?last_active_after=…`,
+  paginado con `meta.has_next`), baja todos los mensajes de cada una
+  (`/platform/v1/whatsapp/messages?conversation_id=…&per_page=100&page=N`;
+  no existe `/conversations/{id}/messages`, da 404) y agrega el estado del
+  Durable Object (`Conversacion.exportar()`: nombre, anuncio, historial
+  con borradores, pausas y motivo, seguimientos, `conProductos`,
+  borrador, costo). Va **por lotes de 8 conversaciones por llamada**
+  porque el plan gratis de Workers permite 50 subpeticiones por
+  invocación; el cliente recorre `pagina` hasta que `siguiente` sea
+  false (Kapso responde 400 pasada la última página y 429 si se le pide
+  muy seguido: hay que esperar entre páginas). Las "conversaciones"
+  vacías de Kapso (sincronización del celular; cientos de duplicados con
+  0 mensajes) se saltan.
+- **Costo por chat:** el estado del chat ahora acumula `costoUsd` (antes
+  solo se sumaba al mes). Los chats anteriores al 3 nov salen sin costo.
+- **Script local** (en la carpeta temporal de la sesión, no en el repo):
+  junta las páginas, agrupa por número (Kapso tiene varias
+  conversaciones por número), filtra mensajes desde el 24 oct, clasifica
+  quién habla (cliente / agente / dueño / automático), tacha teléfonos,
+  correos y direcciones, y genera `chats.xlsx` (hojas "Resumen" y
+  "Mensajes") y `chats.jsonl`. El `id_chat` es un hash SHA-256 corto del
+  número; nunca va el número.
+
+**Resultado (3 nov, 12:50):** 119 chats, 923 mensajes, del 27 oct (lo más
+viejo que Kapso sincronizó del celular; el número se conectó el 29 oct)
+al 3 nov. 103 de anuncio y 16 orgánicos; 63 con link de pago; 14 chats
+sin estado en el Durable Object (anteriores al agente o del historial
+del celular). Resultado por heurística: 0 "compró" (ningún cliente
+escribió "ya pagué"; las ventas se ven en Shopify), 49 pendientes, 63
+dejaron de contestar, 7 pasados a Emiliano. Los archivos se entregaron
+en el chat; no están en el repo ni en Cloudflare.
+
+**Cómo repetirlo:** desplegado está; una sesión nueva pide las páginas
+con el `ADMIN_TOKEN` y vuelve a correr el script (está descrito arriba;
+si se perdió la carpeta temporal, se reescribe a partir de esta nota).

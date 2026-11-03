@@ -80,6 +80,8 @@ export interface Estado {
   seguimientoHecho?: boolean;
   /** Última respuesta propuesta que no se envió (modo borrador). */
   borrador?: { texto: string; ts: number } | null;
+  /** Gasto acumulado en Claude en este chat (USD). */
+  costoUsd?: number;
 }
 
 export interface Dependencias {
@@ -290,6 +292,7 @@ export class Conversacion {
       return;
     }
     await this.d.control.registrar({ costoUsd: vuelta.costoUsd }, ahora);
+    e.costoUsd = (e.costoUsd ?? 0) + vuelta.costoUsd;
     if (retomar) {
       // El chat sigue siendo del dueño salvo que el agente decida contestar.
       if (vuelta.resultado.accion !== "responder") {
@@ -416,6 +419,7 @@ export class Conversacion {
       return;
     }
     await this.d.control.registrar({ costoUsd: vuelta.costoUsd }, ahora);
+    e.costoUsd = (e.costoUsd ?? 0) + vuelta.costoUsd;
     if (vuelta.resultado.accion !== "responder") {
       console.log(`seguimiento${final ? " final" : ""}: sin recordatorio (${vuelta.resultado.accion})`);
       return;
@@ -482,6 +486,7 @@ export class Conversacion {
       { historial: e.historial, nuevos: NOTA_TOMAR, contexto: this.contexto(e, ahora) },
     );
     await this.d.control.registrar({ costoUsd: vuelta.costoUsd }, ahora);
+    e.costoUsd = (e.costoUsd ?? 0) + vuelta.costoUsd;
     if (vuelta.resultado.accion !== "responder") {
       await this.guardar(e);
       return "sin_respuesta";
@@ -524,6 +529,29 @@ export class Conversacion {
   }
 
   /** Metadatos del chat, sin textos de clientes. */
+  /** Estado completo del chat para la exportación (solo lectura; sin el número). */
+  async exportar(): Promise<Record<string, unknown> | null> {
+    const e = await this.cargar();
+    if (!e) return null;
+    return {
+      nombre: e.nombre ?? null,
+      anuncio: e.anuncio ?? null,
+      historial: e.historial.map((m) => ({ role: m.role, content: typeof m.content === "string" ? m.content : JSON.stringify(m.content) })),
+      pendientes: e.pendientes.length,
+      pausaHasta: e.pausaHasta || null,
+      pausaMotivo: e.pausaMotivo ?? null,
+      pausaDesde: e.pausaDesde ?? null,
+      ultimoCliente: e.ultimoCliente || null,
+      ultimaActividad: e.ultimaActividad || null,
+      seguimientoHecho: Boolean(e.seguimientoHecho),
+      seguimientoFinalHecho: Boolean(e.seguimientoFinalHecho),
+      seguimientoPendiente: e.seguimiento && !e.seguimiento.hecho ? e.seguimiento.en : null,
+      conProductos: Boolean(e.conProductos),
+      borrador: e.borrador ? { texto: e.borrador.texto, ts: e.borrador.ts } : null,
+      costoUsd: e.costoUsd ?? null,
+    };
+  }
+
   async resumen(ahora: number): Promise<Record<string, unknown>> {
     const e = await this.cargar();
     if (!e) return { existe: false };

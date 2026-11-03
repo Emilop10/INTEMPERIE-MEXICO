@@ -63,11 +63,12 @@ export default {
     }
 
     // Administración (llave ADMIN_TOKEN): contadores del mes y reiniciar un chat.
-    if (["/estado", "/reiniciar", "/diagnostico", "/enviar-borradores", "/reprocesar", "/chat"].includes(url.pathname)) {
+    if (["/estado", "/reiniciar", "/diagnostico", "/enviar-borradores", "/reprocesar", "/chat", "/exportar"].includes(url.pathname)) {
       if (!env.ADMIN_TOKEN || request.headers.get("authorization") !== `Bearer ${env.ADMIN_TOKEN}`) {
         return new Response("No autorizado", { status: 401 });
       }
       if (url.pathname === "/estado") return Response.json(await control(env).resumen(Date.now()));
+      if (url.pathname === "/exportar") return exportar(env, config, url);
       if (url.pathname === "/chat") {
         // Metadatos de un chat (sin textos), para diagnóstico.
         const chat = (url.searchParams.get("chat") ?? "").replace(/[^\w.]/g, "");
@@ -249,6 +250,68 @@ export default {
   },
 };
 
+/**
+ * GET /exportar?desde=2026-10-24&pagina=1&lote=8 — solo lectura. Lista las
+ * conversaciones de Kapso activas desde esa fecha (lote por página, para no
+ * rebasar las 50 subpeticiones por invocación del plan gratis), baja todos
+ * los mensajes de cada una y agrega el estado del Durable Object del chat
+ * (anuncio, nombre, pausas, seguimientos, borradores, costo). El cliente
+ * recorre las páginas hasta que `siguiente` sea false.
+ */
+async function exportar(env: Env, config: ReturnType<typeof leerConfig>, url: URL): Promise<Response> {
+  const desde = url.searchParams.get("desde") ?? "";
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(desde)) return new Response("GET /exportar?desde=AAAA-MM-DD[&pagina=1&lote=8]", { status: 400 });
+  const pagina = Math.max(1, Number(url.searchParams.get("pagina") ?? 1) || 1);
+  const lote = Math.min(20, Math.max(1, Number(url.searchParams.get("lote") ?? 8) || 8));
+  const base = config.apiBase.replace(/\/meta\/whatsapp\/v[\d.]+$/, "");
+  const cabeceras = { headers: { "x-api-key": env.WHATSAPP_API_KEY } };
+  const r = await fetch(
+    `${base}/platform/v1/whatsapp/conversations?phone_number_id=${config.phoneNumberId}&last_active_after=${desde}T00:00:00-06:00&per_page=${lote}&page=${pagina}`,
+    cabeceras,
+  );
+  if (!r.ok) return Response.json({ error: `Kapso respondió ${r.status} al listar conversaciones` }, { status: 502 });
+  const lista = (await r.json()) as { data?: Array<Record<string, unknown>>; meta?: { has_next?: boolean; total_count?: number; total_pages?: number } };
+  const chats: unknown[] = [];
+  for (const c of lista.data ?? []) {
+    const id = String(c.id ?? "");
+    const numero = String(c.phone_number ?? "").replace(/\D/g, "");
+    const mensajes: unknown[] = [];
+    let paginaMsj = 1;
+    let error: string | null = null;
+    // Kapso crea "conversaciones" vacías (sincronización del celular): sin mensajes, no hay nada que bajar.
+    const vacia = Number((c.kapso as { messages_count?: number } | undefined)?.messages_count ?? -1) === 0;
+    for (; !vacia; ) {
+      const rm = await fetch(`${base}/platform/v1/whatsapp/messages?conversation_id=${encodeURIComponent(id)}&per_page=100&page=${paginaMsj}`, cabeceras);
+      if (!rm.ok) {
+        error = `Kapso respondió ${rm.status} al bajar mensajes`;
+        break;
+      }
+      const dm = (await rm.json()) as { data?: unknown[]; meta?: { has_next?: boolean } };
+      mensajes.push(...(dm.data ?? []));
+      if (!dm.meta?.has_next || paginaMsj >= 10) break;
+      paginaMsj++;
+    }
+    // El Durable Object usa la forma de Meta (521…); Kapso lista 52….
+    const candidatos = [numero];
+    if (/^52\d{10}$/.test(numero)) candidatos.unshift(`521${numero.slice(2)}`);
+    let estado: unknown = null;
+    for (const cand of candidatos) {
+      estado = await conversacion(env, cand).exportar();
+      if (estado) break;
+    }
+    chats.push({ id, numero, nombre: c.contact_name ?? null, creado: c.created_at ?? null, ultimaActividad: c.last_active_at ?? null, kapso: c.kapso ?? null, mensajes, estado, error });
+  }
+  return Response.json({
+    desde,
+    pagina,
+    lote,
+    total: lista.meta?.total_count ?? null,
+    paginas: lista.meta?.total_pages ?? null,
+    siguiente: Boolean(lista.meta?.has_next),
+    chats,
+  });
+}
+
 function conversacion(env: Env, chat: string) {
   const ns = env.CONVERSACION as DurableObjectNamespace<ConversacionDO>;
   return ns.get(ns.idFromName(chat));
@@ -320,6 +383,10 @@ export class ConversacionDO extends DurableObject<Env> {
 
   async resumen(ahora: number) {
     return this.nucleo().resumen(ahora);
+  }
+
+  async exportar() {
+    return this.nucleo().exportar();
   }
 
   /** Borra el chat (historial, pausa y pendientes). Para pruebas. */

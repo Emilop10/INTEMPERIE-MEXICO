@@ -85,6 +85,9 @@
      respuesta). **Pendiente del dueño:** pedir que se reinyecten los 3
      mensajes (`accion=mensaje`) antes de que venzan sus 24 h (el primero
      el 3 nov 20:55).
+   - **3 nov 13:00:** ruta `GET /exportar?desde=…&pagina=N&lote=8` y
+     exportación entregada al dueño (119 chats, 923 mensajes, xlsx y
+     jsonl fuera del repo). El costo por chat se acumula desde hoy.
    - 🟢 **Número conectado en Kapso (29 oct 16:43):**
      Phone number ID 742563942272641, WABA 2146162969186009, coexistencia.
      El nombre se queda "Alcampo Cuernavaca" (decisión del dueño: usa el
