@@ -145,9 +145,10 @@
    soportados).
 0. **(29 oct) Prueba de WhatsApp ampliada: $900 totales hasta el 5 nov 21:00,**
    4 videos + foto del combo activos, tope de cuenta $3,313.94 (MANUAL §126).
-   **Al 2 nov: $677.62 gastados, 132 conversaciones ($5.13), 1 venta.** El
-   corte del 3 nov llega a $750: si el dueño no reporta ventas cerradas por
-   WhatsApp, se pausa la campaña y se le proponen cambios. Los videos de Mercado Libre siguen pendientes.
+   **PAUSADA el 3 nov 21:37 por la regla de $750:** $754.53, 149
+   conversaciones ($5.06), 1 venta. Cortes diarios deshabilitados. Propuesta:
+   reencender solo combo-video con $300 cuando el dueño decida transferencia
+   SPEI y saludo de la app (MANUAL §126, corte del 3 nov). Los videos de Mercado Libre siguen pendientes.
 0. **Videos (dueño, lunes 26 temprano):** 4 de anuncios
    (`GUIA-VIDEOS-ANUNCIOS-FACEBOOK-INSTAGRAM.md`), que van a la nube, y 8 de
    Mercado Libre más las fotos de los combos

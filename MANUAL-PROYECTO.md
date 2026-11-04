@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 3 de noviembre de 2026 (sección 129, análisis de los 119 chats)
+**Última actualización:** 3 de noviembre de 2026 (sección 126, campaña de WhatsApp pausada por la regla de $750)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -14620,6 +14620,28 @@ respuesta del 3 nov al dueño; resumen):
    Emiliano) y costo en Claude.
 4. El dueño descarga los archivos de ese chat y los sube a este chat de
    la nube para el análisis.
+
+**Corte del 3 nov (21:37): CAMPAÑA PAUSADA por la regla de $750.**
+- **Hoy:** $75.44 y 17 conversaciones ($4.44 c/u), todas del video del
+  combo.
+- **Cierre:** **$754.53 de $900, 149 conversaciones ($5.06 c/u), 1 venta**
+  (#1007, Combo Revenger 2.40, 26 oct). El dueño no reportó ventas
+  cerradas por WhatsApp. Se pausó la campaña 120250719523890175 (status
+  PAUSED verificado); los anuncios y el conjunto quedan como estaban. La
+  tarea de cortes diarios (trig_01VuURBU1CTsMhXUS6kSomz3) quedó
+  deshabilitada.
+- **Por anuncio:** combo-video 84 conv. a $4.43 (el ganador, 49% del
+  gasto); combo-foto 43 a $5.90; cual-video 11 a $5.52; caja-video 4 a
+  $3.96; emiliano-video 2 a $2.50; cual-kit (foto) 3 a $12.83;
+  kit-incluye (foto) 2 a $4.36. Video contra foto: los videos sacaron 101
+  conv. a $4.50 y las fotos 48 a $6.27.
+- **Conclusión:** el anuncio trae conversaciones baratas; la venta se
+  pierde en el chat (análisis de los 119 chats, §129: forma de pago,
+  primera respuesta larga, promesas de "mañana"). El agente ya tiene la
+  primera respuesta corta, las promesas y la transferencia (commit
+  3f48126). **Siguiente ronda:** reencender solo combo-video después de
+  que el dueño decida la transferencia SPEI en Shopify y el saludo de la
+  app, con $300 y un corte a los $300 si no hay venta.
 
 **Corte del 2 nov (21:38).**
 - **Hoy:** $81.47 y 21 conversaciones ($3.88 c/u, el día más barato);
