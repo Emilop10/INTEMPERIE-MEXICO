@@ -153,6 +153,12 @@
    (`GUIA-VIDEOS-ANUNCIOS-FACEBOOK-INSTAGRAM.md`), que van a la nube, y 8 de
    Mercado Libre más las fotos de los combos
    (`GUIA-VIDEOS-FOTOS-MERCADO-LIBRE.md`), que van a la Mac.
+0. **(5 nov) Revisión del día 14 de ML Product Ads pendiente en la Mac:** el
+   dueño debe pasar a la Mac el mensaje del recordatorio (crédito restante,
+   gasto, clics, ventas, ACOS y cargos fuera de la bonificación; solo mirar).
+   Si el crédito restante es menor a $300, pausar antes del 21 nov (la pausa
+   ya está programada para el 12 nov). De paso, revisar si el catálogo del
+   Revenger 2.45 volvió a "Ganando" para reactivar #MLM62089453.
 0. **ML Product Ads (25 oct, MANUAL §125):** anuncio #MLM62089453 del
    catálogo del Revenger 2.45 en **PAUSA** (cubre la copia MLM6451018360
    y la original MLM6444730308). Reactivarlo ("⋮ → Activar") cuando el
