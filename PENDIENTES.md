@@ -112,11 +112,8 @@
      ntfy, revisar borradores por correo y pasar a `activo` (entonces
      apagar el respondedor de la Mac en WhatsApp y re-vincular WhatsApp
      Web). Mandar un mensaje desde la app cada 14 días.
-   - 🔴 **`SHOPIFY_ADMIN_TOKEN` del entorno de la nube es inválido (29
-     oct):** trae un `shpss_…` (secreto de la app), no el `shpat_…`;
-     Shopify responde 401. El dueño debe reemplazarlo en el entorno
-     (menú del entorno → Editar). Afecta a cualquier script de Shopify
-     que corra en la nube.
+   - ✅ **`SHOPIFY_ADMIN_TOKEN` del entorno corregido el 8 nov** (ya es el
+     `shpat_…`).
    - **Cómo llegan las llaves a la nube (28 oct):** el dueño las pone como
      variables de entorno del entorno de nube (menú del entorno → Editar):
      `CLOUDFLARE_API_TOKEN` (plantilla "Edit Cloudflare Workers"),
@@ -136,14 +133,10 @@
 0. **🔴 URGENTE (26 oct, MANUAL §127):** venta #1007 del Combo Revenger 2.40.
    - Descontar en el punto de venta la caña RV-S-802M y el carrete RV-80.
 
-0. 🔴 **(7 nov) La vigilancia de inventario quedó ciega:** el contenedor de la
-   nube se reinició y se perdió el token bueno de Shopify (vivía en el
-   scratchpad). La variable `SHOPIFY_ADMIN_TOKEN` del entorno trae el
-   `shpss_…` (secreto de la app) y da 401. Revisiones del 7 nov sin API: en
-   la tienda pública los 8 siguen como antes (solo el Combo 2.40 agotado).
-   **El dueño debe pegar el `shpat_…` en la variable del entorno** (o darlo
-   por el formulario seguro de credenciales); la sesión siguiente lo vuelve
-   a guardar fuera del repo.
+0. **(8 nov) Token de Shopify arreglado:** el dueño puso el `shpat_…` en la
+   variable `SHOPIFY_ADMIN_TOKEN` del entorno (sacado del `~/.zshrc` de la
+   Mac). Responde 200. Revisión del 8 nov: sin ventas ni cambios desde el
+   6 nov. La vigilancia de inventario sigue en automático.
 0. **(3 nov) Análisis de los 119 chats (MANUAL §129, último):** 0 compras con
    63 links de pago. Esperan decisión del dueño: (a) activar transferencia
    SPEI como pago manual en Shopify (la CLABE va en Shopify, nunca en el
