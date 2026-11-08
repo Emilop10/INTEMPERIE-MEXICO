@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 3 de noviembre de 2026 (sección 126, campaña de WhatsApp pausada por la regla de $750)
+**Última actualización:** 8 de noviembre de 2026 (sección 125, pausa de Product Ads ordenada por el dueño)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -15056,3 +15056,15 @@ cambios en el agente y nada más.
 78 de 78 pruebas (cuatro nuevas: `unsupported` en el webhook, mensajes
 no legibles, flujo de promesa con aviso y recordatorio, contexto de
 transferencia). Desplegado en activo.
+
+### §125, continuación: el dueño ordena pausar Product Ads ya (8 nov)
+
+Con la revisión del 7 nov (crédito restante $369.22, gasto $506.15, 296
+clics, 0 ventas, sin cargos fuera de la bonificación), la nube propuso
+estirar la pausa al 17 nov para aprovechar el crédito gratis. **El dueño
+decidió pausarla ya.** Mercado Libre no tiene API: la pausa la hace la Mac
+con el mensaje entregado al dueño. La tarea del 12 nov
+(trig_014mFqTWbcPsWvSutwTXxbs5) se cambió a una verificación: si la Mac no
+registró la pausa, avisa al dueño. Lectura de fondo: en Mercado Libre y en
+WhatsApp la gente llega y no compra; antes de más publicidad van los videos y
+fotos de ML y la forma de pago (transferencia) en WhatsApp.

@@ -154,6 +154,11 @@
    (`GUIA-VIDEOS-ANUNCIOS-FACEBOOK-INSTAGRAM.md`), que van a la nube, y 8 de
    Mercado Libre más las fotos de los combos
    (`GUIA-VIDEOS-FOTOS-MERCADO-LIBRE.md`), que van a la Mac.
+0. 🔴 **(8 nov) PAUSAR YA ML Product Ads (orden del dueño):** con la revisión
+   del 7 nov ($506 gastados, 296 clics, 0 ventas, $369 de bonificación
+   restante, ningún cargo fuera de ella) el dueño ordenó pausarla ya. La
+   pausa la hace la Mac con el mensaje entregado. El recordatorio del 12 nov
+   (trig_014mFqTWbcPsWvSutwTXxbs5) ahora solo confirma que quedó pausada.
 0. **ML Product Ads, revisión del 7 nov (MANUAL §125):** hecha. Crédito
    restante **$369.22** (usado $480.78); gasto $506.15, 296 clics, **0
    ventas**, ACOS "-". **Sin cargos fuera de la bonificación**: en la
