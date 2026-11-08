@@ -12794,6 +12794,63 @@ esté en pausa. ML no permite pausar una variante sola.
 **Para reactivar:** en la misma fila, "⋮" → **Activar**, cuando el
 catálogo vuelva a "Ganando".
 
+### Revisión de Product Ads del 7 nov (18:14, solo lectura, desde la Mac)
+
+**Campaña** "Campaña Mercado Libre" (automática, ahora **7 anuncios**
+porque el Revenger 2.40 está pausado; diagnóstico "**Excelente**";
+presupuesto $30; ROAS objetivo 3x). Datos de "Últimos 30 días", que
+cubren todo desde la activación del 22 oct:
+
+| Concepto | Valor |
+|---|---|
+| Impresiones | 13,373 |
+| Clics | 296 |
+| Inversión | **$506.15** |
+| Ventas atribuidas | **0** |
+| Otras ventas | 0 |
+| Ingresos | $0 |
+| ROAS | — |
+| ACOS | — (sin ingresos) |
+
+**Bonificación** ("Más detalles"):
+
+| Concepto | Valor |
+|---|---|
+| Disponible | **$369.22** |
+| Utilizadas | **$480.78** (de $850) |
+
+La diferencia de $25.37 contra la inversión es consumo reciente que aún
+no se descuenta.
+
+**Cargos fuera de la bonificación: ninguno.** En Facturación → Tarifas y
+pagos:
+
+| Mes | Cargos por publicidad | Anulaciones | Neto de publicidad | Otros cargos |
+|---|---|---|---|---|
+| Octubre (cierre 31 oct, PAGADO) | $314.20 | −$314.20 | $0 | $45.10 de "servicios de Mercado Pago", ya cobrados |
+| Noviembre (en curso) | $243.51 | −$243.51 | $0 | Total adeudado $0.00 |
+
+Los cargos de la factura llevan IVA: $314.20 + $243.51 = $557.71 =
+$480.78 × 1.16.
+
+**Ritmo:** se han usado ~$30 al día en 16 días. Los $369.22 alcanzan unos
+12 días más (~19 nov), así que la **pausa programada del 12 nov** sigue
+dentro de la bonificación.
+
+**Catálogo del Revenger 2.45 (MLM6451018360): sigue "PERDIENDO".**
+
+- **Ganador:** **Pescafacil**, "Ganador por precio", **$1,125.44**,
+  1,210 unidades, Flex + colecta.
+- **Nosotros:** $1,169 por agencias.
+- **Sugerencia de ML:** "Bajar a $1,034". Deja $135 aprox.: rompe la
+  regla de §117.
+- **Opción para el dueño:** el mínimo válido es **$1,119** (queda $155.03
+  con caja). Igualaría al ganador en precio, pero no en Flex ni colecta.
+- **Anuncio #MLM62089453:** sigue **en pausa**, porque el catálogo no
+  volvió a "Ganando".
+
+**No se cambió nada.**
+
 ## 126. Facebook: por qué no convierte y propuesta de la siguiente prueba (23 oct)
 
 **Qué pidió el dueño.** Con Mercado Libre listo, ver qué hacer con la
