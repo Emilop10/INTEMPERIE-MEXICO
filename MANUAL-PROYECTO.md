@@ -12851,6 +12851,39 @@ dentro de la bonificación.
 
 **No se cambió nada.**
 
+### Campaña de Product Ads PAUSADA (7 nov, 18:22, orden del dueño)
+
+**Cómo:** Publicidad → "Campaña Mercado Libre" (id 7552153) → dashboard →
+interruptor **Estado: ACTIVA** → ML preguntó "Te recomendamos mantener
+activa esta campaña" → **Pausar**. A las 18:22:52 el dashboard dice
+**"Estado: PAUSADA"**. En la lista de campañas, la fila ya no muestra
+diagnóstico ("---").
+
+**Cifras finales** (desde la activación del 22 oct 13:31):
+
+| Concepto | Valor |
+|---|---|
+| Inversión | **$506.15** |
+| Clics | **296** |
+| Impresiones | 13,392 |
+| Ventas atribuidas | **0** |
+| Otras ventas | 0 |
+| Ingresos | $0 |
+| ACOS | — |
+| Bonificación restante | **$369.22** (usado $480.78 de $850) |
+
+**Cargos fuera de la bonificación: ninguno.** Facturación de octubre y
+noviembre: los cargos de publicidad ($314.20 y $243.51 con IVA) se
+anularon completos; noviembre debe $0.00 (revisión de las 18:14).
+
+**Sin tocar:** presupuesto ($30), ROAS (3x), anuncios y publicaciones.
+Las publicaciones de ML siguen activas, salvo el Revenger 2.40 (pausado
+desde el 26 oct). El anuncio #MLM62089453 ya estaba en pausa. Los
+$369.22 de bonificación siguen disponibles si algún día se reactiva.
+
+**Lectura:** fueron 16 días, ~$30 al día, 296 clics a ~$1.71 y 0 ventas.
+Product Ads no vendió con estas publicaciones.
+
 ## 126. Facebook: por qué no convierte y propuesta de la siguiente prueba (23 oct)
 
 **Qué pidió el dueño.** Con Mercado Libre listo, ver qué hacer con la

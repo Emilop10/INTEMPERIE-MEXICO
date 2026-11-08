@@ -154,22 +154,15 @@
    (`GUIA-VIDEOS-ANUNCIOS-FACEBOOK-INSTAGRAM.md`), que van a la nube, y 8 de
    Mercado Libre más las fotos de los combos
    (`GUIA-VIDEOS-FOTOS-MERCADO-LIBRE.md`), que van a la Mac.
-0. 🔴 **(8 nov) PAUSAR YA ML Product Ads (orden del dueño):** con la revisión
-   del 7 nov ($506 gastados, 296 clics, 0 ventas, $369 de bonificación
-   restante, ningún cargo fuera de ella) el dueño ordenó pausarla ya. La
-   pausa la hace la Mac con el mensaje entregado. El recordatorio del 12 nov
-   (trig_014mFqTWbcPsWvSutwTXxbs5) ahora solo confirma que quedó pausada.
-0. **ML Product Ads, revisión del 7 nov (MANUAL §125):** hecha. Crédito
-   restante **$369.22** (usado $480.78); gasto $506.15, 296 clics, **0
-   ventas**, ACOS "-". **Sin cargos fuera de la bonificación**: en la
-   factura de octubre y noviembre los cargos de publicidad se anularon
-   completos. Crédito > $300: se mantiene la **pausa del 12 nov**. El
-   catálogo del 2.45 sigue "Perdiendo" (Pescafacil $1,125.44, Flex y
-   colecta): **no reactivar #MLM62089453**.
-0. **ML Product Ads (25 oct, MANUAL §125):** anuncio #MLM62089453 del
-   catálogo del Revenger 2.45 en **PAUSA** (cubre la copia MLM6451018360
-   y la original MLM6444730308). Reactivarlo ("⋮ → Activar") cuando el
-   catálogo vuelva a "Ganando". Los otros 7 siguen activos.
+0. ✅ **ML Product Ads PAUSADA (7 nov 18:22, MANUAL §125):** la campaña
+   "Campaña Mercado Libre" (id 7552153) quedó en **PAUSADA** por orden del
+   dueño. Cierre: $506.15 gastados, 296 clics, 13,392 impresiones, **0
+   ventas**. Bonificación restante **$369.22** (sigue en la cuenta).
+   **Ningún cargo fuera de la bonificación** (octubre y noviembre en $0
+   neto de publicidad). El recordatorio del 12 nov
+   (trig_014mFqTWbcPsWvSutwTXxbs5) solo debe confirmar que sigue pausada.
+   El anuncio #MLM62089453 también quedó en pausa. No reactivar sin un
+   plan nuevo del dueño.
 0. **Prueba de WhatsApp ENCENDIDA (25 oct 19:13, MANUAL §126):** campaña
    120250719523890175, conjunto 120250719524550175 y 3 anuncios de foto en
    ACTIVE. $400 totales hasta el 30 oct a las 21:00. Anuncios de 9:00 a
@@ -343,7 +336,8 @@
      políticas" (posible demora tras la activación). Promociones siguen
      bloqueadas: piden experiencia de compra ≥ 50, que está "sin
      calcular" porque no hay ventas.
-   - **🗓️ 12 NOV 2026 — PAUSAR PRODUCT ADS (MANUAL §121):** la campaña
+   - **~~🗓️ 12 NOV 2026 — PAUSAR PRODUCT ADS~~ (hecho el 7 nov, ver
+     arriba) (MANUAL §121):** la campaña
      "Campaña Mercado Libre" se activó el 22 oct 2026 a las 13:31:52 (CDMX)
      a $30/día con bonificación de $850 (disponible $850, usado $0). ML
      confirma que, al agotarse la bonificación, las campañas activas
