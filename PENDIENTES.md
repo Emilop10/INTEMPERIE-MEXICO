@@ -137,6 +137,10 @@
    variable `SHOPIFY_ADMIN_TOKEN` del entorno (sacado del `~/.zshrc` de la
    Mac). Responde 200. Revisión del 8 nov: sin ventas ni cambios desde el
    6 nov. La vigilancia de inventario sigue en automático.
+0. **(8 nov) Depósito bancario ACTIVO en Shopify (MANUAL §130):** verificado en
+   el checkout. Falta que el chat del agente ponga `TRANSFERENCIA = "si"`, use
+   el nombre "Depósito Bancario" y despliegue. El dueño marca los pedidos como
+   pagados al ver el dinero en su banco y cancela a las 48 h sin pago.
 0. **(3 nov) Análisis de los 119 chats (MANUAL §129, último):** 0 compras con
    63 links de pago. Esperan decisión del dueño: (a) activar transferencia
    SPEI como pago manual en Shopify (la CLABE va en Shopify, nunca en el

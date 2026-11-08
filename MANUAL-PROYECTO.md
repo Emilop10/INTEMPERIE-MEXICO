@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 8 de noviembre de 2026 (sección 125, pausa de Product Ads ordenada por el dueño)
+**Última actualización:** 8 de noviembre de 2026 (sección 130, pago por depósito bancario)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -157,6 +157,7 @@ como respaldo
 127. [Primera venta de la prueba de WhatsApp: Combo Revenger 2.40 a $999 y su margen real (26 oct)](#127-primera-venta-de-la-prueba-de-whatsapp-combo-revenger-240-a-999-y-su-margen-real-26-oct)
 128. [Respondedor automático de mensajes en la Mac: WhatsApp y Business Suite cada 3 minutos (27 oct)](#128-respondedor-automático-de-mensajes-en-la-mac-whatsapp-y-business-suite-cada-3-minutos-27-oct)
 129. [Agente de WhatsApp en servidor con la API de Claude: Fase 1, plan (28 oct)](#129-agente-de-whatsapp-en-servidor-con-la-api-de-claude-fase-1-plan-28-oct) (incluye Fase 2: código)
+130. [Pago por transferencia o depósito bancario en Shopify (8 nov)](#130-pago-por-transferencia-o-depósito-bancario-en-shopify-8-nov)
 
 ---
 
@@ -15105,3 +15106,40 @@ fotos de ML y la forma de pago (transferencia) en WhatsApp.
 Confirmación (8 nov): la Mac registró la pausa del 7 nov a las 18:22. La
 nube deshabilitó la tarea del 12 nov (trig_014mFqTWbcPsWvSutwTXxbs5), que ya
 no tiene nada que verificar.
+
+
+## 130. Pago por transferencia o depósito bancario en Shopify (8 nov)
+
+**Pedido del dueño:** activar la transferencia bancaria, que era la
+objeción de pago más repetida en los 119 chats (§129), y explicar cómo
+funciona.
+
+**Lo hizo el dueño en el admin** (Shopify no deja crear métodos de pago por
+API y la CLABE no pasa por el chat): Configuración → Pagos → Métodos de
+pago manuales.
+
+**Verificación de la nube (8 nov, checkout abierto sin hacer pedido):** en
+la sección "Pago" aparece **"Depósito Bancario"**. Al elegirlo muestra el
+banco (BBVA) y la cuenta CLABE. No muestra el nombre del titular; se le
+sugirió agregarlo en "Detalles adicionales". Las "Instrucciones de pago"
+(comprobante por WhatsApp, cancelación a las 48 h) se ven en la página de
+gracias y en el correo; no se pudo ver sin crear un pedido. **La CLABE no
+se escribe en el repositorio.**
+
+**Cómo funciona:**
+1. El cliente abre el link de pago y elige "Depósito Bancario".
+2. Shopify le muestra la cuenta y crea el pedido como **pago pendiente**;
+   aparta la pieza y baja la existencia. La vigilancia de inventario lo ve
+   como pedido y avisa para bajar en Mercado Libre.
+3. El cliente transfiere y manda el comprobante por WhatsApp. El agente
+   no confirma pagos: si dicen "ya pagué", pasa el chat al dueño.
+4. El dueño revisa su banco y, con el dinero ya en la cuenta, da
+   "Marcar como pagado" en el pedido. **No se envía nada antes**: un
+   comprobante se puede falsificar.
+5. Sin pago en 48 h: cancelar con "Reponer artículos" y regresar la
+   existencia en Mercado Libre si se bajó.
+
+**Siguiente:** el chat del agente de WhatsApp pone `TRANSFERENCIA = "si"`,
+usa el nombre exacto "Depósito Bancario" en sus respuestas y despliega; se
+actualizan `GUIA-VENTAS-WHATSAPP.md` (/pago) y `RESPONDEDOR-MENSAJES.md`.
+Mensaje entregado al dueño para ese chat.
