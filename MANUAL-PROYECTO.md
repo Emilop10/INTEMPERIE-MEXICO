@@ -15101,3 +15101,7 @@ con el mensaje entregado al dueño. La tarea del 12 nov
 registró la pausa, avisa al dueño. Lectura de fondo: en Mercado Libre y en
 WhatsApp la gente llega y no compra; antes de más publicidad van los videos y
 fotos de ML y la forma de pago (transferencia) en WhatsApp.
+
+Confirmación (8 nov): la Mac registró la pausa del 7 nov a las 18:22. La
+nube deshabilitó la tarea del 12 nov (trig_014mFqTWbcPsWvSutwTXxbs5), que ya
+no tiene nada que verificar.
