@@ -15261,3 +15261,12 @@ Kit Revenger 1, Tolten 1, Fresh 2, Combo 2.45 1, Combo 2.40 0, Boundary
 
 **Al armar un Kit Revenger o Tundra:** lleva destorcedores **#4** con
 seguro, no #5.
+
+**Graphify (12 nov, a pedido del dueño):** `graphify update .` con la
+versión **0.9.108**. Grafo de `scripts/`: **241 nodos, 571 aristas, 15
+comunidades** (antes 231/544/14, del 29 oct). Re-extrajo 2 archivos
+cambiados desde la última corrida (`crear-kits.py` y
+`campana-whatsapp-oct24.py`) y renombró una comunidad por su hub. Parte
+del salto puede venir del cambio de versión de la herramienta (ver §21).
+Grafo de `tema-shopify/`: sin cambios ("No tracked code files in change
+set").

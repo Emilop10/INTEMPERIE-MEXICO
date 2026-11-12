@@ -1,140 +1,146 @@
 {
   "conciliar-inventario.py": {
-    "mtime": 1791775994.6292496,
-    "seen": 1791776039.7700286,
+    "mtime": 1793417888.9670286,
+    "seen": 1794520603.3747506,
     "ast_hash": "bee16ced6f4b4b73c8fd5359ac9bb9a6",
     "semantic_hash": ""
   },
   "deploy-shopify.py": {
-    "mtime": 1791399907.5955296,
-    "seen": 1791402238.1875858,
+    "mtime": 1793417888.9670286,
+    "seen": 1794520603.374756,
     "ast_hash": "1544dfb63e90162a75c98429b71dced3",
     "semantic_hash": ""
   },
   "meta-ads.py": {
-    "mtime": 1791399907.5995295,
-    "seen": 1791402238.1875906,
+    "mtime": 1793417888.9750285,
+    "seen": 1794520603.374761,
     "ast_hash": "f54a987be1ba3112258a03a62025d87c",
     "semantic_hash": ""
   },
   "rebuild-mapa-3d.py": {
-    "mtime": 1791399907.5995295,
-    "seen": 1791402238.1875925,
+    "mtime": 1793417888.9750285,
+    "seen": 1794520603.3747647,
     "ast_hash": "68db0c203c7b64e8b1b22780a848b321",
     "semantic_hash": ""
   },
   "sincronizar-canal-meta.py": {
-    "mtime": 1791776388.9371054,
-    "seen": 1791776684.2470207,
+    "mtime": 1793417888.9750285,
+    "seen": 1794520603.374766,
     "ast_hash": "4dffabcec06bd5613af53791f8ec827a",
     "semantic_hash": ""
   },
   "vincular-codigo-b1.py": {
-    "mtime": 1791399907.5995295,
-    "seen": 1791402238.1875956,
+    "mtime": 1793417888.9750285,
+    "seen": 1794520603.3747702,
     "ast_hash": "3fb51f8ff8ea8b5d788d6450952a2da5",
     "semantic_hash": ""
   },
   "README-deploy.md": {
-    "mtime": 1791399907.5875294,
-    "seen": 1791402238.1875966,
+    "mtime": 1793417888.9590285,
+    "seen": 1794520603.3747714,
     "ast_hash": "133535efb5dd3cb8e54f23ba592737f8",
     "semantic_hash": ""
   },
   "cargar-fichas-tecnicas.py": {
-    "mtime": 1791399907.5955296,
-    "seen": 1791402238.1875768,
+    "mtime": 1793417888.9670286,
+    "seen": 1794520603.374747,
     "ast_hash": "ba3202ea01617ee52b973095b066eaab",
     "semantic_hash": ""
   },
   "crear-combos.py": {
-    "mtime": 1791399907.5955296,
-    "seen": 1791402238.1875834,
+    "mtime": 1793417888.9670286,
+    "seen": 1794520603.3747523,
     "ast_hash": "239d87634d391711b0e6a4180c727dc3",
     "semantic_hash": ""
   },
   "instalar-entorno.sh": {
-    "mtime": 1791399907.5995295,
-    "seen": 1791402238.18759,
+    "mtime": 1793417888.9750285,
+    "seen": 1794520603.37476,
     "ast_hash": "f4418ca4c64128cefe8bfacf47cd9fb2",
     "semantic_hash": ""
   },
   "verificar-herramental.sh": {
-    "mtime": 1791399907.5995295,
-    "seen": 1791402238.1875944,
+    "mtime": 1793417888.9750285,
+    "seen": 1794520603.374769,
     "ast_hash": "78024e4e4901ea817a6da895307229a0",
     "semantic_hash": ""
   },
   "generar-carta-bienvenida.py": {
-    "mtime": 1791399907.5955296,
-    "seen": 1791402238.187589,
+    "mtime": 1793417888.9710286,
+    "seen": 1794520603.374759,
     "ast_hash": "e569b0f92ff7f6afddcfe1d565de533c",
     "semantic_hash": ""
   },
   "assets/fonts/InstrumentSans-OFL.txt": {
-    "mtime": 1791399907.5904763,
-    "seen": 1791402238.1875975,
+    "mtime": 1793417888.9641042,
+    "seen": 1794520603.3747728,
     "ast_hash": "030a9e886b4fe2e1720b5db020eca3ad",
     "semantic_hash": ""
   },
   "assets/logo-intemperie.png": {
-    "mtime": 1791399907.5955296,
-    "seen": 1791402238.1875982,
+    "mtime": 1793417888.9670286,
+    "seen": 1794520603.3747737,
     "ast_hash": "290ce58bf54a46dc7ff7fe533be3799b",
     "semantic_hash": ""
   },
   "prueba-tarjetas-coleccion.py": {
-    "mtime": 1791399907.5995295,
-    "seen": 1791402238.1875918,
+    "mtime": 1793417888.9750285,
+    "seen": 1794520603.3747635,
     "ast_hash": "192d9f2ea6fde5470c5e26ea013ad663",
     "semantic_hash": ""
   },
   "cargar-imagenes-productos.py": {
-    "mtime": 1791399907.5955296,
-    "seen": 1791402238.18758,
+    "mtime": 1793417888.9670286,
+    "seen": 1794520603.3747494,
     "ast_hash": "8e869cb41b05701fff5fb2cfc7c4f3b8",
     "semantic_hash": ""
   },
   "crear-kits.py": {
-    "mtime": 1792378573.0855227,
-    "seen": 1792378641.4173868,
-    "ast_hash": "06aeaa750b71331d632aef7258e80f44",
+    "mtime": 1794520414.4005387,
+    "seen": 1794520603.3747547,
+    "ast_hash": "2322c0a18c1376d6207bb32f25744f94",
     "semantic_hash": ""
   },
   "fotos-kits.py": {
-    "mtime": 1791774729.66379,
-    "seen": 1791774909.7566733,
+    "mtime": 1793417888.9710286,
+    "seen": 1794520603.3747573,
     "ast_hash": "2df320f1bddfae44884c06a4cc5274d4",
     "semantic_hash": ""
   },
   "subir-imagenes-ia.py": {
-    "mtime": 1792174281.0520043,
-    "seen": 1792174424.800733,
+    "mtime": 1793417888.9750285,
+    "seen": 1794520603.3747675,
     "ast_hash": "bcf52508c54e18a1aa5962745bd6ff33",
     "semantic_hash": ""
   },
   "campana-kits-oct19.py": {
-    "mtime": 1792525984.7070892,
-    "seen": 1792693547.0312495,
+    "mtime": 1793417888.9670286,
+    "seen": 1794520603.3747404,
     "ast_hash": "8cfb6192a2ba8f68ab19822e107f1825",
     "semantic_hash": ""
   },
   "campana-retargeting-oct20.py": {
-    "mtime": 1792520207.4739377,
-    "seen": 1792520388.1889606,
+    "mtime": 1793417888.9670286,
+    "seen": 1794520603.374743,
     "ast_hash": "39e9104424c0f853cb145dfa1bc1d3b7",
     "semantic_hash": ""
   },
   "anuncios-lanzamiento-oct20.py": {
-    "mtime": 1792520983.0969932,
-    "seen": 1792521092.5276814,
+    "mtime": 1793417888.963617,
+    "seen": 1794520603.3747342,
     "ast_hash": "c2b4e0cbeeaa9c562131e3b20ab37acd",
     "semantic_hash": ""
   },
   "precios-lanzamiento-oct20.json": {
-    "mtime": 1792520832.6329412,
-    "seen": 1792521092.5277057,
+    "mtime": 1793417888.9750285,
+    "seen": 1794520603.3747625,
     "ast_hash": "50d005473eb064d1a2c2ecfea43f672c",
+    "semantic_hash": ""
+  },
+  "campana-whatsapp-oct24.py": {
+    "mtime": 1793417888.9670286,
+    "seen": 1794520603.374745,
+    "ast_hash": "556b87dbfb11c59b1e68f6148da92859",
     "semantic_hash": ""
   }
 }
