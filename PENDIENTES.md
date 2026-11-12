@@ -5,15 +5,9 @@
 0. **(1 nov) Lanzamiento terminado:** los 5 kits ya están a precio normal
    (MANUAL §106). Nada pendiente de esto.
 
-0. 🟢 **PRIMERO, si existe la variable de entorno `NTFY_TOKEN` (3 nov):** el
-   dueño creó la cuenta gratis de ntfy.sh (usuario INTEMPERIEMEXICO, plan
-   Free, 250 mensajes/día) y un token "agente" sin vencimiento. Cargarlo
-   al agente sin mostrarlo nunca en el chat:
-   `cd agente-whatsapp && printf '%s' "$NTFY_TOKEN" | npx wrangler secret put NTFY_TOKEN`
-   (con `CLOUDFLARE_ACCOUNT_ID=c7a319d59119f9f447392f3f806b6461`), luego
-   `GET /diagnostico?veces=0` con el `ADMIN_TOKEN` debe mostrar
-   `ntfy.status 200` y `conToken true`, y el dueño debe ver el aviso de
-   prueba en la app. Documentar en MANUAL §129 y quitar este bloque.
+0. **ntfy (12 nov):** token cargado en el Worker, pero ntfy gratis limita
+   por IP y la de Cloudflare llega agotada (429). Todos los avisos van por
+   correo. Solo si el dueño lo pide: bot de Telegram (gratis) o ntfy Pro.
 0. ⏰ **27 nov, 10:00:** verificar que se recargó el crédito de Anthropic del
    agente (recordatorio programado en el chat del agente,
    `trig_0141dPih5Zb3pfx3DYmp6pJ1`). Al 12 nov: $11.65 gastados en nov.
@@ -21,7 +15,7 @@
    llegar a 100,000; no afecta a los mensajes ni al agente; no pagar).
 0. ✅ **12 nov:** el agente ya ofrece "Depósito Bancario" (`TRANSFERENCIA =
    "si"`) y consulta Shopify por la API con el token `shpat_` (sin 429).
-   Siguen del dueño: token de ntfy, saludo automático de la app y la
+   Siguen del dueño: saludo automático de la app y la
    decisión de plantillas de pago (MANUAL §129, 12 nov).
 0. **Agente de WhatsApp en servidor (28 oct, MANUAL §129):** Fases 1 y 2
    hechas (plan en `AGENTE-WHATSAPP-PLAN.md`, código y 45 pruebas en

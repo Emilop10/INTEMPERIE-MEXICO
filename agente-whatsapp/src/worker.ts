@@ -201,7 +201,7 @@ export default {
             headers: { Title: "Diagnostico", ...(env.NTFY_TOKEN ? { Authorization: `Bearer ${env.NTFY_TOKEN}` } : {}) },
             body: "Prueba de diagnostico del agente",
           });
-          salida.ntfy = { status: r.status, conToken: Boolean(env.NTFY_TOKEN) };
+          salida.ntfy = { status: r.status, conToken: Boolean(env.NTFY_TOKEN), detalle: r.ok ? undefined : (await r.text()).slice(0, 300) };
         } catch (e) {
           salida.ntfy = `error: ${String(e).slice(0, 200)}`;
         }

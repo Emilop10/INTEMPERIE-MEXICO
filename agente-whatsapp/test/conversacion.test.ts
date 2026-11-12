@@ -282,7 +282,9 @@ describe("conversación", () => {
     await conv.alarma(MEDIODIA + ESPERA);
     expect(enviados.map((e) => e.texto)).toEqual(["Claro, sin prisa. Aquí queda el link 🎣"]);
     expect(avisos).toHaveLength(1);
-    expect(avisos[0]).toMatchObject({ titulo: "Cliente caliente", soloNtfy: true });
+    expect(avisos[0]).toMatchObject({ titulo: "Cliente caliente" });
+    expect(avisos[0].soloNtfy).toBeUndefined();
+    expect(avisos[0].detalle).toContain("mañana lo paga cuando cobre");
     expect(avisos[0].resumen).toContain("mañana lo paga cuando cobre");
     // Recordatorio: 20 h después (10:00 del día siguiente), con la promesa, y es el único.
     expect(almacen.alarma).toBe(MEDIODIA + ESPERA + 20 * HORA);

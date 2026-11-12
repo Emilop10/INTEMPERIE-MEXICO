@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 12 de noviembre de 2026 (sección 131, inventario del 12 nov)
+**Última actualización:** 12 de noviembre de 2026 (sección 129, ntfy desde Cloudflare y avisos por correo)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -15281,3 +15281,30 @@ ignora `tema-shopify/graphify-out/**`, que no es parte del tema; (2) el
 dueño debe actualizar el secret con el mismo `shpat_` de su Mac
 (INSTRUCTIVO-CREDENCIALES-SHOPIFY.md, "Después de regenerar", punto 1) y
 relanzar el workflow desde Actions para confirmar `success`.
+
+### §129: token de ntfy cargado; ntfy gratis no sirve desde Cloudflare (12 nov)
+
+**Pedido del dueño:** resolver los avisos a la app ntfy.
+
+- La contraseña de la cuenta INTEMPERIEMEXICO no se pudo recuperar (el
+  correo admin@intemperiemexico.com nunca se confirmó), pero el navegador
+  de la Mac seguía con la sesión abierta. Desde ahí se creó un token nuevo
+  "agente" sin vencimiento y el dueño lo pegó como secreto `NTFY_TOKEN`
+  del Worker en el panel de Cloudflare (no pasó por el chat). Se le
+  recomendó cambiar la contraseña y confirmar el correo estando dentro.
+- **Resultado:** el agente ya manda el token (`conToken: true`), pero
+  ntfy.sh responde **429 "daily message quota reached"** (código 42908) y a
+  veces 522. Causa, según la documentación de ntfy: los límites se cuentan
+  por visitante = **dirección IP**, no por cuenta; solo una cuenta con
+  "tier" (plan de pago) tiene límites propios. Los Workers salen por IPs
+  de Cloudflare compartidas, cuya cuota diaria ya viene agotada. El
+  diagnóstico (`/diagnostico`) ahora muestra el texto del error de ntfy.
+- **Qué se hizo:** el aviso "Cliente caliente" ahora también va **por
+  correo** (antes solo ntfy), con la promesa del cliente y el enlace al
+  chat. Así todos los avisos del agente llegan por correo; ntfy queda
+  configurado por si algún día sí pasa. 79 de 79 pruebas. Desplegado.
+- **Opciones si el dueño quiere notificación en una app aparte** (no
+  hechas): ntfy Pro (de pago; va contra la regla de costo $0) o un bot de
+  Telegram (gratis, sin límite por IP; requiere instalar Telegram y crear
+  el bot). Mientras, basta activar las notificaciones de Gmail en el
+  celular para admin@intemperiemexico.com.

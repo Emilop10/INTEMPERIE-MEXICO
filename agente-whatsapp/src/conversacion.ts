@@ -338,8 +338,10 @@ export class Conversacion {
       await this.d.avisar({
         titulo: "Cliente caliente",
         resumen: `Un cliente quedó en: ${vuelta.promesa.replace(/\d{7,}/g, "[número]").slice(0, 160)}. El agente se lo recordará dentro de las 24 h.`,
-        detalle: "",
-        soloNtfy: true,
+        // También por correo: desde Cloudflare, ntfy gratis llega con la cuota diaria agotada (12 nov).
+        detalle:
+          `Un cliente quedó en: ${vuelta.promesa}\n\nEl agente le escribirá dentro de las 24 h para recordárselo con sus palabras. ` +
+          `Si prefieres escribirle tú, hazlo desde el celular (el agente se hace a un lado 12 h).\n\nChat: ${this.enlace(e)}`,
       });
     }
     await this.ejecutar(e, ahora, nuevos, vuelta.resultado, vuelta.consultoProductos);
