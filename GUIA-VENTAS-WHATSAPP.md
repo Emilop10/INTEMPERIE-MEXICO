@@ -34,7 +34,7 @@ Se configuran en WhatsApp Business → Herramientas para la empresa.
 | Atajo | Texto |
 |---|---|
 | /envio | El envío es gratis a todo México y llega en 2 a 7 días hábiles. Te mando la guía de rastreo cuando sale. |
-| /pago | Puedes pagar con tarjeta (a meses sin intereses con tarjetas participantes), PayPal, o en efectivo en OXXO y 7-Eleven eligiendo Mercado Pago al pagar. |
+| /pago | Puedes pagar con tarjeta (a meses sin intereses con tarjetas participantes), PayPal, en efectivo en OXXO y 7-Eleven eligiendo Mercado Pago, o por transferencia eligiendo "Depósito Bancario" al pagar (ahí te aparece la cuenta; tu pedido queda apartado 48 h y nos mandas el comprobante por aquí). |
 | /garantia | Tienes garantía de compra: si algo llega mal, lo resolvemos. Y 7 días para cambios. |
 | /tienda | Somos tienda física en Cuernavaca, Morelos. También nos encuentras en intemperiemexico.com. |
 

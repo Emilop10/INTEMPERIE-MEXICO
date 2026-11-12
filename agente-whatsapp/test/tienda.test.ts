@@ -193,6 +193,29 @@ describe("índice local del catálogo", () => {
   });
 });
 
+describe("con token shpat_ la API de administración va primero", () => {
+  it("consulta y catálogo salen de la API (con paginación por Link) sin tocar la tienda pública", async () => {
+    const pedidas: string[] = [];
+    const prod = (h: string, inv: number) => ({ handle: h, title: h.toUpperCase(), status: "active", product_type: "Combos", tags: "", body_html: "", variants: [{ id: 9, title: "D", price: "999.00", inventory_quantity: inv, inventory_management: "shopify", inventory_policy: "deny" }] });
+    const fn = (async (url: string) => {
+      pedidas.push(url);
+      if (url.includes("/admin/api/") && url.includes("handle=")) return new Response(JSON.stringify({ products: [prod("x", 2)] }));
+      if (url.includes("/admin/api/") && url.includes("page_info=dos")) return new Response(JSON.stringify({ products: [prod("b", 0)] }));
+      if (url.includes("/admin/api/")) {
+        return new Response(JSON.stringify({ products: [prod("a", 3)] }), { headers: { link: '<https://wfuxvx-yn.myshopify.com/admin/api/2024-10/products.json?limit=250&page_info=dos>; rel="next"' } });
+      }
+      return new Response("", { status: 429, headers: { "retry-after": "0" } });
+    }) as unknown as typeof fetch;
+    const m = new Map<string, { valor: unknown; ts: number }>();
+    const cache = { get: async (c: string) => m.get(c), put: async (c: string, valor: unknown, ts: number) => void m.set(c, { valor, ts }) };
+    const tienda = crearTienda({ fetchFn: fn, cache, adminToken: "shpat_abc" });
+    expect(await tienda.consultar("x")).toMatchObject({ titulo: "X", precio: 999, disponible: true });
+    expect(await tienda.refrescarCatalogo()).toBe(2);
+    expect((m.get("catalogo")?.valor as { h: string; a: boolean; v: number }[]).map((i) => [i.h, i.a, i.v])).toEqual([["a", true, 9], ["b", false, 9]]);
+    expect(pedidas.every((u) => u.includes("/admin/api/"))).toBe(true);
+  });
+});
+
 describe("respaldo con el índice", () => {
   it("si no hay ficha ni copia, consultar usa el índice del catálogo (con id de variante) y link_de_pago acepta cantidad", async () => {
     const { linkDePago } = await import("../src/tienda");

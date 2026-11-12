@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 12 de noviembre de 2026 (sección 129, logs de Kapso pausados)
+**Última actualización:** 12 de noviembre de 2026 (sección 129, depósito bancario y token de Shopify en el agente)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -15196,3 +15196,37 @@ de diagnóstico de Kapso; los registros del agente están en Cloudflare.
 **Decisión:** no se hace nada y **no se paga el upgrade** (costo extra
 $0). Se restablece solo el 27 nov. Opcional a futuro: quitar `history`
 de los eventos del webhook en Kapso para gastar menos logs.
+
+### §129: depósito bancario en el agente y token de Shopify cargado (12 nov)
+
+**Pedido del dueño:** hacer los dos pendientes que ya no dependían de él.
+
+**1. Depósito bancario (sigue de §130).** `TRANSFERENCIA = "si"` en
+`wrangler.toml`. El contexto de cada vuelta (`textoTransferencia` en
+`conversacion.ts`) dice que al pagar eligen **"Depósito Bancario"** (el
+nombre exacto del checkout), que ahí aparece el banco y la CLABE, que el
+pedido queda apartado como pago pendiente y que tienen 48 h para
+transferir y mandar el comprobante. Instrucciones: si piden cuenta o
+transferencia, "¡Claro! Al pagar eliges *Depósito Bancario* y ahí te
+aparece la cuenta", en 3 pasos (abrir el link, elegir Depósito Bancario,
+transferir y mandar el comprobante por WhatsApp), con ficha, link de pago
+y regalo; **nunca escribe el banco, la cuenta ni la CLABE** y nunca
+confirma un pago. Quien pide contra entrega o efectivo recibe OXXO o
+depósito. "Ya transferí", "ya deposité" o un comprobante → `pasar_al_dueno`
+con motivo `ya_pago` (aviso urgente "POSIBLE VENTA"): Emiliano revisa su
+banco y da "Marcar como pagado" (§130). `GUIA-VENTAS-WHATSAPP.md` (/pago)
+actualizada. Simulación: "¿me pasas tu número de cuenta?" → los 3 pasos
+con Depósito Bancario y los links; "ya te deposité" → pase al dueño.
+
+**2. Token de Shopify.** El `SHOPIFY_ADMIN_TOKEN` del entorno ya es un
+`shpat_` válido (verificado de solo lectura: producto con precio y
+existencia). Se cargó como secreto del Worker (`wrangler secret put`, sin
+mostrarlo). Además, con token **la API de administración va primero**
+(`conCache`: API → tienda pública → copia vieja) y el catálogo del
+índice se descarga por la API (`catalogoAdmin`, paginado por `Link`, solo
+productos activos y publicados). Verificado en vivo con `/diagnostico`:
+388 productos indexados, 8 fichas en ~70 ms cada una y **0 bloqueos 429**
+de Shopify. Antes casi todas las consultas usaban copias de 5 a 60 min.
+
+79 de 79 pruebas (nueva: la API va primero en ficha y catálogo, sin
+tocar la tienda pública). Desplegado en activo (versión f2afb685).

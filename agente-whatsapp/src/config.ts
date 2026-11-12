@@ -31,7 +31,7 @@ export interface Env {
   RESCATE_MINUTOS?: string; // si el cliente vuelve a escribir y el dueño no contesta en N min, el agente retoma
   ESPERA_SEGUNDOS?: string;
   SEGUIMIENTO?: string; // si | no
-  TRANSFERENCIA?: string; // si | no: la transferencia bancaria está activa como forma de pago en Shopify
+  TRANSFERENCIA?: string; // si | no: el "Depósito Bancario" está activo como forma de pago en Shopify
   REGALO_TEXTO?: string; // regalo que va con la compra (vacío = sin regalo), p. ej. "una cucharilla Blue Fox"
   REGALO_MINIMO?: string; // compra mínima en pesos para el regalo
   REGALO_NOTA?: string; // texto corto que va anotado en el pedido (p. ej. "cucharilla Blue Fox")

@@ -297,7 +297,7 @@ describe("conversación", () => {
     const { conv } = armarConversacion({ claude, config: config({ TRANSFERENCIA: "si" }) });
     await conv.recibir(mensaje("¿número de cuenta?"), MEDIODIA);
     await conv.alarma(MEDIODIA + ESPERA);
-    expect(String(claude.llamadas[0].messages.at(-1)?.content)).toContain("SÍ está activa");
+    expect(String(claude.llamadas[0].messages.at(-1)?.content)).toContain("Depósito Bancario");
     const otra = armarConversacion({ claude: claudeConGuion([texto("ok")]) });
     await otra.conv.recibir(mensaje("¿número de cuenta?"), MEDIODIA);
     await otra.conv.alarma(MEDIODIA + ESPERA);

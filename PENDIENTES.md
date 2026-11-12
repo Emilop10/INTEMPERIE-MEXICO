@@ -19,6 +19,10 @@
    `trig_0141dPih5Zb3pfx3DYmp6pJ1`). Al 12 nov: $11.65 gastados en nov.
    Ese mismo día se restablecen los logs de Kapso (pausados el 12 nov al
    llegar a 100,000; no afecta a los mensajes ni al agente; no pagar).
+0. ✅ **12 nov:** el agente ya ofrece "Depósito Bancario" (`TRANSFERENCIA =
+   "si"`) y consulta Shopify por la API con el token `shpat_` (sin 429).
+   Siguen del dueño: token de ntfy, saludo automático de la app y la
+   decisión de plantillas de pago (MANUAL §129, 12 nov).
 0. **Agente de WhatsApp en servidor (28 oct, MANUAL §129):** Fases 1 y 2
    hechas (plan en `AGENTE-WHATSAPP-PLAN.md`, código y 45 pruebas en
    `agente-whatsapp/`; desde el 28 oct también investiga en internet). Espera el "sí" del dueño a la **Fase 3**: él abre

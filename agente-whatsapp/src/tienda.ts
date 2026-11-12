@@ -239,6 +239,34 @@ async function consultarAdmin(fetchFn: typeof fetch, token: string, handle: stri
   return p ? productoDeAdmin(p) : null;
 }
 
+/** Catálogo completo por la API de administración (sin el límite por IP de la tienda pública). */
+async function catalogoAdmin(fetchFn: typeof fetch, token: string): Promise<ItemCatalogo[]> {
+  const items: ItemCatalogo[] = [];
+  let url: string | null =
+    `${MYSHOPIFY}/admin/api/${API_ADMIN}/products.json?limit=250&status=active&published_status=published&fields=handle,title,product_type,tags,status,variants`;
+  for (let i = 0; url && i < 6; i++) {
+    const r: Response = await fetchFn(url, { headers: { "X-Shopify-Access-Token": token, accept: "application/json" } });
+    if (!r.ok) throw new Error(`La API de Shopify respondió ${r.status}`);
+    const d: any = await r.json();
+    for (const p of d?.products ?? []) {
+      const prod = productoDeAdmin(p);
+      items.push({
+        h: prod.handle,
+        t: prod.titulo,
+        y: p.product_type ?? "",
+        g: String(p.tags ?? "").slice(0, 80),
+        p: prod.precio,
+        a: prod.disponible,
+        v: prod.variantes.length === 1 ? prod.variantes[0].id : 0,
+        n: prod.variantes.length,
+      });
+    }
+    const link: string = r.headers.get("link") ?? "";
+    url = /<([^>]+)>;\s*rel="next"/.exec(link)?.[1] ?? null;
+  }
+  return items;
+}
+
 async function buscarAdmin(fetchFn: typeof fetch, token: string, q: string): Promise<Resultado[]> {
   const consulta = q.replace(/["\\]/g, " ");
   const r = await fetchFn(`${MYSHOPIFY}/admin/api/${API_ADMIN}/graphql.json`, {
@@ -268,12 +296,15 @@ export function crearTienda(opciones: OpcionesTienda | typeof fetch = {}): Tiend
   const ahora = o.ahora ?? (() => Date.now());
   const adminToken = o.adminToken?.startsWith("shpat_") ? o.adminToken : undefined;
 
-  /** Fresco de caché → en vivo → API con token → copia vieja (con edad). */
+  /**
+   * Fresco de caché → API con token (si hay; no la limita la IP compartida) →
+   * tienda pública → copia vieja (con edad).
+   */
   async function conCache<T>(clave: string, enVivo: () => Promise<T>, admin?: () => Promise<T>, forzar = false): Promise<T> {
     const t = ahora();
     const guardado = o.cache ? await o.cache.get(clave) : undefined;
     if (guardado && !forzar && t - guardado.ts < FRESCO_MS) return guardado.valor as T;
-    const fuentes = [enVivo, ...(admin ? [admin] : [])];
+    const fuentes = admin ? [admin, enVivo] : [enVivo];
     let error: unknown = new Error("sin fuente");
     for (const fuente of fuentes) {
       try {
@@ -339,6 +370,15 @@ export function crearTienda(opciones: OpcionesTienda | typeof fetch = {}): Tiend
     refrescar: (h, suave = false) => consultar(h, true, suave),
 
     async refrescarCatalogo() {
+      if (adminToken) {
+        try {
+          const items = await catalogoAdmin(fetchFn, adminToken);
+          if (items.length && o.cache) await o.cache.put(CLAVE_CATALOGO, items, ahora());
+          if (items.length) return items.length;
+        } catch (e) {
+          console.error(`Catálogo por la API falló (${String(e).slice(0, 80)}); se usa la tienda pública`);
+        }
+      }
       const items: ItemCatalogo[] = [];
       for (let pagina = 1; pagina <= 4; pagina++) {
         const r = await pedir(fetchFn, `/products.json?limit=250&page=${pagina}`);

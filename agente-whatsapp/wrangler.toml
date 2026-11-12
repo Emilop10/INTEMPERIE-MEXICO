@@ -42,10 +42,10 @@ PAUSA_HORAS = "12"
 RESCATE_MINUTOS = "120"
 ESPERA_SEGUNDOS = "8"
 SEGUIMIENTO = "si"
-# "si" cuando el dueño active la transferencia bancaria como pago manual en
-# Shopify: el agente deja de explicar OXXO y dice que al pagar eligen
-# Transferencia bancaria.
-TRANSFERENCIA = "no"
+# "si": el depósito bancario está activo como pago manual en Shopify (lo
+# activó el dueño el 8 nov, MANUAL §130). El agente dice que al pagar eligen
+# "Depósito Bancario" y ahí les aparece la cuenta. "no": explica OXXO.
+TRANSFERENCIA = "si"
 # Regalo de cierre: va con toda compra desde REGALO_MINIMO pesos. El link de
 # pago lo anota en el pedido ("Regalo: …") para que el dueño lo meta al paquete.
 # Vacío = sin regalo.
