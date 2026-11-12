@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 12 de noviembre de 2026 (sección 129, avisos por Telegram)
+**Última actualización:** 12 de noviembre de 2026 (sección 129, avisos por Telegram activos)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -15315,7 +15315,7 @@ relanzó la corrida 62: **success**. Shopify aceptó el token ("Tema:
 tema que subir. La tienda responde 200. Token de la nube y de GitHub, al
 día.
 
-### §129: avisos por Telegram (12 nov, en curso)
+### §129: avisos por Telegram (12 nov)
 
 **Pedido del dueño:** hacer el bot de Telegram para recibir los avisos en
 una app (ntfy gratis no sirve desde Cloudflare, entrada anterior).
@@ -15329,9 +15329,11 @@ chats que le escribieron al bot (para obtener el `chat_id`) sin mostrar el
 token; `/diagnostico` manda un mensaje de prueba si ya están los dos.
 80 de 80 pruebas.
 
-**Falta (dueño):** crear el bot con @BotFather, escribirle "hola" y pegar
-el token como secreto `TELEGRAM_TOKEN` en Cloudflare. Luego la sesión
-saca el `chat_id` con `/telegram`, lo carga y manda la prueba.
+**Hecho (12 nov):** el dueño creó el bot **@IntemperieAvisosBot**, le
+escribió "hola" y pegó `TELEGRAM_TOKEN` en Cloudflare. La sesión sacó el
+chat privado con `/telegram` y lo cargó como secreto `TELEGRAM_CHAT_ID`
+(sin mostrarlo). `/diagnostico` mandó la prueba: Telegram respondió 200.
+Desde ahora cada aviso llega por correo y por Telegram.
 
 **Cierre del 12 nov (16:30):** a pedido del dueño se revisaron MANUAL y
 PENDIENTES (al día) y se volvió a correr `graphify update .` en los dos
