@@ -15308,3 +15308,9 @@ relanzar el workflow desde Actions para confirmar `success`.
   Telegram (gratis, sin límite por IP; requiere instalar Telegram y crear
   el bot). Mientras, basta activar las notificaciones de Gmail en el
   celular para admin@intemperiemexico.com.
+
+**Verificado (12 nov, 16:17):** el dueño actualizó el secret en GitHub. Se
+relanzó la corrida 62: **success**. Shopify aceptó el token ("Tema:
+147593723981 Intemperie Mexico - Rediseño 2026") y no había archivos del
+tema que subir. La tienda responde 200. Token de la nube y de GitHub, al
+día.

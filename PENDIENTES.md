@@ -144,12 +144,8 @@
    el checkout. Falta que el chat del agente ponga `TRANSFERENCIA = "si"`, use
    el nombre "Depósito Bancario" y despliegue. El dueño marca los pedidos como
    pagados al ver el dinero en su banco y cancela a las 48 h sin pago.
-0. 🔴 **(12 nov) Secret de GitHub `SHOPIFY_ADMIN_TOKEN` viejo:** el despliegue
-   del tema falló con 401 (corrida 62, al subir el grafo de Graphify). La
-   tienda no cambió. **El dueño debe pegar el mismo `shpat_` de su Mac en
-   GitHub → Settings → Secrets and variables → Actions → SHOPIFY_ADMIN_TOKEN
-   → Update**, y luego relanzar "Desplegar tema a Shopify" desde Actions.
-   El workflow ya ignora `tema-shopify/graphify-out/` (MANUAL §131).
+0. ✅ **(12 nov) Secret de GitHub `SHOPIFY_ADMIN_TOKEN` actualizado** por el
+   dueño; la corrida 62 relanzada terminó en `success` (MANUAL §131).
 0. **(12 nov) Inventario del 12 nov aplicado (MANUAL §131):** 65 cambios, kits
    completos, Mercado Libre sin cambios. Kits Revenger y Tundra ahora llevan
    destorcedor #4 con seguro (el #5 se agotó): **armarlos con el #4.**
