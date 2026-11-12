@@ -8,6 +8,8 @@ on:
   push:
     paths:
       - 'tema-shopify/**'
+      # El grafo de Graphify no es parte del tema: no dispara un despliegue.
+      - '!tema-shopify/graphify-out/**'
   workflow_dispatch:  # permite lanzarlo a mano desde la pestana Actions
 
 jobs:

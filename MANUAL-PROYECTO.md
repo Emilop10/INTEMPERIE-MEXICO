@@ -15270,3 +15270,14 @@ cambiados desde la última corrida (`crear-kits.py` y
 del salto puede venir del cambio de versión de la herramienta (ver §21).
 Grafo de `tema-shopify/`: sin cambios ("No tracked code files in change
 set").
+
+**Correo de "Run failed: Desplegar tema a Shopify" (12 nov, 15:57).** El
+commit del grafo tocó `tema-shopify/graphify-out/cache/` y disparó el
+despliegue del tema (corrida 62). Falló en el primer paso con **HTTP 401**
+al pedir `/themes.json`: el secret `SHOPIFY_ADMIN_TOKEN` de GitHub sigue
+con un token viejo (el de la nube se corrigió el 8 nov, el de GitHub no).
+No se subió nada; la tienda quedó igual. Arreglos: (1) el workflow ahora
+ignora `tema-shopify/graphify-out/**`, que no es parte del tema; (2) el
+dueño debe actualizar el secret con el mismo `shpat_` de su Mac
+(INSTRUCTIVO-CREDENCIALES-SHOPIFY.md, "Después de regenerar", punto 1) y
+relanzar el workflow desde Actions para confirmar `success`.
