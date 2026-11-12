@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 8 de noviembre de 2026 (sección 130, pago por depósito bancario)
+**Última actualización:** 12 de noviembre de 2026 (sección 129, gasto de Claude y recordatorio de recarga)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -15143,3 +15143,21 @@ se escribe en el repositorio.**
 usa el nombre exacto "Depósito Bancario" en sus respuestas y despliega; se
 actualizan `GUIA-VENTAS-WHATSAPP.md` (/pago) y `RESPONDEDOR-MENSAJES.md`.
 Mensaje entregado al dueño para ese chat.
+
+### §129: gasto de Claude al 12 nov y recordatorio de recarga (12 nov)
+
+**Pedido del dueño:** ver cuánto se ha gastado de los créditos de la API.
+
+- Contador del agente (`/estado`): **$12.00 USD en noviembre** (1–12
+  nov), unos $3 en octubre (30–31) y unos $0.50 de simulaciones de la
+  sesión; hoy $0.11. Desde que se pausó la campaña de WhatsApp el gasto
+  bajó a centavos por día (el pico fue $1–1.50/día con campaña).
+- La consola de Anthropic (captura del dueño) marca **$11.65 de $100**
+  en el límite mensual de gasto, que se restablece el 1 dic. Cuadra con
+  el contador del agente (calcula a precio de lista; la caché lo baja
+  un poco). Saldo de crédito estimado: unos $85.
+- El dueño espera que el crédito se recargue el **27 nov**. Quedó un
+  recordatorio programado en el chat del agente para ese día a las
+  10:00 de México (`trig_0141dPih5Zb3pfx3DYmp6pJ1`): revisar `/estado`,
+  errores de "credit balance" en Cloudflare y si el agente siguió
+  contestando, y pedirle al dueño que confirme el saldo en Billing.

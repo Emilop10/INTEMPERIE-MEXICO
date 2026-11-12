@@ -14,6 +14,9 @@
    `GET /diagnostico?veces=0` con el `ADMIN_TOKEN` debe mostrar
    `ntfy.status 200` y `conToken true`, y el dueño debe ver el aviso de
    prueba en la app. Documentar en MANUAL §129 y quitar este bloque.
+0. ⏰ **27 nov, 10:00:** verificar que se recargó el crédito de Anthropic del
+   agente (recordatorio programado en el chat del agente,
+   `trig_0141dPih5Zb3pfx3DYmp6pJ1`). Al 12 nov: $11.65 gastados en nov.
 0. **Agente de WhatsApp en servidor (28 oct, MANUAL §129):** Fases 1 y 2
    hechas (plan en `AGENTE-WHATSAPP-PLAN.md`, código y 45 pruebas en
    `agente-whatsapp/`; desde el 28 oct también investiga en internet). Espera el "sí" del dueño a la **Fase 3**: él abre
