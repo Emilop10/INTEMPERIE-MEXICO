@@ -335,6 +335,7 @@ esos son los que viven en
 | 7 oct 2026 | 1,191 | 261 | 72 | 755 | 103 | 76 |
 | 10 oct 2026 | 1,191 | 316 | 17 | 755 | 103 | 17 |
 | 22 oct 2026 | 1,188 | 293 | 48 | 755 | 92 | 50 (+2 kits) |
+| 12 nov 2026 | 1,137 | 256 | 56 | 731 | 94 | 65 (kits sin cambio; destorcedor #5 → #4 en Revenger y Tundra) |
 
 > **15 de agosto, más tarde:** se agregó el cruce por `Codigo B1` y se
 > poblaron 371 códigos de barras en Shopify (0 errores). La cobertura de

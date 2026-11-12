@@ -92,7 +92,7 @@ KITS = [
             ("anzuelo-mustad-2330dt-sea-kirby-11", 1),
             ("plomo-gimbel-bola-8-0mm", 10),
             ("plomo-gimbel-tipo-bala-10g", 5),
-            ("destorcedor-gimbel-5620n-con-seguro-5", 10),
+            ("destorcedor-gimbel-5620n-con-seguro-4", 10),  # 12 nov: el #5 se agotó (orden del dueño)
             ("flotador-gimbel-esfera-1-1-4-32mm-mod-1010", 2),
         ],
     },
@@ -168,7 +168,7 @@ KITS = [
             ("cucharilla-blue-fox-whiptail-deep-runner-1-negro-rosa", 1),
             ("anzuelo-mustad-2330dt-sea-kirby-12", 1),
             ("plomo-gimbel-tipo-bala-10g", 5),
-            ("destorcedor-gimbel-5620n-con-seguro-5", 10),
+            ("destorcedor-gimbel-5620n-con-seguro-4", 10),  # 12 nov: el #5 se agotó (orden del dueño)
         ],
     },
 ]

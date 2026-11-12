@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 12 de noviembre de 2026 (sección 129, depósito bancario y token de Shopify en el agente)
+**Última actualización:** 12 de noviembre de 2026 (sección 131, inventario del 12 nov)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -158,6 +158,7 @@ como respaldo
 128. [Respondedor automático de mensajes en la Mac: WhatsApp y Business Suite cada 3 minutos (27 oct)](#128-respondedor-automático-de-mensajes-en-la-mac-whatsapp-y-business-suite-cada-3-minutos-27-oct)
 129. [Agente de WhatsApp en servidor con la API de Claude: Fase 1, plan (28 oct)](#129-agente-de-whatsapp-en-servidor-con-la-api-de-claude-fase-1-plan-28-oct) (incluye Fase 2: código)
 130. [Pago por transferencia o depósito bancario en Shopify (8 nov)](#130-pago-por-transferencia-o-depósito-bancario-en-shopify-8-nov)
+131. [Inventario del 12 nov: 65 cambios y destorcedor #4 en dos kits (12 nov)](#131-inventario-del-12-nov-65-cambios-y-destorcedor-4-en-dos-kits-12-nov)
 
 ---
 
@@ -15230,3 +15231,33 @@ de Shopify. Antes casi todas las consultas usaban copias de 5 a 60 min.
 
 79 de 79 pruebas (nueva: la API va primero en ficha y catálogo, sin
 tocar la tienda pública). Desplegado en activo (versión f2afb685).
+
+
+## 131. Inventario del 12 nov: 65 cambios y destorcedor #4 en dos kits (12 nov)
+
+**Pedido del dueño:** actualizar el inventario con el conteo del 12 nov
+(`inventario_12_noviembre.xlsx`, 1,137 filas; queda fuera del repo).
+
+**Ensayo y aplicación** (`conciliar-inventario.py`, primero en seco):
+256 verdes, 56 amarillos, 731 rojos, 94 grises; **65 variantes
+actualizadas en Shopify, 0 errores** (6 suben, 59 bajan, 9 quedan en 0).
+Entradas: cañas Shimano Sellus 5'8" y Stimula 6'0" (0 → 1), Rippin Rap
+(0 → 1), hilo Sufix XL Strong .25 (1 → 11), Bullet .12 (0 → 10) y un
+señuelo Storm. A cero, entre otros: destorcedor con seguro #5, rifle Red
+Ryder 4938, señuelo Rapala Precision Xtreme Pencil.
+
+**Kits:** el destorcedor Gimbel 5620N con seguro **#5** quedó en 0 y va
+10 en el Kit Revenger 7' y 10 en el Kit Tundra Pro 7'. **El dueño eligió
+sustituirlo por el #4** (49 en existencia, $6 en vez de $5) para no
+bajar los kits a 0. Se cambió en `scripts/crear-kits.py` y en la lista
+"Incluye" de las dos fichas en Shopify. El dueño lo aprobó para el
+Revenger; en el Tundra se aplicó lo mismo porque usaba la misma pieza.
+`crear-kits.py --revisar-existencias`: los 8 kits y combos completos,
+nada que corregir.
+
+**Mercado Libre:** los 8 publicados quedan igual (Tundra 1, Clarus 2,
+Kit Revenger 1, Tolten 1, Fresh 2, Combo 2.45 1, Combo 2.40 0, Boundary
+2). No hay nada que mover en ML. Base de la vigilancia actualizada.
+
+**Al armar un Kit Revenger o Tundra:** lleva destorcedores **#4** con
+seguro, no #5.

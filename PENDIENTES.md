@@ -150,6 +150,9 @@
    el checkout. Falta que el chat del agente ponga `TRANSFERENCIA = "si"`, use
    el nombre "Depósito Bancario" y despliegue. El dueño marca los pedidos como
    pagados al ver el dinero en su banco y cancela a las 48 h sin pago.
+0. **(12 nov) Inventario del 12 nov aplicado (MANUAL §131):** 65 cambios, kits
+   completos, Mercado Libre sin cambios. Kits Revenger y Tundra ahora llevan
+   destorcedor #4 con seguro (el #5 se agotó): **armarlos con el #4.**
 0. **(3 nov) Análisis de los 119 chats (MANUAL §129, último):** 0 compras con
    63 links de pago. Esperan decisión del dueño: (a) activar transferencia
    SPEI como pago manual en Shopify (la CLABE va en Shopify, nunca en el
