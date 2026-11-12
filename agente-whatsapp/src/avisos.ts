@@ -16,11 +16,26 @@ export interface Aviso {
 export type Avisar = (aviso: Aviso) => Promise<void>;
 
 export function crearAvisador(
-  opciones: { resendApiKey?: string; correo: string; ntfyTema?: string; ntfyToken?: string },
+  opciones: { resendApiKey?: string; correo: string; ntfyTema?: string; ntfyToken?: string; telegramToken?: string; telegramChat?: string },
   fetchFn: typeof fetch = fetch,
 ): Avisar {
   return async (aviso) => {
     const tareas: Promise<unknown>[] = [];
+    // Telegram: chat privado del dueño con su bot; gratis y sin límite por IP
+    // (ntfy gratis llega agotado desde Cloudflare). Lleva el detalle, como el correo.
+    if (opciones.telegramToken && opciones.telegramChat) {
+      tareas.push(
+        fetchFn(`https://api.telegram.org/bot${opciones.telegramToken}/sendMessage`, {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({
+            chat_id: opciones.telegramChat,
+            text: textoTelegram(aviso),
+            disable_web_page_preview: true,
+          }),
+        }).then(revisar("telegram")),
+      );
+    }
     if (opciones.ntfyTema) {
       tareas.push(
         fetchFn(`https://ntfy.sh/${encodeURIComponent(opciones.ntfyTema)}`, {
@@ -61,6 +76,12 @@ export function crearAvisador(
       if (r.status === "rejected") console.error("Aviso fallido:", String(r.reason));
     }
   };
+}
+
+export function textoTelegram(aviso: Aviso): string {
+  const icono = aviso.urgente ? "🚨" : "🎣";
+  const cuerpo = aviso.detalle?.trim() ? aviso.detalle.trim() : aviso.resumen;
+  return `${icono} ${aviso.titulo}\n\n${cuerpo}`.slice(0, 3500);
 }
 
 function revisar(canal: string) {

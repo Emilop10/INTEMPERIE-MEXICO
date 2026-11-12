@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 12 de noviembre de 2026 (sección 129, ntfy desde Cloudflare y avisos por correo)
+**Última actualización:** 12 de noviembre de 2026 (sección 129, avisos por Telegram)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -15314,3 +15314,21 @@ relanzó la corrida 62: **success**. Shopify aceptó el token ("Tema:
 147593723981 Intemperie Mexico - Rediseño 2026") y no había archivos del
 tema que subir. La tienda responde 200. Token de la nube y de GitHub, al
 día.
+
+### §129: avisos por Telegram (12 nov, en curso)
+
+**Pedido del dueño:** hacer el bot de Telegram para recibir los avisos en
+una app (ntfy gratis no sirve desde Cloudflare, entrada anterior).
+
+**Código (desplegado, inactivo hasta tener los secretos):** `avisos.ts`
+manda cada aviso también a Telegram (`sendMessage` del bot al chat
+privado del dueño) con título y detalle, como el correo; 🚨 si es
+urgente. Secretos del Worker: `TELEGRAM_TOKEN` (de @BotFather) y
+`TELEGRAM_CHAT_ID`. Ruta de administración `GET /telegram`: lista los
+chats que le escribieron al bot (para obtener el `chat_id`) sin mostrar el
+token; `/diagnostico` manda un mensaje de prueba si ya están los dos.
+80 de 80 pruebas.
+
+**Falta (dueño):** crear el bot con @BotFather, escribirle "hola" y pegar
+el token como secreto `TELEGRAM_TOKEN` en Cloudflare. Luego la sesión
+saca el `chat_id` con `/telegram`, lo carga y manda la prueba.

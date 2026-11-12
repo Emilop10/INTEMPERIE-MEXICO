@@ -250,3 +250,27 @@ describe("costo y links", () => {
     expect(revisarLinks("Mira: https://intemperiemexico.com/products/kit-x y wa.me/527773277340.", new Set())).toBeNull();
   });
 });
+
+describe("avisos por Telegram", () => {
+  it("con token y chat manda el título y el detalle al bot; sin ellos no lo intenta", async () => {
+    const { crearAvisador } = await import("../src/avisos");
+    const pedidas: { url: string; body: any }[] = [];
+    const fn = (async (url: string, init?: RequestInit) => {
+      pedidas.push({ url, body: init?.body ? JSON.parse(String(init.body)) : null });
+      return new Response("{}");
+    }) as unknown as typeof fetch;
+    await crearAvisador({ correo: "x@y.z", telegramToken: "123:abc", telegramChat: "999" }, fn)({
+      titulo: "Cliente caliente",
+      resumen: "corto",
+      detalle: "Un cliente quedó en: mañana lo paga",
+      urgente: true,
+    });
+    expect(pedidas).toHaveLength(1);
+    expect(pedidas[0].url).toBe("https://api.telegram.org/bot123:abc/sendMessage");
+    expect(pedidas[0].body).toMatchObject({ chat_id: "999" });
+    expect(pedidas[0].body.text).toBe("🚨 Cliente caliente\n\nUn cliente quedó en: mañana lo paga");
+    pedidas.length = 0;
+    await crearAvisador({ correo: "x@y.z", telegramToken: "123:abc" }, fn)({ titulo: "t", resumen: "r", detalle: "" });
+    expect(pedidas).toHaveLength(0);
+  });
+});

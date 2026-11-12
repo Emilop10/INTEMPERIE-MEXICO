@@ -15,6 +15,8 @@ export interface Env {
   RESEND_API_KEY?: string;
   NTFY_TEMA?: string; // nombre secreto del tema de ntfy
   NTFY_TOKEN?: string; // token de la cuenta gratis de ntfy.sh (tk_...)
+  TELEGRAM_TOKEN?: string; // token del bot de avisos (de @BotFather)
+  TELEGRAM_CHAT_ID?: string; // chat privado del dueño con el bot
   ADMIN_TOKEN?: string; // para /estado y /reiniciar
   NUMEROS_PRUEBA?: string; // "5217771234567,52..." solo dígitos, separados por coma
   MENSAJES_AUTOMATICOS?: string; // textos automáticos de la app (bienvenida, ausencia), separados por " | "

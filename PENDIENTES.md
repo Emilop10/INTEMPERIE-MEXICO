@@ -7,7 +7,9 @@
 
 0. **ntfy (12 nov):** token cargado en el Worker, pero ntfy gratis limita
    por IP y la de Cloudflare llega agotada (429). Todos los avisos van por
-   correo. Solo si el dueño lo pide: bot de Telegram (gratis) o ntfy Pro.
+   correo. **Telegram en curso:** código listo; falta que el dueño cree el
+   bot con @BotFather, le escriba "hola" y pegue `TELEGRAM_TOKEN` en
+   Cloudflare; luego `GET /telegram` da el chat_id → `TELEGRAM_CHAT_ID`.
 0. ⏰ **27 nov, 10:00:** verificar que se recargó el crédito de Anthropic del
    agente (recordatorio programado en el chat del agente,
    `trig_0141dPih5Zb3pfx3DYmp6pJ1`). Al 12 nov: $11.65 gastados en nov.

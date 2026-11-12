@@ -63,12 +63,25 @@ export default {
     }
 
     // Administración (llave ADMIN_TOKEN): contadores del mes y reiniciar un chat.
-    if (["/estado", "/reiniciar", "/diagnostico", "/enviar-borradores", "/reprocesar", "/chat", "/exportar"].includes(url.pathname)) {
+    if (["/estado", "/reiniciar", "/diagnostico", "/enviar-borradores", "/reprocesar", "/chat", "/exportar", "/telegram"].includes(url.pathname)) {
       if (!env.ADMIN_TOKEN || request.headers.get("authorization") !== `Bearer ${env.ADMIN_TOKEN}`) {
         return new Response("No autorizado", { status: 401 });
       }
       if (url.pathname === "/estado") return Response.json(await control(env).resumen(Date.now()));
       if (url.pathname === "/exportar") return exportar(env, config, url);
+      if (url.pathname === "/telegram") {
+        // Chats que le escribieron al bot (para dar de alta TELEGRAM_CHAT_ID). Nunca muestra el token.
+        if (!env.TELEGRAM_TOKEN) return Response.json({ error: "Falta el secreto TELEGRAM_TOKEN" }, { status: 400 });
+        const r = await fetch(`https://api.telegram.org/bot${env.TELEGRAM_TOKEN}/getUpdates`);
+        const d = (await r.json()) as { ok?: boolean; description?: string; result?: Array<{ message?: { chat?: { id?: number; type?: string; first_name?: string; username?: string }; text?: string } }> };
+        const chats = new Map<number, unknown>();
+        for (const u of d.result ?? []) {
+          const c = u.message?.chat;
+          if (c?.id) chats.set(c.id, { chat_id: c.id, tipo: c.type, nombre: c.first_name ?? null, usuario: c.username ?? null, ultimo: (u.message?.text ?? "").slice(0, 40) });
+        }
+        const me = (await (await fetch(`https://api.telegram.org/bot${env.TELEGRAM_TOKEN}/getMe`)).json()) as { result?: { username?: string } };
+        return Response.json({ ok: Boolean(d.ok), error: d.ok ? undefined : d.description, bot: me.result?.username ?? null, chatConfigurado: Boolean(env.TELEGRAM_CHAT_ID), chats: [...chats.values()] });
+      }
       if (url.pathname === "/chat") {
         // Metadatos de un chat (sin textos), para diagnóstico.
         const chat = (url.searchParams.get("chat") ?? "").replace(/[^\w.]/g, "");
@@ -195,6 +208,20 @@ export default {
           resultados.push(`buscar: ${String(e).slice(0, 120)}`);
         }
         salida.tienda = resultados;
+        if (env.TELEGRAM_TOKEN && env.TELEGRAM_CHAT_ID) {
+          try {
+            const r = await fetch(`https://api.telegram.org/bot${env.TELEGRAM_TOKEN}/sendMessage`, {
+              method: "POST",
+              headers: { "content-type": "application/json" },
+              body: JSON.stringify({ chat_id: env.TELEGRAM_CHAT_ID, text: "🎣 Prueba del agente de WhatsApp: los avisos ya llegan a Telegram." }),
+            });
+            salida.telegram = { status: r.status, detalle: r.ok ? undefined : (await r.text()).slice(0, 200) };
+          } catch (e) {
+            salida.telegram = `error: ${String(e).slice(0, 200)}`;
+          }
+        } else {
+          salida.telegram = { configurado: false, token: Boolean(env.TELEGRAM_TOKEN), chat: Boolean(env.TELEGRAM_CHAT_ID) };
+        }
         try {
           const r = await fetch(`https://ntfy.sh/${encodeURIComponent(env.NTFY_TEMA ?? "")}`, {
             method: "POST",
@@ -353,6 +380,8 @@ export class ConversacionDO extends DurableObject<Env> {
         correo: config.avisoCorreo,
         ntfyTema: env.NTFY_TEMA,
         ntfyToken: env.NTFY_TOKEN,
+        telegramToken: env.TELEGRAM_TOKEN,
+        telegramChat: env.TELEGRAM_CHAT_ID,
       }),
     });
   }
