@@ -15332,3 +15332,9 @@ token; `/diagnostico` manda un mensaje de prueba si ya están los dos.
 **Falta (dueño):** crear el bot con @BotFather, escribirle "hola" y pegar
 el token como secreto `TELEGRAM_TOKEN` en Cloudflare. Luego la sesión
 saca el `chat_id` con `/telegram`, lo carga y manda la prueba.
+
+**Cierre del 12 nov (16:30):** a pedido del dueño se revisaron MANUAL y
+PENDIENTES (al día) y se volvió a correr `graphify update .` en los dos
+grafos: sin cambios ("none of the scanned files differ"). `scripts/` sigue
+en 241/571/15; `tema-shopify/` igual. El código del agente de WhatsApp
+(`agente-whatsapp/`, TypeScript) no está en ninguno de los dos grafos.
