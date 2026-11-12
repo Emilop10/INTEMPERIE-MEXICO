@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 12 de noviembre de 2026 (sección 129, gasto de Claude y recordatorio de recarga)
+**Última actualización:** 12 de noviembre de 2026 (sección 129, logs de Kapso pausados)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -15161,3 +15161,38 @@ Mensaje entregado al dueño para ese chat.
   10:00 de México (`trig_0141dPih5Zb3pfx3DYmp6pJ1`): revisar `/estado`,
   errores de "credit balance" en Cloudflare y si el agente siguió
   contestando, y pedirle al dueño que confirme el saldo en Billing.
+
+### §129: correo de Kapso "Log collection paused" (12 nov)
+
+**Pedido del dueño:** le llegó un correo de Kapso (12 nov, 9:36):
+"Intemperie México has ingested 100,000 logs this cycle… New logs are no
+longer being collected until your allowance resets on November 27, 2026
+or you upgrade."
+
+**Qué es:** los "logs" de Kapso son su registro de diagnóstico (pestaña
+Logs del panel): cada evento que Meta le manda (`messages`,
+`smb_message_echoes`, `history`), cada entrega a nuestro webhook, cada
+cambio de estado de un mensaje (pendiente, enviado, entregado, leído) y
+cada llamada a su API. Un solo mensaje genera varios logs. El plan
+gratis incluye 100,000 por ciclo (27 oct a 27 nov). Ese tope **no** es
+el de mensajes: el agente lleva 729 mensajes de Kapso en noviembre
+(tope propio 1,900; el de Kapso, 2,000).
+
+**De dónde salieron:** la mitad de los eventos de webhook de los últimos
+días son `history` (la sincronización del historial de la app del
+celular por la coexistencia; el agente los ignora, pero Kapso los
+registra y nos los entrega, y cada uno cuenta doble). A eso se suma la
+sincronización inicial del 29 oct (los cientos de "conversaciones"
+vacías que salieron en la exportación del 3 nov), los estados de cada
+mensaje y la exportación (≈1,000 llamadas). La búsqueda de logs de Kapso
+solo deja ver 100 eventos por fuente, así que no hay desglose exacto.
+
+**Verificado que no afecta al agente:** después de las 9:36 Kapso siguió
+entregando el webhook (22 entregas de 9:36 a 12:49 en los registros de
+Cloudflare), el agente siguió decidiendo (4 decisiones) y los mensajes
+del 12 nov aparecen en Kapso en ambos sentidos. Solo se pausa la pestaña
+de diagnóstico de Kapso; los registros del agente están en Cloudflare.
+
+**Decisión:** no se hace nada y **no se paga el upgrade** (costo extra
+$0). Se restablece solo el 27 nov. Opcional a futuro: quitar `history`
+de los eventos del webhook en Kapso para gastar menos logs.
