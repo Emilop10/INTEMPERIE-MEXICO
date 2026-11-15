@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 15 de noviembre de 2026 (sección 118, margen real de la venta #1008)
+**Última actualización:** 15 de noviembre de 2026 (sección 131, inventario del 15 nov)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -15374,3 +15374,22 @@ incluidos) y la guía a Chihuahua costó **$186.67**. Neto: $953.90 − $556.50
 de piezas − $48.83 de caja − $186.67 de guía = **$161.90**, arriba de la
 regla de $150. La estimación previa (≈$100) se quedó corta porque la guía
 salió más barata que los $220 supuestos y la comisión fue menor.
+
+
+### §131, continuación: inventario del 15 nov (15 nov)
+
+Conteo `inventario_15_noviembre.xlsx` (fuera del repo). Ensayo y luego
+aplicación con el "sí" del dueño: 305 verdes, 25 amarillos, 788 rojos, 93
+grises; **31 variantes actualizadas, 0 errores** (2 suben, 29 bajan, 6
+quedan en 0: monturas Mendoza 11 mm y Picatinny, montura Konus, munición
+Mendoza 400, pistola Mendoza de salva y la caña Rapala Corux 240). La
+mayoría son diábolos, municiones, miras y plomos de la tienda física.
+
+**Kits y combos** (`crear-kits.py --revisar-existencias --aplicar`): se
+vendió la caña Rapala Corux 240, así que el **Combo Rapala Corux 240**
+bajó de 1 a 0 (solo está en la tienda en línea, no en Mercado Libre). Los
+otros 7 completos. Revenger 7' (2 → 1) y carrete S500 (2 → 1) bajaron, pero
+alcanzan para sus kits.
+
+**Mercado Libre:** los 8 publicados sin cambio (el Boundary ya estaba en
+1 por la venta #1008). Nada que mover. Base de la vigilancia actualizada.

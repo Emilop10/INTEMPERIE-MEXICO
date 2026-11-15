@@ -151,6 +151,8 @@
    ✅ Mercado Libre MLM-6444801030 ya **bajó de 2 a 1** (15 nov, Mac). Falta
    descontar en el punto de venta la caña y el carrete del Boundary. Margen
    real cerrado: **$161.90** (MANUAL §118).
+0. **(15 nov) Inventario del 15 nov aplicado (MANUAL §131):** 31 cambios; el
+   Combo Rapala Corux quedó en 0 (se vendió la caña); Mercado Libre sin cambios.
 0. **(12 nov) Inventario del 12 nov aplicado (MANUAL §131):** 65 cambios, kits
    completos, Mercado Libre sin cambios. Kits Revenger y Tundra ahora llevan
    destorcedor #4 con seguro (el #5 se agotó): **armarlos con el #4.**
