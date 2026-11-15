@@ -147,10 +147,10 @@
    pagados al ver el dinero en su banco y cancela a las 48 h sin pago.
 0. ✅ **(12 nov) Secret de GitHub `SHOPIFY_ADMIN_TOKEN` actualizado** por el
    dueño; la corrida 62 relanzada terminó en `success` (MANUAL §131).
-0. 🔴 **(14 nov) VENTA #1008 — Combo Boundary $999 (tienda, a Chihuahua):** el
+0. **(14 nov) VENTA #1008 — Combo Boundary $999 (tienda, a Chihuahua):** el
    ✅ Mercado Libre MLM-6444801030 ya **bajó de 2 a 1** (15 nov, Mac). Falta
-   descontar en el punto de venta la caña y el carrete del Boundary. Pasar el
-   costo real de la guía para cerrar el margen (estimado ≈$100, MANUAL §118).
+   descontar en el punto de venta la caña y el carrete del Boundary. Margen
+   real cerrado: **$161.90** (MANUAL §118).
 0. **(12 nov) Inventario del 12 nov aplicado (MANUAL §131):** 65 cambios, kits
    completos, Mercado Libre sin cambios. Kits Revenger y Tundra ahora llevan
    destorcedor #4 con seguro (el #5 se agotó): **armarlos con el #4.**

@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 14 de noviembre de 2026 (sección 118, venta #1008 del Combo Boundary)
+**Última actualización:** 15 de noviembre de 2026 (sección 118, margen real de la venta #1008)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -15366,3 +15366,11 @@ Código B-S-702-40".
   vendidas en ML**.
 - **Sin tocar:** precio ($1,199, Clásica, envío gratis), título, fotos y
   estado; sigue activa.
+
+
+**Margen real de la venta #1008 (dato del dueño, 15 nov):** Mercado Pago
+depositó **$953.90** de los $999 (se quedó $45.10, 4.5%, con los 3 meses
+incluidos) y la guía a Chihuahua costó **$186.67**. Neto: $953.90 − $556.50
+de piezas − $48.83 de caja − $186.67 de guía = **$161.90**, arriba de la
+regla de $150. La estimación previa (≈$100) se quedó corta porque la guía
+salió más barata que los $220 supuestos y la comisión fue menor.
