@@ -15393,3 +15393,8 @@ alcanzan para sus kits.
 
 **Mercado Libre:** los 8 publicados sin cambio (el Boundary ya estaba en
 1 por la venta #1008). Nada que mover. Base de la vigilancia actualizada.
+
+**Cierre del 15 nov:** a pedido del dueño se revisaron MANUAL y PENDIENTES
+(al día con la venta #1008, su margen de $161.90 y el inventario del 15
+nov) y se corrió `graphify update .` en los dos grafos: sin cambios. El
+inventario no toca código. `scripts/` sigue en 241/571/15.
