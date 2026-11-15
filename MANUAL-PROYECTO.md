@@ -15356,3 +15356,13 @@ Margen estimado: $999 − $556.50 de piezas − $48.83 de caja − guía a
 Chihuahua (≈$220) − comisiones (≈$65, más el costo de los meses sin
 intereses) ≈ **$100 o menos**, debajo de la regla de $150; se confirma con
 el costo real de la guía. Base de la vigilancia actualizada.
+
+**Mercado Libre ajustado (15 nov, desde la Mac):** MLM-6444801030 →
+Modificar → "Stock en tu depósito": **2 → 1** → Confirmar. ML respondió
+"Guardamos los cambios" y la sección muestra "En tu depósito: 1 u.
+Código B-S-702-40".
+
+- **Antes del cambio:** la publicación tenía 100 visitas y **0 unidades
+  vendidas en ML**.
+- **Sin tocar:** precio ($1,199, Clásica, envío gratis), título, fotos y
+  estado; sigue activa.
