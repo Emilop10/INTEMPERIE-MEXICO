@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 12 de noviembre de 2026 (sección 129, avisos por Telegram activos)
+**Última actualización:** 14 de noviembre de 2026 (sección 118, venta #1008 del Combo Boundary)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -15340,3 +15340,19 @@ PENDIENTES (al día) y se volvió a correr `graphify update .` en los dos
 grafos: sin cambios ("none of the scanned files differ"). `scripts/` sigue
 en 241/571/15; `tema-shopify/` igual. El código del agente de WhatsApp
 (`agente-whatsapp/`, TypeScript) no está en ninguno de los dos grafos.
+
+
+### §118, entrada: venta #1008 del Combo Boundary en la tienda (14 nov)
+
+La vigilancia de inventario de las 18:52 del 14 nov detectó el pedido
+**#1008: Combo Okuma Boundary 7' a $999**, pagado con tarjeta (Mercado
+Pago, 3 meses), envío gratis a Chihuahua, creado el 14 nov a las 12:12 y
+ya marcado como enviado (fulfilled). Entró directo a la ficha del
+producto, sin sitio de referencia; no se sabe si vino del agente de
+WhatsApp. Existencia del Boundary en Shopify: **2 → 1**. Al dueño se le
+pidió bajar Mercado Libre (MLM-6444801030) de 2 a 1. Ningún producto quedó
+en 0, así que no hay anuncios que pausar (además están todos en pausa).
+Margen estimado: $999 − $556.50 de piezas − $48.83 de caja − guía a
+Chihuahua (≈$220) − comisiones (≈$65, más el costo de los meses sin
+intereses) ≈ **$100 o menos**, debajo de la regla de $150; se confirma con
+el costo real de la guía. Base de la vigilancia actualizada.
