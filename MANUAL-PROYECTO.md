@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 15 de noviembre de 2026 (sección 131, inventario del 15 nov)
+**Última actualización:** 21 de noviembre de 2026 (sección 131, inventario del 21 nov)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -15398,3 +15398,24 @@ alcanzan para sus kits.
 (al día con la venta #1008, su margen de $161.90 y el inventario del 15
 nov) y se corrió `graphify update .` en los dos grafos: sin cambios. El
 inventario no toca código. `scripts/` sigue en 241/571/15.
+
+
+### §131, continuación: inventario del 21 nov (21 nov)
+
+Conteo `inventario_itemperie_21_nov.xlsx` (fuera del repo). Ensayo y
+aplicación con el "sí" del dueño: 267 verdes, 66 amarillos, 790 rojos, 93
+grises; **68 variantes actualizadas, 0 errores** (46 suben, 22 bajan, 2
+quedan en 0). Resurtido grande de accesorios Gimbel, Mustad y Araty:
+destorcedor con seguro #5 (0 → 144), plomos bala 15 g, bola, ranura y
+oval, anzuelos e hilos Araty de 100 m.
+
+**Kits:** el conteo trae la **caña Blue Fox Tolten 8' en 0** (se vendió en
+la tienda física). El dueño eligió aplicar y pausar: `crear-kits.py
+--revisar-existencias --aplicar` bajó el **Kit Tolten 8' Mar y Costa de 1
+a 0** en Shopify. **La Mac debe pausar en Mercado Libre MLM-3682621565**
+(mensaje entregado). No hay otra caña Blue Fox de 8' para sustituirla
+(la única de 8' es la Okuma Revenger 2.40 del combo). Los otros kits y
+combos sin cambio. El destorcedor #5 volvió a haber; los Kits Revenger y
+Tundra siguen con el #4 (decisión del 12 nov), no se cambió.
+
+Base de la vigilancia actualizada (Tolten en 0).
