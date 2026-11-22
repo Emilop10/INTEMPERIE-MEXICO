@@ -15428,3 +15428,10 @@ apagado. ML respondió "**Tu publicación se pausó exitosamente**" y la fila
 quedó en **"Pausada"**. Se pausó, no se borró. No se tocó nada más: ni
 precio, ni stock, ni las otras publicaciones. Para reactivarla, cuando
 vuelva a haber caña Tolten, se enciende el mismo interruptor.
+
+**Cierre del 21–22 nov:** confirmada la pausa del Kit Tolten en Mercado
+Libre (la Mac, commit a816848). Estado de los 8 publicados: Tundra 1,
+Clarus 2, Kit Revenger 1, Tolten 0 (pausado en ML), Fresh 2, Combo 2.45 1,
+Combo 2.40 0 (pausado en ML), Boundary 1. `graphify update .` en los dos
+grafos: sin cambios (241/571/15 en `scripts/`). Rama al día con el remoto;
+es la única rama del repositorio, así que no hubo merge que hacer.
