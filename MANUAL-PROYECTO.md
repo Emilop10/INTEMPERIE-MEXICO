@@ -15419,3 +15419,12 @@ combos sin cambio. El destorcedor #5 volvió a haber; los Kits Revenger y
 Tundra siguen con el #4 (decisión del 12 nov), no se cambió.
 
 Base de la vigilancia actualizada (Tolten en 0).
+
+**Mercado Libre: Kit Tolten pausado (21 nov, desde la Mac).** La caña
+Blue Fox Tolten 8' se vendió en la tienda física y el kit quedó en 0. En
+Publicaciones, la fila **#3682621565 "Kit Pesca Mar Blue Fox Tolten 8'"**
+(SKU KIT-TOLTEN, $1,489, 1 u. en ML, 8 visitas en 7 días) → interruptor
+apagado. ML respondió "**Tu publicación se pausó exitosamente**" y la fila
+quedó en **"Pausada"**. Se pausó, no se borró. No se tocó nada más: ni
+precio, ni stock, ni las otras publicaciones. Para reactivarla, cuando
+vuelva a haber caña Tolten, se enciende el mismo interruptor.
