@@ -151,6 +151,8 @@
    ✅ Mercado Libre MLM-6444801030 ya **bajó de 2 a 1** (15 nov, Mac). Falta
    descontar en el punto de venta la caña y el carrete del Boundary. Margen
    real cerrado: **$161.90** (MANUAL §118).
+0. **(23 nov) Inventario del 23 nov aplicado (MANUAL §131):** 4 cambios, kits y
+   Mercado Libre sin cambio.
 0. ✅ **(21 nov) Kit Blue Fox Tolten 8' (MLM-3682621565) PAUSADO en Mercado
    Libre** desde la Mac (su caña se vendió en la tienda física y el kit quedó
    en 0). Reactivar cuando haya caña Tolten. Inventario del 21 nov aplicado: 68 cambios (MANUAL §131).

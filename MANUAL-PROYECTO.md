@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 21 de noviembre de 2026 (sección 131, inventario del 21 nov)
+**Última actualización:** 23 de noviembre de 2026 (sección 131, inventario del 23 nov)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -15435,3 +15435,14 @@ Clarus 2, Kit Revenger 1, Tolten 0 (pausado en ML), Fresh 2, Combo 2.45 1,
 Combo 2.40 0 (pausado en ML), Boundary 1. `graphify update .` en los dos
 grafos: sin cambios (241/571/15 en `scripts/`). Rama al día con el remoto;
 es la única rama del repositorio, así que no hubo merge que hacer.
+
+
+### §131, continuación: inventario del 23 nov (23 nov)
+
+Conteo `inventario_intemperie_23_nov.xlsx` (fuera del repo; esta vez sin
+las columnas de precio, que el script no usa). 333 verdes, 3 amarillos,
+872 rojos, 110 grises; **4 variantes actualizadas, 0 errores**: pistola
+Glock 19 Gen3 CO2 (0 → 2), diábolos Mendoza Magnum (9 → 7) y Express
+(14 → 13), y el rifle Umarex NXG APX (1 → 0). Ninguno es pieza de kit o
+combo: `crear-kits.py --revisar-existencias` sin nada que corregir. Los 8
+de Mercado Libre sin cambio. Base de la vigilancia actualizada.
