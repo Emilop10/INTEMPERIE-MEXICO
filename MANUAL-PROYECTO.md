@@ -15446,3 +15446,9 @@ Glock 19 Gen3 CO2 (0 → 2), diábolos Mendoza Magnum (9 → 7) y Express
 (14 → 13), y el rifle Umarex NXG APX (1 → 0). Ninguno es pieza de kit o
 combo: `crear-kits.py --revisar-existencias` sin nada que corregir. Los 8
 de Mercado Libre sin cambio. Base de la vigilancia actualizada.
+
+**Aclaración al dueño (23 nov):** la conciliación solo lee `Codigo B1`,
+`No Parte`, `Existencia` y `Descripción`; no usa costos ni precios y
+nunca cambia precios en Shopify. Quedó anotado en
+`INSTRUCTIVO-CONCILIAR-INVENTARIO.md`. `graphify update .` en los dos
+grafos: sin cambios. Rama única, al día con el remoto; no hubo merge.

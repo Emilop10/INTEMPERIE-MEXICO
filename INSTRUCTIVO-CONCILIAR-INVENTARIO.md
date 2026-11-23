@@ -43,6 +43,13 @@ la sección "Cruce por nombre" más abajo.
 
 ---
 
+> **Columnas que usa el script (aclarado al dueño el 23 nov):** solo
+> `Codigo B1`, `No Parte`, `Existencia` y, como último recurso,
+> `Descripción`. **No lee costos (`ConstoN`) ni precios (`Precio 1–5`)**:
+> el inventario nunca cambia precios en Shopify. El archivo puede venir
+> sin esas columnas. Los costos solo se usan aparte, a mano, para calcular
+> márgenes.
+
 ## Qué necesitas de tu lado
 
 1. El **Excel del conteo físico** del día, exportado del sistema de la
