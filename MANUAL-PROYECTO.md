@@ -15470,3 +15470,8 @@ dueño eligió sustituirlo por el Araty 0.20 mm multicolor** (mismo grosor,
 hay 5). Se cambió en `scripts/crear-kits.py` y en la lista "Incluye" de la
 ficha. Rechequeo: los 8 kits y combos completos; el Fresh sigue en 2 y
 Mercado Libre no se toca. **Al armar un Kit Fresh: hilo 0.20 multicolor.**
+
+**Cierre del 24 nov:** MANUAL y PENDIENTES al día (inventario del 24 nov y
+cambio de hilo del Kit Fresh). `graphify update .`: en `scripts/` volvió a
+leer `crear-kits.py` (solo cambió un nombre de pieza, sin funciones nuevas),
+así que el grafo sigue en 241/571/15; `tema-shopify/` sin cambios.
