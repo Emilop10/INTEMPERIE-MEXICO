@@ -141,7 +141,7 @@ KITS = [
         "piezas": [
             ("cana-de-pescar-blue-fox-fresh-spinning-70-2-10m", 1),
             ("carrete-gimbel-afr230-spinning", 1),
-            ("hilo-araty-0-20mm-100m-natural", 2),
+            ("hilo-araty-0-20mm-100m-multicolor", 2),  # 24 nov: el natural ya no alcanza (orden del dueño)
             ("flotador-gimbel-antena-4g-su7045", 2),
             ("flotador-gimbel-esfera-3-4-19mm-mod-1010", 2),
             ("anzuelo-mustad-2330dt-sea-kirby-9", 1),

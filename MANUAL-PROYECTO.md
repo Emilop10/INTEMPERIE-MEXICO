@@ -15461,6 +15461,12 @@ amarillos, 874 rojos, 110 grises; **10 variantes actualizadas, 0
 errores**, todas bajas: diábolos Mendoza Magnum (7 → 3) y Gamo TS22
 (2 → 0), binocular Simmons 8x21 (1 → 0), CO2, plomo oval, anzuelo, dos
 hilos Araty, munición Daisy y el destorcedor #4 con seguro (49 → 47; los
-Kits Revenger y Tundra usan 20). `crear-kits.py --revisar-existencias`:
-nada que corregir. Los 8 de Mercado Libre sin cambio. Base de la
-vigilancia actualizada.
+Kits Revenger y Tundra usan 20). Base de la vigilancia actualizada.
+
+**Kit Fresh:** `crear-kits.py --revisar-existencias` detectó que el hilo
+Araty 0.20 mm natural bajó a 3 y el Kit Fresh 7' lleva 2, así que solo
+alcanzaba para 1 kit (está en 2 en la tienda y en Mercado Libre). **El
+dueño eligió sustituirlo por el Araty 0.20 mm multicolor** (mismo grosor,
+hay 5). Se cambió en `scripts/crear-kits.py` y en la lista "Incluye" de la
+ficha. Rechequeo: los 8 kits y combos completos; el Fresh sigue en 2 y
+Mercado Libre no se toca. **Al armar un Kit Fresh: hilo 0.20 multicolor.**
