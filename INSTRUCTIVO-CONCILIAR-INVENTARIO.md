@@ -346,6 +346,7 @@ esos son los que viven en
 | 15 nov 2026 | 1,211 | 305 | 25 | 788 | 93 | 31 (+1 combo: Corux a 0) |
 | 21 nov 2026 | 1,216 | 267 | 66 | 790 | 93 | 68 (+1 kit: Tolten a 0) |
 | 23 nov 2026 | 1,318 | 333 | 3 | 872 | 110 | 4 (kits sin cambio) |
+| 24 nov 2026 | 1,318 | 326 | 8 | 874 | 110 | 10 (kits sin cambio) |
 
 > **15 de agosto, más tarde:** se agregó el cruce por `Codigo B1` y se
 > poblaron 371 códigos de barras en Shopify (0 errores). La cobertura de

@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 23 de noviembre de 2026 (sección 131, inventario del 23 nov)
+**Última actualización:** 24 de noviembre de 2026 (sección 131, inventario del 24 nov)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -15452,3 +15452,15 @@ de Mercado Libre sin cambio. Base de la vigilancia actualizada.
 nunca cambia precios en Shopify. Quedó anotado en
 `INSTRUCTIVO-CONCILIAR-INVENTARIO.md`. `graphify update .` en los dos
 grafos: sin cambios. Rama única, al día con el remoto; no hubo merge.
+
+
+### §131, continuación: inventario del 24 nov (24 nov)
+
+Conteo `inventario_intemperie.xlsx` (fuera del repo). 326 verdes, 8
+amarillos, 874 rojos, 110 grises; **10 variantes actualizadas, 0
+errores**, todas bajas: diábolos Mendoza Magnum (7 → 3) y Gamo TS22
+(2 → 0), binocular Simmons 8x21 (1 → 0), CO2, plomo oval, anzuelo, dos
+hilos Araty, munición Daisy y el destorcedor #4 con seguro (49 → 47; los
+Kits Revenger y Tundra usan 20). `crear-kits.py --revisar-existencias`:
+nada que corregir. Los 8 de Mercado Libre sin cambio. Base de la
+vigilancia actualizada.
