@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 24 de noviembre de 2026 (sección 131, inventario del 24 nov)
+**Última actualización:** 25 de noviembre de 2026 (sección 131, inventario del 25 nov)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -15475,3 +15475,16 @@ Mercado Libre no se toca. **Al armar un Kit Fresh: hilo 0.20 multicolor.**
 cambio de hilo del Kit Fresh). `graphify update .`: en `scripts/` volvió a
 leer `crear-kits.py` (solo cambió un nombre de pieza, sin funciones nuevas),
 así que el grafo sigue en 241/571/15; `tema-shopify/` sin cambios.
+
+
+### §131, continuación: inventario del 25 nov (25 nov)
+
+Conteo `intemperie_25nov.xlsx` (fuera del repo). 325 verdes, 12
+amarillos, 872 rojos, 110 grises; **12 variantes actualizadas, 0
+errores** (8 suben, 4 bajan, ninguna queda en 0). Resurtido Mendoza:
+munición de acero 4.5 de 400 (0 → 20), diábolos Express y Magnum 5.5 y
+Magnum 4.5, salvas, monturas bajas 11 mm (0 → 5) y dos pistolas de salva.
+Bajas: CO2, destorcedores #4 (47 → 42) y #5, e hilo Araty 0.20 natural
+(3 → 2; el Kit Fresh ya usa el multicolor). `crear-kits.py
+--revisar-existencias`: todos completos. Los 8 de Mercado Libre sin
+cambio. Base de la vigilancia actualizada.

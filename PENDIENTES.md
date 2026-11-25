@@ -151,6 +151,8 @@
    ✅ Mercado Libre MLM-6444801030 ya **bajó de 2 a 1** (15 nov, Mac). Falta
    descontar en el punto de venta la caña y el carrete del Boundary. Margen
    real cerrado: **$161.90** (MANUAL §118).
+0. **(25 nov) Inventario del 25 nov aplicado (MANUAL §131):** 12 cambios, kits y
+   Mercado Libre sin cambio.
 0. **(24 nov) Inventario del 24 nov aplicado (MANUAL §131):** 10 bajas; Mercado
    Libre sin cambio. **El Kit Fresh ahora lleva hilo Araty 0.20 multicolor**
    (el natural ya no alcanzaba): armarlo así.
