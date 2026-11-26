@@ -15500,3 +15500,7 @@ anzuelos Mustad 94151, hilos Araty de 1000 m (0.45 y 0.50) y mira Gamo
 4x28. Ninguna es pieza de kit; `crear-kits.py --revisar-existencias`:
 todos completos. Los 8 de Mercado Libre sin cambio. Base de la
 vigilancia actualizada.
+
+**Cierre del 26 nov:** MANUAL y PENDIENTES al día con el inventario del
+26 nov. `graphify update .` en los dos grafos: sin cambios (241/571/15 en
+`scripts/`). Rama única, al día con el remoto; no hubo merge.
