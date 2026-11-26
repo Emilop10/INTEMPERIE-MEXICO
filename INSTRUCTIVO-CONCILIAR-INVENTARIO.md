@@ -348,6 +348,7 @@ esos son los que viven en
 | 23 nov 2026 | 1,318 | 333 | 3 | 872 | 110 | 4 (kits sin cambio) |
 | 24 nov 2026 | 1,318 | 326 | 8 | 874 | 110 | 10 (kits sin cambio) |
 | 25 nov 2026 | 1,319 | 325 | 12 | 872 | 110 | 12 (kits sin cambio) |
+| 26 nov 2026 | 1,319 | 327 | 10 | 872 | 110 | 10 (kits sin cambio) |
 
 > **15 de agosto, más tarde:** se agregó el cruce por `Codigo B1` y se
 > poblaron 371 códigos de barras en Shopify (0 errores). La cobertura de

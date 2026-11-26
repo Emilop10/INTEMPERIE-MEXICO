@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 25 de noviembre de 2026 (sección 131, inventario del 25 nov)
+**Última actualización:** 26 de noviembre de 2026 (sección 131, inventario del 26 nov)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -15488,3 +15488,15 @@ Bajas: CO2, destorcedores #4 (47 → 42) y #5, e hilo Araty 0.20 natural
 (3 → 2; el Kit Fresh ya usa el multicolor). `crear-kits.py
 --revisar-existencias`: todos completos. Los 8 de Mercado Libre sin
 cambio. Base de la vigilancia actualizada.
+
+
+### §131, continuación: inventario del 26 nov (26 nov)
+
+Conteo `inventario_intemperie_26nov.xlsx` (fuera del repo). 327 verdes, 10
+amarillos, 872 rojos, 110 grises; **10 variantes actualizadas, 0
+errores**, todas bajas y ninguna a 0: plomos ovales 10x15 (37 → 27) y
+13x17, CO2, destorcedor sin seguro #1/0, munición Mendoza 400, dos
+anzuelos Mustad 94151, hilos Araty de 1000 m (0.45 y 0.50) y mira Gamo
+4x28. Ninguna es pieza de kit; `crear-kits.py --revisar-existencias`:
+todos completos. Los 8 de Mercado Libre sin cambio. Base de la
+vigilancia actualizada.
