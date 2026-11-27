@@ -9,11 +9,12 @@
    por IP y la de Cloudflare llega agotada (429). Todos los avisos van por
    correo y, desde el 12 nov, también por **Telegram** (@IntemperieAvisosBot,
    activo y probado).
-0. ⏰ **27 nov, 10:00:** verificar que se recargó el crédito de Anthropic del
-   agente (recordatorio programado en el chat del agente,
-   `trig_0141dPih5Zb3pfx3DYmp6pJ1`). Al 12 nov: $11.65 gastados en nov.
-   Ese mismo día se restablecen los logs de Kapso (pausados el 12 nov al
-   llegar a 100,000; no afecta a los mensajes ni al agente; no pagar).
+0. **27 nov:** crédito de Anthropic activo (prueba directa con la llave
+   del agente; Claude siguió contestando después del 21 nov). Falta que el
+   dueño confirme saldo y vencimiento en console.anthropic.com → Billing.
+   El `ADMIN_TOKEN` del agente se perdió con la carpeta temporal: rotarlo
+   cuando el dueño autorice y guardarlo fuera de ella. Los logs de Kapso se
+   restablecen hoy (no afectan al agente).
 0. ✅ **12 nov:** el agente ya ofrece "Depósito Bancario" (`TRANSFERENCIA =
    "si"`) y consulta Shopify por la API con el token `shpat_` (sin 429).
    Siguen del dueño: saludo automático de la app y la

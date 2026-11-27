@@ -7,7 +7,7 @@ para que cualquier persona (tú, un colaborador futuro, u otra sesión de
 Claude) pueda entender qué se hizo, por qué, y dónde vive cada cosa, sin
 tener que reconstruir el contexto desde cero.
 
-**Última actualización:** 26 de noviembre de 2026 (sección 131, inventario del 26 nov)
+**Última actualización:** 27 de noviembre de 2026 (sección 129, revisión del crédito de Anthropic)
 **Dominio en vivo:** `https://intemperiemexico.com` (dominio propio,
 conectado el 3 de agosto de 2026 — `wfuxvx-yn.myshopify.com` redirige
 automáticamente aquí)
@@ -15504,3 +15504,27 @@ vigilancia actualizada.
 **Cierre del 26 nov:** MANUAL y PENDIENTES al día con el inventario del
 26 nov. `graphify update .` en los dos grafos: sin cambios (241/571/15 en
 `scripts/`). Rama única, al día con el remoto; no hubo merge.
+
+### §129: revisión del 27 nov: crédito de Anthropic (recordatorio programado)
+
+**Recordatorio del 12 nov:** verificar si se recargó el crédito de la API
+de Anthropic que usa el agente.
+
+- `/salud`: activo. Sin errores de Claude ni de crédito ("credit
+  balance") en los registros de Cloudflare desde el 21 nov.
+- **Después del 21 nov (fecha de vencimiento que mostraba el crédito) el
+  agente siguió usando Claude:** el 24 nov contestó "¡Buenas tardes! Con
+  gusto, ¿qué andas buscando?" y decidió callar en un chat de cartuchos.
+  Los "No alcancé a ver tu mensaje" del 23 al 26 nov son la respuesta fija
+  (no usan Claude).
+- **Prueba directa hoy (27 nov):** una llamada mínima a Claude con la llave
+  del agente respondió bien. El crédito está activo.
+- Tráfico bajo (campaña de anuncios pausada): casi todo es de Alcampo y el
+  agente se queda callado, como debe.
+- No se pudo leer `/estado`: la carpeta temporal de la sesión se limpió y
+  con ella el `ADMIN_TOKEN`; el clasificador de permisos no dejó rotarlo
+  sin el dueño. **Pendiente:** cuando el dueño lo autorice, generar un
+  `ADMIN_TOKEN` nuevo con `wrangler secret put` y guardarlo fuera de la
+  carpeta temporal (por ejemplo, como variable del entorno de la nube).
+- Falta que el dueño confirme en console.anthropic.com → Billing el saldo
+  del crédito y su nueva fecha de vencimiento.
